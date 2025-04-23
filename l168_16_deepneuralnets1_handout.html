@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="deep-neural-networks-i-a-conceptual-introduction">Deep Neural
+Networks I: A Conceptual Introduction</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="speech-processing-is-neural-now">Speech Processing is Neural
+now</h3>
+<ul>
+<li><p>For better or worse, there is exactly one kind of model that wins
+speech processing now</p>
+<ul>
+<li>ASR, TTS, Denoising, even VAD are all now neural</li>
+</ul></li>
+<li><p>So, uh, yeah. Guess we better cover that.</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Neural Networks</p></li>
+<li><p>What is a Deep Neural Network (DNN)?</p></li>
+<li><p>Training Deep Neural Networks</p></li>
+<li><p>Neural Inputs and Outputs</p></li>
+<li><p>End-to-End Learning</p></li>
+</ul>
+<hr />
+<h3
+id="so-far-weve-been-extracting-features-and-doing-statistical-learning">So
+far, we’ve been extracting features, and doing statistical learning</h3>
+<ul>
+<li><p>“Hey, computer, here are things you should care about, lovingly
+isolated”</p>
+<ul>
+<li>MFCCs, F0, LPC coefficients, pulse locations, and more</li>
+</ul></li>
+<li><p>“Look at these features and find the patterns based on these
+labels”</p></li>
+<li><p>“Then, when I give you a new set of curated measurements, tell me
+what label fits”</p></li>
+</ul>
+<hr />
+<h3 id="this-is-great-but-it-also-requires-a-lot-of-work">This is great,
+but it also requires a lot of work</h3>
+<ul>
+<li><p>Identify features which are helpful</p></li>
+<li><p>Find the features</p></li>
+<li><p>Measure them</p></li>
+<li><p>Store them, with labeled data, and only then, classify</p></li>
+</ul>
+<hr />
+<h3 id="what-if-we-didnt-have-to-do-all-that">What if we didn’t have to
+do all that?</h3>
+<ul>
+<li><p>What if we could just feed in the data, and make the system
+figure out the features itself?</p></li>
+<li><p>Then just insert data directly, and get back answers?</p></li>
+<li><p>That would be world changing!</p></li>
+</ul>
+<hr />
+<h2 id="neural-networks">Neural Networks</h2>
+<hr />
+<h3 id="aside-neural-networks-are-not-actually-neural">Aside: Neural
+Networks are not actually neural</h3>
+<ul>
+<li><p>Brains are not actually involved</p></li>
+<li><p>They are not ‘modeling the brain’ any more than submarines are
+‘modeling fish’</p></li>
+<li><p>The goal here is not to make fake brains, it’s to make good
+decisions!</p></li>
+</ul>
+<hr />
+<h3 id="neural-networks-have-a-simple-idea">Neural Networks have a
+simple idea</h3>
+<ul>
+<li><p>“We’re going to feed the input into a network of simple
+functions, and with the right network design and parameters, we should
+get a complex decision”</p></li>
+<li><p>This depends on one core concept…</p></li>
+</ul>
+<hr />
+<h3 id="artificial-neurons">Artificial Neurons</h3>
+<ul>
+<li><p>This is a tiny computational model of how a neuron (sorta kinda)
+works</p></li>
+<li><p>Neurons take in a signal, and if they ‘activate’ or ‘fire’,
+output a modified version of the input signal</p></li>
+<li><p>Every neuron has an <strong>activation function</strong>,
+<strong>weights</strong> for outgoing connections, and a
+<strong>bias</strong></p>
+<ul>
+<li>Weights and biases are the ‘parameters’ which people mean when they
+say ‘N parameter model’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="lets-look-at-the-dumbest-network-ever">Let’s look at the dumbest
+network ever</h3>
+<h2
+id="section"><img class="r-stretch" src="diagrams/nn_single_neuron.jpg"></h2>
+<h3 id="neural-activation-function">Neural Activation Function</h3>
+<ul>
+<li><p>The activation function describes <em>the mathematical
+relationship between the input and the output</em></p></li>
+<li><p>Examples are Sigmoid, Tanh, Softmax, Linear</p></li>
+<li><p>ReLu (‘Rectified Linear Unit’) is the most common: “If the input
+is less than zero, do nothing, otherwise, pass it through”</p>
+<ul>
+<li>High pass filter!</li>
+<li>f(x) = max(0,x)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="neural-weight">Neural Weight</h3>
+<ul>
+<li><p>Weights <em>modify the magnitude of the output signal to another
+neuron</em></p></li>
+<li><p>The output of a neuron is the input times the weight plus the
+bias</p>
+<ul>
+<li>Output = Weight*Input + Bias</li>
+</ul></li>
+<li><p>Negative weights make the output signal <em>smaller</em></p>
+<ul>
+<li>This makes the next neuron less likely to fire</li>
+</ul></li>
+<li><p>Positive weights make the output signal <em>larger</em></p>
+<ul>
+<li>This makes the next neuron more likely to fire</li>
+</ul></li>
+<li><p><strong>Every individual connection gets a
+weight</strong></p></li>
+</ul>
+<hr />
+<h3 id="neural-bias">Neural Bias</h3>
+<ul>
+<li><p>Biases <em>modify the threshold for the neuron to
+activate</em></p></li>
+<li><p>Higher bias means a neuron needs <em>higher activation to
+fire</em></p>
+<ul>
+<li>This makes the <em>current</em> neuron less likely to fire</li>
+</ul></li>
+<li><p>Lower bias means a neuron needs <em>less activation to
+fire</em></p>
+<ul>
+<li>This makes the <em>current</em> neuron more likely to fire</li>
+</ul></li>
+<li><p><strong>Every individual Neuron gets a bias</strong></p></li>
+</ul>
+<hr />
+<h3 id="so-every-neuron-takes-an-input-signal-from-its-connections">So,
+every neuron takes an input signal from its connections…</h3>
+<ul>
+<li><p>Activates based on activation function</p></li>
+<li><p>Outputs based on the weight and bias to each subsequent
+neuron</p>
+<ul>
+<li>For Linear Neurons, Output = Weight*Input + Bias</li>
+</ul></li>
+<li><p>Changes to the weight and bias change the output of a
+neuron!</p></li>
+</ul>
+<hr />
+<h3 id="a-firing-neuron">A ‘firing’ neuron</h3>
+<p><img class="r-stretch" src="diagrams/nn_single_labeledfire.jpg"></p>
+<hr />
+<h3 id="an-inhibited-neuron">An ‘inhibited’ neuron</h3>
+<p><img class="r-stretch" src="diagrams/nn_single_labelednofire.jpg"></p>
+<hr />
+<h3 id="a-single-neuron-can-do-work">A Single Neuron can do work</h3>
+<ul>
+<li><p>Output = Weight*Input + Bias is a lot like y=mx+b</p></li>
+<li><p>Very basic arrangements of neurons can accomplish tasks</p>
+<ul>
+<li>The ‘perceptron’</li>
+</ul></li>
+<li><p>… but there are classes of problems a single neuron can’t
+cover</p>
+<ul>
+<li>This is part of why we use…</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="deep-neural-networks">Deep Neural Networks</h2>
+<hr />
+<h3 id="a-deep-neural-network-is-just-a-deep-neural-network">A Deep
+Neural Network is just a Deep Neural Network</h3>
+<ul>
+<li>It has multiple layers of neurons between input and output
+<ul>
+<li>These are called <strong>hidden layers</strong></li>
+</ul></li>
+<li>Each neuron is (generally) fully connected to the prior and next
+layers
+<ul>
+<li>Each connection has an individual weight</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/dnn.jpg"></p>
+<hr />
+<h3 id="each-neuron-still-has-activation-function-and-bias">Each Neuron
+still has activation function and bias</h3>
+<ul>
+<li>As well as a list of connected neurons which give input and take
+outputs
+<ul>
+<li>With each connection having its own weight</li>
+</ul></li>
+<li>But now, hidden layers are activated by other hidden layers!</li>
+</ul>
+<hr />
+<h3 id="hidden-layers">Hidden layers</h3>
+<p><img class="r-stretch" src="img/dnn.jpg"></p>
+<hr />
+<h3 id="at-the-end-theres-an-output-function">At the end, there’s an
+output function</h3>
+<ul>
+<li><p>For now, let’s focus on…</p></li>
+<li><p><strong>Sigmoid:</strong> Give a <em>single probability</em>
+between zero and one</p></li>
+</ul>
+<hr />
+<h3 id="inputs-map-to-outputs">Inputs map to outputs</h3>
+<p><img class="r-stretch" src="img/dnn.jpg"></p>
+<hr />
+<h3 id="inference-is-mapping-an-input-to-an-output">Inference is mapping
+an input to an output</h3>
+<ul>
+<li><p>Inputs are put into the network</p></li>
+<li><p>The inputs are passed through the entire network, with each
+neuron and connection contributing to the final output value at the
+output function</p></li>
+<li><p>The output layer, with the right output functions, should show
+the correct answer</p>
+<ul>
+<li>This is the ‘inference’ process</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="the-best-performing-network-will-most-correctly-map-inputs-to-desired-outputs">The
+best performing network will most correctly map inputs to desired
+outputs</h3>
+<p>Common multi-input-to-Sigmoid tasks:</p>
+<ul>
+<li><p>“Given these 15 sensor readings, should I report a car
+crash?”</p></li>
+<li><p>“Given all these risk and protective factors, should this person
+be released on bail?”</p></li>
+<li><p>“Given the pixels in this image, is the image likely to be
+pornographic?”</p></li>
+</ul>
+<hr />
+<h3 id="the-key-to-the-model-isnt-the-code-but-the-parameters">The key
+to the model isn’t the code, but the parameters</h3>
+<ul>
+<li><p>The architecture of the model matters, but that’s not the
+expensive and important part</p></li>
+<li><p>The right set of weights and biases will yield correct
+results</p></li>
+<li><p>The wrong set of weights and biases <em>in exactly the same
+network shape</em> will yield gibberish and garbage</p></li>
+<li><p>Sharing “the model” is sharing these correct weights</p></li>
+<li><p><strong>… but how do we find them?</strong></p></li>
+</ul>
+<hr />
+<h2 id="training-deep-neural-networks">Training Deep Neural
+Networks</h2>
+<hr />
+<h3 id="were-giving-intuitions-not-calculus">We’re giving intuitions,
+not calculus</h3>
+<ul>
+<li>I’m not describing the math
+<ul>
+<li><a href="https://udlbook.github.io/udlbook/">Here’s a great book
+which does more</a></li>
+</ul></li>
+<li>The math isn’t so crazy, but requires calculus and linear algebra to
+fully understand
+<ul>
+<li>LIGN 167 goes harder on the math</li>
+</ul></li>
+<li>I am oversimplifying many aspects to get you the core intuition</li>
+</ul>
+<hr />
+<h3 id="how-does-training-work">How does training work?</h3>
+<ul>
+<li><p><strong>Initialization:</strong> Set up the weights and bias
+matrices with reasonable values</p></li>
+<li><p><strong>Forward Pass:</strong> What is the NN’s current
+‘decision’ based on the input?</p>
+<ul>
+<li>This is the same process we’ll use later to get decisions from the
+model</li>
+</ul></li>
+<li><p><strong>Loss Calculation:</strong> What does the output look like
+relative to the desired output?</p></li>
+<li><p><strong>Backpropagation:</strong> Let’s tweak the biases and
+weights to try and get closer to the desired output</p></li>
+</ul>
+<hr />
+<h3 id="initialization">Initialization</h3>
+<ul>
+<li><p>Every parameter (e.g. Weight and bias) needs to start with some
+value</p>
+<ul>
+<li>Zeroes are mathematically Not Good for this.</li>
+</ul></li>
+<li><p>There’s a lot of study on this, but the answer turns out to be
+“Randomish numbers, not too small, not too large”</p></li>
+</ul>
+<hr />
+<h3 id="forward-pass">Forward Pass</h3>
+<p><img class="r-stretch" src="img/dnn.jpg"></p>
+<hr />
+<h3 id="calculating-errorloss">Calculating Error/Loss</h3>
+<ul>
+<li><p>A <em>loss function</em> tells the model how to evaluate the
+difference between the desired, actual output and the predicted
+output</p></li>
+<li><p>Many functions are possible, and each task will have preferred
+loss functions</p></li>
+<li><p>This is important, because it tells the model what it needs to
+get right!</p></li>
+</ul>
+<hr />
+<h3 id="common-loss-functions">Common Loss Functions</h3>
+<ul>
+<li><p><strong>Mean Squared Error</strong>: Penalize based on the
+average squared difference between the predicted and actual
+values</p></li>
+<li><p><strong>Mean Absolute Error</strong>: Penalize based on the
+average absolute difference between the predicted and actual
+values</p></li>
+<li><p><strong>Cross-Entropy Loss</strong>: For probability outputs,
+penalize more heavily as the predicted probability diverges from the
+‘correct’ answer</p></li>
+<li><p><strong>Dice Coefficient</strong>: How much do the predicted
+pixels overlap with the actual pixels?</p></li>
+</ul>
+<hr />
+<h3 id="now-you-know-how-far-off-you-were-from-correct">Now, you know
+how far off you were from ‘Correct’</h3>
+<ul>
+<li>It’s time for…</li>
+</ul>
+<hr />
+<h3 id="backpropagation">Backpropagation</h3>
+<ul>
+<li><p>“Let’s update the biases of each neuron and connection weights in
+the network by looking at the partial derivative of each with respect to
+the loss function”</p>
+<ul>
+<li><p>There’s a slope of movement which leads towards less loss, go
+that way!</p></li>
+<li><p>This also determines how much a given weight “matters”</p></li>
+</ul></li>
+<li><p>The amount of modification is controlled by the ‘Learning
+Rate’</p></li>
+<li><p>This is an optimization problem!</p>
+<ul>
+<li>Many optimizers are used, Adam (‘Adaptive Moment Estimation’) is
+perhaps most common</li>
+<li>The goal is to find the parameter values which result in the lowest
+possible loss</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="backpropagation-1">Backpropagation</h3>
+<p><img class="r-stretch" src="img/dnn.jpg"></p>
+<hr />
+<h3 id="you-keep-cycling-through-the-data-to-train">You keep cycling
+through the data to train</h3>
+<ul>
+<li><p>Forward pass, Loss, Backpropagation and Update, then Forward
+Pass, Loss, Backprop…</p></li>
+<li><p>You process <strong>batches</strong> of data at a time</p></li>
+<li><p>When you’ve trained on the entire dataset, and loop back around,
+you’ve completed an <strong>epoch</strong></p></li>
+<li><p>This can take a while!</p></li>
+</ul>
+<hr />
+<h3 id="this-eventually-trains-the-model-to-give-correct-answers">This
+eventually trains the model to give correct answers</h3>
+<ul>
+<li><p>“Keep guessing, and tweaking, and guessing, and
+tweaking”</p></li>
+<li><p>Eventually, you’ll arrive at a local minimum</p>
+<ul>
+<li><p>“Well, there’s no direction I can go which makes the loss any
+less!”</p></li>
+<li><p>This may or may not be the true minimum, but that’s another
+lecture!</p></li>
+</ul></li>
+<li><p>The final parameters (e.g. Weights and Biases) are then ready to
+use!</p></li>
+</ul>
+<hr />
+<h3 id="you-can-fine-tune-later">You can ‘fine tune’ later</h3>
+<ul>
+<li><p>You take a pre-trained model, and give it a smaller amount of new
+representative data</p></li>
+<li><p>Repeat the learning process with smaller learning rates and focus
+on deeper layers</p></li>
+<li><p>This is great for adapting a general model to a more specific
+task or new domain</p>
+<ul>
+<li>“I’m going to fine-tune this existing ASR model with data from Tira,
+so it works well there!” - Mark</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="interim-summary">Interim Summary</h3>
+<ul>
+<li><p>Artificial Neurons turn inputs into outputs according to function
+and bias, and output according to weights</p></li>
+<li><p>Deep Neural Networks allow more complex decision making</p></li>
+<li><p>Training involves doing inference, finding error, assigning that
+error to individual weights/biases, and updating parameters</p></li>
+<li><p>Inference is just putting the input in, and observing the
+outputs</p></li>
+<li><p>… but what are the possible inputs and outputs?</p></li>
+</ul>
+<hr />
+<h2 id="inputs-and-outputs">Inputs and Outputs</h2>
+<hr />
+<h3 id="neural-networks-have-very-flexible-inputs-and-outputs">Neural
+Networks have very flexible inputs and outputs</h3>
+<p><img class="r-stretch" src="img/dnn.jpg"></p>
+<hr />
+<h3 id="numbers">Numbers</h3>
+<ul>
+<li>This is easy, just slap them into the input position!</li>
+</ul>
+<hr />
+<h3 id="text">Text</h3>
+<ul>
+<li><p>‘Tokenize’ the text, storing each possible text item as an entry
+in the Tokenizer’s dictionary</p></li>
+<li><p>Then, give the input as a series of numbers, corresponding to
+tokens in that dictionary</p></li>
+<li><p>Sentences are strings of numbers representing tokens</p></li>
+</ul>
+<hr />
+<h3 id="images">Images</h3>
+<p><img class="r-stretch" src="img/image_as_matrix.png"></p>
+<hr />
+<h3 id="audio">Audio</h3>
+<ul>
+<li>More on this soon!</li>
+</ul>
+<hr />
+<h3 id="output-flexibility">Output Flexibility</h3>
+<ul>
+<li><p><strong>Linear:</strong> Just give me the last layer’s summed
+output</p></li>
+<li><p><strong>Tanh:</strong> Turn the last layer’s output into a
+prediction between -1 and 1</p></li>
+<li><p><strong>Sigmoid:</strong> Give a <em>single probability</em>
+between zero and one</p></li>
+<li><p><strong>Softmax:</strong> Please choose among possible output
+<em>classes</em>, giving probabilities for each that add to one</p></li>
+<li><p><strong>Multiple Output Functions:</strong> You don’t have to use
+the same function for every output neuron!</p></li>
+</ul>
+<hr />
+<h3
+id="so-you-can-map-a-variety-of-inputs-directly-to-a-variety-of-outputs">So,
+you can map a variety of inputs <em>directly</em> to a variety of
+outputs</h3>
+<ul>
+<li>This leads to the most attractive property of Neural Networks…</li>
+</ul>
+<hr />
+<h2 id="end-to-end-learning">End-to-End Learning</h2>
+<hr />
+<h3 id="end-to-end-learning-1">End-to-End learning</h3>
+<ul>
+<li>Deep Learning doesn’t require feature engineering</li>
+</ul>
+<hr />
+<h2 id="deep-learning-doesnt-require-feature-engineering">Deep Learning
+doesn’t require feature engineering!</h2>
+<hr />
+<h3 id="end-to-end-learning-2">End-to-End learning</h3>
+<p>Deep Learning doesn’t require feature engineering</p>
+<ul>
+<li><p>You can go straight from raw data to your final decision</p></li>
+<li><p>DNNs allow intermediate representations and features which work
+to <strong>emerge</strong></p></li>
+<li><p>Smart architectures can amplify this effect</p></li>
+</ul>
+<hr />
+<h3 id="dnns-create-their-own-features-and-use-them">DNNs create their
+own features and use them!</h3>
+<ul>
+<li><p>Features just happen, and then get used for
+classification</p></li>
+<li><p>Inputs map to outputs, in an emergent way</p></li>
+<li><p>We don’t actually understand what features they’re using to make
+decisions</p></li>
+</ul>
+<hr />
+<h3 id="wait-we-dont-know-how-theyre-making-decisions">“Wait, we don’t
+know how they’re making decisions?”</h3>
+<ul>
+<li><p>Nope.</p></li>
+<li><p><strong>We as a species have no idea how these things do what
+they do.</strong></p></li>
+</ul>
+<hr />
+<h3 id="isnt-that-a-problem">“Isn’t that a problem?”</h3>
+<ul>
+<li><p>Why would we put up with that?!</p></li>
+<li><p>… and is there just one kind of Deep Neural Network?</p></li>
+<li><p><strong>Next time!</strong></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Artificial Neurons turn inputs into outputs according to function
+and bias, and output according to weights, and can combine into deep
+networks</p></li>
+<li><p>Training involves doing inference, finding error, assigning that
+error to individual weights/biases, and updating parameters</p></li>
+<li><p>You can use a variety of input and output data types</p></li>
+<li><p>Neural networks generate their own features and find their own
+patterns in the data</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

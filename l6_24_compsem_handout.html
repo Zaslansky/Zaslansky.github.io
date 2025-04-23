@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="computational-semantics">Computational Semantics</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Why do we need meaning?</p></li>
+<li><p>Semantics and Pragmatics</p></li>
+<li><p>Lexical Semantics</p></li>
+<li><p>Wordnet and Word Relationships</p></li>
+</ul>
+<hr />
+<h3 id="dependency-parsing-gives-us-some-elements-of-meaning">Dependency
+parsing gives us some elements of meaning</h3>
+<ul>
+<li><p>Subject of the verb</p></li>
+<li><p>Object of the verb</p></li>
+<li><p>What modified the action of the verb</p></li>
+<li><p><em>We know things about the relationships among participants in
+the sentence</em></p></li>
+</ul>
+<hr />
+<h3
+id="gerflem-flumduzzled-the-garibdo-gerbeebily-in-barblabble.">Gerflem
+flumduzzled the garibdo gerbeebily in Barblabble.</h3>
+<ul>
+<li><p>“Was the garibdo flumduzzled?”</p></li>
+<li><p>“Where did the flumduzzling happen?”</p></li>
+<li><p>“How was the garibdo flumduzzled?”</p></li>
+<li><p>“What did Gerflem do?”</p></li>
+<li><p>What <em>can’t</em> we ask?</p></li>
+</ul>
+<hr />
+<h3 id="its-all-still-gibberish-until-we-know-what-the-words-mean">It’s
+all still gibberish until we know what the words mean</h3>
+<hr />
+<h3 id="today-were-getting-into-meaning-and-understanding">Today, we’re
+getting into ‘meaning’ and ‘understanding’</h3>
+<ul>
+<li>Moving past grammatical knowledge into world knowledge</li>
+</ul>
+<hr />
+<h1 id="why-do-we-need-meaning">Why do we need meaning?</h1>
+<hr />
+<h3
+id="many-nlp-tasks-require-little-actual-knowledge-about-the-world-or-words">Many
+NLP tasks require little actual knowledge about the world or words</h3>
+<ul>
+<li><p>Alexa, create an event at 3pm called “Visit my
+watchmaker”</p></li>
+<li><p>Alexa, add oranges and apples and candy bars to my shopping
+list</p>
+<ul>
+<li>Alexa, are apples on my shopping list?</li>
+</ul></li>
+<li><p>Hey Siri, find all emails about “Moving expenses”</p></li>
+</ul>
+<hr />
+<h3 id="but-these-commands-become-fragile-quickly">… but these commands
+become fragile quickly</h3>
+<ul>
+<li><p>Alexa, do I have any appointments with people who fix
+clocks?</p></li>
+<li><p>Alexa, are there fruit on my shopping list?</p></li>
+<li><p>Hey Siri, find all emails related to my San Diego move</p></li>
+</ul>
+<hr />
+<h3 id="we-expect-these-systems-to-do-inference">We expect these systems
+to do ‘inference’</h3>
+<hr />
+<h2 id="inference">Inference</h2>
+<p>The use of evidence, world knowledge, and reasoning to reach a
+conclusion</p>
+<ul>
+<li>“Using what you already know to go deeper”</li>
+</ul>
+<hr />
+<h3 id="we-expect-some-level-of-inference">We expect some level of
+inference</h3>
+<blockquote>
+<p>“Sarah has three dogs, eight cats, two hamsters, four ferrets, and a
+son.”</p>
+</blockquote>
+<ul>
+<li><p>“Does Sarah have three dogs?”</p></li>
+<li><p>“Does Sarah have a dog?”</p></li>
+<li><p>“Does Sarah have any animals?”</p></li>
+<li><p>“Is Sarah an animal hoarder?”</p></li>
+</ul>
+<hr />
+<h3 id="other-kinds-of-inference">Other kinds of inference</h3>
+<ul>
+<li><p>Alexa, what’s my first appointment of the day?</p>
+<ul>
+<li>She lists first four appointments</li>
+</ul></li>
+<li><p>Alexa, where will I be on September 8th?</p>
+<ul>
+<li>She lists all events</li>
+</ul></li>
+<li><p>Alexa, do I have free time for lunch today?</p>
+<ul>
+<li>“Hmm, I don’t know how to do that”</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="we-need-to-understand-more-than-just-the-given-text-for-these-questions">We
+need to understand more than just the given text for these
+questions!</h3>
+<ul>
+<li>We need meaning!</li>
+</ul>
+<hr />
+<h1 id="what-is-meaning">What is ‘meaning’?</h1>
+<hr />
+<h3 id="we-mean-two-things-when-we-discuss-what-x-means">We mean two
+things when we discuss what X ‘means’</h3>
+<ul>
+<li><p>“What does this <em>always</em> mean, regardless of context or
+circumstance?”</p>
+<ul>
+<li>This is <strong>Semantics</strong></li>
+</ul></li>
+<li><p>“What does this mean <em>in this particularly context or
+circumstance</em>?”</p>
+<ul>
+<li>This is <strong>Pragmatics</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="john-is-in-the-living-room">“John is in the living room”</h3>
+<ul>
+<li><p>What does this <em>always</em> mean?</p></li>
+<li><p>What meanings could this have <em>in specific
+situations</em>?</p></li>
+</ul>
+<hr />
+<h2 id="semantics">Semantics</h2>
+<p>The study of meaning in Language</p>
+<hr />
+<h2 id="pragmatics">Pragmatics</h2>
+<p>The study of meaning in language <em>in context</em></p>
+<hr />
+<h3
+id="were-going-to-start-with-semantics-then-head-into-pragmatics-next-week">We’re
+going to start with semantics, then head into Pragmatics next week</h3>
+<hr />
+<h3 id="semantics-is-a-large-field-of-linguistics">Semantics is a large
+field of linguistics</h3>
+<ul>
+<li><p>What is the relationship between linguistic signs, and the things
+they signify</p></li>
+<li><p>“How can we determine the ‘truth’ or logical meaning of a
+sentence?”</p></li>
+<li><p>“What do words, phrases, sentences, and narratives actually
+mean?”</p></li>
+<li><p>“What differentiates word meanings?”</p></li>
+</ul>
+<hr />
+<h3 id="there-are-many-approaches-to-semantics">There are many
+approaches to Semantics</h3>
+<ul>
+<li><p><strong>Formal Semantics</strong>: Semantics distilled down to
+logic from sentences</p></li>
+<li><p><strong>Cognitive Semantics</strong>: What does meaning look like
+in the mind?</p></li>
+<li><p><strong>Lexical Semantics</strong>: What do individual words
+mean?</p></li>
+</ul>
+<hr />
+<h3
+id="each-of-these-can-be-interesting-in-computational-semantics">Each of
+these can be interesting in Computational Semantics</h3>
+<ul>
+<li>… but we’re going to focus on Lexical semantics here, for lack of
+time</li>
+</ul>
+<hr />
+<h1 id="lexical-semantics">Lexical Semantics</h1>
+<hr />
+<h3 id="lexical-semantics-is-the-study-of-word-meaning">Lexical
+Semantics is the study of word meaning</h3>
+<ul>
+<li><p>The senses of a given word</p></li>
+<li><p>The relationships that words have to one another</p></li>
+<li><p>The arguments that words generally take</p>
+<ul>
+<li>This is next week</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="first-an-important-resource">First, an important resource</h3>
+<hr />
+<h3 id="wordnet">WordNet</h3>
+<ul>
+<li><p><a href="http://wordnetweb.princeton.edu/perl/webwn">WordNet</a>
+is a Lexical Database</p></li>
+<li><p>It contains English words, their senses, as well as their
+relationships to other words</p></li>
+<li><p>WordNet (and resources like it) are <em>hugely</em> important to
+computational Linguistics</p></li>
+<li><p>We’re going to refer to it a lot!</p></li>
+</ul>
+<hr />
+<h2 id="word-senses">Word Senses</h2>
+<hr />
+<h3 id="weve-already-talked-some-about-polysemy">We’ve already talked
+some about polysemy</h3>
+<ul>
+<li><p>Words can have many ‘senses’</p></li>
+<li><p>Bank of a river, Bank of America, Bank of a Poker game</p></li>
+<li><p>Lit (party) vs. Lit (fire) vs. English Lit</p></li>
+<li><p>A word’s sense is <em>crucial</em></p>
+<ul>
+<li>Every element of a word’s meaning can change with a change in
+sense</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="bass-from-wordnet">Bass (from WordNet)</h3>
+<p><small></p>
+<ul>
+<li>S: (n) bass (the lowest part of the musical range)</li>
+<li>S: (n) bass, bass part (the lowest part in polyphonic music)</li>
+<li>S: (n) bass, basso (an adult male singer with the lowest voice)</li>
+<li>S: (n) sea bass, bass (the lean flesh of a saltwater fish of the
+family Serranidae)</li>
+<li>S: (n) freshwater bass, bass (any of various North American
+freshwater fish with lean flesh)</li>
+<li>S: (n) bass, bass voice, basso (the lowest adult male singing
+voice)</li>
+<li>S: (n) bass (the member with the lowest range of a family of musical
+instruments)</li>
+<li>S: (n) bass (nontechnical name for any of numerous edible marine and
+freshwater spiny-finned fishes)</li>
+<li>S: (adj) bass, deep (having or denoting a low vocal or instrumental
+range) “a deep voice”; “a bass voice is lower than a baritone voice”; “a
+bass clarinet”</li>
+</ul>
+<p></small></p>
+<hr />
+<h3 id="slug-from-wordnet">Slug (from WordNet)</h3>
+<p><small></p>
+<ul>
+<li>S: (n) bullet, slug (a projectile that is fired from a gun)</li>
+<li>S: (n) slug (a unit of mass equal to the mass that accelerates at 1
+foot/sec/sec when acted upon by a force of 1 pound; approximately
+14.5939 kilograms)</li>
+<li>S: (n) slug (a counterfeit coin)</li>
+<li>S: (n) sluggard, slug (an idle slothful person)</li>
+<li>S: (n) slug (an amount of an alcoholic drink (usually liquor) that
+is poured or gulped) “he took a slug of hard liquor”</li>
+<li>S: (n) type slug, slug (a strip of type metal used for spacing)</li>
+<li>S: (n) slug (any of various terrestrial gastropods having an
+elongated slimy body and no external shell)</li>
+<li>S: (n) punch, clout, poke, lick, biff, slug ((boxing) a blow with
+the fist) “I gave him a clout on his nose”</li>
+</ul>
+<p></small></p>
+<hr />
+<h3 id="how-can-we-tell-which-word-sense-is-being-used-right-now">How
+can we tell which word sense is being used right now?</h3>
+<hr />
+<h2 id="word-sense-disambiguation">Word Sense Disambiguation</h2>
+<p>Using machine learning to detect <em>which sense</em> a usage of a
+written word represents</p>
+<hr />
+<h3 id="word-sense-disambiguation-is-done-using-two-features">Word Sense
+Disambiguation is done using two features</h3>
+<ul>
+<li><p>The word’s POS tag</p>
+<ul>
+<li>This gives us ‘lit’ (v.) a fire vs. a ‘lit’ (adj.) party vs. English
+‘lit’ (n.)</li>
+</ul></li>
+<li><p>The word’s ‘embedding’</p>
+<ul>
+<li><p>‘What occurs within N words to both sides of the target
+word’</p></li>
+<li><p>“bass” fish vs. instrument vs. sound frequency
+vs. singer</p></li>
+<li><p>“slug” creature vs. bullet vs. punch vs. drink vs. lazy
+person</p></li>
+</ul></li>
+<li><p>Assumption: “One sense per discourse”</p></li>
+</ul>
+<hr />
+<h3 id="word-sense-disambiguation-is-hard">Word Sense Disambiguation is
+hard</h3>
+<ul>
+<li><p>Accuracy depends on how <em>coarse</em> your senses are</p>
+<ul>
+<li>Are you trying to disambiguate Freshwater, Saltwater, and ‘common
+use’ bass?</li>
+</ul></li>
+<li><p>It relies on good descriptions of the senses available</p></li>
+<li><p>It relies on <em>up-to-date</em> descriptions of the senses
+available</p>
+<ul>
+<li><a href="http://wordnetweb.princeton.edu/perl/webwn?s=lit">WordNet
+doesn’t currently have the new sense of ‘lit’</a></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="were-just-going-to-assume-that-went-ok">… we’re just going to
+assume that went OK!</h3>
+<ul>
+<li>Big assumption</li>
+</ul>
+<hr />
+<h3
+id="now-that-we-know-the-words-sense-what-else-do-we-want-to-know">Now
+that we know the word’s sense, what else do we want to know?</h3>
+<hr />
+<h1 id="word-meaning-relationships">Word Meaning Relationships</h1>
+<hr />
+<h3 id="words-have-meanings">Words have meanings</h3>
+<ul>
+<li><p>Different words have related meanings</p></li>
+<li><p>… and we find it helpful to talk about those relationships by
+classifying them</p></li>
+</ul>
+<hr />
+<h3 id="word-relationships">Word Relationships</h3>
+<ul>
+<li><p>Synonym/Antonym</p></li>
+<li><p>Metonymy</p></li>
+<li><p>Hyponym/Hypernym (Subtype/Supertype)</p></li>
+<li><p>Meronym/Holonym (Part/Whole)</p></li>
+</ul>
+<hr />
+<h2 id="synonym">Synonym</h2>
+<p>A words which shares the same denotational meaning, but with
+different spoken form</p>
+<ul>
+<li><p>e.g. Cop/Police Officer, Sick/Ill, Sofa/Couch</p></li>
+<li><p>The usage may be slightly different, but they ‘mean’ the same
+thing</p></li>
+<li><p>WordNet divides words into ‘Synsets’</p></li>
+</ul>
+<hr />
+<h3 id="hot-dog-frank.n.02-wordnet-synonyms">Hot Dog (frank.n.02)
+WordNet Synonyms</h3>
+<blockquote>
+<p>{‘frankfurter’, ‘frank’, ‘dog’, ‘wiener’, ‘hot_dog’, ‘wienerwurst’,
+‘hotdog’, ‘weenie’}</p>
+</blockquote>
+<hr />
+<h2 id="antonym">Antonym</h2>
+<p>A word which has a (nearly) opposite denotational meaning</p>
+<ul>
+<li><p>e.g. up/down, sick/healthy, happy/sad, dead/alive,
+do/undo</p></li>
+<li><p>“exactly” opposite is hard, but nearly opposite is fine</p></li>
+</ul>
+<hr />
+<h3 id="good-good.a.01-wordnet-antonym">Good (good.a.01) WordNet
+Antonym</h3>
+<blockquote>
+<p>{‘bad’}</p>
+</blockquote>
+<hr />
+<h2 id="hyponymhypernym">Hyponym/Hypernym</h2>
+<p>A word which is a specific instance of a broader class</p>
+<ul>
+<li><p>e.g. Poodle/Dog, Laptop/Computer, iPad/Tablet,
+Skyscraper/Building</p></li>
+<li><p>The greater class is a “hypernym”</p></li>
+<li><p>“X is a type of Y”: X are hyponyms, Y is the hypernym</p></li>
+</ul>
+<hr />
+<h3 id="hot-dog-frank.n.02-wordnet-hypernym-path">Hot Dog (frank.n.02)
+WordNet Hypernym path</h3>
+<blockquote>
+<p>[[Synset(‘entity.n.01’), Synset(‘physical_entity.n.01’),
+Synset(‘matter.n.03’), Synset(‘solid.n.01’), Synset(‘food.n.02’),
+Synset(‘meat.n.01’), Synset(‘sausage.n.01’), Synset(‘frank.n.02’)]]</p>
+</blockquote>
+<hr />
+<h3 id="poodle-poodle.n.01-wordnet-hypernym-paths">Poodle (poodle.n.01)
+WordNet Hypernym Paths</h3>
+<blockquote>
+<p>[Synset(‘entity.n.01’), Synset(‘physical_entity.n.01’),
+Synset(‘object.n.01’), Synset(‘whole.n.02’),
+Synset(‘living_thing.n.01’), Synset(‘organism.n.01’),
+Synset(‘animal.n.01’), Synset(‘domestic_animal.n.01’),
+Synset(‘dog.n.01’), Synset(‘poodle.n.01’)]]</p>
+</blockquote>
+<blockquote>
+<p>[Synset(‘entity.n.01’), Synset(‘physical_entity.n.01’),
+Synset(‘object.n.01’), Synset(‘whole.n.02’),
+Synset(‘living_thing.n.01’), Synset(‘organism.n.01’),
+Synset(‘animal.n.01’), Synset(‘chordate.n.01’),
+Synset(‘vertebrate.n.01’), Synset(‘mammal.n.01’),
+Synset(‘placental.n.01’), Synset(‘carnivore.n.01’),
+Synset(‘canine.n.02’), Synset(‘dog.n.01’), Synset(‘poodle.n.01’)]</p>
+</blockquote>
+<hr />
+<h3 id="hot-dog-frank.n.02-wordnet-hyponyms">Hot Dog (frank.n.02)
+WordNet Hyponyms</h3>
+<blockquote>
+<p>[Synset(‘vienna_sausage.n.01’)]</p>
+</blockquote>
+<hr />
+<h3 id="poodle-poodle.n.01-wordnet-hyponyms">Poodle (poodle.n.01)
+WordNet Hyponyms</h3>
+<blockquote>
+<p>[Synset(‘large_poodle.n.01’), Synset(‘miniature_poodle.n.01’),
+Synset(‘standard_poodle.n.01’), Synset(‘toy_poodle.n.01’)]</p>
+</blockquote>
+<hr />
+<h2 id="meronymyholonomy">Meronymy/Holonomy</h2>
+<p>The relationship between a part and its whole</p>
+<ul>
+<li><p>Parts are meronyms of the whole</p></li>
+<li><p>Wholes are holonyms of the parts</p></li>
+<li><p>Can be thought of as parts (car/door) vs. substances
+(human/water)</p></li>
+</ul>
+<hr />
+<h3 id="car-car.n.01-wordnet-meronyms">Car (car.n.01) WordNet
+Meronyms</h3>
+<blockquote>
+<p>[Synset(‘accelerator.n.01’), Synset(‘air_bag.n.01’),
+Synset(‘auto_accessory.n.01’), Synset(‘automobile_engine.n.01’),
+Synset(‘automobile_horn.n.01’), Synset(‘buffer.n.06’),
+Synset(‘bumper.n.02’), Synset(‘car_door.n.01’),
+Synset(‘car_mirror.n.01’), Synset(‘car_seat.n.01’),
+Synset(‘car_window.n.01’), Synset(‘fender.n.01’),
+Synset(‘first_gear.n.01’), Synset(‘floorboard.n.02’),
+Synset(‘gasoline_engine.n.01’), Synset(‘glove_compartment.n.01’),
+Synset(‘grille.n.02’), Synset(‘high_gear.n.01’), Synset(‘hood.n.09’),
+Synset(‘luggage_compartment.n.01’), Synset(‘rear_window.n.01’),
+Synset(‘reverse.n.02’), Synset(‘roof.n.02’),
+Synset(‘running_board.n.01’), Synset(‘stabilizer_bar.n.01’),
+Synset(‘sunroof.n.01’), Synset(‘tail_fin.n.02’),
+Synset(‘third_gear.n.01’), Synset(‘window.n.02’)]</p>
+</blockquote>
+<hr />
+<h3 id="mouth-mouth.n.02-wordnet-holonyms">Mouth (mouth.n.02) WordNet
+Holonyms</h3>
+<blockquote>
+<p>[Synset(‘face.n.01’)]</p>
+</blockquote>
+<hr />
+<h3
+id="what-kinds-of-questions-can-we-answer-knowing-just-word-relations">What
+kinds of questions can we answer knowing just word relations?</h3>
+<p>Synonym/Antonym</p>
+<p>Hyponym/Hypernym (Subtype/Supertype)</p>
+<p>Meronym/Holonym (Part/Whole)</p>
+<hr />
+<h3 id="sample-inferences-which-can-come-from-wordnet">Sample inferences
+which can come from WordNet</h3>
+<ul>
+<li><p>“Karen has three dogs”, “Does she have any animals?”</p></li>
+<li><p>“Roger has a car”, “Does he have an automobile?”</p></li>
+<li><p>Alexa, are all terriers dogs?</p>
+<ul>
+<li>“Yes, terriers are dogs”</li>
+</ul></li>
+<li><p>Alexa, are all dogs terriers?</p>
+<ul>
+<li>“No, dogs are not terriers”</li>
+</ul></li>
+<li><p>Alexa, are humans animals?</p>
+<ul>
+<li>“Yes. A person or human being belongs to the Homo Sapiens species,
+which make a person an animal biologically speaking.”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wordnet-and-related-resources-are-really-useful">WordNet (and
+related resources) are <em>really</em> useful</h3>
+<ul>
+<li><p>This is why they’ve been created for many different
+languages</p></li>
+<li><p>… and expanded (c.f. <a
+href="https://babelnet.org">BabelNet</a>)</p></li>
+<li><p>… and even used for translation (c.f. <a
+href="http://compling.hss.ntu.edu.sg/omw/">Open Multilingual
+Wordnet</a>)</p></li>
+<li><p>WordNet is built into NLTK</p>
+<ul>
+<li><a href="savethevowels.org/6/wordnetquery.py">Here’s a script I
+wrote to query it for this class</a></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="but-wordnet-is-missing-some-things">… but WordNet is missing
+some things</h3>
+<hr />
+<h3 id="hit">Hit</h3>
+<ul>
+<li><p>I hit the dragon with an arrow</p></li>
+<li><p>SchwaCo stock hit $500 a share</p></li>
+<li><p>Rob loves to hit the golf course on Fridays</p></li>
+<li><p>The mafia hit stunned the local government</p></li>
+<li><p>The fingerprints had three hits on old records</p></li>
+<li><p>I hit on the dragon at the sleazy bar</p></li>
+<li><p>I hit up the dragon for some gold until payday</p></li>
+</ul>
+<hr />
+<h3
+id="wordnet-tells-us-nothing-about-how-words-interact-with-other-elements-of-the-sentence">WordNet
+tells us nothing about how words interact with other elements of the
+sentence</h3>
+<ul>
+<li><p>Nothing about the <em>arguments</em> they need</p></li>
+<li><p>Nothing about what’s happening to the associated
+arguments</p></li>
+<li><p>Nothing about the <em>roles</em> that other items in the sentence
+play</p></li>
+<li><p><em>Next time, we’ll get there!</em></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>We need our NLP systems to interact with
+<em>meaning</em></p></li>
+<li><p>We’re going to focus on Lexical Semantics, word meaning, for this
+class</p></li>
+<li><p>WordNet is a great resource for understanding more about
+words</p></li>
+<li><p>Knowing the relationships between words can get us surprisingly
+far</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li>We all have a role to play in the grand verb of life</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

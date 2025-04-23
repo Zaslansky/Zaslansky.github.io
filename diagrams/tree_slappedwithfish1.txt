@@ -1,0 +1,21 @@
+tree_slappedwithfish1tex
+
+[S 
+  [NP 
+    [N' 
+      [N John ] ] ]
+  [VP 
+    [V slapped ]
+    [NP 
+      [NP 
+        [DET his ] 
+        [N' 
+          [N friend ] ] ]
+      [PP 
+        [P with ]
+        [NP 
+          [DET the ] 
+          [N' 
+            [ADJ smelly ] 
+            [N' 
+              [N fish ] ] ] ] ] ] ] ]

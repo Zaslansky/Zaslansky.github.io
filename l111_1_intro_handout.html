@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<section data-background="phonmedia/vowelsandcrawler.jpg">
+<section style="background-color:rgba(255, 255, 255, 0.5)">
+<h1>
+Linguistics 111: Phonology
+</h1>
+<h3>
+Dr. Will Styler - Winter 2018
+</h3>
+</section>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Introductions</p></li>
+<li><p>Syllabus and Canvas</p></li>
+<li><p>What is phonology?</p></li>
+<li><p>What are the learning goals?</p></li>
+<li><p>How will we accomplish them?</p></li>
+</ul>
+<hr />
+<h1 id="introductions">Introductions</h1>
+<hr />
+<h2 id="dr.-will-styler">Dr. Will Styler</h2>
+<p>Instructor, Linguist, Gigantic Nerd</p>
+<p><img class="big" src="img/people_will.jpg"></p>
+<hr />
+<h2 id="kati-hout">Kati Hout</h2>
+<p>TA, Linguist</p>
+<p><img src="img/people_kati_hout.jpg"></p>
+<hr />
+<h2 id="michael-obiri-yeboah">Michael Obiri-Yeboah</h2>
+<p>TA, Linguist</p>
+<p><img src="img/people_michael_obiriyeboah.jpg"></p>
+<hr />
+<h3 id="who-are-you">Who are you?</h3>
+<ul>
+<li><p>What’s your year?</p></li>
+<li><p>Ling majors?</p></li>
+<li><p>Monolingual/Bilingual/Multilingual?</p></li>
+<li><p>What languages do we speak?</p></li>
+</ul>
+<hr />
+<h2 id="syllabus-and-schedule">Syllabus and Schedule</h2>
+<p><a href="http://savethevowels.org/111"
+class="uri">http://savethevowels.org/111</a></p>
+<hr />
+<h2 id="syllabus-stuff-which-bears-repeating">Syllabus Stuff which bears
+repeating</h2>
+<p><img src="img/bearsrepeating.jpg"></p>
+<hr />
+<h3 id="office-hours-schedule">Office Hours Schedule</h3>
+<ul>
+<li>FIXME</li>
+</ul>
+<hr />
+<h3 id="syllabus-stuff-which-bears-repeating-1">Syllabus Stuff which
+bears repeating</h3>
+<ul>
+<li><p>Check your email/Canvas</p></li>
+<li><p>Come to office hours.</p></li>
+<li><p>The syllabus will change <em>a lot</em>!</p></li>
+<li><p><strong>We are here to help!</strong></p></li>
+</ul>
+<hr />
+<h1 id="canvas">Canvas</h1>
+<hr />
+<h3 id="were-moving-to-canvas">We’re moving to Canvas!</h3>
+<ul>
+<li><p>This will replace TritonEd within a few years</p></li>
+<li><p>This is a pilot program</p></li>
+<li><p>Let’s take a look!</p></li>
+</ul>
+<hr />
+<h1 id="what-is-this-course-about">What is this course about?</h1>
+<hr />
+<h2 id="phonology">Phonology</h2>
+<p>The study of how sounds pattern in Language and languages</p>
+<hr />
+<h3 id="within-language-phonological-questions">Within-Language
+Phonological Questions</h3>
+<ul>
+<li><p>What sounds differentiate words? (Phonemic Analysis)</p>
+<ul>
+<li>… and what do speakers hear as being “the same sound”?</li>
+</ul></li>
+<li><p>How do speakers tend to group sounds together? (Natural
+Classes)</p></li>
+<li><p>How do sounds change when combined together? (Phonological
+Alternations)</p></li>
+<li><p>What combinations are “legal” in the language?
+(Phonotactics)</p></li>
+<li><p>How are syllables formed and what kinds of syllables does the
+language prefer? (Syllable Structure)</p></li>
+<li><p>How do we assign stress, pitch, and emphasis? (Metrical
+Phonology)</p></li>
+</ul>
+<hr />
+<h3 id="phonological-theory-questions">Phonological Theory
+Questions</h3>
+<ul>
+<li><p>What patterns of sound patterns are more and less common around
+the world?</p></li>
+<li><p>How should we model the sound patterns we see in language?</p>
+<ul>
+<li><p>Are we using rules that transform ‘underlying’ sounds into one
+another?</p></li>
+<li><p>Are we choosing a form among many which does the fewest things we
+don’t like?</p></li>
+<li><p>Are we just remembering the words we’ve heard said before, and
+doing the rest from analogy?</p></li>
+</ul></li>
+<li><p>How do these various approaches handle <em>real data from real
+languages</em>?</p>
+<ul>
+<li><p>Do they predict all the things that really happen?</p></li>
+<li><p>Do they predict crazy things that <em>never</em> happen?</p></li>
+<li><p>How do they account for exceptions and other weird data?</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="phonological-theory-continued">Phonological Theory,
+Continued</h3>
+<ul>
+<li><p>How are words represented in our minds? As Phonemes? Phones?
+Words?</p></li>
+<li><p>What information plays a role in our phonological decision
+making?</p></li>
+<li><p>How do we actually make these decisions?</p></li>
+<li><p>Can we model phonological decisions using computers or other
+algorithms?</p></li>
+<li><p>Do these theories describe what’s happening inside the human
+mind?</p>
+<ul>
+<li>Or are they just a tool for describing language?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="phonology-is-not-the-same-thing-as-phonetics">Phonology is not
+the same thing as phonetics</h3>
+<ul>
+<li><p>Phoneticians are more concerned with the physical processes of
+speech</p></li>
+<li><p>Articulation, Perception, and the cognitive processes underlying
+both</p></li>
+<li><p>Phonologists are more concerned with the patterns of sound
+structure in different languages</p></li>
+<li><p>Markedness, phonotactics, rules, and cross-linguistic
+patterns</p></li>
+<li><p>We’ll talk about the intersection later in the quarter</p></li>
+</ul>
+<hr />
+<h3 id="phonology-is-a-fascinating-theoretical-field">Phonology is a
+fascinating theoretical field</h3>
+<ul>
+<li><p>Several long theoretical traditions, which we’ll touch
+on</p></li>
+<li><p>Vigorous debate about best practices</p>
+<ul>
+<li>Not a clear “right answer”</li>
+</ul></li>
+<li><p>Vigorous debate about the cognitive realities</p></li>
+<li><p>Vigorous debate about the exact nature of the field</p></li>
+<li><p><strong>We’re going to touch on theoretical questions throughout
+the quarter</strong></p></li>
+</ul>
+<hr />
+<h3
+id="phonology-is-absolutely-crucial-to-getting-linguistic-work-done">Phonology
+is absolutely <em>crucial</em> to getting linguistic work done</h3>
+<ul>
+<li><p>Phonetics offers you a series of ordered phones</p></li>
+<li><p>Phones are well and good, but they’re <em>hugely</em>
+variable</p></li>
+</ul>
+<hr />
+<p><img src="img/backing_up.jpg" /></p>
+<hr />
+<h3 id="you-need-to-account-for-this-variability">You need to account
+for this variability</h3>
+<ul>
+<li>… or else your life is going to be <em>awful</em></li>
+</ul>
+<hr />
+<h3 id="thats-what-were-going-to-do-here">That’s what we’re going to do
+here</h3>
+<hr />
+<h2 id="this-course-is-about-solving-phonological-problems">This course
+is about solving phonological problems</h2>
+<hr />
+<h3 id="in-10-weeks-you-will-look-at-a-phonological-problem-and">In 10
+weeks, you will look at a phonological problem and…</h3>
+<ul>
+<li><p>Know that it’s a phonological problem</p>
+<ul>
+<li>Identify what’s changing or unexpected</li>
+</ul></li>
+<li><p>Understand how to start looking at and characterizing it</p></li>
+<li><p>Use tools from this class to break it down</p></li>
+<li><p>Describe the pattern, and form a coherent analysis</p></li>
+<li><p>Describe the pattern, and form a <em>graceful</em>
+analysis</p></li>
+</ul>
+<hr />
+<h3 id="and-failing-that">… and failing that…</h3>
+<ul>
+<li><p>You’ll now that you’ve still got a problem</p>
+<ul>
+<li>… and that you’ll need to go deeper still</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="well-give-you-theoretical-tools-that-will-help">We’ll give you
+theoretical tools that will help</h3>
+<ul>
+<li><img src="humorimg/dangerous_to_go_alone.jpg" /></li>
+</ul>
+<hr />
+<h3
+id="and-well-talk-about-the-strengths-and-weaknesses-of-these-tools">…
+and we’ll talk about the strengths and weaknesses of these tools</h3>
+<ul>
+<li><p>As well as some alternative approaches</p></li>
+<li><p>Because that’s a LOT of fun</p></li>
+</ul>
+<hr />
+<h2 id="there-are-two-main-goals">There are two main goals</h2>
+<ul>
+<li><h3
+id="give-you-enough-phonological-knowledge-to-move-past-many-phonological-problems">1)
+Give you enough phonological knowledge to move past many phonological
+problems</h3></li>
+<li><h3
+id="show-you-why-phonology-is-an-interesting-and-worthwhile-field-to-spend-your-life-in">2)
+Show you why phonology is an interesting and worthwhile field to spend
+your life in</h3></li>
+</ul>
+<hr />
+<h1 id="how-are-we-going-to-accomplish-these-goals">How are we going to
+accomplish these goals?</h1>
+<hr />
+<p><img src="humorimg/data_trumpet.jpg" /></p>
+<hr />
+<h2 id="two-ways-of-applying-data-to-your-brain">Two ways of applying
+data to your brain</h2>
+<ul>
+<li><p>In-class problem-sets</p></li>
+<li><p>Homework assignments</p></li>
+</ul>
+<hr />
+<h3 id="in-class-problem-sets">In-class problem sets</h3>
+<ul>
+<li><p>Designed to give you a chance to work with actual data</p></li>
+<li><p>We’ll be here to help</p></li>
+<li><p>You’ll also get to help your classmates</p>
+<ul>
+<li>This a part of the learning process</li>
+</ul></li>
+<li><p>Pick a group you want to work with</p>
+<ul>
+<li>Feel free to float around.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="homework-problem-sets">Homework problem sets</h3>
+<ul>
+<li><p>These let you work on problems on your own</p></li>
+<li><p>These give us a chance to evaluate your work</p></li>
+<li><p>You can discuss these with your classmates</p>
+<ul>
+<li>But you need to write up your own work, and mention who you’ve
+collaborated with</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="well-also-have-in-class-discussions-and-readings">We’ll also
+have in-class discussions, and readings</h3>
+<ul>
+<li><p>Those will help too</p></li>
+<li><p>Check the syllabus and watch the lectures for new reading
+announcements</p></li>
+</ul>
+<hr />
+<h2 id="the-data-are-the-learning">The data <em>are</em> the
+learning</h2>
+<ul>
+<li>So, don’t be surprised if we’re spending a lot of time there.</li>
+</ul>
+<hr />
+<h3 id="one-thing-id-like-to-address">One thing I’d like to
+address…</h3>
+<hr />
+<h1 id="group-work-noooooo">“Group work!? Noooooo!!!!!”</h1>
+<hr />
+<h3 id="why-do-group-work">Why do group work?</h3>
+<ul>
+<li><p>Wider range of information</p></li>
+<li><p>Groups stimulate creativity and alternate solutions</p></li>
+<li><p>Discussing topics helps cement learning</p></li>
+<li><p>It helps you be involved in decision-making</p></li>
+<li><p>You’re gonna do group work for the rest of your life</p></li>
+</ul>
+<hr />
+<h3 id="whatre-the-downsides">What’re the downsides?</h3>
+<ul>
+<li><p>Conformity pressure</p></li>
+<li><p>Differing skill and preparation levels</p></li>
+<li><p>It takes more time!</p></li>
+</ul>
+<hr />
+<h3
+id="differences-among-group-members-is-a-feature-not-a-bug">Differences
+among group members is a feature not a bug</h3>
+<ul>
+<li><p>Students who are ahead of the game get to teach</p></li>
+<li><p>Students who in the middle get to mix things up</p></li>
+<li><p>Students who are struggling get to learn</p></li>
+<li><p><em>Always</em> propose alternatives</p></li>
+</ul>
+<hr />
+<h3 id="how-are-we-going-to-work-this">How are we going to work
+this?</h3>
+<ul>
+<li><p>Groups are done by seating</p>
+<ul>
+<li>… but we’ll mix it up from time to time</li>
+</ul></li>
+<li><p>We’ll always be wandering</p>
+<ul>
+<li>Sometimes providing feedback to small groups, sometimes cutting in
+to talk to all</li>
+</ul></li>
+<li><p>Groups will have a spokesperson</p>
+<ul>
+<li>You’re welcome to change that around a bit</li>
+</ul></li>
+<li><p>You’ll turn in your group information at the end of
+class</p></li>
+</ul>
+<hr />
+<h3 id="were-trying-new-things-here">We’re trying new things here</h3>
+<ul>
+<li><p>LIGN 111 hasn’t been taught quite like this</p></li>
+<li><p>Mistakes will be made, optimizations will be made</p></li>
+<li><p>The schedule will change (except due dates)</p></li>
+<li><p>DO NOT PRINT THE SYLLABUS</p></li>
+</ul>
+<hr />
+<h1 id="this-quarter">This quarter…</h1>
+<ul>
+<li><p>We’ll offer you tools to address phonological problems</p></li>
+<li><p>We’ll give you a chance to use them</p></li>
+<li><p>We’ll discuss why the tools look like they do</p></li>
+<li><p>… but most of all …</p></li>
+</ul>
+<hr />
+<h3
+id="well-show-you-that-phonologys-a-phon-place-to-spend-your-time">We’ll
+show you that Phonology’s a Phon place to spend your time!</h3>
+<ul>
+<li><img src="humorimg/badpundog.jpg" /></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li><p>Come to class ready to phonologize!</p></li>
+<li><p>We’ll start thinking about why we tackle these problems in the
+ways that we do</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

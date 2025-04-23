@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning}
+\usepackage{fontspec}
+\setmainfont{Charis SIL}
+\begin{document}
+\tikzstyle{m1} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=blue!10]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\begin{tikzpicture}[node distance=0.5cm]
+  \node (toplab) [] {\large Split-Morphology Hypothesis};
+  \node (concept) [below =of toplab] {Concept};
+   \node (m1) [m1,below= of concept] {\textbf{Morphological Processing (Derivation)}};
+   \node (s) [m1,below= of m1] {\textbf{Syntactic Processing}};
+   \node (m2) [m1,below= of s] {\textbf{Morphological Processing (Inflection)}};
+   \node (ph) [m1,below= of m2] {\textbf{Phonological Processing}};
+   \node (surface) [below= of ph] {Surface Word};
+\draw [] (concept) -- (m1);
+\draw [] (m1) -- (s);
+\draw [] (s) -- (m2);
+\draw [] (m2) -- (ph);
+\draw [arrow] (ph) -- (surface);
+
+\node (toplab2) [right = of toplab] {\large Single Component Hypothesis};
+  \node (concept2) [below = of toplab2] {Concept};
+
+   \node (m12) [m1,below =of concept2] {\textbf{Morphological Processing}};
+   \node (s2) [m1,below= of m12] {\textbf{Syntactic Processing}};
+   \node (ph2) [m1,below = of s2] {\textbf{Phonological Processing}};
+   \node (surface2) [below = of ph2] {Surface Word};
+\draw [] (concept2) -- (m12);
+\draw [] (m12) -- (s2);
+\draw [] (s2) -- (ph2);
+\draw [arrow] (ph2) -- (surface2);
+\end{tikzpicture}
+
+\end{document}

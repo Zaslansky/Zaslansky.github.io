@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+LIGN 168 - Improving ASR
+</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+
+
+
+# Improving ASR
+
+### Will Styler - LIGN 168
+
+---
+
+### So, we know how ASR works
+
+- We can go from speech to text very effectively
+
+- We can even find speakers, languages, and maybe even emotions
+
+- How can we make these systems better in our lives?
+
+---
+
+### Today's Plan
+
+- Activating ASR
+
+- Local ASR models
+
+- Model Customization
+
+- Space for ASR questions
+
+---
+
+## Activating ASR
+
+---
+
+### You're building an AI virtual assistant for the home
+
+- Think Siri, but not hilariously bad
+
+---
+
+### Why can't it just always be listening?
+
+- ASR is expensive, energy and computation-wise
+
+- ASR (often) requires network access to send data
+
+- Data sent to remote ASR servers is not secure
+
+- Some data should *not* be sent to remote servers
+
+- You need to trust Apple/Google/Amazon a **lot**
+
+---
+
+### There are places where always-on makes sense
+
+- Solitary environments
+	- e.g. in a fighter pilot's mask or a crane control cabin
+
+- Dedicated workspaces
+	- There's no expectation of privacy in a conference room
+
+- When directly triggered
+	- Giving users the ability to enable always-on responses
+
+- When fast response is crucial
+	- Triggers take time
+
+---
+
+### How do you know if you're being talked to?
+
+---
+
+### Which of these methods could work with an 'AI' assistant?
+
+- "I'm the only other one here"
+
+- "He's looking right at me and started talking"
+
+- "I'm the right person to answer that question"
+
+- "I just finished talking"
+
+- "I was just tapped on the shoulder"
+
+- "He just said my name"
+
+---
+
+### Listen-after-response ('Follow up mode')
+
+- Listen for 8-10 seconds after the end of the assistant's response for additional queries
+
+- Any speech during this time is likely to be ASR-directed
+
+- **What are the downsides here?**
+
+---
+
+### Push-to-Talk
+
+- Only listen when in a state triggered by the user
+
+- "Enable Microphone" toggles
+
+- Steering wheel buttons
+
+- "Hold to send"
+
+- **What are the downsides here?**
+
+---
+
+### Wake Words
+
+- Also known as 'hot words'
+
+- "Listen **only** for this particular sequence"
+
+	- "Hey Siri", "Alexa", "OK Google"
+
+- When you hear it, start sending data for full recognition
+
+---
+
+### Wake Word Processing is a separate model
+
+- This model runs *on the device itself*
+
+- Extremely-low-complexity VAD
+
+- Dedicated DNN trained only to detect a single word or phrase
+
+	- "Activate only if they say 'OK google'?
+
+- **Why use a separate model?**
+
+---
+
+### Which words?
+
+- What would be some desirable characteristics of wake words?
+
+- What would be some undesirable characteristics of wake words?
+
+- What would be the world's worst wake word?
+
+---
+
+### What are some advantages and downsides of Wake-Words?
+
+---
+
+### Sometimes, though, you need faster response than a wake-word
+
+- ... but you still don't want to go always on
+
+---
+
+### Hot Commands
+
+- Always-recognized words or phrases that trigger a specific command to be executed
+
+- These can be complete commands
+	- "Activate Lights" or "Arm Alarm" or "Cancel Alarm"
+	- Google Assistant has "Stop"
+
+- These can be initial components of commands
+	- "**Calculate** eighty two divided by five"
+	- "**Page** Doctor Hikes"
+
+- They are recognized by small, on-device, low-power DNNs too!
+
+---
+
+### These aren't always transcriptions
+
+- A command might translate into an API Call
+	- "Hey, power system, turn the running lights off"
+
+- A command might even just trigger another command
+	- "exec mkalarm $TIME+00:20:00" run as a command
+
+---
+
+### What are some advantages and disadvantages to hot commands?
+
+---
+
+### This is all reasonable now, but won't this all be solved by...
+
+---
+
+## Local ASR Models
+
+---
+
+### Right now, much of ASR is cloud-based
+
+- Capture the sound, compress it, and send it to somebody else's computer
+
+- They'll have the hardware
+
+- They'll have the models
+
+- They'll send you back the response
+
+---
+
+### This is massively problematic for consumers
+
+- "No, you don't need the weights or source code, it's too dangerous!"
+
+- "Of course we'll delete your queries as soon as they're processed! Mmhmm. For sure"
+
+- "Don't worry about that secondary pipeline from our Voice-to-Text product into the ad targeting cluster with your username attached"
+
+- "Oh, I'm sorry, you're going to need Premium Plus ULTRA Pro plan for that..."
+
+---
+
+### Sometimes, models *must* run locally
+
+- Offline environments
+
+- Classified or Sensitive Data
+
+- Low-Latency requirements
+
+- Fighter Jets
+
+- ... but most consumer ASR services are run on somebody else's computer
+
+---
+
+### What if we could run these models locally?
+
+- What problems would this solve?
+
+- What problems would this create?
+
+---
+
+### Some models already work locally!
+
+- Whisper does run locally
+	- Albeit slowly, without a GPU
+
+- Google's Voice-to-Type can run local-only on Android
+
+- MacOS has local ASR as a possibility for typing
+	- 'Offline Dictation'
+
+- Many legacy products (e.g. 'Dragon Dictate') did run local-only!
+
+- No (capable) virtual assistants run fully locally yet!
+
+---
+
+### This is one of the factors forcing innovation in the DNN space
+
+- It's better for consumers if models can run 'at the edge', in their home, laptop, or pocket
+
+- It allows running (and tuning) of free and open models, rather than AI plutocracy
+
+- It guarantees privacy!
+
+- **The moment we figure out how to do Transformer-quality inference without quadratic compute costs, the world will improve massively!**
+
+---
+
+### These models should be personal!
+
+- We want these models to understand us and our lives
+
+- This requires...
+
+---
+
+## Custom ASR Modeling
+
+---
+
+### One-Size-Fits-All ASR can get us surprisingly far
+
+- Particularly with a few dialect options, it can cover a large number of people
+
+- Most people do roughly the same things with ASR
+
+- Spelling in English has acceptable, standardized forms
+
+- ... but it's not always a perfect fit
+
+---
+
+### Every human has a different life
+
+- Different words and names which are used, useful, and common
+
+- Different linguistic styles
+
+- Different languages and dialects they may use
+
+---
+
+### Customized Words
+
+- What words do you use which don't generally appear in dictionaries?
+
+- What names do you generally use which might not be common?
+
+- What words do you use commonly that generally appear rarely?
+
+- What do your documents generally contain?
+
+---
+
+### Sometimes, easy data helps a lot!
+
+- "These are the artists in their music library"
+	- Aleks Syntek, Aphex Twin, The Bedsit Infamy, Buckethead, Darude, deadmau5, DJ Felli Fel, Eduard Khil, DragonForce, Eric Prydz, ii0, Kaminanda, Shpongle...
+
+- "Here's their contact list"
+	- Zygmunt Frajzyngier, Jelena Krivokapic, Ruaridh Purse, Pam Beddor, Andries Coetzee, Umberto Mignozzetti, Lily Irani, Eran Mukamel, John Wixted, Akos Rona-Tas
+
+- "Here are the 20 terms he uses regularly that are least common relative to the norm"
+	- CSS, Vowels, Formants, MFCCs, ngram, TF/IDF, SI/SH, Photoglottography, Escapement, HAQ, sudo, ansible, unix
+
+- "Here are all the custom commands they've defined"
+
+---
+
+### How does this person type?
+
+- "they never capitalize sentences"
+
+- "They put two spaces after a period"
+
+- "They never use semicolons"
+
+- "They say 'y'all' regularly
+
+---
+
+### Should ASR fucking swear on your behalf?
+
+- What are some benefits to blocking ASR from guessing swear words?
+
+- What are some benefits to allowing ASR to swear?
+
+---
+
+### What is this person's language background?
+
+- Should we be using a specialized, per-dialect model?
+
+- Should we be expecting any code-switching?
+
+- Will they be using a lot of Spanish-language placenames, even in English?
+
+- Do they want me to type according to a particular dialect's norms?
+
+- Does this person talk slowly and carefully to ASR, or treat it like another human?
+
+---
+
+### All of these customizations help your model work better
+
+- It will ''intuit" the needs of the person better
+
+- It will better respond to specific queries
+
+- It will be more likely to do the right thing, with personalized information
+
+- It will perform better if it knows what to expect
+	- ... yet, oddly ...
+
+---
+
+### There's one kind of customization that isn't happening anymore
+
+- Voice-Specific Training!
+
+---
+
+### All ASR systems used to be trained to your voice
+
+- In the HMM days, ASR software required personalization and 'training'
+
+- Setup began with "Read these texts aloud"
+
+	- It would then process for a little while as it 'customized' to your voice
+
+- The model *simply wouldn't work* without this level of customization
+
+---
+
+### This makes sense, knowing speech!
+
+- If you're doing LPC to detect formants, you need to know what formants match what vowels
+
+- If you're detecting spectral properties of /s/ and /ʃ/, you need to know them
+
+- If you're detecting a person's voice vs. noise, you should model their voice
+
+---
+
+### We don't need this anymore (ish)
+
+- ASR systems work across speakers (within language and dialect)
+
+- You have to be fairly far from the training data to have systems fail
+
+- *Across-Speaker, within-dialect variation appears to be statistically solvable by transformers!*
+	- This is actually really interesting for language!
+	- Maybe speech isn't so special...
+
+---
+
+### All of these methods help us to make ASR better
+
+- Ensuring that it's listening when we need it, but not when we're not
+
+- That it's running in the right place
+
+- ... and that it fits our lives!
+
+---
+
+### Any lingering ASR-related questions?
+
+---
+
+### Wrapping up
+
+- Modern ASR systems are very good
+	- ... but a few tricks can make them better
+
+- Wake words and hot words help them integrate with our lives
+
+- Local models give us control, privacy, and energy costs
+
+- Customization makes the system better for you
+	- ... but perhaps worse for everybody else
+
+---
+
+### For next time
+
+- Be thinking about ethical issues we should contemplate about ASR
+
+---
+
+<huge>Thank you!</huge>
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

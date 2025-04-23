@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<section class="clicker">
+</section>
+<h3 id="the-correct-pronunciation-of-gif-the-image-format-is">The
+correct pronunciation of ‘gif’ (the image format) is…</h3>
+<ol type="a">
+<li><p>/d͡ʒɪf/</p></li>
+<li><p>/gɪf/</p></li>
+<li><p>/jɪf/</p></li>
+<li><p>/d͡ʒi aj ɛf/</p></li>
+<li><p>/d͡ʒejpɛg/</p></li>
+</ol>
+<hr />
+<h3 id="the-correct-pronunciation-of-gif-the-image-format-is-1">The
+correct pronunciation of ‘gif’ (the image format) is…</h3>
+<ol type="a">
+<li><p><correct>/d͡ʒɪf/</correct></p></li>
+<li><p>/gɪf/</p></li>
+<li><p>/jɪf/</p></li>
+<li><p>/d͡ʒi aj ɛf/</p></li>
+<li><p>/d͡ʒejpɛg/</p></li>
+</ol>
+<hr />
+<p><img class="r-stretch" src="humorimg/come_at_me_bro_turtle.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="tmp/paris_gs.jpg"></p>
+<hr />
+<h1 id="phonetics-the-sounds-of-language-are-awesome">Phonetics: The
+Sounds of Language (are awesome)</h1>
+<h3 id="will-styler---lign-101">Will Styler - LIGN 101</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>More on IPA Transcription</p></li>
+<li><p>Why are we learning some IPA, anyways?</p></li>
+<li><p>Some phonetic phun</p></li>
+</ul>
+<hr />
+<h3 id="now-that-we-understand-how-speech-sounds-are-produced">Now that
+we understand how speech sounds are produced…</h3>
+<ul>
+<li><p>We can identify the proper symbols in the IPA</p></li>
+<li><p>We can start to transcribe speech using the IPA</p></li>
+</ul>
+<hr />
+<h3 id="online-audio-ipa-charts-are-a-useful-resource">Online Audio IPA
+Charts are a useful resource</h3>
+<ul>
+<li><p><a
+href="http://www.internationalphoneticalphabet.org/ipa-sounds/ipa-chart-with-sounds/"
+class="uri">http://www.internationalphoneticalphabet.org/ipa-sounds/ipa-chart-with-sounds/</a></p></li>
+<li><p>We also have videos at <a href="https://savethevowels.org/ipa"
+class="uri">https://savethevowels.org/ipa</a></p></li>
+<li><p><strong>Make sure the sounds you’re using are on your quick
+reference sheet!</strong></p></li>
+<li><p>As is memorizing some words for each symbol and then
+process-of-eliminating</p>
+<ul>
+<li>“Hmm, it’s not the vowel in ‘snack’ or ‘but’ or ‘boat’, but it
+does”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="lets-dust-off-our-ipa-brains-a-bit">Let’s dust off our IPA
+brains a bit!</h3>
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="the-word-thickened-has-consonants-with-how-many-different-places-of-articulation">The
+word “thickened” has consonants with how many different places of
+articulation?</h3>
+<ol type="a">
+<li><p>1</p></li>
+<li><p>2</p></li>
+<li><p>3</p></li>
+<li><p>4</p></li>
+<li><p>1337</p></li>
+</ol>
+<hr />
+<p>/θɪkɪnd/</p>
+<p>θ - interdental</p>
+<p>k - velar</p>
+<p>n - alveolar</p>
+<p>d - alveolar</p>
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="the-word-thickened-has-consonants-with-how-many-different-manners-of-articulation">The
+word “thickened” has consonants with how many different <em>manners</em>
+of articulation?</h3>
+<ol type="a">
+<li><p>1</p></li>
+<li><p>2</p></li>
+<li><p>3</p></li>
+<li><p>4</p></li>
+<li><p>Probably still not 1337</p></li>
+</ol>
+<hr />
+<h3 id="θɪkɪnd">/θɪkɪnd/</h3>
+<p>θ - fricative</p>
+<p>k - stop</p>
+<p>n - nasal</p>
+<p>d - stop</p>
+<hr />
+<h3 id="how-many-of-those-consonants-are-voiced">How many of those
+consonants are voiced?</h3>
+<ol type="a">
+<li><p>1</p></li>
+<li><p>2</p></li>
+<li><p>3</p></li>
+<li><p>4</p></li>
+<li><p>1337 is still not the answer</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="θɪkɪnd-1">/θɪkɪnd/</h3>
+<p>θ - voiceless</p>
+<p>k - voiceless</p>
+<p>n - voiced</p>
+<p>d - voiced</p>
+<hr />
+<h3
+id="discussion-sections-this-week-are-all-about-transcription">Discussion
+Sections this week are all about transcription!</h3>
+<hr />
+<h2 id="a-few-more-transcription-pitfalls">A few more transcription
+pitfalls</h2>
+<hr />
+<p><img class="r-stretch" src="ling_memes/ipa_undertaker.jpg"></p>
+<hr />
+<h3 id="lies-your-writing-system-tells-you">Lies your writing system
+tells you</h3>
+<ul>
+<li><p>The letter “C”</p></li>
+<li><p>“ng” is usually /ŋ/, as in “ring” /ɹɪŋ/</p></li>
+<li><p>“th” can be /θ/ or /ð/</p></li>
+<li><p>“x” is usually /ks/, as in axis /æksɪs/</p></li>
+<li><p>English does not allow double (‘geminate’) consonants</p>
+<ul>
+<li>“soccer” is /sɑkəɹ/, crass is /kɹæs/</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="do-not-capitalize-when-making-ipa-transcriptions">Do not
+capitalize when making IPA transcriptions!</h3>
+<ul>
+<li>Capital and small-caps letters in the IPA mean different
+things!</li>
+</ul>
+<hr />
+<h3 id="more-lies">More lies</h3>
+<p>Sliced - /slaɪst/</p>
+<ul>
+<li><p>Buzzed - /bʌzd/</p></li>
+<li><p>Close (near) - /klows/</p></li>
+<li><p>Close (a door) - /klowz/</p></li>
+</ul>
+<hr />
+<h3 id="silent-letters-arent-real">Silent letters aren’t real</h3>
+<ul>
+<li>“k” in “knee”</li>
+<li>“b” in “lamb”</li>
+<li>“e” in name, I will cry.</li>
+</ul>
+<hr />
+<h3 id="english-writing-is-often-ambiguous">English writing is often
+ambiguous</h3>
+<p><img class="r-stretch" src="img/xkcd_pronunciation.png"></p>
+<p>(Image Credit: <a href="https://xkcd.com/2819/">XKCD 2819</a>)</p>
+<hr />
+<p><img class="r-stretch" src="ling_memes/tap_am_i_a_joke.jpg"></p>
+<hr />
+<h3 id="sometimes-consonants-take-over">Sometimes, consonants take
+over</h3>
+<ul>
+<li><p>Words like ‘cotton’ or ‘people’ or ‘bull’ can have a final
+consonant which feels ‘alone’</p>
+<ul>
+<li>There doesn’t seem to be a vowel there</li>
+</ul></li>
+<li><p>We refer to these as ‘syllabic consonants’</p></li>
+<li><p>You can use /ən əl/ to represent that, or the IPA ‘syllabic’
+diacritic (l̩ or n̩)</p>
+<ul>
+<li><p>So ‘cotton people bull’ = /kɑʔən pipəl bəl/ or /kɑʔn̩ pipl̩
+bl̩/</p></li>
+<li><p>Note that for many, ‘bull’ is still /bʊl/</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="youll-want-to-use-the-tie-bar-for-affricates">You’ll want to use
+the tie bar for affricates</h3>
+<ul>
+<li><p>It’s good habit to write /t͡ʃ/ and /d͡ʒ/ with the tie bar when
+they’re affricates</p>
+<ul>
+<li>Rather than a sequence of two different sounds (e.g. “hotshot
+/hɑtʃɑt/”)</li>
+</ul></li>
+<li><p>It’s less critical for English, but it’s good practice</p></li>
+</ul>
+<hr />
+<h3 id="there-is-no-i-in-team">There is no I in team</h3>
+<p><img class="r-stretch" src="phonmedia/noiinteam.jpg"></p>
+<hr />
+<h3 id="words-dont-have-one-ipa-equivalent">Words don’t have one IPA
+‘equivalent’</h3>
+<ul>
+<li><p>You’re always transcribing somebody else saying them</p></li>
+<li><p>There is no such thing as an automatic IPA “translator”, and
+there never could be</p>
+<ul>
+<li>ChatGPT is mid at this too</li>
+</ul></li>
+<li><p>Some dictionaries give you IPA, but badly</p></li>
+<li><p>… and we can totally tell if you used that</p></li>
+</ul>
+<hr />
+<h3 id="some-symbols-dont-mean-what-they-do-in-english">Some symbols
+don’t mean what they do in English</h3>
+<ul>
+<li><p>/y/ : High front rounded vowel</p></li>
+<li><p>/j/: Voiced palatal approximant (as in ‘Yes’)</p></li>
+<li><p>/r/: Voiced alveolar trill (the Spanish ‘rolled R’)</p></li>
+<li><p>/ɹ/: English ‘r’ sound (as in ‘red’)</p></li>
+</ul>
+<hr />
+<p>… by this point, you’re likely wondering…</p>
+<ul>
+<li><h3 id="why-the-heck-are-we-learning-about-the-ipa">Why the heck are
+we learning about the IPA!?!</h3></li>
+</ul>
+<hr />
+<h3 id="the-boring-answers">The boring answers</h3>
+<ul>
+<li><p>It makes you think about how you talk <em>and</em> what you’re
+saying</p></li>
+<li><p>It prepares you for future linguistics classes which will use
+it</p></li>
+<li><p>You can work for an airport announcing names!</p></li>
+</ul>
+<hr />
+<h3 id="because-your-writing-system-probably-sucks">1) Because your
+writing system probably sucks</h3>
+<ul>
+<li><p>“They thoroughly and roughly wrought the boughs in the borough,
+through and through”</p></li>
+<li><p>/ðej θəɹəli n̩ ɹʌfli ɹɑt ðə bɑwz ɪn ðə bəɹow θɹu n̩ θɹu/</p></li>
+</ul>
+<hr />
+<h3
+id="because-its-useful-to-be-able-to-write-things-down-even-when-you-dont-know-the-words">2)
+Because it’s useful to be able to write things down, even when you don’t
+know the word(s)</h3>
+<ul>
+<li>(/r:!ʛma/)</li>
+</ul>
+<hr />
+<h3 id="because-you-dont-always-have-a-writing-system-to-use.">3)
+Because you don’t always have a writing system to use.</h3>
+<ul>
+<li>Seriously, many languages don’t have one</li>
+</ul>
+<hr />
+<h3 id="to-train-your-brain-to-hear-differences-more-easily">4) To train
+your brain to hear differences more easily</h3>
+<ul>
+<li>/θ/ or /ð/</li>
+</ul>
+<hr />
+<h3 id="to-capture-individual-variations-in-speech">5) To capture
+individual variations in speech</h3>
+<ul>
+<li>Is it “sick”, or /ɬɪk/?</li>
+</ul>
+<hr />
+<h3 id="to-capture-dialect-differences-in-speech">6) To capture dialect
+differences in speech</h3>
+<hr />
+<h3 id="rp-british-english-vs.-mainstream-us-english">RP (British
+English) vs. Mainstream US English</h3>
+<ul>
+<li><p>/əˈlumɪnəm/ vs. /aljuˈmɪnium/</p></li>
+<li><p>/ɡəˈɹɑʒ/ vs. /ˈɡɛɹɑʒ/</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/sellyouriron.jpg"></p>
+<hr />
+<ul>
+<li><p>“Sell your iron to Walter Zion”</p></li>
+<li><p>/sɛl jəɹ ajəɹn tə wɑltəɹ zajən/</p></li>
+<li><p>/sɛl jə ajən tə wɑltə zajən/</p></li>
+</ul>
+<hr />
+<h3 id="oh-boston">Oh, Boston</h3>
+<ul>
+<li><p>park the car in harvard yard</p></li>
+<li><p>/pɑɹk ðə kɑɹ ɪn hɑɹvəɹd jɑɹd/</p></li>
+<li><p>/pɑ:k ðə kɑ: ɪn hɑvəd jɑ:d/</p></li>
+</ul>
+<hr />
+<h3 id="to-impressscare-people-at-partiesbars">7) To impress/scare
+people at parties/bars</h3>
+<hr />
+<h3 id="to-write-down-things-that-arent-otherwise-writeable">8) To write
+down things that aren’t otherwise writeable</h3>
+<hr />
+<h3 id="transcribers-delight">Transcriber’s Delight</h3>
+<ul>
+<li><p>“I said a hip, hop, the hibbie, the hibbie to the hip hip hop and
+you don’t stop the rocking to the bang bang boogie say up jump the
+boogie to the rhythm of the boogie the beat”</p></li>
+<li><p>[ɑsɛdə hɪp hɑp ðəhɪbi ðe hɪbi təðə hɪp hɪp hɑpʰɑjɨ down stɑp ðə
+ɹɑkɪn tʰəðə bejŋ bejŋ bʊɡi seɪ ʔʌp d͡ʒʌmp ðə bʊɡi tʰəðə ɹɪðm ʌ ðʌ bʊɡidə
+bit]</p></li>
+</ul>
+<audio controls>
+<source src="phonmedia/rappers_delight_excerpt.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3 id="would-you-like-fries-with-this-example">Would you like fries
+with this example?</h3>
+<ul>
+<li><p>[a.sɛ.ɾa.he.ha.hə.he.ehɛ.βe.tu.ða.hɛ.ðe.ðe.se.vi.ju.no.
+ma.ma.ha.vi.æn.ðə.bu.ɣi.æn.ðə.bʷi.li.li.bi]</p></li>
+<li><p>From ‘The Ketchup Song’ by Las Ketchup</p></li>
+</ul>
+<audio controls>
+<source src="phonmedia/lasketchup_excerpt.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3 id="a-disturbeding-example">A Disturbeding Example</h3>
+<ul>
+<li><p>[owaʔaʔaʔaʔ]</p></li>
+<li><p>From Disturbed’s ‘Down with the Sickness’</p></li>
+</ul>
+<audio controls>
+<source src="phonmedia/owaaaaaa.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3 id="scatman-by-scatman-john">“Scatman” by Scatman John</h3>
+<audio controls>
+<source src="phonmedia/scatman_excerpt.mp3" type="audio/mp3">
+</audio>
+<p><img class="r-stretch" src="phonmedia/scatmanIPA.png">
+<!-- .element: class="fragment" --></p>
+<hr />
+<video class="small" controls src="memes/skibidi_toilet.mp4" height="300" width="300">
+</video>
+<ul>
+<li>/br:::: skibiri d̪õm d̪õm d̪õbijɛsʲɛs skibiri d̪abl̩d̪m ni ni/</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=tzD9OxAHtzU">Source</a></p>
+<hr />
+<h3 id="if-you-dont-know-what-that-was-ask-your-younger-relatives">(If
+you don’t know what that was, ask your younger relatives)</h3>
+<hr />
+<h3 id="so-thats-why-youre-learning-the-ipa">So, that’s why you’re
+learning the IPA</h3>
+<ul>
+<li>… and that’s everything you need to know to complete the homework
+and test</li>
+</ul>
+<hr />
+<h3 id="theres-one-misconception-i-want-to-address">There’s one
+misconception I want to address</h3>
+<hr />
+<h2 id="people-in-africa-speak-only-with-clicks">“People in Africa speak
+only with clicks”</h2>
+<hr />
+<p><img class="r-stretch" src="humorimg/false.jpg"></p>
+<hr />
+<h3 id="clicks-in-africa">Clicks in Africa</h3>
+<ul>
+<li><p>Clicks are used extensively in Khoisan languages</p>
+<ul>
+<li>(spoken by ~400,000 people)</li>
+</ul></li>
+<li><p>They’ve also been borrowed into Zulu and Xhosa, both Bantu
+languages (within Niger-congo)</p>
+<ul>
+<li>(~17.6 million speakers)</li>
+</ul></li>
+<li><p>This means that only ~1% of Africans speak a language where there
+are clicks</p></li>
+<li><p>All of these languages have lots of non-click sounds!</p></li>
+</ul>
+<hr />
+<p><lang>San</lang><br><ldata>Khoisan - Namibia</ldata></p>
+<video class="r-stretch" controls src="video/sanspeaker.mp4">
+</video>
+<p><a href="https://www.youtube.com/watch?v=W6WO5XabD-s">Original
+Source: ‘Khoisan Click Language’ by Xurxo Mariño</a></p>
+<hr />
+<p><img class="r-stretch" src="humorimg/omg.jpg"></p>
+<hr />
+<h2 id="i-could-never-do-that">“I could never do that!”</h2>
+<ul>
+<li>Yes, you can.</li>
+</ul>
+<hr />
+<h1 id="anybody-can-pronounce-any-language">Anybody can pronounce any
+language!</h1>
+<hr />
+<h3 id="speech-organs-are-universal">Speech organs are universal</h3>
+<ul>
+<li><p>There is not a meaningful difference between your vocal tract and
+a San speaker’s</p>
+<ul>
+<li><a href="https://doi.org/10.1093/jole/lzx004">Small differences may
+exist</a>, but the effect size is small</li>
+</ul></li>
+<li><p>The only meaningful difference between humans is
+practice!</p></li>
+<li><p>It’s easier if you learn the language at a younger age</p></li>
+<li><p>There are no sounds English speakers “just can’t produce”,
+<em>with practice</em>.</p></li>
+</ul>
+<hr />
+<h3 id="but-that-doesnt-mean-its-easy">… but that doesn’t mean it’s
+easy</h3>
+<ul>
+<li><p>Make a Voiceless Velar Fricative /x/ (as in “Chanukkah”,
+“Challah”, “Bach”)</p></li>
+<li><p>Make a voiced alveolar trill /r/ (the Spanish Rolled R)</p></li>
+<li><p>Make a voiceless palatal fricative (ç) (as in an angry
+cat)</p></li>
+<li><p>Make a voiceless alveolar lateral fricative (ɬ) (as in
+“nahuatl”)</p></li>
+<li><p>Make a /!/ click between two vowels (/a!a/)</p></li>
+</ul>
+<hr />
+<h3 id="ipa-conclusion">IPA Conclusion</h3>
+<ul>
+<li><p>The IPA is a great resource</p></li>
+<li><p>Do the interactive tutorial for HW1 to learn more about how it
+works</p></li>
+<li><p>Remember, you’re writing down <em>what was actually said</em>,
+and your writing system doesn’t help with that!</p></li>
+</ul>
+<hr />
+<h3
+id="its-always-hard-to-figure-out-what-to-include-in-a-lign-101">It’s
+always hard to figure out what to include in a LIGN 101</h3>
+<ul>
+<li><p>Today, I have abandoned good sense and tradition in favor of my
+own burning passions</p></li>
+<li><p><strong><em>“Screw it, I’m talking about speech
+perception!”</em></strong></p></li>
+</ul>
+<hr />
+<h1 id="speech-perception-is-impossibly-hard">Speech Perception is
+impossibly hard</h1>
+<hr />
+<p>Speech is flapping bits of meat around in your head and throat while
+you expel air.</p>
+<ul>
+<li><strong>Speech perception is turning the resulting vibrations in the
+air back into language</strong></li>
+</ul>
+<hr />
+<h3 id="so-what-do-these-vibrations-look-like">So, what do these
+vibrations look like?</h3>
+<hr />
+<p><img class="r-stretch" src="phonmedia/sky.png"></p>
+<hr />
+<h3 id="how-do-humans-pick-them-up">How do humans pick them up?</h3>
+<hr />
+<p><img class="r-stretch" src="phonmedia/ear.jpg"></p>
+<hr />
+<h3 id="then-what">Then what?</h3>
+<hr />
+<p><img class="r-stretch" src="phonmedia/skyspectrogram.png"></p>
+<hr />
+<h3 id="then-what-1">Then what?</h3>
+<hr />
+<p><img class="r-stretch" src="img/magic.jpg"></p>
+<hr />
+<h3 id="oh-hes-talking-about-that-thing-up-there">“Oh, he’s talking
+about that thing up there!”</h3>
+<p><img class="r-stretch" src="phonmedia/skyphoto.jpg"></p>
+<hr />
+<p>“Wait. You can’t do that. You skipped a step. Go back.”</p>
+<ul>
+<li><strong>That step takes years of grad school to understand how
+little we understand.</strong></li>
+</ul>
+<hr />
+<h2 id="were-going-to-ignore-the-how-and-focus-on-the-wow">We’re going
+to ignore the “how” and focus on the “wow!”</h2>
+<hr />
+<h2 id="lets-do-some-speech-perception-magic-tricks">Let’s do some
+speech perception magic tricks!</h2>
+<hr />
+<h2 id="trick-1-so-close-yet-so-far">Trick #1: So close, yet so far</h2>
+<hr />
+<h3
+id="youre-so-used-to-understanding-english-that-youve-gotten-lazy">You’re
+so used to understanding English that you’ve gotten lazy!</h3>
+<ul>
+<li><p>You consistently hear word boundaries</p></li>
+<li><p>You can pick out missing words from context</p></li>
+<li><p>You know roughly what to expect</p></li>
+<li><p><strong>Let’s take you out of your comfort
+zones!</strong></p></li>
+</ul>
+<hr />
+<p><lang>Frisian</lang><br><ldata>Indo-European:Germanic - Germany and
+Netherlands</ldata></p>
+<video class="r-stretch" controls src="video/frisian.mp4">
+</video>
+<p><a
+href="https://www.youtube.com/watch?v=TRfodZPL57A&amp;t=28s">Original
+Source: ‘Debut on Frisian Television’ by Tsead Bruinja</a></p>
+<hr />
+<h3 id="there-is-one-z-list-celebrity-speaker-of-frisian">There is one
+Z-List Celebrity speaker of Frisian</h3>
+<p><img class="r-stretch" src="img/tonybeets.jpg">
+<!-- .element: class="fragment" --></p>
+<ul>
+<li><p>Tony Beets from “Gold Rush”</p>
+<ul>
+<li>(I swear, I only watch it for the Frisian phonology)</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="trick-2-gradient-perception">Trick #2: Gradient Perception</h2>
+<ul>
+<li>When we’re familiar with the categories in a language, that affects
+our perception strongly</li>
+</ul>
+<hr />
+<h3 id="date-vs.-debt">Date vs. Debt</h3>
+<hr />
+<h1 id="date">Date</h1>
+<audio data-autoplay src="phonmedia/date1.mp3">
+</audio>
+<hr />
+<h1 id="debt">Debt</h1>
+<audio data-autoplay src="phonmedia/date12.mp3">
+</audio>
+<hr />
+<h2 id="section">?</h2>
+<audio controls>
+<source src="phonmedia/date4.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h2 id="section-1">??</h2>
+<audio controls>
+<source src="phonmedia/date8.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h2 id="section-2">???</h2>
+<audio controls>
+<source src="phonmedia/date6.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3 id="lets-do-an-experiment">Let’s do an experiment!</h3>
+<hr />
+<h2 id="section-3">????</h2>
+<audio controls>
+<source src="phonmedia/date_debt_11_steps.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3 id="gradient-perception">Gradient Perception</h3>
+<ul>
+<li><p>We use our knowledge of the categories to make strong decisions
+about which sounds are which</p>
+<ul>
+<li>… but they’re not always the same decisions as your neighbors!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="trick-3-coda-recovery">Trick #3: Coda Recovery</h3>
+<hr />
+<center>
+<table>
+<tr>
+<th>
+<h1>
+bad
+</h1>
+</th>
+<th>
+<h1>
+ban
+</h1>
+</th>
+</tr>
+</table>
+</center>
+<audio controls>
+<source src="phonmedia/diss_hazel_BAD_nfor_ex_c.wav" type="audio/wav">
+</audio>
+<hr />
+<center>
+<table>
+<tr>
+<th>
+<h1>
+bomb
+</h1>
+</th>
+<th>
+<h1>
+bob
+</h1>
+</th>
+</tr>
+</table>
+</center>
+<audio controls>
+<source src="phonmedia/diss_molly_BOMB_ofor_ex_c.wav" type="audio/wav">
+</audio>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td><audio controls>
+<source src="phonmedia/bob_CJ1_8_noised-2199.wav" type="audio/wav">
+</audio></td>
+</tr>
+</tbody>
+</table>
+<center>
+<table>
+<tr>
+<th>
+<h1>
+duck
+</h1>
+</th>
+<th>
+<h1>
+dunk
+</h1>
+</th>
+</tr>
+</table>
+</center>
+<audio controls>
+<source src="phonmedia/chase_rhoh-dunk_noised-2194.wav" type="audio/wav">
+</audio>
+<hr />
+<center>
+<table>
+<tr>
+<th>
+<h1>
+bob
+</h1>
+</th>
+<th>
+<h1>
+bomb
+</h1>
+</th>
+</tr>
+</table>
+</center>
+<audio controls>
+<source src="phonmedia/bomb_CJ1_8_noised-2198.wav" type="audio/wav">
+</audio>
+<hr />
+<p><img class="r-stretch" src="humorimg/areyouawizard.png"></p>
+<hr />
+<p><strong>We pay attention to tiny details!</strong></p>
+<hr />
+<p><huge>bend</huge><br></p>
+<p><huge>/bɛnd/</huge></p>
+<ul>
+<li><strong>…but there’s more to it than the symbols show
+us!</strong></li>
+</ul>
+<hr />
+<h3 id="coarticulation">Coarticulation</h3>
+<p>When we start preparing for the next sound <em>before it even
+begins</em></p>
+<ul>
+<li>In the word “bend”, we start nasal airflow before the nasal /n/,
+<em>during the vowel</em></li>
+</ul>
+<hr />
+<p><huge>bend</huge><br></p>
+<p><huge>/bɛnd/</huge><br></p>
+<p><huge>/bɛ̃nd/</huge></p>
+<hr />
+<h3 id="you-use-coarticulation-to-hear-missing-sounds">You use
+coarticulation to hear missing sounds!</h3>
+<!--<img class="r-stretch" src="phonmedia/airflow_bend_annot_coart.png">-->
+<audio controls>
+<source src="phonmedia/bomb_CJ1_8_noised-2198.wav" type="audio/wav">
+</audio>
+<hr />
+<p><img class="r-stretch" src="img/magic.jpg"></p>
+<hr />
+<h3
+id="how-we-hear-nasality-was-the-topic-of-my-doctoral-dissertation">How
+we hear nasality was the topic of <a
+href="http://wstyler.ucsd.edu/files/styler_dissertation_final.pdf">my
+doctoral dissertation</a></h3>
+<ul>
+<li><p>Yes, that’s a clickable link to a PDF</p>
+<ul>
+<li>No, nobody’s going to click it.</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/sadcat.jpg"></p>
+<hr />
+<p>Speaking of recovering huge amounts of information…</p>
+<hr />
+<h3 id="trick-4-fun-with-sine-waves">Trick #4: Fun with Sine Waves</h3>
+<hr />
+<h3 id="lets-listen-to-some-sounds">Let’s listen to some sounds</h3>
+<audio controls>
+<source src="phonmedia/thanksforattendingf3.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/thanksforattendingf2.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/thanksforattendingf1.mp3" type="audio/mp3">
+</audio>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>### Let’s listen to some sounds</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>### Let’s listen to some sounds</td>
+</tr>
+<tr class="even">
+<td><audio controls>
+<source src="phonmedia/thanksforattendingf3.mp3" type="audio/mp3">
+</audio></td>
+</tr>
+<tr class="odd">
+<td><audio controls>
+<source src="phonmedia/thanksforattendingf2.mp3" type="audio/mp3">
+</audio></td>
+</tr>
+<tr class="even">
+<td><audio controls>
+<source src="phonmedia/thanksforattendingf1.mp3" type="audio/mp3">
+</audio></td>
+</tr>
+<tr class="odd">
+<td><br></td>
+</tr>
+<tr class="even">
+<td>### Now let’s play all three at once!</td>
+</tr>
+<tr class="odd">
+<td><audio controls>
+<source src="phonmedia/thanksforattendingsine.mp3" type="audio/mp3">
+</audio></td>
+</tr>
+<tr class="even">
+<td><br></td>
+</tr>
+<tr class="odd">
+<td>### Does this help?</td>
+</tr>
+<tr class="even">
+<td><audio controls>
+<source src="phonmedia/thanksforattendingorig.mp3" type="audio/mp3">
+</audio></td>
+</tr>
+</tbody>
+</table>
+<p><img class="r-stretch" src="img/magic.jpg"></p>
+<hr />
+<p>This is called “Sine wave speech”, and it’s <em>really</em>
+awesome.</p>
+<hr />
+<h3 id="trick-5-multi-modal-perception">Trick #5: Multi-modal
+perception</h3>
+<hr />
+<h3 id="the-mcgurk-effect-part-1">The McGurk Effect (Part 1)</h3>
+<video controls src="video/willgurk.mp4">
+</video>
+<hr />
+<h3 id="the-mcgurk-effect-part-2">The McGurk Effect (Part 2)</h3>
+<video controls src="video/willgurk.mp4">
+</video>
+<hr />
+<h3 id="theyre-the-same-video">They’re the same video!</h3>
+<ul>
+<li><huge>😇</huge></li>
+</ul>
+<hr />
+<h3 id="spoken-language-is-multi-modal">Spoken Language is
+multi-modal!</h3>
+<ul>
+<li>The distinction between visual and auditory modalities isn’t as cut
+and dry as many think</li>
+</ul>
+<hr />
+<h3 id="trick-6-tone-languages">Trick #6: Tone Languages</h3>
+<hr />
+<h2 id="tone">Tone</h2>
+<p>Changes in pitch during the word change the meaning of the word</p>
+<hr />
+<h3 id="level-tone">Level Tone</h3>
+<p>“High” vs. “Low” (sometimes “mid” or “rising/falling”)</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>Zarma (Djerma)</lang><br><ldata>Nilo-Saharan:Songhay -
+Niger</ldata></td>
+</tr>
+<tr class="even">
+<td>Yesterday - “bi”</td>
+</tr>
+<tr class="odd">
+<td>Wound - “bi”</td>
+</tr>
+<tr class="even">
+<td><audio controls src="phonmedia/zarma_tonecontrast.mp3"></audio></td>
+</tr>
+</tbody>
+</table>
+<h3 id="which-has-the-high-tone"><strong>Which has the high
+tone?</strong></h3>
+<p>A - “Yesterday”</p>
+<p>B - “Wound”</p>
+<audio controls src="phonmedia/zarma_tonecontrast.mp3">
+</audio>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="contour-tones">Contour Tones</h3>
+<p>Pitch patterns change meaning</p>
+<hr />
+<p><lang>Mandarin Chinese</lang><br><ldata>Sino-Tibetan -
+China</ldata></p>
+<h1 id="妈-麻-马-骂-吗">妈 麻 马 骂 吗</h1>
+<p><a href="https://www.youtube.com/watch?v=orx53ieqEI4">‘mother bother
+horse scold QUESTION’</a></p>
+<hr />
+<h3 id="trick-7-hearing-tongues">Trick #7: Hearing Tongues</h3>
+<hr />
+<h3 id="we-may-be-hearing-tongues">We may be hearing tongues</h3>
+<ul>
+<li><p>We may be taking acoustics and processing it to build a model of
+the world</p></li>
+<li><p>Then using that model to understand what’s happening in the other
+person’s head</p></li>
+<li><p>Which then tells you the phones being produced</p>
+<ul>
+<li>… and lets you reconstruct words</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="if-speech-perception-is-gestural-then-so-is-gesture-perception">If
+speech perception is gestural, then so is gesture perception</h3>
+<ul>
+<li>… and signed language perception is not so different!</li>
+</ul>
+<hr />
+<h3 id="trick-8-the-novel-speaker">Trick #8: The Novel Speaker</h3>
+<hr />
+<audio controls>
+<source src="phonmedia/liberian_english.mp3" type="audio/mp3">
+</audio>
+<p><a
+href="http://accent.gmu.edu/browse_language.php?function=detail&amp;speakerid=1771">(Source)</a></p>
+<hr />
+<h3 id="this-is-a-woman-youve-never-met-and-will-likely-never-meet">This
+is a woman you’ve never met, and will likely never meet</h3>
+<ul>
+<li><p>She’s 28 years old from Monrovia, Liberia</p></li>
+<li><p>She also speaks Liberian Pidgin English</p></li>
+<li><p>You’ve never seen her face, never conducted a
+conversation</p></li>
+<li><p>… <strong>and you still understood her.</strong></p></li>
+</ul>
+<hr />
+<h3 id="i-mean-seriously">I mean, seriously…</h3>
+<ul>
+<li><p>You’ve probably never heard anybody with a Liberian Pidgin
+English accent</p></li>
+<li><p>You’ve probably never even heard anybody from Liberia</p></li>
+<li><p>You had no way of seeing her to judge how large or small her
+vocal tract was</p></li>
+<li><p>You couldn’t rely on gestures or facial movements to help fill in
+blanks.</p></li>
+<li><p>You had no context to know which words she would or wouldn’t
+say</p></li>
+<li><p><em>This is a worst-case scenario for speech
+perception</em></p></li>
+<li><p><strong>… but you all didn’t care!</strong></p></li>
+</ul>
+<hr />
+<h3 id="we-dont-seem-to-care-that">We don’t seem to care that…</h3>
+<ul>
+<li><p>Every person sounds different</p>
+<ul>
+<li><p>Sometimes due to language background or social status</p></li>
+<li><p>Sometimes due to differences in anatomy</p></li>
+</ul></li>
+<li><p>My vowel in “bet” might be acoustically the same as yours in
+“bit”</p></li>
+<li><p>No two productions of the same word by the same person are
+identical</p></li>
+<li><p>… and in fact…</p></li>
+</ul>
+<hr />
+<h3 id="you-are-your-own-unique-little-acoustical-snowflake">You are
+your own unique little acoustical snowflake</h3>
+<p><img class="r-stretch" src="img/snowflake.jpg"></p>
+<hr />
+<p>And yet, nobody gives a damn.</p>
+<ul>
+<li><h2 id="we-just-talk-and-it-works"><strong>We just talk, and it
+works</strong></h2></li>
+</ul>
+<p><img class="r-stretch" src="img/magic.jpg"></p>
+<hr />
+<h3
+id="how-we-adjust-to-different-speakers-was-the-topic-of-my-ma-thesis">How
+we adjust to different speakers was the topic of my MA Thesis</h3>
+<ul>
+<li>(Nope, not making that one publicly available. 🗑🔥)</li>
+</ul>
+<hr />
+<p>“OK. Making speech is impossibly hard, and understanding speech is
+impossibly hard.”</p>
+<ul>
+<li><strong>“… but… uh… we’re doing it right now.”</strong></li>
+</ul>
+<hr />
+<h2 id="ok-ok.-you-got-me.">OK, OK. You got me.</h2>
+<hr />
+<h1 id="speech-is-impossibly-hard-but-we-do-it-anyways">Speech is
+impossibly hard, but we do it anyways</h1>
+<hr />
+<p>… but that’s only because we’re <em>really</em> awesome.</p>
+<hr />
+<h3 id="our-ability-to-produce-speech-is-incredible">Our ability to
+produce speech is <em>incredible</em></h3>
+<ul>
+<li><p>We flap bits of meat around in our heads,</p></li>
+<li><p>in precise, intricate patterns and series,</p></li>
+<li><p>without thinking, “trying”, or running out of air,</p></li>
+<li><p>while walking, running, biking, or eating,</p></li>
+<li><p>…and still get the message across.</p></li>
+</ul>
+<hr />
+<h3 id="our-ability-to-perceive-speech-is-incredible">Our ability to
+perceive speech is <em>incredible</em></h3>
+<ul>
+<li><p>We’re able to pull signals out of the air,</p></li>
+<li><p>parse them according to the rules in our minds,</p></li>
+<li><p>take advantage of tiny details,</p></li>
+<li><p>recover <em>huge</em> amounts of lost information,</p></li>
+<li><p>and wade through mind-boggling variability</p></li>
+<li><p>… all without even noticing you’re doing anything
+special.</p></li>
+</ul>
+<hr />
+<h3 id="signed-language-phonetics-is-just-as-amazing">Signed language
+phonetics is just as amazing!</h3>
+<ul>
+<li>Different modality, but similar sets of problems!</li>
+</ul>
+<hr />
+<h3
+id="producing-and-understanding-words-is-the-most-complicated-thing-you-will-ever-do">Producing
+and understanding words is the most complicated thing you will
+<em>ever</em> do</h3>
+<ul>
+<li>… and you don’t even think twice about it.</li>
+</ul>
+<hr />
+<h1 id="understanding-language-is-magic">Understanding Language is
+Magic</h1>
+<hr />
+<h3 id="and-youre-all-wizards">… and you’re all wizards</h3>
+<p><img class="r-stretch" src="humorimg/wizardcat.jpg"></p>
+<hr />
+<h3 id="take-lign-110-and-then-112-to-learn-more">Take LIGN 110 and then
+112 to learn more!</h3>
+<p><img class="r-stretch" src="img/plug.jpg"></p>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

@@ -1,0 +1,8 @@
+tree_101sc_willrantedtex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [V ranted ] ] ]

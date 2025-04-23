@@ -1,0 +1,8 @@
+tree_jessicatofu_hersillytex
+
+[NP 
+  [DET her ] 
+  [N' 
+    [ADJ silly ] 
+    [N' 
+      [N husband ] ] ] ]

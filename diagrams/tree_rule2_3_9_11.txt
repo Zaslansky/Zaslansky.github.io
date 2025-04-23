@@ -1,0 +1,12 @@
+tree_rule2_3_9_11tex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [V ate ] 
+    [NP 
+      [DET the ] 
+      [N' 
+        [N cake ] ] ] ] ]

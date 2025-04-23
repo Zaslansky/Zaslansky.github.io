@@ -1,0 +1,11 @@
+tree_101sc_mahogradedtex
+
+[S 
+  [NP 
+    [N' 
+      [N Maho ] ] ] 
+  [VP 
+    [V graded ] 
+    [NP 
+      [N' 
+        [N papers ] ] ] ] ]

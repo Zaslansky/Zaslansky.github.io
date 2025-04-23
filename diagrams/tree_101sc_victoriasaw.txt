@@ -1,0 +1,20 @@
+tree_101sc_victoriasawtex
+
+[S 
+  [NP 
+    [N' 
+      [N Victoria ] ] ] 
+  [VP 
+    [VP 
+      [V saw ] 
+      [NP 
+        [N' 
+          [N Vincent ] ] ] ] 
+    [PP 
+      [P in ] 
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ LingUA ] 
+          [N' 
+            [N lounge ] ] ] ] ] ] ]

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="tall" src="ling_memes/juice.jpg"></p>
+<hr />
+<h1 id="common-morphological-patterns">Common Morphological
+Patterns</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>How do we gloss sentences?</p></li>
+<li><p>How do languages vary in how they use morphology?</p></li>
+<li><p>What kinds of morphological machinery are common around the
+world?</p></li>
+</ul>
+<hr />
+<h1 id="glossing-conventions">Glossing Conventions</h1>
+<hr />
+<h3 id="translations-often-dont-give-us-enough-detail">Translations
+often don’t give us enough detail</h3>
+<hr />
+<h3 id="soy-de-denver-spanish">Soy de Denver (Spanish)</h3>
+<ul>
+<li>‘I’m from Denver’</li>
+</ul>
+<hr />
+<h3 id="ngelay-chadi-mapuche">Ngelay chadi (Mapuche)</h3>
+<ul>
+<li><p>‘There is no salt’</p></li>
+<li><p><small>Baker, M. (2002). On category asymmetries in derivational
+morphology. In Morphology 2000. John Benjamins
+Publishing.</small></p></li>
+</ul>
+<hr />
+<h3 id="kahaskiyakirereʔeriwaha.-wichita">Ka:háskiyakíre:réʔeriwa:ha.
+(Wichita)</h3>
+<ul>
+<li><p>‘Once upon a time they say there was a big village.’</p></li>
+<li><p>😮</p></li>
+<li><h2
+id="rood-d.-s.-2002.-polysynthetic-word-formation.-in-morphology-2000.-john-benjamins-publishing."><small>Rood,
+D. S. (2002). Polysynthetic word formation. In Morphology 2000. John
+Benjamins Publishing.</small></h2></li>
+</ul>
+<h3 id="we-can-do-better">We can do better!</h3>
+<ul>
+<li><p>We can provide detailed glosses which relate the language forms
+to the translated meaning</p></li>
+<li><p>These are called <strong>interlinear glosses</strong>, and
+(often) follow the Leipzig Glossing Conventions</p></li>
+<li><p><a
+href="https://www.eva.mpg.de/lingua/resources/glossing-rules.php">The
+rules are defined here</a></p></li>
+</ul>
+<hr />
+<h3 id="rough-outline-of-the-leipzig-conventions">Rough outline of the
+Leipzig Conventions</h3>
+<ul>
+<li><ol type="1">
+<li>Word-to-word correspondence</li>
+</ol>
+<ul>
+<li>Textual alignment from line to line</li>
+</ul></li>
+<li><ol start="2" type="1">
+<li>Set grammatical value abbreviations</li>
+</ol>
+<ul>
+<li>Your book has a great list of them at the beginning</li>
+</ul></li>
+<li><ol start="3" type="1">
+<li>Separate morphemes within words using hyphens where possible</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>Use periods to mark non-separable morphological constituents within
+a word (when not segmentable)</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="soy-de-denver-spanish-1">Soy de Denver (Spanish)</h3>
+<ul>
+<li><p>be.1SG.PRES from Denver</p></li>
+<li><p>‘I’m from Denver’</p></li>
+</ul>
+<hr />
+<h3 id="ngelay-chadi-mapuche-1">Ngelay chadi (Mapuche)</h3>
+<p><img class="wide" src="morphology/mapuche_gloss.jpg"></p>
+<hr />
+<h3 id="kahaskiyakirereʔeriwaha.-wichita-1">Ka:háskiyakíre:réʔeriwa:ha.
+(Wichita)</h3>
+<p><img class="wide" src="morphology/wichita_gloss.jpg"></p>
+<hr />
+<h3
+id="interlinear-glossing-makes-things-much-easier-for-linguists">Interlinear
+Glossing makes things <em>much</em> easier for linguists</h3>
+<ul>
+<li><p>It allows quicker understanding of the components and elements of
+the sentence</p>
+<ul>
+<li>With just translations, understanding requires analysis</li>
+</ul></li>
+<li><p>We see the morphology front-and-center</p></li>
+<li><p>This is a bit tricky in typesetting, but it works!</p></li>
+<li><p><em>Interlinear glossing is a great tool to use in describing
+data and words!</em></p></li>
+</ul>
+<hr />
+<h3 id="one-specific-element-we-need-to-see-for-lign-120">One specific
+element we <em>need</em> to see for LIGN 120</h3>
+<ul>
+<li><p>Separate morphemes using ‘-’</p></li>
+<li><p>Separate within-morpheme meanings using ‘.’</p></li>
+<li><p>This is subtle, but <em>crucial</em></p></li>
+<li><p><img class="wide" src="morphology/wichita_gloss.jpg"></p></li>
+</ul>
+<hr />
+<h3
+id="mind-you-some-languages-do-more-within-word-morphology-than-others">Mind
+you, some languages do more within-word morphology than others…</h3>
+<ul>
+<li>Wait, hold on, that feels like a segue!</li>
+</ul>
+<hr />
+<p><img class="wide" src="humorimg/segway.jpg"></p>
+<hr />
+<h1 id="do-languages-differ-in-how-they-use-morphology">Do languages
+differ in how they use morphology?</h1>
+<hr />
+<p>(Yes.)</p>
+<hr />
+<h2 id="morphological-type">Morphological Type</h2>
+<p>A means of categorizing how languages put words together</p>
+<ul>
+<li><p>This is useful for comparing word-building strategies <em>across
+languages</em></p></li>
+<li><p><strong><em>Do words have lots of morphemes or
+few?</em></strong></p></li>
+</ul>
+<hr />
+<h3 id="do-words-have-lots-of-morphemes-or-few">Do words have lots of
+morphemes or few?</h3>
+<ul>
+<li><p>If words have few morphemes (like English or Chinese), they’re
+“isolating” or “analytic”</p></li>
+<li><p>If they have many (like Spanish or German), they’re
+“synthetic”</p>
+<ul>
+<li>Languages where whole sentences are single words are sometimes
+called “polysynthetic”</li>
+</ul></li>
+</ul>
+<hr />
+<p><lang>English</lang><br><ldata>IE:Germanic - All over</ldata></p>
+<p>I did see the cat on the street, he’s cute.</p>
+<p>I did see DEF cat on DEF street he-be.3sg cute.</p>
+<ul>
+<li>Only one morpheme in most words! <strong><em>This is
+Isolating!</em></strong></li>
+</ul>
+<hr />
+<p><lang>Spanish</lang><br><ldata>IE:Italic - All over</ldata></p>
+<p><em>Esta escribiéndomelo</em></p>
+<p>be.3sg write-GER-1sg.DAT-3sg.MASC</p>
+<p>‘He/she is writing it to me.’</p>
+<ul>
+<li>Lots of morphemes per word! <strong><em>This is
+Synthetic!</em></strong></li>
+</ul>
+<hr />
+<p><lang>Wichita</lang><br><ldata>Caddoan - Oklahoma</ldata></p>
+<p>Kiyakiicíwa:cé:hirʔasʔirhawi</p>
+<p>‘There was the big buffalo lying there.’</p>
+<ul>
+<li>Uh… yeah. <strong><em>This is polysynthetic!</em></strong></li>
+</ul>
+<hr />
+<h2 id="we-also-care-about-how-easy-the-morphemes-are-to-pick-apart">We
+also care about how easy the morphemes are to pick apart</h2>
+<hr />
+<h3
+id="in-a-synthetic-language-do-the-morphemes-blend-together-or-are-they-easy-to-pick-apart">In
+a synthetic language, do the morphemes blend together, or are they easy
+to pick apart?</h3>
+<ul>
+<li><p>If the meanings have individual, easily separable forms, it’s
+“agglutinating”</p></li>
+<li><p>If the meanings merge inseparably into opaque forms, it’s
+“fusional”.</p></li>
+</ul>
+<hr />
+<p><lang>Turkish</lang><br><ldata>Turkic - Turkey</ldata></p>
+<p><img src="lotwimg/agglutinatingturkish.png"></p>
+<ul>
+<li>Those add together cleanly, and pick back apart. We’re
+<strong><em>agglutinating</em></strong>!</li>
+</ul>
+<hr />
+<p><lang>German</lang><br><ldata>IE:Germanic - Germany</ldata></p>
+<p><em>Donaudampfschifffahrtselektrizitätenhauptbetriebswerkbauunterbeamtengesellschaft</em></p>
+<p>Donau-dampf-schiff-fahrts-elektrizitäten-haupt-betriebs-werk-bau-unter-beamten-gesellschaft</p>
+<p>Danube-steam-ship-transport’s-electricities-head-operation’s-work-building-under-officials-association</p>
+<ul>
+<li>Look at those clean lines!
+<strong><em>Agglutinative!</em></strong></li>
+</ul>
+<hr />
+<p><lang>Russian</lang><br><ldata>IE:Slavic - Russian</ldata></p>
+<p>Ti uhodila so mnoi</p>
+<p>Ti u-hodi-la so mnoi</p>
+<p>2sg.NOM away-go.IMPERF-past.FEM with 1sg.INST</p>
+<p>“You left with me”</p>
+<ul>
+<li>Uh-oh! Those morphemes mean lots of things! This is
+<strong><em>Fusional!</em></strong></li>
+</ul>
+<hr />
+<p><lang>Spanish</lang><br><ldata>IE:Italic - All over</ldata></p>
+<p>Durmiéramos</p>
+<p>Durmiéramos</p>
+<p>Sleep.2pl.SUBJ.PAST.IMPERFECT</p>
+<ul>
+<li>Whoa. All that is one morpheme? No easy lines?
+<strong><em>Fusion</em></strong> drives engaged!</li>
+</ul>
+<hr />
+<h3 id="its-always-a-continuum">It’s always a continuum</h3>
+<ul>
+<li><p>English is isolating, but Mandarin is <em>more</em> isolating</p>
+<ul>
+<li>Same with Synthetic: Nobody’s besting Wichita, but we don’t hold it
+against them.</li>
+</ul></li>
+<li><p>Most languages do <em>some</em> fusion and <em>some</em>
+agglutination</p>
+<ul>
+<li>We call a language fusional or agglutinating when it becomes a
+habit</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="morphological-type---review">Morphological Type - Review!</h3>
+<ul>
+<li><p>If a language has few morphemes per word, it’s
+<em>isolating</em></p></li>
+<li><p>If the language has multiple morphemes per word, it’s
+<em>synthetic</em></p></li>
+<li><p>If a synthetic language generally has easy-to-pick-apart
+morphemes, it’s <em>agglutinating</em></p></li>
+<li><p>If a synthetic language generally has blended or combined
+morphemes, it’s <em>fusional</em></p></li>
+</ul>
+<hr />
+<p>… Which gets us into our next question</p>
+<hr />
+<h1 id="how-are-languages-marking-meaning-anyways">How are languages
+marking meaning, anyways?</h1>
+<hr />
+<h3 id="two-main-methods-of-doing-meaning">Two main methods of doing
+meaning</h3>
+<ul>
+<li><p>Concatenation</p></li>
+<li><p>Non-Concatentative Processes</p></li>
+</ul>
+<hr />
+<h2 id="concatenative-morphology">Concatenative Morphology</h2>
+<hr />
+<h2 id="concatenation">Concatenation</h2>
+<p>Combining elements in a strictly linear order, end-to-end</p>
+<ul>
+<li><p>So, <em>concatenative morphology</em> adds morpemes
+one-after-the-other</p>
+<ul>
+<li><p>fish-ing</p></li>
+<li><p>in-conceiv-able</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="common-methods-of-concatentative-morphology">Common Methods of
+Concatentative Morphology</h3>
+<ul>
+<li><p>Prefixes</p></li>
+<li><p>Suffixes</p></li>
+<li><p>Circumfixes</p></li>
+<li><p>Infixes</p></li>
+</ul>
+<hr />
+<h3 id="prefixes">Prefixes</h3>
+<ul>
+<li><p>Precedes the base</p></li>
+<li><p>in-conceivable</p></li>
+<li><p>u-hodi-t (away-go.IMPERF-INF) ‘To go Away’ (Russian)</p></li>
+</ul>
+<hr />
+<h3 id="suffixes">Suffixes</h3>
+<ul>
+<li><p>Follows the base</p></li>
+<li><p>cat-s</p></li>
+<li><p>u-hodi-la (away-go.IMPERF-PAST.FEM) ‘She went away’
+(Russian)</p></li>
+</ul>
+<hr />
+<h3 id="infixes">Infixes</h3>
+<ul>
+<li><p>Placed inside the base</p></li>
+<li><p>abso-f***ing-lutely</p></li>
+<li><p>Alabama Passive infix -l-</p></li>
+<li><p><img class="wide" src="morphology/alabama_infix.jpg"></p></li>
+</ul>
+<hr />
+<h3 id="circumfixes">Circumfixes</h3>
+<ul>
+<li><p>Occur on both sides of the base, but not independently</p>
+<ul>
+<li>For an affix to be a circumfix, <em>both sides must be
+obligatory!</em></li>
+</ul></li>
+<li><p>German ge-X-t past participle (ge-spiel-t, from spielen)</p></li>
+<li><p>This Papuan Malay circumix ke-X-ang which nominalizes
+verbs</p></li>
+<li><p><img class="wide" src="morphology/malay_circumfix.jpg"></p></li>
+</ul>
+<hr />
+<p><img class="wide" src="ling_memes/postmalone.jpg"></p>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3
+id="in-the-chukchi-example-below-comitative-forms-are-marked-with-a">In
+the Chukchi example below, Comitative forms are marked with a …</h3>
+<p><img class="wide" src="morphology/chukchi_circumfix.jpg"></p>
+<ol type="A">
+<li><p>Prefix</p></li>
+<li><p>Suffix</p></li>
+<li><p>Infix</p></li>
+<li><p>Circumfix</p></li>
+</ol>
+<hr />
+<h3 id="remember-its-not-always-so-easy-to-pull-things-apart">Remember,
+it’s not always so easy to pull things apart!</h3>
+<hr />
+<h3 id="phonology-makes-things-less-clear-sometimes">Phonology makes
+things less clear, sometimes!</h3>
+<ul>
+<li><p>This Begak (Austronesian, Malaysia) infix -i- marking completive
+aspect</p></li>
+<li><p><img class="wide" src="morphology/begak_infix.jpg"></p></li>
+<li><p>The infix is added, then the stem vowel is removed</p></li>
+<li><p>Can also neutralize contrasts</p></li>
+</ul>
+<hr />
+<h3
+id="sequences-of-affixes-can-make-some-of-them-feel-infixy">Sequences of
+affixes can make some of them feel infixy</h3>
+<ul>
+<li><p>Un-thought-ful-ness</p>
+<ul>
+<li>How do we know ‘-ful’ isn’t an infix?</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="aside-ordering-of-affixation">Aside: Ordering of affixation</h2>
+<hr />
+<h3
+id="recovering-ordering-of-operation-and-thus-meaning-is-always-tricky">Recovering
+ordering of operation (and thus, meaning) is always tricky!</h3>
+<ul>
+<li><p>Incorrect understanding of the ordering can lead to
+<em>morphological ambiguity</em></p></li>
+<li><p>This appears well handled by hierarchy</p></li>
+<li><p>This is why some people create morphological trees, showing the
+components being modified</p></li>
+</ul>
+<hr />
+<p><img src="diagrams/mtree_lock.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/mtree_lockable.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/mtree_unlockable.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/mtree_unlockable_v2.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/mtree_unlockability.jpg"></p>
+<hr />
+<p>… but are we always adding something on?</p>
+<hr />
+<h2 id="non-concatenative-morphology">Non-Concatenative Morphology</h2>
+<hr />
+<h3
+id="sometimes-morphological-operations-change-words-without-adding-new-chunks">Sometimes,
+morphological operations <em>change</em> words without adding new
+chunks</h3>
+<ul>
+<li><p>You can’t readily disassemble the pieces</p></li>
+<li><p>The meaning change is carried by modifications to the other
+morphemes</p></li>
+<li><p>… or nothing appears to change at all!</p></li>
+</ul>
+<hr />
+<h3
+id="common-non-concatenative-ways-of-adding-chunks-of-meaning-to-words">Common
+non-concatenative ways of adding chunks of meaning to words</h3>
+<ul>
+<li><p>Conversion</p></li>
+<li><p>Stem Modification</p></li>
+<li><p>Reduplication</p></li>
+</ul>
+<hr />
+<h3 id="conversion">Conversion</h3>
+<ul>
+<li><p>‘Just change the usage to change the type’</p></li>
+<li><p>Sometimes, there are changes with stress shift</p>
+<ul>
+<li><p>re’peat (V) -&gt; ’repeat (N)</p></li>
+<li><p>con’vict (V) -&gt; ’convict (N)</p></li>
+</ul></li>
+<li><p>Sometimes, there are no changes</p>
+<ul>
+<li><p>ticket (N, V)</p></li>
+<li><p>drink (N, V)</p></li>
+</ul></li>
+<li><p>I computered all day yesterday.</p></li>
+</ul>
+<hr />
+<h3 id="stem-modification">Stem Modification</h3>
+<ul>
+<li><p><em>Modify</em> the stem to indicate a shift in morphological
+category or meaning</p></li>
+<li><p>This can take many forms</p></li>
+</ul>
+<hr />
+<h3 id="stem-modification---tone">Stem Modification - Tone</h3>
+<p><img class="wide" src="morphology/dinka_tonepassive.jpg"></p>
+<ul>
+<li>What’s the passive morpheme in Dinka?</li>
+</ul>
+<hr />
+<h3 id="stem-modification---vowel-modification-ablaut">Stem Modification
+- Vowel Modification (‘Ablaut’)</h3>
+<p><img class="wide" src="morphology/zway_ablaut.jpg"></p>
+<ul>
+<li><p>What’s the 2SGF morpheme in Zway?</p></li>
+<li><p>Also, sing/sang</p></li>
+</ul>
+<hr />
+<h3 id="stem-modification---consonant-changes">Stem Modification -
+Consonant Changes</h3>
+<p><img class="wide" src="morphology/chaha_palatalization.jpg"></p>
+<ul>
+<li>What’s the 2SGF morpheme in Zway?</li>
+</ul>
+<hr />
+<h3 id="stem-modification---other-processes">Stem Modification - Other
+Processes</h3>
+<ul>
+<li>Labialization</li>
+<li>Vowel Fronting/Backing/Rounding/ATR Changes</li>
+<li>Voicing Changes</li>
+<li>Lenition or Fortition</li>
+<li>Gemination or Lengthening</li>
+<li>Shortening</li>
+<li>Segment deletion</li>
+<li>Metathesis (swapping segments around)</li>
+</ul>
+<hr />
+<h3 id="reduplication">Reduplication</h3>
+<ul>
+<li><p>Copying all or part of the base</p></li>
+<li><p><img src="morphology/warlpiri_redup.jpg"></p></li>
+<li><p>A big, BIG problem if you’re expecting different
+segments</p></li>
+</ul>
+<hr />
+<h3 id="but-in-all-of-these-cases-nothings-added-just-changed">… but in
+all of these cases, nothing’s added, just changed!</h3>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Using reasonable glossing conventions makes life easier for
+everybody</p></li>
+<li><p>Languages have more or fewer morphemes per word, and meanings
+separate more or less cleanly</p></li>
+<li><p>Meaning can be expressed by concatening chunks of form in various
+ways</p></li>
+<li><p>… or by modifying the base in predictable and detectable
+ways</p></li>
+<li><p>Be prepared for all kinds of craziness when dealing with actual
+language data!</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li>We’ll have more data to work with!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

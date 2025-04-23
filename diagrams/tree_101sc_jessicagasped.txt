@@ -1,0 +1,22 @@
+tree_101sc_jessicagaspedtex
+
+[S 
+  [NP 
+    [N' 
+      [N Jessica ] ] ] 
+  [VP 
+    [V gasped ] 
+    [PP 
+      [P at ] 
+      [NP 
+        [NP 
+          [DET the ] 
+          [N' 
+            [ADJ housing ] 
+            [N' 
+              [N prices ] ] ] ] 
+        [PP 
+          [P in ] 
+          [NP 
+            [N' 
+              [N San Diego ] ] ] ] ] ] ] ]

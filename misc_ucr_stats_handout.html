@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="linguistic-problems-with-statistic-solutions">Linguistic
+Problems with Statistic Solutions</h1>
+<p>Will Styler</p>
+<p><a href="http://savethevowels.org/talks/misc_ucr_stats.html"
+class="uri">http://savethevowels.org/talks/misc_ucr_stats.html</a></p>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>What is Linguistics, and why?</p></li>
+<li><p>The state of statistics in linguistics</p></li>
+<li><p>Coarticulation</p></li>
+<li><p>Complexity from complex data types</p></li>
+<li><p>Complexity from complex questions</p></li>
+<li><p>Why is this a problem for our field?</p></li>
+<li><p>Why should statisticians and linguists team up more
+often?</p></li>
+</ul>
+<hr />
+<h1 id="what-is-linguistics-and-why">What is Linguistics, and why?</h1>
+<hr />
+<h3 id="linguistics-is-the-study-of-language">Linguistics is the study
+of Language</h3>
+<ul>
+<li><p>What is this thing I’m doing right now with my flapping bits of
+meat around in my head and you then understanding my thoughts?</p></li>
+<li><p>How can we describe what languages are doing?</p></li>
+<li><p>How can we understand the differences and similarities among
+them?</p></li>
+<li><p>What does language tell us about cognition and culture?</p></li>
+</ul>
+<hr />
+<h3 id="linguists-study-languages-to-understand-language">Linguists
+study languages to understand Language</h3>
+<ul>
+<li><p>Many linguists speak lots of languages, but some don’t!</p></li>
+<li><p>We’re interested in the whole enterprise, and study it
+scientifically</p></li>
+</ul>
+<hr />
+<h3 id="we-break-linguistics-into-subfields">We break Linguistics into
+subfields</h3>
+<ul>
+<li><p>“How does talking and understanding speech work?” -
+Phonetics</p></li>
+<li><p>“How do units of sound or gesture change when we combine them?” -
+Phonology</p></li>
+<li><p>“How do we build words?” - Morphology</p></li>
+<li><p>“How do we combine words into sentences?” - Syntax</p></li>
+<li><p>“What does it all mean?” - Semantics and Pragmatics</p></li>
+<li><p>“How does this less-well-known language work?” - Lg.
+Documentation</p></li>
+<li><p>… and many more!</p></li>
+</ul>
+<hr />
+<h3
+id="linguistics-is-an-increasingly-experimental-discipline">Linguistics
+is an increasingly experimental discipline</h3>
+<ul>
+<li><p>Some folks still work in armchairs</p>
+<ul>
+<li>… or in the homes and worlds of language experts</li>
+</ul></li>
+<li><p>Theory is now often supported by recourse to quantitative
+data</p>
+<ul>
+<li>Especially where the patterns are small, variable, or difficult to
+ferret out</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="almost-every-type-of-linguistic-research-has-data-to-analyze">Almost
+every type of linguistic research has data to analyze</h3>
+<ul>
+<li><p>Text data (e.g. large corpora)</p></li>
+<li><p>Survey data (e.g. responses, free text)</p></li>
+<li><p>Experimental data (e.g. eye tracking, reaction time,
+accuracy)</p></li>
+<li><p>Neural data (e.g. EEG, fMRI, PET, MEG)</p></li>
+<li><p>Imaging data (e.g. video, ultrasound)</p></li>
+<li><p>Spatial data (e.g. GIS info, 3D spatial movement
+tracking)</p></li>
+</ul>
+<hr />
+<h3 id="im-a-phonetician">I’m a phonetician</h3>
+<ul>
+<li><p>My focus is on understanding exactly what’s happening in the
+mouth when we talk</p></li>
+<li><p>As well as on how we’re reconstructing those gestures using the
+acoustic signal we can hear</p></li>
+<li><p>… and we’re going to focus on some phonetic questions
+today</p></li>
+</ul>
+<hr />
+<h1 id="statistics-in-linguistics">Statistics in Linguistics</h1>
+<hr />
+<h2 id="the-state-of-linguistic-statistics">The State of Linguistic
+Statistics</h2>
+<hr />
+<h3 id="most-linguists-take-some-basic-statistics-classes">Most
+linguists take some basic statistics classes</h3>
+<ul>
+<li><p>“Statistics for Psychology Students”</p></li>
+<li><p>Increasingly more sophisticated classes are available</p>
+<ul>
+<li><p>“Bayesian Methods for Linguists”</p></li>
+<li><p>“Generalized Additive Models”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="there-are-dedicated-resources-for-statistics-for-linguists">There
+are dedicated resources for statistics for Linguists</h3>
+<blockquote>
+<p><a
+href="https://www.cambridge.org/us/academic/subjects/languages-linguistics/grammar-and-syntax/analyzing-linguistic-data-practical-introduction-statistics-using-r">Baayen,
+R. H. (2008). Analyzing Linguistic Data: A practical introduction to
+statistics using R. Cambridge University Press.</a></p>
+</blockquote>
+<blockquote>
+<p><a
+href="https://www.routledge.com/Statistics-for-Linguists-An-Introduction-Using-R/Winter/p/book/9781138056091">Winter,
+Bodo (2020). Statistics for Linguists: An Introduction Using R.
+Routledge.</a></p>
+</blockquote>
+<hr />
+<h3 id="were-still-pretty-basic">We’re still pretty basic</h3>
+<ul>
+<li><p>There are absolutely complex analyses being run in the field</p>
+<ul>
+<li>Some specializations (e.g. neurolinguistics) require advanced models
+to function</li>
+<li>Some linguists have secondary passions in statistics</li>
+<li>Some statisticians moonlight in linguistics (to varying degrees of
+success)</li>
+</ul></li>
+<li><p>The vast majority of linguistic work in these core fields is
+still supported by more basic methods</p>
+<ul>
+<li>T-Tests and Chi-Square, decreasingly, with ANOVA and lm/glm on the
+rise</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="the-most-recent-statistical-trend-in-the-field-is-towards-linear-mixed-effects-regression">The
+most recent statistical ‘trend’ in the field is towards Linear Mixed
+Effects Regression</h3>
+<ul>
+<li><p>Most experiments have some decidedly random random factors</p>
+<ul>
+<li>Speaker language background differences</li>
+<li>Differences in vocal tract sizes</li>
+<li>Individual word differences</li>
+</ul></li>
+<li><p>Usually implemented using <code>lmer</code> in R</p></li>
+<li><p>… but mixed models are right at the edge of many linguists’
+understanding</p>
+<ul>
+<li>This has led to a saying…</li>
+</ul></li>
+</ul>
+<hr />
+<blockquote>
+<p>“Giving Linear Mixed Models to Linguists is like giving shotguns to
+toddlers”</p>
+</blockquote>
+<hr />
+<h3
+id="but-linguists-are-needing-more-and-more-statistical-complexity">…
+but linguists are needing more and more statistical complexity</h3>
+<ul>
+<li><p>Larger and larger text corpora are allowing (and forcing)
+<em>massive</em> analyses</p></li>
+<li><p>Interdisciplinary work often inherits the toolchains of related
+methods</p></li>
+<li><p>New experimental methods require new technology to process
+it</p></li>
+<li><p>More nuanced questions require more nuanced examinations</p></li>
+</ul>
+<hr />
+<h3 id="were-going-to-look-at-those-last-two">We’re going to look at
+those last two</h3>
+<ul>
+<li><p>Complex data requiring complex analysis</p></li>
+<li><p>Nuanced questions requiring nuanced analysis</p></li>
+<li><p>We’re going to examine both in the context of linguistic
+phonetics</p></li>
+</ul>
+<hr />
+<h1 id="coarticulation-in-phonetics">Coarticulation in Phonetics</h1>
+<hr />
+<h3
+id="phonetics-is-the-study-of-speech-and-speech-perception">Phonetics is
+the study of speech and speech perception</h3>
+<ul>
+<li><p>“How are you moving structures inside your body to produce this
+word?”</p></li>
+<li><p>“How are listeners able to understand that you’ve produced this
+word”</p></li>
+</ul>
+<hr />
+<h3 id="studying-gestures">Studying gestures</h3>
+<ul>
+<li><p>Speech can be defined as a sequence of gestures of the tongue,
+lips, larynx and other speech articulators</p></li>
+<li><p>Gestures of the tongue and mouth are the smallest units of spoken
+language</p></li>
+<li><p>Gestures are likely the object of human speech
+perception</p></li>
+<li><p><em>Both of the claims above could cause a fistfight at a
+conference, but I said them</em></p></li>
+</ul>
+<hr />
+<h3 id="gestures-arent-cleanly-separable">Gestures aren’t cleanly
+separable</h3>
+<ul>
+<li><p>We write letters one after the other</p>
+<ul>
+<li><p>… but the lines between gestures tend to blur</p></li>
+<li><p>Speech sounds are <strong>not</strong> beads on a string</p></li>
+</ul></li>
+<li><p>We often begin moving our articulators towards the next gesture
+before we’ve finished the current one</p>
+<ul>
+<li>… and the last sound can often have an influence on the current
+one</li>
+</ul></li>
+<li><p>A nice example: ‘car key’</p></li>
+</ul>
+<hr />
+<h3 id="this-gestural-overlap-is-called-coarticulation">This gestural
+overlap is called ‘coarticulation’</h3>
+<ul>
+<li><p>“Car key” is changing the articulation of one sound to better
+‘match’ the next</p></li>
+<li><p>We will often start to articulate the /l/ in words like ‘bulk’
+before we’ve finished the vowel</p></li>
+<li><p>Air starts flowing out the nose in words like ‘bend’ before we
+actually make the /n/ sound where it’s supposed to</p>
+<ul>
+<li>This provides useful data for perception!</li>
+</ul></li>
+<li><p><strong>Coarticulation is easier when talking, and useful for
+understanding speech</strong></p>
+<ul>
+<li>So we want to learn more about the gestures we’re making</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="phonetics-has-a-big-problem">Phonetics has a big problem</h3>
+<ul>
+<li><p>We want to see exactly which gestures are happening inside your
+head</p></li>
+<li><p>Your head is opaque</p></li>
+</ul>
+<hr />
+<h3 id="phonetics-has-done-this-acoustically-for-a-long-time">Phonetics
+has done this acoustically for a long time</h3>
+<ul>
+<li><p>First by ear training, then frequency-domain analysis
+(‘spectrographs’), now digital signal processing of audio</p></li>
+<li><p>We’ve focused on finding quantifiable measures which covary with
+the articulatory properties under study</p>
+<ul>
+<li>“This measure represents the height of the tongue in the mouth”</li>
+</ul></li>
+<li><p>Articulatory measures are useful</p>
+<ul>
+<li>“What exactly are the speech articulators doing inside the
+head?”</li>
+</ul></li>
+<li><p>Imaging of tongue motion and position is ideal!</p></li>
+</ul>
+<hr />
+<h3 id="but-when-we-look-inside-the-head-we-find">… but when we look
+inside the head, we find…</h3>
+<hr />
+<h1 id="complexity-from-complex-data">Complexity from Complex Data</h1>
+<hr />
+<h3 id="ultrasound-imaging">Ultrasound Imaging</h3>
+<ul>
+<li><p>Pulse high-frequency sound waves into the body</p></li>
+<li><p>Measure the patterns in which they return to image internal
+structure</p></li>
+<li><p>The resulting data are black and white image frames showing areas
+of high and low reflection</p></li>
+</ul>
+<hr />
+<h3 id="ultrasound-data-acquisition">Ultrasound Data Acquisition</h3>
+<p><img class="r-stretch" src="phonmedia/tools_ultrasound.jpg"></p>
+<hr />
+<h3 id="sample-speech-ultrasound-file">Sample Speech Ultrasound
+file</h3>
+<video class="r-stretch" controls src="video/ultrasound_northwind.mp4">
+</video>
+<hr />
+<h3 id="ultrasound-in-speech">Ultrasound in Speech</h3>
+<ul>
+<li><p>Captures the motions of the tongue in (generally) two
+dimensions</p></li>
+<li><p>Ideal for tracking the <em>contour</em> of the tongue</p></li>
+</ul>
+<hr />
+<h3 id="ultrasound-splining">Ultrasound ‘Splining’</h3>
+<ul>
+<li><p>The machine outputs a series of images (or grayscale matrices) at
+a fixed sampling rate</p></li>
+<li><p>We transform images into lists of ordered points representing the
+tongue shape and location</p></li>
+<li><p>This is done using undergrads or <a
+href="https://arxiv.org/abs/1907.10210">machine learning
+models</a></p></li>
+</ul>
+<hr />
+<section>
+<p><img class="r-stretch" src="phonmedia/ultrasound_raw.jpg"></p>
+</section>
+<hr />
+<section>
+<p><img class="r-stretch" src="phonmedia/ultrasound_splined.jpg"></p>
+</section>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Technical Notes</td>
+</tr>
+<tr class="even">
+<td>- There are some approaches which use PCA on whole-frame images to
+isolate meaningful components and skip this process (c.f. <a
+href="https://www.journal-labphon.org/article/id/6281/">Faytak et
+al. 2020</a>)</td>
+</tr>
+<tr class="odd">
+<td>- There are many problems with normalizing position and orientation
+between speakers and words which are Fun</td>
+</tr>
+</tbody>
+</table>
+<h3 id="this-splined-data-gives-us-details-about-articulation">This
+splined data gives us details about articulation</h3>
+<ul>
+<li><p>What is the average/min/max height of the tongue?</p>
+<ul>
+<li>“Is the vowel in ‘beet’ generally higher than the vowel in
+‘bit’?”</li>
+</ul></li>
+<li><p>What’s the front-back distribution of the tongue?</p>
+<ul>
+<li>“Is the vowel in ‘boot’ really as far back as in ‘boat’ for
+Californians?”</li>
+</ul></li>
+<li><p>How do tongue contours differ between sounds?</p>
+<ul>
+<li>“Do we shape the tongue differently for ‘buck’ and ‘bulk’?”</li>
+</ul></li>
+<li><p>How do tongue contours change during sounds?</p>
+<ul>
+<li>“At what point does the tongue start moving towards the /l/ gesture
+in ‘bulk’?”</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="getting-front-back-high-low-distribution-is-relatively-easy">Getting
+front-back-high-low distribution is relatively easy</h3>
+<p><img class="r-stretch" src="phonmedia/ultrasound_splined.jpg"></p>
+<hr />
+<h3 id="does-the-tongue-shape-differ-for-buck-vs.-bulk">Does the tongue
+shape differ for ‘buck’ vs. ‘bulk’?</h3>
+<p><img class="r-stretch" src="phonmedia/ultrasound_vowel.jpg">
+<img class="r-stretch" src="phonmedia/ultrasound_lateral.jpg"></p>
+<hr />
+<h3 id="comparing-contours-is-difficult-for-us">Comparing Contours is
+difficult (for us)</h3>
+<ul>
+<li><p>Usually done using Smoothing Spline ANOVA in Linguistics</p></li>
+<li><p>Occasionally mixed models with B-Splines</p></li>
+<li><p>Some work with Generalized Additive Models (GAM)</p></li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/ultrasound_vowel.jpg">
+<img class="r-stretch" src="phonmedia/ultrasound_lateral.jpg"></p>
+<hr />
+<h3
+id="at-what-point-does-the-tongue-start-moving-towards-the-l-gesture-in-bulk">At
+what point does the tongue start moving towards the /l/ gesture in
+‘bulk’?</h3>
+<ul>
+<li><p>This is a place where speakers vary</p></li>
+<li><p>We can look at the time course of the vowel+l portion of the
+word</p></li>
+</ul>
+<hr />
+<h3 id="some-people-show-some-change-later-on">Some people show some
+change later on</h3>
+<p><img class="r-stretch" src="phonmedia/ultrasound_bulk_somechange.jpg"></p>
+<hr />
+<h3 id="some-people-have-have-massive-change-early-on">Some people have
+have massive change early on</h3>
+<p><img class="r-stretch" src="phonmedia/ultrasound_bulk_bigchange.jpg"></p>
+<hr />
+<h3 id="some-people-dont-show-change-at-all">Some people don’t show
+change at all</h3>
+<p><img class="r-stretch" src="phonmedia/ultrasound_bulk_nochange.jpg"></p>
+<hr />
+<h3 id="measuring-these-changes-is-very-difficult-for-us">Measuring
+these changes is very difficult (for us)</h3>
+<ul>
+<li><p>Quantifying the degree of change in a 50 point spline which
+changes contour and position over time</p>
+<ul>
+<li>Variably, across speakers</li>
+</ul></li>
+<li><p>Identifying the <em>onset</em> of the contour change in
+time</p></li>
+<li><p>Identifying specific types of contour change which are most
+relevant</p>
+<ul>
+<li>Finding ‘targeted’ vs ‘untargeted’ change</li>
+</ul></li>
+<li><p><strong>There isn’t a well-established statistical method for
+doing this in our field!</strong></p></li>
+</ul>
+<hr />
+<h3 id="wait-hold-on">“Wait… hold on…”</h3>
+<ul>
+<li>“People differ in the amount and timing of change…?”</li>
+</ul>
+<hr />
+<section>
+<img class="r-stretch" src="phonmedia/ultrasound_bulk_nochange.jpg">
+</section>
+<hr />
+<section>
+<img class="r-stretch" src="phonmedia/ultrasound_bulk_bigchange.jpg">
+</section>
+<hr />
+<h3 id="why-do-people-differ-in-their-patterns-of-coarticulation">“Why
+do people differ in their patterns of coarticulation?”</h3>
+<hr />
+<h1 id="complexity-from-complex-questions">Complexity from Complex
+Questions</h1>
+<hr />
+<h3 id="background-nasal-coarticulation">Background: Nasal
+Coarticulation</h3>
+<ul>
+<li><p>/n/ is a ‘nasal’ sound, with airflow from the nose</p>
+<ul>
+<li>This is accomplished by lowering the ‘velum’</li>
+</ul></li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/sag_alveolar.jpg"><img class="r-stretch" src="phonmedia/sag_nasal.jpg"></p>
+<hr />
+<p><huge>bend</huge><br></p>
+<p><huge>/bɛnd/</huge></p>
+<ul>
+<li><p><strong>…but there’s more to it than the symbols show
+us!</strong></p></li>
+<li><p>In the word “bend”, we start nasal airflow before the nasal /n/,
+<em>during the vowel</em></p></li>
+</ul>
+<hr />
+<h3 id="this-is-audible-and-useful-to-us">This is audible and useful to
+us</h3>
+<ul>
+<li>Is this ‘bob’ or ‘bomb’?</li>
+</ul>
+<audio controls>
+<source src="phonmedia/bomb_CJ1_8_noised-2198.wav" type="audio/wav">
+</audio>
+<ul>
+<li><strong>We use coarticulation to tell what the upcoming word will be
+more quickly!</strong></li>
+</ul>
+<hr />
+<h3
+id="we-can-measure-nasal-coarticulation-by-measuring-airflow-from-the-mouth-and-nose">We
+can measure nasal coarticulation by measuring airflow from the mouth and
+nose</h3>
+<ul>
+<li>This is called ‘pneumotachography’</li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/tools_airflowcu.jpg"></p>
+<hr />
+<h3 id="airflow-measurement-gives-us-curves">Airflow measurement gives
+us curves</h3>
+<ul>
+<li><p>Oral and nasal flow in mL/sec</p></li>
+<li><p>Sampled (here) at 50 points through the vowel</p></li>
+</ul>
+<hr />
+<h3 id="the-word-bed-has-no-nasal-airflow">The word ‘bed’ has no nasal
+airflow</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_bed.png"></p>
+<hr />
+<h3 id="the-word-bend-is-more-complicated">The word ‘bend’ is more
+complicated</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_bend.png"></p>
+<hr />
+<h3 id="the-b-has-no-nasal-flow">The /b/ has no nasal flow</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_bend_annot_b.png"></p>
+<hr />
+<h3 id="the-n-has-lots-of-nasal-flow-and-little-oral-flow">The /n/ has
+lots of nasal flow and little oral flow</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_bend_annot_n.png"></p>
+<hr />
+<h3 id="the-vowel-in-the-middle-shows-coarticulation">The vowel in the
+middle shows coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_bend_annot_coart.png"></p>
+<hr />
+<h3 id="looking-at-airflow-we-can-see-coarticulation-directly">Looking
+at airflow we can see coarticulation directly</h3>
+<ul>
+<li>Both the <em>amount</em> of flow and the <em>timing</em> of the
+flow</li>
+</ul>
+<hr />
+<h3 id="some-speakers-show-only-a-bit-of-coarticulation">Some speakers
+show only a bit of coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_nasal_lowcoart.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Some speakers show only a bit of coarticulation</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="phonmedia/airflow_nasal_lowcoart2.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="some-speakers-show-moderate-coarticulation">Some speakers show
+moderate coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_nasal_midcoart.jpg"></p>
+<hr />
+<h3 id="some-speakers-show-massive-coarticulation">Some speakers show
+massive coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_nasal_highcoart.jpg"></p>
+<hr />
+<h3 id="some-speakers-show-massive-coarticulation-1">Some speakers show
+massive coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/airflow_nasal_highcoart2.jpg"></p>
+<hr />
+<h3
+id="speakers-differ-greatly-in-their-production-of-coarticulation">Speakers
+differ greatly in their <em>production</em> of coarticulation</h3>
+<ul>
+<li><p>Ranging from ‘practically none’ to ‘it’s all nasal’</p></li>
+<li><p>Inference can be done using splined mixed models, GAMs, and
+more</p>
+<ul>
+<li>Functional data analysis isn’t common in Linguistics, but it does
+happen!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="if-speakers-vary-in-their-production-of-coarticulation">If
+speakers vary in their production of coarticulation</h3>
+<ul>
+<li>Do they differ in their <em>perception</em> of coarticulation as
+well?</li>
+</ul>
+<hr />
+<h3 id="measuring-the-perception-of-coarticulation">Measuring the
+Perception of Coarticulation</h3>
+<ul>
+<li><p>Often done using eyetracking</p></li>
+<li><p>“When does the participant look at the correct image on the
+screen?”</p></li>
+<li><p>“Does this person use vowel nasality to choose ‘send’ over ‘said’
+more quickly?”</p></li>
+</ul>
+<hr />
+<h3 id="visual-world-eyetracking">Visual World Eyetracking</h3>
+<video class="r-stretch" controls src="video/eyetracking_english.mp4">
+</video>
+<hr />
+<h3 id="eye-tracking-data">Eye Tracking Data</h3>
+<ul>
+<li><p>For each trial, 1000 binary points over the course of a second,
+‘Are they looking at the nasal word?’</p>
+<ul>
+<li><p>0000000000000001111111111…</p></li>
+<li><p>Occasionally 00000000000000011111111110000000…</p></li>
+</ul></li>
+<li><p>Many, many trials are averaged out to create response curves</p>
+<ul>
+<li>“Generally speaking, does this person make a choice earlier in this
+condition than that one?”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="conditions">Conditions</h3>
+<ul>
+<li><p>“Early Nasalization”: Coarticulation begins very early in the
+vowel</p></li>
+<li><p>“Late Nasalization”: Coarticulation begins later in the
+vowel</p></li>
+<li><p><em>How early is information about the word made available to
+listeners?</em></p></li>
+</ul>
+<hr />
+<h3
+id="listeners-can-be-compared-on-the-basis-of-their-use-of-nasality">Listeners
+can be compared on the basis of their use of nasality</h3>
+<ul>
+<li><p>People who use coarticulation strongly in perception will decide
+earlier for ‘early’ nasalization tokens</p></li>
+<li><p>People who don’t use coarticulation in perception will show
+little distinction between the conditions</p></li>
+</ul>
+<hr />
+<h3 id="listeners-who-use-coarticulation">Listeners who use
+coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/eyetracking_largeuse1.jpg"></p>
+<hr />
+<h3 id="listeners-who-use-coarticulation-1">Listeners who use
+coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/eyetracking_largeuse2.jpg"></p>
+<hr />
+<h3 id="listeners-who-largely-ignore-coarticulation">Listeners who
+largely ignore coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/eyetracking_littleuse1.jpg"></p>
+<hr />
+<h3 id="listeners-who-largely-ignore-coarticulation-1">Listeners who
+largely ignore coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/eyetracking_littleuse2.jpg"></p>
+<hr />
+<h3 id="so-now-we-can-measure-perception-of-coarticulation">So, now we
+can measure perception of coarticulation</h3>
+<ul>
+<li><p>… and production</p></li>
+<li><p>This allowed us to ask one very large question…</p></li>
+</ul>
+<hr />
+<h3
+id="is-a-listeners-production-of-coarticulation-related-to-their-perception-of-coarticulation">Is
+a listener’s production of coarticulation related to their perception of
+coarticulation?</h3>
+<ul>
+<li><p>Put differently, do people who coarticulate early, listen for it
+early?</p>
+<ul>
+<li><em>Do people who talk unusually expect others to talk the same
+way?</em></li>
+</ul></li>
+<li><p>This was tested in <a
+href="https://muse.jhu.edu/article/712563">Beddor et
+al. 2018</a></p></li>
+</ul>
+<hr />
+<h3 id="this-is-a-surprisingly-useful-question">This is a surprisingly
+useful question</h3>
+<ul>
+<li><p>It gets at the heart of the gesture vs acoustics debate in speech
+perception</p></li>
+<li><p>It tells us about the role of our own productions in guiding our
+learning of a language</p></li>
+<li><p>It has massive implications for how languages change over
+time</p></li>
+</ul>
+<hr />
+<h3 id="but-its-really-really-unpleasant-to-test">But it’s really,
+really unpleasant to test</h3>
+<ul>
+<li><p>Correlating a functional airflow curve (with massive variation in
+values) with the overall trend across a large set of logistic time
+series from eye tracking trials</p></li>
+<li><p>Some truly random factors we want to get rid of (e.g. variation
+in frequency and ‘lookability’ across words)</p></li>
+<li><p>Some speaker factors we want to get rid of (e.g. variation in
+pre-look processing time, absolute differences in airflow volume), but
+some we want to study (e.g. variation in time-to-look by condition,
+variation in flow slope and time onset)</p></li>
+<li><p>We’re interested in speaker variation, but the experiment was so
+complex that we could only collect 42 participants</p></li>
+<li><p><strong>Yikes</strong></p></li>
+</ul>
+<hr />
+<h3 id="we-needed-help">We needed help</h3>
+<ul>
+<li>Help came in the form of <a
+href="https://sph.umich.edu/faculty-profiles/shedden-kerby.html">Kerby
+Shedden</a>, University of Michigan Department of Statistics</li>
+</ul>
+<hr />
+<h3 id="we-ended-up-collapsing-the-airflow-data-using-pca">We ended up
+collapsing the airflow data using PCA</h3>
+<ul>
+<li><p>This gave us a single quantity representing timing and degree of
+coarticulation which we could insert into a model of perception</p></li>
+<li><p>The perception model was run using <code>mcmcglmm</code> in R,
+with B-Splines to model temporal variation</p></li>
+</ul>
+<hr />
+<h3
+id="turns-out-that-people-who-produce-early-coarticulation-generally-listen-for-early-coarticulation">Turns
+out that people who produce early coarticulation generally listen for
+early coarticulation</h3>
+<p><img class="r-stretch" src="phonmedia/beddor_et_all_fig11_mod.jpg"></p>
+<p>(Adapted from Beddor et al 2018)</p>
+<hr />
+<h3 id="work-is-ongoing-to-continue-investigating-these-issues">Work is
+ongoing to continue investigating these issues</h3>
+<ul>
+<li><p>The production/perception link is very interesting, and uniformly
+hard to analyze</p></li>
+<li><p>… and there are a million other domains to test it in</p></li>
+</ul>
+<hr />
+<h3
+id="these-cases-illustrate-the-sorts-of-complexity-which-weve-found-ourselves-wandering-into">These
+cases illustrate the sorts of complexity which we’ve found ourselves
+wandering into</h3>
+<ul>
+<li>… and analogous issues exist in <em>every</em> subfield of
+linguistics</li>
+</ul>
+<hr />
+<h1 id="why-is-this-a-problem-for-our-field">Why is this a problem for
+our field?</h1>
+<hr />
+<h3
+id="increasingly-complex-data-has-pulled-us-into-complex-territories">Increasingly
+complex data has pulled us into complex territories</h3>
+<ul>
+<li><p>We’ve moved from single variable correlations into functional
+data</p>
+<ul>
+<li>… and in many cases, functional data which is itself captured as a
+time series</li>
+</ul></li>
+<li><p>New methods are arriving, but our questions are generally
+different enough that existing statistical toolchains don’t cleanly
+apply</p></li>
+<li><p>Our data keep getting richer and bigger</p>
+<ul>
+<li>The burden of ‘proof’ is rising as available data to test is
+rising</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="increasingly-complex-questions-require-increasingly-nuanced-analyses">Increasingly
+complex questions require increasingly nuanced analyses</h3>
+<ul>
+<li><p>We’re now increasingly studying the kinds of variability which
+conventional models attempt to factor out</p></li>
+<li><p>Potentially explanatory data is seldom low-dimensional</p></li>
+<li><p>SOMETHING</p></li>
+</ul>
+<hr />
+<h3
+id="our-statistical-needs-have-surpassed-our-statistical-abilities">Our
+statistical needs have surpassed our statistical abilities</h3>
+<ul>
+<li><p>Grad level Psych Stats has very little to say about comparing 3D
+meshes of tongue motion by conditions</p>
+<ul>
+<li>This poses a massive teaching problem!</li>
+</ul></li>
+<li><p>Reviewers are generally chosen for knowledge of specific domains
+(e.g. coarticulation or French nasality), and have vastly variable
+statistical backgrounds</p>
+<ul>
+<li>“Why not just use an ANOVA here?”</li>
+</ul></li>
+<li><p>Keeping up with the statistical state-of-the-art is a full-time
+job, and it’s very easy to miss things</p>
+<ul>
+<li>… so those of us who try to learn more about complex analyses often
+remain toddlers with shotguns</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="thats-why-im-here-today">That’s why I’m here today</h3>
+<ul>
+<li>(That and Shuheng’s gracious invitation)</li>
+</ul>
+<hr />
+<h1
+id="linguists-and-statisticians-have-massive-collaborative-potential">Linguists
+and Statisticians have massive collaborative potential</h1>
+<hr />
+<h3 id="language-is-uniquely-rewarding-as-an-area-of-research">Language
+is uniquely rewarding as an area of research</h3>
+<ul>
+<li><p>You are quite literally always using language</p>
+<ul>
+<li>Problems are often interpretable in terms of linguistic
+experience</li>
+</ul></li>
+<li><p>It offers a diversity of data types, often in the same
+experiments</p>
+<ul>
+<li>Text data, behavioral experiments, sensor output, imaging data, GIS,
+and more</li>
+</ul></li>
+<li><p>Linguistic knowledge is helpful for breaking into Natural
+Language Processing, and other language-focused data science</p>
+<ul>
+<li>Everything I’ve talked about today has straightforward applications
+in speech recognition and text-to-speech</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="linguists-are-often-held-back-by-lack-of-knowledge-of-techniques">Linguists
+are often held back by lack of knowledge of techniques</h3>
+<ul>
+<li><p>It’s very possible that ‘straightforward’ techniques in
+statistics could be revolutionary in our field</p>
+<ul>
+<li>Many of us feel limited by our tools more than our questions</li>
+</ul></li>
+<li><p>Collaborations can be mutually rewarding, and <em>extremely</em>
+beneficial in our world</p>
+<ul>
+<li>Cross-specialization is important</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="our-field-is-just-realizing-this-need">Our field is just
+realizing this need</h3>
+<ul>
+<li><p>There is increasing discussion of hiring statisticians in
+departments and divisions for consulting and collaboration</p>
+<ul>
+<li>… and already, statistical saavy is a common desired trait for new
+hires</li>
+</ul></li>
+<li><p>Statisticians who know even basic elements of language will be
+increasingly valued</p></li>
+</ul>
+<hr />
+<h3 id="teamwork-can-make-the-dream-work">Teamwork can make the dream
+work</h3>
+<ul>
+<li><p>Linguistic work is often held back by relatively basic inference
+approaches</p></li>
+<li><p>Increased complexity of data, and increased complexity of
+questions, both leave ample room for collaboration</p></li>
+<li><p>New methods in statistics likely have testable uses in
+language</p>
+<ul>
+<li>New questions in linguistics may require new methods in
+statistics</li>
+</ul></li>
+<li><p>And people collaborating in this world have a very real chance to
+make a difference in our fields</p></li>
+</ul>
+<hr />
+<h3 id="lets-talk">Let’s talk!</h3>
+<ul>
+<li><p>Next time you’re looking to branch out, remember that we
+linguists are here</p></li>
+<li><p>That we’ve got amazing data</p></li>
+<li><p>… and at the very least, you can use your knowledge to help
+disarm a toddler</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+<p>Questions? <a href="mailto:wstyler@ucsd.edu"
+class="email">wstyler@ucsd.edu</a></p>
+<!-- Linguistic Problems with Statistic Solutions
+
+In this talk, my goal is to briefly introduce a statistical audience to some of the particularly interesting types of data, hypotheses, and open questions found in Phonetics, the subfield of Linguistics dedicated to the study of speech and speech perception. We'll discuss the state of the field, and then look at two case studies, the analysis of ultrasound data of tongues, and the production-perception loop in speech and perception. In doing so, we'll discuss some of the myriad difficulties left for linguists, and highlight areas which may prove fertile ground for collaborative statistical research.
+
+-->
+</body>
+</html>

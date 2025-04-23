@@ -1,0 +1,23 @@
+tree_ridiculousprofessortex
+
+[S 
+  [NP 
+    [NP 
+      [DET The ] 
+      [N' 
+        [ADJ ridiculous ] 
+        [N' 
+          [N professor ] ] ] ] 
+    [PP 
+      [P from ] 
+      [NP 
+        [N' 
+          [N Linguistics ] ] ] ] ] 
+  [VP 
+    [V tripped ] 
+    [PP 
+      [P over ] 
+      [NP 
+        [DET the ] 
+        [N' 
+          [N desk ] ] ] ] ] ]

@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{xcolor}
+\usetikzlibrary{arrows}
+\usepackage{fontspec}
+\setmainfont{Helvetica}
+\begin{document}
+\begin{tikzpicture}
+\tikzset{level distance=30pt}
+\tikzset{every  leaf node/.style={text=blue,font=\bf}}
+\tikzset{every internal node/.style={text=darkgray,font=\bf}}
+\tikzset{edge from parent/.append style={thick}}
+
+\Large
+
+\Tree[.S [.NP [.DET The ] [.N' [.N' [.N speaker ] ] [.PP [.P at ] [.NP [.DET the ] [.N' [.ADJ huge ] [.N' [.ADJ prestigious ] [.N' [.N conference ] ] ] ] ] ] ] ][.VP [.V proved ] [.CP [.C that ] [.S [.NP [.DET her ] [.N' [.N theory ] ] ] [.VP [.V works ] ] ] ] ] ]
+
+
+\end{tikzpicture}
+\end{document}

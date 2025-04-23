@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<p><img class="big" src="morphology/raytheon.jpg"></p>
+<hr />
+<h1 id="syntax-3-syntax-is-a-life-sentence">Syntax 3: Syntax is a Life
+Sentence</h1>
+<h3 id="will-styler---lign-101">Will Styler - LIGN 101</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>A bit more tree growth</p></li>
+<li><p>All that we’re leaving behind</p></li>
+</ul>
+<hr />
+<h3 id="syntactic-ambiguity-is-everywhere">Syntactic Ambiguity is
+Everywhere!</h3>
+<p><img class="r-stretch" src="img/caramelizedbaconwedgesalad.jpg"></p>
+<hr />
+<h3 id="grab-some-scratch-paper">Grab some scratch paper</h3>
+<ul>
+<li>That’s right, we’re killing trees to make trees!</li>
+</ul>
+<hr />
+<p><a href="https://padlet.com/wstyler/ebl0u0v2ukq3"
+class="uri">https://padlet.com/wstyler/ebl0u0v2ukq3</a></p>
+<p><img class="r-stretch" src="https://assets.padletcdn.com/padlets/ebl0u0v2ukq3/qr_code.png"></p>
+<hr />
+<h3 id="ok-lets-start-off-with-something-easy">OK, let’s start off with
+something easy!</h3>
+<hr />
+<h3
+id="jessica-dislikes-that-her-silly-husband-cooked-a-big-squishy-tofurkey-for-their-romantic-dinner">Jessica
+dislikes that her silly husband cooked a big squishy tofurkey for their
+romantic dinner</h3>
+<hr />
+<ul>
+<li><p>Let’s take it piece by piece :)</p></li>
+<li><p>Work through each chunk</p></li>
+<li><p>Click in with ‘B’ when you start a chunk, and ‘A’ when you
+finish, and ‘E’ if you’re lost</p></li>
+</ul>
+<hr />
+<h3 id="jessica">Jessica</h3>
+<p><a href="https://padlet.com/wstyler/ebl0u0v2ukq3"
+class="uri">https://padlet.com/wstyler/ebl0u0v2ukq3</a></p>
+<p><img class="r-stretch" src="https://assets.padletcdn.com/padlets/ebl0u0v2ukq3/qr_code.png"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_jessicatofu_jessica.jpg"></p>
+<hr />
+<h3 id="her-silly-husband">Her silly husband</h3>
+<p><a href="https://padlet.com/wstyler/ebl0u0v2ukq3"
+class="uri">https://padlet.com/wstyler/ebl0u0v2ukq3</a></p>
+<p><img class="r-stretch" src="https://assets.padletcdn.com/padlets/ebl0u0v2ukq3/qr_code.png"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_jessicatofu_hersilly.jpg"></p>
+<hr />
+<h3 id="a-big-squishy-tofurkey">A big, squishy tofurkey</h3>
+<p><a href="https://padlet.com/wstyler/ebl0u0v2ukq3"
+class="uri">https://padlet.com/wstyler/ebl0u0v2ukq3</a></p>
+<h2
+id="section"><img class="r-stretch" src="https://assets.padletcdn.com/padlets/ebl0u0v2ukq3/qr_code.png"></h2>
+<p><img class="r-stretch" src="diagrams/tree_jessicatofu_tofurkey.jpg"></p>
+<hr />
+<h3 id="for-their-romantic-dinner">For their romantic dinner</h3>
+<p><a href="https://padlet.com/wstyler/ebl0u0v2ukq3"
+class="uri">https://padlet.com/wstyler/ebl0u0v2ukq3</a></p>
+<h2
+id="section-1"><img class="r-stretch" src="https://assets.padletcdn.com/padlets/ebl0u0v2ukq3/qr_code.png"></h2>
+<p><img class="r-stretch" src="diagrams/tree_jessicatofu_pp.jpg"></p>
+<hr />
+<h3 id="cooked-a-big-squishy-tofurkey-for-their-romantic-dinner">Cooked
+a big squishy tofurkey for their romantic dinner</h3>
+<p><a href="https://padlet.com/wstyler/ebl0u0v2ukq3"
+class="uri">https://padlet.com/wstyler/ebl0u0v2ukq3</a></p>
+<h2
+id="section-2"><img class="r-stretch" src="https://assets.padletcdn.com/padlets/ebl0u0v2ukq3/qr_code.png"></h2>
+<p><img class="r-stretch" src="diagrams/tree_jessicatofu_mainvp.jpg"></p>
+<hr />
+<h3
+id="that-her-silly-husband-cooked-a-big-squishy-tofurkey-for-their-romantic-dinner">That
+her silly husband cooked a big squishy tofurkey for their romantic
+dinner</h3>
+<p><a href="https://padlet.com/wstyler/ebl0u0v2ukq3"
+class="uri">https://padlet.com/wstyler/ebl0u0v2ukq3</a></p>
+<p><img class="r-stretch" src="https://assets.padletcdn.com/padlets/ebl0u0v2ukq3/qr_code.png"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_jessicatofu_comp.jpg"></p>
+<hr />
+<h3
+id="jessica-dislikes-that-her-silly-husband-cooked-a-big-squishy-tofurkey-for-their-romantic-dinner-1">Jessica
+dislikes that her silly husband cooked a big squishy tofurkey for their
+romantic dinner</h3>
+<p><a href="https://padlet.com/wstyler/ebl0u0v2ukq3"
+class="uri">https://padlet.com/wstyler/ebl0u0v2ukq3</a></p>
+<p><img class="r-stretch" src="https://assets.padletcdn.com/padlets/ebl0u0v2ukq3/qr_code.png"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_jessicatofu.jpg"></p>
+<hr />
+<h3 id="for-the-record-tofurkeys-are-gross">For the record, Tofurkeys
+are gross</h3>
+<ul>
+<li>Great for comedy, poor for eating</li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img class="r-stretch" src="memes/will_memes/tofurkey_drama.jpg"></td>
+</tr>
+<tr class="even">
+<td>(Thanks to Cae, Fall 2022)</td>
+</tr>
+</tbody>
+</table>
+<p>Here’s another one!</p>
+<hr />
+<h3
+id="the-prescriptivist-english-professor-glared-at-the-rebellious-linguist">The
+prescriptivist English Professor glared at the rebellious linguist</h3>
+<hr />
+<p>Spoiler alert.</p>
+<hr />
+<h3
+id="the-prescriptivist-english-professor-glared-at-the-rebellious-linguist-1">The
+prescriptivist English Professor glared at the rebellious linguist</h3>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_engprof.jpg"></p>
+<hr />
+<h3 id="ok-ok-enough-with-the-trees">OK, OK, enough with the trees!</h3>
+<ul>
+<li>Yeah, I know.</li>
+</ul>
+<hr />
+<h3 id="this-is-the-problem-with-lign-101">This is the problem with LIGN
+101</h3>
+<ul>
+<li><p>There’s too much awesomeness to Syntax for me to cover in three
+classes</p></li>
+<li><p>We need to focus on what’s crucial</p>
+<ul>
+<li>(You all understanding syntactic hierarchy)</li>
+</ul></li>
+<li><p>… over what’s awesome</p>
+<ul>
+<li>Cross-linguistic patterns and advanced syntactic questions</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="and-a-whole-lot-has-been-dismissed-as-here-there-be-dragons">…
+and a whole lot has been dismissed as “Here there be dragons”</h3>
+<hr />
+<h1 id="introducing-some-dragons">Introducing some Dragons</h1>
+<p><img class="r-stretch" src="humorimg/smaug.jpg"></p>
+<hr />
+<h2 id="english-syntax-is-way-more-complicated">English Syntax is
+<em>way</em> more complicated</h2>
+<hr />
+<h3 id="were-looking-at-relatively-simple-sentences">We’re looking at
+relatively simple sentences</h3>
+<ul>
+<li>(It may not feel that way, but we are!)</li>
+</ul>
+<hr />
+<h3
+id="truly-my-dismay-that-three-dragons-were-slain-by-the-fame-craving-knight-couldnt-be-greater.">“Truly,
+my dismay that three dragons were slain by the fame-craving knight
+couldn’t be greater.”</h3>
+<ul>
+<li>Your phrase structure rules will shatter against such pain.</li>
+</ul>
+<hr />
+<h3
+id="robert-who-came-last-weekend-when-you-threw-that-party-where-marvin-saw-bob-is-kind-of-a-jerk.">“Robert
+who came last weekend when you threw that party where Marvin saw Bob is
+kind of a jerk.”</h3>
+<ul>
+<li>That’s right, that’s two S’s inside an NP</li>
+</ul>
+<hr />
+<h3 id="also-sentences-will-do-weird-things">Also, sentences will do
+weird things</h3>
+<ul>
+<li><p>Weird things will be done by sentences.</p></li>
+<li><p>Weird things will be the things that sentences do.</p></li>
+<li><p>What will sentences do?</p></li>
+<li><p>Will sentences do weird things?</p></li>
+</ul>
+<hr />
+<h3 id="passive-voice">Passive Voice</h3>
+<ul>
+<li><p>Miguel threw Rajesh the ball.</p></li>
+<li><p>Rajesh was thrown the ball.</p></li>
+<li><p><strong>Passive voice turns the object of a sentence into the
+subject</strong></p></li>
+</ul>
+<hr />
+<h3 id="this-is-a-200-foot-pole">This is a 200 foot pole</h3>
+<p><img class="r-stretch" src="humorimg/long_pole.jpg"></p>
+<ul>
+<li>The passive voice will not be touched with it</li>
+</ul>
+<hr />
+<h3 id="this-makes-us-think-about-movement-and-transformation">This
+makes us think about ‘movement’ and ‘transformation’</h3>
+<ul>
+<li>Phrase structure rules don’t account for changes</li>
+</ul>
+<hr />
+<h3 id="jessica-can-buy-cheerios">Jessica can buy Cheerios</h3>
+<ul>
+<li><p>Can Jessica buy Cheerios?</p></li>
+<li><p>It was Jessica who bought the Cheerios</p></li>
+<li><p>Cheerios are what Jessica bought</p></li>
+<li><p>Who can buy Cheerios?</p></li>
+<li><p>What can Jessica buy?</p></li>
+<li><p>Jessica can buy what?</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/jessica_buy_what.jpg"></p>
+<p>(Thanks Jaron from W22!)</p>
+<hr />
+<h3 id="the-movement-its-everywhere">The movement… it’s everywhere</h3>
+<ul>
+<li><p>Your book gets a bit deeper into this than we have time
+to</p></li>
+<li><p>… but it’s cooooooool.</p></li>
+</ul>
+<hr />
+<h2 id="heres-a-fun-dragon">Here’s a fun dragon</h2>
+<hr />
+<h3 id="garden-path-sentences">Garden Path Sentences</h3>
+<p>Sentences which are easy to incorrectly parse at first</p>
+<hr />
+<h3 id="example-garden-paths">Example Garden Paths</h3>
+<ul>
+<li><p>The old man the boat.</p></li>
+<li><p>The complex houses married soldiers and their families.</p></li>
+<li><p>The girl told the story cried.</p></li>
+<li><p>The man who whistles tunes pianos.</p></li>
+<li><p>The war on plastic faces setback as cost of recycled material
+soars</p>
+<ul>
+<li>This is from <a
+href="https://www.theguardian.com/environment/2019/oct/13/war-on-plastic-waste-faces-setback-as-cost-of-recycled-material-soars">the
+Guardian</a>, and was fixed with ‘plastic waste’ after publication</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-horse-raced-past-the-barn-fell">The horse raced past the
+barn fell</h3>
+<hr />
+<p><img class="r-stretch" src="img/horseraced_harley.jpg"></p>
+<p>Source: <a href="http://languagelog.ldc.upenn.edu/nll/?p=167"
+class="uri">http://languagelog.ldc.upenn.edu/nll/?p=167</a></p>
+<hr />
+<h3 id="these-occur-in-human-language">These occur in human
+language</h3>
+<p><img class="r-stretch" src="img/gardenpath_dog.jpg"></p>
+<hr />
+<h2 id="lets-look-at-some-other-sentences">Let’s look at some other
+sentences</h2>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="a-is-perfectly-grammatical-e-is-completely-ungrammatical">A is
+‘Perfectly Grammatical’, E is ‘Completely Ungrammatical’</h3>
+<hr />
+<section class="clicker">
+</section>
+<h2 id="more-three-dogs-bit-than-eight-humans.">More three dogs bit than
+eight humans.</h2>
+<hr />
+<section class="clicker">
+</section>
+<h2 id="more-cats-are-on-my-bed-than-i-can-cuddle-them.">More cats are
+on my bed than I can cuddle them.</h2>
+<hr />
+<section class="clicker">
+</section>
+<h2 id="more-sales-are-expected-this-year-relative-to-last-year.">More
+sales are expected this year relative to last year.</h2>
+<hr />
+<section class="clicker">
+</section>
+<h2 id="more-tourists-have-been-to-england-than-to-kazakhstan.">More
+tourists have been to England than to Kazakhstan.</h2>
+<hr />
+<section class="clicker">
+</section>
+<h2 id="more-people-have-been-to-russia-than-i-have.">More people have
+been to Russia than I have.</h2>
+<hr />
+<section class="clicker">
+</section>
+<h2
+id="more-politicians-self-finance-their-campaigns-in-the-usa-than-elsewhere.">More
+politicians self-finance their campaigns in the USA than elsewhere.</h2>
+<hr />
+<section class="clicker">
+</section>
+<h2
+id="more-undergrads-text-their-friends-during-the-week-than-i-text-my-friends.">More
+undergrads text their friends during the week than I text my
+friends.</h2>
+<hr />
+<h3 id="wait-a-second">Wait a second…</h3>
+<ul>
+<li><p>More people have been to Russia than I have.</p></li>
+<li><p>More undergrads text their friends during the week than I text my
+friends.</p></li>
+<li><p><strong>What do these actually mean?!?</strong></p></li>
+</ul>
+<hr />
+<h3 id="these-are-called-comparative-illusions">These are called
+‘Comparative Illusions’</h3>
+<ul>
+<li><p>… and they show that we can have instincts which make something
+‘seem’ grammatical and sensical which actually isn’t!</p></li>
+<li><p>The factors which make these feel more or less acceptable are a
+subject of syntactic research</p></li>
+<li><p>They can even happen in natural speech</p>
+<ul>
+<li>‘I think there are more candidates on stage who speak Spanish more
+fluently than our president speaks English.’ - <a
+href="https://twitter.com/danrather/status/1144076809182408704?lang=en">Dan
+Rather</a></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-about-some-center-embedding-gore">How about some center
+embedding gore?</h3>
+<hr />
+<blockquote>
+<p>An apparently new speech disorder a linguistics department our
+correspondent visited was affected by has appeared.</p>
+</blockquote>
+<ul>
+<li>An apparently new speech disorder</li>
+<li>a linguistics department</li>
+<li>our correspondent</li>
+<li>visited</li>
+<li>was affected by</li>
+<li>has appeared.</li>
+</ul>
+<hr />
+<blockquote>
+<p>The cause experts the LSA sent investigate remains elusive.</p>
+</blockquote>
+<ul>
+<li>The cause</li>
+<li>experts</li>
+<li>the LSA</li>
+<li>sent</li>
+<li>investigate</li>
+<li>remains elusive.</li>
+</ul>
+<hr />
+<blockquote>
+<p>Physicians neurologists psychologists other linguists called for help
+called for help called for help didn’t help either.</p>
+</blockquote>
+<ul>
+<li>Physicians</li>
+<li>neurologists</li>
+<li>psychologists</li>
+<li>other linguists</li>
+<li>called for help</li>
+<li>called for help</li>
+<li>called for help</li>
+<li>didn’t help either.</li>
+</ul>
+<hr />
+<blockquote>
+<p>The patient the nurse the doctor consulted was sick.</p>
+</blockquote>
+<ul>
+<li>The patient</li>
+<li>the nurse</li>
+<li>the doctor</li>
+<li>consulted</li>
+<li>was sick.</li>
+<li><danger>wtf?!?!</danger></li>
+</ul>
+<hr />
+<h3
+id="thanks-to-emily-davis-for-some-of-these-syntactic-troubles">Thanks
+to Emily Davis for some of these syntactic troubles</h3>
+<ul>
+<li>Also here’s the center embedding <a
+href="https://specgram.com/CLI.2/03.bakery.disorder.html">source</a></li>
+</ul>
+<hr />
+<h3 id="modifier-scope-issues">Modifier Scope issues</h3>
+<ul>
+<li><p>“Crispy Ahi Tuna Tacos”</p>
+<ul>
+<li>Crispy tuna, or Crispy Tacos</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="there-are-other-approaches-to-syntax-too">There are other
+approaches to Syntax too!</h2>
+<hr />
+<h3 id="v-s-ip-and-more">V’, S’, IP, and more!</h3>
+<ul>
+<li><p>There are many theories and approaches, each with pros and
+cons</p></li>
+<li><p>This is the case in anything in Linguistics, but especially
+here!</p></li>
+</ul>
+<hr />
+<h2 id="other-languages-exist">Other Languages exist!</h2>
+<hr />
+<h3 id="different-languages-do-sentences-differently">Different
+languages do sentences differently</h3>
+<ul>
+<li><p>Not all languages put the Subject (do-er) before the verb, which
+is followed by the object (which is being affected) (‘SVO’)</p></li>
+<li><p>Lakota is SOV, with postpositions</p></li>
+<li><p>ASL is OSV</p></li>
+<li><p>Spanish adjectives are after the noun</p></li>
+<li><p>Russian can move the arguments around to help make your
+point</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/realtimevoicetovoice.jpg"></p>
+<hr />
+<h3 id="phrase-structure-rules-are-language-specific-too">Phrase
+structure rules are language specific, too!</h3>
+<ul>
+<li>We’ll play with other languages’ phrase structure rules in this
+class!</li>
+</ul>
+<hr />
+<h3 id="were-just-trying-to-get-you-understanding-the-basics">We’re just
+trying to get you understanding the basics</h3>
+<ul>
+<li><p>What syntax is</p></li>
+<li><p>How sentences are composed hierarchically</p></li>
+<li><p>… and how grammar works for sentences</p></li>
+</ul>
+<hr />
+<h3 id="for-everything-else-lign-121">For everything else, LIGN 121</h3>
+<p><img class="r-stretch" src="img/plug.jpg"></p>
+<hr />
+<h2 id="one-last-oddity">One last oddity</h2>
+<hr />
+<h3 id="our-rules-can-act-weirdly">Our rules can act weirdly</h3>
+<p>Rule 8: VP -&gt; V</p>
+<p>Rule 9: VP -&gt; V NP</p>
+<hr />
+<h3 id="to-sleep">To sleep</h3>
+<ul>
+<li><p>VP -&gt; V: Will slept</p></li>
+<li><p>VP -&gt; V NP: Will slept Jessica</p></li>
+</ul>
+<hr />
+<h3 id="to-dream">To dream</h3>
+<ul>
+<li><p>VP -&gt; V: Will dreamed</p></li>
+<li><p>VP -&gt; V NP: Will dreamed Jessica</p></li>
+</ul>
+<hr />
+<h3 id="to-walk">To walk</h3>
+<ul>
+<li><p>VP -&gt; V: Will walked</p></li>
+<li><p>VP -&gt; V NP: Will walked Jessica</p></li>
+</ul>
+<hr />
+<h3 id="these-are-called-intransitive-verbs">These are called
+‘Intransitive verbs’</h3>
+<p>Verbs that only take a single argument, the ‘subject’</p>
+<hr />
+<h3 id="to-hug">To hug</h3>
+<ul>
+<li><p>VP -&gt; V NP: Will hugged Jessica</p></li>
+<li><p>VP -&gt; V: Will hugged</p></li>
+</ul>
+<hr />
+<h3 id="to-move">To move</h3>
+<ul>
+<li><p>VP -&gt; V: Will moved</p></li>
+<li><p>VP -&gt; V NP: Will moved Jessica</p></li>
+</ul>
+<hr />
+<h3 id="to-see">To see</h3>
+<ul>
+<li><p>VP -&gt; V: Will saw</p></li>
+<li><p>VP -&gt; V NP: Will saw Jessica</p></li>
+</ul>
+<hr />
+<h3 id="these-are-called-transitive-verbs">These are called ‘Transitive
+verbs’</h3>
+<p>Verbs that can take two arguments, a subject and an object</p>
+<hr />
+<h3 id="to-bake">To bake</h3>
+<ul>
+<li><p>VP -&gt; V: Will baked</p></li>
+<li><p>VP -&gt; V NP: Will baked a cake</p></li>
+<li><p>VP -&gt; V NP NP: Will baked Jessica a cake</p></li>
+<li><p>VP -&gt; V NP NP: ?Will baked a cake Jessica</p></li>
+</ul>
+<hr />
+<h3 id="to-find">To find</h3>
+<ul>
+<li><p>VP -&gt; V: Will found.</p></li>
+<li><p>VP -&gt; V NP: Will found a cake</p></li>
+<li><p>VP -&gt; V NP NP: Will found Jessica a cake</p></li>
+<li><p>VP -&gt; V NP NP: ?Will found a cake Jessica</p></li>
+<li><p>VP -&gt; V NP NP: Will found a cake some candles</p></li>
+</ul>
+<hr />
+<h3 id="ditransitive-constructions">Ditransitive Constructions</h3>
+<p>Verbs that take a Subject and two objects</p>
+<hr />
+<h3 id="to-see-1">To see</h3>
+<ul>
+<li><p>VP -&gt; V: ?Will saw</p></li>
+<li><p>VP -&gt; V NP: Will saw a cake</p></li>
+<li><p>VP -&gt; V NP NP: ?Will saw Jessica a cake</p></li>
+<li><p>VP -&gt; V NP NP: *Will saw a cake Jessica</p></li>
+</ul>
+<hr />
+<h2 id="whoa">Whoa!!</h2>
+<ul>
+<li><p>That was a phrase structure rule with three branches!</p></li>
+<li><p>That happens sometimes, although there are usually other
+ways!</p></li>
+</ul>
+<hr />
+<h3 id="to-make">To make</h3>
+<ul>
+<li><p>VP -&gt; V: Will made</p></li>
+<li><p>VP -&gt; V NP: Will made a judge</p></li>
+<li><p>VP -&gt; V NP NP: Will made Jessica a judge</p></li>
+<li><p>VP -&gt; V NP NP: Will made a judge Jessica</p></li>
+</ul>
+<hr />
+<h3 id="to-make-continued">To make, continued</h3>
+<ul>
+<li><p>VP -&gt; V NP: Will made a judge (with his modelling
+clay)</p></li>
+<li><p>VP -&gt; V NP NP: Will made Jessica a robot</p></li>
+<li><p>VP -&gt; V NP NP: Will made a robot, Jessica</p></li>
+</ul>
+<hr />
+<h3 id="are-you-vibing-me">Are you vibing me?</h3>
+<ul>
+<li><p>“I’m vibing.”</p></li>
+<li><p>“I’m vibing you.”</p></li>
+<li><p>“I’m vibing with this new album”</p></li>
+<li><p>“I’m vibing this new album”</p></li>
+<li><p>“I’m vibing her a new album”</p></li>
+</ul>
+<hr />
+<h3 id="wait-a-second-1">Wait a second…</h3>
+<ul>
+<li><p>Our phrase structure rules don’t universally apply</p>
+<ul>
+<li>A valid phrase structure rule for one verb might not work for
+another</li>
+</ul></li>
+<li><p>… and it seems to be <em>lexically specific</em></p>
+<ul>
+<li>It depends on the particular word</li>
+</ul></li>
+<li><h2 id="is-there-no-hope">Is there no hope?!</h2></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/surprised_owls.jpg"></p>
+<audio data-autoplay src="humorimg/dramatic.wav">
+</audio>
+<hr />
+<h3 id="nah-its-cool-weve-got-semantics">(Nah, it’s cool, we’ve got
+semantics)</h3>
+<ul>
+<li>See you next time!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

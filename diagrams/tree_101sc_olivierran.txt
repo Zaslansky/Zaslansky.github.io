@@ -1,0 +1,20 @@
+tree_101sc_olivierrantex
+
+[S 
+  [NP 
+    [N' 
+      [N Olivier ] ] ] 
+  [VP 
+    [VP 
+      [V ran ] 
+      [NP 
+        [DET a ] 
+        [N' 
+          [ADJ discussion ] 
+          [N' 
+            [N section ] ] ] ] ] 
+    [PP 
+      [P on ] 
+      [NP 
+        [N' 
+          [N Friday ] ] ] ] ] ]

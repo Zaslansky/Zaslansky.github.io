@@ -1,0 +1,8 @@
+tree_iatetex
+
+[S 
+  [NP 
+    [N' 
+      [N I ] ] ] 
+  [VP 
+    [V ate ] ] ]

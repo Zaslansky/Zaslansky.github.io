@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>All my slides are presented using <a
+href="revealjs.com">reveal.js</a>, and do not exist as Powerpoint or
+PDF, but instead, as websites.</p>
+<p>To navigate my slides, use the arrow keys, the onscreen controls, or
+swipe on mobile. To scan through slides, hit ‘Escape’.</p>
+<p>To print or make a PDF, add ?print-pdf to the URL after .html in
+Google Chrome and then ‘Print’ as usual.</p>
+<p>(Please note that PDF/printing is not ‘officially supported’ by the
+instructor, and the results may be very strange in places)</p>
+<hr />
+<h3 id="handout-mode">Handout Mode</h3>
+<ul>
+<li>You can also turn slides into a handout by adding “_handout” before
+.html</li>
+</ul>
+<hr />
+<h1 id="linguistics-42-the-linguistics-of-the-internet">Linguistics 42:
+The Linguistics of the Internet</h1>
+<h3 id="dr.-will-styler">Dr. Will Styler</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Introductions</p></li>
+<li><p>Why do this?</p></li>
+<li><p>What’s Will’s problem?</p></li>
+<li><p>How are we doing this?</p></li>
+<li><p>Our roles</p></li>
+<li><p>Our plan</p></li>
+</ul>
+<hr />
+<h2 id="introductions">Introductions</h2>
+<hr />
+<h2 id="dr.-will-styler-1">Dr. Will Styler</h2>
+<p>Teaching Professor, Linguist, Gigantic Nerd</p>
+<p><img class="r-stretch" src="people/will.jpg"></p>
+<hr />
+<h2 id="lexi-ricasata">Lexi Ricasata</h2>
+<hr />
+<h2 id="why-do-this">Why do this?</h2>
+<hr />
+<h3
+id="i-watched-memes-develop-into-their-modern-form-on-the-internet">I
+watched memes develop into their modern form on the Internet</h3>
+<ul>
+<li><p>We went from text, to ‘reaction images’ and comics, to ‘image
+macros’, to the modern meme</p></li>
+<li><p>I was an early denizen of many of the early internet meme
+sites</p>
+<ul>
+<li><p>IRC, Something Awful, Fark, YTMND, 4Chan*, eBaumsWorld, and
+more</p></li>
+<li><p>4Chan wasn’t always what it is today</p>
+<ul>
+<li>… but it always kind of was. Yikes.</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="i-started-in-the-lolcat-era">I started in the LolCat Era</h3>
+<hr />
+<p><img class="r-stretch" src="humorimg/orly.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="humorimg/omg.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="humorimg/serious_cat.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="humorimg/cheese_fail.jpg"></p>
+<hr />
+<h3 id="i-was-an-expert-then">I was an ‘expert’ then</h3>
+<ul>
+<li>Quoted in 2009 by News.com.au:</li>
+</ul>
+<blockquote>
+<p>“Understanding what they’re saying and simply knowing that they exist
+can be considered a showing of one’s internet cultural knowledge,” says
+Mr. Styler, who runs the <a
+href="http://linguisticmystic.com/">Linguistic Mystic</a> blog.</p>
+</blockquote>
+<blockquote>
+<p>“In the same sense that using a reference from a hot new movie can
+include you in a group, doing something using an ‘im in ur…’
+construction is a mark of somebody who understands internet
+culture.”</p>
+</blockquote>
+<p><a
+href="https://amp.news.com.au/news/rise-of-the-lolcats/news-story/86a968cb6722c05b6bfd559f30445ee9"
+class="uri">https://amp.news.com.au/news/rise-of-the-lolcats/news-story/86a968cb6722c05b6bfd559f30445ee9</a></p>
+<hr />
+<h3 id="i-was-there-when-many-of-the-templates-were-born">I was there
+when many of the templates were born</h3>
+<hr />
+<p><img class="r-stretch" src="morphology/brian_1.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="memes/advice_animals/wharrgarbl.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="memes/advice_animals/steve.jpg"></p>
+<hr />
+<h3 id="i-watched-advice-animals-become-a-thing">I watched Advice
+Animals become a thing</h3>
+<hr />
+<p><img class="r-stretch" src="memes/advice_animals/mallard_advice.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="memes/advice_animals/mallard_malicious.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="morphology/babymeme3.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="memes/advice_animals/yodawg.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="humorimg/butt_dial_booty_call_bottomtext.jpg"></p>
+<hr />
+<h3 id="and-now-im-watching-the-world-change">… and now I’m watching the
+world change</h3>
+<hr />
+<p><img class="r-stretch" src="memes/meme_generations.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="memes/sourcream.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="memes/evil_santana.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="memes/stickroll.gif"></p>
+<hr />
+<video class="small" controls src="memes/skibidi_toilet.mp4" height="300" width="300">
+</video>
+<p><a href="https://www.youtube.com/watch?v=tzD9OxAHtzU">Sauce</a></p>
+<ul>
+<li>/br:::: skibiri d̪õm d̪õm d̪õbijɛsʲɛs skibiri d̪abl̩d̪m ni ni/</li>
+</ul>
+<hr />
+<h3 id="i-think-memes-are-a-rich-communicative-field">I think memes are
+a rich communicative field</h3>
+<ul>
+<li>… which are just as worth of study as any others</li>
+</ul>
+<hr />
+<h3 id="linguistics-of-memes-had-a-branding-problem">‘Linguistics of
+Memes’ had a branding problem</h3>
+<ul>
+<li><p>“Oh, I’m not into memes, but I’m really interested in TikTok
+audios!”</p></li>
+<li><p>“I want to do my project on uwu, but that’s… not a
+meme?”</p></li>
+<li><p>New phenomena arise every day that aren’t memes, but are
+<em>memetic</em></p></li>
+<li><p><em>Where on earth do we draw the line?</em></p></li>
+</ul>
+<hr />
+<h1 id="what-is-a-meme-anyways">What is a ‘meme’ anyways?</h1>
+<hr />
+<h3 id="the-dictionary-definition">The Dictionary Definition</h3>
+<blockquote>
+<p>A <strong>meme</strong> is an idea, behavior, or style that spreads
+by means of imitation from person to person within a culture and often
+carries symbolic meaning representing a particular phenomenon or theme
+<a href="https://en.wikipedia.org/wiki/Meme">Wikipedia</a></p>
+</blockquote>
+<hr />
+<h3 id="key-components">Key Components</h3>
+<ul>
+<li><p>Idea or Behavior</p></li>
+<li><p>Viral spread</p></li>
+<li><p>Culturally grounded</p></li>
+<li><p>Carries Symbolic Meaning</p></li>
+<li><p><strong>What else acts like this?</strong></p></li>
+</ul>
+<hr />
+<h3 id="viral-ideas-carrying-meaning-in-cultures">Viral Ideas, Carrying
+Meaning in Cultures</h3>
+<ul>
+<li><p>Memes (duh)</p></li>
+<li><p>Physical Actions (e.g. planking, flossing, peace signs)</p></li>
+<li><p>TikTok Trends and Audios</p></li>
+<li><p>Aesthetics and Leitmotifs (e.g. deep frying, meaningful
+fonts)</p></li>
+</ul>
+<hr />
+<h3 id="viral-ideas-carrying-meaning-in-cultures-cont.">Viral Ideas,
+Carrying Meaning in Cultures (cont.)</h3>
+<ul>
+<li><p>Paralinguistic Stuff: Emoji use, Keysmashing, SpOnGeBoB
+TeXt</p></li>
+<li><p>Interaction patterns (e.g. “That’ll be $69.42” “Nice.”)</p></li>
+<li><p>Dogwhistles (words that subtly reveal affiliation with a
+group/ideology)</p></li>
+<li><p>Culturally Specific Words (e.g. ‘gg’, ‘any %’, ‘hotep’,
+‘pov’)</p></li>
+<li><p><strong>All of language!</strong></p></li>
+</ul>
+<hr />
+<h3 id="all-language-is-memetic">All language is memetic!</h3>
+<ul>
+<li><p>Idea or Behavior</p></li>
+<li><p>Viral spread</p></li>
+<li><p>Culturally grounded</p></li>
+<li><p>Carries Symbolic Meaning</p></li>
+</ul>
+<hr />
+<h3 id="the-scope-of-this-class-is-large">The Scope of this class is
+Large</h3>
+<ul>
+<li><p>You’re looking for ideas or behaviors, spread virally, within
+cultures, with meaning, on the internet</p></li>
+<li><p>… and you’ll use linguistic analysis on them</p></li>
+<li><p><em>One Handy Rule: Try to choose things that are considered
+‘non-standard’ usage of language</em></p></li>
+<li><p><strong>The world is your oyster, and anything’s a meme if you
+convince me</strong></p>
+<ul>
+<li>This means I want to see lots of interesting new stuff!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="youll-be-looking-at-linguistic-forms">You’ll be looking at
+‘Linguistic Forms’</h3>
+<ul>
+<li><p>This is a wildly broad term</p></li>
+<li><p>Words, pronunciations, memes, meme templates, paralinguistic
+stuff</p></li>
+<li><p>Basically anything which carries meaning and is linguistically
+analyzable</p></li>
+</ul>
+<hr />
+<h1 id="what-is-wills-problem">What is Will’s Problem?</h1>
+<ul>
+<li>(I mean, one among many)</li>
+</ul>
+<hr />
+<h3 id="to-quote-a-students-cape-evaluation">To quote a student’s CAPE
+evaluation…</h3>
+<ul>
+<li><h1 id="his-memes-are-kind-of-old"><em>“His memes are kind of
+old”</em></h1></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="memes/advice_animals/fatality.jpg"></p>
+<hr />
+<h3 id="this-is-a-known-issue">This is a known issue</h3>
+<hr />
+<p><img class="r-stretch" src="memes/lecturermemes.jpg"></p>
+<hr />
+<h3 id="and-all-language-is-always-changing">… and all language is
+always changing</h3>
+<ul>
+<li><p>‘You never step into the same river twice’</p></li>
+<li><p>In fact, I’ll be making an effort to use millenial memes and
+language to prove this point!</p></li>
+<li><p>… but memes move fast!</p></li>
+</ul>
+<hr />
+<h3 id="remember-this">Remember this?</h3>
+<p><img class="r-stretch" src="memes/bernie.png"></p>
+<hr />
+<h3 id="this-presents-a-problem">This presents a problem</h3>
+<hr />
+<h3
+id="how-the-heck-can-i-teach-a-class-on-emerging-and-new-language-when-i-dont-speak-the-modern-dialect">“How
+the heck can I teach a class on emerging and new language, when I don’t
+speak the modern dialect?”</h3>
+<ul>
+<li><p>The answer?</p></li>
+<li><h2 id="with-your-help">With your help!</h2></li>
+</ul>
+<hr />
+<h2 id="how-are-we-doing-this-class">How are we doing this class?</h2>
+<hr />
+<h3
+id="this-class-will-be-different-from-any-ive-ever-taught-before">This
+class will be different from any I’ve ever taught before</h3>
+<ul>
+<li><p>Generally, I’m telling you all how the world works</p>
+<ul>
+<li>How language works, how computers work, how phonetics, phonology,
+morphology, or hearing works</li>
+</ul></li>
+<li><p>I give you information, you give it back to me on tests</p>
+<ul>
+<li>You’ll work through problems, and try to arrive at ‘the correct
+answer’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="that-will-not-work-here">That will not work here</h3>
+<ul>
+<li><p>I know about my era of memes</p></li>
+<li><p>I am incredibly online</p></li>
+<li><p>I know how language works</p></li>
+<li><p>I don’t know exactly how memes work lately</p></li>
+<li><p>I don’t know how your parts of the internet work</p></li>
+<li><p>There is no ‘right answer’ that you can be tested against</p>
+<ul>
+<li>Not like there’s a textbook for this</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="this-is-unlike-any-other-class-in-the-department">This is unlike
+any other class in the department…</h3>
+<ul>
+<li><p>Except one</p></li>
+<li><p><strong>This is kind of a Field Methods class</strong></p></li>
+</ul>
+<hr />
+<h3 id="field-methods">Field Methods</h3>
+<ul>
+<li><p>The professor sits down with a group of students and a speaker of
+a language that <em>they don’t know</em></p></li>
+<li><p>The professor teaches the students <em>how to find out</em> how
+the language works</p></li>
+<li><p>… and they all study the language <em>together</em> by talking
+with somebody who knows the language</p></li>
+</ul>
+<hr />
+<h3 id="im-going-to-give-you-tools-and-structure">I’m going to give you
+tools and structure</h3>
+<ul>
+<li><p>Elements of linguistic analysis and linguistic theory</p>
+<ul>
+<li><p>… with a specific mind towards concepts which I think are
+meaningful here</p></li>
+<li><p>… and with examples in my old school understanding</p></li>
+</ul></li>
+<li><p>I’ll give areas for us to focus on each week</p>
+<ul>
+<li>… and questions I think we’ll learn things from asking</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="you-all-will-do-the-analysis-and-bring-the-data">You all will do
+the analysis and bring the data</h3>
+<ul>
+<li><p>You’ll apply what we’re talking about to the online communication
+in your lives</p>
+<ul>
+<li>We’ll be there to help, but <em>you have the data</em></li>
+</ul></li>
+<li><p>You’ll take the analyses deeper</p>
+<ul>
+<li>Your final project will go beyond what we’ve done in class</li>
+</ul></li>
+<li><p>You’ll focus on a specific area</p>
+<ul>
+<li>Maybe a site, a community, an interest group, a kind of meme,
+something that’s interesting to you!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="together-well-learn-how-this-language-works">Together, we’ll
+learn how <em>this</em> language works</h3>
+<hr />
+<h3 id="this-makes-this-class-very-different-than-the-norm">This makes
+this class very different than the norm</h3>
+<ul>
+<li><p>I’m depending on you all as much as you’re depending on
+me!</p></li>
+<li><p><strong>We’re on the same team!</strong></p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="memes/epichandshake.jpg"></p>
+<hr />
+<h3 id="grading-will-be-weird-too">Grading will be weird too!</h3>
+<p><a href="https://savethevowels.org/42"
+class="uri">https://savethevowels.org/42</a></p>
+<hr />
+<h3 id="this-is-a-contract">This is a contract</h3>
+<ul>
+<li><p>I am giving you the power to determine your own grade</p></li>
+<li><p>You are giving me and your classmates good work in
+return</p></li>
+<li><p>‘Blowing off’ the class is a jerk move, please respect our
+community by putting in effort, or leave it</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="memes/contract_based_grading.jpg"></p>
+<hr />
+<h1 id="our-roles">Our roles</h1>
+<hr />
+<h3 id="my-roles">My Roles</h3>
+<ul>
+<li><p>To teach you how linguists analyze the parts of language relevant
+to memes</p></li>
+<li><p>To present you all with discussions and activities which will
+help us engage with the language of memes</p></li>
+<li><p>To create a structure for the course and ensure a safe
+environment for learning</p></li>
+<li><p>To guide you through difficulties you’ll face on the
+path</p></li>
+<li><p>To evaluate you on your effort, participation, and engagement
+with the problems at hand</p></li>
+</ul>
+<hr />
+<h3 id="your-ias-roles">Your IA’s Roles</h3>
+<ul>
+<li><p>They will help guide you in your analyses and offer suggestions
+and feedback</p></li>
+<li><p>They will be a resource in between classes</p></li>
+<li><p>They’ll help me to evaluate your effort, participation, and
+engagement</p></li>
+<li><p>They’ll help me to maintain a safe space in our classroom,
+virtual and otherwise</p></li>
+</ul>
+<hr />
+<h3 id="your-roles">Your Roles</h3>
+<ul>
+<li><p>You will participate, coming to class sessions, chatting in
+Discord, asking questions, and engaging with the activities</p></li>
+<li><p>You’ll prepare for class sessions, finding and bringing memes and
+examples from your daily life, and completing the discussions</p></li>
+<li><p>You’ll interact with your group members during class and during
+your final project, and stay home when you’re sick.</p></li>
+<li><p>You’ll be kind, considerate, and build and maintain our classroom
+community</p></li>
+</ul>
+<hr />
+<h3 id="you-should-probably-choose-a-different-class-if">You should
+probably choose a different class if…</h3>
+<ul>
+<li><p>You won’t be able to regularly attend class sessions</p>
+<ul>
+<li>Podcasting is not an option for much of what we’re doing</li>
+</ul></li>
+<li><p>You’d rather not work in groups and participate in
+discussions</p>
+<ul>
+<li>Don’t be deadweight for your group or in the class</li>
+</ul></li>
+<li><p>You have a deep innate desire to be an edgelord</p>
+<ul>
+<li>Kindness should motivate you, not desire to troll or harm</li>
+</ul></li>
+<li><p>You don’t really care for memes or the internet</p></li>
+<li><p>You have a pun allergy</p>
+<ul>
+<li>… some of my puns will be apollen!</li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="our-plan">Our plan</h1>
+<hr />
+<h3 id="week-1-building-community">Week 1: Building Community</h3>
+<ul>
+<li><p>What are we doing here?</p></li>
+<li><p>What kinds of memes are and aren’t welcome in our
+classroom?</p></li>
+<li><p>Who are we working with, and how will we do this
+ethically?</p></li>
+</ul>
+<hr />
+<h3 id="speaking-of-community">Speaking of community</h3>
+<ul>
+<li><p>Start finding groups in Discord and Canvas</p>
+<ul>
+<li><p>Feel free to post a ‘Seeking’ ad if you’d like to take a
+leadership role or advocate for an area of study, or just chat with
+folks and find kindred souls</p></li>
+<li><p>Be kind and welcoming, damnit</p></li>
+</ul></li>
+<li><p>You can change groups later, that’s fine!</p></li>
+</ul>
+<hr />
+<h3 id="week-2-are-memes-linguistic">Week 2: Are Memes Linguistic?</h3>
+<ul>
+<li><p>Does this stuff actually make sense as ‘language’?</p></li>
+<li><p>What are grammaticality judgements?</p></li>
+<li><p>Can memes and new language be ‘grammatical’ or
+‘ungrammatical’?</p></li>
+</ul>
+<hr />
+<h3 id="week-3-form-and-memeing">Week 3: Form and Memeing</h3>
+<ul>
+<li><p>How do we find meaningful chunks of words in language?</p></li>
+<li><p>How does this relate to memes and new language and
+behavior?</p></li>
+</ul>
+<hr />
+<h3 id="week-4-generalization-and-mememorphology">Week 4: Generalization
+and Mememorphology</h3>
+<ul>
+<li><p>What meaningful ‘chunks’ exist within memes?</p></li>
+<li><p>How can we take advantage of these chunks of form and meaning to
+make new memes?</p></li>
+<li><p>Do linguistic ideas of productivity and creativity make sense
+here?</p></li>
+</ul>
+<hr />
+<h3 id="week-5-how-do-new-memetic-ideas-develop">Week 5: How do new
+memetic ideas develop?</h3>
+<ul>
+<li><p>How do new words and templates happen?</p></li>
+<li><p>How do new chunks of memes and words happen?</p></li>
+<li><p>How do these things evolve over time?</p></li>
+</ul>
+<hr />
+<h3 id="week-6-meaning-and-memes">Week 6: Meaning and memes</h3>
+<ul>
+<li><p>How do we think about meaning in language?</p></li>
+<li><p>Do linguistic understandings of meaning play a role in our
+understanding?</p></li>
+<li><p>What do these things ‘mean’ anyways?</p></li>
+</ul>
+<hr />
+<h3 id="week-7-project-prep-and-intro-to-sociolinguistics">Week 7:
+Project Prep and Intro to Sociolinguistics</h3>
+<ul>
+<li><p>How does language intersect with social identity?</p></li>
+<li><p><strong>Your project proposals will be due this
+week!</strong></p></li>
+</ul>
+<hr />
+<h3 id="week-8-identity-and-community">Week 8: Identity and
+Community</h3>
+<ul>
+<li><p>What is a language community?</p></li>
+<li><p>Can we use these linguistic tools to better understand meme
+usage?</p></li>
+<li><p>How does our use of these things tell people about who we
+are?</p></li>
+</ul>
+<hr />
+<h3 id="week-9-we-live-in-a-society">Week 9: We live in a Society</h3>
+<ul>
+<li><p>How do language and culture interact?</p></li>
+<li><p>How do memes and culture interact?</p></li>
+<li><p>Can memes be translated across cultures?</p></li>
+</ul>
+<hr />
+<h3 id="week-10-language-on-the-internet-in-the-future">Week 10:
+Language on the Internet <em>in the future!</em></h3>
+<ul>
+<li><p>How does language change?</p></li>
+<li><p>How do these things change?</p></li>
+<li><p>Do memes become more abstract or concrete or both over
+time?</p></li>
+</ul>
+<hr />
+<h3 id="finals-week">Finals Week</h3>
+<ul>
+<li>You’ll submit your final projects on March 20th at Noon</li>
+</ul>
+<hr />
+<h3 id="any-questions">Any questions?</h3>
+<hr />
+<h3 id="im-excited">I’m excited</h3>
+<ul>
+<li>We’re rebooting this class with new ideas and approaches
+<ul>
+<li>We’re opening it up to the entire interweb!</li>
+</ul></li>
+<li>There will be some changes
+<ul>
+<li>And what you end up doing will shape what I end up doing</li>
+</ul></li>
+<li>Your enthusiasm will play a big role in making this class more than
+just a meme</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

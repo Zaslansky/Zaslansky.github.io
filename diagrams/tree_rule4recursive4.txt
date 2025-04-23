@@ -1,0 +1,16 @@
+tree_rule4recursive4tex
+ 
+[NP 
+  [DET the ] 
+  [N' 
+    [ADJ little ] 
+    [N' 
+      [ADJ tiny ] 
+      [N' 
+        [ADJ cute ] 
+        [N' 
+          [ADJ black ] 
+          [N' 
+            [ADJ stray ] 
+            [N' 
+              [N cat ] ] ] ] ] ] ] ]

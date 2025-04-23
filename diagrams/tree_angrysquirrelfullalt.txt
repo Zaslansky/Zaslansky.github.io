@@ -1,0 +1,23 @@
+tree_angrysquirrelfullalttex
+
+[S 
+  [NP 
+    [DET The ] 
+    [N' 
+      [ADJ angry ] 
+      [N' 
+        [N squirrel ] ] ] ]
+  [VP 
+    [VP 
+      [V stole ]
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ mixed ]
+          [N' 
+            [N nuts ] ] ] ] ] 
+    [PP 
+      [P from ] 
+      [NP 
+        [N' 
+          [N Walmart ] ] ] ] ] ]

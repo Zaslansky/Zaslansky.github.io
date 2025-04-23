@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="big" src="humorimg/wizardcat.jpg"></p>
+<hr />
+<h3 id="acknowledgements">Acknowledgements</h3>
+<ul>
+<li><p>My Advisor, Rebecca</p></li>
+<li><p>My Committee</p></li>
+<li><p>Luciana Marques, Georgia Zellou, and Story Kiser</p></li>
+<li><p>The rest of the CU Linguistic Community</p>
+<ul>
+<li>The Illocutionary Force</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="more-acknowledgement">More Acknowledgement</h3>
+<ul>
+<li><p>My family</p></li>
+<li><p>Jessica</p>
+<ul>
+<li>:)</li>
+</ul></li>
+<li><p>Vowels</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td># On the Acoustical and Perceptual Features of Vowel Nasality</td>
+</tr>
+<tr class="even">
+<td>### Will Styler</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section"><img class="big" src="phonmedia/sagittal.png"></h2>
+<h3 id="vowel-nasality">Vowel Nasality</h3>
+<p>Opening the Velopharyngeal Port during vowel production to allow
+nasal airflow</p>
+<hr />
+<h3 id="vowel-nasality-plays-an-important-role-in-many-languages">Vowel
+Nasality plays an important role in many languages!</h3>
+<hr />
+<h3 id="coarticulatory-nasality-in-english">Coarticulatory Nasality in
+English</h3>
+<center>
+<table>
+<tr>
+<th>
+‘Pats’<br>[pæts]
+</th>
+<th>
+‘Pants’<br>[pæ̃nts]
+</th>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="contrastive-nasality-in-lakota">Contrastive Nasality in
+Lakota</h3>
+<center>
+<table>
+<tr>
+<th>
+‘seed’ <br>[su]
+</th>
+<th>
+‘braid’<br>[sũ]
+</th>
+</tr>
+</table>
+</center>
+<audio controls>
+<source src="phonmedia/della_su-396.wav" type="audio/wav">
+</audio>
+<audio controls>
+<source src="phonmedia/della_suN_102-397.wav" type="audio/wav">
+</audio>
+<ul>
+<li>(Nasality is also contrastive in French, Hindi, Bengali, and lots
+more!)</li>
+</ul>
+<hr />
+<p>Listeners clearly can make judgements about nasality in individual
+vowels*</p>
+<ul>
+<li><p><small>(c.f. Lahiri and Marslen-Wilson 1991, Beddor and Krakow
+1999, Beddor 2013, Kingston and Macmillin 1995, Macmillin et al 1999,
+the existence of French, Hindi, Lakota…)</small></p></li>
+<li><p>… <strong>but Linguists don’t understand what <em>features</em>
+of the signal allow them to do so!</strong></p></li>
+</ul>
+<hr />
+<h3 id="thats-where-i-come-in">That’s where I come in!</h3>
+<p><img class="big" src="img/will_thumbsup.jpg"></p>
+<hr />
+<h3 id="two-goals">Two Goals</h3>
+<ul>
+<li><ol type="1">
+<li>Figure out what acoustical features are associated with nasality in
+English and French</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Figure out which ones humans are actually <em>using</em> to hear
+nasality.</li>
+</ol></li>
+</ul>
+<hr />
+<h2 id="the-overall-plan">The Overall Plan</h2>
+<ul>
+<li><p>Collect Data and measure possible features</p></li>
+<li><p><strong>Experiment 1</strong> - What features are statistically
+linked to nasality?</p></li>
+<li><p><strong>Experiment 2</strong> - What features are <em>useful</em>
+for identifying nasal vowels?</p>
+<ul>
+<li>(These two experiments combine to tell us which features look most
+promising)</li>
+</ul></li>
+<li><p><strong>Experiment 3</strong> - What features are humans using to
+perceive nasality?</p></li>
+<li><p><strong>Experiment 4</strong> - Does machine learning show a
+similar perceptual pattern?</p></li>
+</ul>
+<hr />
+<h1 id="data-collection">Data Collection!</h1>
+<hr />
+<h3 id="data-collection-1">Data Collection</h3>
+<ul>
+<li><p>I recorded 12 English and 8 French speakers making words with
+oral and nasal(ized) vowels</p>
+<ul>
+<li><p>For English, I recorded CVC/CVN/NVC/NVN minimal pairs</p></li>
+<li><p>For French, I recorded nasal/oral vowel minimal pairs</p></li>
+<li><p>4,778 vowels total</p></li>
+</ul></li>
+<li><p>Find features that <em>could</em> indicate nasality, and measure
+them!</p>
+<ul>
+<li>All measurement was done automatically by Praat Script</li>
+</ul></li>
+<li><p>Toss the measurements into R for analysis</p></li>
+</ul>
+<hr />
+<h3 id="feature-selection">Feature Selection</h3>
+<p><img src="phonmedia/chen1997figure.png"></p>
+<hr />
+<p><img class="big" src="img/diss_featurelist.png"></p>
+<hr />
+<h3 id="lets-talk-about-a-few-features-more-specifically">Let’s talk
+about a few features more specifically</h3>
+<hr />
+<h3 id="vowel-formant-frequencybandwidth">Vowel Formant
+Frequency/Bandwidth</h3>
+<p><img class="big" src="phonmedia/iformantslabeled.png"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Vowel Formant Frequency/Bandwidth</td>
+</tr>
+<tr class="even">
+<td><img src="phonmedia/ispectrum.png"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="a1-p0">A1-P0</h3>
+<p><img src="phonmedia/chen1997figure.png"></p>
+<hr />
+<h3 id="p0-prominence">P0 Prominence</h3>
+<p><img src="phonmedia/chen1997figure.png"></p>
+<hr />
+<h3 id="vowel-duration">Vowel Duration</h3>
+<p><img class="big" src="img/stopwatch.png"></p>
+<hr />
+<h3 id="spectral-tilt">Spectral Tilt</h3>
+<p><img src="phonmedia/ispectrum.png"></p>
+<hr />
+<h1 id="experiment-1-statistical-analysis">Experiment 1: Statistical
+Analysis!</h1>
+<hr />
+<h3 id="the-idea">The Idea</h3>
+<ul>
+<li><p><em>“If a feature doesn’t meaningfully differ between oral and
+nasal vowels, humans won’t use it.”</em></p></li>
+<li><p><strong>Let’s test which features are different in oral and nasal
+vowels!</strong></p></li>
+</ul>
+<hr />
+<h3 id="experiment-1-plan">Experiment 1: Plan</h3>
+<ul>
+<li><ol type="1">
+<li>Run a bunch of Linear Mixed-Effects Regressions for the features for
+English and French</li>
+</ol>
+<ul>
+<li><p>This will show the <em>statistical</em> link between the features
+and nasality</p></li>
+<li><p>Control for the effect of repetition, timepoint, speaker, and
+word</p></li>
+</ul></li>
+<li><ol start="2" type="1">
+<li>See which features showed significant changes between oral and
+nasal(ized) vowels</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Compare the magnitude of the oral-to-nasal change for each
+feature</li>
+</ol>
+<ul>
+<li>Larger changes are probably more useful</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-findings">The Findings</h3>
+<ul>
+<li><p>Only 19/29 features showed a significant link with nasality in
+both languages</p>
+<ul>
+<li>… but not the same 19!</li>
+</ul></li>
+<li><p>Of those, only some showed large oral-to-nasal changes</p></li>
+</ul>
+<hr />
+<h3 id="the-most-promising-features">The <em>Most Promising</em>
+Features</h3>
+<ul>
+<li><p><strong>Formant Bandwidth</strong> was really strong in both
+languages</p>
+<ul>
+<li><strong>Formant Frequency</strong> showed weaker (but still
+meaningful) differences</li>
+</ul></li>
+<li><p><strong>A1-P0</strong> performed well in both languages</p></li>
+<li><p><strong>P0Prominence</strong> worked well in both
+languages</p></li>
+<li><p><strong>Duration</strong> showed major changes in both
+languages</p>
+<ul>
+<li>(English nasalized vowels appear shorter, French nasal vowels appear
+longer)</li>
+</ul></li>
+<li><p><strong>Spectral Tilt</strong> showed strong changes in French,
+less so in English</p></li>
+</ul>
+<hr />
+<h3 id="experiment-1-wrap-up">Experiment 1 Wrap-up</h3>
+<ul>
+<li><p>We now know which features are linked with nasality <em>across
+the entire dataset</em></p></li>
+<li><p>… and which ones show the largest oral-to-nasal changes</p>
+<ul>
+<li>A1-P0, Duration, Spectral Tilt, Formant Bandwidth/Frequency, and
+P0Prominence</li>
+</ul></li>
+</ul>
+<hr />
+<p>These tests show <em>overall trends</em> across several thousand
+words</p>
+<ul>
+<li><strong>But speech perception involves classifying <em>each
+individual vowel!</em></strong></li>
+</ul>
+<hr />
+<p>How do we know if these features help us spot nasality <em>in any
+given vowel</em>?</p>
+<hr />
+<h2 id="ask-a-computer">Ask a Computer!</h2>
+<h2 id="section-1"><img class="big" src="img/hal9000.jpg"></h2>
+<h1 id="experiment-2-machine-learning">Experiment 2: Machine
+Learning!</h1>
+<hr />
+<h3 id="the-idea-1">The Idea</h3>
+<p>Speech perception is just classifying sounds based on acoustical
+features</p>
+<ul>
+<li><p><strong>Computers can do that too!</strong></p></li>
+<li><p>Give the feature information to a classifier and ask for oral
+vs. nasal judgements</p>
+<ul>
+<li>Greater accuracy means a feature or grouping is more useful!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="basic-machine-classification">Basic Machine Classification</h3>
+<ul>
+<li><p>“Find the patterns in this training data, then use them to
+predict which group this new datapoint belongs to!”</p></li>
+<li><p>“Based on the words around it, what verb sense is being
+used?”</p></li>
+<li><p>“Is this handwritten symbol a”1”? “2”? “3”?</p></li>
+<li><p><strong>“Does this set of measurements indicate an oral vowel, or
+a nasal vowel?”</strong></p></li>
+</ul>
+<hr />
+<h3 id="machines-have-some-advantages-over-humans">Machines have some
+advantages over humans!</h3>
+<ul>
+<li><p>They live in my apartment!</p></li>
+<li><p>They don’t have <em>any</em> context.</p></li>
+<li><p>Their decisions are easier to quantify.</p></li>
+<li><p>They’ll tell you <em>how</em> they made the decision they
+did.</p></li>
+</ul>
+<hr />
+<h3 id="experiment-2-plan">Experiment 2: Plan</h3>
+<ul>
+<li><ol type="1">
+<li>Give features to Machine Learning algorithms one at a time</li>
+</ol>
+<ul>
+<li>The features which give the best accuracy should be the most
+useful</li>
+</ul></li>
+<li><ol start="2" type="1">
+<li>Give them <em>all the features at once</em>, then ask the algorithms
+which features are most useful.</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Find the best group of features</li>
+</ol>
+<ul>
+<li>Find the balance between “few features” and “good accuracy”</li>
+</ul></li>
+<li>Test <em>those</em> features with expensive humans (Experiment
+3!)</li>
+</ul>
+<hr />
+<h3 id="my-algorithms-of-choice">My Algorithms of Choice</h3>
+<ul>
+<li><p>RandomForests</p>
+<ul>
+<li>Make a bunch of decision trees, and use the best one!</li>
+</ul></li>
+<li><p>Support Vector Machines</p>
+<ul>
+<li>Find the mathematical separation that optimally groups classes!</li>
+</ul></li>
+<li><p>RandomForests are really transparent, SVMs are really
+accurate.</p>
+<ul>
+<li>All analyses will use both!</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="single-feature-tests">Single-feature tests</h2>
+<hr />
+<h3 id="single-feature-testing">Single-Feature testing</h3>
+<ul>
+<li><p>Are any features good enough <em>on their own</em> to allow nasal
+perception?</p></li>
+<li><p>116 models, one per feature per algorithm per language</p></li>
+<li><p>Each model outputs accuracy, which we can compare!</p></li>
+</ul>
+<hr />
+<h3 id="single-feature-findings">Single-feature findings!</h3>
+<ul>
+<li><p>Duration is suspiciously useful</p>
+<ul>
+<li>79.7% accuracy with RF, only 59.2% with SVMs in English</li>
+</ul></li>
+<li><p>F1’s Bandwidth wins for English</p>
+<ul>
+<li>67.6% SVM accuracy</li>
+</ul></li>
+<li><p>Spectral Tilt wins for French</p>
+<ul>
+<li>76.8% SVM accuracy</li>
+</ul></li>
+<li><p>A1-P0 gets second place for both</p>
+<ul>
+<li>64.7% in English SVMs, 75.7% in French.</li>
+</ul></li>
+<li><p><em>None of the features are good enough on their
+own!</em></p></li>
+</ul>
+<hr />
+<h3 id="which-features-are-most-useful-in-a-combined-model">Which
+features are most useful <em>in a combined model</em>?</h3>
+<hr />
+<h2 id="evaluating-feature-importance">Evaluating Feature
+Importance</h2>
+<hr />
+<h3 id="randomforest-importance">RandomForest Importance</h3>
+<p>RandomForests can calculate <em>which features were most useful</em>
+for classification!</p>
+<center>
+<table>
+<tr>
+<th>
+<b><br>1.<br>2.<br>3.</b>
+</th>
+<th>
+<b>English</b><br>F1’s Bandwidth<br>A1-P0<br>Duration
+</th>
+<th>
+<b>French</b><br>Spectral Tilt<br>A1-P0<br>F1’s Bandwidth
+</th>
+</tr>
+</table>
+<!-- .element: class="fragment" -->
+</center>
+<hr />
+<p>So, we know which features are useful and important</p>
+<ul>
+<li><strong>What’s the best group to test?</strong></li>
+</ul>
+<hr />
+<h2 id="multi-feature-models">Multi-feature Models</h2>
+<hr />
+<h3 id="multi-feature-modeling">Multi-feature modeling</h3>
+<ul>
+<li>Tested 10 <em>a priori</em> feature groupings
+<ul>
+<li>There are 20,030,007 other possible groupings of 10 features out of
+29.</li>
+</ul></li>
+<li>Compare accuracy <em>in light of the number of features</em>
+<ul>
+<li>The winning model gets the best performance from the fewest
+features</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="multi-feature-results">Multi-feature Results</h3>
+<ul>
+<li><p>SVMs with all features worked best (29 features)</p>
+<ul>
+<li>84.7% accuracy for English, 93.7% in French</li>
+</ul></li>
+<li><p>Formant Width, Formant Frequency, Tilt, A1-P0, and Duration was
+the best subgroup (9 features)</p>
+<ul>
+<li>82.2% for English, 91.7% for French</li>
+</ul></li>
+<li><p><strong>We only lose 2-3% accuracy when we reduce our feature set
+by 68%!</strong></p>
+<ul>
+<li>That’s a promising grouping!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="overall-machine-learning-results">Overall Machine Learning
+Results</h3>
+<ul>
+<li><p><strong>Formant Bandwidth</strong> was the best feature for
+English, strong in French</p></li>
+<li><p><strong>Spectral Tilt</strong> was the most useful feature in
+French, less so in English</p></li>
+<li><p><strong>A1-P0</strong> performed well in both languages</p>
+<ul>
+<li><strong>P0Prominence</strong> was not useful for classification</li>
+</ul></li>
+<li><p><strong>Formant Frequency</strong> was useful too!</p></li>
+<li><p><strong>Duration</strong> was <em>really</em> useful in both
+languages</p>
+<ul>
+<li>… but this could be because it lends itself particularly well to
+classification</li>
+</ul></li>
+</ul>
+<hr />
+<p>So, we’ve got 5 features which allow high accuracy</p>
+<ul>
+<li><h2 id="lets-see-if-humans-use-them">Let’s see if humans use
+them!</h2></li>
+</ul>
+<hr />
+<h1 id="experiment-3-human-perception">Experiment 3: Human
+Perception</h1>
+<hr />
+<h3 id="the-idea-2">The Idea</h3>
+<ul>
+<li><p>English listeners can use vowel nasality to identify missing
+nasal consonants!</p>
+<ul>
+<li>ba_ could be “bad” or “ban”</li>
+</ul></li>
+<li><p><strong>Let’s add or remove features from vowels to see what
+indicates “nasality”!</strong></p></li>
+<li><p>If adding or removing a feature changes perception, or makes them
+react more slowly, it’s important!</p>
+<ul>
+<li>Manipulate features independently, or together, in both /ɑ/ and
+/æ/</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-plan">The Plan</h3>
+<ul>
+<li><ol type="1">
+<li>Create nasal vowels where each nasal feature is
+<em>reduced</em>.</li>
+</ol>
+<ul>
+<li>Listeners might think they’re oral!</li>
+</ul></li>
+<li><ol start="2" type="1">
+<li>Create oral vowels where each nasal feature is <em>added</em>.</li>
+</ol>
+<ul>
+<li>Listeners might think they’re nasal!</li>
+</ul></li>
+<li><ol start="3" type="1">
+<li>Create control stimuli which are modified then unmodified</li>
+</ol>
+<ul>
+<li>This will reveal any problems with the stimuli</li>
+</ul></li>
+<li><ol start="4" type="1">
+<li>Give them to listeners, then analyze Accuracy and Reaction
+Time!</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="the-modifications">The Modifications</h3>
+<ul>
+<li><p>Simulate the oral-to-nasal change in A1-P0 (or vice versa)</p>
+<ul>
+<li>Lower A1-P0 by -5.3 dB in oral vowels, raise by 5.3 dB in nasal
+ones</li>
+</ul></li>
+<li><p>Simulate the oral-to-nasal change in duration (or vice
+versa)</p></li>
+<li><p>Simulate the oral-to-nasal change in spectral tilt (or vice
+versa)</p></li>
+<li><p>Change the formant structure</p>
+<ul>
+<li><p>Change F1 and F3 bandwidth to match the oral and nasal
+norms</p></li>
+<li><p>Simulate the <em>overall</em> oral-to-nasal change in F1’s
+frequency at the same time</p></li>
+</ul></li>
+<li><p>Modify <em>all four features at once!</em> (“Allmod”)</p></li>
+</ul>
+<hr />
+<h3 id="the-experiment">The Experiment</h3>
+<ul>
+<li>Data from 42 normal-hearing Native English speakers from the LING
+Subject Pool</li>
+</ul>
+<hr />
+<center>
+<table>
+<tr>
+<th>
+<h1>
+bad
+</h1>
+</th>
+<th>
+<h1>
+ban
+</h1>
+</th>
+</tr>
+</table>
+</center>
+<audio controls>
+<source src="phonmedia/diss_hazel_BAD_nfor_ex_c.wav" type="audio/wav">
+</audio>
+<hr />
+<center>
+<table>
+<tr>
+<th>
+<h1>
+bomb
+</h1>
+</th>
+<th>
+<h1>
+bob
+</h1>
+</th>
+</tr>
+</table>
+</center>
+<audio controls>
+<source src="phonmedia/diss_molly_BOMB_ofor_ex_c.wav" type="audio/wav">
+</audio>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td><audio controls>
+<source src="phonmedia/diss_hazel_DAD_ndur_ex_o.wav" type="audio/wav">
+</audio></td>
+</tr>
+</tbody>
+</table>
+<p>(397 more times!)</p>
+<hr />
+<h3 id="the-analysis">The Analysis</h3>
+<ul>
+<li><p>Use the accuracy and reaction time data from this
+experiment.</p></li>
+<li><p>If listeners call originally nasal vowels “oral” (or vice versa),
+we’ll call the response <strong>inaccurate</strong>.</p>
+<ul>
+<li>Reduced accuracy means we’ve affected the perception of
+nasality!</li>
+</ul></li>
+<li><p><strong>Increased RT</strong> means we’ve made classification
+more difficult.</p></li>
+<li><p>Check the data using Linear Mixed-Effects Regressions</p></li>
+</ul>
+<hr />
+<h2 id="feature-addition-oral-made-nasal-findings">Feature Addition
+(oral-made-nasal) Findings</h2>
+<hr />
+<p><img src="img/diss_conf.add.sum.png"></p>
+<ul>
+<li><p><em>Modifying formants (or all together) resulted in more
+confusion!</em></p>
+<ul>
+<li><p>People called oral vowels “nasal” more often with modified
+formants</p></li>
+<li><p>The pattern of the All-Modified stimuli was statistically
+similar.</p></li>
+</ul></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="img/diss_rt.add.sum.png"></td>
+</tr>
+<tr class="even">
+<td>* <em>Modifying formants (or all together) resulted in slower
+reaction times!</em></td>
+</tr>
+<tr class="odd">
+<td>* People were slower to call vowels “oral” or “nasal” with modified
+formants</td>
+</tr>
+</tbody>
+</table>
+<h3 id="addition-summary">Addition Summary</h3>
+<ul>
+<li><p>Perception was affected by modifying formant structure, or by
+modifying all features.</p>
+<ul>
+<li>Post-hoc tests show that “All” and “Formant” modification were not
+significantly different</li>
+</ul></li>
+<li><p><strong>Only modifying formant frequency and bandwidth had an
+effect on perception!</strong></p></li>
+</ul>
+<hr />
+<h2 id="feature-reduction-nasal-made-oral-findings">Feature Reduction
+(Nasal-made-Oral) Findings</h2>
+<hr />
+<p><img src="img/diss_conf.rem.sum.png"></p>
+<ul>
+<li><p>Confusion wasn’t affected by modificaton!</p>
+<ul>
+<li>We never changed “nasal” to “oral” by modifying features</li>
+</ul></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="img/diss_rt.rem.sum.png"></td>
+</tr>
+<tr class="even">
+<td>* <em>Modifying formants (or all features) resulted in slower
+reaction times!</em></td>
+</tr>
+<tr class="odd">
+<td>* People were slower to call vowels “oral” or “nasal” with modified
+formants</td>
+</tr>
+</tbody>
+</table>
+<h3 id="removal-summary">Removal Summary</h3>
+<ul>
+<li><p><em>None of the experimental modifications</em> affected
+confusion</p>
+<ul>
+<li>Nothing I did made a nasal vowel “oral”</li>
+</ul></li>
+<li><p>Modifying formants (or all features) resulted in slower
+responses</p>
+<ul>
+<li>Post-hoc tests show that “All” and “Formant” modification did not
+meaningfully differ</li>
+</ul></li>
+<li><p><strong>Formant changes slowed listeners down, but didn’t change
+classification!</strong></p></li>
+</ul>
+<hr />
+<h3 id="experiment-3-summary">Experiment 3 Summary</h3>
+<ul>
+<li><p>Only <strong>formant modification</strong> had a significant
+effect on perception</p></li>
+<li><p>Formant modification caused listeners to respond more
+slowly</p></li>
+<li><p>Formant modification made oral vowels sound “nasal”</p></li>
+<li><p>F1’s bandwidth is probably the cue</p>
+<ul>
+<li><p>It worked best in ML, had the best statistical link, and it makes
+sense acoustically</p></li>
+<li><p>Hawkins and Stevens (1985) also points that direction</p></li>
+</ul></li>
+<li><p>Formant modification <strong>wasn’t enough</strong> to make nasal
+vowels sound “oral”</p></li>
+</ul>
+<hr />
+<p>(We’ll talk more about that asymmetry later!)</p>
+<hr />
+<p>So, we can answer our primary research question!</p>
+<ul>
+<li><h3
+id="formant-structure-is-the-main-cue-to-nasality-in-english">Formant
+structure is the main cue to nasality in English!</h3></li>
+</ul>
+<hr />
+<p><img class="big" src="humorimg/celebration.gif"></p>
+<hr />
+<p>So, the machine learning models predicted F1’s bandwidth as the most
+useful feature…</p>
+<ul>
+<li><h3 id="how-similar-are-the-svms-and-the-humans">How similar
+<em>are</em> the SVMs and the humans?</h3></li>
+</ul>
+<hr />
+<h1 id="experiment-4-humans-vs.-machines">Experiment 4: Humans
+vs. Machines</h1>
+<ul>
+<li><img class="big" src="img/terminator.png"></li>
+</ul>
+<hr />
+<h3 id="the-idea-3">The Idea</h3>
+<ul>
+<li><em>Let’s give the computer the same experimental task as the
+humans, using the same altered stimuli, and see how they
+compare!</em></li>
+</ul>
+<hr />
+<h3 id="the-plan-1">The Plan</h3>
+<ul>
+<li><ol type="1">
+<li>Train SVMs on different datasets</li>
+</ol>
+<ul>
+<li><p>NoNVN - Trained on English without NVNs (like the
+stimuli)</p></li>
+<li><p>EnAll - Trained on <em>all</em> the English data</p></li>
+<li><p>EnFrAll - Trained on English <em>and</em> French</p></li>
+</ul></li>
+<li><ol start="2" type="1">
+<li>Test those SVMs on the experimental stimuli (classifying “oral” or
+“nasal”)</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Compare the by-condition results to the humans</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="experimental-stimuli-by-condition">Experimental Stimuli by
+Condition</h3>
+<p><img src="img/diss_stimml_human_vs_machine_ex.png"></p>
+<hr />
+<p><img src="img/diss_humanvsmachine_rankings.png"></p>
+<hr />
+<h3 id="experiment-4-summary">Experiment 4 Summary</h3>
+<ul>
+<li><p>Humans and machines <em>did</em> show similar patterns</p>
+<ul>
+<li>Modifications that were difficult for humans were difficult for
+SVMs</li>
+</ul></li>
+<li><p>The Generic English model showed the most similarity</p>
+<ul>
+<li>Adding in French training data was a <strong>bad</strong> idea</li>
+</ul></li>
+<li><p>Perceptual testing with machine learning isn’t crazy</p></li>
+<li><p>Humans still win.</p></li>
+</ul>
+<hr />
+<h3 id="hooray">Hooray!</h3>
+<p><img  src="img/morpheus.png"></p>
+<hr />
+<h2 id="coming-full-circle">Coming full circle</h2>
+<p><strong>Experiment 1</strong> - What features are statistically
+linked to nasality?</p>
+<p><strong>Experiment 2</strong> - What features are <em>useful</em> for
+identifying nasal vowels?</p>
+<p><strong>Experiment 3</strong> - What features are humans using to
+perceive nasality?</p>
+<p><strong>Experiment 4</strong> - Do computers show a similar
+perceptual pattern?</p>
+<hr />
+<h2 id="discussion">Discussion</h2>
+<hr />
+<h3 id="weve-got-some-great-new-information-about-nasality">We’ve got
+some great new information about nasality</h3>
+<ul>
+<li><p>We know more about measuring nasality</p>
+<ul>
+<li><p>There’s no “magic feature”, but A1-P0 isn’t bad</p></li>
+<li><p>We should also try F1’s Bandwidth</p></li>
+</ul></li>
+<li><p>We know which features <em>just don’t work</em>.</p></li>
+<li><p>We know more about cross-linguistic differences in nasal
+acoustics</p></li>
+</ul>
+<hr />
+<h3 id="machine-learning-is-a-good-tool-in-phonetic-research">Machine
+Learning is a good tool in phonetic research</h3>
+<ul>
+<li><p>We can accurately classify nasality using acoustics
+alone</p></li>
+<li><p>The best features are general, rather than nasality
+specific</p></li>
+<li><p>SVM classification showed similarity to human perception!</p>
+<ul>
+<li>Modeling humans using machines isn’t crazy!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="formants-are-the-main-cue-to-nasality-perception-in-english">Formants
+are the main cue to nasality perception in English</h3>
+<ul>
+<li><p>Modifying formants was the <em>only</em> modification which
+affected perception</p></li>
+<li><p>… but it’s probably not the <em>only</em> cue for vowel
+nasality</p></li>
+</ul>
+<hr />
+<h3
+id="reducing-formant-bandwidth-doesnt-make-nasal-vowels-oral">Reducing
+Formant Bandwidth doesn’t make nasal vowels “oral”</h3>
+<ul>
+<li><p>Listeners slow down, but they don’t reclassify when we change
+bandwidth</p></li>
+<li><p>There was still something “nasal” about the vowels</p></li>
+<li><p>This actually makes sense, because…</p></li>
+</ul>
+<hr />
+<h3
+id="nasal-vowels-are-produced-with-different-oral-articulations">Nasal
+vowels are produced with different <em>oral</em> articulations</h3>
+<ul>
+<li><p>The oral differences between oral and nasal vowels are
+<em>not</em> arbitrary</p>
+<ul>
+<li>c.f. (Carignan et al. (2015), Carignan (2014), Carignan et
+al. (2011) and Shosted et al. (2012))</li>
+</ul></li>
+<li><p>We only made formant changes assocated with <em>all
+vowels</em></p>
+<ul>
+<li>Vowel-specific changes in formants were ignored</li>
+</ul></li>
+<li><p>If nasal vowels are <em>orally</em> different, we wouldn’t
+confuse listeners by removing “<em>nasality</em>”</p>
+<ul>
+<li>At worst, they hear a “nasal vowel” without nasality!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="independent-nasal-vowels-make-sense">Independent Nasal Vowels
+make sense!</h3>
+<ul>
+<li><p>Contrast enhancement using a secondary feature is common</p>
+<ul>
+<li>Duration and Vowel quality, Nasality and Pharyngealization (Zellou
+2012), and more</li>
+</ul></li>
+<li><p>Nasal vowel systems are often very different than the oral vowel
+systems</p>
+<ul>
+<li>Centralization and quality shifts are well known</li>
+</ul></li>
+<li><p>Nasal systems often change independently of oral systems
+diachronically</p></li>
+<li><p>So, nasality is <em>part of</em> the difference, but it’s not the
+only difference!</p></li>
+</ul>
+<hr />
+<h3 id="this-isnt-the-final-word-on-nasality-perception">This isn’t the
+final word on nasality perception</h3>
+<ul>
+<li><p>The English results used college-aged speakers and listeners</p>
+<ul>
+<li>The process may look different for pathological hearing or
+speech.</li>
+</ul></li>
+<li><p>We only tested two vowels here, and we’ve got plenty
+more.</p></li>
+<li><p>French Perception experiments need to be done!</p></li>
+<li><p>There are still lots of languages out there in the
+world.</p></li>
+</ul>
+<hr />
+<h3 id="conclusions">Conclusions</h3>
+<ul>
+<li><p>Our current measurements of nasality aren’t bad</p>
+<ul>
+<li>Although F1’s Bandwidth is a great new one.</li>
+</ul></li>
+<li><p>Machines <em>can</em> accurately classify nasality</p>
+<ul>
+<li>… and simulate human perception!</li>
+</ul></li>
+<li><p>Formant bandwidth is the best nasality cue we’ve got</p>
+<ul>
+<li>… at least for English</li>
+</ul></li>
+<li><p>… but other aspects of the vowel articulation are important
+too!</p></li>
+</ul>
+<hr />
+<p>Most importantly…</p>
+<hr />
+<h3 id="theres-more-to-vowel-nasality-than-nasal-airflow">There’s more
+to vowel nasality than nasal airflow!</h3>
+<hr />
+<h2 id="thank-you">## Thank you!</h2>
+<h1 id="questions">Questions?</h1>
+<hr />
+<h3 id="references">References</h3>
+<p>Carignan, C. (2014). An acoustic and articulatory examination of the
+oral in nasal: The oral articulations of french nasal vowels are not
+arbitrary. Journal of Phonetics, 46(0):23–33.</p>
+<p>Carignan, C., Shosted, R., Shih, C., and Rong, P. (2011).
+Compensatory articulation in american english nasalized vowels. Journal
+of Phonetics, 39(4):668 – 682.</p>
+<p>Carignan, C., Shosted, R. K., Fu, M., Liang, Z.-P., and Sutton, B. P.
+(2015). A real-time mri investigation of the role of lingual and
+pharyngeal articulation in the production of the nasal vowel system of
+french. Journal of Phonetics, 50(0):34 – 51.</p>
+<hr />
+<h3 id="references-continued">References Continued</h3>
+<p>Chen, M. Y. (1997). Acoustic correlates of english and french
+nasalized vowels. The Journal of the Acoustical Society of America,
+102(4):2350–2370.</p>
+<p>Hawkins, S. and Stevens, K. N. (1985b). Acoustic and perceptual
+correlates of the non-nasal–nasal distinction for vowels. The Journal of
+the Acoustical Society of America, 77(4):1560–1575.</p>
+<p>Shosted, R., Carignan, C., and Rong, P. (2012). Managing the
+distinctiveness of phonemic nasal vowels: Articulatory evidence from
+hindi. The Journal of the Acoustical Society of America,
+131(1):455–465.</p>
+<p>G. Zellou. Similarity and Enhancement: Nasality from Moroccan Arabic
+Pharyngeals and Nasals. PhD thesis, University of Colorado at Boulder,
+2012.</p>
+<hr />
+<h3 id="other-tables">Other Tables</h3>
+<hr />
+<p><img class="big" src="img/diss_by_feature_en.png"></p>
+<hr />
+<p><img class="big" src="img/diss_by_feature_fr.png"></p>
+<hr />
+<p><img src="img/diss_by_feature_importance.png"></p>
+<hr />
+<p><img src="img/diss_multifeature.png"></p>
+<hr />
+<h3 id="control-vs.-experimental-stimuli">Control vs. Experimental
+Stimuli</h3>
+<p><img src="img/diss_stimml_human_vs_machine_conex.png"></p>
+<hr />
+<h3 id="control-stimuli-by-condition">Control Stimuli by Condition</h3>
+<p><img src="img/diss_stimml_human_vs_machine_con.png"></p>
+<hr />
+</body>
+</html>

@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="welcome-back">Welcome back!</h3>
+<ul>
+<li>Let’s continue the afternoon tradition!</li>
+</ul>
+<hr />
+<h3 id="the-weak-form-of-the-navier-stokes-equations">The Weak form of
+the Navier-Stokes Equations</h3>
+<ul>
+<li><p>Useful for describing fluid movement in higher-dimensional data
+analysis</p></li>
+<li><p><img class="r-stretch" src="img/weak_navier_stokes.png"></p></li>
+</ul>
+<hr />
+<h3 id="just-kidding">Just kidding</h3>
+<ul>
+<li>I just figured that’d wake you up after lunch</li>
+</ul>
+<hr />
+<h1
+id="software-for-analysis-package-managers-and-environments">Software
+for Analysis, Package Managers, and Environments</h1>
+<h3 id="will-styler---css-bootcamp">Will Styler - CSS Bootcamp</h3>
+<p><a href="https://savethevowels.org/talks/cssbc_development.html"
+class="uri">https://savethevowels.org/talks/cssbc_development.html</a></p>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Your computer as a tool</p></li>
+<li><p>What makes good software good?</p></li>
+<li><p>Open vs. Proprietary Software</p></li>
+<li><p>Packages, ‘Apps’, and Package Managers</p></li>
+<li><p>Development Environments</p></li>
+<li><p>How to run code</p></li>
+<li><p>Other useful software</p></li>
+</ul>
+<hr />
+<h2 id="statement-of-bias">Statement of Bias</h2>
+<ul>
+<li><p>I am a free-and-open-source software zealot with substantial
+trust issues</p>
+<ul>
+<li>Controversial statements will be labeled with “🤡”</li>
+</ul></li>
+<li><p>I am also a Unix-style thinker, and tend to use that
+philosophy</p></li>
+<li><p>I am purposefully being extreme, to show you the other end of the
+thought process</p></li>
+<li><p>Your mileage may vary</p></li>
+</ul>
+<hr />
+<h2 id="your-computer-as-a-tool">Your Computer as a Tool</h2>
+<hr />
+<h3 id="as-a-computational-social-scientist-your-computer-is-a-tool">As
+a computational social scientist, your computer is a tool</h3>
+<ul>
+<li><p>In some cases it’s your most important tool</p></li>
+<li><p>What characteristics do we want a tool to have?</p></li>
+</ul>
+<hr />
+<h3 id="a-good-computing-tool-should-be">A good computing tool should
+be…</h3>
+<ul>
+<li><p>Reliable</p></li>
+<li><p>Sufficient for your needs</p></li>
+<li><p>Up-to-date</p></li>
+<li><p>Secure</p></li>
+<li><p>In a known state</p></li>
+<li><p>Backed up</p></li>
+<li><p>Under your control</p></li>
+</ul>
+<hr />
+<h3 id="reliable-computers">Reliable Computers</h3>
+<ul>
+<li><p>Mechanically functioning, with reliable power</p></li>
+<li><p>‘Bleeding edge’ software implies that there will be
+blood</p></li>
+<li><p>Use a reliable operating system</p>
+<ul>
+<li>Consider a ‘long term supported’ operating system</li>
+</ul></li>
+<li><p>Know how to get support</p>
+<ul>
+<li>IT department, ‘genius bar’, DIY repairs, or otherwise</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="sufficient-for-your-needs">‘Sufficient for your needs’</h3>
+<ul>
+<li><p>Enough processing power to work in reasonable time</p></li>
+<li><p>Enough RAM to fit the data you need</p></li>
+<li><p>Compatible with needed packages (e.g. Nvidia’s CUDA)</p></li>
+<li><p>Can you access your data/StackExchange/remote servers?</p></li>
+</ul>
+<hr />
+<h3 id="up-to-date">Up-to-date</h3>
+<ul>
+<li><p>Make sure that your system has the latest security
+patches</p></li>
+<li><p>Make sure that you’re updating the packages you use where
+smart</p>
+<ul>
+<li>… but do so sanely</li>
+</ul></li>
+<li><p>Pain is inverse normally distributed with software age</p>
+<ul>
+<li>Too old or too new both cause trouble</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="secure">Secure</h3>
+<ul>
+<li><p>Encrypt your hard drives, always</p></li>
+<li><p>Consider the varied sensitivity of your data</p></li>
+<li><p>Use a password manager</p></li>
+<li><p>Don’t use USB drives you find on the street</p></li>
+<li><p>Keep your machine up to date</p></li>
+<li><p>Limit the ‘attack surface’ by avoiding unneeded, untrusted
+software</p></li>
+<li><p>Vary your security based on the threat profile and value of your
+data</p></li>
+</ul>
+<hr />
+<h3 id="aside-security-threat-profiles">Aside: Security threat
+profiles</h3>
+<ul>
+<li><p>Your children</p></li>
+<li><p>Computer thieves</p></li>
+<li><p>Opportunistic hackers</p></li>
+<li><p>Targeted threats (e.g. IP theft, personal information,
+ransomware) and Evil Maids</p></li>
+<li><p>Nation-State Threats (e.g. NSA, Mossad, GRU, Military
+Cyber-Attack groups)</p></li>
+<li><p>Computer Manufacturers</p></li>
+</ul>
+<hr />
+<h3 id="you-dont-have-to-outrun-the-bear-just-the-other-campers"><em>You
+don’t have to outrun the bear, just the other campers</em></h3>
+<hr />
+<h3 id="an-important-security-question-who-am-i-trusting-right-now">An
+important security question: “Who am I trusting right now?”</h3>
+<ul>
+<li><p>People with physical access to the machine</p></li>
+<li><p>Other users on the machine?</p></li>
+<li><p>People developing software which you run?</p></li>
+<li><p>People running ‘administration’ software from your
+work/institution?</p></li>
+<li><p>People developing your operating system?</p></li>
+<li><p>People making your hardware?</p></li>
+</ul>
+<hr />
+<h3 id="the-cloud-is-just-somebody-elses-computer"><em>The Cloud is just
+Somebody Else’s Computer</em></h3>
+<hr />
+<h3 id="security-is-onion-shaped">Security is onion-shaped</h3>
+<p><img class="r-stretch" src="img/onion.jpg"></p>
+<hr />
+<h3 id="in-a-known-and-specified-state">In a known and specified
+state</h3>
+<ul>
+<li><p>What kind of software is on your computer?</p></li>
+<li><p>Can the programs interfere with one another?</p></li>
+<li><p>If your computer was stolen today, could you rebuild and re-run
+the same analysis the same way tomorrow?</p></li>
+</ul>
+<hr />
+<h3 id="backed-up">Backed up</h3>
+<ul>
+<li><p>Two is one, one is none.</p></li>
+<li><p><a
+href="https://wstyler.ucsd.edu/posts/lost_dissertation_files.html">I
+lost a good portion of my dissertation data to a corrupted MacBookPro
+Hard Drive</a></p></li>
+<li><p>Consider a 3-2-1 Backup Scheme</p>
+<ul>
+<li>Three copies, Two different media and methods, one offsite</li>
+</ul></li>
+<li><p>Think of everything you need to back up</p>
+<ul>
+<li>Documents, media, settings, lists of installed packages, passwords,
+and more</li>
+</ul></li>
+<li><p>Don’t upload unencrypted and sensitive data to
+Google/iCloud/Dropbox 🤡</p></li>
+</ul>
+<hr />
+<h3 id="under-your-control">Under your control</h3>
+<ul>
+<li><p>Other people should not be able to modify your system’s function
+without your consent</p>
+<ul>
+<li>User accounts should be separated, and you should be the only
+administrator on your machine 🤡</li>
+</ul></li>
+<li><p>You should be the one to initiate any changes which could break
+your machine</p></li>
+<li><p>Your employers may demand some level of control, but this should
+be a part of your threat model 🤡</p>
+<ul>
+<li>‘Security Monitoring’ software is a virus your employer controls,
+and should reduce trust in your machine 🤡</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="a-good-computing-tool-should-be-1">A good computing tool should
+be…</h3>
+<ul>
+<li><p>Reliable</p></li>
+<li><p>Sufficient for your needs</p></li>
+<li><p>Up-to-date</p></li>
+<li><p>Secure</p></li>
+<li><p>In a known state</p></li>
+<li><p>Backed up</p></li>
+<li><p>Under your control</p></li>
+</ul>
+<hr />
+<h2 id="what-makes-good-software-good">What makes good software
+good?</h2>
+<hr />
+<h3 id="the-same-things">The same things!</h3>
+<ul>
+<li><p>Reliable</p></li>
+<li><p>Sufficient for your needs</p></li>
+<li><p>Up-to-date</p></li>
+<li><p>Secure</p></li>
+<li><p>In a known state</p></li>
+<li><p>Backed up</p></li>
+<li><p>Under your control</p></li>
+<li><p><em>Interoperable with Open formats</em></p></li>
+</ul>
+<hr />
+<h3 id="reliable-software">Reliable Software</h3>
+<ul>
+<li><p>Does what you need, when you need it to</p></li>
+<li><p>Doesn’t crash more than needed</p></li>
+<li><p>Can be trusted to function in the same way, every time</p></li>
+<li><p>Will reliably be accessible in many settings (e.g. offline, new
+computer, different country, etc)</p></li>
+<li><p>Subscription-based Software is unreliable by definition
+🤡</p></li>
+</ul>
+<hr />
+<h3 id="sufficient-for-your-needs-1">Sufficient for your needs</h3>
+<ul>
+<li><p>Software should do what you need it to</p></li>
+<li><p>Beware swatting flies with hand grenades</p></li>
+<li><p>Remember that you might need to fight the IT people to install
+every single package</p></li>
+</ul>
+<hr />
+<h3 id="up-to-date-1">Up-to-date</h3>
+<ul>
+<li><p>Be wary of software solutions which require old versions of the
+OS or Python</p></li>
+<li><p>Software which hasn’t been updated for a while is either
+<em>very</em> solid or <em>very</em> precarious</p></li>
+</ul>
+<hr />
+<h3 id="secure-1">Secure</h3>
+<ul>
+<li><p>Untrusted code deserves fewer privileges</p>
+<ul>
+<li>All code is untrusted 🤡</li>
+</ul></li>
+<li><p>Be wary of ‘pickles’ and python binary formats</p>
+<ul>
+<li>Use .safetensors and .gguf files for Neural Network models</li>
+</ul></li>
+<li><p>Make sure you know who wrote what you’re running and what it
+does</p></li>
+<li><p>Make sure you understand why you’re running the commands you are
+before you run something from StackExchange</p></li>
+</ul>
+<hr />
+<h3 id="in-a-known-state">In a Known State</h3>
+<ul>
+<li><p>Software which randomly updates and changes features is
+problematic</p></li>
+<li><p>You should be able to control the version(s) you’re
+running</p></li>
+<li><p>Software companies <a
+href="https://hackaday.com/2022/08/12/local-simulation-feature-to-be-removed-from-all-autodesk-fusion-360-versions/">can
+and will remove features at will if it makes them more
+money</a></p></li>
+</ul>
+<hr />
+<h3 id="backed-up-1">Backed up</h3>
+<ul>
+<li><p>Your data should be accessible and able to be backed up
+independent of the program</p>
+<ul>
+<li>If your data exists only in the vendor’s cloud, it’s on borrowed
+time 🤡</li>
+</ul></li>
+<li><p>There should be a clear way to export your settings, data, and
+analysis for transfer to a new device</p></li>
+</ul>
+<hr />
+<h3 id="under-your-control-1">Under your control</h3>
+<ul>
+<li><p>Be skeptical of additional software you’re required to
+run</p></li>
+<li><p>You should run things ‘in the cloud’ which could be done on your
+computer only with good reason 🤡</p>
+<ul>
+<li>What happens when Google’s servers are down? Or you’re on a
+plane?</li>
+</ul></li>
+<li><p>You should ask questions if they ask for your password
+🤡</p></li>
+</ul>
+<hr />
+<h3 id="open-formats-and-interoperability">Open Formats and
+Interoperability</h3>
+<ul>
+<li><p>Proprietary formats and closed formats are Bad. 🤡</p>
+<ul>
+<li>You should be able to get the data from saved to useful without a
+company’s help or a license</li>
+</ul></li>
+<li><p>If a program saves your data in a format only it can understand,
+this is a means of exerting control over you 🤡</p>
+<ul>
+<li>Do not put yourself in a position where you <strong>must</strong>
+pay for the upgrade 🤡</li>
+</ul></li>
+<li><p>Anything you create should be transferable to a different or
+competing software package</p>
+<ul>
+<li>‘Never walk into a room you don’t know how to walk out of’ 🤡</li>
+</ul></li>
+<li><p>This also makes it easier to pipeline software (e.g. do one
+analysis in one package, and then transfer to a different one)</p></li>
+<li><p>Plaintext is Durable</p></li>
+</ul>
+<hr />
+<h3 id="the-same-things-1">The same things!</h3>
+<ul>
+<li><p>Reliable</p></li>
+<li><p>Sufficient for your needs</p></li>
+<li><p>Up-to-date</p></li>
+<li><p>Secure</p></li>
+<li><p>In a known state</p></li>
+<li><p>Backed up</p></li>
+<li><p>Under your control</p></li>
+<li><p><em>Interoperable with Open formats</em></p></li>
+</ul>
+<hr />
+<h2 id="pains-and-benefits-in-open-source-software">Pains and benefits
+in Open Source Software</h2>
+<hr />
+<h1 id="section">🤡 !!!</h1>
+<hr />
+<h3 id="what-is-free-and-open-source-software">What is free and open
+source software?</h3>
+<ul>
+<li><p>Free as in beer (‘gratis’)</p>
+<ul>
+<li><p>Autodesk Fusion is Free for home users, but under very
+restrictive terms</p></li>
+<li><p>ArcGIS is free for UCSD students, temporarily, with
+limits</p></li>
+</ul></li>
+<li><p>Free as in freedom (‘libre’)</p>
+<ul>
+<li>Some projects charge for easy-to-run-binaries, or have an open core
+(e.g. VSCode, Android)</li>
+</ul></li>
+<li><p>Libre and Gratis Software</p>
+<ul>
+<li><p>Free to download, and you’re free to use it in any way compatible
+with the license</p></li>
+<li><p>Often called FOSS (Free Open Source Software) or FLOSS (Free and
+Libre Open Source Software)</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="free-software-licenses">Free software licenses</h3>
+<ul>
+<li><p>Many different versions, more and less restrictive</p>
+<ul>
+<li>Common licenses are MIT, GPL, Apache, Creative Commons</li>
+</ul></li>
+<li><p>Common restrictions on re-sale, use-without-acknowledgement,
+inclusion in non-free software packages</p>
+<ul>
+<li><p>‘Copyleft’ licenses prohibit making open code closed and
+‘proprietarization’</p></li>
+<li><p>Viral licenses exist, which try to make free and open anything
+which contains code from it</p></li>
+</ul></li>
+<li><p>This is a <strong>whole situation</strong></p>
+<ul>
+<li>… but the upshot is that there are many free and open packages that
+are amazing</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="open-source-projects-were-using">Open Source Projects we’re
+using</h3>
+<ul>
+<li><p>Python, NumPy, Pandas, MatPlotLib, Seaborn, SciKit Learn,
+R</p></li>
+<li><p>Linux on Datahub is open-source too</p></li>
+<li><p>LibreOffice is a free Microsoft Office Replacement</p></li>
+<li><p>This slideshow is created entirely with FOSS</p></li>
+<li><p>We’ll be teaching you more open source tools as time goes
+on</p></li>
+</ul>
+<hr />
+<h3 id="closed-source-tools-were-using">Closed-source Tools we’re
+using</h3>
+<ul>
+<li><p>Windows/iOS/macOS*</p>
+<ul>
+<li>Android*</li>
+</ul></li>
+<li><p>Google Docs/Sheets</p></li>
+<li><p>Zoom</p></li>
+<li><p>ArcGIS</p></li>
+<li><p>Cisco AnyConnect VPN Client</p></li>
+</ul>
+<hr />
+<h3 id="free-and-open-source-advantages">Free and Open Source
+Advantages</h3>
+<ul>
+<li><p>The code <strong>can</strong> be inspected, modified, and
+improved by anybody, even you!</p></li>
+<li><p>Community ownership means development will often* favor the
+community</p>
+<ul>
+<li>The project can be ‘forked’, resulting in two different source code
+bases</li>
+</ul></li>
+<li><p>No Digital Rights Management, licensing fees, or otherwise,
+allowing greater equity and reproducibility</p></li>
+</ul>
+<hr />
+<h3 id="free-and-open-source-advantages-cont.">Free and Open Source
+Advantages (cont.)</h3>
+<ul>
+<li><p>Often easier to download and install and available on more
+platforms</p></li>
+<li><p>The software cannot ‘disappear’, be discontinued, or be changed
+unfavorably without recourse</p></li>
+<li><p>Problems can be solved without the developer’s
+cooperation*</p></li>
+</ul>
+<hr />
+<h3 id="free-and-open-source-disadvantages">Free and Open Source
+Disadvantages</h3>
+<ul>
+<li><p>Not everybody inspects or improves the code</p></li>
+<li><p>Maintainer burnout is real <a
+href="https://en.wikipedia.org/wiki/XZ_Utils_backdoor">and can be
+weaponized</a></p></li>
+<li><p>Customer requests are at the whim of the developer, and these can
+be dictatorships</p></li>
+<li><p>Users must rely on the community or developer’s generosity for
+support</p></li>
+<li><p>Websites, documentation, and resources are all
+community-provided</p></li>
+<li><p>You can’t build copyleft license code into proprietary
+projects</p>
+<ul>
+<li>Some companies are terrified of AGPL code</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="proprietary-paid-software-advantages">Proprietary, Paid Software
+Advantages</h3>
+<ul>
+<li><p>Maintainers are paid for their work (reducing burnout and
+incentivizing development)</p></li>
+<li><p>Customers have the ability to demand changes to the code or
+functionality</p></li>
+<li><p>Support is often offered as a part of the process, often more
+cheaply than expert hires/consultants</p></li>
+<li><p>‘Cloud’ components involving recurring cost are possible</p></li>
+<li><p>Security through obscurity</p></li>
+<li><p>Guarantees are offered with financial backing</p></li>
+</ul>
+<hr />
+<h3 id="proprietary-paid-software-drawbacks">Proprietary, Paid Software
+Drawbacks</h3>
+<ul>
+<li><p>Upfront and ongoing costs are out of (your) control</p>
+<ul>
+<li>“Oh, no, your permanent license is now a subscription.”</li>
+</ul></li>
+<li><p>DRM and Licensing becomes a complication (e.g. ‘how many people
+are using this?’ and ‘Is this computer authorized to play
+this?’)</p></li>
+<li><p>No ability to ‘do it yourself’ if there’s a fix that needs
+fixed</p></li>
+<li><p>Security through obscurity is not security</p>
+<ul>
+<li>… and you can’t even tell if there’s a problem</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="embrace-extend-extinguish">🤡 <a
+href="https://en.wikipedia.org/wiki/Embrace,_extend,_and_extinguish">“Embrace,
+Extend, Extinguish”</a> 🤡</h3>
+<ul>
+<li><p>Adopt an open standard, data type, project, or approach</p></li>
+<li><p>Add additional patent-encumbered or IP-restricted features to
+your version without relicensing</p>
+<ul>
+<li>Also incorporating third-party services (e.g. AI, Messaging) which
+can’t be added in free versions</li>
+</ul></li>
+<li><p>Use your market position and ability to lose money at first to
+drive other projects into disrepair or dissolution</p></li>
+<li><p><a
+href="https://en.wikipedia.org/wiki/Enshittification">Enshittification</a>
+and money/data extraction commence</p></li>
+</ul>
+<hr />
+<h3
+id="the-incentives-of-proprietary-software-developers-and-customers-are-very-rarely-aligned">The
+incentives of proprietary software developers and customers are very
+rarely aligned 🤡</h3>
+<ul>
+<li><p>Their optimal price is the absolute most you’re willing to pay
+before you switch to a competing product</p>
+<ul>
+<li><p>Locking you into their product with proprietary formats helps
+increase that number</p></li>
+<li><p>Monopolies (e.g. ArcGIS, Adobe Creative Suite, MS Office, iOS)
+increase that number further</p></li>
+<li><p>Support is a cost-center, and often similarly
+‘optimized’</p></li>
+</ul></li>
+<li><p>For data science, Proprietary Software is seldom a good
+idea.</p></li>
+</ul>
+<hr />
+<h3 id="open-software-supports-open-science">Open Software Supports Open
+Science</h3>
+<ul>
+<li><p>It allows you to support more people, students, and
+experiments</p></li>
+<li><p>People can reproduce your analyses more readily</p></li>
+<li><p>People can replicate your approach without funding or site
+licenses</p></li>
+<li><p>Your approach is more likely to ‘catch on’ if anybody can do
+it</p></li>
+<li><p>Proprietary software can opaquely break your results for future
+runs</p>
+<ul>
+<li>“Oh that functionality was removed in 1.7, and 1.6 is deprecated and
+your license code no longer supports it”</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="analysis-involving-closed-source-software-is-not-reproducible">Analysis
+involving closed-source software is not reproducible 🤡</h3>
+<ul>
+<li><a
+href="https://www.r-bloggers.com/2022/11/open-source-is-a-hard-requirement-for-reproducibility/">Here’s
+a nice article on that topic</a></li>
+</ul>
+<hr />
+<h2 id="think-open-source-first">🤡🤡 Think Open Source First 🤡🤡</h2>
+<ul>
+<li><p>Spend the money you would’ve spent on the proprietary software on
+supporting open software developers</p>
+<ul>
+<li>… then, only if no possible open alternative exists, start paying
+people for proprietary software</li>
+</ul></li>
+<li><p>Advocate for your company to use and contribute to open products,
+where possible!</p></li>
+</ul>
+<hr />
+<h2 id="questions">Questions?</h2>
+<hr />
+<h2 id="technical-debt">Technical Debt</h2>
+<hr />
+<h3 id="every-software-choice-has-costs">Every software choice has
+costs</h3>
+<ul>
+<li><p>Sometimes it forces an operating system or hardware
+choice</p></li>
+<li><p>Sometimes it forces a specific programming language
+(version?)</p></li>
+<li><p>Sometimes it forces you to use other specific software</p></li>
+<li><p>Sometimes it introduces speed bottlenecks</p></li>
+<li><p>Sometimes it locks you into a specific version of a
+package</p></li>
+<li><p>Sometimes it requires a <em>lot</em> of extra code</p></li>
+</ul>
+<hr />
+<h3 id="these-costs-augment-over-time">These costs augment over
+time</h3>
+<ul>
+<li><p>Hardware/Software change over time</p></li>
+<li><p>Programming languages change over time</p></li>
+<li><p>Software packages constantly update, change, and die</p></li>
+<li><p>Speed costs add up over time and with increased use</p></li>
+<li><p>Additional code has maintenance costs</p></li>
+</ul>
+<hr />
+<h3 id="these-things-are-forms-of-technical-debt">These things are forms
+of ‘technical debt’</h3>
+<hr />
+<h2 id="technical-debt-1">Technical Debt</h2>
+<ul>
+<li>The cost (in time or money) of re-working your code to keep it
+functioning</li>
+</ul>
+<hr />
+<h3 id="example-technical-debts">Example Technical Debts</h3>
+<ul>
+<li><p>“New GPUs no longer support this API, and my GPU broke”</p></li>
+<li><p>“In order to keep running this, I need to update it to work
+with…”</p></li>
+<li><p>“We’ve moved most of our shop to Linux, but ArcGIS needs Windows
+10”</p></li>
+<li><p>“This model works great for 10 queries per minute, but we have
+10,000 per minute now…”</p></li>
+<li><p>“The bug is someplace in that undocumented mess of code which
+Will wrote, but he’s not here to fix it”</p></li>
+<li><p>“The maintainer of that package died in 2019, so it no longer
+works with new versions of Pandas”</p></li>
+</ul>
+<hr />
+<h2 id="minimizing-technical-debt-in-your-analysis">Minimizing Technical
+Debt in your analysis</h2>
+<ul>
+<li>“Don’t build on things that could collapse, and if you must, build
+smartly!”</li>
+</ul>
+<hr />
+<h3 id="target-stable-platforms">Target Stable Platforms</h3>
+<ul>
+<li><p>Write cross-platform code, using cross-platform packages</p></li>
+<li><p>Look what platforms have working code from five years
+ago</p></li>
+<li><p>Avoid dependency on any particular hardware or
+manufacturer</p></li>
+<li><p>If the OS or major elements of the platform is on the way out,
+write for the replacement</p></li>
+</ul>
+<hr />
+<h3 id="target-stable-software">Target Stable Software</h3>
+<ul>
+<li><p>‘Flavor of the week’ software and languages are a gamble</p></li>
+<li><p>You want robust software, with a long history of boring
+updates</p></li>
+<li><p>You want software which is well-maintained, and getting
+maintenance releases</p></li>
+<li><p>How likely is the software to still exist and be affordable in X
+years?</p></li>
+<li><p>Look out for capricious ‘breaking’ changes</p></li>
+</ul>
+<hr />
+<h3 id="minimize-dependencies">Minimize Dependencies</h3>
+<ul>
+<li><p>Prefer functions from the ‘base’ over fancy overlay packages</p>
+<ul>
+<li>‘Tidyverse’ in R is a nice example of a very brittle dependency
+which could break a <em>lot</em> of code</li>
+</ul></li>
+<li><p>Every library you call or package you use could stop being
+maintained or get broken by an update</p></li>
+<li><p>Balance ‘necessity to do the work’ against ‘likelihood of
+eventual destruction’</p>
+<ul>
+<li>The best dependencies are both important and stable</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="modularize-your-code">Modularize your code</h3>
+<ul>
+<li><p>Write functions which call dependencies, so you can replace the
+dependency without rewriting the code</p>
+<ul>
+<li>‘Ah damn, np.doathing() is deprecated, I’ll rewrite it within the
+function or replace it with pd.doathing() and it’ll be fine’</li>
+</ul></li>
+<li><p>Give people functions to maintain, rather than ‘the whole
+thing’</p></li>
+<li><p>Anything which needs to run a <em>lot</em> should be a
+function</p>
+<ul>
+<li>This makes it easier for the CS nerds to optimize later</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="do-it-right-the-first-time">Do it ‘right’ the first time</h3>
+<ul>
+<li><p>Document your code and write comments as you do the work</p></li>
+<li><p>Write code which you expect to scale well</p></li>
+<li><p>Once you know you’ll need that code, optimize it <em>right
+then</em></p></li>
+</ul>
+<hr />
+<h3 id="youll-still-have-technical-debt">You’ll still have technical
+debt</h3>
+<ul>
+<li><p>It is inevitable</p></li>
+<li><p>Thinking about all this should guide your choices of platforms,
+software, and packages</p></li>
+<li><p>Considering this will be part of your life</p></li>
+</ul>
+<hr />
+<h3 id="example-pythons-version-change">Example: Python’s version
+change</h3>
+<ul>
+<li><p>Python 2 to Python 3 was a <em>breaking</em> change</p></li>
+<li><p>Things as simple as <code>print "my name is Will"</code> changed
+to <code>print("mynameiswill")</code></p></li>
+<li><p><code>&lt;&gt;</code> no longer meant <code>!=</code></p></li>
+<li><p>Core list and dictionary functionality changed</p></li>
+<li><p>Lots of old methods, approaches, and libraries broke in half</p>
+<ul>
+<li>So did Will’s Python knowledge</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="many-programs-still-use-python-2.7">Many programs still use
+Python 2.7</h3>
+<ul>
+<li><p>They’re deep in technical debt</p></li>
+<li><p>So, there’s a chance you’ll need to run both Python3 and Python2
+for your work.</p></li>
+</ul>
+<hr />
+<h3 id="there-is-great-pain-here">There is great pain here</h3>
+<ul>
+<li>Yep! You’ll need…</li>
+</ul>
+<hr />
+<h2 id="packages-apps-and-package-managers">Packages, ‘Apps’, and
+Package Managers</h2>
+<hr />
+<h3 id="there-are-many-ways-to-install-software">There are many ways to
+install software!</h3>
+<ul>
+<li><p>“Go to our website and download the .exe installer”</p></li>
+<li><p>“Click the button to download Zoom.app”</p></li>
+<li><p>“Open the Apple/Microsoft/Steam/iOS App Store and search
+for…”</p></li>
+<li><p>These are fine for ‘big’, monolithic software, but doesn’t work
+well for python packages and other tools</p></li>
+</ul>
+<hr />
+<h3 id="software-dependencies">Software Dependencies</h3>
+<ul>
+<li><p>It’s dumb to reinvent the wheel, smart developers use other (free
+and open) software instead</p></li>
+<li><p>“Why rewrite code which pulls information from the web when
+<code>curl</code> exists?”</p></li>
+<li><p>“Seaborn is built on MatPlotLib, so without that code installed,
+it won’t do anything”</p></li>
+<li><p>Every piece of software has dependencies!</p>
+<ul>
+<li>Sometimes they’re packaged alongside the software, sometimes they’re
+external</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="enter-the-package-manager">Enter the ‘Package Manager’</h3>
+<ul>
+<li><p>Software which is designed to install, uninstall, upgrade, and
+configure other software</p></li>
+<li><p>Software is retrieved from ‘repositories’ containing softwares,
+source code, and otherwise</p></li>
+<li><p>Different from ‘App Stores’ in that they handle dependencies (and
+tend to be open to the world)</p></li>
+<li><p>Often used for command-line applications, but you can use them to
+install GUI applications too!</p></li>
+</ul>
+<hr />
+<h3 id="common-package-managers">Common Package Managers</h3>
+<ul>
+<li><p>Examples are <a href="https://brew.sh/">Homebrew</a> for
+Mac/Linux, <code>apt/rpm/dnf/pacman/emerge/nix</code> on Linux</p></li>
+<li><p><code>pip</code> or <code>conda</code> for Python</p></li>
+<li><p>Some software includes package managers (e.g. R, ruby, javascript
+Matlab)</p></li>
+</ul>
+<hr />
+<h3 id="using-a-package-manager-a-play">Using a package manager: A
+play</h3>
+<ul>
+<li><p>“Hey, computer, I want to install <code>rsync</code>”</p></li>
+<li><p><code>brew install rsync</code></p></li>
+</ul>
+<hr />
+<h3 id="oh-the-human-wants-rsync">“Oh the human wants
+<code>rsync</code>!”</h3>
+<ul>
+<li><p>‘Great! I’ve checked our repository (’repo’) and
+<code>rsync</code> is there.’</p></li>
+<li><p>‘Even better, there’s a binary for x86_64 which is what they’re
+using, so they don’t have to build from source’</p></li>
+<li><p>‘…But if I install it, what else does it need?’</p></li>
+</ul>
+<hr />
+<h3 id="ok-so-first-ill-install-the-dependencies">‘OK, so first I’ll
+install the dependencies’</h3>
+<pre><code>~ % brew deps rsync
+ca-certificates
+lz4
+openssl@1.1
+popt
+xxhash
+xz
+zstd</code></pre>
+<hr />
+<h3 id="oh-great-they-already-have-openssl-1.1-i-can-skip-that-one">‘Oh,
+great, they already have <code>openssl</code> 1.1, I can skip that
+one!’</h3>
+<ul>
+<li><p>I’ll just install the rest</p></li>
+<li><p>‘Oh no, <code>popt</code> has dependencies too! I’ll install
+those first!’</p></li>
+<li><p>‘OK, all deps installed!’</p></li>
+</ul>
+<hr />
+<h3 id="ok-that-all-happened-successfully">‘OK, that all happened
+successfully!’</h3>
+<ul>
+<li><p>‘Now, I’ll install <code>rsync</code>, and move it to wherever on
+the drive applications belong!’</p></li>
+<li><p>‘Woohoo! Mission accomplished!’</p></li>
+</ul>
+<hr />
+<h3 id="you-will-need-to-deal-with-package-management">You will need to
+deal with package management</h3>
+<ul>
+<li><p>There are many amazing tools which don’t have GUI (graphical user
+interface) installers or ‘websites’</p></li>
+<li><p>You’ll use this extensively on non-Windows machines to install
+command-line packages</p></li>
+<li><p>Oftentimes much faster to use than conventional ‘hunt down the
+file’ installs</p></li>
+</ul>
+<hr />
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install ImageMagick R apfs-fuse awscli bzip2 cmus ffmpeg gimp kitty w3m ncurses neovim pandoc phoronix-test-suite rclone syncthing restic rstudio-desktop vim zsh texlive yt-dlp texlive-scheme-full google-roboto-fonts openscad prusa-slicer espanso steam lutris mullvad audacity gocryptfs</span></code></pre></div>
+<hr />
+<h3 id="python-package-management">Python Package Management</h3>
+<ul>
+<li><p>For python, <code>pip</code> is the most common package
+manager</p></li>
+<li><p><code>pip install -U scikit-learn</code></p></li>
+<li><p>This will install <code>scikit-learn</code> and all of its
+dependencies</p></li>
+</ul>
+<hr />
+<h3 id="anaconda">(Ana)conda</h3>
+<ul>
+<li><p>Anaconda is a ready-made Python Distribution</p>
+<ul>
+<li>‘Distribution’ is generally a key piece of software and related
+packages</li>
+</ul></li>
+<li><p>It contains a large selection of packages for data science,
+statistics, and scholarly communication, as well as <code>conda</code>
+for package management</p></li>
+<li><p>This is a cheap way to get all your python packages you’re liable
+to need</p>
+<ul>
+<li>Alongside some other goodies</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="environments">Environments</h2>
+<hr />
+<h3
+id="your-software-should-be-in-a-known-and-specified-state---will-earlier">‘Your
+software should be in a known and specified state’ - Will, earlier</h3>
+<ul>
+<li><p>Why does it matter what packages and versions are
+involved?</p></li>
+<li><p>Some packages don’t play well together!</p></li>
+</ul>
+<hr />
+<h3 id="some-programs-allow-you-to-specify-your-environment">Some
+programs allow you to specify your environment</h3>
+<ul>
+<li><p>conda or <code>venv</code> allows you to create specific
+‘environments’ which specify</p>
+<ul>
+<li><p>Installed packages</p></li>
+<li><p>Installed package versions</p></li>
+<li><p>Installed dependencies and dep versions</p></li>
+</ul></li>
+<li><p>These environments are <em>isolated from one another</em></p>
+<ul>
+<li><p>Installing a package in one environment does not change
+another</p></li>
+<li><p>You can have conflicting versions and packages ‘installed’, but
+isolated</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-to-use-conda-environments">How to use <code>conda</code>
+environments</h3>
+<ul>
+<li><p>You specify the configuration of an environment, then ‘switch’
+when you switch projects</p></li>
+<li><p>You can always recreate a <code>conda</code> environment later on
+when you need it</p></li>
+<li><p><a
+href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html"
+class="uri">https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html</a></p></li>
+</ul>
+<hr />
+<h3 id="there-are-multiple-environments-on-your-machine-already">There
+are multiple environments on your machine already</h3>
+<ul>
+<li><p>The System level Python</p></li>
+<li><p>User Level python</p></li>
+<li><p>Program bundled Pythons</p></li>
+</ul>
+<hr />
+<h3
+id="you-can-also-use-software-which-declaratively-specifies-environments">You
+can also use software which <em>declaratively</em> specifies
+environments</h3>
+<ul>
+<li><p>“Make my computer always have this software on it”</p></li>
+<li><p>Ansible is a great example, as is nix/NixOS.</p></li>
+<li><p>You can specify packages, versions, and file locations</p></li>
+</ul>
+<hr />
+<h3 id="why-is-this-helpful">Why is this helpful?</h3>
+<hr />
+<h3 id="a-note-on-docker-podman-distrobox-or-containers">A Note on
+Docker, Podman, Distrobox, or ‘Containers’</h3>
+<ul>
+<li><p>This is another way to do ‘environments’</p></li>
+<li><p>These containers have their libraries, software, and config files
+built into a tiny container with an OS</p></li>
+<li><p>OS-level virtualization is used to keep those programs from
+interacting with things outside the container except as
+specified</p></li>
+<li><p>This allows you to pull down a tool and all its dependencies and
+configurations at once</p></li>
+<li><p>“Start up this second OS to run this tool”</p></li>
+</ul>
+<hr />
+<h2 id="whats-the-best-way-to-edit-code">What’s the best way to edit
+code?</h2>
+<hr />
+<h3 id="coding-text-editors">Coding Text Editors</h3>
+<ul>
+<li><p><strong>NOT MICROSOFT WORD</strong></p></li>
+<li><p>Good text editors don’t do formatting, and only write
+text</p></li>
+<li><p>vim/emacs/nano/neovim on a CLI</p>
+<ul>
+<li>Choice among these is subject of a long term Holy War</li>
+<li>🤡 neovim is best 🤡</li>
+</ul></li>
+<li><p><a href="https://notepad-plus-plus.org/">Notepad++</a>/<a
+href="https://macromates.com/">TextMate</a>/<a
+href="https://www.sublimetext.com/">SublimeText</a> have GUIs</p></li>
+<li><p><a href="https://code.visualstudio.com/">VSCode</a> is
+increasingly popular</p>
+<ul>
+<li>This is an open source, non-free product as shipped</li>
+<li><a href="https://github.com/VSCodium/vscodium">VSCodium</a> is a
+version which is built solely from Free/Libre Components</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="ides-integrated-development-environments">IDEs (‘Integrated
+Development Environments’)</h3>
+<ul>
+<li><p>Programs designed to let you work with a specific programming
+language</p>
+<ul>
+<li>Often includes niceties to work with that language (e.g. syntax
+highlighting, debugging, etc)</li>
+</ul></li>
+<li><p>This includes programs like Eclipse, PyCharm, Netbeans, VSCode,
+vim or emacs (with plugins), Android Studio, XCode, and more</p></li>
+<li><p>Jupyter Notebooks are effectively an IDE</p></li>
+<li><p>Not necessary, but sometimes very nice!</p></li>
+</ul>
+<hr />
+<h3 id="aside-jupyter-notebooks-are-great">Aside: jupyter notebooks are
+great</h3>
+<ul>
+<li><p>They do a lot of hard things easily</p>
+<ul>
+<li><p>Good syntax highlighting</p></li>
+<li><p>Integrating code and documentation</p></li>
+<li><p>Output can be captured and shared widely</p></li>
+<li><p>It allows for ‘<a
+href="https://en.wikipedia.org/wiki/Literate_programming">literate
+programming</a>’</p></li>
+</ul></li>
+<li><p>They’re just more awkward to run remotely</p></li>
+</ul>
+<hr />
+<h3 id="you-dont-need-to-run-python-within-jupyter-notebooks">You don’t
+need to run python within Jupyter notebooks</h3>
+<ul>
+<li><p>You can put the code in a .py file and just run it with
+<code>python3 yourcode.py</code></p></li>
+<li><p>Just make sure you’re saving the output in meaningful
+places</p></li>
+<li><p>This is easy to ‘run and walk away’</p></li>
+<li><p>This doesn’t require a fancy interface</p></li>
+<li><p>It’s easier to submit jobs in this method to remote
+machines</p></li>
+</ul>
+<hr />
+<h2 id="other-valuable-software">Other Valuable Software</h2>
+<hr />
+<h3 id="backup-programs">Backup Programs</h3>
+<ul>
+<li><p>You want to back your work up (3-2-1!)</p></li>
+<li><p><strong>Mac:</strong> Time Machine, rsync, CarbonCopyCloner,
+restic/borg</p></li>
+<li><p><strong>Windows:</strong> Windows Backup, restic</p></li>
+<li><p><strong>Linux:</strong> file system snapshots, rsync,
+restic/borg</p></li>
+<li><p><strong>Cloud Backup Services:</strong> iCloud/OneDrive Backup,
+Backblaze, Crashplan, SpiderOak One</p>
+<ul>
+<li>Encryption is <em>important</em> for cloud backup sites</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="spreadsheet-applications">Spreadsheet Applications</h3>
+<ul>
+<li><p><a href="https://www.libreoffice.org/">LibreOffice</a></p></li>
+<li><p>Microsoft Excel</p></li>
+<li><p>Google Sheets</p></li>
+<li><p>OpenOffice</p></li>
+</ul>
+<hr />
+<h3 id="synchronization-tools">Synchronization Tools</h3>
+<ul>
+<li><p>SyncThing (Libre and gratis)</p></li>
+<li><p><code>rsync</code> (unidirectional)</p></li>
+<li><p>Dropbox/Google Drive/OneDrive with rclone to make it
+zero-knowledge</p></li>
+<li><p>Working on a remote server</p></li>
+</ul>
+<hr />
+<h3 id="great-free-applications-for-getting-work-done">Great free
+applications for getting work done</h3>
+<ul>
+<li><p><code>ffmpeg</code> for audio and video file processing</p></li>
+<li><p><code>imagemagick</code> for batch processing of images</p></li>
+<li><p><code>pandoc</code> for changing document formats around</p></li>
+<li><p>Audacity for editing audio</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>The things that make good tools reliable are universal to
+computers <em>and</em> software</p></li>
+<li><p>Technical debt is a problem</p></li>
+<li><p>Open Source Software is a good idea</p></li>
+<li><p>Package managers help you get software</p></li>
+<li><p>Development Environments keep you sane</p></li>
+<li><p>Code can be run in many ways</p></li>
+<li><p>Other useful software</p></li>
+</ul>
+</body>
+</html>

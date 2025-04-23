@@ -1,0 +1,13 @@
+tree_dogchased_alttex
+
+[S 
+  [NP 
+    [DET This ] 
+    [N' 
+      [N hedgehog ] ] ] 
+  [VP 
+    [V licked ] 
+    [NP 
+      [DET a ] 
+      [N' 
+        [N refrigerator ] ] ] ] ]

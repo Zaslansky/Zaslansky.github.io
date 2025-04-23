@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><lang>Russian</lang><br><ldata>IE:Slavic - Russia</ldata></p>
+<p>Света - Дорога в аэропорт (feat. KRP)</p>
+<p>(Sveta - Doroga v aeroport, ‘Approaching the airport’)</p>
+<hr />
+<h1 id="crappypuns">#crappypuns</h1>
+<p>I hate Russian stacking dolls. They’re so full of themselves.</p>
+<hr />
+<h1 id="russian-slavic-and-the-beauty-of-case">Russian, Slavic, and the
+Beauty of Case</h1>
+<h3 id="ling-1020---will-styler">LING 1020 - Will Styler</h3>
+<hr />
+<h2 id="todays-agenda">Today’s Agenda</h2>
+<ul>
+<li><p>Person and number labels</p></li>
+<li><p>Slavic Languages</p></li>
+<li><p>Russian</p></li>
+<li><p>Grammatical Relations</p></li>
+<li><p>The Beauty of Case</p></li>
+<li><p>Why translating Dostoevsky is really, really tough</p></li>
+</ul>
+<hr />
+<h1 id="weve-got-a-lot-of-ground-to-cover-today">We’ve got a lot of
+ground to cover today!</h1>
+<ul>
+<li>(Sorry!)</li>
+</ul>
+<hr />
+<h1 id="sg-3pl-2sg">1sg? 3pl!? 2sg?!?!</h1>
+<p>WTF Linguists!!</p>
+<hr />
+<h3 id="person-and-number-labels">Person and number labels</h3>
+<p>Linguistic shorthand to refer to participants in conversation</p>
+<hr />
+<p>People are usually talking to somebody, about themselves and
+others.</p>
+<hr />
+<p><img class="big" src="img/corydoras.jpg"></p>
+<hr />
+<h3 id="first-person">First person</h3>
+<p>Refers to the speaker (and his/her group)</p>
+<hr />
+<h3 id="first-person-singular-1sg">First person singular (1sg)</h3>
+<p><img src="img/corydoras1sg.jpg"></p>
+<hr />
+<h3 id="first-person-plural-1pl">First person plural (1pl)</h3>
+<p><img src="img/corydoras1pl.jpg"></p>
+<hr />
+<h3 id="second-person">Second person</h3>
+<p>Referring to the listener(s)</p>
+<hr />
+<h3 id="second-person-singular-2sg">Second person singular (2sg)</h3>
+<p><img src="img/corydoras2sg.jpg"></p>
+<hr />
+<h3 id="second-person-singular-2pl">Second person singular (2pl)</h3>
+<p><img src="img/corydoras2pl.jpg"></p>
+<hr />
+<h3 id="third-person">Third person</h3>
+<p>Referring to somebody outside the conversation</p>
+<hr />
+<h3 id="third-person-singular-3sg">Third person singular (3sg)</h3>
+<p><img src="img/corydoras3sg.jpg"></p>
+<hr />
+<h3 id="third-person-plural-3pl">Third person plural (3pl)</h3>
+<p><img src="img/corydoras3pl.jpg"></p>
+<hr />
+<h3 id="person-and-number-shows-up-everywhere">Person and Number shows
+up everywhere!</h3>
+<ul>
+<li><p>Pronouns</p></li>
+<li><p>Verb conjugations</p></li>
+<li><p>Case markers</p></li>
+<li><p>Adjectives (sometimes)</p>
+<ul>
+<li>Changing something to match the person/number is called
+“agreement”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="english-pronouns">English pronouns</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-e3zv{font-weight:bold}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+</th>
+<th class="tg-e3zv">
+Singular
+</th>
+<th class="tg-e3zv">
+Plural
+</th>
+</tr>
+<tr>
+<td class="tg-e3zv">
+1st
+</td>
+<td class="tg-031e">
+I
+</td>
+<td class="tg-031e">
+we
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+2nd
+</td>
+<td class="tg-031e">
+you
+</td>
+<td class="tg-031e">
+y’all
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+3rd
+</td>
+<td class="tg-031e">
+he/she
+</td>
+<td class="tg-031e">
+they
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="spanish-pronouns">Spanish pronouns</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-e3zv{font-weight:bold}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+</th>
+<th class="tg-e3zv">
+Singular
+</th>
+<th class="tg-e3zv">
+Plural
+</th>
+</tr>
+<tr>
+<td class="tg-e3zv">
+1st
+</td>
+<td class="tg-031e">
+Yo
+</td>
+<td class="tg-031e">
+Nosotros
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+2nd
+</td>
+<td class="tg-031e">
+Tu/Usted
+</td>
+<td class="tg-031e">
+Vosotros/Ustedes
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+3rd
+</td>
+<td class="tg-031e">
+El/Ella
+</td>
+<td class="tg-031e">
+Ellos
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="english-verb-forms-for-judge">English Verb forms for
+“Judge”</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-e3zv{font-weight:bold}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+</th>
+<th class="tg-e3zv">
+Singular
+</th>
+<th class="tg-e3zv">
+Plural
+</th>
+</tr>
+<tr>
+<td class="tg-e3zv">
+1st
+</td>
+<td class="tg-031e">
+I judge.
+</td>
+<td class="tg-031e">
+We judge.
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+2nd
+</td>
+<td class="tg-031e">
+You judge.
+</td>
+<td class="tg-031e">
+Y’all judge.
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+3rd
+</td>
+<td class="tg-031e">
+He judges.
+</td>
+<td class="tg-031e">
+They judge.
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="spanish-verb-forms-for-judge">Spanish Verb forms for
+“Judge”</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-e3zv{font-weight:bold}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+</th>
+<th class="tg-e3zv">
+Singular
+</th>
+<th class="tg-e3zv">
+Plural
+</th>
+</tr>
+<tr>
+<td class="tg-e3zv">
+1st
+</td>
+<td class="tg-031e">
+Juzgo.
+</td>
+<td class="tg-031e">
+Juzgamos.
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+2nd
+</td>
+<td class="tg-031e">
+Juzgas.
+</td>
+<td class="tg-031e">
+Juzgáis.
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+3rd
+</td>
+<td class="tg-031e">
+Juzga.
+</td>
+<td class="tg-031e">
+Juzgan.
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="person-and-number-are-really-important">Person and number are
+really important!</h3>
+<p>So, when it’s marked, we linguists write it down.</p>
+<ul>
+<li>That’s why you’ll see “1sg”, “2pl”, “3sg” all over!</li>
+</ul>
+<hr />
+<h2 id="isnt-today-about-russian">“Isn’t today about Russian?”</h2>
+<p><img class="big" src="humorimg/quizzicaldog.jpg"></p>
+<hr />
+<p>(OK, OK, let’s talk Slavic!)</p>
+<hr />
+<p><img class="big" src="lotwimg/indoeuropean.gif"></p>
+<hr />
+<h3 id="slavic">Slavic</h3>
+<p><img width="1200px" src="lotwimg/iefamiliesmap.png"></p>
+<p>(in green)</p>
+<hr />
+<h3 id="features-of-slavic-languages">Features of Slavic Languages</h3>
+<ul>
+<li><p>Rich Case Systems</p></li>
+<li><p>Cyrillic Writing System</p></li>
+<li><p>Complex Consonant Clusters</p></li>
+</ul>
+<hr />
+<h3 id="slavic-languages">Slavic Languages</h3>
+<ul>
+<li>Polish</li>
+<li>Belorussian</li>
+<li>Ukrainian</li>
+<li>Czech</li>
+<li>Slovak</li>
+<li>Bulgarian</li>
+<li>Macedonian</li>
+<li>Sorbian</li>
+<li>Bosnian/Serbian/Croatian/Montenegrin</li>
+<li>Russian</li>
+</ul>
+<hr />
+<p><lang>Russian</lang><br><ldata>IE:Slavic - Russia</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/TTe225bgCKA">
+</iframe>
+<hr />
+<h2 id="russian-and-i-go-way-back">Russian and I go way back…</h2>
+<p><img class="big" src="humorimg/redoctober.jpg"></p>
+<hr />
+<h1 id="why-i-love-russian">Why I love Russian</h1>
+<hr />
+<h3 id="the-sound-system-is-awesome">The sound system is awesome</h3>
+<hr />
+<h3 id="the-writing-system-doesnt-suck">The writing system doesn’t
+suck</h3>
+<ul>
+<li>(Yes, English, the truth hurts)</li>
+</ul>
+<hr />
+<h3 id="cyrillic-writing-system">Cyrillic Writing System</h3>
+<p><img class="big" src="img/cyrillic.gif"></p>
+<hr />
+<h3 id="cyrillic-is-used-in">Cyrillic is used in:</h3>
+<ul>
+<li><p><em>Slavic</em> - Russian, Bulgarian, Macedonian, Russian, Rusyn,
+Serbian, Bosnian, Montenegrin, Ukrainian</p></li>
+<li><p><em>Non-Slavic</em> - Abkhaz, Bashkir, Chuvash, Erzya, Kazakh,
+Kildin Sami, Komi, Kyrgyz, Mari, Moksha, Mongolian, Ossetic,
+Sakha/Yakut, Tajik, Tatar, Tuvan, Udmurt, Yuit</p></li>
+</ul>
+<hr />
+<h3 id="transliteration">Transliteration</h3>
+<p>Writing a language using a non-native writing system</p>
+<hr />
+<p><strong>достопримечательности москвы</strong></p>
+<p>(dostoprimechatelnosti moskviy)</p>
+<p>‘Places of interest in Moscow’</p>
+<p><danger>We will transliterate in this class, but we are bad people
+for doing it, and should feel bad</danger></p>
+<p><!-- .element: class="fragment" --></p>
+<hr />
+<h3
+id="different-motion-verbs-depending-on-method-of-movement-and-return">Different
+motion verbs depending on method of movement and return</h3>
+<ul>
+<li><p>Ходить (hodit) - To go by walking (there and back)</p></li>
+<li><p>Идти (idti) - To go by walking (one way, progressive)</p></li>
+<li><p>Ездить (yezdit) - To go by transport (there and back)</p></li>
+<li><p>Ехать (yekhat) - To go by transport (one way,
+progressive)</p></li>
+</ul>
+<hr />
+<h3 id="prefixes-for-motion-verbs">Prefixes for motion verbs</h3>
+<ul>
+<li>У- - “From, away”
+<ul>
+<li>‘Я улетаю в ночь’ - “I’m flying away tonight”</li>
+<li>‘Уходить’ - “Go away”</li>
+</ul></li>
+<li>Об- - “Around”
+<ul>
+<li>‘Я oблетаю’ - “I’m flying around (a city)”</li>
+<li>‘Oбходить’ - “To walk around”</li>
+</ul></li>
+<li>С- - “Down from”
+<ul>
+<li>‘Я схожу с ума’ - “I’m going crazy”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="two-words-for-blue">Two words for “blue”</h3>
+<h1 style="color:blue">
+Синий
+</h1>
+<h1 style="color:cyan">
+Голубой
+</h1>
+<hr />
+<h3 id="the-case-system">The Case System!</h3>
+<hr />
+<h2 id="case-system">“Case System?”</h2>
+<p><img class="big" src="lotwimg/pelicancases.jpg"></p>
+<hr />
+<h2 id="case-system-1">“Case System?”</h2>
+<p><img class="big" src="lotwimg/uppercase.jpg"></p>
+<hr />
+<p>Let’s back up for a second.</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### “Jony chased Dieter”</td>
+</tr>
+<tr class="even">
+<td><img class="big" src="img/fish_jonydieter.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-do-we-know-who-did-what-to-whom">“How do we know who did
+what to whom?”</h2>
+<hr />
+<h3 id="grammatical-relations">Grammatical Relations</h3>
+<p>How a language marks who did what to whom</p>
+<hr />
+<h3 id="english-uses-word-order-to-mark-grammatical-relations.">English
+uses word order to mark grammatical relations.</h3>
+<ul>
+<li><p>“Jony chased Dieter”</p></li>
+<li><p>“Kevin waved to Niloo”</p></li>
+<li><p>“Niloo waved to Kevin”</p></li>
+<li><p>“Will ate his tofu wistfully”</p></li>
+</ul>
+<hr />
+<h3 id="but-thats-not-the-only-way">… but that’s not the only way!</h3>
+<hr />
+<h3 id="morphemes">Morphemes</h3>
+<p>The smallest unit of a word which has meaning in a language</p>
+<ul>
+<li><p><em>Jony ate Dieter<strong>’s</strong> food
+pellet<strong>s</strong></em></p></li>
+<li><p><em>I am sing<strong>ing</strong> in the rain</em></p></li>
+</ul>
+<hr />
+<h3
+id="russian-tacks-morphemes-onto-words-to-mark-grammatical-relations">Russian
+tacks morphemes onto words to mark grammatical relations</h3>
+<ul>
+<li><p>We call these morphemes “case markers”</p></li>
+<li><p>Nominative Case - “The Subject”</p></li>
+<li><p>Accusative Case - “The Object”</p></li>
+</ul>
+<hr />
+<h3 id="grammatical-case">Grammatical Case</h3>
+<p>Tacking morphemes onto words to indicate their role in the
+sentence</p>
+<hr />
+<h3 id="russian-case-marking">Russian Case Marking</h3>
+<ul>
+<li><p>Soboka videt kochku</p></li>
+<li><p>dog-NOM see-3sg CAT-ACC</p></li>
+<li><p>“The dog saw the cat”</p></li>
+<li><p>Kochka videt sobaku</p></li>
+<li><p>cat-NOM see-3sg dog-ACC</p></li>
+<li><p>“The cat saw the dog”</p></li>
+</ul>
+<hr />
+<h3 id="russian-case-marking-1">Russian Case Marking</h3>
+<ul>
+<li><p>Ya tebya vizhu</p></li>
+<li><p>I-NOM you-ACC-INF see-1sg</p></li>
+<li><p>“I see you”</p></li>
+<li><p>Ti menya videsh</p></li>
+<li><p>You-NOM I-ACC see-2sg</p></li>
+<li><p>“You see me”</p></li>
+</ul>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p>If we put the sentence “Niloo hugged the turtle” into Russian, the
+proper cases would be…</p>
+<ol type="A">
+<li><p>Niloo - NOM, Turtle - ACC</p></li>
+<li><p>Niloo - ACC, Turtle - NOM</p></li>
+<li><p>Niloo - NOM, Turtle - NOM</p></li>
+<li><p>Niloo - ACC, Turtle - ACC</p></li>
+</ol>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p>If we put the sentence “Niloo hugged the turtle” into Russian, the
+proper cases would be…</p>
+<p><correct>A) Niloo - NOM, Turtle - ACC</correct></p>
+<ol start="2" type="A">
+<li><p>Niloo - ACC, Turtle - NOM</p></li>
+<li><p>Niloo - NOM, Turtle - NOM</p></li>
+<li><p>Niloo - ACC, Turtle - ACC</p></li>
+</ol>
+<hr />
+<p><strong><em>Nominative and Accusative cases are really
+common!</em></strong></p>
+<hr />
+<p><lang>German</lang><br><ldata>IE:Germanic - Germany</ldata></p>
+<ul>
+<li><p>Der Hund beißt den Mann.</p></li>
+<li><p>The-NOM dog bite-3sg the-ACC man.</p></li>
+<li><p>‘The dog bites the man.’</p></li>
+<li><p>Der Mann beißt den Hund.</p></li>
+<li><p>The-NOM man bite-3sg the-ACC dog.</p></li>
+<li><p>‘The man bites the dog.’</p></li>
+</ul>
+<hr />
+<p><lang>English</lang><br><ldata>IE:Germanic - All over</ldata></p>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:24px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:24px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-e3zv{font-weight:bold}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+</th>
+<th class="tg-e3zv">
+Singular Nominative
+</th>
+<th class="tg-e3zv">
+Plural Nominative
+</th>
+<th class="tg-e3zv">
+Singular Accusative
+</th>
+<th class="tg-e3zv">
+Plural Accusative
+</th>
+</tr>
+<tr>
+<td class="tg-e3zv">
+1st
+</td>
+<td class="tg-031e">
+I
+</td>
+<td class="tg-031e">
+we
+</td>
+<td class="tg-031e">
+me
+</td>
+<td class="tg-031e">
+us
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+2nd
+</td>
+<td class="tg-031e">
+you
+</td>
+<td class="tg-031e">
+y’all
+</td>
+<td class="tg-031e">
+you
+</td>
+<td class="tg-031e">
+y’all
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+3rd
+</td>
+<td class="tg-031e">
+he/she
+</td>
+<td class="tg-031e">
+they
+</td>
+<td class="tg-031e">
+him/her
+</td>
+<td class="tg-031e">
+them
+</td>
+</tr>
+</table>
+</center>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>English</lang><br><ldata>IE:Germanic - All over</ldata></td>
+</tr>
+<tr class="even">
+<td>* I see him * I-NOM see he-ACC</td>
+</tr>
+<tr class="odd">
+<td>* He sees me * He-NOM see-3sg I-NOM</td>
+</tr>
+</tbody>
+</table>
+<p><lang>Geonosian</lang><br><ldata>??? - Geonosis</ldata></p>
+<h2 id="section"><img class="big" src="img/geonosian.jpg"></h2>
+<p>So, Nominative and Accusative cases are really useful!</p>
+<hr />
+<h3 id="but-russian-has-more-cases">… but Russian has more cases!</h3>
+<hr />
+<h2 id="the-russian-case-system">The Russian Case System</h2>
+<ul>
+<li><p>Nominative Case - “The Subject”</p></li>
+<li><p>Accusative Case - “The Direct Object”</p></li>
+<li><p>Dative Case - “The Indirect Object or Recipient”</p></li>
+<li><p>Genitive Case - “The Possessor”</p></li>
+<li><p>Locative Case - “The Location”</p></li>
+<li><p>Instrumental Case - “The Tool”</p></li>
+</ul>
+<hr />
+<h3 id="dative-case">Dative Case</h3>
+<p>Marks the indirect object, or recipient of an item</p>
+<hr />
+<h3 id="dative-case-1">Dative Case</h3>
+<ul>
+<li><p>Kevin dayot tsveti Lisye</p></li>
+<li><p>Kevin-NOM give-3sg Flowers-ACC-PLUR Lisa-DAT</p></li>
+<li><p>“Kevin gave Lisa flowers”</p></li>
+<li><p>Enchiladi mne dala Niloo</p></li>
+<li><p>Enchilada-ACC-PLUR 1sg-DAT give-PAST-FEM Niloo-NOM</p></li>
+<li><p>“Niloo gave me Enchiladas”</p></li>
+</ul>
+<hr />
+<h3 id="dative-as-goal">Dative as “Goal”</h3>
+<ul>
+<li><p>Ya pomogayu Kevinu</p></li>
+<li><p>1sg-NOM help-present.1sg Kevin-DAT</p></li>
+<li><p>“I’m helping Kevin”</p></li>
+<li><p>Mne zvonil Barack Obama</p></li>
+<li><p>1sg-DAT call-past.masc Barack Obama</p></li>
+<li><p>“Barack Obama called me”</p></li>
+</ul>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p>If we put the sentence “Jony gave Dieter some pellets” into Russian,
+the proper cases would be…</p>
+<ol type="A">
+<li><p>Jony - ACC, Dieter - DAT, Pellets - NOM</p></li>
+<li><p>Jony - NOM, Dieter - DAT, Pellets - ACC</p></li>
+<li><p>Jony - NOM, Dieter - ACC, Pellets - DAT</p></li>
+<li><p>Jony - DAT, Dieter - ACC, Pellets - NOM</p></li>
+</ol>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p>If we put the sentence “Jony gave Dieter some pellets” into Russian,
+the proper cases would be…</p>
+<ol type="A">
+<li>Jony - ACC, Dieter - DAT, Pellets - NOM</li>
+</ol>
+<p><correct>B) Jony - NOM, Dieter - DAT, Pellets - ACC</correct></p>
+<ol start="3" type="A">
+<li><p>Jony - NOM, Dieter - ACC, Pellets - DAT</p></li>
+<li><p>Jony - DAT, Dieter - ACC, Pellets - NOM</p></li>
+</ol>
+<hr />
+<h3 id="genitive-case">Genitive Case</h3>
+<p>Marks possession</p>
+<hr />
+<h3 id="genitive-case-in-action">Genitive Case in Action</h3>
+<ul>
+<li><p>Ya vizhu sharik Ponga</p></li>
+<li><p>1sg-NOM see-1sg ball-ACC Pongo-GEN</p></li>
+<li><p>“I see Pongo’s ball”</p></li>
+<li><p>Michael Bay samaya bolshaya problema Amerikiy</p></li>
+<li><p>Michael Bay single-NOM large-NOM problem-NOM America-GEN</p></li>
+<li><p>“Michael Bay is America’s biggest problem”</p></li>
+</ul>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p>If we put the sentence “Will stole the dragon’s iPad” into Russian,
+the proper cases would be…</p>
+<ol type="A">
+<li><p>Will - ACC, Dragon - NOM, iPad - GEN</p></li>
+<li><p>Will - NOM, Dragon - GEN, iPad - ACC</p></li>
+<li><p>Will - GEN, Dragon - ACC, iPad - NOM</p></li>
+<li><p>Will - NOM, Dragon - ACC, iPad - GEN</p></li>
+</ol>
+<hr />
+<h3 id="locative-case">Locative Case</h3>
+<p>Marks the location of events</p>
+<ul>
+<li>(this is also called the “Prepositional Case”)</li>
+</ul>
+<hr />
+<h3 id="locative-case-in-action">Locative Case in action</h3>
+<ul>
+<li><p>Ya zhivu v Broomfielde</p></li>
+<li><p>1sg-NOM live-1sg in Broomfield-LOC</p></li>
+<li><p>“I live in Broomfield”</p></li>
+<li><p>Pongo hochet byt na dvore</p></li>
+<li><p>Pongo-NOM want-3sg be in outdoors-LOC</p></li>
+<li><p>“Pongo wants to be outside”</p></li>
+</ul>
+<hr />
+<h3 id="instrumental-case">Instrumental Case</h3>
+<p>Marks an object being used</p>
+<hr />
+<h3 id="instrumental-case-in-action">Instrumental Case in Action</h3>
+<ul>
+<li><p>Niloo pishet karandashom</p></li>
+<li><p>Niloo-NOM write-3sg pencil-INST</p></li>
+<li><p>“Niloo writes with a pencil”</p></li>
+<li><p>Ya yem borscht so smetanoy</p></li>
+<li><p>1sg-NOM eat borscht-ACC with sour.cream-INST</p></li>
+<li><p>“I eat borscht with sour cream”</p></li>
+</ul>
+<hr />
+<h1 id="so">So…</h1>
+<hr />
+<h2 id="the-russian-case-system-1">The Russian Case System</h2>
+<ul>
+<li><p>Nominative Case - “The Subject”</p></li>
+<li><p>Accusative Case - “The Direct Object”</p></li>
+<li><p>Dative Case - “The Indirect Object or Recipient”</p></li>
+<li><p>Genitive Case - “The Possessor”</p></li>
+<li><p>Locative Case - “The Location”</p></li>
+<li><p>Instrumental Case - “The Tool”</p></li>
+</ul>
+<hr />
+<p>(OK, relax, we’re done with the heavy stuff)</p>
+<hr />
+<p>English can handle Nominative and Accusative.</p>
+<ul>
+<li>… but Dative? We just can’t even.</li>
+</ul>
+<hr />
+<p>This is a problem for translators.</p>
+<hr />
+<p><img class="big" src="lotwimg/dostoevsky.jpg"></p>
+<hr />
+<p><img class="big" src="lotwimg/crimeandpunishment.jpg"></p>
+<p>(“Crime and Punishment”)</p>
+<hr />
+<h1 id="упокой-господь-мертвых-а-живым-еще-жить">“упокой господь
+мертвых, а живым еще жить!”</h1>
+<p>(Upokoy gospod myotvikh, a zhivim eshyo zhit!)</p>
+<hr />
+<p><em>Upokoy gospod myotvikh, a zhivim eshyo zhit</em></p>
+<ul>
+<li><p>out-rest-IMP God-NOM dead-ACC, but living-DAT still
+to.live</p></li>
+<li><p>“God give peace to the dead, the living have still to live!” -
+Constance Garnett</p></li>
+<li><p>“May the Lord grant rest to the souls of the dead, and let life
+be the realm of the living!” - David McDuff</p></li>
+<li><p>“May the Lord grant rest to the dead, but the living have still
+got to live!” - Pevear and Volokhonsky</p></li>
+</ul>
+<hr />
+<h3 id="this-isnt-just-a-problem-for-english">This isn’t just a problem
+for English</h3>
+<ul>
+<li><p>“Que el Señor dé paz a los muertos y deje vivir a los vivos.” -
+No translation credit</p>
+<ul>
+<li>“May God give peace to the dead and let the living live.”</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="lets-go-a-bit-deeper">Let’s go a bit deeper</h2>
+<hr />
+<p><em>Upokoy gospod myotvikh…</em></p>
+<ul>
+<li><p>out-rest-IMP God-NOM dead-ACC</p></li>
+<li><p>The “u-” means that the rest is “from here”.</p></li>
+<li><p>The verb is a command, to God.</p></li>
+<li><p>The dead are not “recieving” rest (dative), but they’re being
+rested (accusative).</p></li>
+<li><p>“Souls” are not mentioned</p></li>
+</ul>
+<hr />
+<p><em>…a zhivim eshyo zhit</em></p>
+<ul>
+<li><p>but living-DAT still to.live</p></li>
+<li><p>The act of living is what continues</p></li>
+<li><p>The living are <em>not</em> doing the living.</p>
+<ul>
+<li>Dative means they are “recieving” their living.</li>
+</ul></li>
+<li><p>Living isn’t obligation (“must still live”, “have to
+live”)</p></li>
+<li><p>“Let Life be the realm of the living?”</p>
+<ul>
+<li>Really?</li>
+</ul></li>
+</ul>
+<hr />
+<p>“упокой господь мертвых, а живым еще жить!”</p>
+<ul>
+<li><p>“God, take the dead away to rest, but those living still have the
+gift of a life to live”</p></li>
+<li><p><strong>… but that’s a <em>terrible</em> English
+sentence.</strong></p></li>
+</ul>
+<hr />
+<h3 id="accuracy-vs.-flow">Accuracy vs. Flow</h3>
+<ul>
+<li><p>“God, take the dead away to rest, but those living still have the
+gift of a life to live” - <em>Will</em></p></li>
+<li><p>“God give peace to the dead, the living have still to live!” -
+<em>Garnett</em></p></li>
+<li><p>“May the Lord grant rest to the dead, but the living have still
+got to live!” - <em>Pevear and Volokhonsky</em></p></li>
+</ul>
+<hr />
+<h3 id="translation-is-an-art-not-a-science">Translation is an art, not
+a science</h3>
+<ul>
+<li><p>You can’t capture Russian nuance in English, and vice
+versa</p></li>
+<li><p>All translations “favor” either the original or new language</p>
+<ul>
+<li>Learn which you prefer, and use it.</li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="all-translations-are-well-meaning-lies">“All translations are
+well-meaning lies”</h1>
+<hr />
+<h2 id="wrapping-up">Wrapping up!</h2>
+<ul>
+<li><p>Person and number is really important in language</p></li>
+<li><p>The Cyrillic writing system doesn’t suck.</p></li>
+<li><p>Grammatical Relations mark who did what to whom</p></li>
+<li><p>Case is important, and will come up over and over</p></li>
+<li><p>Russian has an awesome case system</p></li>
+<li><p>Translation is <em>really</em> hard.</p></li>
+</ul>
+<hr />
+<h2 id="in-recitation">In Recitation:</h2>
+<p>Working with Case!</p>
+<hr />
+<h2 id="next-time-niloo-presents-languages-of-iran">Next time: Niloo
+presents ‘Languages of Iran’</h2>
+<p><correct>No reading</correct></p>
+<hr />
+<p><huge>Thank you!</huge></p>
+<p>http://savethevowels.org/world/slides/lotw_5.html</p>
+</body>
+</html>

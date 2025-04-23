@@ -1,0 +1,7 @@
+tree_polarbears2tex
+
+[PP 
+  [P from ] 
+  [NP 
+    [N' 
+      [N LA ] ] ] ]

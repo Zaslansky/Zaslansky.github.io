@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="opaque-rule-orderings">Opaque Rule Orderings</h1>
+<h3 id="will-styler---lign-111">Will Styler - LIGN 111</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Teaching Feedback</p></li>
+<li><p>A note on Neutralization</p></li>
+<li><p>A vacuous term</p></li>
+<li><p>Transparent vs. Opaque Rule Orderings</p></li>
+<li><p>Counter-feeding and Counter-Bleeding</p></li>
+</ul>
+<hr />
+<h2 id="teaching-feedback">Teaching Feedback</h2>
+<hr />
+<h3 id="thanks-for-all-the-feedback">Thanks for all the feedback!</h3>
+<ul>
+<li><p>I’m always adjusting things like speed, timing, etc</p></li>
+<li><p>Slides are posted on the Syllabus (every lecture day is a
+clickable link!)</p></li>
+<li><p>We’ll go over the group material a bit more</p></li>
+<li><p>“The memes are a bit outdated, I guess.”</p></li>
+</ul>
+<hr />
+<h3 id="im-on-it">I’m on it!</h3>
+<p><img src="humorimg/fellowkids.gif" /></p>
+<hr />
+<h2 id="neutralization">Neutralization</h2>
+<hr />
+<h3
+id="weve-been-dealing-with-a-lot-of-problems-where-a-contrast-disappears">We’ve
+been dealing with a lot of problems where a contrast ‘disappears’</h3>
+<ul>
+<li><p>Two words <em>are</em> distinctive underlyingly</p></li>
+<li><p>… but element of phonology makes that contrast go away</p></li>
+</ul>
+<hr />
+<h3 id="russian-devoicing">Russian Devoicing</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-1wig">
+Nom. sg.
+</th>
+<th class="tg-1wig">
+Dat. sg.
+</th>
+<th class="tg-1wig">
+Nom. pl.
+</th>
+<th class="tg-1wig">
+Gloss
+</th>
+</tr>
+<tr>
+<td class="tg-0lax">
+[rok]
+</td>
+<td class="tg-0lax">
+[roɡu]
+</td>
+<td class="tg-0lax">
+[roɡa]
+</td>
+<td class="tg-0lax">
+‘horn’
+</td>
+</tr>
+<tr>
+<td class="tg-0lax">
+[rak]
+</td>
+<td class="tg-0lax">
+[raku]
+</td>
+<td class="tg-0lax">
+[raki]
+</td>
+<td class="tg-0lax">
+‘crayfish’
+</td>
+</tr>
+<tr>
+<td class="tg-0lax">
+[porok]
+</td>
+<td class="tg-0lax">
+[poroɡu]
+</td>
+<td class="tg-0lax">
+[poroɡi]
+</td>
+<td class="tg-0lax">
+‘threshold’
+</td>
+</tr>
+<tr>
+<td class="tg-0lax">
+[porok]
+</td>
+<td class="tg-0lax">
+[poroku]
+</td>
+<td class="tg-0lax">
+[poroki]
+</td>
+<td class="tg-0lax">
+‘vice’
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h2 id="neutralization-1">Neutralization</h2>
+<p>When a phonemic contrast ‘disappears’ in certain environments due to
+phonological rules</p>
+<ul>
+<li>“These words are underlyingly different, but the same on the
+surface”</li>
+</ul>
+<hr />
+<h3 id="neutralization-is-really-common">Neutralization is
+<em>really</em> common</h3>
+<ul>
+<li><p>You’ve been dealing with it already</p></li>
+<li><p>… and it’s time you had the word for it</p></li>
+</ul>
+<hr />
+<p>… speaking of terms…</p>
+<hr />
+<h2 id="vacuous-application">Vacuous Application</h2>
+<p>When a rule applies to a given form without having any effect</p>
+<hr />
+<h3 id="obstruent-voicing-rule">Obstruent voicing rule</h3>
+<p><danger>[-voice,-son] -&gt; [+voice] / __V</danger></p>
+<ul>
+<li><img src="humorimg/drake_nah.jpg" /></li>
+</ul>
+<hr />
+<h3 id="obstruent-voicing-rule-1">Obstruent voicing rule</h3>
+<p><correct>[-son] -&gt; [+voice] / __V</correct></p>
+<ul>
+<li><img src="humorimg/drake_yeah.jpg" /></li>
+</ul>
+<hr />
+<h3 id="rules-can-apply-to-forms-while-having-no-effect">Rules can apply
+to forms while having no effect</h3>
+<ul>
+<li><p>[-son] -&gt; [+voice] / __V will apply to /da/, but not result in
+any change</p></li>
+<li><p>[-syll] -&gt; [-high] / [-high]C0__ will apply to /e/, but
+nothing changes</p></li>
+<li><p>The output can be the same as the input, and the rule can be
+fine</p></li>
+</ul>
+<hr />
+<h3
+id="adding-feature-x-to-a-segment-with-feature-x-does-nothing">Adding
+feature X to a segment with feature X does nothing</h3>
+<ul>
+<li>So, feel free to make your rules a bit more compact</li>
+</ul>
+<hr />
+<h3
+id="this-is-different-from-when-the-the-environment-isnt-present">This
+is different from when the the environment isn’t present</h3>
+<ul>
+<li><p>[-son] -&gt; [+voice] / __V doesn’t affect /na/</p></li>
+<li><p>The rule doesn’t have the opportunity to apply</p></li>
+</ul>
+<hr />
+<h1 id="now-for-something-completely-different">Now, for something
+completely different!</h1>
+<hr />
+<p>… I know what you’re thinking …</p>
+<ul>
+<li><h3
+id="will-i-want-solving-phonological-problems-to-be-more-complex">“Will,
+I want solving phonological problems to be more complex!”</h3></li>
+</ul>
+<hr />
+<h2 id="ok">OK!</h2>
+<hr />
+<h3 id="lomongo">Lomongo</h3>
+<ul>
+<li><p><strong>Gliding</strong>: [-low] -&gt; [-syll] / __V</p></li>
+<li><p><strong>Yet [oina] is present in the language on the
+surface!</strong></p></li>
+</ul>
+<hr />
+<h2 id="opaque-interactions">Opaque Interactions</h2>
+<hr />
+<h3 id="weve-looked-at-single-rule-problems">We’ve looked at Single-Rule
+Problems</h3>
+<ul>
+<li>There’s just one alternation in the dataset, or several alternations
+stemming from one rule</li>
+</ul>
+<hr />
+<h3 id="weve-looked-at-multi-rule-problems-without-interactions">We’ve
+looked at Multi-Rule problems <em>without interactions</em></h3>
+<ul>
+<li><p>Several rules, but they affect different segments</p>
+<ul>
+<li>(… or the same segments in different contexts)</li>
+</ul></li>
+<li><p>Here, <strong>the ordering of the rules doesn’t
+matter</strong></p></li>
+</ul>
+<hr />
+<h3 id="then-there-are-interacting-rules">Then, there are interacting
+rules</h3>
+<ul>
+<li><p>Multiple rules affecting the same segment(s) or region(s) of the
+word</p></li>
+<li><p>One of the rules applies not to the UR, but to the output of
+another rule!</p></li>
+<li><p>Here, <strong>the ordering of the rules is
+crucial</strong></p></li>
+</ul>
+<hr />
+<h3 id="weve-looked-at-feeding-rule-interactions">We’ve looked at
+“feeding” rule interactions</h3>
+<ul>
+<li>Where one rule <em>provides a context</em> for another rule to
+apply</li>
+</ul>
+<hr />
+<h3 id="aspiration-and-approx.-devoicing-derivation-final">Aspiration
+and Approx. Devoicing Derivation (Final)</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-1wig">
+Underlying Form
+</th>
+<th class="tg-1wig">
+/plæt/
+</th>
+<th class="tg-1wig">
+/splæt/
+</th>
+<th class="tg-1wig">
+/pæt/
+</th>
+<th class="tg-1wig">
+/læs/
+</th>
+</tr>
+<tr>
+<td class="tg-1wig">
+Aspiration
+</td>
+<td class="tg-0lax">
+<div class="line-block">pʰlæt |</div>
+</table>
+</center>
+<hr />
+<h3 id="weve-looked-at-bleeding-rule-interactions">We’ve looked at
+“bleeding” rule interactions</h3>
+<ul>
+<li>Where one rule <em>removes a context</em> for another rule to
+apply</li>
+</ul>
+<hr />
+<h3 id="english-plural-derivation-final">English Plural Derivation
+(Final)</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-0lax">
+Underlying Form
+</th>
+<th class="tg-1wig">
+/kæt + z/
+</th>
+<th class="tg-1wig">
+/dag + z/
+</th>
+<th class="tg-1wig">
+/dɪʃ + z/
+</th>
+</tr>
+<tr>
+<td class="tg-1wig">
+V Epenthesis
+</td>
+<td class="tg-0lax">
+–
+</td>
+<td class="tg-0lax">
+–
+</td>
+<td class="tg-0lax">
+<div class="line-block">dɪʃɪz |</div>
+</table>
+</center>
+<hr />
+<h3 id="feeding-and-bleeding-interactions-are-transparent">Feeding and
+Bleeding interactions are <em>transparent</em></h3>
+<ul>
+<li><p>Both rules are “visible”</p></li>
+<li><p>The rules seem to “always apply” on the surface</p></li>
+<li><p>You can look at the surface forms and see that these rules are
+not violated!</p></li>
+</ul>
+<hr />
+<h3
+id="there-are-two-other-kinds-of-rule-orderings-which-are-opaque">There
+are two other kinds of rule orderings which are <em>opaque</em></h3>
+<hr />
+<h2 id="phonological-opacity">Phonological Opacity</h2>
+<p>When phonological processes interact in ways that may obscure the
+applicability or application of a given process</p>
+<hr />
+<h3 id="opaque-rule-orderings-1">Opaque Rule Orderings</h3>
+<ul>
+<li><p>Counterfeeding order - One rule “fails to feed” another</p></li>
+<li><p>Counterbleeding order - One rule “fails to bleed”
+another</p></li>
+</ul>
+<hr />
+<h3
+id="counterbleeding-and-counterfeeding-rule-orderings-are-opaque">Counterbleeding
+and Counterfeeding rule orderings are <em>opaque</em></h3>
+<ul>
+<li><p>Sometimes, you’ll see something ‘illegal’ happening on the
+surface</p>
+<ul>
+<li><p>Your rule appears to fail to apply in some cases</p></li>
+<li><p>Your rule appears to over-apply in some cases</p></li>
+</ul></li>
+<li><p>The rule exists, but it can appear to be violated or over-applied
+in some situations</p>
+<ul>
+<li>It is not “surface true”</li>
+</ul></li>
+<li><p>Opaque orderings are trickier, theoretically and
+practically</p></li>
+</ul>
+<hr />
+<h3 id="these-names-are-not-great">These names are not great</h3>
+<ul>
+<li><p>“Counter” here means the counterfactual inverse</p></li>
+<li><p>“Rule A <em>would</em> feed rule B if ordered first, but instead,
+Rule B comes first.</p></li>
+<li><p>“Rule C <em>would</em> bleed rule D if ordered first, but
+instead, Rule D comes first.</p></li>
+</ul>
+<hr />
+<h2 id="counterfeeding-ordering">Counterfeeding Ordering</h2>
+<p>Rule A <em>fails to feed</em> rule B</p>
+<ul>
+<li>Rule A would feed rule B, but it applies too late!</li>
+</ul>
+<hr />
+<h3 id="lets-look-at-a-counterfeeding-ordering">Let’s look at a
+counterfeeding ordering!</h3>
+<hr />
+<h3 id="lomongo-1">Lomongo</h3>
+<ul>
+<li><p>(Remember Wednesday?)</p></li>
+<li><p><strong>Gliding</strong>: [-low] -&gt; [-syll] / __V</p></li>
+<li><p><strong>C Deletion</strong>: [+voi,-son] -&gt; ∅ / V__</p></li>
+</ul>
+<hr />
+<h3 id="lomongo-2">Lomongo</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-1wig">
+Underlying Form
+</th>
+<th class="tg-1wig">
+/o+bina/
+</th>
+<th class="tg-1wig">
+/o+isa/
+</th>
+<th class="tg-1wig">
+/ba+bina/
+</th>
+</tr>
+<tr>
+<td class="tg-1wig">
+[-low] -&gt; [-syll] / __V
+</td>
+<td class="tg-0lax">
+–
+</td>
+<td class="tg-0lax">
+<div class="line-block">wisa |</div>
+</table>
+</center>
+<p><br> - ### The Gliding rule is <em>violated on the surface</em> by
+[oina]</p>
+<hr />
+<h3 id="a-rule-exists-but-isnt-always-followed">A rule exists, but isn’t
+always followed</h3>
+<ul>
+<li><img src="humorimg/this_is_fine.jpg" /></li>
+</ul>
+<hr />
+<h3 id="counterfeeding-ordering-is-opaque">Counterfeeding ordering is
+opaque</h3>
+<ul>
+<li><p>Rules should be given a chance to apply to all words in the
+language</p>
+<ul>
+<li>… but it doesn’t seem to apply to some forms</li>
+</ul></li>
+<li><p>The correct ordering <em>fails to feed</em> that rule</p></li>
+<li><p>The rule <em>seems</em> like it was violated</p></li>
+<li><p>When it actually <em>failed to apply</em> to an earlier,
+intermediate form of the word</p></li>
+</ul>
+<hr />
+<h3 id="the-counterfeeding-motto">The Counterfeeding Motto</h3>
+<ul>
+<li>“This rule seems like it should have applied here, but it
+didn’t!”</li>
+</ul>
+<hr />
+<h2 id="counterbleeding">Counterbleeding</h2>
+<hr />
+<h3 id="counterbleeding-ordering">Counterbleeding Ordering</h3>
+<p>Rule A <em>fails to bleed</em> rule B</p>
+<ul>
+<li>Rule A would bleed rule B, but it applies too late!</li>
+</ul>
+<hr />
+<h3 id="low-german">Low German</h3>
+<ul>
+<li><p><strong>Spirantization</strong>: [-son,+voice] -&gt; [+cont] /
+V__</p></li>
+<li><p><strong>Devoicing</strong>: [-son] -&gt; [-voice] / __#</p></li>
+</ul>
+<hr />
+<h3 id="low-german-1">Low German</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-1wig">
+Underlying Form
+</th>
+<th class="tg-1wig">
+/ta:g/
+</th>
+<th class="tg-1wig">
+/ta:g+ə/
+</th>
+<th class="tg-1wig">
+/haʊz/
+</th>
+</tr>
+<tr>
+<td class="tg-1wig">
+[-son,+voice] -&gt; [+cont] / V__
+</td>
+<td class="tg-0lax">
+<div class="line-block">ta:ɣ |</div>
+</table>
+</center>
+<p><br> - ### Spirantization <em>shouldn’t affect a voiceless
+sound</em>, but it seems like it did on the surface!</p>
+<hr />
+<h3 id="counterbleeding-ordering-is-opaque">Counterbleeding ordering is
+opaque</h3>
+<ul>
+<li><p>Rules should have the same effects throughout the language</p>
+<ul>
+<li>… but it seems to be applying where it shouldn’t</li>
+</ul></li>
+<li><p>The correct ordering <em>fails to bleed</em> that rule</p></li>
+<li><p>The rule <em>seems</em> like it applied where it
+shouldn’t</p></li>
+<li><p>… but it actually just applied earlier, to an intermediate form
+where it should have</p></li>
+</ul>
+<hr />
+<h3 id="the-counterbleeding-motto">The Counterbleeding Motto</h3>
+<ul>
+<li>“This rule <em>shouldn’t</em> apply here, but it seems to
+have!”</li>
+</ul>
+<hr />
+<h3 id="lets-try-and-identify-a-rule-ordering">Let’s try and identify a
+rule ordering!</h3>
+<hr />
+<h3 id="english-tapping-and-raising">English tapping and raising!</h3>
+<ul>
+<li><p><strong>Tapping</strong>: [+ant, -cont, -lat] -&gt; [-cons] /
+__[+syll, -stress]</p></li>
+<li><p>… and in some dialects…</p></li>
+<li><p><strong>Raising</strong>: /aɪ/ -&gt; [ʌɪ] / __[-syll,-voice]</p>
+<ul>
+<li>(Feature specification and diphthongs is tricky)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="english-tapping-and-raising---dialect-1">English Tapping and
+Raising - Dialect 1</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-1wig">
+Underlying Form
+</th>
+<th class="tg-1wig">
+/waɪt+əɹ/
+</th>
+<th class="tg-1wig">
+/waɪd+əɹ/
+</th>
+</tr>
+<tr>
+<td class="tg-1wig">
+[+ant, -cont, -lat] -&gt; [-cons] / __[+syll, -stress]
+</td>
+<td class="tg-0lax">
+<div class="line-block">waɪɾəɹ |</div>
+</table>
+</center>
+<p><br> - ### What kind of rule ordering is this? Do we have a name for
+what happened at the end?</p>
+<hr />
+<h3 id="english-tapping-and-raising---dialect-1-1">English Tapping and
+Raising - Dialect 1</h3>
+<ul>
+<li><p>Here, tapping <strong>bleeds</strong> raising in “Whiter”</p>
+<ul>
+<li>Raising could apply, but tapping removes the environment (__[-syll,
+-voice]) it would need</li>
+</ul></li>
+<li><p>The result is neutralization (“whiter” and “wider” become
+homophones)</p></li>
+</ul>
+<hr />
+<h3 id="english-tapping-and-raising---dialect-2">English Tapping and
+Raising - Dialect 2</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-1wig">
+Underlying Form
+</th>
+<th class="tg-1wig">
+/waɪt+əɹ/
+</th>
+<th class="tg-1wig">
+/waɪd+əɹ/
+</th>
+</tr>
+<tr>
+<td class="tg-1wig">
+/aɪ/ -&gt; [ʌɪ] / __[-syll,-voice]
+</td>
+<td class="tg-0lax">
+<div class="line-block">wʌɪtəɹ |</div>
+</table>
+</center>
+<p><br> - ### What kind of rule ordering is this?</p>
+<hr />
+<h3 id="english-tapping-and-raising---dialect-1-2">English Tapping and
+Raising - Dialect 1</h3>
+<ul>
+<li><p>Here, tapping <strong>counterbleeds</strong> raising in
+“Whiter”</p>
+<ul>
+<li>Tapping <em>would</em> bleed raising, but it applies too late!</li>
+</ul></li>
+<li><p>It looks like the rule <em>overapplied</em></p>
+<ul>
+<li>You shouldn’t get [ʌɪ] before a voiced sound</li>
+</ul></li>
+<li><p>There’s no longer any neutralization!</p></li>
+<li><p><em>Dialects can differ in rule ordering!</em></p></li>
+</ul>
+<hr />
+<h3 id="western-basque">Western Basque</h3>
+<ul>
+<li><p><strong>Mid Raising</strong> - [-low] -&gt; [+high] /
+__V</p></li>
+<li><p><strong>Low Raising</strong> - [+low] -&gt; [-low] / __V</p></li>
+</ul>
+<hr />
+<h3 id="western-basque-1">Western Basque</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-1wig">
+Underlying Form
+</th>
+<th class="tg-1wig">
+/alaba+a/
+</th>
+<th class="tg-1wig">
+/seme+e/
+</th>
+</tr>
+<tr>
+<td class="tg-1wig">
+[-low] -&gt; [+high] / __V
+</td>
+<td class="tg-0lax">
+–
+</td>
+<td class="tg-0lax">
+<div class="line-block">semie |</div>
+</table>
+</center>
+<ul>
+<li><h3 id="what-kind-of-rule-ordering-is-this">What kind of rule
+ordering is this?</h3></li>
+</ul>
+<hr />
+<h3 id="western-basque-2">Western Basque</h3>
+<ul>
+<li><p>Here, mid raising <strong>counterfeeds</strong> low raising</p>
+<ul>
+<li>Low raising <em>would</em> feed mid-raising, but it happens too
+late!</li>
+</ul></li>
+<li><p>It looks like the rule was violated</p>
+<ul>
+<li>You shouldn’t get [e] before a vowel, but we did!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="opacity-is-really-tricky">Opacity is really tricky!</h3>
+<ul>
+<li><p>You get things on the surface that break your rules</p></li>
+<li><p>… and rules that seem to apply more often than they
+should</p></li>
+<li><p>Your rules may be true, but not <em>surface true</em></p></li>
+</ul>
+<hr />
+<h3 id="opacity-is-also-theoretically-interesting">Opacity is also
+theoretically interesting</h3>
+<ul>
+<li><p>Learning a rule that’s regularly violated might be
+tougher</p></li>
+<li><p>Handling opacity is a major area of differentiation among
+phonological theories</p></li>
+<li><p>This is a bit beyond this class, but really interesting!</p></li>
+</ul>
+<hr />
+<h3 id="the-problem-solving-process-doesnt-change">The problem solving
+process doesn’t change!</h3>
+<ul>
+<li><p>You’re still generating rules</p></li>
+<li><p>Then tweaking their orderings until things work</p></li>
+<li><p>Then including derivation tables to show explain your analysis
+(always!)</p></li>
+<li><p><strong>But you should think about opacity!</strong></p></li>
+<li><p>Your rules might not be broken, just their orderings.</p></li>
+<li><p><em>That form might not be an exception at all.</em></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Neutralization is where phonology causes contrasts to
+disappear</p></li>
+<li><p>Rule interactions can be transparent, or opaque</p></li>
+<li><p>Counterfeeding orderings result in rules which should have
+applied, but didn’t</p></li>
+<li><p>Counterbleeding orderings result in rules which seem to apply
+where they shouldn’t</p></li>
+<li><p>Opacity is a royal pain, but really cool!</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li>Some counter(C0)eeding interactions!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

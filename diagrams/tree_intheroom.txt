@@ -1,0 +1,8 @@
+tree_intheroomtex
+ 
+[PP 
+  [P in ] 
+  [NP 
+    [DET the ] 
+    [N' 
+      [N room ] ] ] ]

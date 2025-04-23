@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img src="humorimg/puncroc.jpg"></p>
+<hr />
+<h1 id="who-are-you">Who are you?</h1>
+<hr />
+<h3 id="information-id-like">Information I’d like</h3>
+<ul>
+<li>Year</li>
+<li>Major</li>
+<li>What languages do we speak?</li>
+</ul>
+<hr />
+<h1 id="what-is-language">What is Language?</h1>
+<h3 id="will-styler---lign-101">Matt Zaslansky - LIGN 101</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Who are you?</p></li>
+<li><p>What is Language?</p></li>
+<li><p>What are some characteristics of Language?</p></li>
+<li><p>How Universal is Language?</p></li>
+<li><p>What <em>isn’t</em> language?</p></li>
+<li><p>Does our language shape our thoughts?</p></li>
+</ul>
+<hr />
+<h1 id="what-is-language-1">What is Language?</h1>
+<hr />
+<h3 id="language">Language</h3>
+<ul>
+<li><p>Language is a system for linking expression to meaning</p></li>
+<li><p>… but we’re probably better off thinking about what makes
+language, language-like</p></li>
+</ul>
+<hr />
+<h1 id="what-characteristics-does-language-have">What characteristics
+does Language have?</h1>
+<hr />
+<h3 id="three-important-characteristics-of-language">Three important
+characteristics of Language</h3>
+<ul>
+<li><p>1 - Arbitrary relationships between signs and the
+signified</p></li>
+<li><p>2 - Fully Productive and Creative</p></li>
+<li><p>3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Characteristic #1</td>
+</tr>
+<tr class="even">
+<td>## Arbitrary relationships between signs and the signified</td>
+</tr>
+</tbody>
+</table>
+<h3 id="language-has-signs-and-signified-concepts">Language has ‘signs’
+and ‘signified’ concepts</h3>
+<ul>
+<li><p>The ‘sign’ is something a human does in communication</p></li>
+<li><p>The ‘signified’ is something in the world (conceptual or
+concrete)</p></li>
+<li><p><em>What is the link between these things?</em></p></li>
+</ul>
+<hr />
+<h3 id="non-arbitrary-signs">Non-arbitrary signs</h3>
+<ul>
+<li><p><em>The sign is causally linked to the signified</em></p></li>
+<li><p>Smoke is a sign of fire</p></li>
+<li><p>Bleeding from your finger is a sign of a papercut</p></li>
+<li><p>Will’s presence is a sign of bad puns</p></li>
+</ul>
+<hr />
+<h3 id="iconic-or-representational-signs">Iconic (or representational)
+signs</h3>
+<ul>
+<li><p><em>A referential abstraction from the signified</em></p></li>
+<li><h1 id="section">☂ ☃ ☀ 💩 🤦‍</h1></li>
+<li><p>Some hand gestures</p></li>
+<li><p>Some sounds meant to ‘mimic’ the world</p></li>
+</ul>
+<hr />
+<p><img class="big" src="img/curve.jpg"></p>
+<hr />
+<h3 id="arbitrary-signs">Arbitrary Signs</h3>
+<ul>
+<li><p><em>Referential only by agreement and widespread
+knowledge</em></p></li>
+<li><p>Non-representational symbols (or uses of symbols) (♄, 🍆,
+🍑)</p></li>
+<li><p>Non-iconic gestures</p></li>
+</ul>
+<hr />
+<p><img src="img/scotland_speedsign.jpg" /></p>
+<ul>
+<li>“Go whatever speed is legal here”</li>
+</ul>
+<hr />
+<h3 id="in-omg-he-started-a-in-his-trashcan-is">🔥 in ‘omg he started a
+🔥 in his trashcan’ is …</h3>
+<ol type="A">
+<li><p>Non-Arbitrary, Iconic</p></li>
+<li><p>Arbitrary</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="in-omg-he-started-a-in-his-trashcan-is-1">🔥 in ‘omg he started
+a 🔥 in his trashcan’ is …</h3>
+<ol type="A">
+<li><p><correct>Non-Arbitrary, Iconic</correct></p></li>
+<li><p>Arbitrary</p></li>
+</ol>
+<hr />
+<h3 id="in-omg-that-party-was-is">🔥 in ‘omg that party was 🔥 🔥 🔥’ is
+…</h3>
+<ol type="A">
+<li><p>Non-Arbitrary, Iconic</p></li>
+<li><p>Arbitrary</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="in-omg-that-party-was-is-1">🔥 in ‘omg that party was 🔥 🔥 🔥’
+is …</h3>
+<ol type="A">
+<li><p>Non-Arbitrary, Iconic</p></li>
+<li><p><correct>Arbitrary</correct></p></li>
+</ol>
+<hr />
+<h3 id="the-most-important-arbitrary-signifiers-are">The most important
+arbitrary signifiers are…</h3>
+<hr />
+<h2 id="words">Words!</h2>
+<ul>
+<li>The connection between words and meanings in language is (mostly)
+arbitrary</li>
+</ul>
+<hr />
+<h3
+id="the-connection-between-sound-and-meaning-is-mostly-arbitrary-in-spoken-language">The
+connection between sound and meaning is mostly arbitrary in spoken
+Language</h3>
+<p><img width=300px src=img/koala.jpg><img width=500px  src=phonmedia/koalas.png></p>
+<hr />
+<h3 id="signed-languages-have-arbitrary-signs-too">Signed languages have
+arbitrary signs too!</h3>
+<p>(These ASL examples are from <a
+href="https://giphy.com/signwithrobert/">Sign with Robert on
+GIPHY</a>)</p>
+<p><img class="r-stretch" src="img/asl_lazy.gif"></p>
+<hr />
+<h3 id="signed-languages-have-arbitrary-signs-too-1">Signed languages
+have arbitrary signs too!</h3>
+<p><img class="r-stretch" src="img/asl_lawyer.gif"></p>
+<hr />
+<h3 id="signed-languages-have-arbitrary-signs-too-2">Signed languages
+have arbitrary signs too!</h3>
+<p><img class="r-stretch" src="img/asl_yourewelcome.gif"></p>
+<hr />
+<h3 id="but-there-are-often-elements-of-iconicity-in-signs">… but there
+are often elements of iconicity in signs</h3>
+<p><img class="r-stretch" src="img/asl_horse.gif"></p>
+<hr />
+<h3 id="but-there-are-often-elements-of-iconicity-in-signs-1">… but
+there are often elements of iconicity in signs</h3>
+<p><img class="r-stretch" src="img/asl_otter.gif"></p>
+<hr />
+<h3 id="but-there-are-often-elements-of-iconicity-in-signs-2">… but
+there are often elements of iconicity in signs</h3>
+<p><img class="r-stretch" src="img/asl_dead.gif"></p>
+<hr />
+<h3 id="spoken-language-has-moments-of-iconicity-too">Spoken language
+has moments of iconicity too!</h3>
+<hr />
+<h3 id="onomatopoeia">Onomatopoeia</h3>
+<p><em>Words which, when spoken, sound kind of like the things they
+represent</em></p>
+<ul>
+<li>(See also the idea of an <a
+href="http://en.wikipedia.org/wiki/Ideophone">Ideophone</a>)</li>
+</ul>
+<hr />
+<h3 id="onomatopoetic-words-in-english">Onomatopoetic Words in
+English</h3>
+<p>Boom <!-- .element: class="fragment" --></p>
+<p>Gurgle <!-- .element: class="fragment" --></p>
+<p>Woof <!-- .element: class="fragment" --></p>
+<p>Snip <!-- .element: class="fragment" --></p>
+<p>Whoosh <!-- .element: class="fragment" --></p>
+<p>Splash <!-- .element: class="fragment" --></p>
+<hr />
+<h3 id="onomatopoeia-differs-across-languages">Onomatopoeia differs
+across languages</h3>
+<hr />
+<h3 id="a-rooster-says">A rooster says…</h3>
+<p>cock-a-doodle-doo (English) <!-- .element: class="fragment" --></p>
+<p>kukko kiekuu (Finnish) <!-- .element: class="fragment" --></p>
+<p>chicchirichí (Italian) <!-- .element: class="fragment" --></p>
+<p>kuklooku (Urdu) <!-- .element: class="fragment" --></p>
+<p>kukuriku (Hungarian) <!-- .element: class="fragment" --></p>
+<p>Sourced from <a
+href="http://www.eleceng.adelaide.edu.au/personal/dabbott/animal.html">this
+awesome site</a></p>
+<!-- .element: class="fragment" -->
+<hr />
+<p>(So, different languages can’t even map sounds onto sounds
+uniformly)</p>
+<hr />
+<h3
+id="the-best-evidence-for-arbitrariness-words-differ-across-languages">The
+best evidence for arbitrariness: Words differ across languages</h3>
+<ul>
+<li>If the link between signifier and signified were always
+non-arbitrary, <em>everybody would have substantially similar words for
+concepts</em></li>
+</ul>
+<hr />
+<h3 id="spoiler-alert-we-do-not">Spoiler Alert: We do not</h3>
+<p><img class="r-stretch" src="img/fish_dieter.jpg"></p>
+<hr />
+<h3 id="characteristic-1">Characteristic #1</h3>
+<h2
+id="arbitrary-relationships-between-signs-and-the-signified">Arbitrary
+relationships between signs and the signified</h2>
+<hr />
+<h3 id="characteristic-2">Characteristic #2</h3>
+<h2 id="languages-are-fully-productive-and-creative">Languages are fully
+productive and creative</h2>
+<hr />
+<h3 id="lets-test-that-out">Let’s test that out</h3>
+<ul>
+<li>Let’s describe an image that you’ve never seen before</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/stablediffusion_beach_san_diego_kitten_spaceship_silverware_motorcycle_dinosaur__by_Thomas_Kinkade_Seed-5923967_Steps-50_Guidance-14.jpg"></p>
+<hr />
+<h3
+id="this-was-not-created-by-a-human-so-it-doesnt-follow-human-categories">This
+was not created by a human, so it doesn’t follow human categories</h3>
+<ul>
+<li><p>This was generated by <a
+href="https://en.wikipedia.org/wiki/Stable_Diffusion">Stable
+Diffusion</a></p></li>
+<li><p>The prompt was ‘beach san diego kitten spaceship silverware
+motorcycle dinosaur by Thomas Kinkade’</p></li>
+<li><p>This is one of the weirdest natural language processing examples
+around!</p>
+<ul>
+<li><strong>Yet we can still describe the output!</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="languages-are-capable-of-describing-anything-eventually">Languages
+are capable of describing anything (eventually)</h3>
+<ul>
+<li><p>Might take time</p></li>
+<li><p>Might require some words to be ‘circumlocuted’ or invented</p>
+<ul>
+<li>“I don’t know a word for this, but I’ll use other words to describe
+what I’m after’</li>
+</ul></li>
+<li><p>Might require incredible skill</p>
+<ul>
+<li>“They should have sent a poet”</li>
+</ul></li>
+<li><p>But they’ll get the job done</p></li>
+</ul>
+<hr />
+<h3
+id="languages-are-also-capable-of-producing-an-infinite-set-of-unique-sentences">Languages
+are also capable of producing an infinite set of unique sentences</h3>
+<ul>
+<li><p>Any human speaker of a language can produce a sentence that
+nobody has ever spoken before</p>
+<ul>
+<li><p>“I plan to buy a half-empty barrel of Doritos as soon as my
+penguin gets home with the Crown Jewels.”</p></li>
+<li><p>“I sure am glad that Michael Bay has agreed to direct a movie
+adaptation of my favorite childhood cartoon”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="and-sentences-can-be-infinitely-grown-and-expanded">… and
+sentences can be infinitely grown and expanded</h3>
+<ul>
+<li><p>I saw Anna.</p></li>
+<li><p>I saw Anna yesterday.</p></li>
+<li><p>I saw Anna yesterday before I refilled the hummingbird
+feeder.</p></li>
+<li><p>I saw Anna yesterday afternoon right after writing a bad pun but
+before I refilled the hummingbird feeder.</p></li>
+<li><p>I saw my neighbor Anna who likes to hug polar bears yesterday
+afternoon right after writing a bad pun but before I refilled the
+hummingbird feeder.</p></li>
+</ul>
+<hr />
+<h3 id="this-particular-property-is-called-recursion">This particular
+property is called recursion</h3>
+<ul>
+<li><p>Sentences can be made to contain elements from other sentences
+infinitely</p></li>
+<li><p>“My cat saw the guy who went with Kati, Vincent, and Victoria to
+the park where the New York Knicks talked to Mary…”</p></li>
+<li><p>This can go on literally <em>forever</em></p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/hulkhoganfractal.jpg"></p>
+<hr />
+<h3 id="creativity-and-productivity-is-true-of-all-languages">Creativity
+and Productivity is true of all languages</h3>
+<ul>
+<li><p>We have yet to discover a language which is communicatively
+‘primitive’ or unable to describe reality</p></li>
+<li><p>If a language lacks elements, they will be developed or borrowed
+over time</p></li>
+<li><p>Languages can differ substantially still</p></li>
+<li><p>A given language may lack words for some concepts</p>
+<ul>
+<li><p>… or may have words that other languages don’t have</p></li>
+<li><p>Many words and concepts are culturally based, and may not be
+shared regardless</p></li>
+</ul></li>
+<li><p><strong>Every natural human language that we’ve found is able to
+express a rich set of meanings</strong></p></li>
+</ul>
+<hr />
+<h3 id="characteristic-2-1">Characteristic #2</h3>
+<h2 id="languages-are-fully-productive-and-creative-1">Languages are
+fully productive and creative</h2>
+<hr />
+<h3 id="characteristic-3">Characteristic #3</h3>
+<h2
+id="speakers-have-knowledge-of-grammar-and-the-rules-of-language">Speakers
+have knowledge of grammar and the ‘rules’ of language</h2>
+<hr />
+<h3 id="grammaticality-judgements">Grammaticality Judgements</h3>
+<ul>
+<li><p>Some things sound ‘like English’ and are comprehensible</p></li>
+<li><p>Some things are not English</p></li>
+<li><p>These are also known as ‘language intuitions’ or ‘linguistic
+intuitions’</p></li>
+</ul>
+<hr />
+<h3 id="you-can-make-grammaticality-judgements">You can make
+grammaticality judgements</h3>
+<ul>
+<li><p>‘John went to the park with Tamara’</p></li>
+<li><p>‘Walk Rick gate Johnny between’</p></li>
+<li><p>‘The moose fiendishly decalcified the hieroglyphics between the
+Dagestani Giraffes’</p></li>
+<li><p>‘Somebody set up us the bomb. All your base are belong to
+us.’</p></li>
+</ul>
+<hr />
+<h3
+id="grammaticality-judgements-are-about-language-not-individual-words">Grammaticality
+judgements are about language, not individual words</h3>
+<ul>
+<li><p>‘Gleeble’ - A small fish</p></li>
+<li><p>‘To Garflabble’ - To perform an elaborate mating display</p></li>
+<li><p>‘Flundubble’ - A large octopus-like creature</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>‘Gleeble’ - A small fish</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>‘Gleeble’ - A small fish</td>
+</tr>
+<tr class="even">
+<td>‘To Garflabble’ - To perform an elaborate mating display</td>
+</tr>
+<tr class="odd">
+<td>‘Flundubble’ - A large octopus-like creature</td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td>### Is the sentence ‘Gleebles garflabble for flundubbles all the
+time.’ grammatical?</td>
+</tr>
+<tr class="even">
+<td>A) Yes</td>
+</tr>
+<tr class="odd">
+<td>B) No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="and-by-the-way-how-do-we-know-the-plural-of-gleeble">(and by the
+way, how do we know the plural of ‘gleeble’?)</h3>
+<hr />
+<p><img src="humorimg/conspiracykeanu.jpg" /></p>
+<ul>
+<li>(Nah, it’s just phonology)</li>
+</ul>
+<hr />
+<h3 id="is-the-following-sequence-grammatical">Is the following sequence
+grammatical?</h3>
+<hr />
+<h3 id="how-about-this-one">How about this one?</h3>
+<hr />
+<h3 id="judgements-can-be-more-subtle">Judgements can be more
+subtle</h3>
+<ul>
+<li>?There looks to be a problem outside</li>
+<li>?There sounds to be somebody in there</li>
+<li>?There smells to be something rotten in there</li>
+<li>?There feels to be something in the bag</li>
+<li>?There tastes to be an issue with the cookies</li>
+</ul>
+<hr />
+<h3
+id="we-as-speakers-have-strong-feelings-about-the-correctness-and-rules-of-language">We
+as speakers have strong feelings about the ‘correctness’ and ‘rules’ of
+language</h3>
+<ul>
+<li><p>… but not so much for other kinds of basic communicative
+gestures</p></li>
+<li><p>So, this is yet another element of Language</p></li>
+</ul>
+<hr />
+<h3 id="characteristic-3-1">Characteristic #3</h3>
+<h2
+id="speakers-have-knowledge-of-grammar-and-the-rules-of-language-1">Speakers
+have knowledge of grammar and the ‘rules’ of language</h2>
+<hr />
+<h3
+id="there-are-other-characteristics-that-are-important-in-human-language">There
+are other characteristics that are important in human Language</h3>
+<ul>
+<li><p>Language is symmetrical (e.g. we can send and recieve)</p></li>
+<li><p>Language can talk about situations not in the ‘here and
+now’</p></li>
+<li><p>Language is made of discrete, isolateable units (like words or
+sounds)</p></li>
+<li><p>Language has slang, taboo words</p></li>
+<li><p>Language accomplishes certain functions (e.g. asking questions,
+issuing commands)</p></li>
+<li><p>All languages can be translated into any other</p></li>
+<li><p>But the three we’ll focus on are…</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Three important characteristics of Language</td>
+</tr>
+<tr class="even">
+<td>- 1 - Arbitrary relationships between signs and the signified</td>
+</tr>
+<tr class="odd">
+<td>- 2 - Fully Productive and Creative</td>
+</tr>
+<tr class="even">
+<td>- 3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</td>
+</tr>
+<tr class="odd">
+<td>- <strong>All human languages share these properties!</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="given-that-human-languages-seem-to-share-some-properties">Given
+that human languages seem to share some properties</h3>
+<ul>
+<li><p>… and we’re yet to find a group of humans without
+language</p></li>
+<li><p>Some theorists have argued that this is evidence for…</p></li>
+</ul>
+<hr />
+<h1 id="universal-grammar">Universal Grammar</h1>
+<hr />
+<h3 id="universal-grammar-1">Universal Grammar</h3>
+<ul>
+<li>An idea initially posited by Noam Chomsky</li>
+</ul>
+<hr />
+<h3 id="a-note-on-the-noam">A Note on the Noam</h3>
+<p><img src="people/noam_chomsky.jpg" /></p>
+<hr />
+<h3 id="universal-grammar-2">Universal Grammar</h3>
+<p>An idea initially posited by Noam Chomsky</p>
+<ul>
+<li><p>UG holds that there’s some genetic basis to human
+language</p></li>
+<li><p>Some properties of human language are innate</p>
+<ul>
+<li>Not just the ones to do with physical structures</li>
+</ul></li>
+<li><p>There are a set of constraints governing language that are ‘built
+in’ to our physiology</p></li>
+</ul>
+<hr />
+<h3 id="ug-is-not-facts-about-your-individual-language">UG is not facts
+about your individual language</h3>
+<ul>
+<li><p>A child of two Mandarin Chinese speakers, raised by English
+speakers, will speak English</p></li>
+<li><p>Every language is <em>not</em> the same, and linguistic grammar
+varies substantially</p></li>
+<li><p><em>UG is about biological predisposition to Language, not to A
+language</em></p></li>
+</ul>
+<hr />
+<h3 id="evidence-for-ug">Evidence for UG</h3>
+<ul>
+<li><p>No cultures, people, or societies have been found with no
+language</p></li>
+<li><p>No other species has been found with human-like language</p></li>
+<li><p>Children acquire language impressively well</p>
+<ul>
+<li>Even in cultures where people don’t speak to children</li>
+</ul></li>
+<li><p>Signed languages show similar properties to spoken languages</p>
+<ul>
+<li>Even when they arise in isolation</li>
+</ul></li>
+<li><p>Some things appear to be universal</p>
+<ul>
+<li>The big one is Recursion</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="evidence-against-ug">Evidence against UG</h3>
+<ul>
+<li><p>There doesn’t seem to be good biological evidence for it</p></li>
+<li><p>Many properties of human language can be derived from functional
+facts about communication</p></li>
+<li><p>Recursion might not be universal</p>
+<ul>
+<li>Dan Everett (and others) claim that speakers of Pirahã lack
+recursion</li>
+<li>Pirahã is a pretty neat language</li>
+</ul></li>
+<li><p><a href="https://dlc.hypotheses.org/1269">Even Chomksy doesn’t
+support this view anymore</a></p></li>
+</ul>
+<hr />
+<h3 id="are-elements-of-linguistic-structure-innate">Are elements of
+Linguistic structure innate?</h3>
+<ul>
+<li><p>The predominant view among professional linguists for a long time was aligned with Chomsky in being 
+a nativist approach, meaning that most people in the field assumed that our biological capacity for language is very specifically linguistic</p>
+<ul>
+<li>Nativist/innatist arguments have gone from 'unquestioned' to 'questionable' in the field</li>
+<li>There is not yet a scientific consensus on this topic</li>
+</ul></li>
+<li><p>Your textbook takes a clear opposition to the nativist approach</p>
+<ul>
+<td><img class="r-stretch" src="teaching/howlanguageswork.png"></td>
+<li>Grammar is defined in the textbook as including both structural forms and their usage-based functional contexts in communication.</li>
+</ul></li>
+<li><p>I just want you to know the idea behind UG</p></li>
+</ul>
+<hr />
+<h3 id="but-weve-now-got-a-pretty-good-handle-on-what-language-is">But
+we’ve now got a pretty good handle on what Language is</h3>
+<hr />
+<h1 id="what-isnt-language">What <em>isn’t</em> Language</h1>
+<hr />
+<h3 id="alternative-means-of-coding-languages">Alternative means of
+coding languages</h3>
+<ul>
+<li><p><a
+href="https://www.omniglot.com/writing/semaphore.htm">Semaphore</a> and
+Morse Code</p>
+<ul>
+<li>These are just re-coding an existing language</li>
+</ul></li>
+<li><p>Writing systems</p>
+<ul>
+<li>They’re closely associated with an existing spoken or signed human
+language</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="computer-programming-languages">Computer Programming
+Languages</h3>
+<ul>
+<li>Languages like COBOL, C++, Java, Python, Rust</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td><img class="r-stretch" src="img/cpluspluscalc.png"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="are-programming-languages-languages">Are programming languages
+languages?</h3>
+<ul>
+<li><p>1 - Arbitrary relationships between signs and the
+signified</p></li>
+<li><p>2 - Fully Productive and Creative</p></li>
+<li><p>3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</p></li>
+</ul>
+<hr />
+<h3 id="are-programming-languages-languages-1">Are programming languages
+languages?</h3>
+<p><correct>1 - Arbitrary relationships between signs and the
+signified</correct></p>
+<p>2 - Fully Productive and Creative</p>
+<p>3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Are programming languages languages?</td>
+</tr>
+<tr class="even">
+<td><correct>1 - Arbitrary relationships between signs and the
+signified</correct><br></td>
+</tr>
+<tr class="odd">
+<td><danger>2 - Fully Productive and Creative</danger><br></td>
+</tr>
+<tr class="even">
+<td>3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</td>
+</tr>
+</tbody>
+</table>
+<h3 id="are-programming-languages-languages-2">Are programming languages
+languages?</h3>
+<p><correct>1 - Arbitrary relationships between signs and the
+signified</correct><br><br></p>
+<p><danger>2 - Fully Productive and Creative</danger><br><br></p>
+<p><correct>3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</correct></p>
+<hr />
+<p>So, no.</p>
+<ul>
+<li><h3
+id="current-computer-programming-languages-are-not-language">(Current)
+Computer Programming languages are not Language</h3></li>
+</ul>
+<hr />
+<h3 id="sorry-hal">(Sorry, Hal)</h3>
+<p><img class="r-stretch" src="img/hal9000.jpg"></p>
+<hr />
+<h1 id="body-language">Is 'body language' language?</h1>
+<hr />
+<ul>
+<li><p><a
+href="https://www.youtube.com/shorts/JCa3JLAu5-s">https://www.youtube.com/shorts/JCa3JLAu5-s
+</a></p>
+<ul>
+</ul></li>
+<hr />
+<h3 id="emily">What is Princess Emily communicating non-verbally?</h3>
+<ol type="A">
+<li><p>A - Curiosity</p></li>
+<li><p>B - Happiness</p></li>
+<li><p>C - Disgust</p></li>
+<li><p>D - Sadness</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="emily">What is Princess Emily communicating non-verbally?</h3>
+<ol type="A">
+<li><p>A - Curiosity</p></li>
+<li><p>B - Happiness</p></li>
+<li><p><correct>C - Disgust</correct></p></li>
+<li><p>D - Sadness</p></li>
+</ol>
+<hr />
+
+
+
+
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Is 'body language' language?</td>
+</tr>
+<tr class="even">
+<td><danger>1 - Arbitrary relationships between signs and the
+signified</danger><br></td>
+</tr>
+<tr class="odd">
+<td>2 - Fully Productive and Creative<br></td>
+</tr>
+<tr class="even">
+<td>3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</td>
+</tr>
+</tbody>
+</table>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Is 'body language' language?</td>
+</tr>
+<tr class="even">
+<td><danger>1 - Arbitrary relationships between signs and the
+signified</danger><br></td>
+</tr>
+<tr class="odd">
+<td><danger>2 - Fully Productive and Creative</danger><br></td>
+</tr>
+<tr class="even">
+<td>3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</td>
+</tr>
+</tbody>
+</table>
+</table>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Is 'body language' language?</td>
+</tr>
+<tr class="even">
+<td><danger>1 - Arbitrary relationships between signs and the
+signified</danger><br></td>
+</tr>
+<tr class="odd">
+<td><danger>2 - Fully Productive and Creative</danger><br></td>
+</tr>
+<tr class="even">
+<td></correct>3 - Speakers have knowledge of grammar and the ‘rules’ of
+language</correct></td>
+</tr>
+</tbody>
+</table>
+(Maybe? But it's not grammar in the way natural languages exhibit!)
+<h2 id="do-any-non-humans-have-language">Do any non-humans have
+language?</h2>
+<hr />
+<h2 id="yes-but-only-one-so-far">Yes, but only one so far</h2>
+<hr />
+<h3 id="large-language-models-can-produce-human-language">Large Language
+Models can produce human language</h3>
+<ul>
+<li><p>Large Transformer-based Neural language models (like ChatGPT or
+OpenAssistant) are now capable of producing robust, grammatical, and
+used-as-humans-would language</p></li>
+<li><p>They have ‘passed the bar’ for many linguists as competent
+language users</p>
+<ul>
+<li>Most of the historical problems language models faced are now
+‘solved’</li>
+<li><em>This is different than saying ‘These are true AI’</em></li>
+</ul></li>
+<li><p><a href="https://arxiv.org/abs/2208.07998">They are much less
+efficient language learners than children</a></p>
+<ul>
+<li>… and work is ongoing to see whether they can do more with less</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="aside-chatgpt-has-no-plausible-universal-grammar">Aside: ChatGPT
+has no plausible ‘universal grammar’</h3>
+<ul>
+<li><p>The code doesn’t include grammatical facts, a ‘language organ’,
+or innate grammatical patterns</p></li>
+<li><p>English models have accidentally learned some other languages</p>
+<ul>
+<li>(e.g. it appears to be able to use one languages’ patterns to
+generalize)</li>
+</ul></li>
+<li><p><a
+href="https://www.nytimes.com/2023/03/08/opinion/noam-chomsky-chatgpt-ai.html">Some
+UG Folks are still fighting</a> (also <a
+href="https://mronline.org/2023/04/24/chatgpt-and-human-intelligence-noam-chomsky-responds-to-critics/">this</a>)</p></li>
+</ul>
+<hr />
+<h2
+id="there-is-finally-another-kind-of-thing-which-can-do-human-language">There
+is finally another kind of thing which can do human language</h2>
+<ul>
+<li><p>… and it’s a very large matrix of numbers.</p>
+<ul>
+<li>Weird.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="what-about-living-creatures">What about living creatures?</h3>
+<hr />
+<h3 id="lots-of-animals-communicate">Lots of animals communicate</h3>
+<ul>
+<li><p>Mating calls</p></li>
+<li><p>Alert calls</p></li>
+<li><p>Territorial displays</p></li>
+</ul>
+<hr />
+<h3 id="mimicry">Mimicry</h3>
+<iframe class="r-stretch" src="https://www.youtube.com/embed/_CoxnUe49ZA" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<hr />
+<h3 id="nim-chimpsky">Nim Chimpsky</h3>
+<p><img class="r-stretch" src="img/nimchimpsky.jpg"></p>
+<hr />
+<h3 id="nim-chimpsky-1">Nim Chimpsky</h3>
+<ul>
+<li><p>A chimpanzee raised in a human family to learn ASL by Herbert
+Terrace</p></li>
+<li><p>Learned 125 signs (maybe fewer)</p></li>
+<li><p>Combined signs to produce 2-4 word utterances</p></li>
+</ul>
+<hr />
+<h3 id="nim-chimpsky-didnt-seem-to-have-full-on-language">Nim Chimpsky
+didn’t seem to have full-on language</h3>
+<ul>
+<li><p>Never got past 2-4 sign utterances</p>
+<ul>
+<li>‘Nim Banana Me Eat’</li>
+</ul></li>
+<li><p>Only 7% of utterances served to advance the conversation</p></li>
+<li><p>39% of utterances were repetitions of what had just been
+signed</p></li>
+<li><p>Entirely ‘pragmatic’ use of language</p></li>
+<li><p>Terrace argued that Nim never learned anything</p></li>
+<li><p>There were some methodological… oddities</p></li>
+</ul>
+<hr />
+<h3 id="nim-led-a-pretty-sad-life">Nim led a pretty sad life</h3>
+<ul>
+<li><p>Became rather strong and violent, as male chimps do.</p></li>
+<li><p>Later given back to a research facility and used for medical
+research</p></li>
+<li><p>Still used signs (e.g. ‘play’, hug’) from time to time</p></li>
+<li><p>Died at an animal rescue ranch of a heart attack</p></li>
+<li><p>Featured in the (sad) documentary <a
+href="https://www.imdb.com/title/tt1814836/">Project Nim</a></p></li>
+</ul>
+<h2 id="section-1"><!--
+-- 
+### Brown-headed Cowbirds
+
+![](img/brownheadedcowbird.jpg)
+
+--
+
+### Brown-headed Cowbirds
+
+- 'Brood Parasites'
+
+    - Lay their eggs in other birds' nests
+
+- How do they know that they're not the other birds?
+
+- [Innately recognized 'passphrase' calls](http://jeb.biologists.org/content/220/13/2345)
+
+    - 'AHA!  These are my people!'
+
+--></h2>
+<h3 id="the-honeybee-waggle-dance">The Honeybee ‘Waggle Dance’</h3>
+<p><a href="https://www.youtube.com/watch?v=bFDGPgXtK-U"
+class="uri">https://www.youtube.com/watch?v=bFDGPgXtK-U</a></p>
+<hr />
+<h3 id="bat-vocalizations">Bat Vocalizations</h3>
+<ul>
+<li><p>According to <a
+href="https://www.nature.com/articles/srep39419">Prat et al. 2016</a>,
+bat vocalizations have detectable information about…</p></li>
+<li><p>The speaker</p></li>
+<li><p>Behavior context (e.g. feeding, mating, perching, sleep)</p></li>
+<li><p>The desired listener</p></li>
+</ul>
+<hr />
+<h3 id="prairie-dogs">Prairie Dogs</h3>
+<p><img class="r-stretch" src="img/prairiedog.jpg"></p>
+<hr />
+<h3 id="prairie-dog-language">Prairie Dog Language?</h3>
+<ul>
+<li><p><a href="http://jan.ucc.nau.edu/~cns3/">Dr. Con Slobodchikoff</a>
+argues that prairie dogs have…</p></li>
+<li><p>Different calls for different species of predators</p></li>
+<li><p>Calls containing descriptive information about location, size,
+shape, color of predators</p></li>
+<li><p>Prairie dogs will alarm differently on the basis of your
+shirt</p>
+<ul>
+<li>Yes, prairie dogs are judging your fit</li>
+</ul></li>
+<li><p>Some signs of new calls for shapes</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=y1kXCh496U0">A great
+video on this</a></p></li>
+</ul>
+<hr />
+<h3 id="but-is-it-language">But is it language?</h3>
+<ul>
+<li><p>We’ve only seen one domain of ‘language’</p>
+<ul>
+<li>A rich vocabulary of various forms of ‘Oh crap! Hide!’</li>
+</ul></li>
+<li><p>There’s no sign of non-pragmatic language use</p>
+<ul>
+<li>e.g. “Hey Herbie, remember all those grubs we ate last month? Yeah,
+that was great”</li>
+</ul></li>
+<li><p>So, we’d need more data to call this ‘Language’</p>
+<ul>
+<li>… and I need to see this work replicated!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="whale-whale-whale">Whale whale whale</h3>
+<ul>
+<li><p>We’ve just discovered that whales produce vowels as a part of
+their clicks</p></li>
+<li><p>This points us towards new approaches of understanding whale
+language!</p></li>
+</ul>
+<hr />
+<h3 id="so-do-non-human-animals-have-language">So, do non-human animals
+have Language?</h3>
+<ul>
+<li><p>Nobody’s truly doing human language yet</p></li>
+<li><p>There’s evidence of complex information being encoded</p></li>
+<li><p>… but we’re still gonna need more evidence before it’s
+‘Language’</p></li>
+</ul>
+<hr />
+<h3 id="so-we-know-what-language-is.">So, we know what language is.</h3>
+<ul>
+<li><p>We know it’s a universal thing, although with variation</p></li>
+<li><p>And we know that animals don’t seem to do it (yet?)</p></li>
+<li><p>Now, for the (potentially) scarier side of Language</p></li>
+</ul>
+<hr />
+<h3 id="we-think-in-language-regularly">We think in language,
+regularly</h3>
+<ul>
+<li><p>We use linguistic concepts in categorizing the world</p></li>
+<li><p>We discuss the world using our most available set of
+terms</p></li>
+<li><p>We lack terms for some more abstract feelings</p></li>
+<li><p>So, language is a part of our thinking process</p></li>
+<li><p>This leads many to ask…</p></li>
+</ul>
+<hr />
+<h2 id="does-the-language-we-speak-determine-how-we-think">Does the
+language we speak determine how we think?</h2>
+<hr />
+<h3 id="the-sapir-whorf-hypothesis">The Sapir-Whorf Hypothesis</h3>
+<ul>
+<li><p>Also known as ‘Linguistic Relativity’</p></li>
+<li><p>‘The language you speak influences how you think about the
+world’</p></li>
+<li><p>This is fascinating and terrifying</p></li>
+</ul>
+<hr />
+<h3 id="there-are-many-possible-forms">There are many possible
+forms</h3>
+<ul>
+<li><p><strong>No effect</strong>: ‘The language we speak has
+<em>zero</em> effect on our thought or cognition’</p></li>
+<li><p><strong>Weak</strong>: ‘The language we speak has some effect on
+our thought and cognition’</p></li>
+<li><p><strong>Strong</strong>: ‘The language we speak guides our
+thought and cognition’</p></li>
+<li><p><strong>Determinism</strong>: ‘The language we speak
+<em>determines</em> our thought and cognition’</p></li>
+</ul>
+<hr />
+<h3 id="the-debate-is-now-mostly-about-effect-size-and-domain">The
+debate is now mostly about effect size and domain</h3>
+<ul>
+<li><p>It’s clear that there’s <em>some</em> effect</p>
+<ul>
+<li><a
+href="https://www.ted.com/talks/lera_boroditsky_how_language_shapes_the_way_we_think">See
+Dr. Lera Boroditsky at UCSD make a great case</a></li>
+</ul></li>
+<li><p>But it’s also clear that it’s not deterministic</p>
+<ul>
+<li>We can recognize and discuss objects, events, or colors which we
+don’t have words for</li>
+</ul></li>
+<li><p>The debate is now focused on the size and nature of the
+effect</p>
+<ul>
+<li>… and whether/how much it <em>actually</em> matters in our
+lives</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="this-is-an-amazing-area-of-research">This is an amazing area of
+research</h3>
+<ul>
+<li>… and it’s one I wish we could spend more time on</li>
+</ul>
+<hr />
+<h2 id="for-next-time">For next time…</h2>
+<ul>
+<li><p>Watch <a
+href="https://www.ted.com/talks/lera_boroditsky_how_language_shapes_the_way_we_think">Dr. Boroditsky’s
+TED Talk</a></p>
+<ul>
+<li>Not required, but worth your time</li>
+</ul></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

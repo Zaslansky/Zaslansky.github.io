@@ -1,0 +1,18 @@
+tree_101sc_mattgradedtex
+
+[S 
+  [NP 
+    [N' 
+      [N Matt ] ] ] 
+  [VP 
+    [VP 
+      [V graded ] 
+      [NP 
+        [N' 
+          [N papers ] ] ] ] 
+    [PP 
+      [P in ] 
+      [NP 
+        [DET his ] 
+        [N' 
+          [N office ] ] ] ] ] ]

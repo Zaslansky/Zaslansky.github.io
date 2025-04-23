@@ -1,0 +1,29 @@
+tree_cowboyscowsescapedtex
+
+[S 
+  [NP 
+    [DET The ] 
+    [N' 
+      [N' 
+        [N cowboys ] ] 
+      [PP 
+        [P behind ] 
+        [NP 
+          [DET the ] 
+          [N' 
+            [ADJ decrepit ] 
+            [N' 
+              [ADJ old ] 
+              [N' 
+                [N barn ] ] ] ] ] ] ] ]
+  [VP 
+    [V claimed ] 
+    [CP 
+      [C that ] 
+      [S 
+        [NP 
+          [DET the ] 
+          [N' 
+            [N cows ] ] ] 
+        [VP 
+          [V escaped ] ] ] ] ] ]

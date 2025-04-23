@@ -1,0 +1,21 @@
+tree_engproftex
+
+[S 
+  [NP 
+    [DET The ] 
+    [N' 
+      [ADJ prescriptivist ] 
+      [N' 
+        [ADJ English ] 
+        [N' 
+          [N Professor ] ] ] ] ] 
+  [VP 
+    [V glared ] 
+    [PP 
+      [P at ] 
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ rebellious ] 
+          [N' 
+            [N Linguist ] ] ] ] ] ] ]

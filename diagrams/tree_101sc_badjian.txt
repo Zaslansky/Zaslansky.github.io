@@ -1,0 +1,18 @@
+tree_101sc_badjiantex
+
+[S 
+  [ILLEGAL-NP 
+    [NP 
+      [N' 
+        [N Jian ] ] ] 
+    [CP 
+      [C while ] 
+      [S 
+        [NP 
+          [DET his ] 
+          [N' 
+            [N cat ] ] ] 
+        [VP 
+          [V slept ] ] ] ] ] 
+  [VP 
+    [V ate ] ] ]

@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="please-fill-out-the-anonymous-mid-quarter-feedback-form">Please
+fill out the (anonymous) Mid-Quarter Feedback Form</h3>
+<p><a href="https://savethevowels.org/feedback"
+class="uri">https://savethevowels.org/feedback</a></p>
+<p><img class="r-stretch" src="img/feedbackqr.jpg"></p>
+<hr />
+<h1 id="introduction-to-automatic-speech-recognition">Introduction to
+Automatic Speech Recognition</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Defining ASR</p></li>
+<li><p>ASR Tasks</p></li>
+<li><p>ASR Scope</p></li>
+<li><p>Evaluating ASR</p></li>
+</ul>
+<hr />
+<h2 id="defining-automatic-speech-recognition">Defining Automatic Speech
+Recognition</h2>
+<hr />
+<h3 id="automatic-speech-recognition">Automatic Speech Recognition</h3>
+<ul>
+<li><p>Also known as ‘Speech-to-Text’ (STT) or ‘Automatic
+Transcription’</p></li>
+<li><p>Using a computer to take in speech (in a language) and give an
+output corresponding to that speech</p></li>
+</ul>
+<hr />
+<h3 id="why-is-asr-interesting">Why is ASR interesting?</h3>
+<ul>
+<li>Speech is generally faster than typing
+<ul>
+<li>Particularly for suboptimal (e.g. phone) typing</li>
+</ul></li>
+<li>Speech-to-Speech interaction is more flexible
+<ul>
+<li>Speech is hands-free</li>
+<li>Speech is more accessible (for some)</li>
+</ul></li>
+<li>Speech data is harder to interact with (e.g. search) than text
+<ul>
+<li>Many legal/practical record keeping systems don’t allow for
+speech</li>
+<li>Speech is more expensive to store</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="why-is-asr-interesting-continued">Why is ASR interesting,
+continued</h3>
+<ul>
+<li>We are used to interacting via speech
+<ul>
+<li>Computational Speech interfaces can be made much more intuitive</li>
+<li>Particularly for people with no computational knowledge</li>
+</ul></li>
+<li>A true dialog system can be <em>transparent</em>
+<ul>
+<li>“I don’t know if I’m talking to a human or a computer and it doesn’t
+matter”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="asr-is-a-complex-process">ASR is a complex process</h3>
+<ul>
+<li><p>Generally involves the modeling of the acoustics <em>and</em>
+language modeling</p></li>
+<li><p>We use the acoustics, combined with our knowledge of language, to
+find the best answer</p></li>
+</ul>
+<hr />
+<h3 id="basic-asr-architecture">Basic ASR Architecture</h3>
+<p><img class="r-stretch" src="diagrams/asr_architecture.jpg"></p>
+<hr />
+<h3 id="there-are-many-ways-to-do-this">There are many ways to do
+this</h3>
+<ul>
+<li><p>You read about some historical methods</p></li>
+<li><p>We’ll talk soon about the pre-neural approaches</p></li>
+<li><p>Then we’ll talk about modern, neural approaches</p></li>
+</ul>
+<hr />
+<h3 id="so-asr-takes-in-acoustics">So, ASR takes in acoustics</h3>
+<ul>
+<li><p>It extracts acoustical features, and gets predictions on that
+basis</p></li>
+<li><p>It uses language model information, to help understand what could
+be generated</p></li>
+<li><p>… and it finds the most probable output given both of these
+ideas</p></li>
+</ul>
+<hr />
+<h2 id="asr-tasks">ASR Tasks</h2>
+<hr />
+<h3 id="categories-of-asr-tasks">Categories of ASR Tasks</h3>
+<ul>
+<li><p>Detection Tasks</p></li>
+<li><p>Transcription Tasks</p></li>
+<li><p>Identification Tasks</p></li>
+<li><p>Alignment Tasks</p></li>
+<li><p>Dialog Systems</p></li>
+</ul>
+<hr />
+<h3 id="detection-tasks">Detection Tasks</h3>
+<ul>
+<li><strong>Voice Activity Detection:</strong> Is the audio input
+speech, or not?
+<ul>
+<li>Not <em>really</em> ASR, but often lumped in and part of the
+pipeline</li>
+</ul></li>
+<li><strong>Hot Word/Wake Word Detection:</strong> Listen 24/7 for a
+particular word to be spoken
+<ul>
+<li>‘OK Google’, ‘Hey Siri’, ‘Alexa’, ‘Jarvis’</li>
+<li>Specialized Hot-Word commands (e.g. ‘Enable Running Lights’)</li>
+</ul></li>
+<li><strong>Keyword/Command Detection:</strong> Listen for predefined
+words or sequences and perform actions
+<ul>
+<li>‘Turn on Windshield Wipers’</li>
+<li>‘Tell me why you’re calling. You can say ’Billing’, ‘Service’…’</li>
+<li>‘Flag any call transcript which mentions ’Lawsuit’ or ‘Lawyer’’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="transcription-tasks">Transcription Tasks</h3>
+<ul>
+<li><strong>Voice Typing:</strong> Turn this speech into text right now
+<ul>
+<li>Generally synchronous, single-talker</li>
+</ul></li>
+<li><strong>Real-time Captioning:</strong> Listen on this channel and
+produce captions
+<ul>
+<li>These are not persistent, and should disappear as new speech is
+produced</li>
+<li>This can be fed into (e.g.) automatic translation models</li>
+</ul></li>
+<li><strong>Automatic Orthographic Transcription:</strong> Tell me what
+is said in this file
+<ul>
+<li>Generally asynchronous, potentially multi-talker</li>
+</ul></li>
+<li><strong>Automatic Phonemic Transcription:</strong> Tell me what
+speech sounds are produced
+<ul>
+<li>Can be language-specific, or language independent</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="not-all-transcription-generates-a-user-facing-transcript">Not
+all transcription generates a (user-facing) transcript</h3>
+<ul>
+<li><p>Sometimes the transcription is immediately parsed for commands
+and discarded</p>
+<ul>
+<li><p>Knight to F6</p></li>
+<li><p>“Set the Driver’s Side Heat to 74 degrees”</p></li>
+<li><p>“Play ‘Animal’ by Aurora using PowerAmp”</p></li>
+<li><p>“Disable external lighting and arm all weapons”</p></li>
+</ul></li>
+<li><p><strong>This is still a transcription task,
+fundamentally</strong></p></li>
+</ul>
+<hr />
+<h3 id="identification-tasks">Identification Tasks</h3>
+<ul>
+<li><p><strong>Speaker Identification:</strong> Who is this person
+talking?</p>
+<ul>
+<li>Related is ‘Voiceprint Identification’, lol</li>
+<li>Also detecting speaker characteristics (age, gender presentation,
+height…)</li>
+</ul></li>
+<li><p><strong>Speaker Diarization:</strong> How many speakers are
+talking? Who’s talking when?</p></li>
+<li><p><strong>Language Identification:</strong> What language(s) are
+being spoken? When?</p></li>
+<li><p><strong>Emotion Detection:</strong> Is the speaker happy, sad,
+angry, confused, unsure?</p></li>
+</ul>
+<hr />
+<h3 id="alignment-tasks">Alignment Tasks</h3>
+<ul>
+<li><strong>Closed Captioning:</strong> Produce an automated transcript
+which is <em>time aligned</em> with other media
+<ul>
+<li>May involve adding additional information (e.g. music, character
+names)</li>
+</ul></li>
+<li><strong>Segmentation:</strong> Break the speech signal into subparts
+based on language content
+<ul>
+<li>“Remove all English language in this field recording”</li>
+<li>“Extract all instances of Person C talking”</li>
+</ul></li>
+<li><strong>Forced Alignment:</strong> Tell me what
+words/phonemes/phones are happening at what timestamps in the file
+<ul>
+<li>Boundary accuracy is important here</li>
+<li>This can take a transcript as input, or work transcript-less
+(e.g. <a href="https://github.com/lingjzhu/charsiu">Char-Siu</a>)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="asr-is-a-key-component-of-dialog-systems">ASR is a key component
+of ‘dialog systems’</h3>
+<p><img class='r-stretch' src='diagrams/speech_processing_pipeline.jpg'></p>
+<hr />
+<h2 id="scope-and-complexity-in-asr">Scope and Complexity in ASR</h2>
+<hr />
+<h3
+id="asr-systems-can-exist-at-many-levels-of-complexity-in-terms-of">ASR
+systems can exist at many levels of complexity in terms of…</h3>
+<ul>
+<li><p>Vocabulary Complexity</p></li>
+<li><p>Task Complexity</p></li>
+<li><p>Speech Quality Complexity</p></li>
+<li><p>Speech Nature Complexity</p></li>
+<li><p>Linguistic Complexity</p></li>
+<li><p>Computing Constraints</p></li>
+</ul>
+<hr />
+<h3 id="vocabulary-complexity-in-asr">Vocabulary Complexity in ASR</h3>
+<ul>
+<li><p><strong>Speech Detection:</strong> Is somebody speaking?
+(VAD)</p></li>
+<li><p><strong>Hot Word/Phrase Detection:</strong> Did somebody say “Hey
+Google”?</p></li>
+<li><p><strong>Limited Domain ASR:</strong> “Choose which of these 20
+phrases was spoken”</p></li>
+<li><p><strong>Specialized Domain ASR:</strong> You are a medical ASR
+system, so you need to do all the words PLUS these 6000 medical
+terms</p></li>
+<li><p><strong>Arbitrary Text ASR:</strong> “Whatever they’re saying,
+write it down as a human would”</p></li>
+</ul>
+<hr />
+<h3 id="arbitrary-text-is-an-important-difficulty">‘Arbitrary Text’ is
+an important difficulty</h3>
+<ul>
+<li><p>Even single-word detection is hard!</p></li>
+<li><p>It’s a much easier task to detect certain expected words</p>
+<ul>
+<li>“You can say ‘Make an Appointment’, ‘Parts’, ‘Service’”</li>
+</ul></li>
+<li><p>Increasing the vocabulary increases the complexity</p>
+<ul>
+<li>“Mel Frequency Cepstral Coefficient”</li>
+<li>“Invasive Adenocarcinoma”</li>
+</ul></li>
+<li><p>Human transcribers are not capable of transcribing completely
+arbitrary text</p>
+<ul>
+<li>A fact known to anybody with an uncommon name</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="task-complexity-in-asr">Task Complexity in ASR</h3>
+<ul>
+<li><p><strong>Constrained Task:</strong> Recognize one of these 20
+commands</p></li>
+<li><p><strong>Flexible Task:</strong> You have 20 possible actions,
+choose which is being requested and the object of it</p></li>
+<li><p><strong>Specialized Task:</strong> You must take any input, and
+output the results in this particular format according to our specific
+needs</p></li>
+<li><p><strong>Free Task:</strong> You are an agent. Interact with the
+human, and figure out what you need to do, using tools we give you to
+act.</p></li>
+</ul>
+<hr />
+<h3 id="speech-quality-complexity-in-asr">Speech Quality Complexity in
+ASR</h3>
+<ul>
+<li><p><strong>Clean Speech:</strong> Loud speech, quiet room, great
+mic</p></li>
+<li><p><strong>Near-Field Speech:</strong> Speech is clear and louder
+than noise, but noise is present</p></li>
+<li><p><strong>Noisy, Far-Field Speech:</strong> Speech is mixed with
+noise and non-speech, not always loudest element of the signal</p></li>
+<li><p><strong>Degraded Speech:</strong> Speech is choppy, highly
+compressed, or heavily convolved with noise</p></li>
+<li><p><strong>Continuous Signal:</strong> Speech to the system is
+interspersed with environmental noise and other conversations</p></li>
+</ul>
+<hr />
+<h3 id="speech-nature-complexity-in-asr">Speech Nature Complexity in
+ASR</h3>
+<ul>
+<li><p><strong>Clear Read Speech:</strong> Generally slow, predictable,
+little repair</p></li>
+<li><p><strong>Careful, Hyperarticulated Speech:</strong> Speaking
+clearly, to be understood</p>
+<ul>
+<li>This happens naturally when we don’t trust that the listener will
+hear</li>
+</ul></li>
+<li><p><strong>Spontaneous Speech:</strong> Everyday speech in everyday
+contexts</p></li>
+<li><p><strong>Multi-talker Speech:</strong> More than one person,
+overlapping or sequential</p></li>
+<li><p><strong>Exceptional Speech:</strong> Slurred speech, Pathological
+Speech, Child Speech</p></li>
+</ul>
+<hr />
+<h3 id="linguistic-complexity-in-asr">Linguistic Complexity in ASR</h3>
+<ul>
+<li><p><strong>Homogenous Speech</strong>: All speech is linguistically
+similar</p></li>
+<li><p><strong>Multidialectal Speech:</strong> Speech could have
+multiple, divergent dialects</p></li>
+<li><p><strong>Multilingual Speech:</strong> Speech could be in multiple
+languages</p></li>
+<li><p><strong>Mixed Multilingual Speech:</strong> Speech could have
+multiple languages in a single recording</p></li>
+</ul>
+<hr />
+<h3 id="computing-constraints-in-asr">Computing Constraints in ASR</h3>
+<ul>
+<li><p><strong>Latency:</strong> Do you need to transcribe in real time,
+or is a delay fine?</p></li>
+<li><p><strong>Processing Power:</strong> Do you have a large cluster to
+process this on, or a budget smartphone?</p></li>
+<li><p><strong>Network Speed/Access:</strong> Does this have to happen
+locally? What bitrate can you send?</p></li>
+<li><p><strong>Dataset Size:</strong> How much training data do you have
+for the language/topic/dialect?</p></li>
+<li><p><strong>Privacy:</strong> Can you process the data on your
+servers? Can you save it for training?</p></li>
+</ul>
+<hr />
+<h3 id="lets-think-about-the-asr-complexity-in">Let’s think about the
+ASR complexity in…</h3>
+<hr />
+<h3 id="a-voice-system-replacing-heating-controls-in-a-car">A voice
+system replacing heating controls in a car?</h3>
+<p>Vocabulary Complexity</p>
+<p>Task Complexity</p>
+<p>Speech Quality</p>
+<p>Speech Nature</p>
+<p>Linguistic Complexity</p>
+<p>Computing Constraints</p>
+<hr />
+<h3 id="a-courtroom-transcription-system">A Courtroom Transcription
+system?</h3>
+<p>Vocabulary Complexity</p>
+<p>Task Complexity</p>
+<p>Speech Quality</p>
+<p>Speech Nature</p>
+<p>Linguistic Complexity</p>
+<p>Computing Constraints</p>
+<hr />
+<h3 id="the-ucsd-podcast-captioning-system">The UCSD Podcast Captioning
+System?</h3>
+<p>Vocabulary Complexity</p>
+<p>Task Complexity</p>
+<p>Speech Quality</p>
+<p>Speech Nature</p>
+<p>Linguistic Complexity</p>
+<p>Computing Constraints</p>
+<hr />
+<h3
+id="a-system-which-detects-non-english-languages-spoken-at-an-er-triage-station">A
+system which detects non-English languages spoken at an ER triage
+station?</h3>
+<p>Vocabulary Complexity</p>
+<p>Task Complexity</p>
+<p>Speech Quality</p>
+<p>Speech Nature</p>
+<p>Linguistic Complexity</p>
+<p>Computing Constraints</p>
+<hr />
+<h3 id="an-automated-phone-system-for-a-vons-pharmacy">An automated
+phone system for a Vons Pharmacy?</h3>
+<p>Vocabulary Complexity</p>
+<p>Task Complexity</p>
+<p>Speech Quality</p>
+<p>Speech Nature</p>
+<p>Linguistic Complexity</p>
+<p>Computing Constraints</p>
+<hr />
+<h3 id="an-automated-ordering-kiosk-at-carls-jr">An automated ordering
+kiosk at Carl’s Jr?</h3>
+<p>Vocabulary Complexity</p>
+<p>Task Complexity</p>
+<p>Speech Quality</p>
+<p>Speech Nature</p>
+<p>Linguistic Complexity</p>
+<p>Computing Constraints</p>
+<hr />
+<h3 id="so-asr-is-complex">So, ASR is complex</h3>
+<ul>
+<li><p>Different systems have more and less complexity!</p></li>
+<li><p>This means they perform more or less well</p></li>
+<li><p>… How do we know?</p></li>
+</ul>
+<hr />
+<h2 id="evaluating-asr">Evaluating ASR</h2>
+<hr />
+<h3 id="asr-can-be-evaluated-in-many-ways">ASR can be evaluated in many
+ways</h3>
+<ul>
+<li><p>Word and Sentence Error Rate</p></li>
+<li><p>Real Time Factor</p></li>
+<li><p>Perplexity</p></li>
+<li><p>User Satisfaction/Reported Errors</p></li>
+<li><p>Computational Cost</p></li>
+</ul>
+<hr />
+<h3 id="word-error-rate-wer">Word Error Rate (WER)</h3>
+<ul>
+<li><p>“How many words does it screw up?”</p></li>
+<li><p><strong>Substitutions:</strong> Errors where the wrong word is
+used in place of the correct word.</p></li>
+<li><p><strong>Deletions:</strong> Errors where a word is
+omitted.</p></li>
+<li><p><strong>Insertions:</strong> Errors where an extra word is
+added.</p></li>
+<li><p>WER = (# Substitutions + # Deletions + # Insertions) / Total
+Words</p></li>
+</ul>
+<hr />
+<h3 id="word-error-rate-considerations">Word Error Rate
+Considerations</h3>
+<ul>
+<li>How do we count modifications?
+<ul>
+<li>Generally as ‘substitution’</li>
+</ul></li>
+<li>What about reversals (e.g. ‘Get on it’ vs. ‘Get it on’)?
+<ul>
+<li>Again, generally two substitutions</li>
+</ul></li>
+<li>Are some errors better or worse?
+<ul>
+<li>Is ‘ketchup’ &gt; ‘catch up’ really no better than ‘ketchup’ &gt;
+‘penguin’?</li>
+<li>What about ‘He go to the park?’ instead of ‘goes?’</li>
+</ul></li>
+<li>This requires ‘gold standard’ transcripts!</li>
+</ul>
+<hr />
+<h3 id="sentence-error-rate-ser">Sentence Error Rate (SER)</h3>
+<ul>
+<li><p>“How often does it get an entire sentence right?”</p></li>
+<li><p>SER = (# Correct Sentences) / Total Sentences</p></li>
+<li><p>This is <em>much more stringent</em> than WER</p></li>
+</ul>
+<hr />
+<h3 id="real-time-factor-rtf">Real Time Factor (RTF)</h3>
+<ul>
+<li><p>“How quickly does transcription happen?”</p></li>
+<li><p>Processing Time / Length of Audio</p>
+<ul>
+<li>If this is greater than 1, the system can’t keep up</li>
+</ul></li>
+<li><p>Can include transmission time, system latency, etc</p></li>
+<li><p>Latency is a related measure, time from spoken word to written
+word</p></li>
+</ul>
+<hr />
+<h3 id="perplexity">Perplexity</h3>
+<ul>
+<li><p>“How confused is the language model?”</p></li>
+<li><p>This is a model-internal measurement, and tells us how certain it
+is, given the acoustic and language model input</p></li>
+<li><p>Lower perplexity means the model is more confident for a given
+word</p></li>
+</ul>
+<hr />
+<h3 id="user-satisfaction-and-reports">User Satisfaction and
+Reports</h3>
+<ul>
+<li><p>How do people feel about your model?</p></li>
+<li><p>Do you get more 👍 or usage with model A or model B?</p></li>
+<li><p>How often do users report errors?</p></li>
+<li><p>How often do users immediately edit the text you
+generated?</p></li>
+<li><p>Which users report the most errors?</p></li>
+</ul>
+<hr />
+<h3 id="computational-cost">Computational Cost</h3>
+<ul>
+<li><p>Can this run on a consumer machine? On a phone?</p></li>
+<li><p>How expensive is it to run the required servers?</p></li>
+<li><p>How much bandwidth is required to get/send data?</p></li>
+<li><p>How much electricity does it take to run the model?</p></li>
+<li><p>How many people can use it at once (given fixed
+compute)?</p></li>
+</ul>
+<hr />
+<h3 id="these-measures-allow-us-to-evaluate-models">These measures allow
+us to evaluate models</h3>
+<ul>
+<li><p>The perfect model has low latency and cost, high RTF, and high
+accuracy (low WER/SER)</p></li>
+<li><p>You often trade speed (latency/RTF) for accuracy
+(WER/SER)</p></li>
+<li><p>Computationally Costly models tend to be more accurate</p></li>
+<li><p><strong>There’s no perfect model, but they absolutely improve
+over time!</strong></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>ASR turns speech into text (or commands)</p></li>
+<li><p>There are many tasks which ASR is a part of</p></li>
+<li><p>Different tasks and systems have different complexities</p></li>
+<li><p>Different complexity causes different performance</p></li>
+<li><p>We measure performance in terms of accuracy, computational cost,
+and model understanding</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li>Why is this even hard?!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

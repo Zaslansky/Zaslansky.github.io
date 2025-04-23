@@ -1,0 +1,6 @@
+tree_rule1_3tex
+
+[NP 
+  [DET the ] 
+  [N' 
+    [N cat ] ] ]

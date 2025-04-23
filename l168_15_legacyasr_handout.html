@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="legacy-approaches-to-asr">Legacy Approaches to ASR</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="asr-has-come-a-long-way">ASR has come a long way</h3>
+<ul>
+<li>When I started computing, it was hilariously bad
+<ul>
+<li>Not usable for nearly any task</li>
+</ul></li>
+<li>Then, it was expensive and bad
+<ul>
+<li>‘Dragon Dictate’ era</li>
+</ul></li>
+<li>Then, it was expensive and usable-ish
+<ul>
+<li>This is today’s topic</li>
+</ul></li>
+<li>Then, everything changed
+<ul>
+<li><h2 id="neural-methods-won">Neural methods won</h2></li>
+</ul></li>
+</ul>
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Why teach legacy methods?</p></li>
+<li><p>Training Data for Legacy ASR</p></li>
+<li><p>Levels of Granularity</p></li>
+<li><p>Hidden Markov Models for ASR</p></li>
+<li><p>Language Models and Hypothesis Testing</p></li>
+</ul>
+<hr />
+<h2 id="why-bother-with-legacy-methods">Why bother with legacy
+methods?</h2>
+<hr />
+<h3 id="everything-im-teaching-today-is-obselete">Everything I’m
+teaching today is obselete</h3>
+<ul>
+<li><p>Neural Network approaches have won, completely</p>
+<ul>
+<li>In terms of every accuracy metric, they are strictly better</li>
+</ul></li>
+<li><p>No high-resource ASR model is being developed as we’re discussing
+today</p></li>
+<li><p>The pipeline is actually much simpler now in
+implementation</p></li>
+<li><p>This is not how your phone or computer does ASR</p></li>
+<li><p><strong>Why do we still care?</strong></p></li>
+</ul>
+<hr />
+<h3 id="there-aint-no-such-thing-as-a-free-lunch-tanstaafl">‘There ain’t
+no such thing as a free lunch’ (TANSTAAFL)</h3>
+<ul>
+<li><p>Popularized by Robert Heinlein’s <em>The Moon is a Harsh
+Mistress</em></p></li>
+<li><p>Turned into the ‘<a
+href="https://en.wikipedia.org/wiki/No_free_lunch_theorem">No Free Lunch
+Theorem</a>’ for Machine Learning by Wolpert and Macready</p></li>
+<li><p>“Any two optimization algorithms are equivalent when their
+performance is averaged across all possible problems”</p></li>
+<li><p><strong>There are improvements made, but you almost always pay
+elsewhere</strong></p>
+<ul>
+<li>Differences in other tasks, in compute, in brittleness</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="modern-neural-methods-are-much-more-expensive">Modern Neural
+Methods are much more expensive!</h3>
+<ul>
+<li><p>They require massively more data to train</p></li>
+<li><p>They require massively more compute power to run with a
+reasonable RTF</p>
+<ul>
+<li>From GPUs, which are even more expensive</li>
+</ul></li>
+<li><p>They often require sending the data to external servers with
+enough power</p></li>
+<li><p>Training models is unfeasible for a person using consumer
+hardware</p></li>
+<li><p>Neural Network methods win because of money, silicon, and
+data</p></li>
+</ul>
+<hr />
+<h3
+id="yesterdays-state-of-the-art-is-often-todays-balanced-method">Yesterday’s
+‘State of the Art’ is often today’s ‘Balanced Method’</h3>
+<ul>
+<li><p>Computers are wildly more powerful every year</p>
+<ul>
+<li>Algorithms improve for common computing tasks</li>
+</ul></li>
+<li><p>More data becomes available regularly</p></li>
+<li><p>Your phone’s processor is several of orders of magnitude more
+powerful than the first computer I tried ASR on</p></li>
+<li><p>Often, legacy algorithms aren’t patent or license encumbered
+anymore</p></li>
+</ul>
+<hr />
+<h3 id="the-top-of-the-line-may-not-even-be-possible">The ‘Top of the
+Line’ may not even be possible</h3>
+<ul>
+<li><p>Enough data to build a neural language model may not be available
+for some languages</p></li>
+<li><p>You may not have the budget to buy a high-end speech recognition
+server to train a new model</p>
+<ul>
+<li>You may not even be able to pay for the electricity to run it</li>
+</ul></li>
+<li><p>Hosted top-of-the-line models may require compromises in privacy
+that you can’t stomach</p></li>
+</ul>
+<hr />
+<h3 id="legacy-methods-help-us-understand-the-task-better">Legacy
+Methods help us understand the task better</h3>
+<ul>
+<li><p>Neural methods are great, but they’re frustratingly
+opaque</p></li>
+<li><p>It’s not currently possible to understand how they work and what
+they’re doing</p>
+<ul>
+<li>!!!</li>
+</ul></li>
+<li><p>Legacy methods are often useful in multiple places!</p></li>
+</ul>
+<hr />
+<h3 id="legacy-methods-are-still-sometimes-useful">Legacy Methods are
+still sometimes useful!</h3>
+<ul>
+<li><p>So, that’s why we’re going to teach them!</p></li>
+<li><p>To do this, you’ll need…</p></li>
+</ul>
+<hr />
+<h2 id="training-data-for-asr">Training Data for ASR</h2>
+<hr />
+<h3 id="weve-already-talked-about-speech-corpora">We’ve already talked
+about speech corpora</h3>
+<ul>
+<li><p>Audio files</p></li>
+<li><p>With Metadata</p></li>
+<li><p>In a reasonable format</p></li>
+<li><p>In large quantity</p></li>
+<li><p>Which is similar to your task</p></li>
+</ul>
+<hr />
+<h3
+id="well-process-these-sound-files-frame-by-frame-to-identify-the-likely-phones">We’ll
+process these sound files frame-by-frame to identify the likely
+phones</h3>
+<ul>
+<li><p>In legacy approaches, this was done using MFCCs</p></li>
+<li><p>Neural approaches, next time!</p></li>
+</ul>
+<hr />
+<h3
+id="youll-also-want-a-text-language-model-reflecting-your-task">You’ll
+also want a text language model reflecting your task</h3>
+<ul>
+<li>More on this later!</li>
+</ul>
+<hr />
+<h3 id="you-may-also-want-to-know-how-written-words-are-pronounced">You
+may also want to know how written words are pronounced</h3>
+<ul>
+<li><p>Resources like <a
+href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict">CMUDict</a> give you
+pronunciations</p>
+<ul>
+<li>134,000+ words with phonemic equivalents</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>AARDVARK AA1 R D V AA2 R K</p>
+</blockquote>
+<blockquote>
+<p>AARGH AA1 R G</p>
+</blockquote>
+<blockquote>
+<p>AARON EH1 R AH0 N</p>
+</blockquote>
+<blockquote>
+<p>ABACUS AE1 B AH0 K AH0 S</p>
+</blockquote>
+<hr />
+<h3 id="you-plug-all-that-into-an-asr-model">You plug all that into an
+ASR model!</h3>
+<p><img class="r-stretch" src="diagrams/asr_architecture.jpg"></p>
+<hr />
+<h3 id="ok">OK!</h3>
+<ul>
+<li><p>So, we break the sound into frames, process them</p></li>
+<li><p>We use an acoustic model to assign each frame to a likely
+linguistic unit</p></li>
+<li><p>We make guesses about the likely next word using a language
+model</p></li>
+<li><p>We combine that together to make a series of text
+guesses</p></li>
+<li><p><strong>Wait… what’s a ‘linguistic unit’??</strong></p></li>
+</ul>
+<hr />
+<h3 id="what-are-we-actually-recognizing">What are we actually
+recognizing?</h3>
+<hr />
+<h2 id="levels-of-granularity-for-asr">Levels of Granularity for
+ASR</h2>
+<hr />
+<h3 id="how-big-of-a-chunk-do-you-want-to-recognize">How big of a chunk
+do you want to recognize?</h3>
+<hr />
+<h3 id="sentences">Sentences</h3>
+<ul>
+<li>Why are sentences a bad idea?</li>
+</ul>
+<hr />
+<h3 id="words">Words</h3>
+<p><img class="r-stretch" src="phonmedia/noisebbspectrogram.jpg"></p>
+<p>“Noise”</p>
+<hr />
+<h3 id="word-recognition">Word Recognition</h3>
+<ul>
+<li><p>Handles larger patterns of coarticulation</p></li>
+<li><p>Captures word specific effects</p></li>
+<li><p>Robust to short duration noise</p></li>
+<li><p>Word annotation is <em>way</em> cheaper</p></li>
+</ul>
+<hr />
+<h3 id="word-recognition-cons">Word Recognition Cons</h3>
+<ul>
+<li><p>What about novel words?</p></li>
+<li><p>Training data becomes much more sparse</p></li>
+<li><p>Can we really learn nothing about “boy” from “soy”?</p></li>
+</ul>
+<hr />
+<h3 id="grapheme-based-recognition">Grapheme-based Recognition</h3>
+<ul>
+<li><p>You could use the orthography itself as the ‘pronunciation
+dictionary’ and recognize letters (‘graphemes’)</p></li>
+<li><p>Mapping straight from letters to speech signal</p></li>
+<li><p>This is actually happening now!</p>
+<ul>
+<li>More later!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="grapheme-based-pros">Grapheme-based Pros</h3>
+<ul>
+<li><p>The data are much easier to get</p>
+<ul>
+<li>Subtitles, transcripts, etc</li>
+</ul></li>
+<li><p>More able to handle new words and names</p>
+<ul>
+<li>It can guess how ‘Haligtree’ or ‘Maliketh’ sound without dictionary
+entries</li>
+</ul></li>
+<li><p><strong>You don’t need dictionaries to map from words to
+phones!</strong></p></li>
+</ul>
+<hr />
+<h3 id="grapheme-based-cons">Grapheme-based Cons</h3>
+<ul>
+<li><p>Grapheme-to-phone conversion is very language specific</p></li>
+<li><p>It’s often roughly and thoroughly arbitrary</p></li>
+<li><p>Some languages’ writing systems have less mutual information with
+spoken language</p></li>
+<li><p>It throws away data for many homograph differences (e.g. record,
+villa, does)</p></li>
+</ul>
+<hr />
+<h3 id="phones">Phones</h3>
+<p><img src="phonmedia/noise_phones.jpg"></p>
+<hr />
+<h3 id="phone-recognition-pros">Phone Recognition Pros</h3>
+<ul>
+<li><p>The most basic unit, so training data is rich</p></li>
+<li><p>Can (theoretically) work for any language</p></li>
+<li><p>Can still capture unknown words</p>
+<ul>
+<li>“Fuzzy matching”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="phone-recognition-cons">Phone Recognition Cons</h3>
+<ul>
+<li><p>Annotation is brutally expensive</p></li>
+<li><p>Coarticulation is problematic</p></li>
+<li><p>Phone-level recognition is overkill for many contexts</p></li>
+</ul>
+<hr />
+<h3 id="diphones">Diphones</h3>
+<p><img src="phonmedia/noise_diphones.jpg"></p>
+<hr />
+<h3 id="in-practice-most-legacy-systems-used-diphones">In practice, most
+legacy systems used diphones</h3>
+<ul>
+<li><p><a href="https://cmusphinx.github.io/">CMU’s Sphynx
+does</a></p></li>
+<li><p>As do many others</p></li>
+<li><p>Triphones are often a possibility</p></li>
+</ul>
+<hr />
+<h3 id="but-modern-systems-are-often-going-waveform-to-grapheme">… but
+modern systems are often going waveform-to-grapheme</h3>
+<ul>
+<li><p>This is absolutely wild</p></li>
+<li><p>Now, let’s talk about how legacy systems identified
+phonemes</p></li>
+</ul>
+<hr />
+<h2 id="hidden-markov-models-for-asr">Hidden Markov Models for ASR</h2>
+<hr />
+<h3 id="the-core-idea-here-is-simple">The core idea here is simple</h3>
+<ul>
+<li><p>Learn the relationship between phonemes (e.g.) and MFCCs</p></li>
+<li><p>Learn the likelihood of phonemes, and of sequences</p></li>
+<li><p>Predict a sequence of phonemes based on the acoustic
+model</p></li>
+<li><p>Predict the sequence of words based on a language model</p></li>
+<li><p>Consider both acoustic and language models to make the most
+probable guess</p></li>
+</ul>
+<hr />
+<h3
+id="in-modern-systems-we-use-neural-networks-to-combine-these-steps">In
+Modern systems, we use neural networks to combine these steps</h3>
+<ul>
+<li>But legacy systems, we use a…</li>
+</ul>
+<hr />
+<h2 id="hidden-markov-model">Hidden Markov Model</h2>
+<p>A machine learning process which models a series of
+<strong>observations</strong>, with the assumption that there’s some
+‘hidden’ <strong>state</strong> which helps to predict the
+observations</p>
+<hr />
+<h3 id="one-major-assumption-of-hmms">One major assumption of HMMs</h3>
+<ul>
+<li><p><strong>The probability of the current state is based ONLY on the
+previous state</strong></p></li>
+<li><p>The model does not have long term ‘memory’</p></li>
+<li><p>The model cannot look ahead</p></li>
+<li><p>This is a left-to-right walk through the data</p></li>
+</ul>
+<hr />
+<h3 id="hmms-aim-to-recover-the-hidden-state-from-the-data-given">HMMs
+aim to recover the ‘hidden state’ from the data given</h3>
+<ul>
+<li>This can be used in many ways</li>
+</ul>
+<hr />
+<h3 id="hmms-for-pos-tagging">HMMs for POS Tagging</h3>
+<ul>
+<li><p><strong>Observations:</strong> The series of words in the
+text</p></li>
+<li><p><strong>States:</strong> The parts of speech of those
+words</p></li>
+<li><p>‘Look at the sequence of words, to help predict which part of
+speech corresponds to this word’</p></li>
+</ul>
+<hr />
+<h3 id="hmms-for-speech-recognition">HMMs for Speech Recognition</h3>
+<ul>
+<li><p><strong>Observations:</strong> The series of frames,
+MFCC’ed</p></li>
+<li><p><strong>States:</strong> The linguistic units (e.g. phonemes,
+diphones) that they correspond to</p>
+<ul>
+<li>We’re going to use phonemes for now, to be conceptually easier</li>
+</ul></li>
+<li><p>‘Look at the sequence of acoustic frames, to help predict which
+phoneme it’s representing’</p></li>
+</ul>
+<hr />
+<h3 id="we-need-to-know-two-types-of-probabilities">We need to know two
+types of probabilities</h3>
+<ul>
+<li><p><strong>Observation probability:</strong> The probability that a
+frame has a given tag</p>
+<ul>
+<li>e.g. “How likely is this frame to be /s/ (relative to any other
+phoneme, e.g. /ʒ/)?”</li>
+</ul></li>
+<li><p><strong>Transition Probability:</strong> The probability of one
+phoneme, given the prior one</p>
+<ul>
+<li>e.g. “How likely is /ə/ following /ð/ in English?”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="to-get-observation-probabilities">To get observation
+probabilities…</h3>
+<ul>
+<li><p>Count the number of instances of each phoneme in the corpus to
+get absolute frequency</p></li>
+<li><p>Examine the MFCCs corresponding to each phonemes</p></li>
+<li><p>Do blackboxy statistics (involving Gaussian mixture models) to
+link MFCC characteristics to phonemes</p></li>
+<li><p>… and so on …</p></li>
+<li><p><strong>Observation probability gives us the link between the
+MFCC’ed acoustics and phonemes</strong></p></li>
+</ul>
+<hr />
+<h3 id="to-get-transition-probabilities">To get Transition
+probabilities…</h3>
+<ul>
+<li><p>Count the number of instances of /s/ in the corpus</p></li>
+<li><p>Count the number of times /s/ follows /i/</p></li>
+<li><p>Count the number of times /s/ follows /u/</p></li>
+<li><p>Count the number of times /s/ follows /ð/</p></li>
+<li><p>… and so on …</p></li>
+<li><p><strong>Transition probabilities gives us phonotactics, and how
+likely a given chain of sounds is</strong></p></li>
+</ul>
+<hr />
+<h3 id="now-we-have-a-fully-trained-model">Now we have a fully trained
+model!</h3>
+<ul>
+<li><p>(OK, we skipped some steps, but Quarter System)</p></li>
+<li><p>How do we use it for recognition?</p></li>
+</ul>
+<hr />
+<h3 id="we-decode-the-hmm">We decode the HMM</h3>
+<ul>
+<li><p>“Given this sequence of MFCCs, what’s the most likely sequence of
+phonemes”</p></li>
+<li><p>This uses the Viterbi Algorithm and Beam Search</p>
+<ul>
+<li>Which we’re not going into!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="hmm-decoding-the-basic-idea">HMM Decoding: The Basic Idea</h3>
+<ul>
+<li><p>We know the probability of a given state (phoneme) given each
+MFCC</p></li>
+<li><p>We know the probability of a given state (phoneme) given the
+prior state (phoneme)</p></li>
+<li><p>We can calculate the most probable state for each phoneme in
+light of those two facts</p></li>
+<li><p><strong>What is the most likely string of states that gets us
+through the entire sentence?</strong></p></li>
+</ul>
+<hr />
+<h3 id="hmm-decoding-for-part-of-speech">HMM Decoding for Part of
+Speech</h3>
+<p><img class="r-stretch" src="comp/pos_hmm_decoding.jpg"></p>
+<hr />
+<h3 id="this-results-in-a-most-likely-string-of-phonemes">This results
+in a <em>most likely</em> string of phonemes</h3>
+<ul>
+<li>Acoustical Model: “I really think we’re seeing /s p æ m s/”
+<ul>
+<li>… but it’s also possible that this is /ʃ p æ n s/ or /s p æ n
+s/</li>
+</ul></li>
+<li>We could even do a dictionary look up
+<ul>
+<li>/s p æ m z/ == ‘spams’</li>
+<li>/ʃ p æ n z/ == N/A</li>
+<li>/s p æ n z/ == ‘spans’</li>
+</ul></li>
+<li>This is the Acoustical Prediction, and comes with probabilities</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="diagrams/asr_architecture.jpg"></p>
+<hr />
+<h2 id="uniting-with-the-language-model">Uniting with the language
+model</h2>
+<hr />
+<h3 id="now-you-have-a-most-probable-sequence-of-acoustical-states">Now
+you have a most probable sequence of acoustical states</h3>
+<ul>
+<li><p>/s p æ m z/ == ‘spams’</p></li>
+<li><p>/ʃ p æ n z/ == N/A</p></li>
+<li><p>/s p æ n z/ == ‘spans’</p></li>
+<li><p>… but we can do better than this!</p></li>
+</ul>
+<hr />
+<h3 id="we-already-have-a-language-model">We already have a language
+model</h3>
+<ul>
+<li><p>Thanks, LIGN 165/167!</p></li>
+<li><p>This gives us a representation of how likely one word is given
+the next</p></li>
+<li><p>We can ‘predict’ the next word based on the prior words</p>
+<ul>
+<li>Transition and state probabilities, again!</li>
+</ul></li>
+<li><p><strong>We can mix the language model probabilities with the
+acoustic model probabilities</strong></p></li>
+</ul>
+<hr />
+<h3 id="language-model-the-bridge">Language Model: ‘The bridge …’</h3>
+<ul>
+<li><p>is</p></li>
+<li><p>was</p></li>
+<li><p>over</p></li>
+<li><p>to</p></li>
+<li><p>connects</p></li>
+<li><p>leads</p></li>
+<li><p>spans</p>
+<ul>
+<li>Wait! Hold on! That was one of the acoustical guesses!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-know-that-the-bridge-spans-is-quite-possible">We know that
+‘The bridge spans’ is quite possible</h3>
+<ul>
+<li><p>We know that /ʃ p æ n z/ isn’t likely to be a word</p></li>
+<li><p>We know that ‘The bridge spams’ is highly improbable</p></li>
+<li><p>We have a <strong>Hypothesis!</strong></p></li>
+</ul>
+<hr />
+<h3 id="we-can-use-other-data-at-this-stage-too">We can use other data
+at this stage, too!</h3>
+<ul>
+<li><p>Custom Dictionaries</p></li>
+<li><p>Address books</p></li>
+<li><p>Local Context (e.g. for maps)</p></li>
+<li><p>Song lists</p></li>
+</ul>
+<hr />
+<h3 id="hey-siri-play-songs-by-the-bedsit-infamy">“Hey Siri play songs
+by the Bedsit Infamy”</h3>
+<ul>
+<li><img class="r-stretch" src="img/bedsitting.png"></li>
+</ul>
+<hr />
+<h3 id="hey-siri-play-songs-by-the-bedsit-infamy-1">“Hey Siri play songs
+by the Bedsit Infamy”</h3>
+<p><img class="r-stretch" src="img/bedsit.png"></p>
+<hr />
+<h3 id="we-can-do-this-at-many-chunk-sizes">We can do this at many
+‘chunk sizes’</h3>
+<ul>
+<li><p>You can try to decode frame-by-frame, but you get less value from
+the LM</p></li>
+<li><p>You can try to decode by word, but this causes a loss of context
+information</p></li>
+<li><p>You can decode by utterance, but this takes longer and introduces
+lag!</p></li>
+</ul>
+<hr />
+<h3 id="finally-we-have-a-guess">Finally, we have a guess!</h3>
+<ul>
+<li><p>“The bridge spans the river!”</p></li>
+<li><p>Now we look at the next chunk, and repeat the process!</p></li>
+</ul>
+<hr />
+<h3 id="legacy-hmm-based-asr-will">Legacy, HMM-based ASR will…</h3>
+<ul>
+<li><p>Learn the relationship between phonemes (e.g.) and MFCCs</p></li>
+<li><p>Learn the likelihood of phonemes, and of sequences</p></li>
+<li><p>Predict a sequence of phonemes based on the acoustic
+model</p></li>
+<li><p>Predict the sequence of words based on a language model</p></li>
+<li><p>Consider both acoustic and language models to make the most
+probable guess</p></li>
+</ul>
+<hr />
+<h3 id="this-worked-pretty-well">This worked pretty well!</h3>
+<ul>
+<li><p>Up until the Mid 2010s, nearly every ASR model was HMM
+based</p></li>
+<li><p>When Google Voice left HMMs for Neural Networks, accuracy went up
+by 49%</p></li>
+<li><p>The neural networks would soon take over!</p>
+<ul>
+<li><h2 id="next-time">Next time!</h2></li>
+</ul></li>
+</ul>
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Legacy Methods are often less computationally and data
+intensive</p></li>
+<li><p>ASR methods need audio, transcripts, and a good language
+model</p></li>
+<li><p>We can recognize phones, diphones, or even triphones</p></li>
+<li><p>Hidden Markov Models worked well for ASR for a long
+time!</p></li>
+<li><p>The most probable output is the one where the acoustics and
+language model agree</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

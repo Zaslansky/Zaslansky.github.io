@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{xcolor}
+\usetikzlibrary{arrows}
+\usepackage{fontspec}
+\setmainfont{Helvetica}
+\begin{document}
+\begin{tikzpicture}
+\tikzset{level distance=30pt}
+\tikzset{every  leaf node/.style={text=blue,font=\bf}}
+\tikzset{every internal node/.style={text=darkgray,font=\bf}}
+\tikzset{edge from parent/.append style={thick}}
+
+\Large
+
+\Tree [.S [.NP [.N' [.N I ] ] ] [.VP [.V saw ][.NP [.NP [.DET the ] [.N' [.ADJ big ] [.N' [.ADJ sweet ] [.N' [.N dogs ] ] ] ] ] [.PP [.P from ] [.NP [.NP [.N' [.N La Jolla ] ] ] [.PP [.P with ] [.NP [.N' [.N fleas ] ] ] ] ] ] ] ] ]
+
+
+\end{tikzpicture}
+\end{document}

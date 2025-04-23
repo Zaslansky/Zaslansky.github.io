@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Did you hear about the guy who scammed a publisher by promising to
+write a dictionary of a language that doesn’t exist?</p>
+<p>He was a lexi-con man!</p>
+<hr />
+<h1 id="the-morpheme-based-lexicon">The Morpheme-based Lexicon</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h2 id="previously-on-lign-120">Previously, on LIGN 120</h2>
+<p><img class="wide" src="img/tiger.jpg"></p>
+<hr />
+<h3 id="how-are-words-being-accessed">How are words being accessed?</h3>
+<p><img class="small" src="morphology/sandwich_shop.jpg">
+<img class="small" src="morphology/vending_machine.jpg"></p>
+<hr />
+<h3 id="how-are-words-being-built">How are words being built?</h3>
+<ul>
+<li><p>“Let’s see, I need to talk about gluing this thing, again, in the
+past. That’s ‘glue’, plus ‘re-’, and ‘-ed’.”</p></li>
+<li><p>“Let’s see, I need to talk about gluing this thing, again, in the
+past. Looks like ‘reglued’ is the word I need!”</p></li>
+</ul>
+<hr />
+<h3
+id="today-well-look-at-one-of-the-major-approaches-to-the-lexicon">Today,
+we’ll look at one of the major approaches to the Lexicon</h3>
+<ul>
+<li><p>We’ll think about what it means for word-building</p></li>
+<li><p>What it means for theory</p></li>
+<li><p>… and what it means about storage</p></li>
+<li><p>Then Monday, we’ll go the other way!</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Generative Linguistics</p></li>
+<li><p>The Morpheme-based Lexicon</p></li>
+<li><p>Problems with the Morpheme-based Lexicon</p></li>
+</ul>
+<hr />
+<h1 id="generative-linguistics">Generative Linguistics</h1>
+<hr />
+<h2 id="generative-grammar">Generative Grammar</h2>
+<hr />
+<h3
+id="weve-talked-a-lot-about-generative-morphology-this-quarter">We’ve
+talked a lot about generative morphology this quarter</h3>
+<ul>
+<li><p>“Your analysis should create all of the forms in the data,
+without predicting anything that isn’t there”</p></li>
+<li><p>“Productivity should detail all the possible forms, while
+preventing ones which aren’t produced”</p></li>
+<li><p><strong>These are generative approaches</strong></p></li>
+</ul>
+<hr />
+<h3 id="generative-grammar-has-a-straightforward-goal">Generative
+Grammar has a straightforward goal</h3>
+<ul>
+<li><p>Describe the structure of a language in a way that outlines rules
+for generating “all and only” the grammatical sentences of the
+language</p></li>
+<li><p>“Let’s create rules which generate everything that’s attested in
+language”</p></li>
+<li><p>“Let’s build those rules such that they <em>do not</em> generate
+things that aren’t attested”</p></li>
+<li><p>The perfect generative grammar for Morphology can create every
+grammatical word, and forbid every ungrammatical one</p></li>
+</ul>
+<hr />
+<p><img class="wide" src="morphology/generative_goals.jpg"></p>
+<hr />
+<h3 id="for-generative-grammar-good-description-is-good-creation">For
+Generative Grammar, good <em>description</em> is good
+<em>creation</em></h3>
+<ul>
+<li><p>Grammar is taking known elements from an inventory and combining
+them by rule, then passing them on to the next level.</p></li>
+<li><p>Known sub-elements are combined with rules, and then passed
+upwards…</p></li>
+</ul>
+<hr />
+<h3 id="this-is-true-at-every-level">This is true at every level</h3>
+<p><img class="tall" src="img/linguistics_circles.jpg"></p>
+<hr />
+<p><img class="wide" src="morphology/generative.jpg"></p>
+<hr />
+<h3 id="this-leads-to-a-view-of-language-use-as-assembly">This leads to
+a view of language use as <em>assembly</em></h3>
+<ul>
+<li><p>Take these pieces (phonemes, morphemes, lexemes) and put them
+together using rules</p></li>
+<li><p>Formalize the patterns as abstract rules to generate (only) the
+correct forms</p>
+<ul>
+<li>Phonological rules, Morphological Rules, Syntactic Rules</li>
+</ul></li>
+<li><p><em>Storage is kept to a minimum!</em></p></li>
+</ul>
+<hr />
+<h3 id="welcome-to-the-sandwich-shop">Welcome to the Sandwich Shop</h3>
+<p><img class="wide" src="morphology/sandwich_shop.jpg"></p>
+<hr />
+<p>This perspective has big consequences for the storage of words!</p>
+<hr />
+<h1 id="the-morpheme-based-lexicon-1">The Morpheme-based Lexicon</h1>
+<hr />
+<h3 id="weve-been-making-some-key-assumptions-about-storage">We’ve been
+making some key assumptions about storage</h3>
+<ul>
+<li><p>From 111: “We store phonemes, and then rules generate allophonic
+detail”</p></li>
+<li><p>“You wouldn’t want to put”cats” in the dictionary, when we could
+just add the -s online!”</p></li>
+<li><p>“We don’t need to create a whole new word, we can just
+combine”fuse” with “-ion”, easy!”</p></li>
+<li><p><strong>Computation is cheap, storage is
+expensive!!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="generative-grammar-comes-from-a-time-when-storage-was-expensive-and-computation-was-cheap">Generative
+Grammar comes from a time when storage was expensive and computation was
+cheap</h3>
+<p><img class="wide" src="img/early_harddrive.jpg"></p>
+<hr />
+<h3 id="as-an-aside-omg">As an aside, <a
+href="https://www.engadget.com/2019/02/25/1TB-microSD-cards-western-digital-micron/">OMG</a></h3>
+<p><img class="wide" src="img/microsd.jpg"></p>
+<hr />
+<h3 id="in-generative-approaches-storage-is-a-last-resort">In generative
+approaches, storage is a last resort</h3>
+<ul>
+<li><p>“Let’s store just raw phonemes, and generate details with
+rules”</p></li>
+<li><p>“Let’s store bare lexemes, and generate inflected forms with
+rules”</p></li>
+<li><p><strong>“We’re not storing that in the lexicon unless we
+absolutely have to!”</strong></p></li>
+</ul>
+<hr />
+<h3 id="things-that-must-be-stored">Things that must be stored</h3>
+<ul>
+<li><p>Phonological Irregularity</p>
+<ul>
+<li>e.g. English ablaut, ‘exceptions’</li>
+</ul></li>
+<li><p>Morphological Idiosyncrasy</p>
+<ul>
+<li>e.g. Fossilized forms (oxen), Class information, Mice and Deer</li>
+</ul></li>
+<li><p>Semantic Idiosyncrasy</p>
+<ul>
+<li>e.g. Alienable vs. inalienable possession rules, animacy, and
+more</li>
+</ul></li>
+<li><p><strong>We store only that which cannot be predicted by
+rules!</strong></p></li>
+</ul>
+<hr />
+<h3 id="it-makes-for-compact-and-graceful-analysis">It makes for compact
+and graceful analysis</h3>
+<ul>
+<li>… when it works well!</li>
+</ul>
+<hr />
+<h3 id="it-also-feels-more-economical">It also feels more
+economical</h3>
+<p><img class="small" src="morphology/greekcase_1.jpg"><img class="small" src="morphology/greekcase_2.jpg"><img class="small" src="morphology/greekcase_3.jpg"></p>
+<hr />
+<h3 id="this-has-big-consequences-for-the-lexicon">This has big
+consequences for the lexicon</h3>
+<p><img class="wide" src="morphology/lexicon_storage.jpg"></p>
+<hr />
+<h3 id="phonemes-are-real-and-are-the-medium-of-storage">Phonemes are
+real and are the medium of storage</h3>
+<ul>
+<li><p>We’re not storing acoustic signals</p></li>
+<li><p>We’re not storing post-phonological surface forms</p></li>
+<li><p>We’re storing words as a series of
+<strong>phonemes</strong></p></li>
+</ul>
+<hr />
+<p><img class="tall" src="phonology/drake_phonemes.jpg"></p>
+<hr />
+<h3 id="were-storing-as-little-information-as-we-can">We’re storing as
+little information as we can</h3>
+<ul>
+<li><p>Monomorphemic words</p>
+<ul>
+<li>e.g. “cat”, “suit”, “ice”, “Germany”</li>
+</ul></li>
+<li><p>Idiosyncratic Forms</p>
+<ul>
+<li>e.g. “oxen”, “mice”, “was”, “best”, “backpack”</li>
+</ul></li>
+<li><p>Affixes and Productive Morphological Processes</p>
+<ul>
+<li>e.g. -s, -tion, -ify, re-, un-</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="forms-are-stored-with-meanings">Forms are stored with
+meanings</h3>
+<hr />
+<h2 id="ed">‘-ed’</h2>
+<p><img class="wide" src="diagrams/tense_nonpast.png"></p>
+<hr />
+<h2 id="cat">‘cat’</h2>
+<p><img class="tall" src="img/lilbub.jpg"></p>
+<hr />
+<h2 id="s">‘-s’</h2>
+<p><img class="tall" src="img/bearsrepeating.jpg"></p>
+<hr />
+<h3 id="and-rules-tell-us-how-to-combine-them">… and rules tell us how
+to combine them</h3>
+<p><img class="wide" src="diagrams/split_morphology_redirected.jpg"></p>
+<hr />
+<h3 id="so-in-summary">So, in summary…</h3>
+<hr />
+<h3 id="in-a-morpheme-based-lexicon">In a morpheme-based lexicon…</h3>
+<ul>
+<li><p>Words are stored as sequences of phonemes</p></li>
+<li><p>Stems and affixes are stored as unanalyzable chunks with
+meanings</p></li>
+<li><p>Storage is viewed as precious, and an effort is made to avoid
+doing it</p></li>
+<li><p>We combine these based on rules to generate the non-stored
+words</p></li>
+<li><p>Then we do phonology on the output to create legal surface
+forms</p></li>
+<li><p>All of the above is done according to abstract rules generating
+all and only the possible forms</p></li>
+</ul>
+<hr />
+<h1 id="problems-with-a-morpheme-based-lexicon">Problems with a
+Morpheme-based Lexicon</h1>
+<hr />
+<p>(There are many morpheme-based theories, some of which may have
+different assumptions. We’re talking generally!)</p>
+<hr />
+<h3 id="this-works-very-well-if-you-have-transparent-affixation">This
+works <em>very</em> well if you have transparent affixation</h3>
+<ul>
+<li><p>“cat” ‘cat’ is stored, -s ‘PL’ is stored, so combine them for
+‘cat.PL’</p></li>
+<li><p>“walk” ‘walk’ is stored, -ed ‘PAST’ is stored, so combine them
+for ‘walk.PAST’</p></li>
+<li><p>… but we know it isn’t always like that</p></li>
+</ul>
+<hr />
+<h2 id="efficiency-losses">Efficiency Losses</h2>
+<hr />
+<h3 id="efficiency-depends-on-regularity">Efficiency depends on
+regularity</h3>
+<p><img class="small" src="morphology/greekcase_1.jpg"><img class="small" src="morphology/greekcase_2.jpg"><img class="small" src="morphology/greekcase_3.jpg"></p>
+<hr />
+<h3 id="but-irregularity-is-regular">… but irregularity is regular</h3>
+<p><img class="wide" src="morphology/spanish_irparadigm_top.jpg"></p>
+<hr />
+<h3 id="but-irregularity-is-regular-1">… but irregularity is
+regular</h3>
+<p><img class="wide" src="morphology/spanish_irparadigm_bottom.jpg"></p>
+<hr />
+<h3 id="as-regularity-is-reduced-the-efficiency-is-reduced">As
+regularity is reduced, the efficiency is reduced</h3>
+<ul>
+<li><p>Suppletive allomorphy must be stored</p>
+<ul>
+<li><p>‘Better’ cannot be derived from ‘Good’ + ‘+er’</p></li>
+<li><p>‘went’ must be stored independently of ‘go’ and ‘-ed’</p></li>
+</ul></li>
+<li><p>The more mice, oxen, deer, and women you have, the more you’re
+storing</p></li>
+<li><p>… but this isn’t a big issue, just more storage!</p></li>
+</ul>
+<hr />
+<h2 id="difficulty-predicting-derived-meanings">Difficulty Predicting
+Derived Meanings</h2>
+<hr />
+<h3
+id="morpheme-based-approaches-thrive-on-predictability">Morpheme-based
+approaches thrive on predictability</h3>
+<ul>
+<li><p>X + Y should transparently mean “X+Y”</p></li>
+<li><p>Bottler, Painter, Bridger, Plasterer, Lecturer,
+Influencer</p></li>
+<li><p>We can understand these words by knowing the meaning of X + the
+meaning of -er</p></li>
+<li><p><strong>These don’t need to be stored!</strong></p>
+<ul>
+<li>(Note, we’re here erasing the inflection/derivation
+difference!)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="sometimes-we-dont-have-both-components">Sometimes, we don’t have
+both components</h3>
+<ul>
+<li><p>Fletcher, Cobbler, Haberdasher, Butcher, Bursar</p></li>
+<li><p>We don’t have the meaning of X, so they’re functionally
+monomorphemic</p></li>
+<li><p><strong>These must be stored separately!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="sometimes-the-meaning-is-different-from-the-combination">Sometimes,
+the meaning is different from the combination</h3>
+<ul>
+<li><p>Hooker, Grinder, Hustler, Professor, Player, Mailer</p></li>
+<li><p>Here, there’s meaning which is <em>not predictable</em> based on
+the known components</p></li>
+<li><p><strong>We must separately store the meanings of these
+words</strong></p></li>
+</ul>
+<hr />
+<p>… but the biggest issue is …</p>
+<hr />
+<h2 id="non-concatenative-morphology">Non-concatenative morphology</h2>
+<hr />
+<h3
+id="review-common-non-concatenative-ways-of-adding-meaning-to-words">Review:
+Common non-concatenative ways of adding meaning to words</h3>
+<ul>
+<li><p>Zero Expressions</p>
+<ul>
+<li>e.g. I sing-ø</li>
+</ul></li>
+<li><p>Conversion</p>
+<ul>
+<li>e.g. re’peat (V) -&gt; ’repeat (N), or ticket (N,V)</li>
+</ul></li>
+<li><p>Stem Modification</p>
+<ul>
+<li>e.g. changing tones, vowels, consonants, orderings</li>
+</ul></li>
+<li><p>Reduplication</p></li>
+</ul>
+<hr />
+<h3 id="how-are-we-storing-zero-morphemes">How are we storing zero
+morphemes?</h3>
+<ul>
+<li>Do we have a whole bunch of meanings stored under ‘-ø’?</li>
+</ul>
+<hr />
+<h3 id="how-do-we-handle-multiple-exponence">How do we handle multiple
+exponence?</h3>
+<ul>
+<li><p>Do we write optional rules?</p></li>
+<li><p>Do we store morphemes with multiple forms?</p></li>
+</ul>
+<hr />
+<h3 id="how-are-we-storing-this">How are we storing this?</h3>
+<p><img class="wide" src="morphology/palantla_data.jpg"></p>
+<hr />
+<h3 id="what-about-this">What about this?</h3>
+<p><img class="wide" src="morphology/warlpiri_redup.jpg"></p>
+<hr />
+<h3 id="how-about-english-ablaut">How about English ablaut?</h3>
+<ul>
+<li><p>sit -&gt; sat/seated, sing -&gt; sang/sung, sting -&gt;
+stung/stung, yeet -&gt; yote/yaughten</p></li>
+<li><p><a
+href="https://en.wikipedia.org/Wiki/List_of_English_irregular_verbs">List
+of English Irregular Verbs</a></p></li>
+</ul>
+<hr />
+<h3 id="there-are-approaches-to-handling-these-phenomena">There are
+approaches to handling these phenomena!</h3>
+<ul>
+<li><p>We could store <em>the pattern itself</em> as a lexical
+entry</p></li>
+<li><p>Morphemes are stored alongside stem modifications (etc.)</p></li>
+<li><p>Morphological processes are stored as entries, and combined with
+stems</p></li>
+<li><p>… but this quickly erases the ‘elegance’ of the approach</p></li>
+</ul>
+<hr />
+<h3
+id="morpheme-based-approaches-grow-less-compelling-with-increased-irregularity">Morpheme-based
+approaches grow less compelling with increased irregularity</h3>
+<ul>
+<li><p>Exceptions have to get stored somehow</p></li>
+<li><p>You end up with a bunch of edge cases</p></li>
+</ul>
+<hr />
+<h3
+id="generative-linguistics-is-like-picking-up-broken-glass-in-carpet">Generative
+linguistics is like picking up broken glass in carpet</h3>
+<ul>
+<li><p>Disposing of the big chunks is easy and effective</p></li>
+<li><p>You’re gonna spend a long time chasing down those last
+slivers</p></li>
+<li><p>… and you’re still gonna need some tweezers from time to
+time</p></li>
+</ul>
+<hr />
+<h2 id="so-thats-a-morpheme-based-approach">So, that’s a morpheme-based
+approach</h2>
+<hr />
+<h2 id="but-there-is-another-way">But there is another way</h2>
+<p><img class="wide" src="img/morpheus.jpg"></p>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Generative approaches to grammar create all and only the attested
+forms</p></li>
+<li><p>Morpheme-based lexicons are great for efficiently handling
+regular patterns</p></li>
+<li><p>They struggle with irregularity and hard-to-memorize
+forms</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li><p>Read the Bybee paper</p></li>
+<li><p>We’ll talk about whole-word storage as an alternative</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

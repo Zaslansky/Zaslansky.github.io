@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay - Niger</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/ChX-hk-ON0c">
+</iframe>
+<hr />
+<h1 id="nilo-saharan-languages">Nilo-Saharan Languages</h1>
+<h3 id="ling-1020---will-styler">LING 1020 - Will Styler</h3>
+<hr />
+<h3 id="administrative-note">Administrative Note</h3>
+<ul>
+<li>For Monday, a new lecture topic: <strong>“English is a linguistic
+trainwreck (like every other language!)”</strong></li>
+</ul>
+<hr />
+<h2 id="todays-agenda">Today’s Agenda</h2>
+<ul>
+<li><p>Why typology is <em>really</em> hard in Africa</p></li>
+<li><p>“Nilo-Saharan”</p></li>
+<li><p>Two common features in African Languages</p></li>
+<li><p>Songhay languages/Zarma</p></li>
+<li><p>Luo</p></li>
+<li><p>Kuliak</p></li>
+</ul>
+<hr />
+<p>Although I haven’t said it explicitly, this course is all about
+<strong>Typology</strong></p>
+<hr />
+<h3 id="language-typology">Language Typology</h3>
+<p>The process of comparing languages and establishing relationships and
+universals among them</p>
+<hr />
+<h3 id="typology-lets-us-make-claims">Typology lets us make claims</h3>
+<ul>
+<li><p>Sometimes, these claims are regional</p>
+<ul>
+<li><p>“Turkic languages are agglutinative”</p></li>
+<li><p>“Semitic languages use template morphology”</p></li>
+</ul></li>
+<li><p>Sometimes, they’re universal</p>
+<ul>
+<li><p>“Languages with SOV order are postpositional”</p></li>
+<li><p>“If a language has the category of gender, it always has the
+category of number.”</p></li>
+<li><p>These are from <a
+href="http://en.wikipedia.org/wiki/Greenberg&#39;s_linguistic_universals">Greenberg’s
+Universals</a></p></li>
+</ul></li>
+</ul>
+<hr />
+<p>Typological information is useful, but requires hard work!</p>
+<hr />
+<h3 id="the-typology-process">The Typology process</h3>
+<ul>
+<li><ol type="1">
+<li>Pick an area to study</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Get as much language data as you can from that area</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Start comparing and finding links and patterns</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>Use those links and patterns to establish relationships</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="step-2-is-a-problem-for-african-languages">Step 2 is a problem
+for African languages</h3>
+<ul>
+<li>“Get as much language data as you can from that area”</li>
+</ul>
+<hr />
+<h3 id="indo-european---as-much-data-as-you-can-get">Indo-European - “As
+much data as you can get”</h3>
+<p><img class="big" src="img/hugelibrary.jpg"></p>
+<hr />
+<h3 id="african-languages---as-much-data-as-you-can-get">African
+Languages - “As much data as you can get”</h3>
+<p><img class="big" src="img/tinylibrary.jpg"></p>
+<hr />
+<p>This is an even bigger problem for Africa because…</p>
+<hr />
+<h3 id="africa-is-big">Africa is big</h3>
+<p><img class="big" src="lotwimg/africa_size.jpg"></p>
+<hr />
+<h3 id="theres-lots-of-linguistic-diversity">There’s lots of linguistic
+diversity</h3>
+<p><a href="lotwimg/africa_languages.jpg"><img class="big" src="lotwimg/africa_languages.jpg"></a></p>
+<hr />
+<h3 id="linguistic-diversity-in-africa">Linguistic diversity in
+Africa</h3>
+<ul>
+<li><p>1.1 <em>billion</em> people live in Africa</p></li>
+<li><p>2000+ languages spoken in Africa (much higher, by some
+estimates)</p></li>
+<li><p>Nigeria alone has 500+ languages</p></li>
+<li><p>Entire <em>families</em> of languages are endangered</p></li>
+</ul>
+<hr />
+<h3 id="travel-to-africa-is-complicated-in-some-places">Travel to Africa
+is complicated (in some places)</h3>
+<ul>
+<li><p>20 out of 54 countries currently have US State Department Travel
+Warnings</p></li>
+<li><p>Corruption is often a problem</p></li>
+<li><p>Getting to your language’s speakers from a transit hub is
+non-trivial</p></li>
+</ul>
+<hr />
+<h3 id="language-documentation-is-hard-once-you-get-there">Language
+documentation is hard once you get there</h3>
+<ul>
+<li>Sam Beer is going to talk all about that.</li>
+</ul>
+<hr />
+<h3
+id="so-we-know-a-lot-less-about-african-languages-than-wed-like-to.">So,
+we know a lot less about African languages than we’d like to.</h3>
+<ul>
+<li><p>There’s less data to compare, less research being done, and less
+funding to pay for it.</p></li>
+<li><p>This means that our language groupings are a bit looser in Africa
+than elsewhere.</p></li>
+</ul>
+<hr />
+<p>… but we still do our best!</p>
+<hr />
+<h3 id="africa-has-four-main-language-families">Africa has four main
+language families</h3>
+<ul>
+<li><p>Afroasiatic</p></li>
+<li><p>Nilo-Saharan</p></li>
+<li><p>Niger-Congo</p></li>
+<li><p>Khoisan</p>
+<ul>
+<li>These were first laid out in Greenberg’s 1963 “The Languages of
+Africa”</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/africanfamilies.png"></p>
+<hr />
+<h3 id="but-were-not-quite-sure-about-two-of-them">… but we’re not quite
+sure about two of them</h3>
+<ul>
+<li><p>Afroasiatic and Niger-Congo are pretty well accepted</p></li>
+<li><p>Khoisan has all the vaguely isolating, clicky languages Greenberg
+couldn’t place elsewhere</p></li>
+<li><p>Nilo-Saharan has been called “Greenberg’s Trashcan”, as it has
+the rest</p></li>
+</ul>
+<hr />
+<h2 id="but-these-classifications-are-the-best-weve-got">… but these
+classifications are the best we’ve got!</h2>
+<ul>
+<li>So, we’ll run with them.</li>
+</ul>
+<hr />
+<p>Today, we’re working with…</p>
+<hr />
+<h1 id="nilo-saharan-languages-1">Nilo-Saharan Languages!</h1>
+<hr />
+<h3 id="nilo-saharan">Nilo-Saharan</h3>
+<ul>
+<li><p>Spoken by ~39 million (or more!) speakers</p></li>
+<li><p>Loosely grouped, typologically speaking</p>
+<ul>
+<li>The evidence for Nilo-Saharan relies more on cognates than shared
+features</li>
+</ul></li>
+<li><p>Very diverse (almost as much so as IE)</p></li>
+<li><p>Contains some important (and cool!) languages and
+families</p></li>
+</ul>
+<hr />
+<h3 id="nilo-saharan-languages-2">Nilo-Saharan Languages</h3>
+<ul>
+<li><p>Luo (~6 million speakers)</p></li>
+<li><p>Kanuri (4 million speakers)</p></li>
+<li><p>Songhay (3.2 million speakers)</p></li>
+<li><p>Maasai (1 million speakers)</p></li>
+<li><p>Kuliak subgroup (~15,000 speakers)</p>
+<ul>
+<li>10,000 speakers of Ik, 5,000 of Soo</li>
+</ul></li>
+<li><h2
+id="and-many-many-more-that-we-dont-have-time-to-even-mention.">… and
+many, many more that we don’t have time to even mention.</h2></li>
+</ul>
+<p><img class="big" src="lotwimg/nilosaharan.png"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Features of Nilo-Saharan Languages</td>
+</tr>
+<tr class="even">
+<td>* Singulative/Collective Number System</td>
+</tr>
+<tr class="odd">
+<td>* …</td>
+</tr>
+</tbody>
+</table>
+<h3 id="features-of-nilo-saharan-languages">Features of Nilo-Saharan
+Languages</h3>
+<p>Singulative/Collective Number System</p>
+<p>…</p>
+<audio data-autoplay src="humorimg/cricket.mp3">
+</audio>
+<hr />
+<h3 id="singulativecollective-number-system">Singulative/Collective
+Number System</h3>
+<hr />
+<h3 id="english-is-a-singularplural-system">English is a
+“Singular/Plural” system</h3>
+<hr />
+<p>“Bad movie”</p>
+<p><img class="big" src="lotwimg/badmovie.png"></p>
+<hr />
+<p>“Bad movie<strong><em>s</em></strong>”</p>
+<p><img src="lotwimg/badmovies.png"></p>
+<ul>
+<li>This is called a <strong>plural</strong> form</li>
+</ul>
+<hr />
+<p>(Armageddon was OK, I guess)</p>
+<hr />
+<p>The default for a word in Singular/Plural systems is singular.</p>
+<ul>
+<li>If you want plural, <strong>you have to add a morpheme</strong></li>
+</ul>
+<hr />
+<p>In a Singulative-Collective System, <strong>the default is
+plural</strong></p>
+<ul>
+<li>If you want singular, <strong>you have to add a
+morpheme</strong></li>
+</ul>
+<hr />
+<p>ŋɛɛti ‘lice’</p>
+<center>
+<table>
+<tr>
+<th>
+<img height="50" src="lotwimg/louse.jpg">
+</th>
+<th>
+<img height="50" src="lotwimg/louse.jpg">
+</th>
+<th>
+<img height="50" src="lotwimg/louse.jpg">
+</th>
+<th>
+<img height="50" src="lotwimg/louse.jpg">
+</th>
+</tr>
+</table>
+</center>
+<hr />
+<p>ŋɛɛti-n ‘louse’.</p>
+<center>
+<table>
+<tr>
+<th>
+<img height="50" src="lotwimg/louse.jpg">
+</th>
+</tr>
+</table>
+</center>
+<ul>
+<li>This is called a <strong>singulative form</strong></li>
+</ul>
+<hr />
+<p>So, in Nilo-Saharan Languages, plural is usually the default, and
+singular needs to be marked.</p>
+<ul>
+<li>(but even this isn’t always the case)</li>
+</ul>
+<hr />
+<p>Beyond that, there aren’t really specific features <em>across</em>
+Nilo-Saharan.</p>
+<ul>
+<li><p><strong>… but there are some features present in <em>many</em>
+Nilo-Saharan languages</strong></p>
+<ul>
+<li>(and lots of other African languages)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="two-common-features-of-african-languages">Two Common Features of
+African Languages</h3>
+<ul>
+<li><p>Level-based tone systems</p></li>
+<li><p>ATR Vowel Systems and Harmony</p></li>
+</ul>
+<hr />
+<h2 id="level-tone">Level Tone</h2>
+<hr />
+<h2 id="tone">Tone</h2>
+<p>Changes in pitch during the word change the meaning of the word</p>
+<hr />
+<h3 id="there-are-two-types-of-tone-language">There are two types of
+Tone Language</h3>
+<ul>
+<li><p>Level (or “register”) tone - Tone is categorized by pitch
+“levels”</p>
+<ul>
+<li>“High”, “Low”, “Mid”, “Rise”, “Fall”</li>
+</ul></li>
+<li><p>Contour Tone - Tone is categorized by shape and <em>pattern</em>
+of pitch</p></li>
+</ul>
+<hr />
+<h3 id="vietnamese-tone-contours">Vietnamese Tone Contours</h3>
+<p><img class="big" src="lotwimg/vietnamesetones.jpg"></p>
+<hr />
+<h3 id="level-tone-1">Level Tone</h3>
+<ul>
+<li><p>Very common in African languages</p></li>
+<li><p>Usually “High” and “Low”</p>
+<ul>
+<li>Sometimes “Mid”, or “Rising”, or “Falling”</li>
+</ul></li>
+</ul>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p><lang>Zarma (Djerma)</lang><br><ldata>Nilo-Saharan:Songhay -
+Niger</ldata></p>
+<p>Yesterday - “bi”</p>
+<p>Wound - “bi”</p>
+<audio data-autoplay src="phonmedia/zarma_tonecontrast.wav">
+</audio>
+<hr />
+<p>(Zarma also has rise and fall, but I couldn’t find recordings of
+it)</p>
+<hr />
+<h3 id="tone-is-not-intonation">Tone is not intonation!</h3>
+<ul>
+<li><p>Tone is a property of the word</p>
+<ul>
+<li>In Zarma, “bí” for “Yesterday” <em>must</em> have a higher
+pitch.</li>
+</ul></li>
+<li><p>Intonation does not change the meaning of a morpheme</p>
+<ul>
+<li>It can change the meaning in a sentence, though!</li>
+</ul></li>
+<li><p>English has intonation, but not tone!</p></li>
+</ul>
+<hr />
+<p>Now, our other feature…</p>
+<hr />
+<h2 id="atr-based-vowel-systems">ATR-based Vowel Systems</h2>
+<hr />
+<h3 id="atr-advanced-tongue-root">ATR (“Advanced Tongue Root”)</h3>
+<p><img class="big" src="phonmedia/sagittalsection.png"></p>
+<hr />
+<h3 id="atr">ATR</h3>
+<ul>
+<li><p>Vowels with Advanced Tongue Root are “+ATR”</p>
+<ul>
+<li>Vowels without ATR are “-ATR”</li>
+</ul></li>
+<li><p>Similar to the difference between the English /i ɪ/ (“beet”
+vs. “bit”), /u ʊ/ (“boot” vs. “book”)</p>
+<ul>
+<li>This is called “Tense vs. Lax” in English</li>
+</ul></li>
+<li><p>In ATR languages, it’s <em>really</em> important</p></li>
+</ul>
+<hr />
+<p><lang>Dholuo</lang><br><ldata>Nilo-Saharan -
+Kenya/Tanzania</ldata></p>
+<p><img class="big" src="lotwimg/dholuo_atr.png"></p>
+<hr />
+<h3 id="atr-harmony">ATR Harmony</h3>
+<p>When all vowels in the word <em>must</em> be either +ATR or -ATR</p>
+<hr />
+<p><lang>Karamojong</lang><br><ldata>Nilo-Saharan - Uganda</ldata></p>
+<p>ɑkɪdɔŋ - “to castrate”</p>
+<ul>
+<li>ɑkidoŋ-okin - “for castration”</li>
+</ul>
+<hr />
+<p><strong>ATR Harmony is common throughout Africa</strong></p>
+<hr />
+<h3 id="features-of-nilo-saharan-languages-1">Features of Nilo-Saharan
+Languages</h3>
+<ul>
+<li><p>Singulative-Collective Number Systems</p></li>
+<li><p>…</p></li>
+<li><h3 id="common-features-of-african-languages">Common features of
+African languages</h3></li>
+<li><p>ATR in vowel systems</p></li>
+<li><p>Level tones!</p></li>
+</ul>
+<hr />
+<p><em>“Uh, OK… but why did you use”to castrate” as an example
+there?“</em></p>
+<p><strong>Because it’s the best example I found</strong></p>
+<hr />
+<h2 id="this-represents-a-truth-of-field-linguistics">This represents a
+truth of field linguistics</h2>
+<ul>
+<li>“The sentence you need when doing Linguistic fieldwork will often
+end up being awkward, embarassing, or absurd.”</li>
+</ul>
+<hr />
+<p><strong>Actual Sentences Elicited during ‘Field Methods’ in the CU
+Linguistics Department, Spring 2007</strong></p>
+<hr />
+<p><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay - Niger</ldata></p>
+<p><em>ai feidzi woy de no yon go</em></p>
+<p>‘This is indeed my female sheep there’</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay -
+Niger</ldata></td>
+</tr>
+<tr class="even">
+<td><em>a goga dei feidzi za susube za kalichini</em></td>
+</tr>
+<tr class="odd">
+<td>‘He was sheep-buying from morning to night’</td>
+</tr>
+</tbody>
+</table>
+<p><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay - Niger</ldata></p>
+<p><em>ai do: na ginə kar</em></p>
+<p>‘I used to be hitting you (regularly)’</p>
+<hr />
+<p><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay - Niger</ldata></p>
+<p><em>ai ginə kar chei bo:bo:</em></p>
+<p>‘I will be hitting you regularly in the future’</p>
+<hr />
+<p><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay - Niger</ldata></p>
+<p><em>fawoka na feidziyama bío: kar</em></p>
+<p>‘The butcher hit the bad black sheep’</p>
+<hr />
+<p><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay - Niger</ldata></p>
+<p><em>ai go fu:</em></p>
+<p>‘I am at home’</p>
+<hr />
+<p><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay - Niger</ldata></p>
+<p><em>ai ga fu:</em></p>
+<p>‘I am going to fart’</p>
+<hr />
+<p>(OK, let’s learn something not obscene in Zarma!)</p>
+<hr />
+<h3 id="zarma-djerma">Zarma (“Djerma”)</h3>
+<ul>
+<li><p>Nilo-Saharan, spoken in Niger</p>
+<ul>
+<li>Around 2 million speakers!</li>
+</ul></li>
+<li><p>The most widely spoken Songhay language</p></li>
+<li><p>SOV order</p></li>
+<li><p>Vowel length</p></li>
+</ul>
+<hr />
+<h3 id="cool-noun-form-system">Cool Noun Form System!</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-lt3p{font-size:22px}
+.tg .tg-2662{font-weight:bold;font-size:22px}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-lt3p">
+</th>
+<th class="tg-2662">
+Indefinite
+</th>
+<th class="tg-2662">
+Definite
+</th>
+<th class="tg-2662">
+Demonstrative
+</th>
+</tr>
+<tr>
+<td class="tg-2662">
+Singular
+</td>
+<td class="tg-lt3p">
+-∅
+</td>
+<td class="tg-lt3p">
+-ǒ or -ǎ
+</td>
+<td class="tg-lt3p">
+-ô
+</td>
+</tr>
+<tr>
+<td class="tg-2662">
+Plural
+</td>
+<td class="tg-lt3p">
+-yáŋ
+</td>
+<td class="tg-lt3p">
+-ěy
+</td>
+<td class="tg-lt3p">
+-êy
+</td>
+</tr>
+</table>
+</center>
+<ul>
+<li>There is no gender, even in pronouns!</li>
+</ul>
+<hr />
+<p><lang>Zarma</lang><br><ldata>Nilo-Saharan:Songhay - Niger</ldata></p>
+<audio data-autoplay src="lotwimg/Zarma_Narrative.mp3">
+</audio>
+<hr />
+<p><lang>Dholuo</lang><br><ldata>Nilo-Saharan - Kenya</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/0KRUq1Lb9UI">
+</iframe>
+<hr />
+<h3 id="dholuo-luo">Dholuo (“Luo”)</h3>
+<ul>
+<li><p>Spoken by around 3.5 million people in Kenya and
+Tanzania</p></li>
+<li><p>ATR Harmony</p></li>
+<li><p>Level Tone</p></li>
+<li><p>Differentiates “Alienable” and “Inalienable” possession</p>
+<ul>
+<li>You use a different word for “My arm” and “My laptop”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="dholuo">Dholuo</h3>
+<p><em>cho-go guok</em></p>
+<p>bone-POSS.ALI dog</p>
+<p>‘the dog’s bone’ (which it is eating)</p>
+<p><em>cho-k dhiang</em></p>
+<p>bone-POSS.INALI cow</p>
+<p>‘a cow bone’</p>
+<hr />
+<h3 id="the-kuliak-languages">The Kuliak Languages</h3>
+<ul>
+<li><p>A sub-family of Nilo-Saharan, three languages</p>
+<ul>
+<li><p>Ik - 10,000 speakers</p></li>
+<li><p>Soo - 500 speakers and falling</p></li>
+<li><p>N’yangi - ~1 speaker</p></li>
+</ul></li>
+<li><p>Sam Beer will be talking about his (mis)adventures in Kuliak next
+Wednesday</p>
+<ul>
+<li>Sam is awesome.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up!</h3>
+<ul>
+<li><p>Typology is tough</p>
+<ul>
+<li>… especially when you don’t know about many of the languages</li>
+</ul></li>
+<li><p>Africa’s got four main language families (we think)</p></li>
+<li><p>Nilo-Saharan is big, and diverse</p></li>
+<li><p>ATR and Tone are common in African language</p></li>
+<li><p>Zarma is awesome</p>
+<ul>
+<li>.. and “I’m at home” is <em>ai <strong>go</strong> fu:</em></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="next-time-niger-congo-languages-and-khoisan">Next time:
+Niger-Congo Languages, and Khoisan!</h2>
+<p><correct>Pereltsvaig Ch. 6.2 and 6.3</correct></p>
+<h2 id="this-has-changed-on-the-schedule"><danger>This has changed on
+the schedule!</danger></h2>
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

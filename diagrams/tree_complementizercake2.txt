@@ -1,0 +1,57 @@
+tree_complementizercake2tex
+
+[S 
+  [NP 
+    [NP 
+      [DET The ] 
+      [N' 
+        [ADJ proud ] 
+        [N' 
+          [N baker ] ] ] ] 
+    [PP 
+      [P from ] 
+      [NP 
+        [N' 
+          [N San Bernadino ] ] ] ] ] 
+  [VP 
+    [V loved ] 
+    [CP 
+      [C that ] 
+      [S 
+        [NP 
+          [N' 
+            [N people ] ] ] 
+        [VP 
+          [V cheered ] 
+          [CP 
+            [C as ] 
+            [S 
+              [NP 
+                [N' 
+                  [N Will ] ] ] 
+              [VP 
+                [VP 
+                  [V ate ] 
+                  [NP 
+                    [NP 
+                      [DET the ] 
+                      [N' 
+                        [ADJ massive ] 
+                        [N' 
+                          [ADJ chocolate ] 
+                          [N' 
+                            [N cake ] ] ] ] ] 
+                    [PP 
+                      [P from ]
+                      [NP 
+                        [DET the ] 
+                        [N' 
+                          [ADJ new ] 
+                          [N' 
+                            [N bakery ] ] ] ] ] ] ]
+                [PP 
+                  [P with ] 
+                  [NP 
+                    [DET his ] 
+                    [N' 
+                      [N wife ] ] ] ] ] ] ] ] ] ] ] ]

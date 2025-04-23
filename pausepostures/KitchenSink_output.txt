@@ -1,0 +1,95 @@
+-------- BASELINE --------
+70.02667% of 1875 tokens lack PPs
+
+-------- SVM OUTPUT --------
+Best SVM Accuracy:
+93.38667
+Average SVM Accuracy:
+92.72877
+Model Predictions for the Best Model:
+
+    true
+pred    0    1
+   0 1297    2
+   1   16  560
+
+Observed Accuracy for the Best Model:
+99.04
+Cohen's Kappa (Human-to-SVM):
+0.977293
+--------  SVM (NOVEL DATA) --------
+
+Novel Data Predictions for the Best Model:
+
+    true
+pred   0   1
+   0 256  10
+   1  12  97
+
+Novel Data Accuracy for the Best Model:
+94.13333
+Novel Data Cohen's Kappa (Human-to-SVM):
+0.8569546
+-------- RANDOMFOREST OUTPUT --------
+RandomForest Accuracy:
+94.24
+RandomForest Feature Importance:
+             MeanDecreaseGini
+areadiff             7.910986
+absareadiff         14.224619
+areadiffdiff        34.102257
+diffmax             29.177767
+diffsse             22.787621
+tttbcorr             5.715919
+latbcorr             8.182469
+lattcorr             4.813313
+meancorr            10.421061
+corrdiff             4.831809
+corrange             5.224326
+RAW.PC1             12.353408
+RAW.PC2             46.721120
+RAW.PC3             25.044619
+RAW.PC4              8.054731
+RAW.PC5             10.634600
+RAW.PC6              5.646681
+DIFF.PC1            89.819795
+DIFF.PC2             9.163709
+DIFF.PC3            10.059114
+DIFF.PC4             6.423637
+DIFF.PC5             5.433228
+DIFF.PC6             6.742363
+RAW.DCT1            44.327766
+RAW.DCT2             8.159078
+RAW.DCT3            90.714073
+RAW.DCT4             9.537317
+RAW.DCT5            22.924263
+RAW.DCT6             4.949953
+DIFF.DCT1           75.734600
+DIFF.DCT2           10.904731
+DIFF.DCT3           95.086919
+DIFF.DCT4           11.205282
+DIFF.DCT5           24.068668
+DIFF.DCT6            5.492676
+
+--------  NAIVE BAYES OUTPUT --------
+Naive Bayes Accuracy:
+91.14667
+Model Predictions for NaiveBayes:
+      
+nbpred    0    1
+     0 1182   35
+     1  131  527
+
+Observed Accuracy for NaiveBayes:
+91.14667
+Cohen's Kappa (Human-to-NaiveBayes):
+0.7989222
+--------  ENSEMBLE INFO --------
+Best Ensemble Classifier:
+RandomForest
+Best Ensemble Accuracy:
+94.24
+Best Improvement on Baseline:
+24.21333
+Mean Ensemble Accuracy:
+92.92444

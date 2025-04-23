@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="wide" src="ling_memes/fit_like_shoes.jpg"></p>
+<hr />
+<h1 id="creativity-in-morphology">Creativity in Morphology</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Productivity vs. Creativity</p></li>
+<li><p>Making new words</p></li>
+<li><p>Creativity</p></li>
+<li><p>Reanalysis</p></li>
+<li><p>An alternative view of morphology</p></li>
+</ul>
+<hr />
+<h1 id="productivity-vs.-creativity">Productivity vs. Creativity</h1>
+<hr />
+<h3 id="some-uses-of-morphemes-are-productive">Some uses of morphemes
+are <em>productive</em></h3>
+<ul>
+<li><p>They are understandable, and feel <em>right</em>!</p></li>
+<li><p>Describe -&gt; Describable</p></li>
+<li><p>Describe -&gt; Described</p></li>
+<li><p>Indescribably right!</p></li>
+</ul>
+<hr />
+<h3 id="productive-processes-are-boring">Productive processes are
+boring</h3>
+<ul>
+<li><p>They feel perfectly grammatical</p></li>
+<li><p>They’re perfectly understandable</p></li>
+<li><p>They’re easy to interpret</p></li>
+</ul>
+<hr />
+<h3 id="some-usages-are-creative">Some usages are <em>creative</em></h3>
+<ul>
+<li><p>They’re understandable, but a bit off</p></li>
+<li><p>“Unbreak my heart, uncry these tears”</p></li>
+<li><p>“Can you stop linguisting and help me vacuum?”</p></li>
+<li><p>“Put down the haterade”</p></li>
+<li><p>“The problem was solved computeringly”</p></li>
+</ul>
+<hr />
+<h3 id="creative-processes-raise-eyebrows">Creative processes raise
+eyebrows</h3>
+<ul>
+<li><p>They are usually understandable</p></li>
+<li><p>… but they don’t feel super legal</p></li>
+<li><p>… and they can take a moment to figure out</p>
+<ul>
+<li>( … the computeringliest solution)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="creativity-can-often-be-a-form-of-wordplay">Creativity can often
+be a form of wordplay</h3>
+<hr />
+<p>N-now th-that that don’t kill me</p>
+<p>Can only make me stronger</p>
+<p>I need you to hurry up now</p>
+<p>’Cause I can’t wait much longer</p>
+<p>I know I got to be right now</p>
+<p>’Cause I can’t get much wronger</p>
+<p>–<em>Kanye West’s ‘Stronger’</em></p>
+<hr />
+<h3 id="productivity-and-creativity-are-a-continuum">Productivity and
+Creativity are a continuum</h3>
+<ul>
+<li><p>It’s hard to say when an affix is being used ‘off label’</p></li>
+<li><p>Measurements of how ‘innovative’ a usage is are tough to
+do</p></li>
+<li><p>There’s not a hard and fast line</p>
+<ul>
+<li>… and the distinguishability of the two is a theoretical
+question</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="creativity-comes-in-many-forms">Creativity comes in many
+forms</h3>
+<ul>
+<li><p>We’ve talked about applying morphemes out of their productive
+domain</p></li>
+<li><p>Sometimes, you’re making up new words entirely!</p></li>
+</ul>
+<hr />
+<h1 id="word-creation">Word Creation</h1>
+<hr />
+<h3 id="we-have-many-ways-to-create-new-words">We have many ways to
+create new words</h3>
+<ul>
+<li><p>We’ve talked about derivational morphology</p></li>
+<li><p>… but there are other processes</p></li>
+</ul>
+<hr />
+<h3 id="common-word-creation-methods">Common Word Creation Methods</h3>
+<ul>
+<li>Blending</li>
+<li>Clipping</li>
+<li>Acronyms</li>
+<li>Backcronyms</li>
+<li>Initialisms</li>
+<li>Univerbation</li>
+<li>Metaphorical Extension</li>
+<li>Coining</li>
+<li>Borrowing</li>
+</ul>
+<hr />
+<h3 id="blending-multiple-words">Blending multiple words</h3>
+<ul>
+<li><p>Trendetarian</p>
+<ul>
+<li>Eats whatever is trendy (Trendy+Vegetarian?)</li>
+</ul></li>
+<li><p>Staycation</p>
+<ul>
+<li>A vacation at home (Stay+Vacation)</li>
+</ul></li>
+<li><p>Frenemy</p>
+<ul>
+<li>Somebody who is both a friend and an enemy</li>
+</ul></li>
+<li><p>Mansplain</p>
+<ul>
+<li>To condescendingly explain something (from Man+Explain)</li>
+</ul></li>
+<li><p>Backcronym</p>
+<ul>
+<li>“Backwards Acronym”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="clipping-existing-words">Clipping existing words</h3>
+<ul>
+<li><p>Fam</p>
+<ul>
+<li>From “Family”</li>
+</ul></li>
+<li><p>Cray</p>
+<ul>
+<li>From “Crazy”</li>
+</ul></li>
+<li><p>Totes</p>
+<ul>
+<li>From “totally”</li>
+</ul></li>
+<li><p>He caught an L</p>
+<ul>
+<li>From “Loss”</li>
+</ul></li>
+<li><p>Feels</p></li>
+</ul>
+<hr />
+<h3 id="creating-acronyms">Creating Acronyms</h3>
+<ul>
+<li><p><em>Acronyms are pronounceable!</em></p></li>
+<li><p>Bobo</p>
+<ul>
+<li>‘Bohemian bourgeois’</li>
+</ul></li>
+<li><p>JSOC</p>
+<ul>
+<li>‘Joint special operations command’</li>
+</ul></li>
+<li><p>NASA</p>
+<ul>
+<li>‘National Aeronautics and Space Administration’</li>
+</ul></li>
+<li><p>Thot</p>
+<ul>
+<li>‘That hoe over there’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="backronyms">Backronyms</h3>
+<ul>
+<li><p>“hodl”</p>
+<ul>
+<li>“Hold on for dear life”</li>
+</ul></li>
+<li><p>USA PATRIOT Act</p>
+<ul>
+<li>“Uniting and Strengthening America by Providing Appropriate Tools
+Required to Intercept and Obstruct Terrorism”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="creating-initialisms">Creating Initialisms</h3>
+<ul>
+<li><p><em>Initialisms are pronounced as a series of
+letters</em></p></li>
+<li><p>UCSD</p>
+<ul>
+<li>University of California San Diego</li>
+</ul></li>
+<li><p>FBI</p>
+<ul>
+<li>Federal Bureau of Investigation</li>
+</ul></li>
+<li><p>IPA</p>
+<ul>
+<li>International Phonetic Alphabet</li>
+<li>Or India Pale Ale, to some weirdos</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="univerbations">Univerbations</h3>
+<ul>
+<li><p>over-the-top</p></li>
+<li><p>unheard of</p></li>
+<li><p>through-street</p></li>
+<li><p>under-the-table</p></li>
+<li><p>netflix and chill</p></li>
+</ul>
+<hr />
+<h3 id="metaphorical-extension">Metaphorical Extension</h3>
+<ul>
+<li><p>spam</p></li>
+<li><p>mouse</p></li>
+<li><p>salty</p></li>
+<li><p>to pitch (a sale)</p></li>
+<li><p>to shift (a car)</p></li>
+</ul>
+<hr />
+<h3 id="coining-brand-new-words">Coining brand new words!</h3>
+<ul>
+<li><p>Bling</p></li>
+<li><p>doggo</p></li>
+<li><p>dongle</p></li>
+<li><p>uwu</p></li>
+<li><p>xerox</p></li>
+</ul>
+<hr />
+<h3 id="what-other-new-words-can-you-think-of">What other new words can
+you think of?</h3>
+<hr />
+<h3 id="do-we-always-work-with-whole-words-or-known-affixes">Do we
+always work with whole words or known affixes?</h3>
+<hr />
+<h2 id="no">No!</h2>
+<hr />
+<h3 id="last-time-we-talked-about-losing-affixes">Last time, we talked
+about losing affixes</h3>
+<hr />
+<section data-background="img/parchment.jpg">
+<p><em>… and some things that should not have been forgotten were lost.
+History became legend, legend became myth. And for two and a half
+thousand years, the morpheme passed out of all knowledge. Until, when
+chance came, it ensnared another bearer.</em></p>
+<hr />
+<h1 id="reanalysis">Reanalysis</h1>
+<hr />
+<h3 id="morphological-analysis-is-what-weve-been-doing">Morphological
+Analysis is what we’ve been doing</h3>
+<ul>
+<li><p>“Where are the boundaries between these morphemes?”</p></li>
+<li><p>“What does each of these morphemes mean?”</p></li>
+</ul>
+<hr />
+<h3
+id="morphological-analysis-is-something-that-happens-over-and-over">Morphological
+Analysis is something that happens over and over!</h3>
+<ul>
+<li><p>… and anything that happens over and over, can change!</p></li>
+<li><p>Speakers will sometimes re-segment words to create new
+affixes</p></li>
+<li><p>Kids learn something as an affix that was once a part of a
+monolithic word</p></li>
+</ul>
+<hr />
+<h3 id="morphological-reanalysis">Morphological Reanalysis</h3>
+<p>“A change in the structure of a word that does not involve any
+immediate or intrinsic modification of its surface manifestation”
+(Paraphrased from Langacker 1977)</p>
+<hr />
+<h3
+id="resegmentation-is-the-most-common-type-of-morphological-reanalysis">Resegmentation
+is the most common type of morphological reanalysis</h3>
+<ul>
+<li><p>Re-evaluating the presence, absence, or location of morpheme
+boundaries <em>within an existing word!</em></p></li>
+<li><p>“No, older generation, that’s analyzeable!”</p></li>
+</ul>
+<hr />
+<h3 id="resegmentation">Resegmentation</h3>
+<p><img class="wide" src="ling_memes/germany.jpg"></p>
+<hr />
+<h3 id="cran-">Cran-</h3>
+<p><img class="wide" src="morphology/cran.jpg"></p>
+<hr />
+<h3 id="this-often-happens-with-borrowings">This often happens with
+borrowings</h3>
+<ul>
+<li><p>Pease -&gt; Peas -&gt; Pea</p></li>
+<li><p>Statistics -&gt; Statistic</p></li>
+<li><p>Burglar -&gt; Burgle</p></li>
+<li><p>Tamales -&gt; Tamale</p></li>
+<li><p>Euthanasia -&gt; Euthanize</p></li>
+</ul>
+<hr />
+<h3 id="sometimes-these-are-modern-words">Sometimes, these are modern
+words</h3>
+<ul>
+<li><p>Babysitter -&gt; Babysit</p></li>
+<li><p>Bookkeeper -&gt; Bookkeep</p></li>
+<li><p>Dingy -&gt; Dinge</p></li>
+<li><p>Mentor -&gt; Mentee</p></li>
+<li><p>Taser -&gt; Tase</p></li>
+<li><p>Typewriter -&gt; Typewrite</p></li>
+</ul>
+<hr />
+<h3 id="speakers-can-differ-in-their-acceptance-of-these-forms">Speakers
+can differ in their acceptance of these forms</h3>
+<ul>
+<li><p>Uncouth -&gt; Couth?</p></li>
+<li><p>Enthusiasm -&gt; Enthuse?</p></li>
+<li><p>Disgruntled -&gt; Gruntled?</p></li>
+<li><p>Disdained -&gt; Dained?</p></li>
+</ul>
+<hr />
+<h3 id="an-affix-is-born">An affix is born!</h3>
+<ul>
+<li><h1 id="alcoholic"><clr>Alcohol</clr><clb>ic</clb></h1></li>
+<li><h1 id="alcoholic-1"><clr>Alc</clr><clb>oholic</clb></h1></li>
+</ul>
+<hr />
+<h3 id="oholic-is-now-a-productive-affix">-oholic is now a
+<em>productive</em> affix</h3>
+<ul>
+<li><p>Chocoholic</p></li>
+<li><p>Workaholic</p></li>
+<li><p>Enchiladaholic</p></li>
+<li><p>(Does this mean that Catholics really like cats?)</p></li>
+</ul>
+<hr />
+<h3 id="arnold-zwicky-coined-a-term-for-these-libfix">Arnold Zwicky
+coined a term for these: ‘libfix’</h3>
+<ul>
+<li>-burger</li>
+<li>-tard</li>
+<li>-naut</li>
+<li>Cran-</li>
+<li>-gate</li>
+</ul>
+<hr />
+<h2 id="wow-were-really-creative">Wow, we’re really creative!</h2>
+<hr />
+<h3 id="indeed">Indeed!</h3>
+<ul>
+<li><p>This is why we’re teaching this class from a strongly
+<em>analytic</em> perspective!</p></li>
+<li><p>We can’t teach you faster than speakers can innovate</p></li>
+<li><p>Morphology is an active, ongoing process</p>
+<ul>
+<li>You need to be active, ongoing linguists!</li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="an-alternative-viewpoint">An alternative viewpoint</h1>
+<hr />
+<h3
+id="reanalysis-is-the-splitting-of-monolithic-words-into-affixes">Reanalysis
+is the splitting of monolithic words into affixes</h3>
+<ul>
+<li><p>We’re discovering affixes within whole words using
+<em>analogy</em> within the lexicon</p></li>
+<li><p>“These are usually stored and accessed as whole words, but I
+guess these parts all do the same thing”</p>
+<ul>
+<li>“I’ll bet I could snap off that component alone and use it!”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="what-if-thats-how-all-of-morphology-works">What if that’s how
+<em>all of morphology</em> works?</h3>
+<hr />
+<p><img class="wide" src="humorimg/whoa.jpg"></p>
+<hr />
+<h3 id="recall-split-vs.-single-component-morphology">Recall Split
+vs. Single Component Morphology</h3>
+<p><img class="tall" src="diagrams/split_morphology_redirected.jpg"></p>
+<hr />
+<h3 id="both-approaches-make-an-assumption">Both approaches make an
+assumption</h3>
+<p><img class="wide" src="morphology/sandwich_shop.jpg"></p>
+<hr />
+<h3 id="are-words-really-built-to-order">Are words really ‘built to
+order’?</h3>
+<ul>
+<li><p>“Let’s see, I need to talk about gluing this thing, again, in the
+past. That’s ‘glue’, plus ‘re-’, and ‘-ed’.”</p></li>
+<li><p>“OK! One ‘reglued’ coming up!”</p></li>
+</ul>
+<hr />
+<h3 id="or-are-we-just-choosing-from-the-vending-machine">Or are we just
+choosing from the vending machine?</h3>
+<p><img class="tall" src="morphology/vending_machine.jpg"></p>
+<hr />
+<h3 id="words-may-be-grabbed-whole-from-the-lexicon">Words may be
+grabbed whole from the lexicon</h3>
+<ul>
+<li><p>“Let’s see, I need to talk about gluing this thing, again, in the
+past. Looks like ‘reglued’ is the meaning I need!”</p>
+<ul>
+<li>“Comes with cheese, egg salad, and phonology”</li>
+</ul></li>
+<li><p>&lt;inserts bills, punches A6&gt;</p></li>
+</ul>
+<hr />
+<h3 id="well-talk-more-about-this-idea-soon">We’ll talk more about this
+idea soon!</h3>
+<ul>
+<li>… but be thinking about the possibilities and predictions</li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Productive uses of words are easily interpretable and friction
+free</p></li>
+<li><p>Creative uses of words take a bit more effort, but we can get
+there</p></li>
+<li><p>New words can be created through many processes</p></li>
+<li><p>Existing words can be reanalyzed, allowing the parts to be
+usable</p></li>
+<li><p>… and maybe that’s how all of this works!</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li>We’ll talk more about a morpheme-based lexicon</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

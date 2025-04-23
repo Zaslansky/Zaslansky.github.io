@@ -1,0 +1,15 @@
+tree_rule7tex
+
+[NP 
+  [DET the ] 
+  [N' 
+    [N' 
+      [N man ] ]
+    [PP 
+      [P in ]
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ iron ] 
+          [N' 
+            [N mask ] ] ] ] ] ] ]

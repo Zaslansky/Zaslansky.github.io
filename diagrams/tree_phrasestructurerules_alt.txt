@@ -1,0 +1,10 @@
+tree_phrasestructurerules_alttex
+
+[S 
+  [NP 
+    [N' 
+      [ADJ Syntactic ] 
+      [N' 
+        [N phrase structure ] ] ] ] 
+  [VP 
+    [V rules! ] ] ]

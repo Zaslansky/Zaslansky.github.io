@@ -1,0 +1,15 @@
+tree_oldhw2tex
+
+[S 
+  [NP 
+    [DET ___ ] 
+    [N' 
+      [ADJ ___ ] 
+      [N' 
+        [N ___ ] ] ] ] 
+  [VP 
+    [V ___ ] 
+    [NP 
+      [DET ___ ] 
+      [N' 
+        [N ___ ] ] ] ] ]

@@ -1,0 +1,11 @@
+tree_l6basicpptex
+
+[S 
+  [NP ___ ] 
+  [VP 
+    [VP 
+      [V ___ ] 
+      [NP ___ ] ] 
+    [PP 
+      [P ___ ] 
+      [NP ___ ] ] ] ]

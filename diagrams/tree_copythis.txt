@@ -1,0 +1,14 @@
+tree_copythistex
+
+[S 
+  [NP 
+    [N' 
+      [N Herbie McPrairiedog ] ] ] 
+  [VP 
+    [V is ] 
+    [NP 
+      [DET an ] 
+      [N' 
+        [ADJ amazing ] 
+        [N' 
+          [N person ] ] ] ] ] ]

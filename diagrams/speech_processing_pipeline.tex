@@ -1,0 +1,52 @@
+%!TEX program = xelatex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning}
+\usepackage{fontspec}
+\setmainfont{Charis SIL}
+\begin{document}
+\tikzstyle{m1} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=blue!10]
+\tikzstyle{m2} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!10]
+\tikzstyle{m3} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!10]
+\tikzstyle{spoken} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=green!10]
+\tikzstyle{textst} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=gray!10,font=\ttfamily]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\begin{tikzpicture}[node distance=0.5cm]
+  \node (concept) [spoken] {Spoken Query};
+   \node (adc) [m1,below= of concept] {\textbf{Analog to Digital Conversion (ADC)}};
+   \node (m1) [m1,below= of adc] {\textbf{Processing Trigger/Wake Word}};
+   \node (s) [m1,below= of m1] {\textbf{VAD/Noise Filtering/Speaker ID}};
+   \node (m2) [m1,below= of s] {\textbf{Automatic Speech Recogntion (ASR)}};
+   \node (ph) [m1,below= of m2] {\textbf{Language Model Post-Processing}};
+   \node (surface) [textst,below= of ph] {Query String};
+\node (nlp) [m2,right= of surface] {\textbf{\Large Text and Query Processing (LIGN 167)}};
+\node (response) [textst,right= of nlp] {Response String};
+\draw [arrow] (concept) -- (adc);
+\draw [arrow] (adc) -- (m1);
+\draw [arrow] (m1) -- (s);
+\draw [arrow] (s) -- (m2);
+\draw [arrow] (m2) -- (ph);
+\draw [arrow] (ph) -- (surface);
+\draw [arrow] (surface) -- (nlp);
+\draw [arrow] (nlp) -- (response);
+
+   \node (tanal) [m1,above= of response] {\textbf{Text Analysis}};
+   \node (voice) [m1,above= of tanal] {\textbf{Voice/Model Selection}};
+   \node (tts) [m1,above= of voice] {\textbf{Text-to-Speech (TTS)}};
+
+   \node (dac) [m1,above= of tts] {\textbf{Digital to Analog Conversion (DAC)}};
+   \node (playback) [m1,above= of dac] {\textbf{Playback}};
+\node (cspeech) [spoken, above= of playback] {Spoken Response};
+
+\node (human) [m3, right=of concept, left=of cspeech] {\textbf{\Large Human Language Processing (LIGN)}};
+\draw [arrow] (response) -- (tanal);
+\draw [arrow] (tanal) -- (voice);
+\draw [arrow] (voice) -- (tts);
+\draw [arrow] (tts) -- (dac);
+\draw [arrow] (dac) -- (playback);
+\draw [arrow] (playback) -- (cspeech);
+\draw [arrow] (cspeech) -- (human);
+\draw [arrow] (human) -- (concept);
+\end{tikzpicture}
+
+\end{document}

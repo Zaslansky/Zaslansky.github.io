@@ -1,0 +1,8 @@
+tree_polarbears4tex
+
+[NP 
+  [DET the ] 
+  [N' 
+    [ADJ excruciating ] 
+    [N' 
+      [N traffic ] ] ] ]

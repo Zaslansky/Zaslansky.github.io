@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1
+id="perspectives-on-hearing-science-and-hearing-interventions">Perspectives
+on Hearing Science and Hearing Interventions</h1>
+<p>Will Styler - LIGN 113</p>
+<hr />
+<h3 id="the-plan">The Plan</h3>
+<ul>
+<li><p>The Clinical Perspective on Hearing Science</p></li>
+<li><p>Problematic Ideologies in Hearing Science</p></li>
+<li><p>Considering the Deaf perspective and Deaf Culture</p></li>
+<li><p>Guidelines for Compassionate Discussion and Care</p></li>
+</ul>
+<hr />
+<h2 id="hearing-science-is-a-difficult-topic-for-many">Hearing Science
+is a difficult topic for many</h2>
+<ul>
+<li><p>For Deaf people, hearing science can be viewed very skeptically
+as a field</p></li>
+<li><p>… and the kinds of discussions we’re going to have can cause
+strong emotional reactions</p></li>
+<li><p>This is, in part, because of a historical difference in
+perspective</p></li>
+</ul>
+<hr />
+<h2 id="the-clinical-perspective">The ‘Clinical Perspective’</h2>
+<hr />
+<h3 id="for-many-hearing-is-treated-as-the-norm-and-goal">For many,
+‘hearing’ is treated as the norm and goal</h3>
+<ul>
+<li><p>Many take a more medical approach, ‘restoring towards common
+function’</p></li>
+<li><p>Many talk about ‘diagnosing and treating’ hearing loss</p></li>
+<li><p>And many focus on Cochlear implants and Hearing Aids and their
+effects on quality of life</p></li>
+</ul>
+<hr />
+<h3 id="this-is-the-clinical-perspective">This is the clinical
+perspective</h3>
+<ul>
+<li><p>Many audiologists and otolaryngologists see the world in this
+way</p></li>
+<li><p>Your textbook talks about things this way</p></li>
+<li><p>We’re going to predominantly talk in this way, to prepare you for
+the audiological world</p></li>
+<li><p>… and for many hearing people, this feels like an intuitive
+approach</p></li>
+</ul>
+<hr />
+<h3 id="hearing-loss-feels-like-a-loss-to-hearing-folks">Hearing Loss
+feels like a loss to hearing folks!</h3>
+<ul>
+<li><p>Many people view hearing loss as a genuine loss, and want it
+‘fixed’</p></li>
+<li><p>Reduction in their ability to perceive or understand the
+languages they know</p></li>
+<li><p>Loss of ability to hear and attend to environmental
+sounds</p></li>
+<li><p>‘Something I had is gone, and I want it back!’</p></li>
+<li><p>Feeling this way is valid, but you need to be careful!</p></li>
+</ul>
+<hr />
+<h3
+id="this-can-lead-to-a-set-of-problematic-perspectives-and-ideologies">This
+can lead to a set of problematic perspectives and ideologies</h3>
+<ul>
+<li><p>“Deafness is a disorder and disability which can sometimes be
+cured”</p></li>
+<li><p>“The goal of hearing science is to fix hearing whenever
+possible”</p></li>
+<li><p>“We should focus on restoring hearing and helping people interact
+with hearing people using spoken language”</p></li>
+<li><p>“Cochlear implants can finally let deaf people hear like normal
+people!”</p></li>
+<li><p>“Anything that can be done to restore any amount of hearing is a
+good thing!”</p></li>
+</ul>
+<hr />
+<h2 id="pushing-back-against-these-views">Pushing back against these
+views</h2>
+<hr />
+<h3 id="these-views-can-be-very-offensive-to-many-deaf-people">These
+views can be very offensive to many Deaf people</h3>
+<ul>
+<li><p>Not every Deaf person feels this way, and I don’t pretend to
+speak for Deaf culture</p></li>
+<li><p>… but let’s look at how these ideologies can be hurtful, and what
+we can do to be compassionate!</p></li>
+</ul>
+<hr />
+<h3
+id="deafness-is-a-disorder-and-disability-which-can-sometimes-be-cured">“Deafness
+is a disorder and disability which can sometimes be cured”</h3>
+<ul>
+<li><p>“Different” isn’t the same as ‘bad’, and many people are
+perceptually different</p></li>
+<li><p>Deafness is a part of many people’s personal and cultural
+identity</p></li>
+<li><p>People can lead happy and fulfilling lives with limited or no
+hearing</p></li>
+</ul>
+<hr />
+<h3
+id="deafness-is-a-disorder-and-disability-which-can-sometimes-be-cured-1">“Deafness
+is a disorder and disability which can sometimes be cured”</h3>
+<ul>
+<li><p>For many Deaf people, this is equivalent to saying that other
+identities (e.g. race, orientation) can and should also be
+‘cured’</p></li>
+<li><p><strong>Deaf people are different, but not ‘broken’ or
+‘disordered’ or in need of a cure</strong></p></li>
+</ul>
+<hr />
+<h3
+id="the-goal-of-hearing-science-is-to-fix-hearing-whenever-possible">“The
+goal of hearing science is to fix hearing whenever possible”</h3>
+<ul>
+<li><p>This statement removes <strong>agency</strong>, and makes
+‘hearing’ seem like an inherent good</p></li>
+<li><p>This also turns Deaf culture and signed language into a ‘last
+resort’</p></li>
+<li><p>This also sets up conflicts with, e.g., Deaf parents of a Deaf
+infant</p>
+<ul>
+<li>Prescriptive statements like “It’s irresponsible not to try to fix
+your child’s hearing”</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="the-goal-of-hearing-science-is-to-fix-hearing-whenever-possible-1">“The
+goal of hearing science is to fix hearing whenever possible”</h3>
+<ul>
+<li><p>Statements like ‘We can eliminate deafness through genetic
+engineering’ are often described as feeling ‘genocidal’ by those in the
+Deaf community</p></li>
+<li><p><strong>Hearing science can and should research and provide
+options for those who choose to take them!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="we-should-focus-on-restoring-hearing-and-helping-deaf-people-interact-with-hearing-people-using-spoken-language">“We
+should focus on restoring hearing and helping Deaf people interact with
+hearing people using spoken language”</h3>
+<ul>
+<li><p>This is an outgrowth of the ‘oral language approach’ to deaf
+education, also known as ‘oralism’</p></li>
+<li><p>“Integrate the Deaf into the hearing world, teach them to speak,
+to speech-read, restore what hearing you can, and don’t bother with
+sign, most people don’t understand it anyways.”</p></li>
+</ul>
+<hr />
+<h3
+id="we-should-focus-on-restoring-hearing-and-helping-deaf-people-interact-with-hearing-people-using-spoken-language-1">“We
+should focus on restoring hearing and helping Deaf people interact with
+hearing people using spoken language”</h3>
+<ul>
+<li><p>In some cases, people actively attempt to prevent signing and
+exposure to sign, which is… not wise.</p></li>
+<li><p>The goal of this approach is to make deaf people as functionally
+similar to hearing people as they can be</p>
+<ul>
+<li>… but it’s a perspective with a lot of problems!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="we-should-focus-on-restoring-hearing-and-helping-deaf-people-interact-with-hearing-people-using-spoken-language-2">“We
+should focus on restoring hearing and helping Deaf people interact with
+hearing people using spoken language”</h3>
+<ul>
+<li><p>Intelligible speech is difficult for the deaf, speechreading is
+difficult <em>and</em> unreliable</p>
+<ul>
+<li>c.f. Tyler 1993, “Cochlear Implants and the Deaf Culture”, among
+many others</li>
+</ul></li>
+<li><p>Hearing ‘restoration’ is unreliable at best, and often not
+sufficient for easy use of spoken language</p></li>
+</ul>
+<hr />
+<h3
+id="we-should-focus-on-restoring-hearing-and-helping-deaf-people-interact-with-hearing-people-using-spoken-language-3">“We
+should focus on restoring hearing and helping Deaf people interact with
+hearing people using spoken language”</h3>
+<ul>
+<li><p>Forcing Deaf people away from the Deaf community and away from
+Signed language often makes for poor outcomes!</p></li>
+<li><p>There is literally no harm to exposing (all!) children to signed
+language</p></li>
+<li><p><strong>Why push people into a language and culture in which they
+face difficulties, when signed language and Deaf culture are perfectly
+suited to their needs?</strong></p></li>
+</ul>
+<hr />
+<h3
+id="cochlear-implants-can-finally-let-deaf-people-hear-like-normal-people">“Cochlear
+implants can finally let deaf people hear like normal people!”</h3>
+<ul>
+<li><p>This is patently false</p></li>
+<li><p>CIs are amazing, and can restore some sensation of sound</p></li>
+<li><p>CIs can help some people to understand and produce spoken
+language better</p></li>
+<li><p>CI-mediated hearing is <em>massively</em> different from natural
+hearing</p></li>
+<li><p>Many children still don’t learn spoken language, even with
+CIs</p></li>
+<li><p><strong>CIs do not magically turn Deaf children into hearing
+children!</strong></p>
+<ul>
+<li>… and that’s a problematic goal!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="anything-that-can-be-done-to-restore-any-amount-of-hearing-is-a-good-thing">“Anything
+that can be done to restore any amount of hearing is a good thing!”</h3>
+<ul>
+<li><p>This deemphasizes the costs of interventions</p>
+<ul>
+<li><p>Financial costs (e.g. of CIs, hearing aids, training, medical
+consults)</p></li>
+<li><p>Temporal costs (e.g. doctor’s visits, insurance claims, speech
+therapy)</p></li>
+<li><p>Physical and medical costs (e.g. massively invasive surgeries and
+implanted equipment)</p></li>
+<li><p>Emotional and Social costs (e.g. time spent ‘denying who you
+are’, social disapproval)</p></li>
+</ul></li>
+<li><p><strong>Limited hearing can certainly be helpful, but the costs
+can <em>far</em> outweigh the benefits</strong></p></li>
+</ul>
+<hr />
+<h3
+id="this-is-part-of-the-reason-you-can-see-some-strong-pushback-in-the-deaf-community-about-cis-especially-for-kids">This
+is part of the reason you can see some strong pushback in the Deaf
+community about CIs (especially for kids)</h3>
+<ul>
+<li><p>For some, it’s ideological and emotional</p>
+<ul>
+<li>“Why is expensive and invasive surgery preferable to a child
+embracing my language and identity?”</li>
+</ul></li>
+<li><p>For some, it’s practical</p>
+<ul>
+<li>“This often doesn’t give good enough outcomes to merit the suffering
+and costs”</li>
+</ul></li>
+<li><p>… and many see it as a matter of choice</p>
+<ul>
+<li><a href="https://www.gallaudet.edu/">Gallaudet University</a> has an
+audiology program, and does work with CIs and CI technology!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-are-many-views">There are many views!</h3>
+<ul>
+<li><p>Each person has a different perspective on hearing loss, Deafness
+and Deaf Culture, and what’s best for themselves, their children, and
+society</p></li>
+<li><p>The important thing is understanding!</p></li>
+</ul>
+<hr />
+<h2 id="guidelines-for-compassionate-care-in-hearing-science">Guidelines
+for Compassionate Care in Hearing Science</h2>
+<hr />
+<h3
+id="remember-that-hearing-loss-and-deafness-mean-different-things-to-different-people">Remember
+that hearing loss and deafness mean different things to different
+people</h3>
+<ul>
+<li><p>For some, lack of hearing can be felt as an intense problem and
+disability which needs to be fixed</p></li>
+<li><p>For others, lack of hearing can be a part of their identity and
+culture, rather than a disability or ‘problem’</p></li>
+<li><p>For parents, it can be very scary to learn that your children may
+not sense the world as you do</p>
+<ul>
+<li>This is true for both Deaf and hearing parents!</li>
+</ul></li>
+<li><p><strong>Don’t assume anything about people’s perspectives or
+desires, instead, ask!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="remember-that-deaf-culture-and-signed-languages-are-very-real-and-very-rich">Remember
+that Deaf Culture and Signed languages are very real and very rich</h3>
+<ul>
+<li><p>The choice is <em>not</em> between CIs and a lifetime of
+solitude</p></li>
+<li><p>People can have beautiful and functional language with no hearing
+at all</p></li>
+<li><p>Deaf culture is open to anybody, of any age, and is always a
+choice</p></li>
+<li><p><strong>Deaf culture and signed languages allow Deaf people to
+live rich and full lives without <em>any</em> medical
+interventions</strong></p></li>
+</ul>
+<hr />
+<h3 id="remember-that-bilingualism-is-not-a-problem">Remember that
+bilingualism is <em>not</em> a problem</h3>
+<ul>
+<li><p>This argument is made over and over again in the US, even with
+spoken language</p></li>
+<li><p>People learn multiple languages in most places around the world
+and turn out fine</p></li>
+<li><p>“Oh no, if you speak [language] around your kids, they’ll never
+learn English!”</p>
+<ul>
+<li>… and when you flip over that ideological rock, a lot of ugly bugs
+come crawling out</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="bilingualism-is-a-benefit">Bilingualism is a benefit!</h3>
+<ul>
+<li><p>Children can learn signed languages at the same time they learn
+spoken languages</p></li>
+<li><p>Even if a child or family later decides to attempt a medical
+intervention, why not start signing now?</p></li>
+<li><p>There are no ‘cognitive harms’ done by learning signed languages
+and it doesn’t make learning English harder</p></li>
+</ul>
+<hr />
+<h3 id="bilingualism-is-a-benefit-1">Bilingualism is a benefit!</h3>
+<ul>
+<li><p>Teaching signed language can improve outcomes for Deaf children
+who later learn spoken languages</p>
+<ul>
+<li>c.f. Hassanzadeh 2012 “Outcomes of cochlear implantation in deaf
+children of deaf parents: comparative study”</li>
+</ul></li>
+<li><p><strong>There is no harm in teaching signed languages to
+children, and there’s massive harm from withholding language from
+children!</strong></p></li>
+</ul>
+<hr />
+<h3 id="language-deprivation-is-a-problem">Language deprivation
+<em>is</em> a problem</h3>
+<ul>
+<li><p>If a child has little exposure to signed language while ‘waiting
+to be able to speak and hear’, they’re being <em>language
+deprived</em>.</p>
+<ul>
+<li><p>Language deprivation causes social, emotional, cognitive, and
+linguistic harm in <em>all</em> languages!</p></li>
+<li><p>c.f. Humphries et. al 2016 Avoiding Linguistic Neglect of Deaf
+Children</p></li>
+<li><p>Tom Humphries (Dept of Ed. Studies) and Carol Padden (Dean of
+Social Sciences, Dept of Communication) are UCSD people!</p></li>
+</ul></li>
+<li><p>If hearing interventions fail, or the child struggles to acquire
+spoken language, they may miss the critical period for language
+acquisition</p>
+<ul>
+<li>This could leave the child struggling to be fluent in any language,
+<em>signed or spoken</em></li>
+</ul></li>
+<li><p><strong>Teaching and using signed language with Deaf children is
+important, and lack of language does harm!</strong></p></li>
+</ul>
+<hr />
+<h3 id="think-about-what-were-discussing-in-terms-of-options">Think
+about what we’re discussing in terms of options</h3>
+<ul>
+<li><p>Hearing testing and screening at all ages gives people
+information to help them make decisions</p></li>
+<li><p>Teaching signed language to Deaf and hard of hearing children
+gives them an immediate option, and helps preserve options for later
+spoken language use</p></li>
+<li><p>Diagnosis and understanding of underlying pathologies gives
+people a better sense of their reality</p></li>
+<li><p>Different interventions have different costs, side effects,
+effectiveness, and outcomes</p></li>
+</ul>
+<hr />
+<ul>
+<li><strong>It is your role to help people understand their hearing and
+their options, so that they can make the right decision <em>for
+them</em>!</strong></li>
+</ul>
+<hr />
+<h3 id="there-are-many-perspectives-on-hearing-science">There are many
+perspectives on hearing science</h3>
+<ul>
+<li><p>… and it’s important to be mindful of your framings, biases, and
+the consequences of your advice to your clients</p></li>
+<li><p>This class (and text) will take a mostly medical view, and focus
+on restoration and rehabilitation</p>
+<ul>
+<li>… but that’s for convenience and to reflect the general field</li>
+</ul></li>
+<li><p>It’s crucial to remember that this is a sensitive issue for many
+people</p>
+<ul>
+<li>… and that your advice and perspective can make all the difference,
+positively, or negatively</li>
+</ul></li>
+<li><p>… and ultimately, it’s all about offering knowledge and
+choices!</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li>We’ll start in on anatomy!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

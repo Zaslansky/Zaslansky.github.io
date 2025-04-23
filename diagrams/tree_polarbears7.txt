@@ -1,0 +1,17 @@
+tree_polarbears7tex
+
+[VP 
+  [V hated ] 
+  [NP 
+    [NP 
+      [DET the ] 
+      [N' 
+        [ADJ excruciating ] 
+        [N' 
+          [N traffic ] ] ] ] 
+    [PP 
+      [P on ] 
+      [NP 
+        [DET the ] 
+        [N' 
+          [N 405 ] ] ] ] ] ]

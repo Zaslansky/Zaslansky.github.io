@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+
+\begin{document}
+% In the preamble:
+
+% In the document:
+\begin{dependency}[theme = simple]
+   \begin{deptext}[column sep=1em]
+     Turn \& on \& the \& office \& lights \& and \& bedroom \& lights \\
+   \end{deptext}
+   \deproot{1}{ROOT}
+   \depedge{1}{2}{PRT}
+   \depedge{1}{8}{DOBJ}
+   \depedge{5}{7}{CONJ}
+   \depedge{8}{5}{NMOD}
+   \depedge{8}{4}{NMOD}
+   \depedge{8}{3}{DET}
+   \depedge{5}{6}{CC}
+\end{dependency}
+\end{document}

@@ -1,0 +1,19 @@
+tree_101sc_newjewelerstex
+
+[S 
+  [NP 
+    [DET 
+      [NP 
+        [DET the ]
+        [N' 
+          [N jeweler ] ] ] 
+      [POSS 's ] ] 
+    [N' 
+      [N ring ] ] ] 
+  [VP 
+    [V had ] 
+    [NP 
+      [N' 
+        [ADJ shiny ] 
+        [N' 
+          [N rubies ] ] ] ] ] ]

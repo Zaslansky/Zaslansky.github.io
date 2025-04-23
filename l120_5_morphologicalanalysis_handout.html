@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="tall" src="ling_memes/oreo.jpg"></p>
+<hr />
+<h3 id="black-hole-is-a-really-neat-compound">“Black Hole” is a really
+neat compound</h3>
+<p><img src="img/eht_blackhole.jpg" /></p>
+<p><a href="https://eventhorizontelescope.org/">Link to the EHT Team</a>
+- <a href="https://www.youtube.com/watch?v=zUyH3XhpLTo">Great video
+explanation</a></p>
+<hr />
+<h3 id="ambers-office-hours">Amber’s Office Hours</h3>
+<p>Office: AP&amp;M 3351E</p>
+<p>Office Hours: Tuesdays, 11am-12pm</p>
+<ul>
+<li><strong>All office hours are on the syllabus!</strong></li>
+</ul>
+<hr />
+<h1 id="morphological-analysis">Morphological Analysis</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>What is a morphological analysis?</p></li>
+<li><p>How does one conduct an analysis of data?</p></li>
+<li><p>What deadly assumptions can lead me astray?</p></li>
+<li><p>A fun example!</p></li>
+<li><p>What does a <em>good</em> morphological analysis look
+like?</p></li>
+</ul>
+<hr />
+<h1 id="what-is-morphological-analysis">What is Morphological
+Analysis</h1>
+<hr />
+<h3 id="three-elements-of-morphological-analysis-in-general">Three
+Elements of Morphological Analysis in general</h3>
+<ul>
+<li><p><strong>Description:</strong> What’s going on in the data?</p>
+<ul>
+<li><p>How is this language accomplishing this linguistic task?</p></li>
+<li><p>What is the relationship between form and meaning here?</p></li>
+</ul></li>
+<li><p><strong>Prediction:</strong> Does the analysis you’ve posited
+accurately predict new data?</p>
+<ul>
+<li><p>Can it generate new grammatical forms? Does it generate
+<em>only</em> grammatical forms?</p></li>
+<li><p>This is a formalist, <em>generative</em> approach</p></li>
+</ul></li>
+<li><p><strong>Explanation:</strong> Is your analysis explicable or
+explanatory in terms of how morphological systems usually are?</p>
+<ul>
+<li><p>Is there any element of nature which can explain the data
+patterning in this way?</p></li>
+<li><p>This is a <em>functionalist</em> approach</p></li>
+</ul></li>
+<li><p><em>Don’t worry about the last two for LIGN 120
+assignments!</em></p></li>
+</ul>
+<hr />
+<h3 id="what-does-a-morphology-problem-look-like">What does a morphology
+problem look like?</h3>
+<ul>
+<li><p>Most problems involve answering a question like ‘How is ____
+<em>coded</em> or <em>marked</em> in this language?’</p></li>
+<li><p>“What is the process by which speakers mark something as
+____?”</p></li>
+<li><p>Sometimes, this is stated explicitly, but not always</p></li>
+</ul>
+<hr />
+<h3 id="youll-be-handed-a-set-of-morphologically-complex-words">You’ll
+be handed a set of morphologically complex words</h3>
+<ul>
+<li><p>Along with their ‘glosses’</p>
+<ul>
+<li>Maximally transparent English translations</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="your-analysis-must-be-able-to-describe-the-data">Your analysis
+must be able to describe the data</h3>
+<ul>
+<li><p>You must be able to describe the patterns in the data</p></li>
+<li><p>You must be able to account for <em>all of the forms</em></p>
+<ul>
+<li><p>Be able to identify the morphemes and what they mean</p></li>
+<li><p>Be able to describe how they’re joined together</p></li>
+<li><p>Be able to describe which allomorphs show up when</p></li>
+</ul></li>
+<li><p>You must explain how your analysis is correct</p>
+<ul>
+<li><p>Part of the task is <em>teaching</em> your colleagues how the
+system works</p></li>
+<li><p><strong>Explanation is an important part of your
+analysis</strong></p></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="explanation-is-an-important-part-of-your-analysis"><strong>Explanation
+is an important part of your analysis</strong></h3>
+<ul>
+<li><p>You will not get full credit for turning in a bare list of
+morphemes, glosses, and rules</p></li>
+<li><p><img src="humorimg/bearsrepeating.jpg" /></p></li>
+</ul>
+<hr />
+<h3 id="so-how-do-we-actually-do-the-analysis">… so, how do we actually
+DO the analysis?</h3>
+<hr />
+<h1 id="doing-morphological-analysis">Doing Morphological Analysis</h1>
+<hr />
+<h3 id="five-steps-to-morphological-analysis">Five Steps to
+Morphological Analysis</h3>
+<ul>
+<li><ol type="1">
+<li>Carefully examine the data and determine the question</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Group Data by shared elements of meaning</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Within those groups, look for recurring patterns of form</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>Build hypotheses about some groups, then use them to make guesses
+about other groups</li>
+</ol></li>
+<li><ol start="5" type="1">
+<li>Try to break your analysis with other forms from the dataset</li>
+</ol></li>
+</ul>
+<hr />
+<p>(If you find another way you’d like, that’s great too! This is to get
+you started.)</p>
+<hr />
+<h3 id="southern-barasano-colombia">Southern Barasano (Colombia)</h3>
+<center>
+<table>
+<tr>
+<th>
+kahea
+</th>
+<th>
+‘eye’
+</th>
+<th>
+kahe
+</th>
+<th>
+‘eyes’
+</th>
+</tr>
+<tr>
+<td>
+bitia
+</td>
+<td>
+‘bead’
+</td>
+<td>
+biti
+</td>
+<td>
+‘beads’
+</td>
+</tr>
+<tr>
+<td>
+kĩa
+</td>
+<td>
+‘cassava tuber’
+</td>
+<td>
+kĩ
+</td>
+<td>
+‘cassava tubers’
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="carefully-examine-the-data-and-determine-the-question">1)
+Carefully examine the data and determine the question</h3>
+<ul>
+<li>“Hmm, this is contrasting singular and plural forms. <em>This must
+be about marking number!</em></li>
+</ul>
+<center>
+<table>
+<tr>
+<th>
+kahea
+</th>
+<th>
+‘eye’
+</th>
+<th>
+kahe
+</th>
+<th>
+‘eyes’
+</th>
+</tr>
+<tr>
+<td>
+bitia
+</td>
+<td>
+‘bead’
+</td>
+<td>
+biti
+</td>
+<td>
+‘beads’
+</td>
+</tr>
+<tr>
+<td>
+kĩa
+</td>
+<td>
+‘cassava tuber’
+</td>
+<td>
+kĩ
+</td>
+<td>
+‘cassava tubers’
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="group-data-by-shared-elements-of-meaning">2) Group Data by
+shared elements of meaning</h3>
+<ul>
+<li>“Well, let’s put the singular forms in one column…”</li>
+</ul>
+<center>
+<table>
+<tr>
+<th>
+kahea
+</th>
+<th>
+‘eye’
+</th>
+<th>
+kahe
+</th>
+<th>
+‘eyes’
+</th>
+</tr>
+<tr>
+<td>
+bitia
+</td>
+<td>
+‘bead’
+</td>
+<td>
+biti
+</td>
+<td>
+‘beads’
+</td>
+</tr>
+<tr>
+<td>
+kĩa
+</td>
+<td>
+‘cassava tuber’
+</td>
+<td>
+kĩ
+</td>
+<td>
+‘cassava tubers’
+</td>
+</tr>
+</table>
+</center>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### 3) Within those groups, look for recurring patterns of form</td>
+</tr>
+</tbody>
+</table>
+<center>
+<table>
+<tr>
+<th>
+kahea
+</th>
+<th>
+‘eye’
+</th>
+<th>
+kahe
+</th>
+<th>
+‘eyes’
+</th>
+</tr>
+<tr>
+<td>
+bitia
+</td>
+<td>
+‘bead’
+</td>
+<td>
+biti
+</td>
+<td>
+‘beads’
+</td>
+</tr>
+<tr>
+<td>
+kĩa
+</td>
+<td>
+‘cassava tuber’
+</td>
+<td>
+kĩ
+</td>
+<td>
+‘cassava tubers’
+</td>
+</tr>
+</table>
+</center>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### 3) Within those groups, look for recurring patterns of form</td>
+</tr>
+<tr class="even">
+<td>- “Weird, it looks like every singular form ends with /a/”</td>
+</tr>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3
+id="build-hypotheses-about-some-groups-then-use-them-to-make-guesses-about-other-groups">4)
+Build hypotheses about some groups, then use them to make guesses about
+other groups</h3>
+<ul>
+<li>“It sure seems like -a” is marking the singular forms. So, the
+plural forms shouldn’t end with /a/.”</li>
+</ul>
+<center>
+<table>
+<tr>
+<th>
+kahe<clr>a</clr>
+</th>
+<th>
+‘eye’
+</th>
+<th>
+kahe
+</th>
+<th>
+‘eyes’
+</th>
+</tr>
+<tr>
+<td>
+biti<clr>a</clr>
+</td>
+<td>
+‘bead’
+</td>
+<td>
+biti
+</td>
+<td>
+‘beads’
+</td>
+</tr>
+<tr>
+<td>
+kĩ<clr>a</clr>
+</td>
+<td>
+‘cassava tuber’
+</td>
+<td>
+kĩ
+</td>
+<td>
+‘cassava tubers’
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="try-to-break-your-analysis-with-other-forms-from-the-dataset">5)
+Try to break your analysis with other forms from the dataset</h3>
+<ul>
+<li>“None of the plurals end with -a! Whoa, it works!”</li>
+</ul>
+<center>
+<table>
+<tr>
+<th>
+kahea
+</th>
+<th>
+‘eye’
+</th>
+<th>
+kahe
+</th>
+<th>
+‘eyes’
+</th>
+</tr>
+<tr>
+<td>
+bitia
+</td>
+<td>
+‘bead’
+</td>
+<td>
+biti
+</td>
+<td>
+‘beads’
+</td>
+</tr>
+<tr>
+<td>
+kĩa
+</td>
+<td>
+‘cassava tuber’
+</td>
+<td>
+kĩ
+</td>
+<td>
+‘cassava tubers’
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="now-youre-feeling-great">Now you’re feeling great!</h3>
+<ul>
+<li><p>… but you are in grave danger!</p></li>
+<li><p>It’s usually not that easy, and you might accidentally make one
+of…</p></li>
+</ul>
+<hr />
+<h3 id="the-four-deadly-assumptions-of-morphological-analysis">The Four
+Deadly Assumptions of Morphological Analysis</h3>
+<ul>
+<li><ol type="1">
+<li>Assuming that every English word/morpheme will be reflected in the
+other language</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>Assuming that every word in the other language will be reflected in
+English</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Assuming that the other language will mark (and leave unmarked) the
+same things as English</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>Assuming that there will always be easily identifiable chunks of
+form for each meaning</li>
+</ol></li>
+</ul>
+<hr />
+<h3
+id="assuming-that-every-english-wordmorpheme-will-be-reflected-in-the-other-language">1)
+Assuming that every English word/morpheme will be reflected in the other
+language</h3>
+<ul>
+<li><p>kĩ ‘Cassava Tuber’ (S. Barasano)</p></li>
+<li><p>entregarse ‘To give up’ (Spanish)</p></li>
+<li><p>on studjɛnt ‘He is a student’ (Russian)</p></li>
+<li><p>Remember that ‘throw up’ is the same thing as ‘vomit’
+(English)</p></li>
+</ul>
+<hr />
+<h3
+id="assuming-that-every-word-in-the-other-language-will-be-reflected-in-the-english-gloss">2)
+Assuming that every word in the other language will be reflected in the
+English gloss</h3>
+<ul>
+<li><p>Me voy a Walmart ‘I’m going to Walmart’ (Spanish)</p></li>
+<li><p>Me gustan los gatos ‘I like cats’ (Spanish)</p></li>
+<li><p>Mozhno li letat na samolyete ‘Can I fly on an airplane?’
+(Russian)</p></li>
+</ul>
+<hr />
+<h3
+id="assuming-that-the-other-language-will-mark-and-leave-unmarked-the-same-things-as-english">3)
+Assuming that the other language will mark (and leave unmarked) the same
+things as English</h3>
+<ul>
+<li><p>Southern Barasano treats the plural as the ‘unmarked’
+form</p></li>
+<li><p>Many languages mark grammatical gender or noun class</p></li>
+<li><p>Russian marks gender on verbs, but only in the past
+tense</p></li>
+<li><p>Russian handles aspect by changing verbs, not adding additional
+morphemes</p>
+<ul>
+<li><p>/rabotat/ ‘to work some’ (imperfective)</p></li>
+<li><p>/pərabotat/ ‘to work’ (perfective)</p></li>
+</ul></li>
+<li><p>Dâw (Amazonas) doesn’t overtly mark possession for inalienable
+relationships (e.g. your head)</p></li>
+</ul>
+<hr />
+<h3
+id="assuming-that-there-will-always-be-easily-identifiable-chunks-of-form-for-each-meaning">4)
+Assuming that there will always be easily identifiable chunks of form
+for each meaning</h3>
+<ul>
+<li><p>Morphological distinctions can be made without adding
+segments</p></li>
+<li><p>Languages can mark distinctions with tone, deletion, metathesis,
+nasality</p></li>
+<li><p>Contrasts can be neutralized</p></li>
+<li><p><strong>Fusional</strong> languages will combine multiple
+meanings in hard-to-analyze ways</p></li>
+<li><p>Spanish verb morphology is fusional</p>
+<ul>
+<li><p>Comí enchiladas (‘I ate Enchiladas’)</p></li>
+<li><p>Comes enchiladas (‘You eat Enchiladas’)</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="so-now-you-know-what-to-avoid">So, now you know what to
+avoid…</h3>
+<ul>
+<li>… and how to do an analysis!</li>
+</ul>
+<hr />
+<h3 id="five-steps-to-morphological-analysis-1">Five Steps to
+Morphological Analysis</h3>
+<ol type="1">
+<li><p>Carefully examine the data and determine the question</p></li>
+<li><p>Group Data by shared elements of meaning</p></li>
+<li><p>Within those groups, look for recurring patterns of form</p></li>
+<li><p>Build hypotheses about some groups, then use them to make guesses
+about other groups</p></li>
+<li><p>Try to break your analysis with other forms from the
+dataset</p></li>
+</ol>
+<hr />
+<ul>
+<li><strong>Let’s try it!</strong></li>
+</ul>
+<hr />
+<h3 id="modern-hebrew-israel">Modern Hebrew (Israel)</h3>
+<p><img class="wide" src="morphology/hebrew_data.jpg"></p>
+<hr />
+<h3 id="carefully-examine-the-data-and-determine-the-question-1">1)
+Carefully examine the data and determine the question</h3>
+<p><img class="wide" src="morphology/hebrew_data.jpg"></p>
+<hr />
+<h3 id="group-data-by-shared-elements-of-meaning-1">2) Group Data by
+shared elements of meaning</h3>
+<p><img class="wide" src="morphology/hebrew_groups.jpg"></p>
+<hr />
+<h3 id="within-those-groups-look-for-recurring-patterns-of-form">3)
+Within those groups, look for recurring patterns of form</h3>
+<p><img class="wide" src="morphology/hebrew_formmeaning.jpg"></p>
+<hr />
+<h3
+id="build-hypotheses-about-some-groups-then-use-them-to-make-guesses-about-other-groups-1">4)
+Build hypotheses about some groups, then use them to make guesses about
+other groups</h3>
+<p><img class="wide" src="morphology/hebrew_hypotheses.jpg"></p>
+<hr />
+<h3
+id="try-to-break-your-analysis-with-other-forms-from-the-dataset-1">5)
+Try to break your analysis with other forms from the dataset</h3>
+<p><img class="wide" src="morphology/hebrew_stems.jpg"></p>
+<hr />
+<h3 id="templatic-morphology">Templatic Morphology</h3>
+<ul>
+<li><p>Semitic language words have ‘templates’ composed of discontinuous
+elements</p></li>
+<li><p>Consonants serve as the ‘root’</p></li>
+<li><p>Vowels mark tense, mood, aspect inflection, or fixed vowel
+patterns</p></li>
+<li><p>The word’s CVCV ‘shape’ expresses other morphological
+meanings</p></li>
+</ul>
+<p><img class="wide" src="morphology/hebrew_stems.jpg"></p>
+<hr />
+<h3 id="neat-weve-described-a-form-meaning-connection">Neat! We’ve
+described a form-meaning connection</h3>
+<ul>
+<li><p>Consonantal roots carry some meaning</p></li>
+<li><p>Vowels and CVCV shape carry other types!</p></li>
+<li><p>… but we’ve left one issue behind!</p></li>
+</ul>
+<hr />
+<h3 id="why-are-there-four-patterns-for-past-tense">Why are there four
+patterns for past tense?</h3>
+<center>
+<table element="fragment">
+<tr>
+<th>
+<b>‘think’, ‘shut’, ‘receive’</b>
+</th>
+<th>
+<b>‘speak’, ‘mutter’</b>
+</th>
+</tr>
+<tr>
+<td>
+CaCaC ‘he Xed’
+</td>
+<td>
+CiCeC ‘he Xed’
+</td>
+</tr>
+<tr>
+<td>
+CaCCa ‘she Xed’
+</td>
+<td>
+CiCCa ‘she Xed’
+</td>
+</tr>
+</table>
+</center>
+<ul>
+<li>Any ideas?</li>
+</ul>
+<hr />
+<h3 id="now-you-can-do-a-morphological-analysis">Now, you can do a
+morphological analysis!</h3>
+<ul>
+<li>… but how do you do it <em>well</em>?</li>
+</ul>
+<hr />
+<h1 id="elegance-in-morphological-analysis">Elegance in Morphological
+Analysis</h1>
+<hr />
+<h3 id="your-analysis-must-be-able-to-describe-the-data-1">Your analysis
+must be able to describe the data</h3>
+<ul>
+<li><p>You must be able to describe the patterns in the data</p></li>
+<li><p>You must be able to account for <em>all of the
+forms</em></p></li>
+<li><p>You must be able to explain ‘How is ____ coded in this
+language?’</p></li>
+</ul>
+<hr />
+<p>… but we want to do better than that</p>
+<ul>
+<li><h3 id="we-want-elegant-solutions">We want elegant
+solutions!</h3></li>
+</ul>
+<hr />
+<h3 id="we-can-talk-about-the-elegance-of-a-solution">We can talk about
+the elegance of a solution</h3>
+<ul>
+<li><p>An elegant analysis will have a good balance of fit, complexity,
+and generality, while being cognitively plausible</p></li>
+<li><p><strong>Fit</strong>: How well does the analysis fit the
+data?</p></li>
+<li><p><strong>Generality</strong>: How much of the available data does
+it describe? Does it capture general patterns?</p></li>
+<li><p><strong>Complexity</strong>: Is there a way to handle the data
+which is less complex than the one you’re proposing?</p></li>
+<li><p><strong>Realism</strong>: Does it accurately reflect what we know
+of speakers’ actual grammatical systems?</p></li>
+</ul>
+<hr />
+<h3 id="fit">Fit</h3>
+<ul>
+<li><p>An analysis which doesn’t fit the data isn’t a good
+analysis</p></li>
+<li><p>Always make sure there are no words which break your
+analysis</p></li>
+<li><p>This needs to come first</p></li>
+<li><p>If you can explain every form but one, you’re probably not
+done</p>
+<ul>
+<li>In this class. But exceptions do happen.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="generality">Generality</h3>
+<ul>
+<li><p>Try to write rules that account for larger chunks of the
+data</p></li>
+<li><p>You’ll need to talk about lexical exceptions sometimes, but try
+not to</p></li>
+<li><p>If you’re claiming every word has a different lexically
+determined allomorph, you’re probably doing it wrong</p>
+<ul>
+<li>Look for shared patterns within languages (or across
+languages!)</li>
+</ul></li>
+<li><p>New or borrowed words should be adequately accounted for by your
+descriptions</p>
+<ul>
+<li>“How would you say ‘I went upstream’?”</li>
+</ul></li>
+<li><p>Try to perform your analysis in a way that reflects how other
+languages work, too.</p></li>
+</ul>
+<hr />
+<h3 id="complexity">Complexity</h3>
+<ul>
+<li><p>An analysis should be as simple as possible</p></li>
+<li><p>Given two analyses which are functionally equivalent, the one
+which requires less machinery is better</p></li>
+<li><p>Some analyses are necessarily complex, but always ask yourself if
+you can do the job with fewer moving parts</p></li>
+</ul>
+<hr />
+<h3 id="realism">Realism</h3>
+<ul>
+<li><p>Your analysis should reflect a plausible grammar for the
+speakers</p></li>
+<li><p>Something which requires speakers to be telepaths won’t
+fly</p></li>
+<li><p>Your approach <em>needs</em> to be learnable</p></li>
+<li><p>If you need to describe a new theory of morphology for a LIGN 120
+homework, you’re probably off track</p>
+<ul>
+<li>… but let’s talk in office hours!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-will-be-grading-elegance-on-homeworks">We will be grading
+elegance on homeworks</h3>
+<ul>
+<li><p>It won’t be a huge part of your grade</p></li>
+<li><p>An inelegant solution is better than none at all</p></li>
+<li><p>We understand that you’re still learning</p></li>
+<li><p>… but do your best to make your analysis elegant</p></li>
+</ul>
+<hr />
+<h3 id="always-try-to-break-your-analysis">Always try to break your
+analysis</h3>
+<ul>
+<li><p>Treat the analysis as a hypothesis, then look for the data that
+doesn’t follow it</p></li>
+<li><p>If it breaks down, tweak it or abandon it!</p></li>
+</ul>
+<hr />
+<h3 id="so-in-summary-for-lign-120">So, in summary, for LIGN 120</h3>
+<ul>
+<li><p>You must be able to describe the patterns in the data</p></li>
+<li><p>You must be able to account for <em>all of the
+forms</em></p></li>
+<li><p>You must be able to explain ‘How is ____ coded in this
+language?’</p></li>
+<li><p>Try to make your analysis optimally data-fitting, generalizable,
+simple, and realistic!</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Morphological Analysis is the process of identifying form-meaning
+correspondences in a rigorous way</p></li>
+<li><p>There are five easy steps which will help you break down most
+morphological problems</p></li>
+<li><p>It’s easy to be led astray by glosses and your assumptions about
+how languages work, so check your assumptions</p></li>
+<li><p>You want your analyses to be not just accurate, but
+<em>elegant</em> as well!</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li>You’ll test out your new morphological analysis skills!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+tree_pretensebeartex
+
+[S 
+  [NP 
+    [NP 
+      [DET The ] 
+      [N' 
+        [N bears ] ] ] 
+    [PP 
+      [P from ] 
+      [NP 
+        [N' 
+          [N La Jolla ] ] ] ] ] 
+  [VP 
+    [V stole ] 
+    [NP 
+      [NP 
+        [N' 
+          [ADJ organic ] 
+          [N' 
+            [N honey ] ] ] ] 
+      [PP 
+        [P from ] 
+        [NP 
+          [N' 
+            [N Whole Foods ] ] ] ] ] ] ]

@@ -1,0 +1,7 @@
+tree_l6basictex
+
+[S 
+  [NP ___ ] 
+  [VP 
+    [V ___ ] 
+    [NP ___ ] ] ]

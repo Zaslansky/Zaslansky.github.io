@@ -1,0 +1,16 @@
+tree_ppattach1tex
+
+[S 
+  [NP Dua Lipa ]
+  [VP 
+    [V sang ]
+    [NP 
+      [NP 
+        [DET a ] 
+        [N' 
+          [N song ] ] ] 
+      [PP 
+        [P about ]
+        [NP 
+          [N' 
+            [N levitation ] ] ] ] ] ] ]

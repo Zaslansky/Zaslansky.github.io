@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="language-is-incredible">Language is Incredible</h1>
+<h3 id="dr.-will-styler---2022-ucsd-legacy-lecture">Dr. Will Styler -
+2022 UCSD Legacy Lecture</h3>
+<p><a href="http://savethevowels.org/legacy"
+class="uri">http://savethevowels.org/legacy</a></p>
+<hr />
+<h3
+id="thanks-to-the-ucsd-scholars-society-for-hosting-this-talk">Thanks to
+the UCSD Scholars’ Society for hosting this talk</h3>
+<ul>
+<li><p>To Seth McLaughlin for coordinating the process with me</p></li>
+<li><p>To my colleagues and students for supporting me and providing
+feedback</p></li>
+<li><p>To UCSD’s LingUA for helping get out the vote and classing the
+place up</p></li>
+</ul>
+<hr />
+<h3 id="thanks-to-all-the-students-who-voted-to-bring-me-here">Thanks to
+all the students who voted to bring me here</h3>
+<ul>
+<li><p>This is the highest honor I could receive as a teacher</p></li>
+<li><p>It means the world to me that you chose me to give this
+talk</p></li>
+</ul>
+<hr />
+<h3 id="the-prompt">The Prompt</h3>
+<blockquote>
+<p>“If this were the last lecture you ever gave, what would you want to
+share with the world?”</p>
+</blockquote>
+<hr />
+<h3
+id="using-language-is-the-most-incredible-and-complex-thing-you-will-ever-do">Using
+language is the most incredible and complex thing you will ever do</h3>
+<ul>
+<li>… and yet you do it every day, all day</li>
+</ul>
+<hr />
+<h3 id="people-dont-generally-see-this">People don’t generally see
+this</h3>
+<ul>
+<li><p>We use language <em>so often</em> that it feels ‘boring’,
+‘normal’ and ‘easy’</p></li>
+<li><p>We stop seeing the complexity</p></li>
+<li><p>We stop seeing how truly bizarre it is</p></li>
+<li><p>We stop understanding why people spend lifetimes studying
+it</p></li>
+</ul>
+<hr />
+<h3
+id="so-rather-than-trying-to-tell-you-why-language-is-incredible">So,
+rather than trying to tell you why language is incredible…</h3>
+<ul>
+<li><p>I’m going to show you, by showing you that your language is very,
+very weird</p></li>
+<li><p>That there is more complexity than most people <em>ever</em>
+notice</p></li>
+<li><p>… and yet it still works so well that it feels ‘boring’</p></li>
+<li><p><strong>That</strong> is incredible</p></li>
+</ul>
+<hr />
+<h2 id="one-quick-note">One quick note!</h2>
+<hr />
+<h3 id="the-world-has-staggering-linguistic-diversity">The World has
+staggering Linguistic diversity</h3>
+<ul>
+<li><p>More than 7000 languages spoken on Earth</p></li>
+<li><p>More than than 200 languages spoken here in the US</p></li>
+<li><p>More than 50 languages spoken in California</p></li>
+<li><p><strong>Every one of these languages is as complex, fascinating,
+and incredible as English is!</strong></p></li>
+</ul>
+<hr />
+<h3 id="were-doing-this-talk-in-english">We’re doing this talk in
+English</h3>
+<ul>
+<li><p>It’s the most commonly spoken language on our campus</p></li>
+<li><p>It’s got plenty of fun chaos to make language seem
+weird!</p></li>
+<li><p>… but English isn’t the only language which is
+incredible!</p></li>
+<li><p>Be thinking about how all these ideas apply in your own languages
+and dialects!</p></li>
+</ul>
+<hr />
+<h3 id="our-plan">Our plan</h3>
+<ul>
+<li><p>Speech is incredible</p></li>
+<li><p>Grammar is incredible</p></li>
+<li><p>Meaning is incredible</p></li>
+<li><p>All Language is Incredible</p></li>
+<li><p>Language is incredible</p></li>
+</ul>
+<hr />
+<h2 id="speech-is-incredible">Speech is Incredible</h2>
+<hr />
+<h3 id="your-writing-system-is-lying-to-you">Your writing system is
+lying to you</h3>
+<ul>
+<li><p>Cheesy Legacy Lecture Example</p></li>
+<li><p>We fought through, though rough boughs coughed.</p></li>
+<li><p>Knight</p></li>
+<li><p>This thistle</p></li>
+<li><p>Unionized</p></li>
+</ul>
+<hr />
+<h1 id="ghoti">🐟 Ghoti 🐟</h1>
+<ul>
+<li><p>‘gh’ from ‘tough’</p></li>
+<li><p>‘o’ from ‘women’</p></li>
+<li><p>‘ti’ from ‘fiction’</p></li>
+<li><p>… and the most vile lie you’ve been told…</p></li>
+</ul>
+<hr />
+<h3 id="aeiou-and-sometimes-y">AEIOU and sometimes Y</h3>
+<ul>
+<li><p>Five vile deceptions</p>
+<ul>
+<li>(Sometimes six)</li>
+</ul></li>
+<li><p>They hide from you the true diversity of English vowels</p></li>
+<li><p>Beet, bit, bet, bat, bird, but, bought, board, book, boot, boy,
+buy, bay, boat</p>
+<ul>
+<li>… and even more, depending how you count!</li>
+</ul></li>
+<li><p>Other languages have even more vowels than we do!</p></li>
+</ul>
+<hr />
+<h3 id="so-lets-put-the-writing-system-aside">So, let’s put the writing
+system aside!</h3>
+<ul>
+<li><img class="r-stretch" src="phonmedia/aeiou.png"></li>
+</ul>
+<hr />
+<h2 id="linguistics-is-the-best-major-ever">“Linguistics is the best
+major ever!”</h2>
+<hr />
+<h3
+id="your-writing-system-hides-that-speech-is-amazingly-complicated">Your
+writing system hides that speech is amazingly complicated</h3>
+<ul>
+<li><p>Individual sounds blend together</p></li>
+<li><p>Adjacent sounds affect each other</p>
+<ul>
+<li>Car Keys</li>
+</ul></li>
+<li><p>You don’t generally run out of air when talking</p></li>
+</ul>
+<hr />
+<h3 id="your-ability-to-understand-speech-is-even-more-incredible">Your
+ability to understand speech is even more incredible</h3>
+<hr />
+<h3 id="lets-listen-to-some-sounds">Let’s listen to some sounds</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_f3.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/lingmajor_f2.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/lingmajor_f1.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3 id="lets-listen-to-some-sounds-1">Let’s listen to some sounds</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_f3.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/lingmajor_f2.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/lingmajor_f1.mp3" type="audio/mp3">
+</audio>
+<p><br></p>
+<h3 id="now-lets-play-all-three-at-once">Now let’s play all three at
+once!</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_sine.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3 id="lets-listen-to-some-sounds-2">Let’s listen to some sounds</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_f3.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/lingmajor_f2.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/lingmajor_f1.mp3" type="audio/mp3">
+</audio>
+<p><br></p>
+<h3 id="now-lets-play-all-three-at-once-1">Now let’s play all three at
+once!</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_sine.mp3" type="audio/mp3">
+</audio>
+<p><br></p>
+<h3 id="does-this-help">Does this help?</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_orig.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3
+id="your-mind-is-able-to-turn-incredible-distortion-into-speech">Your
+mind is able to turn incredible distortion into ‘speech’</h3>
+<ul>
+<li><p>‘Sine Wave Speech’ has three sine waves, changing frequency to
+match the loudest components of speech</p></li>
+<li><p>Our brain is able to hear speech even here</p></li>
+<li><p>Incredible!</p></li>
+</ul>
+<hr />
+<h3 id="wow-were-great-at-using-sound-for-speech-perception">Wow, we’re
+great at using sound for speech perception!</h3>
+<ul>
+<li>Let’s see that again</li>
+</ul>
+<hr />
+<h3 id="video-1">Video 1</h3>
+<video controls src="video/willgurk.mp4">
+</video>
+<hr />
+<h3 id="video-2">Video 2</h3>
+<video controls src="video/willgurk.mp4">
+</video>
+<hr />
+<h3 id="theyre-the-same-video">They’re the same video!</h3>
+<ul>
+<li><h1 id="section">😇</h1></li>
+</ul>
+<hr />
+<h3 id="speech-perception-isnt-only-about-sound">Speech perception isn’t
+only about sound</h3>
+<ul>
+<li><p>This is the McGurk Effect</p></li>
+<li><p>When you see ‘ga ga ga’ and hear ‘ba ba ba’, your mind tries to
+find the best answer!</p></li>
+<li><p>This shows that speech perception is ‘multimodal’, and doesn’t
+just rely on the acoustic signal</p></li>
+</ul>
+<hr />
+<h3 id="every-human-youve-ever-met-sounds-different">Every human you’ve
+ever met sounds different</h3>
+<ul>
+<li><p>Different language background and dialects</p></li>
+<li><p>Different vocal tract length</p></li>
+<li><p>Different tongues making different shapes with a different
+voice</p></li>
+<li><p>Two different people may produce ‘dead’ and ‘did’ with <em>nearly
+identical acoustics</em>, and yet you’ll hear them as two distinct
+vowels</p></li>
+<li><p><strong>You have never once given a damn!</strong></p></li>
+</ul>
+<hr />
+<h3 id="speech-is-incredible-1">Speech is incredible</h3>
+<ul>
+<li><p>It’s nothing like our writing system makes us think it
+is</p></li>
+<li><p>It’s fluid, continuous, and complex</p></li>
+<li><p>We are able to perceive speech despite incredible
+distortion</p></li>
+<li><p>We use information above and beyond the acoustic signal</p></li>
+<li><h3
+id="the-fact-that-we-can-create-and-understand-speech-ever-at-all-is-incredible">The
+fact that we can create and understand speech ever, at all, is
+incredible</h3></li>
+</ul>
+<hr />
+<h3
+id="we-understand-speech-using-mechanisms-which-we-use-constantly-yet-dont-quite-understand">We
+understand speech using mechanisms which we use constantly yet don’t
+<em>quite</em> understand</h3>
+<ul>
+<li>Speaking of which…</li>
+</ul>
+<hr />
+<h2 id="grammar-is-incredible">Grammar is incredible</h2>
+<hr />
+<h3 id="what-do-we-mean-by-grammar">What do we mean by grammar?</h3>
+<ul>
+<li>Linguists have a different definition of grammar than most</li>
+</ul>
+<hr />
+<h3 id="grammar-to-most-people">‘Grammar’ to most people</h3>
+<ul>
+<li><p>They’re is a nice park over their.</p>
+<ul>
+<li>‘That’s the wrong form of ’there’!!!</li>
+</ul></li>
+<li><p>Jessica’s a great person to travel with.</p>
+<ul>
+<li>‘You can’t end a sentence with a preposition!!!’’</li>
+</ul></li>
+<li><p>There ain’t much good about our writing system in English
+irregardless of how you look at it.</p>
+<ul>
+<li>‘Ain’t isn’t a real word, and OMG IRREGARDLESS IS BAD!!!’</li>
+</ul></li>
+<li><p><strong>These are what we call ‘prescriptive grammar’
+rules</strong></p></li>
+</ul>
+<hr />
+<h3 id="prescriptive-grammar-rules-are-social-rules">Prescriptive
+Grammar rules are social rules</h3>
+<ul>
+<li><p>These ‘Incorrect’ sentences are still understandable</p></li>
+<li><p>People make these ‘mistakes’ all the time</p></li>
+<li><p>Some come from older versions of the language or blind adherence
+to the writing system</p></li>
+<li><p>Some are arbitrary decisions by those in power as to what is
+‘correct’</p></li>
+<li><p>Try asking ‘How do you know that’s the correct form?’</p></li>
+<li><p><strong>Linguists don’t worry much about this kind of
+grammar!</strong></p></li>
+</ul>
+<hr />
+<h3 id="linguists-care-about-descriptive-grammar">Linguists care about
+‘descriptive’ grammar</h3>
+<ul>
+<li><p>What rules do speakers of this dialect <em>tend to follow</em>
+when speaking?</p></li>
+<li><p>What makes language use <em>hard to understand</em> or
+<em>ambiguous</em>?</p></li>
+<li><p>How can we describe the <em>patterns that people tend to follow
+when using language</em>?</p></li>
+<li><p>How do speakers of different dialects <em>vary</em> in terms of
+the rules they follow?</p></li>
+<li><p><strong>These rules describe how people <em>actually
+communicate</em>, and what makes communication <em>break
+down</em></strong></p></li>
+</ul>
+<hr />
+<h3
+id="speakers-have-unconscious-intuitions-about-whats-grammatical-and-not">Speakers
+have unconscious intuitions about what’s ‘grammatical’ and not</h3>
+<ul>
+<li><p>Is what you’re hearing or reading English?</p></li>
+<li><p>Do you understand what it’s saying?</p></li>
+<li><p>Can those words ‘go together’ like that?</p></li>
+<li><p>Does this usage feel ‘illegal’ or ‘not right’ somehow?</p></li>
+<li><p><strong>Let’s try it!</strong></p></li>
+</ul>
+<hr />
+<h3 id="sample-sentences">Sample Sentences</h3>
+<ul>
+<li><p>I’m honored to present to you today.</p></li>
+<li><p>Jessica succulent porch obsession on growing the has an.</p></li>
+<li><p>Somebody stole my lamp, I’m delighted.</p></li>
+<li><p>All your base are belong to us.</p></li>
+<li><p>Saw the car red</p>
+<ul>
+<li>This would be perfectly fine in Spanish!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-dont-always-know-the-rules-of-our-grammar">We don’t always
+‘know the rules’ of our grammar</h3>
+<ul>
+<li>… but we follow them, even when they’re strange</li>
+</ul>
+<hr />
+<h3 id="english-past-tense-forms-are-weird">English past tense forms are
+weird!</h3>
+<ul>
+<li><p>sing -&gt; sang</p></li>
+<li><p>ring -&gt; rang</p></li>
+<li><p>bring -&gt; brought</p></li>
+<li><p>sting -&gt; stung</p></li>
+<li><p>ding -&gt; dinged</p></li>
+</ul>
+<hr />
+<h3 id="english-plurals-are-weird-too">English plurals are weird
+too!</h3>
+<ul>
+<li><p>Cats, Mutts, and laughs (ends with /s/)</p></li>
+<li><p>Dogs, Professors, and Nerds (ends with /z/)</p></li>
+<li><p>Dishes, washes, and plusses (ends with /ɪz/)</p></li>
+<li><p><strong>How do we know which form works with which
+words?</strong></p></li>
+</ul>
+<hr />
+<h3 id="this-is-a-wug">This is a Wug</h3>
+<p><img class="r-stretch" src="img/wug.png"></p>
+<hr />
+<h3 id="now-there-is-another-one.-there-are-two-of-them.">Now there is
+another one. There are two of them.</h3>
+<p><img class="r-stretch" src="img/wug.png"><img class="r-stretch" src="img/wug.png"></p>
+<hr />
+<h3 id="there-are-two">There are two…</h3>
+<p><img class="r-stretch" src="img/wug.png"><img class="r-stretch" src="img/wug.png"></p>
+<hr />
+<h3 id="the-wug-test">The Wug Test</h3>
+<ul>
+<li><p>Developed by Jean Berko Gleason in 1958</p></li>
+<li><p>Designed to show that young children (and adults!) have
+intuitions about grammatical rules</p>
+<ul>
+<li>… and those intuitions can apply to words they’ve never heard
+before!</li>
+</ul></li>
+<li><p><strong>Let’s see what else you know about creating words in
+English!</strong></p></li>
+</ul>
+<hr />
+<h3 id="are-these-words-ok-or-well-formed-english-words">Are these words
+‘OK’ or ‘well formed’ English words?</h3>
+<ul>
+<li><p>Quieter</p></li>
+<li><p>Weobleing</p></li>
+<li><p>slowest</p></li>
+<li><p>Ari won the 2021 track meet, but Juan had a faster time when he
+won in 2022.</p>
+<ul>
+<li><strong>I guess Juan was fastester.</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="lets-try-again">Let’s try again</h3>
+<ul>
+<li><p>Lecture</p></li>
+<li><p>Breaking</p></li>
+<li><p>Shockingly</p></li>
+<li><p>I was given this honor by teaching.</p>
+<ul>
+<li><strong>This is the teachingliest honor I’ve ever been
+given.</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-can-understand-a-word-without-it-feeling-right">We can
+understand a word without it feeling ‘right’</h3>
+<ul>
+<li><p>‘fasterer’ is better than ‘unblueringlyer’</p>
+<ul>
+<li>… but it’s much worse than ‘unlockable’</li>
+</ul></li>
+<li><p>So, ‘grammatical’ isn’t just ‘yes’ or ‘no’</p></li>
+</ul>
+<hr />
+<h3 id="we-have-similar-intuitions-about-sentences">We have similar
+intuitions about sentences</h3>
+<ul>
+<li><p>Will and Jessica went out for Krispy Kreme.</p></li>
+<li><p>Please to be no eatings I are not tasty or nutritious.</p></li>
+<li><p>I talked to more people than I recognized them.</p></li>
+<li><p>I saw the cute black three cats.</p></li>
+</ul>
+<hr />
+<h3 id="lets-build-another-sentence-gradually-and-see-how-it-goes">Let’s
+build another sentence gradually and see how it goes</h3>
+<hr />
+<h3 id="the">The</h3>
+<hr />
+<h3 id="the-boat">The boat</h3>
+<hr />
+<h3 id="the-boat-floated">The boat floated</h3>
+<hr />
+<h3 id="the-boat-floated-down">The boat floated down</h3>
+<hr />
+<h3 id="the-boat-floated-down-the">The boat floated down the</h3>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### The boat floated down the river</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-boat-floated-down-the-river-sank.">The boat floated down the
+river sank.</h3>
+<hr />
+<h3 id="this-is-a-garden-path-sentence">This is a ‘Garden path’
+sentence</h3>
+<ul>
+<li><p>Your brain commits to one potential ‘reading’ of the
+sentence</p></li>
+<li><p>Then, when you get that last word, your brain crashes</p></li>
+<li><p>You have back up and analyze it differently to be able to
+understand it</p></li>
+<li><p>The right pitch, timing, and intonation can make it feel OK</p>
+<ul>
+<li>“The boat, floated down the river, sank!”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-we-say-the-sentences-matters-in-other-places">How we say the
+sentences matters in other places!</h3>
+<ul>
+<li><p>Run to the store and grab…</p>
+<ul>
+<li><p>Cheese</p></li>
+<li><p>M&amp;Ms</p></li>
+<li><p>Tea</p></li>
+<li><p>Some avocados</p></li>
+<li><p>Pine nuts</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="lets-try-one-more-set-of-sentences">Let’s try one more set of
+sentences!</h3>
+<ul>
+<li>Lightning round!</li>
+</ul>
+<hr />
+<h3 id="more-than-cats-attacked-the-new-sofa-than-dogs.">More than cats
+attacked the new sofa than dogs.</h3>
+<hr />
+<h3 id="most-people-call-their-friends-more-than-i-do.">Most people call
+their friends more than I do.</h3>
+<hr />
+<h3 id="pedro-more-went-the-car-parking-lot-to-in-the.">Pedro more went
+the car parking lot to in the.</h3>
+<hr />
+<h3 id="more-of-my-plants-are-succulents-than-not.">More of my plants
+are succulents than not.</h3>
+<hr />
+<h3 id="more-people-have-been-to-mexico-than-i-have.">More people have
+been to Mexico than I have.</h3>
+<hr />
+<h3 id="chantel-saw-more-squirrels-than-charlie-and-mei.">Chantel saw
+more squirrels than Charlie and Mei.</h3>
+<hr />
+<h3 id="jessica-has-more-been-to-tijuana-than-students.">Jessica has
+more been to Tijuana than students.</h3>
+<hr />
+<h3 id="more-ucsd-students-post-raccoon-memes-than-i-do.">More UCSD
+students post raccoon memes than I do.</h3>
+<hr />
+<h3 id="will-makes-more-puns-than-most-professors.">Will makes more puns
+than most professors.</h3>
+<hr />
+<h3 id="wait-a-second">Wait a second…</h3>
+<ul>
+<li><p>“More people have been to Mexico than I have”</p></li>
+<li><p>“More UCSD students post raccoon memes than I do.”</p></li>
+<li><p><strong>These make zero sense!</strong></p></li>
+<li><p>These are called ‘Comparative Illusions’, and come from blending
+two common expressions</p>
+<ul>
+<li>“More people have been to Mexico than Bhutan” and “She’s been there
+more than I have”</li>
+</ul></li>
+<li><p>These <em>feel</em> grammatical at first</p>
+<ul>
+<li>… but we crash when we try to evaluate the meaning!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="grammar-is-incredible-1">Grammar is incredible</h3>
+<ul>
+<li><p>It’s so much more than silly ‘grammar rules’ from
+pedants</p></li>
+<li><p>We have strong knowledge of what forms should be used
+when</p></li>
+<li><p>We understand that although we have lots of options, we can’t
+always use all of them</p></li>
+<li><p>Some of our judgments about language forms are strong and ‘black
+and white’</p>
+<ul>
+<li>… but lots of forms can fall into ‘gray areas’</li>
+</ul></li>
+<li><h3
+id="we-have-strong-and-gradient-instincts-about-how-language-works-even-when-were-not-aware-of-it">We
+have strong and gradient instincts about how language works, even when
+we’re not aware of it</h3></li>
+</ul>
+<hr />
+<h3 id="yet-when-meaning-gets-weird-those-can-break-down">Yet, when
+meaning gets weird, those can break down</h3>
+<ul>
+<li>Which brings us to our next topic…</li>
+</ul>
+<hr />
+<h2 id="meaning-is-incredible">Meaning is incredible</h2>
+<hr />
+<h3 id="you-understand-what-words-mean-right">You understand what words
+mean, right?</h3>
+<ul>
+<li><h1 id="truck">“Truck”</h1></li>
+</ul>
+<hr />
+<h3 id="lets-ask-a-very-common-question-in-2022">Let’s ask a very common
+question in 2022</h3>
+<ul>
+<li><h1 id="are-you-a-robot">Are you a robot?</h1></li>
+</ul>
+<hr />
+<h3 id="click-on-all-slides-containing-a-truck">Click on all slides
+containing a Truck</h3>
+<hr />
+<p><img class="r-stretch" src="img/truck_base.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_penguin.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_semi.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_pickup.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_schoolbus.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_suv.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_hamster.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_realtoy.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_skateboard.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_firetruck.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/truck_elcamino.jpg"></p>
+<hr />
+<h3 id="words-have-a-core-meaning">Words have a ‘core meaning’</h3>
+<ul>
+<li><p>We call this a ‘semantic prototype’</p></li>
+<li><p>Yet, many things which aren’t quite that still feel like
+‘truck’</p></li>
+<li><p>Word meanings are <em>gradient</em>, rather than ‘all or
+nothing’</p></li>
+<li><p>… or maybe you’re all just robots</p></li>
+</ul>
+<hr />
+<h3 id="but-sometimes-word-meanings-can-shift-some">… but sometimes,
+word meanings can shift some</h3>
+<ul>
+<li><p>Is one ‘many’?</p></li>
+<li><p>Is five ‘many’?</p></li>
+<li><p>Is twenty ‘many’?</p></li>
+<li><p>To answer this, we must answer a different question</p></li>
+</ul>
+<hr />
+<h3
+id="did-you-hear-about-the-bug-that-listens-to-you-talk-before-biting-you">Did
+you hear about the bug that listens to you talk before biting you?</h3>
+<ul>
+<li>Yeah, they’re called <strong>linguist-ticks!</strong></li>
+</ul>
+<hr />
+<h3 id="lets-say-twenty-people-laughed-at-that">Let’s say twenty people
+laughed at that</h3>
+<ul>
+<li><p>Did ‘many people’ laugh?</p></li>
+<li><p>Did ‘many people’ laugh if there were 22 people in the
+room?</p></li>
+<li><p>Did ‘many people’ laugh if there were 40 people in the
+room?</p></li>
+<li><p>Did ‘many people’ laugh if there were 5000 people in the
+room?</p></li>
+</ul>
+<hr />
+<h3 id="we-understand-the-intention-of-every-sentence">We understand the
+intention of every sentence</h3>
+<ul>
+<li><p>“Never enroll in Will’s classes if you don’t like puns”</p></li>
+<li><p>“Gonna come visit next week?”</p></li>
+<li><p>“Give me the enchiladas!”</p></li>
+<li><p>“You should really declare a linguistics major.”</p></li>
+<li><p>“Up in the back row, students cringed in anticipation.”</p></li>
+</ul>
+<hr />
+<h3
+id="some-sentence-meanings-are-hard-to-understand-without-world-knowledge">Some
+sentence meanings are hard to understand without world knowledge</h3>
+<ul>
+<li><p>“I saw the Chancellor of UCSD’s Office”</p></li>
+<li><p>“Will brought the Chancellor up during his talk.”</p></li>
+<li><p>“I went to the store”</p></li>
+<li><p>“Oh I saw him!”</p></li>
+<li><p>“I feel you.”</p></li>
+</ul>
+<hr />
+<h3
+id="how-about-a-sentence-you-can-understand-but-dont-know-the-meaning-of">How
+about a sentence you can understand but don’t know the meaning of?</h3>
+<hr />
+<p><img class="r-stretch" src="img/meet_me_here.jpg"></p>
+<hr />
+<h3 id="we-also-think-about-why-people-say-things">We also think about
+<em>why</em> people say things</h3>
+<ul>
+<li><p>“Will, who is definitely not Batman, gave a lecture.”</p></li>
+<li><p>“Dalen sure has been hanging out with Helen a lot
+lately.”</p></li>
+<li><p>“I ate some of your donuts”</p></li>
+<li><p>“Your watch is gone? I wonder if Ryan’s back in town.”</p></li>
+<li><p><strong>We understand what’s implied without even thinking about
+it!</strong></p></li>
+</ul>
+<hr />
+<h3 id="meaning-is-incredible-1">Meaning is incredible</h3>
+<ul>
+<li><p>Even single words’ meanings can be tricky to pin down</p></li>
+<li><p>Sentence meaning is easy to understand</p>
+<ul>
+<li>Except when it isn’t</li>
+</ul></li>
+<li><p>Our knowledge about the world is crucial for
+understanding</p></li>
+<li><p>… and getting some meaning requires us to make assumptions about
+the world</p></li>
+<li><h3
+id="we-understand-languages-meaning-with-incredible-nuance-using-our-knowledge-of-the-world">We
+understand language’s meaning with incredible nuance, using our
+knowledge of the world!</h3></li>
+</ul>
+<hr />
+<h3 id="i-know-what-youre-thinking">I know what you’re thinking…</h3>
+<ul>
+<li><h1 id="bruh">bruh</h1></li>
+<li>… and that word is incredible, too!</li>
+</ul>
+<hr />
+<h2 id="all-language-is-incredible">All Language is incredible</h2>
+<hr />
+<h3
+id="everybodys-language-is-amazing-to-linguists"><em>Everybody’s</em>
+language is amazing to linguists</h3>
+<ul>
+<li><p>There’s no such thing as ‘good’ or ‘bad’ language</p>
+<ul>
+<li>Although social situations can dictate ‘proper’ language use, that’s
+social!</li>
+</ul></li>
+<li><p>Nobody speaks ‘incorrectly’, just differently</p></li>
+<li><p>Speakers of different dialects don’t have ‘bad grammar’, they
+just use a different grammar</p></li>
+<li><p><strong>We believe that all language is valid and fundamentally
+worthy of study</strong></p></li>
+</ul>
+<hr />
+<h3 id="we-also-care-about-lots-of-kinds-of-language-use">We also care
+about lots of kinds of language use!</h3>
+<hr />
+<h3 id="slang-is-incredible">Slang is incredible!</h3>
+<ul>
+<li><p>If somebody’s using a word and somebody else is understanding it,
+it’s worthy of study</p></li>
+<li><p>You may have strong instincts about the meaning of
+‘yassification’, ‘based’, ‘mid’, and ‘simp’</p>
+<ul>
+<li><p>It’s quite simp to accidentally use words incorrectly</p></li>
+<li><p>(Yes, that usage was cringe)</p></li>
+</ul></li>
+<li><p>We understand slang and find it just as useful as any other
+language!</p></li>
+<li><p>Swearing is amazing, and has fascinating linguistic features
+worthy of study</p></li>
+</ul>
+<hr />
+<h3 id="internet-language-is-incredible">Internet Language is
+incredible!</h3>
+<ul>
+<li><p>Emoji use is 100% linguistic (🎉)</p></li>
+<li><p>Internet-first linguistic forms are fascinating! (e.g. lol, smdh,
+dni, brb, thx)</p></li>
+<li><p>Keysmashing (e.g. alkjhsasdklj) is language, with meaning and
+social implications</p></li>
+<li><p>uwu is a vawid fowm of winguwistic expweshun ＼(＾▽＾)／</p></li>
+</ul>
+<hr />
+<h3 id="memes-are-incredible-and-theyre-language">Memes are incredible
+(and they’re language!)</h3>
+<hr />
+<p><img class="r-stretch" src="memes/ungrammatical/ungram_legacy.jpg"></p>
+<hr />
+<h3 id="we-have-linguistic-intuitions-about-memes">We have linguistic
+intuitions about memes</h3>
+<ul>
+<li><p>We understand the meaning of meme templates</p></li>
+<li><p>We are able to move elements of memes around like affixes on
+words</p></li>
+<li><p>The methods we use to describe word formation work here
+too!</p></li>
+<li><p>Memes have and change meanings like any other linguistic
+construct</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="memes/memesarelanguage.jpg"></p>
+<hr />
+<h3 id="code-switching-is-incredible">Code Switching is incredible!</h3>
+<ul>
+<li><p>‘Code Switching’ is the seamless blending of two languages within
+a sentence or utterance by multilingual folks</p></li>
+<li><p>“Mañana me voy al Price Center to order mis textbooks for next
+quarter”</p></li>
+<li><p>Speakers are simultaneously using elements of both languages’
+grammars</p>
+<ul>
+<li>We can find fine-grained details from <em>both</em> languages in
+code-switching!</li>
+</ul></li>
+<li><p>We also code switch among our many dialects!</p></li>
+<li><p><em>Code switching is fascinating, and should be a matter of
+pride, not shame!</em></p></li>
+</ul>
+<hr />
+<h3 id="speaking-of-different-languages">Speaking of different
+languages…</h3>
+<hr />
+<h3 id="signed-languages-are-language">Signed Languages are
+language!</h3>
+<ul>
+<li><p>Sign is not just ‘miming’ or ‘spelling out another language with
+the hands’</p></li>
+<li><p>If it were just miming, you could understand all the
+signs!</p></li>
+</ul>
+<hr />
+<h3 id="which-is-father-and-which-is-mother">Which is ‘father’ and which
+is ‘mother’?</h3>
+<p><img class="small" src="img/asl_mom.gif"><img class="small" src="img/asl_dad.gif"></p>
+<ul>
+<li><h3 id="mother---father">MOTHER - FATHER</h3></li>
+</ul>
+<p><small>ASL GIFs courtesy of Dr. Bill Vicars at
+<a href="http://www.lifeprint.com">http://www.lifeprint.com</a>
+</small></p>
+<hr />
+<h3 id="which-is-white-and-which-is-likeenjoy">Which is ‘white’ and
+which is ‘like/enjoy’?</h3>
+<p><img class="small" src="img/asl_white.gif"><img class="small" src="img/asl_like.gif"></p>
+<ul>
+<li><h3 id="white---like">WHITE - LIKE</h3></li>
+</ul>
+<hr />
+<h3 id="which-is-paper-and-which-is-cheese">Which is ‘paper’ and which
+is ‘cheese’?</h3>
+<p><img class="small" src="img/asl_paper.gif"><img class="small" src="img/asl_cheese.gif"></p>
+<ul>
+<li><h3 id="paper---cheese">PAPER - CHEESE</h3></li>
+</ul>
+<hr />
+<h3 id="some-signs-are-iconic-and-related-to-what-they-represent">Some
+signs are ‘iconic’ and related to what they represent</h3>
+<p><img class="r-stretch" src="img/asl_die.gif"></p>
+<ul>
+<li>… but so are some words in English!
+<h1>
+‘Whoosh!’
+</h1></li>
+</ul>
+<hr />
+<h3 id="signed-languages-are-language-1">Signed languages are
+Language!</h3>
+<ul>
+<li><p>Their grammars can differ <em>vastly</em> from nearby spoken
+languages</p>
+<ul>
+<li>American Sign Language isn’t even <em>related</em> to English</li>
+</ul></li>
+<li><p>The same linguistic theories used for spoken languages are useful
+and used for signed language</p></li>
+<li><p><strong>Signed languages are just as valid and interesting to
+study as spoken languages!</strong></p></li>
+</ul>
+<hr />
+<h3 id="and-the-rest-of-the-worlds-languages-are-amazing-too">… and the
+rest of the world’s languages are amazing too!</h3>
+<ul>
+<li><p>Different sounds!</p></li>
+<li><p>Different word structures!</p></li>
+<li><p>Different ways to build sentences!</p></li>
+<li><p>Different ways to talk about reality, time, space, and
+events!</p></li>
+<li><p><strong>Every language is just as capable of describing reality
+as any other language, but every language does it
+differently!</strong></p></li>
+</ul>
+<hr />
+<h3 id="all-human-languages-can-teach-us-something">All human languages
+can teach us <em>something</em></h3>
+<ul>
+<li><p>Every language community can teach us something about how
+Language works</p></li>
+<li><p>No language is ‘boring’ or ‘basic’ or ‘primitive’</p></li>
+<li><p>… and we as linguists can collaborate with communities to help
+folks to document, teach, and preserve their linguistic
+heritage</p></li>
+</ul>
+<hr />
+<h3 id="so-all-language-is-incredible">So, all language is
+incredible</h3>
+<ul>
+<li><p>Whether formal or informal, prestigious or unrecognized</p></li>
+<li><p>Whether new or old, from Dickens or Discord</p></li>
+<li><p>Whether acknowledged as language or not</p></li>
+<li><p>Signed or Spoken</p></li>
+<li><p>Here or anywhere else</p></li>
+<li><h3
+id="language-is-language-no-matter-the-form-and-its-all-worth-celebrating">Language
+is Language, no matter the form, and it’s all worth
+celebrating!</h3></li>
+</ul>
+<hr />
+<h3 id="one-last-question">One last question…</h3>
+<hr />
+<h3 id="how-is-a-legacy-lecture-like-an-extension-cord">How is a legacy
+lecture like an extension cord?</h3>
+<ul>
+<li>It has a plug at the end!</li>
+</ul>
+<hr />
+<h3 id="you-should-declare-a-linguistics-major-or-minor">You should
+declare a Linguistics Major or Minor!</h3>
+<ul>
+<li><p>You’ll learn how we can make sense of this madness</p>
+<ul>
+<li>… and find even more madness!</li>
+</ul></li>
+<li><p>LIGN 101 is a great place to start (offered every quarter and
+over the summer)</p></li>
+<li><p>More info at <a href="https://savethevowels.org/lingmajor"
+class="uri">https://savethevowels.org/lingmajor</a></p></li>
+<li><p>OK, OK, back to the actual point</p></li>
+</ul>
+<hr />
+<h3
+id="using-language-is-the-most-incredible-and-complex-thing-you-will-ever-do-1">Using
+language is the most incredible and complex thing you will ever do</h3>
+<ul>
+<li><p>Speech is shockingly complex, and we don’t care</p></li>
+<li><p>We’re barely aware of our grammar, yet we use it constantly to
+make fine-grained decisions</p></li>
+<li><p>We understand nuanced meanings, informed by our understanding of
+the world</p></li>
+<li><p>Everybody languages, in different, worthwhile, and valid ways,
+all of which can teach us about Humanity</p></li>
+<li><p>Language is worth studying, and a life in language is a life well
+spent</p>
+<ul>
+<li>… because …</li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="language-is-incredible-1">Language is Incredible</h1>
+<ul>
+<li><h3 id="and-i-hope-you-all-can-lega-see-that-now">… and I hope you
+all can lega-see that now!</h3></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+<p><a href="http://savethevowels.org/legacy"
+class="uri">http://savethevowels.org/legacy</a> has the slides and,
+eventually, a recording!</p>
+</body>
+</html>

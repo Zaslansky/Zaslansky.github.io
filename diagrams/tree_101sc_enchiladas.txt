@@ -1,0 +1,25 @@
+tree_101sc_enchiladastex
+
+[S 
+  [NP 
+    [NP 
+      [DET Her ] 
+      [N' 
+        [ADJ incessant ] 
+        [N' 
+          [N desire ] ] ] ] 
+    [PP 
+      [P for ] 
+      [NP 
+        [N' 
+          [N enchiladas ] ] ] ] ] 
+  [VP 
+    [V consumed ] 
+    [NP 
+      [DET her ] 
+      [N' 
+        [ADJ every ] 
+        [N' 
+          [ADJ waking ] 
+          [N' 
+            [N thought ] ] ] ] ] ] ]

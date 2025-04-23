@@ -1,0 +1,27 @@
+tree_complementizer2tex
+
+[S 
+  [NP 
+    [N' 
+      [N John ] ] ] 
+  [VP 
+    [V knows ] 
+    [CP 
+      [C that ] 
+      [S 
+        [NP 
+          [N' 
+            [N I ] ] ] 
+        [VP 
+          [V love ] 
+          [CP 
+            [C when ] 
+            [S 
+              [NP 
+                [N' 
+                  [N you ] ] ] 
+              [VP 
+                [V hug ] 
+                [NP 
+                  [N' 
+                    [N squirrels ] ] ] ] ] ] ] ] ] ] ]

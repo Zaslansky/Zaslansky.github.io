@@ -1,0 +1,22 @@
+tree_queenenglandshat2tex
+ 
+[S 
+  [NP I ]
+  [VP 
+    [V saw ]
+    [NP 
+      [DET the ]
+      [NP 
+        [NP 
+          [N' 
+            [N Queen ] ] ]
+        [PP 
+          [P of ]
+          [NP 
+            [DET 
+              [NP 
+                [N' 
+                  [N England ] ] ]
+              [POSS 's ] ] 
+            [N' 
+              [N Hat ] ] ] ] ] ] ] ]

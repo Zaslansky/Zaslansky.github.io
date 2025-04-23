@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+LIGN 111 - Will Styler - Day 14
+</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+
+
+
+# Multi-Rule Analysis 
+
+### Will Styler - LIGN 111
+
+---
+
+### Today's Plan
+
+- Independent Rules vs. Interacting Rules
+
+- Creating Derivations to understand interactions
+
+- Checking Rule ordering using derivations
+
+- 'Feeding' vs. 'Bleeding' rule ordering
+
+---
+
+### Many problems can be solved with a single rule
+
+- "What's this alternation? Oh, that. OK."
+
+- **... but no languages just have one rule**
+
+---
+
+## Multiple Rules
+
+---
+
+### From here out, we'll be seeing a lot of multi-rule data
+
+- ... but not all multi-rule data are alike
+
+---
+
+### English Aspiration and V Lengthening
+
+<center>
+<table class="tg">
+  <tr>
+    <th class="tg-xldj">wʌt</th>
+    <th class="tg-0pky">kʰɪ:n<br></th>
+  </tr>
+  <tr>
+    <td class="tg-0pky">tʰa:ɹ</td>
+    <td class="tg-0pky">spu:n<br></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">pʰat<br></td>
+    <td class="tg-0pky">spat</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">ɹɛ:ntʰɪ:ŋ<br></td>
+    <td class="tg-0pky">ɹɪsta:ɹt<br></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">kʰju:bə</td>
+    <td class="tg-0pky">pʰakʰɪt</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">sta:ɹ<br></td>
+    <td class="tg-0pky">spɪ:nstə˞</td>
+  </tr>
+  </table>
+</center>
+
+---
+
+### English Aspiration and Approximant Devoicing
+
+<center>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">skɹu</th>
+    <th class="tg-0pky">splæt</th>
+    <th class="tg-0pky">stɹɪp</th>
+  </tr>
+  <tr>
+    <td class="tg-0lax">skut</td>
+    <td class="tg-0lax">spæt</td>
+    <td class="tg-0lax">stɪk</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">kʰɹ̥u</td>
+    <td class="tg-0pky">pʰl̥æt</td>
+    <td class="tg-0pky">tʰɹ̥ɪp</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">kʰul</td>
+    <td class="tg-0pky">pʰæt</td>
+    <td class="tg-0pky">tʰɪp</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">gɹu</td>
+    <td class="tg-0pky">bæt<br></td>
+    <td class="tg-0pky">dɪp</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">ɹut</td>
+    <td class="tg-0lax">læs</td>
+    <td class="tg-0lax">ɹɪp<br></td>
+  </tr>
+</table>
+</center>
+---
+
+### Aspiration and Vowel Length
+
+- [-cont,-voice] -> [+spread glottis] / .__
+
+- V -> V: / __[+voice]
+
+- **These rules co-occur, but they don't interact!**
+
+---
+
+### Aspiration and Approximant Devoicing
+
+- [-cont,-voice] -> [+spread glottis] / .__
+
+- [+son,+cons] -> [-voice] / [+cons, +spread glottis]__
+
+- The aspiration rule is *creating an environment for devoicing to occur!*
+
+    - The aspiration rule is *feeding* the devoicing rule!
+
+- **These rules interact!**
+
+---
+
+## Interacting Rules
+
+---
+
+### Interacting rules
+
+- These rules affect *the same segments or features* in a *similar context*
+
+- These rules are ordered (e.g. one *must* apply before another)
+
+- One rule *creates* or *removes* an opportunity for a later rule to apply
+
+- Forms are *derived* through a series of rule applications
+
+---
+
+### Let's talk about derivations
+
+- Derivations are a way of showing how multiple rules are ordered
+
+- ... and visualizing the consequences of the ordering
+
+---
+
+### English Aspiration and Approximant Devoicing
+
+<center>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">skɹu</th>
+    <th class="tg-0pky">splæt</th>
+    <th class="tg-0pky">stɹɪp</th>
+  </tr>
+  <tr>
+    <td class="tg-0lax">skut</td>
+    <td class="tg-0lax">spæt</td>
+    <td class="tg-0lax">stɪk</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">kʰɹ̥u</td>
+    <td class="tg-0pky">pʰl̥æt</td>
+    <td class="tg-0pky">tʰɹ̥ɪp</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">kʰul</td>
+    <td class="tg-0pky">pʰæt</td>
+    <td class="tg-0pky">tʰɪp</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">gɹu</td>
+    <td class="tg-0pky">bæt<br></td>
+    <td class="tg-0pky">dɪp</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">ɹut</td>
+    <td class="tg-0lax">læs</td>
+    <td class="tg-0lax">ɹɪp<br></td>
+  </tr>
+</table>
+</center>
+---
+
+### Aspiration and Approximant Devoicing
+
+[-cont,-voice] -> [+spread glottis] / .__
+
+[+son,+cons] -> [-voice] / [+cons, +spread glottis]__
+
+---
+
+###  Aspiration and Approx. Devoicing Derivation (Step 1)
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+
+</table>
+</center>
+
+---
+
+###  Aspiration and Approx. Devoicing Derivation (Step 2)
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Aspiration</td>
+    <td class="tg-0lax">| pʰlæt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| pʰæt | </td>
+    <td class="tg-0lax">--</td>
+  </tr>
+</table>
+</center>
+
+---
+
+###  Aspiration and Approx. Devoicing Derivation (Step 3)
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Aspiration</td>
+    <td class="tg-0lax">| pʰlæt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| pʰæt | </td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Approx. Devoicing</td>
+    <td class="tg-0lax">| pʰl̥æt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+</table>
+</center>
+
+---
+
+###  Aspiration and Approx. Devoicing Derivation (Final)
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Aspiration</td>
+    <td class="tg-0lax">| pʰlæt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| pʰæt | </td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Approx. Devoicing</td>
+    <td class="tg-0lax">| pʰl̥æt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Surface Form</td>
+    <td class="tg-0lax">[pʰl̥æt]</td>
+    <td class="tg-0lax">[splæt]</td>
+    <td class="tg-0lax">[pʰæt]</td>
+    <td class="tg-0lax">[læs]</td>
+  </tr>
+</table>
+</center>
+
+---
+
+### Derivations have...
+
+- The /Underlying form/ for the word on the top
+
+- The [Surface form] at the bottom
+
+- One additional row per named interacting rule
+
+- Each cell filled in either with the new form, or a '--' to indicate it doesn't apply
+
+---
+
+### We're going to want *lots* of derivations from you
+
+- Any time you have interacting rules, give derivations
+
+- Derive examples of forms which...
+
+    - Show the alternations
+    
+    - Show *no* alternations
+    
+    - Demonstrate why the ordering is what it is
+    
+    - Demonstrate why the ordering couldn't be otherwise
+    
+    - Feel 'weird'
+    
+- No need for derivations for single (or non-interacting) rules
+    
+---
+
+### Always give us derivations of forms that explain why the rules are ordered as they are
+
+![](humorimg/bearsrepeating.jpg)
+
+---
+
+### Why do we make derivations?
+
+- To explain your analysis to others
+
+- To make clear the steps of the process
+
+- **To help you think through the problems!**
+
+---
+
+### Always try to change your ordering around if something isn't working!
+
+- Let's try the other ordering!
+
+---
+
+### Aspiration and Approximant Devoicing
+
+[-cont,-voice] -> [+spread glottis] / .__
+
+[+son,+cons] -> [-voice] / [+cons, +spread glottis]__
+
+---
+
+###  Aspiration and Approx. Devoicing INCORRECT
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+
+</table>
+</center>
+
+---
+
+###  Aspiration and Approx. Devoicing INCORRECT
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Approx. Devoicing</td>
+    <td class="tg-0lax"><danger>--</danger></td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+</table>
+</center>
+
+---
+
+###  Aspiration and Approx. Devoicing INCORRECT
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+    <tr>
+    <td class="tg-1wig">Approx. Devoicing</td>
+    <td class="tg-0lax"><danger>--</danger></td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Aspiration</td>
+    <td class="tg-0lax">| pʰlæt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| pʰæt | </td>
+    <td class="tg-0lax">--</td>
+  </tr>
+</table>
+</center>
+
+---
+
+###  Aspiration and Approx. Devoicing INCORRECT
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+    <tr>
+    <td class="tg-1wig">Approx. Devoicing</td>
+    <td class="tg-0lax"><danger>--</danger></td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Aspiration</td>
+    <td class="tg-0lax">| pʰlæt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| pʰæt | </td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Surface Form</td>
+    <td class="tg-0lax"><danger>[pʰlæt]</danger></td>
+    <td class="tg-0lax">[splæt]</td>
+    <td class="tg-0lax">[pʰæt]</td>
+    <td class="tg-0lax">[læs]</td>
+  </tr>
+</table>
+</center>
+
+---
+
+###  Aspiration and Approx. Devoicing Derivation (Final)
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Aspiration</td>
+    <td class="tg-0lax">| pʰlæt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| pʰæt | </td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Approx. Devoicing</td>
+    <td class="tg-0lax"><correct>| pʰl̥æt |</correct></td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Surface Form</td>
+    <td class="tg-0lax"><correct>[pʰl̥æt]</correct></td>
+    <td class="tg-0lax">[splæt]</td>
+    <td class="tg-0lax">[pʰæt]</td>
+    <td class="tg-0lax">[læs]</td>
+  </tr>
+</table>
+</center>
+
+---
+
+### Ordering Approximant Devoicing first breaks things!
+
+- Aspiration *needs* to come first
+
+    - Aspiration *feeds* the approximant devoicing rule
+
+- The derivation lets us see where things went wrong
+
+---
+
+### Let's try this again
+
+- You should always provide examples, plural.
+
+---
+
+## The English Plural
+
+---
+
+### Our previous analysis
+
+/s/ -> [z] / [C +voice]__
+
+/s/ -> [ɪz] / [strident C]__
+
+/s/ -> [s] / Elsewhere
+
+---
+
+### We can do better, with interacting rules
+
+- Assume that the plural is underlyingly /z/
+    
+- **Voicing Assimilation:** [-son] -> [-voice] / [-voice]__#
+
+- **Vowel Epenthesis:** ∅ -> [-front,-back] / [+coronal,+strident]__[+coronal,+strident]#
+
+---
+### English Plural Derivation
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+</table>
+</center>
+---
+
+### English Plural Derivation
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">V Epenthesis</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| dɪʃɪz |</td>
+  </tr>
+</table>
+</center>
+---
+
+### English Plural Derivation
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">V Epenthesis</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| dɪʃɪz |</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Voicing Assim.</td>
+    <td class="tg-0lax">| kæts |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+</table>
+</center>
+---
+
+### English Plural Derivation (Final)
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">V Epenthesis</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| dɪʃɪz |</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Voicing Assim.</td>
+    <td class="tg-0lax">| kæts |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Surface Form</td>
+    <td class="tg-0lax">[kæts]</td>
+    <td class="tg-0lax">[dagz]</td>
+    <td class="tg-0lax">[dɪʃɪz]</td>
+  </tr>
+</table>
+</center>
+---
+
+### Could we reverse the ordering of the rules?
+
+---
+
+
+### English Plural INCORRECT Derivation
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+</table>
+</center>
+---
+
+### English Plural INCORRECT Derivation
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+    <tr>
+    <td class="tg-1wig">Voicing Assim.</td>
+    <td class="tg-0lax">| kæts |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax"><danger>| dɪʃs |</danger></td>
+  </tr>
+</table>
+</center>
+---
+
+### English Plural INCORRECT Derivation
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+    <tr>
+    <td class="tg-1wig">Voicing Assim.</td>
+    <td class="tg-0lax">| kæts |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax"><danger>| dɪʃs |</danger></td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">V Epenthesis</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax"><danger>| dɪʃɪs |</danger></td>
+  </tr>
+
+</table>
+</center>
+---
+
+### English Plural INCORRECT Derivation
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+   <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+    <tr>
+    <td class="tg-1wig">Voicing Assim.</td>
+    <td class="tg-0lax">| kæts |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax"><danger>| dɪʃs |</danger></td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">V Epenthesis</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax"><danger>| dɪʃɪs |</danger></td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Surface Form</td>
+    <td class="tg-0lax">[kæts]</td>
+    <td class="tg-0lax">[dagz]</td>
+    <td class="tg-0lax"><danger>[dɪʃɪs]</danger></td>
+  </tr>
+</table>
+</center>
+
+---
+
+### Putting voicing assimilation first breaks things!
+
+- Voicing assimilation needs to come *after* epenthesis
+
+- Epenthesis *removes* a context where voicing assimilation *would* apply
+
+    - Epenthesis *bleeds* the voicing assimilation rule
+    
+---
+
+### So, derivations aren't just for us
+
+- They're a good problem solving tool
+
+- They help you test if your ordering is correct
+
+- They make rule interactions clear!
+
+---
+
+### Tips for dealing with multi-rule datasets
+
+---
+
+
+## Types of Rule Interactions
+
+---
+
+### We've touched on two ways that rules can interact
+
+---
+
+### One rule *provides a context for the other to apply*
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-1wig">Underlying Form</th>
+    <th class="tg-1wig">/plæt/</th>
+    <th class="tg-1wig">/splæt/</th>
+    <th class="tg-1wig">/pæt/</th>
+    <th class="tg-1wig">/læs/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Aspiration</td>
+    <td class="tg-0lax">| pʰlæt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| pʰæt | </td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Approx. Devoicing</td>
+    <td class="tg-0lax">| pʰl̥æt |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Surface Form</td>
+    <td class="tg-0lax">[pʰl̥æt]</td>
+    <td class="tg-0lax">[splæt]</td>
+    <td class="tg-0lax">[pʰæt]</td>
+    <td class="tg-0lax">[læs]</td>
+  </tr>
+</table>
+</center>
+
+---
+
+
+### One rule *removes a context* where the other one *would* apply
+
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0lax">Underlying Form</th>
+    <th class="tg-1wig">/kæt + z/</th>
+    <th class="tg-1wig">/dag + z/</th>
+    <th class="tg-1wig">/dɪʃ + z/</th>
+  </tr>
+  <tr>
+    <td class="tg-1wig">V Epenthesis</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">| dɪʃɪz |</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Voicing Assim.</td>
+    <td class="tg-0lax">| kæts |</td>
+    <td class="tg-0lax">--</td>
+    <td class="tg-0lax">--</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Surface Form</td>
+    <td class="tg-0lax">[kæts]</td>
+    <td class="tg-0lax">[dagz]</td>
+    <td class="tg-0lax">[dɪʃɪz]</td>
+  </tr>
+</table>
+</center>
+
+---
+
+### 'Feeding' and 'Bleeding' order
+
+- A rule which provides a context for another to apply *feeds* the other rule
+
+- A rule which *removes* a context where another *would* apply *bleeds* the other rule
+
+- *Always be on the lookout for feeding and bleeding relationships!*
+
+---
+
+### Wrapping up
+
+- Not all problem sets with multiple rules show interactions
+
+- Derivations are a powerful tool for understanding interactions
+
+- Always double-check your rule orderings if you're having problems
+
+- Some rules 'feed' each other, some rules 'bleed' each other
+
+---
+
+### Next time
+
+- The return of Russian, and it's bringing multiple rules!
+
+    - (From Russia, with Derivations!)
+
+---
+
+<huge>Thank you!</huge>
+
+---
+
+### In case we're done early...
+
+![](phonology/balantak.jpg)
+
+---
+
+
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

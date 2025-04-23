@@ -1,0 +1,14 @@
+tree_lingmajortex
+
+[S 
+  [NP 
+    [N' 
+      [N Linguistics ] ] ] 
+  [VP 
+    [V is ] 
+    [NP 
+      [DET the ] 
+      [N' 
+        [ADJ best ] 
+        [N' 
+          [N major ] ] ] ] ] ]

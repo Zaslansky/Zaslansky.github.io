@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+/*!
+ * reveal.js
+ * Modified by Will Styler
+ * Dark Theme
+ */
+
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+
+html,
+body {
+}
+/*http://www.colorzilla.com/gradient-editor*/
+
+body {
+	color: #000;
+background: #ffffff; /* Old browsers */
+background-color:#ffffff;
+
+}
+
+.reveal h1 {
+color:#0c103a;
+}
+
+.reveal h2 {
+color:#1F2A91;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+}
+
+::selection {
+	background: #e4e8fc;
+}
+
+.reveal .progress {
+  background: rgba(24, 43, 73, 1.0); }
+
+.reveal .progress span {
+  background: rgba(198, 146, 20, 0.8);
+}
+
+.reveal a {
+	color: #006A96;
+}
+
+.reveal a:visited {
+	color: #006A96;
+}
+
+.reveal blockquote {
+	background-color: rgba (185, 185, 185, 0.4);
+}
+
+.footer p {
+  font-size: 1em;
+  color: #BABABA;
+}
+
+.reveal .slides > section, .reveal .slides > section > section {
+  line-height: 1.3;
+  font-weight: inherit; }
+  
+/*********************************************
+ * CONTROLS
+ *********************************************/
+
+.reveal .controls div {
+	opacity: 0.3;
+	border: 12px solid transparent;
+}
+
+.reveal .controls div.enabled {
+	opacity: 0.9;	
+}
+
+.reveal .controls div.navigate-left {
+	border-right-width: 22px;
+	border-right-color: #eee;
+}
+
+.reveal .controls div.navigate-left.fragmented {
+	opacity: 0.9;
+}
+
+.reveal .controls div.navigate-right {
+	border-left-color: #eee;
+}
+
+.reveal .controls div.navigate-right.fragmented {
+	opacity: 0.9;
+}
+
+.reveal .controls div.navigate-up {
+	border-bottom-color: #eee;
+	display: none;
+}
+
+.reveal .controls div.navigate-up.fragmented {
+	opacity: 0.9;
+	display: none;
+}
+
+.reveal .controls div.navigate-down {
+	border-top-color: #eee;
+	display: none;
+}
+
+.reveal .controls div.navigate-down.fragmented {
+	opacity: 0.3;
+}
+
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+
+.reveal .progress {
+	display: none;
+	height: 1%;
+}
+.reveal .progress:after {
+	display: 'block';
+	position: absolute;
+	height: 20px;
+	width: 100%;
+	top: -20px;
+}
+.reveal .progress span {
+	width: 10px;
+	
+}

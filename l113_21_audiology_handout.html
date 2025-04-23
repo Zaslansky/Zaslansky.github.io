@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1 id="audiological-testing">Audiological Testing</h1>
+<h3 id="will-styler---lign-113">Will Styler - LIGN 113</h3>
+<hr />
+<h3 id="follow-up-on-that-pesky-tm-perforation">Follow-up: On that pesky
+TM perforation</h3>
+<hr />
+<h3 id="now-were-heading-into-the-clinical-world">Now we’re heading into
+the clinical world</h3>
+<ul>
+<li><p>“How can we evaluate hearing?”</p></li>
+<li><p>“How can we characterize different hearing conditions in a
+numerical way?”</p></li>
+<li><p>“How can we help people who want to hear better to hear
+better?”</p></li>
+</ul>
+<hr />
+<h3 id="the-first-step-is-audiological-testing">The first step is
+audiological testing!</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Pure-tone Audiometry</p></li>
+<li><p>Speech Audiometry</p></li>
+<li><p>Otoscopy</p></li>
+<li><p>Tympanometry</p></li>
+<li><p>Acoustic Reflex Measurement</p></li>
+<li><p>Auditory Brain Stem Response</p></li>
+</ul>
+<hr />
+<h2 id="pure-tone-audiometry">Pure-tone audiometry</h2>
+<ul>
+<li><p>Measures the amplitude required to hear a “pure tone” at a
+variety of frequencies.</p>
+<ul>
+<li>Pure tones are simple waves, not complex</li>
+</ul></li>
+<li><p>“Press the button when you hear a beep”</p></li>
+<li><p>Can be done with or without masking</p></li>
+<li><p>This is a <em>subjective</em>, behavioral test</p></li>
+<li><p><em>We’ll focus on this in our next session!</em></p></li>
+</ul>
+<hr />
+<h2 id="speech-audiometry">Speech Audiometry</h2>
+<ul>
+<li><p>Measures the amplitude required to understand speech!</p></li>
+<li><p>“Repeat each word you say back to me”</p></li>
+<li><p>Again can be done with or without masking</p></li>
+<li><p>Also <em>subjective</em> and behavioral</p></li>
+<li><p><em>Also in our next session!</em></p></li>
+</ul>
+<hr />
+<h2 id="visual-inspection-otoscopy">Visual Inspection (Otoscopy)</h2>
+<hr />
+<h3 id="this-is-easy-quick-and-cheap">This is easy, quick and cheap</h3>
+<p><img class="r-stretch" src="hearing/otoscope.jpg"></p>
+<hr />
+<h3 id="lets-look-inside-the-ear-canal-and-check-for">Let’s look inside
+the ear canal and check for…</h3>
+<hr />
+<h3 id="a-clean-happy-ear-canal">A clean, happy ear canal</h3>
+<p><img class="r-stretch" src="hearing/otoscopy_normal.jpg"></p>
+<hr />
+<h3 id="otitis-media">Otitis Media</h3>
+<p><img class="r-stretch" src="hearing/otitis_media.jpg"></p>
+<hr />
+<h3 id="built-up-wax">Built up wax</h3>
+<p>(Go ahead and google that yourself, it’s not pretty)</p>
+<hr />
+<h3 id="a-visible-perforation-of-the-tm">A visible perforation of the
+TM</h3>
+<p><img class="r-stretch" src="hearing/otoscopy_perf.jpg"></p>
+<hr />
+<h3 id="tympanostomy-tubes">Tympanostomy Tubes</h3>
+<p><img class="r-stretch" src="hearing/otoscopy_tube.jpg"></p>
+<hr />
+<h3 id="effusion-fluid-build-up">Effusion (Fluid Build-up)</h3>
+<p><img class="r-stretch" src="hearing/otoscopy_effusion.jpg"></p>
+<hr />
+<h3 id="cholesteatoma">Cholesteatoma</h3>
+<p><img class="r-stretch" src="hearing/otoscopy_cholesteatoma.jpg"></p>
+<hr />
+<h3 id="a-foreign-object">A foreign object</h3>
+<ul>
+<li>Yep, you can google this one too</li>
+</ul>
+<hr />
+<h3 id="what-conductive-losses-would-this-not-reveal">What conductive
+losses would this <em>not</em> reveal?</h3>
+<hr />
+<h2 id="tympanometry">Tympanometry</h2>
+<hr />
+<h3
+id="tympanometry-measures-the-function-of-the-middle-ear">Tympanometry
+measures the function of the middle ear</h3>
+<ul>
+<li><p>“Is it taking in sound?”</p></li>
+<li><p>“Is the tympanic membrane moving as expected?”</p></li>
+<li><p>“Is the pressure inside the ear what we’d expect?”</p></li>
+<li><p>This is an ‘objective’ test</p>
+<ul>
+<li>It doesn’t rely on conscious information from the patient</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="tympanometry-measures-admittance">Tympanometry measures
+‘admittance’</h3>
+<ul>
+<li><p>Admittance is the opposite of impedance</p>
+<ul>
+<li>It’s measured in ‘mhos’ (which are the opposite of ohms) 🤣</li>
+</ul></li>
+<li><p>“I’m going to play a 226Hz tone at 85dB into the ear, let’s see
+how much is pulled into the middle ear”</p>
+<ul>
+<li>Involves simultaneous playback and measurement</li>
+</ul></li>
+<li><p>We can compare the amount of admittance to known normal
+values</p></li>
+</ul>
+<hr />
+<h3 id="admittance-intuition">Admittance Intuition</h3>
+<ul>
+<li>Misty Golfing</li>
+</ul>
+<hr />
+<h3
+id="tympanometry-looks-at-admittance-under-different-pressure-levels">Tympanometry
+looks at admittance under different pressure levels</h3>
+<ul>
+<li><p>We expect the middle ear to absorb energy best at atmospheric
+pressure</p>
+<ul>
+<li>… and when the pressures are too high or low, for admittance to go
+down</li>
+</ul></li>
+<li><p>So, you ‘sweep’ the pressure while measuring admittance!</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/tympanogram_diagram.jpg"></p>
+<hr />
+<h3 id="a-normal-tympanogram">A ‘normal’ tympanogram</h3>
+<p><img class="r-stretch" src="hearing/tympanogram_normal.jpg"></p>
+<hr />
+<h3 id="tympanograms-with-troubles">Tympanograms with troubles</h3>
+<p><img class="r-stretch" src="hearing/tympanogram_perf.jpg"></p>
+<hr />
+<h3 id="reduced-admittance-type-as">Reduced Admittance (Type As)</h3>
+<ul>
+<li>Poor movement of the tympanic membrane!</li>
+</ul>
+<p><img class="r-stretch" src="hearing/tympanogram_as.jpg"></p>
+<hr />
+<h3 id="high-admittance-type-ad-or-add">High Admittance (Type Ad or
+Add)</h3>
+<ul>
+<li>Excessively mobile TM (e.g. busted/dislocated ossicles or thinned
+TM)</li>
+</ul>
+<p><img class="r-stretch" src="hearing/tympanogram_ad.jpg"></p>
+<hr />
+<h3 id="flat-type-b">Flat (Type B)</h3>
+<ul>
+<li>OM with effusion, perforation, or tubes</li>
+</ul>
+<p><img class="r-stretch" src="hearing/tympanogram_b.jpg"></p>
+<hr />
+<h3 id="negative-pressure-type-c">Negative Pressure (Type C)</h3>
+<ul>
+<li>Middle ear pressure hasn’t equalized, bad eustachian tube!</li>
+</ul>
+<p><img class="r-stretch" src="hearing/tympanogram_c.jpg"></p>
+<hr />
+<h3 id="tympanograms-provide-valuable-information">Tympanograms provide
+valuable information!</h3>
+<ul>
+<li><p>They tell us about middle ear and ossicular function</p></li>
+<li><p>They tell us about pressure inside the ear</p></li>
+<li><p>They tell us about TM health</p></li>
+<li><p>They provide more information for diagnosing hearing
+trouble!</p></li>
+</ul>
+<hr />
+<h3 id="what-does-this-tell-us-about-sensorineural-loss">What does this
+tell us about sensorineural loss?</h3>
+<hr />
+<h3 id="these-four-tests-almost-always-happen">These four tests almost
+always happen!</h3>
+<ul>
+<li><p>Otoscopy, Pure-tone Audiometry, Speech Audiometry, and
+Tympanography</p></li>
+<li><p>… but sometimes you need more data!</p></li>
+</ul>
+<hr />
+<h2 id="acoustic-reflex-measurement">Acoustic Reflex Measurement</h2>
+<hr />
+<h3 id="review">Review</h3>
+<p><img class="r-stretch" src="hearing/middleear_netter.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/middleear_lateral.jpg"></p>
+<hr />
+<h3 id="we-can-measure-admittance">We can measure admittance</h3>
+<ul>
+<li><p>“How much sound energy is being allowed to pass down the
+chain”</p></li>
+<li><p>The acoustic reflex should change the admittance!</p>
+<ul>
+<li>Keeping the ossicles from moving as effectively will make them
+transmit less sound</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="acoustic-reflex-measurement-triggers-the-ar-on-purpose">Acoustic
+Reflex Measurement triggers the AR on purpose!</h3>
+<ul>
+<li><p>Play a series of escalating tones into one ear or the
+other</p></li>
+<li><p>Then measure the level at which we see the AR happen!</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/acousticreflex_measure.jpg"></p>
+<hr />
+<h3 id="we-can-measure-both-the-strength-of-the-ar">We can measure both
+the strength of the AR</h3>
+<ul>
+<li><p>We can measure the threshold which triggers it</p></li>
+<li><p>… and we can measure same ear (ipsilateral) and opposite ear
+(contralateral) reflexes!</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/acousticreflex_chart.jpg"></p>
+<hr />
+<h3
+id="acoustic-reflex-measurement-provides-great-diagnostic-info">Acoustic
+Reflex Measurement provides great diagnostic info!</h3>
+<ul>
+<li>Helps to distinguish different nerve disorders</li>
+</ul>
+<hr />
+<h3 id="theres-way-more-to-this-than-we-have-time-for">There’s way more
+to this than we have time for</h3>
+<ul>
+<li>Mostly, just realize that it’s a thing!</li>
+</ul>
+<hr />
+<h2 id="oaes-and-abrs">OAEs and ABRs!</h2>
+<hr />
+<h3 id="sometimes-you-cant-rely-on-cooperation">Sometimes, you can’t
+rely on cooperation</h3>
+<ul>
+<li><p>Children, Infants, Newborns</p></li>
+<li><p>Potentially non-cooperative adult patients</p>
+<ul>
+<li>Worker’s Comp and/or Disability fraud cases</li>
+</ul></li>
+<li><p>… or the patient has troubles that aren’t well captured by other
+measures</p></li>
+<li><p>We might want to look for <em>evoked responses</em></p>
+<ul>
+<li>Don’t ask the patient, just measure their physiological
+response</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="otoacoustic-emissions">Otoacoustic Emissions</h3>
+<ul>
+<li><p>We’ve talked about these already</p></li>
+<li><p>“Play a sound into the cochlea, and listen for what comes
+back!”</p></li>
+<li><p>They help measure the health of the cochlear amplifier</p></li>
+<li><p>Chapter 11 of your book goes into depth</p></li>
+</ul>
+<hr />
+<h3 id="oaes-have-a-blind-spot">OAEs have a blind spot!</h3>
+<ul>
+<li>What could be missing with OAEs still working well?</li>
+</ul>
+<hr />
+<h3 id="auditory-brainstem-response">Auditory Brainstem Response</h3>
+<ul>
+<li><p>Sometimes, you suspect there’s a nerve problem</p></li>
+<li><p>Or maybe you can’t get <em>subjective</em>, behavioral
+measurements</p>
+<ul>
+<li>Children, Infants, Newborns</li>
+</ul></li>
+<li><p>But you still want more detailed information than OAEs</p></li>
+</ul>
+<hr />
+<h3 id="the-idea">The idea</h3>
+<ul>
+<li><p>Present auditory stimulus repeatedly</p></li>
+<li><p>Look for evidence of neural activity by measuring scalp
+potentials</p></li>
+<li><p>Use signal averaging to isolate the responses which are <em>time
+locked</em> to the stimulus</p></li>
+</ul>
+<hr />
+<h3 id="abrs-by-amplitude">ABRs by Amplitude</h3>
+<p><img class="r-stretch" src="hearing/abr_intensity.jpg"></p>
+<hr />
+<h3 id="abrs-by-frequency">ABRs by Frequency</h3>
+<p><img class="r-stretch" src="hearing/abr_frequency.jpg"></p>
+<hr />
+<h3 id="abrs-can-give-us-lots-of-information">ABRs can give us lots of
+information</h3>
+<ul>
+<li><p>It can give us thresholds of perception</p>
+<ul>
+<li>Audiogram-like data, without cooperation!</li>
+</ul></li>
+<li><p>It can identify pathologies of the 8th nerve</p></li>
+<li><p>It’s yet another window into hearing function!</p></li>
+<li><p><strong>These are covered in more depth in Chapter
+11!</strong></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Audiological tests provide useful information for diagnosing
+pathologies</p></li>
+<li><p>They can give direct information</p>
+<ul>
+<li>Otoscopy</li>
+</ul></li>
+<li><p>They can give us subjective, behavioral information</p>
+<ul>
+<li>Audiometry</li>
+</ul></li>
+<li><p>They can give us objective information about the systems</p>
+<ul>
+<li>Tympanography, Auditory Reflex Testing, OAEs and ABRs</li>
+</ul></li>
+<li><p>They’re all awesome!</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

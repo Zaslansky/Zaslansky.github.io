@@ -1,0 +1,15 @@
+tree_rule2_3_9_11_4_expanded_more_smalltex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [VP 
+      [V ate ] ]
+    [PP 
+      [P with ] 
+      [NP 
+        [DET his ] 
+        [N' 
+          [N wife ] ] ] ] ] ]

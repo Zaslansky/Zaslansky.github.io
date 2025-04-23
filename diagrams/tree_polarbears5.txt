@@ -1,0 +1,8 @@
+tree_polarbears5tex
+
+[PP 
+  [P on ] 
+  [NP 
+    [DET the ] 
+    [N' 
+      [N 405 ] ] ] ]

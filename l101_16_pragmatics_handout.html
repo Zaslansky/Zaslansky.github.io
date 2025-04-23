@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h3 id="get-set">Get SET!</h3>
+<ul>
+<li>You should fill in SET forms for your classes</li>
+</ul>
+<hr />
+<h1 id="pragmatics-language-in-context">Pragmatics: Language in
+Context</h1>
+<h3 id="will-styler---lign-101">Will Styler - LIGN 101</h3>
+<hr />
+<h3 id="last-time-we-started-with-the-cooperative-principle">Last time,
+we started with the cooperative principle</h3>
+<ul>
+<li><p>“If people are acting cooperatively, we can skip a whole lot of
+pain”</p>
+<ul>
+<li>… and we talked about the maxims that help us define
+cooperation</li>
+</ul></li>
+<li><p>Today, we’ll talk about some of the things that grow out of
+that</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Flouting vs. Violating maxims</p></li>
+<li><p>Presupposition</p></li>
+<li><p>Conversational Implicature</p></li>
+<li><p>Speech acts</p></li>
+<li><p>Deixis</p></li>
+<li><p>All that we’re leaving behind</p></li>
+</ul>
+<hr />
+<h3 id="grices-maxims-of">Grice’s Maxims of…</h3>
+<ul>
+<li><p>Quality</p></li>
+<li><p>Quantity</p></li>
+<li><p>Relevance</p></li>
+<li><p>Manner</p></li>
+</ul>
+<hr />
+<h3 id="violating-a-maxim">Violating a maxim</h3>
+<ul>
+<li><p><em>Actually being uncooperative</em> by failing to follow these
+guidelines</p></li>
+<li><p>Violating maxims actually messes up conversations</p></li>
+</ul>
+<hr />
+<h3 id="heres-a-fun-maxim-violation">Here’s a fun maxim violation</h3>
+<ul>
+<li>I was making a language model (Llama3.1) talk to itself, playing
+both an exasperated, punny professor and a student begging for an A</li>
+</ul>
+<hr />
+<blockquote>
+<p>A “tense” situation indeed! Alright, let’s get to the bottom of this.
+I’m happy to help you out, but I do need some more information. Can you
+send me your friend’s work for the assignment in question so we can
+“compare notes”?</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>I cannot provide information or guidance on how to commit academic
+dishonesty. Is there anything else I can help you with?</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>I see what you’re doing here. Trying to deflect my question by making
+it seem like I’m asking for help with academic dishonesty, right? Let me
+make one thing clear: I am not asking you to provide my friend’s work or
+any confidential information about them. All I want is for you to
+explain why the auto-grader treated us differently in the first place.
+I’ve done nothing wrong by pointing out this inconsistency and expecting
+some kind of explanation.</p>
+</blockquote>
+<hr />
+<h3 id="flouting-a-maxim">Flouting a Maxim</h3>
+<ul>
+<li><p>Intentionally violating a maxim <em>in a way that the listener
+can detect</em> to express a specific meaning</p></li>
+<li><p>This <em>carries meaning</em> in the conversation</p></li>
+<li><p>It can have great comedic effect</p></li>
+<li><p>Unless it’s undetected, the conversation is not messed up at
+all</p></li>
+</ul>
+<hr />
+<h3 id="examples-of-maxim-flouting">Examples of Maxim Flouting</h3>
+<ul>
+<li><p>“Oh, yes, Taco Bell is truly gourmet cuisine” (it is clearly
+not)</p></li>
+<li><p>“Is this going to be on the test?” “That’s a good
+question.”</p></li>
+<li><p>“How does my hair look?” “We haven’t been to a cat show in a
+while.”</p></li>
+<li><p>“Should I build syntax trees or work on phonology problems for
+the exam?” “Yes”</p></li>
+</ul>
+<hr />
+<h1 id="presupposition">Presupposition</h1>
+<hr />
+<h2 id="presupposition-1">Presupposition</h2>
+<p>Those things which are <em>implicitly assumed</em> about the
+discourse, participants, and world more generally</p>
+<hr />
+<h3 id="presupposition-examples">Presupposition Examples</h3>
+<ul>
+<li><p>“Were you there when Will made that bad joke?”</p>
+<ul>
+<li>Presupposes that Will made a bad joke</li>
+</ul></li>
+<li><p>“Do you still eat breadsticks with every meal?”</p>
+<ul>
+<li>Presupposes that the person ate breadsticks with every meal</li>
+</ul></li>
+<li><p>“Did you meet the happy linguistics majors?”</p>
+<ul>
+<li><p>Presupposes that happy linguistics majors exist</p></li>
+<li><p>(Of course they do!)</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-is-this-different-from-entailment">‘How is this different
+from entailment?!’</h3>
+<ul>
+<li><p>Presuppositions are assumptions made, but which aren’t
+definitionally true</p></li>
+<li><p>Presuppositions can be canceled</p>
+<ul>
+<li>“Did you see Will again in Vons?” “I’ve never seen him in person
+before!”</li>
+</ul></li>
+<li><p>Presuppositions aren’t canceled by sentence negation</p></li>
+</ul>
+<hr />
+<h3 id="entailment-is-canceled-by-negation">Entailment is canceled by
+negation</h3>
+<ul>
+<li>“Rebecca had a weird student”
+<ul>
+<li>Entails that she had a student</li>
+</ul></li>
+<li>“Rebecca didn’t have a weird student”
+<ul>
+<li>Doesn’t entail that she had a student</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="presupposition-survives-negation">Presupposition survives
+negation</h3>
+<ul>
+<li>“Rebecca’s student was weird”
+<ul>
+<li>Presupposes that she has a student</li>
+</ul></li>
+<li>“Rebecca’s student was not weird”
+<ul>
+<li>Still presupposes that she has a student</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="lets-try-some-examples">Let’s try some examples</h3>
+<ul>
+<li><p>Will regretted eating the week-old enchiladas</p></li>
+<li><p>Jessica forgot to water the plants</p></li>
+<li><p>Rebecca’s student was very strange.</p></li>
+<li><p>Once it started raining, nobody in San Diego could
+drive.</p></li>
+<li><p>Will threw his remote while lecturing again.</p></li>
+</ul>
+<hr />
+<h3 id="sentence-negation-doesnt-cancel-presuppositions">Sentence
+negation doesn’t cancel presuppositions</h3>
+<ul>
+<li><p>Will didn’t regret eating the week-old enchiladas</p></li>
+<li><p>Jessica didn’t forget to water the plants</p></li>
+<li><p>Once it started raining, everybody in San Diego could drive just
+fine.</p></li>
+<li><p>Will didn’t throw his remote while lecturing again, it stayed in
+his hand.</p></li>
+</ul>
+<hr />
+<h3 id="weaponized-presuppositions">Weaponized Presuppositions</h3>
+<ul>
+<li><p><em>Presuppositions can be made in bad faith, taking as
+presupposed things that aren’t true or agreed upon?</em></p></li>
+<li><p>“Were you angry when you stole my cookies?”</p></li>
+<li><p>“Have you stopped assigning evil homeworks?”</p></li>
+<li><p>“Ugh, is your boyfriend being a jerk again?”</p></li>
+<li><p>“All the hard work I’ve done to stop academic integrity
+violations hasn’t been enough, we need to launch cheaters into the
+sun.”</p></li>
+<li><p>“You forgot to give your professors a gift for Teacher’s
+Day”</p></li>
+</ul>
+<hr />
+<h3 id="presuppositions-are-neat">Presuppositions are neat</h3>
+<ul>
+<li><p>They’re commonly used (and abused)</p></li>
+<li><p>They’re different from entailment in that they’re true even when
+negated, and can be canceled.</p></li>
+<li><p>And they express truths, not just assumptions</p>
+<ul>
+<li>Speaking of which…</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="conversational-implicature">Conversational Implicature</h2>
+<hr />
+<h2 id="conversational-implicature-1">Conversational Implicature</h2>
+<p>What is suggested, but not expressed or entailed, by an
+utterance.</p>
+<ul>
+<li>As a listener, you “draw an implicature” from a statement.</li>
+</ul>
+<hr />
+<h3
+id="what-does-jelena-finally-bought-a-hard-drive-to-back-up-her-computer-entail">What
+does “Jelena finally bought a hard drive to back up her computer”
+entail?</h3>
+<hr />
+<h3
+id="jelena-finally-bought-a-hard-drive-to-back-up-her-computer-implies-that">“Jelena
+finally bought a hard drive to back up her computer” implies that…</h3>
+<ul>
+<li><p>Jelena didn’t have one before</p></li>
+<li><p>She’d needed one for a long time</p></li>
+<li><p>Her computer wasn’t backed up</p></li>
+<li><p>Jelena owns a computer</p></li>
+<li><p>Jelena used her own money</p></li>
+</ul>
+<hr />
+<h3
+id="jelena-finally-bought-a-hard-drive-to-back-up-her-computer-does-not-imply-that">“Jelena
+finally bought a hard drive to back up her computer” <em>does not</em>
+imply that…</h3>
+<ul>
+<li><p>Jelena is Serbian</p></li>
+<li><p>Jelena owns a Mac</p></li>
+<li><p>Jelena is a Dean at UCSD</p></li>
+<li><p>She went to Costco for the hard drive</p></li>
+<li><p>… everything else</p></li>
+</ul>
+<hr />
+<h3
+id="unlike-entailments-implicatures-do-not-need-to-be-true-in-every-situation">Unlike
+entailments, implicatures do not need to be true in every situation</h3>
+<hr />
+<h3
+id="jelena-finally-bought-a-hard-drive-to-back-up-her-computer-implies-that-1">“Jelena
+finally bought a hard drive to back up her computer” implies that…</h3>
+<ul>
+<li><p>Jelena didn’t have one before</p></li>
+<li><p>She’d needed one for a long time</p></li>
+<li><p>Her computer wasn’t backed up</p></li>
+<li><p>Jelena owns a computer</p></li>
+<li><p>Jelena used her own money</p></li>
+</ul>
+<hr />
+<h3
+id="implicatures-are-possible-because-of-the-cooperative-principle-and-gricean-maxims">Implicatures
+are possible <em>because</em> of the Cooperative Principle and Gricean
+Maxims</h3>
+<ul>
+<li><p>We can draw implicatures because we think people are
+cooperating</p></li>
+<li><p>We are trying to find a way that the other person’s phrasing is
+in accordance with the maxims</p></li>
+<li><p>Behind every implicature is a maxim which would otherwise be
+violated</p></li>
+</ul>
+<hr />
+<h3 id="robert-might-have-eaten-the-cookie">“Robert might have eaten the
+cookie”</h3>
+<ul>
+<li><p>Implies that the speaker is unsure whether Robert ate the
+cookie.</p></li>
+<li><p>If the cookie is known to have been eaten by Robert, this is a
+Quality violation.</p></li>
+</ul>
+<hr />
+<h3 id="bub-ate-some-of-the-cat-treats">“Bub ate some of the cat
+treats”</h3>
+<ul>
+<li><p>Implies Bub didn’t eat them all</p>
+<ul>
+<li>This is called a “scalar implicature”</li>
+</ul></li>
+<li><p>If she did, this statement is a Quantity violation</p></li>
+</ul>
+<hr />
+<h3 id="john-who-is-100-not-a-lizard-person-is-coming-to-dinner">“John,
+who is 100% not a lizard person, is coming to dinner”</h3>
+<ul>
+<li><p>Implies that John might, in fact, be a lizard person</p></li>
+<li><p>If he is not, this statement is a Relevance violation</p></li>
+</ul>
+<hr />
+<h3
+id="who-do-you-think-stole-the-cookie-i-heard-ruaridh-was-in-town">“Who
+do you think stole the cookie?” “I heard Ruaridh was in town”</h3>
+<ul>
+<li><p>Implies reason to believe that Ruaridh might have stolen the
+cookie</p></li>
+<li><p>If not, this statement is a Relevance violation</p></li>
+</ul>
+<hr />
+<h3
+id="hey-you-did-you-write-this-note-no-quiero-responder-a-esta-pregunta.">“Hey,
+you, did you write this note?” “No quiero responder a esta
+pregunta.”</h3>
+<ul>
+<li><p>Implies that I don’t speak English.</p></li>
+<li><p>If I also speak English, this statement is a Manner
+violation</p></li>
+</ul>
+<hr />
+<h3 id="common-implicatures">Common implicatures</h3>
+<ul>
+<li><p>“You’re interested in Ron? He cheated on his last
+girlfriend!”</p></li>
+<li><p>“You claim you paid my client in full. Was this before or after
+your conviction for armed robbery?”</p></li>
+<li><p>“Will I be getting fired?” “We’ve had to make some really tough
+decisions.”</p></li>
+<li><p>“Robert and Jiseung sure have been hanging out a lot”</p></li>
+<li><p>“Lots of folks wear deodorant”</p></li>
+<li><p>“It’s getting late”</p></li>
+</ul>
+<hr />
+<h3 id="implicature-is-important">Implicature is important</h3>
+<ul>
+<li><p>It’s everywhere!</p></li>
+<li><p>It can be intentional or unintentional</p></li>
+<li><p>They can even be deceptive</p></li>
+</ul>
+<hr />
+<h3 id="deceptive-implicature">Deceptive Implicature</h3>
+<ul>
+<li>“Herman’s Rice is Gluten Free!”
+<ul>
+<li>Implies that all other rice isn’t</li>
+</ul></li>
+<li>“You promise me that you didn’t eat my cookie?”
+<ul>
+<li>“We’ve been friends for 10 years!”</li>
+</ul></li>
+<li>“Do you have any overseas bank accounts in which you’re storing
+money?”
+<ul>
+<li>“Pfft, no, I don’t have any secret numbered swiss bank
+accounts”</li>
+<li>In reality, he has several accounts in the Caymans</li>
+</ul></li>
+<li>“Where were you last night?”
+<ul>
+<li>“Home”</li>
+<li>(No mention of the 6 hours during which he was robbing a bank)</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="ling_memes/grice_crispies.png"></p>
+<hr />
+<p><img class="r-stretch" src="img/perishable_manager.jpg"></p>
+<hr />
+<h3
+id="remember-the-cooperative-principle-implies-cooperation">Remember,
+the cooperative principle implies cooperation!</h3>
+<ul>
+<li><p>So, it doesn’t always apply!</p></li>
+<li><p><img class="r-stretch" src="img/interrogation.jpg"></p></li>
+</ul>
+<hr />
+<h3 id="presupposition-vs.-implicature-vs.-entailment">Presupposition
+vs. Implicature vs. Entailment</h3>
+<ul>
+<li><p>Implicatures are <em>assumed</em> on the basis of the gricean
+maxims</p></li>
+<li><p>Presuppositions are <em>stated directly in the sentence</em>, as
+a preamble to the full meaning</p>
+<ul>
+<li>They can be cancelled or corrected in conversation</li>
+</ul></li>
+<li><p>Entailments <em>cannot</em> be cancelled, they’re inherent to the
+meaning</p></li>
+</ul>
+<hr />
+<h3 id="implicatures-are-implicit">Implicatures are implicit</h3>
+<ul>
+<li><p>“Wow, so many students in the linguistics department seem
+happy!”</p></li>
+<li><p>“Why don’t more people who want to be cool at parties declare
+linguistics majors?”</p></li>
+<li><p>“I wonder why people in other majors are so much less
+interesting?”</p></li>
+<li><p>“It must be so hard for awesome people who never find out about
+linguistics and never reach their full potential”</p></li>
+</ul>
+<hr />
+<h3 id="presuppositions-are-explicit">Presuppositions are explicit</h3>
+<ul>
+<li><p>“Now that you’ve decided to spend more time studying for your
+Linguistics classes, are you happier?”</p></li>
+<li><p>“Once you declare your LING major, you’ll find unfathomed
+joy”</p></li>
+<li><p>“I wonder why you’re taking so long to dedicate your life to the
+academic study of language?”</p></li>
+<li><p>“Is it just me, or are you more interesting since you started
+thinking about declaring a LING major?”</p></li>
+</ul>
+<hr />
+<h3 id="presuppostions-can-be-cancelled-entailments-cant">Presuppostions
+can be cancelled, entailments can’t</h3>
+<ul>
+<li><p>“You seem happier since you declared a LING major.” “I haven’t
+declared it yet, but knowing I will brings joy!”</p></li>
+<li><p>“Did you take a lyft because it’s raining?” “It’s not raining
+yet, I’m just lazy”</p></li>
+<li><p>“Murray brought Chicken and chips.” *“Yeah, that’s true, but he
+didn’t bring chips.”</p></li>
+<li><p>“I bought a new Toyota.” *Agreed, but you didn’t purchase a new
+Toyota”.</p></li>
+</ul>
+<hr />
+<h3 id="implicature-is-an-important-part-of-pragmatics">Implicature is
+an important part of Pragmatics</h3>
+<ul>
+<li><p>… and it stems from the cooperative principle, as well as
+conversational context</p></li>
+<li><p>But there are other elements of conversation which stem from the
+context as well!</p></li>
+</ul>
+<hr />
+<h1 id="speech-acts-and-performative-speech">Speech Acts and
+Performative Speech</h1>
+<hr />
+<h3 id="sometimes-a-statement-is-more-than-just-a-statement">Sometimes,
+a statement is more than just a statement</h3>
+<ul>
+<li><p>Most speech is declarative, interrogative, or serves to expand
+the discourse</p></li>
+<li><p>Asking questions, making statements, and interacting</p></li>
+<li><p>Sometimes, talking itself <em>is the action</em></p></li>
+</ul>
+<hr />
+<h2 id="speech-acts-performative-speech">Speech Acts (“Performative
+Speech”)</h2>
+<p>Sentences which <em>accomplish actions</em> by being uttered</p>
+<hr />
+<h3 id="speech-act-examples">Speech act examples</h3>
+<ul>
+<li><p>“I declare you to be married”</p></li>
+<li><p>“I sentence you to fifteen hours of community service”</p></li>
+<li><p>“I swear that I didn’t steal your cookie”</p></li>
+<li><p>“I apologize for eating your cookie”</p></li>
+<li><p>“I agree to your terms”</p></li>
+<li><p>“I formally object to your doing this”</p></li>
+</ul>
+<hr />
+<h3 id="speech-acts-are-an-odd-kind-of-speech">Speech acts are an odd
+kind of speech</h3>
+<ul>
+<li>… with four important characteristics</li>
+</ul>
+<hr />
+<h3 id="speech-acts-are-always-in-the-present">Speech acts are always in
+the present</h3>
+<ul>
+<li><p>“I swore that I didn’t steal your cookie” vs. “I swear I
+didn’t…”</p></li>
+<li><p>“I apologized for eating the cookie” vs. “I apologize for eating
+the cookie”</p></li>
+<li><p>“I will agree to your terms” isn’t “I agree to your
+terms”</p></li>
+</ul>
+<hr />
+<h3 id="speech-acts-are-always-1st-person">Speech acts are always 1st
+Person</h3>
+<ul>
+<li><p>“I agree to your terms” vs. “You agree to my terms”</p></li>
+<li><p>“She declares you husband and wife”</p></li>
+<li><p>“Robert swears he never ate the cookie”</p></li>
+<li><p>“We the Jury find the defendant Guilty”</p></li>
+</ul>
+<hr />
+<h3 id="speech-acts-always-use-a-subset-of-performative-verbs">Speech
+acts always use a subset of performative verbs</h3>
+<ul>
+<li><p>“I walk into the room” isn’t a speech act</p></li>
+<li><p>“I say you’re going to enjoy HW4” isn’t a speech act
+either</p></li>
+<li><p>“I brush my teeth” sure isn’t.</p></li>
+</ul>
+<hr />
+<h3 id="speech-acts-depend-on-social-context">Speech acts depend on
+social context</h3>
+<ul>
+<li><p>“I sentence you to 15 hours of community service” requires you to
+be a judge</p></li>
+<li><p>“I declare you married” requires you to be a licensed
+officiant</p></li>
+<li><p>“I apologize for eating your cookie” only works when said to the
+person whose cookie you stole.</p></li>
+<li><p>There are often other rituals involved (e.g. placing your hand on
+a holy book or object, a hand-shake, a wedding ceremony)</p></li>
+</ul>
+<hr />
+<h3 id="not-all-things-are-speech-acts">Not all things are speech
+acts…</h3>
+<video controls src="video/i_declare_bankruptcy.m4v">
+</video>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="which-of-the-below-sentences-is-a-speech-act">Which of the below
+sentences is a speech act?</h3>
+<ol type="A">
+<li><p>“We ate ten cookies last night.”</p></li>
+<li><p>“I might have eaten ten cookies last night.”</p></li>
+<li><p>“I swear to you, I have no idea who ate the cookies.”</p></li>
+<li><p>“I formally declared Sooyoung to be a competent
+researcher.”</p></li>
+<li><p>“She sentenced Karla to three weeks of house arrest.”</p></li>
+</ol>
+<hr />
+<h3 id="which-of-the-below-sentences-is-a-speech-act-1">Which of the
+below sentences is a speech act?</h3>
+<ol type="A">
+<li><p>“We ate ten cookies last night.”</p></li>
+<li><p>“I might have eaten ten cookies last night.”</p></li>
+<li><p><correct>“I swear to you, I have no idea who ate the
+cookies.”</correct></p></li>
+<li><p>“I formally declared Sooyoung to be a competent
+researcher.”</p></li>
+<li><p>“She sentenced Karla to three weeks of house arrest.”</p></li>
+</ol>
+<hr />
+<h3 id="that-context-dependence-is-why-these-land-in-pragmatics">That
+context dependence is why these land in Pragmatics</h3>
+<ul>
+<li>… and why they’re tough to interpret outside of that context</li>
+</ul>
+<hr />
+<h3 id="there-are-other-things-that-depend-on-context">There are other
+things that depend on context</h3>
+<hr />
+<h1 id="deixis">Deixis</h1>
+<hr />
+<h3
+id="a-note-on-the-ground-outside-meet-me-here-tomorrow-at-this-time">A
+note on the ground outside: “Meet me here tomorrow at this time”</h3>
+<p>This note is uninterpretable</p>
+<ul>
+<li><p>Where’s here?</p></li>
+<li><p>Who’s me?</p></li>
+<li><p>When’s tomorrow? At what time?</p></li>
+</ul>
+<hr />
+<h3 id="these-are-all-deictic-expressions">These are all “deictic”
+expressions</h3>
+<ul>
+<li>They make reference to the discourse context, and don’t have meaning
+outside of it</li>
+</ul>
+<hr />
+<h2 id="deictic-words">Deictic Words</h2>
+<p>Words whose meaning depends on the conversational context</p>
+<hr />
+<h3 id="types-of-deictic-words">Types of Deictic Words</h3>
+<ul>
+<li><p>Pronouns: Me, Us, Him, Her, It, Them</p></li>
+<li><p>Temporal Expressions: Today, Next Month, Now, Then, Soon</p></li>
+<li><p>Locatives: Here, there, close, across the street</p></li>
+<li><p>Demonstratives: This, That, The other, those</p></li>
+</ul>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="which-sentence-does-not-contain-a-deictic-word">Which sentence
+<em>does not</em> contain a deictic word?</h3>
+<ol type="A">
+<li><p>“Rick and Graham had their wedding there.</p></li>
+<li><p>“I’m not sure who you’re talking about.”</p></li>
+<li><p>“Mahesh will see to it next week.”</p></li>
+<li><p>“Sally took some students out to dinner at a Sushi
+restaurant.”</p></li>
+<li><p>“John saw a coffee shop across the parking lot.”</p></li>
+</ol>
+<hr />
+<h3 id="which-sentence-does-not-contain-a-deictic-word-1">Which sentence
+<em>does not</em> contain a deictic word?</h3>
+<ol type="A">
+<li><p>“Rick and Graham had their wedding there.</p></li>
+<li><p>“I’m not sure who you’re talking about.”</p></li>
+<li><p>“Mahesh will see to it next week.”</p></li>
+<li><p><correct>“Sally took some students out to dinner at a Sushi
+restaurant.”</correct></p></li>
+<li><p>“John saw a coffee shop across the parking lot.”</p></li>
+</ol>
+<hr />
+<h3 id="deictic-expressions-need-context-to-be-understood">Deictic
+Expressions need context to be understood</h3>
+<ul>
+<li><p>This is a big problem in natural language processing</p></li>
+<li><p>“Jian will meet you here.”</p></li>
+<li><p>“Ron scheduled her for two weeks out”</p></li>
+<li><p>“She’ll need to come back for a consult shortly”</p></li>
+<li><p>“Mark’s parked across the street from there.”</p></li>
+</ul>
+<hr />
+<h3
+id="many-of-these-things-depend-on-the-past-elements-of-the-conversation">Many
+of these things depend on the past elements of the conversation</h3>
+<ul>
+<li><p>“Jian will take care of it next week”</p></li>
+<li><p>“They’re gonna have a great time”</p></li>
+<li><p>“The cat will win the show for sure”</p></li>
+</ul>
+<hr />
+<h3 id="weve-seen-this-before-already">We’ve seen this before
+already</h3>
+<ul>
+<li><p>“the” is the “definite” article</p>
+<ul>
+<li>Refers to something already defined</li>
+</ul></li>
+<li><p>“a” is the “indefinite” article</p>
+<ul>
+<li>Refers to something which hasn’t yet been defined</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="definiteness-vs.-indefiniteness">Definiteness
+vs. Indefiniteness</h3>
+<ul>
+<li><p>“Did you go to (a/the) store?”</p>
+<ul>
+<li>“I went to the store” vs. “I went to THE STORE”</li>
+</ul></li>
+<li><p>“I saw (a/the) man last week”</p></li>
+<li><p>“(A/the) handyman can fix the door”</p></li>
+<li><p>“My cat is going to be in (a/the) show”</p></li>
+<li><p>We know the referents in part based on discourse!</p>
+<ul>
+<li>This is called “Anaphora”, resolving the referents of different
+terms</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="theres-plenty-more-to-the-information-structure-of-discourse">There’s
+plenty more to the “information structure” of discourse</h3>
+<ul>
+<li><p>Which is new information, which is old information?</p></li>
+<li><p>Who does what refer to?</p></li>
+<li><p>What is being contrasted?</p></li>
+<li><p>… but that’s a whole other bag of worms</p></li>
+</ul>
+<hr />
+<h3 id="so-thats-pragmatics">So, that’s Pragmatics</h3>
+<ul>
+<li><p>The idea that the meaning of some things is inseparable from the
+discourse context</p></li>
+<li><p>… and the final of the major subfields we’re going to terribly,
+TERRIBLY under-describe</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="ling_memes/ignoring_pragmatics.jpg"></p>
+<hr />
+<h1 id="the-linguistic-subfields">The Linguistic Subfields</h1>
+<hr />
+<h3 id="weve-now-talked-about-the-major-subfields-of-linguistics">We’ve
+now talked about the “major subfields” of Linguistics</h3>
+<ul>
+<li><p>Phonetics</p></li>
+<li><p>Phonology</p></li>
+<li><p>Morphology</p></li>
+<li><p>Syntax</p></li>
+<li><p>Semantics</p></li>
+<li><p>Pragmatics</p></li>
+</ul>
+<hr />
+<h3 id="there-are-other-fields-but-well-get-to-that-later">(There are
+other fields, but we’ll get to that later)</h3>
+<hr />
+<h3 id="weve-treated-them-all-as-independent">We’ve treated them all as
+independent</h3>
+<ul>
+<li><p>… but they’re really not</p></li>
+<li><p>Let’s take a few minutes to watch them mix</p></li>
+</ul>
+<hr />
+<h3 id="syntax-and-phonetics">Syntax and Phonetics</h3>
+<ul>
+<li><p><strong>Prosody!</strong></p></li>
+<li><p>Prosody governs all the elements of speech that aren’t vowels or
+consonants</p></li>
+</ul>
+<hr />
+<h3 id="incorrect-prosody-is-a-great-way-to-bother-people">Incorrect
+Prosody is a great way to bother people</h3>
+<ul>
+<li><p>“I’m going to the store to get peas, carrots, milk, cat food and
+cereal”</p></li>
+<li><p>“I saw the Duke of Edinburgh speak”</p></li>
+<li><p>“Did you see me at Vons?</p></li>
+</ul>
+<hr />
+<h3 id="from-t.s-eliots-the-wasteland">From T.S Eliot’s <em>The
+Wasteland</em></h3>
+<blockquote>
+<p>What are the roots that clutch, what branches grow<br> Out of this
+stony rubbish? Son of man,<br> You cannot say, or guess, for you know
+only<br> A heap of broken images, where the sun beats,<br> And the dead
+tree gives no shelter, the cricket no relief,<br> And the dry stone no
+sound of water. Only<br> There is shadow under this red rock,<br> (Come
+in under the shadow of this red rock),<br> And I will show you something
+different from either<br> Your shadow at morning striding behind you<br>
+Or your shadow at evening rising to meet you;<br> I will show you fear
+in a handful of dust.</p>
+</blockquote>
+<hr />
+<h3 id="from-t.s-eliots-the-wasteland-1">From T.S Eliot’s <em>The
+Wasteland</em></h3>
+<blockquote>
+<p>What are the roots that clutch, what branches grow<br> Out of this
+stony rubbish? Son of man,<br> You cannot say, or guess, for you know
+only<br> A heap of broken images, where the sun beats,<br> And the dead
+tree gives no shelter, the cricket no relief,<br> And the dry stone no
+sound of water. Only<br> There is shadow under this red rock,<br> (Come
+in under the shadow of this red rock),<br> And I will show you something
+different from either<br> Your shadow at morning striding behind you<br>
+Or your shadow at evening rising to meet you;<br> I will show you fear
+in a handful of dust.</p>
+</blockquote>
+<audio data-autoplay src="video/wasteland_tts.mp3">
+</audio>
+<hr />
+<h3
+id="wow-text-to-speech-is-hard.-i-wonder-why-i-should-take-lign-168">“Wow,
+text to speech is hard. I wonder why… I should take LIGN 168!”</h3>
+<ul>
+<li><img class="r-stretch" src="img/plug.jpg"></li>
+</ul>
+<hr />
+<h3 id="phonetics-and-pragmatics">Phonetics and Pragmatics</h3>
+<ul>
+<li><p>Stress for Contrastive Focus</p></li>
+<li><p>“No, I saw STEVE last weekend”</p></li>
+<li><p>“Tyresha went to the park last weekend”</p></li>
+<li><p>“I went to the store”</p></li>
+<li><p>“I went to THE STORE”</p></li>
+</ul>
+<hr />
+<h3 id="morphology-and-phonology">Morphology and Phonology</h3>
+<ul>
+<li><p>Refrigerate (ɹə’fɹɪdʒɚeɪt)</p></li>
+<li><p>Refrigerator (ɹə’fɹɪdʒɚeɪɾɚ)</p></li>
+<li><p>Photograph (foʊɾə’gɹæf)</p></li>
+<li><p>Photographer (fə’tɑgɹəfɚ)</p></li>
+</ul>
+<hr />
+<h3 id="syntax-and-semantics">Syntax and Semantics</h3>
+<ul>
+<li><p>We’ve been all over that already</p></li>
+<li><p>Verb frames, argument structure, etc.</p></li>
+</ul>
+<hr />
+<h3 id="syntax-and-pragmatics">Syntax and Pragmatics</h3>
+<ul>
+<li><p>“I saw John last weekend”</p></li>
+<li><p>“It was John that I saw last weekend”</p></li>
+<li><p>“John is who I saw last weekend”</p></li>
+<li><p>“Last weekend, I saw John”</p></li>
+<li><p>“John, I saw last weekend”</p></li>
+<li><p>“John? Saw him last weekend I did.”</p></li>
+</ul>
+<hr />
+<h3 id="plus-there-are-all-the-fields-we-havent-talked-about-yet">Plus
+there are all the fields we haven’t talked about yet…</h3>
+<ul>
+<li><p>Language Change/Historical Linguistics</p></li>
+<li><p>Sociolinguistics</p></li>
+<li><p>Psycholinguistics</p></li>
+<li><p>Computational Linguistics</p></li>
+<li><p>Neurolinguistics</p></li>
+<li><p>Language Acquisition</p></li>
+</ul>
+<hr />
+<h3 id="every-subfield-interacts-with-every-other-subfield">Every
+subfield interacts with every other subfield</h3>
+<ul>
+<li><p>These are not actually separate things, but a schema for
+representing knowledge in the field</p></li>
+<li><p>We think about these as regions, but it’s hard to draw exact
+lines</p></li>
+<li><p>… and the lines are different in each language</p></li>
+</ul>
+<hr />
+<h3 id="you-need-to-know-all-of-them">You need to know all of them</h3>
+<ul>
+<li><p>Linguistics Grad School makes you do some work in every
+area</p></li>
+<li><p>It is a poor linguist who knows only one subfield</p></li>
+<li><p>This is an advantage to a LING major, rather than just taking one
+or two courses</p></li>
+<li><p>P-side and S-side linguists are a thing</p></li>
+</ul>
+<hr />
+<h1 id="you-cannot-run">You cannot run</h1>
+<ul>
+<li><p>You cannot hide</p></li>
+<li><p>Phonetics will find you.</p>
+<ul>
+<li>(So just learn the damned IPA)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="i-know-what-youre-thinking">I know what you’re thinking</h3>
+<ul>
+<li>“Will, of course I want to declare a LIGN Major! What classes should
+I take!”</li>
+</ul>
+<hr />
+<h2 id="planning-for-your-ling-major">Planning for your LING Major!</h2>
+<hr />
+<h3 id="learn-more-about-our-majors-here">Learn more about our majors <a
+href="https://linguistics.ucsd.edu/undergrad/majors/index.html">here</a></h3>
+<ul>
+<li><p>General Lingustics</p>
+<ul>
+<li>“Which subfield do you like?” “Yes”</li>
+</ul></li>
+<li><p>Speech and Language Sciences</p>
+<ul>
+<li>This is how you can aim yourself towards Speech Pathology and
+Audiology</li>
+</ul></li>
+<li><p>Cognition and Language</p>
+<ul>
+<li>Focuses on language and the brain</li>
+</ul></li>
+<li><p>Language and Society</p>
+<ul>
+<li>Focuses on language and social issues</li>
+</ul></li>
+<li><p>Language Studies</p>
+<ul>
+<li>Focus on your language of choice</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="our-classes-are-usually-offered-in-the-same-quarters">Our
+classes are usually offered in the same quarters</h3>
+<ul>
+<li><p><strong>Fall:</strong> 110 Phonetics</p></li>
+<li><p><strong>Winter:</strong> 111 Phonology, 121 Syntax, 112/113
+Speech/Hearing Disorders</p></li>
+<li><p><strong>Spring:</strong> 120 Morphology, 130 Semantics, 160
+Pragmatics</p></li>
+</ul>
+<hr />
+<h3 id="there-is-one-main-sequence">There is one main sequence</h3>
+<ul>
+<li><p>Phonetics, then Phonology, then Morphology</p></li>
+<li><p>Going out of order is a <em>bad</em> idea</p>
+<ul>
+<li>The 120 instructor might let you, but you shouldn’t do it unless
+you’re ready to devote a lot of time to learning IPA and phonology</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="other-non-101-classes-from-will-to-avoid">Other Non-101 Classes
+from Will (to avoid?)</h3>
+<ul>
+<li><p>Graduate Phonetics Seminar - Winter 2025</p></li>
+<li><p>LIGN 113 (Hearing Science and Hearing Disorders) - Spring
+2025</p></li>
+<li><p>LIGN 168 (Computational Speech Processing) - Winter/Spring
+2026?</p></li>
+</ul>
+<hr />
+<h3 id="we-also-have-a-linguistics-minor">We also have <a
+href="https://linguistics.ucsd.edu/undergrad/majors/general-linguistics.html">a
+linguistics minor</a></h3>
+<ul>
+<li><p>Take the six core linguistics classes</p>
+<ul>
+<li>101, Phonetics, Phonology, Morphology, Syntax, Semantics</li>
+</ul></li>
+<li><p>Take Five Upper Division Linguistics Electives</p></li>
+<li><p>Take one more class in another department that’s
+language-related</p></li>
+</ul>
+<hr />
+<h3
+id="contact-linginfoling.ucsd.edu-for-more-information-about-the-major">Contact
+<a href="mailto:linginfo@ling.ucsd.edu"
+class="email">linginfo@ling.ucsd.edu</a> for more information about the
+major</h3>
+<ul>
+<li>Or for questions about the field, ask me, I’m the Undergrad Faculty
+Advisor!</li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Conversational Maxims allow us to imply things with
+language</p></li>
+<li><p>Implicature is everywhere</p></li>
+<li><p>We can assume presuppositions are a thing</p></li>
+<li><p>Speech acts are a thing</p></li>
+<li><p>Deixis is referentacular</p></li>
+<li><p>Pragmatics is Contextual</p></li>
+<li><p>… and you cannot hide from any element of language</p></li>
+</ul>
+<hr />
+<h2 id="next-time">Next time</h2>
+<ul>
+<li>Language Change</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

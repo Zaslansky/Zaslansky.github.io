@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="neural-approaches-to-tts">Neural Approaches to TTS</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="a-dire-warning">A Dire Warning</h3>
+<ul>
+<li><p>HW4 is going to take time</p></li>
+<li><p>Don’t expect to finish it at 10:50pm on the night of</p></li>
+</ul>
+<hr />
+<h3 id="a-less-dire-warning">A less dire warning</h3>
+<ul>
+<li>Office hours will end at Noon on Friday, sorry!</li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Diversity in Neural TTS Models</p></li>
+<li><p>Neural Text Analysis</p></li>
+<li><p>Generating Intermediate Representations</p></li>
+<li><p>Waveform Generation</p></li>
+</ul>
+<hr />
+<h2 id="diversity-in-neural-tts-models">Diversity in Neural TTS
+Models</h2>
+<hr />
+<h3 id="neural-tts-is-not-just-one-thing">Neural TTS is not just one
+thing</h3>
+<ul>
+<li><p>Preparing for this lecture meant staring wild variability in the
+face</p></li>
+<li><p>There are many models and methods which can do this task</p></li>
+<li><p>Often, ‘new models’ are just recombinations of old
+models</p></li>
+</ul>
+<hr />
+<h3 id="well-just-teach-the-state-of-the-art">“Well, just teach the
+state-of-the-art!”</h3>
+<ul>
+<li><p>I wish I could!</p></li>
+<li><p>Current state of the art models from ElevenLabs, OpenAI, Google,
+and Amazon are all closed and proprietary</p>
+<ul>
+<li>If you want the best TTS in the world, it has to happen on somebody
+else’s computer</li>
+</ul></li>
+<li><p>Details are often not published and considered “trade
+secrets”</p>
+<ul>
+<li>They may well be open-source models with changes and tweaks</li>
+</ul></li>
+<li><p>It’s not currently possible to teach the state of the art in
+TTS!</p>
+<ul>
+<li>… and this should disturb us as a society</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-are-some-good-open-models">There are some good, open
+models!</h3>
+<ul>
+<li><p><a href="https://arxiv.org/pdf/1712.05884">TacoTron2</a></p></li>
+<li><p><a
+href="https://arxiv.org/abs/2006.04558">FastSpeech2</a></p></li>
+<li><p><a
+href="https://github.com/neonbjb/tortoise-tts">TortoiseTTS</a></p></li>
+<li><p><strong>We’re going to focus on these three</strong></p></li>
+</ul>
+<hr />
+<h3 id="even-open-models-have-lots-of-different-approaches">Even open
+models have lots of different approaches</h3>
+<ul>
+<li><p>Different architectures</p></li>
+<li><p>Different training methods</p></li>
+<li><p>Different loss functions</p></li>
+<li><p>Different methods for generating sound</p></li>
+</ul>
+<hr />
+<h3 id="were-going-to-focus-on-the-key-tasks-of-neural-tts">We’re going
+to focus on the key tasks of neural TTS!</h3>
+<ul>
+<li><p><strong>Text Analysis:</strong> How do neural models go from text
+to phonemes?</p></li>
+<li><p><strong>Phonemes-to-Intermediate-Representations:</strong> How do
+neural models turn text into a representation of the speech?</p>
+<ul>
+<li>Generating an ‘acoustic model’ or Mel Spectrogram</li>
+</ul></li>
+<li><p><strong>Intermediate Representations to Waveforms:</strong> How
+do neural models turn the last step’s output into something audible?</p>
+<ul>
+<li>‘Neural Mel Inverters’ or ‘Mel Spectrogram Vocoders’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="end-to-end-models-tend-to-just-combine-these-steps">‘End-to-End’
+models tend to just combine these steps</h3>
+<ul>
+<li><p>Some ‘end-to-end’ models just say ‘First, do text analysis, then
+I’m end-to-end!’</p></li>
+<li><p>Sometimes text analysis is rolled in to building a
+representation</p></li>
+<li><p>Sometimes you skip the intermediate representations and generate
+the wave directly</p></li>
+</ul>
+<hr />
+<h3 id="so-lets-talk-about-our-three-key-tasks">So, let’s talk about our
+three key tasks!</h3>
+<hr />
+<h2 id="neural-text-analysis">Neural Text Analysis</h2>
+<hr />
+<h3 id="discrete-text-analysis-isnt-always-a-thing">Discrete Text
+Analysis isn’t always a thing</h3>
+<ul>
+<li><p>It’s very possible to do text analysis within the neural model
+itself</p>
+<ul>
+<li>Mapping straight from graphemes to some intermediate
+representations</li>
+</ul></li>
+<li><p>This has the advantage of neural networks to discover prosodic
+features, rather than having to model it</p></li>
+<li><p>So, don’t always expect a separate Text Analysis step</p></li>
+</ul>
+<hr />
+<h3
+id="text-analysis-is-often-done-in-an-encoder-decoder-arrangement">Text
+Analysis is often done in an encoder-decoder arrangement</h3>
+<ul>
+<li><p>Some models (e.g. Tacotron2) use an encoder to ‘feed’ the text
+into an acoustics-generating decoder</p></li>
+<li><p>Others just treat Grapheme-to-Phoneme as an encoder task (e.g. <a
+href="https://arxiv.org/pdf/1702.07825">DeepVoice</a>)</p></li>
+<li><p>This has the benefit of optimizing the text analysis while the
+model itself is being trained</p>
+<ul>
+<li>… and also customizing the analysis to meet the loss function</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="sometimes-the-text-analysis-is-decidedly-non-neural">Sometimes,
+the text analysis is decidedly non-neural</h3>
+<ul>
+<li><p>It is <em>always</em> computationally cheaper to look up the word
+in CMUDict than to find phonemes in a DNN</p></li>
+<li><p><a
+href="https://github.com/ming024/FastSpeech2/tree/master">FastSpeech2</a>
+uses old school CMUDict text analysis approaches</p>
+<ul>
+<li><a href="https://github.com/ming024/FastSpeech2">This
+implementation</a> has a nice implementation <a
+href="https://github.com/ming024/FastSpeech2/tree/master/text">here</a></li>
+</ul></li>
+<li><p>“Strip symbols, CMUDict what you can, grapheme-to-phoneme the
+rest, clean from there”</p>
+<ul>
+<li>Grapheme-to-Phoneme is done using <a
+href="https://pypi.org/project/g2p-en/">g2p-en</a></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="either-way-its-text-analysis">Either way, it’s text
+analysis!</h3>
+<ul>
+<li><p>Same issues, different architecture!</p></li>
+<li><p>Let’s move on to something new, like…</p></li>
+</ul>
+<hr />
+<h2 id="generating-intermediate-representations">Generating Intermediate
+Representations</h2>
+<hr />
+<h3
+id="most-modern-neural-tts-systems-use-an-intermediate-representation">Most
+modern neural TTS systems use an ‘intermediate representation’</h3>
+<ul>
+<li><p>This is sometimes called ‘the Acoustic model’</p></li>
+<li><p>This is generally a log-mel-frequency spectrogram (‘mel
+spectrogram’) of the data</p>
+<ul>
+<li>Note, this is <em>not</em> an MFCC</li>
+<li>Why mel?</li>
+</ul></li>
+<li><p>The network is trained to match text to corresponding mel
+spectrograms</p></li>
+<li><p>This spectrogram can then be turned into a waveform in a
+subsequent step</p>
+<ul>
+<li>This is a specialized kind of speech vocoder</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="this-is-sort-of-like-the-parametric-synthesis-we-talked-about-last-time">This
+is sort of like the parametric synthesis we talked about last time</h3>
+<ul>
+<li>It’s not the same idea, but it’s the same general vibe
+<ul>
+<li>“Don’t synthesize the waveform, but synthesize a set of numbers that
+can be used to generate the waveform”</li>
+</ul></li>
+<li>Neural approaches tend to use mel spectrograms because they’re more
+informative and don’t need speech-specific vocoders
+<ul>
+<li>… and neural models are powerful enough to generate the more complex
+spectrograms</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="but-will">… but Will…</h3>
+<ul>
+<li>If Neural Models are so powerful, <strong>why not just predict the
+waveform directly from text?</strong></li>
+</ul>
+<hr />
+<h3 id="why-not-go-directly-from-text-to-waveform">Why not go directly
+from text to waveform?</h3>
+<ul>
+<li>Doing this directly is computationally difficult and has high memory
+costs
+<ul>
+<li>Each frame is 2205 samples long at 44,100 Hz</li>
+</ul></li>
+<li>This cost scales with synthesis size
+<ul>
+<li>Generating waveforms for phonemes is much more tractable than for
+sentences</li>
+</ul></li>
+<li>The waveform actually isn’t the ‘important part’ of speech for
+humans
+<ul>
+<li>We care about frequency and timing more than direct facts about the
+waveform</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="why-not-go-directly-from-text-to-waveform-continued">Why not go
+directly from text to waveform? (Continued)</h3>
+<ul>
+<li>We can train the model better on a less complex task
+<ul>
+<li>Predicting a spectrogram is an easier generative task</li>
+</ul></li>
+<li>It makes your approach modular
+<ul>
+<li>You can swap for a different vocoder to get better performance</li>
+</ul></li>
+<li>Mel-spectrograms differ a bit less across speakers than waveforms
+<ul>
+<li>The ‘information gap’ is wider between text and waveforms</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="were-going-to-look-at-three-approaches-to-this-task">We’re going
+to look at three approaches to this task</h3>
+<ul>
+<li><p>TacoTron2 (Encoder-Decoder)</p></li>
+<li><p>FastSpeech 2 (Parallel Generation)</p></li>
+<li><p>TorToise TTS (Diffusion-based Modeling)</p></li>
+</ul>
+<hr />
+<h3 id="were-going-to-leave-out-some-details">We’re going to leave out
+some details</h3>
+<ul>
+<li><p>Talk to me if you’re curious about training and loss
+functions</p></li>
+<li><p>Don’t worry about memorizing everything here</p></li>
+<li><p>Let’s focus instead on what makes these models different</p></li>
+<li><p>Each one represents a different approach!</p></li>
+</ul>
+<hr />
+<h3 id="tacotron-2-uses-an-encoder-decoder-architecture">TacoTron 2 uses
+an encoder-decoder architecture</h3>
+<ul>
+<li><p>The input is taken through an encoder, and slapped into a
+decoder</p></li>
+<li><p>A series of networks are used to create a Mel Frequency
+Spectrogram</p></li>
+<li><p>A separate model predicts when to stop generating</p>
+<ul>
+<li>This is an alignment problem</li>
+</ul></li>
+<li><p>This is <em>autoregressive</em>, as it takes the last frame as
+input for the current frame</p>
+<ul>
+<li>You <em>must generate frames in order, and this is slower!</em></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="creating-mel-spectrograms-tacotron-2">Creating Mel Spectrograms
+(TacoTron 2)</h3>
+<p><img class="r-stretch" src="phonmedia/tts_tacotron2.png"></p>
+<hr />
+<h3 id="fastspeech-2-uses-a-parallel-approach">FastSpeech 2 uses a
+‘parallel’ approach</h3>
+<ul>
+<li><p>It generates the whole spectrogram from the whole input text in a
+single step</p>
+<ul>
+<li>This makes it <em>much faster</em> than other approaches</li>
+</ul></li>
+<li><p>First, it encodes the phoneme-level input as an intermediate
+representation</p></li>
+<li><p>Then it uses a ‘variance adapter’ to predict duration, energy,
+and pitch onto that</p>
+<ul>
+<li>This is effectively “Now do prosody” plus segment duration</li>
+<li>By predicting segment duration directly, you don’t need to work
+frame-by-frame</li>
+</ul></li>
+<li><p>It can go straight to Waveforms (‘FastSpeech2s’) or to a Mel
+Spectrogram</p>
+<ul>
+<li>If you output Waveforms here, it’s ‘end-to-end’ (except text
+analysis…)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="creating-mel-spectrograms-fastspeech-2">Creating Mel
+Spectrograms (FastSpeech 2)</h3>
+<p><img class="r-stretch" src="phonmedia/tts_fastspeech2.png"></p>
+<hr />
+<h3 id="tortoise-is-really-weird">TorToise is <em>really</em> weird</h3>
+<ul>
+<li><p>It’s based roughly on image models like <a
+href="https://stability.ai/news/stable-diffusion-3">StableDiffusion</a>
+or <a href="https://openai.com/index/dall-e-2/">Dall-E</a></p></li>
+<li><p>TorToise uses an autoregressive transformer to encode the text
+into multiple ‘candidate’ productions</p>
+<ul>
+<li>This is very slow, but does text analysis <em>and</em> allows long
+sequence effects</li>
+</ul></li>
+<li><p>It uses ‘CLVP’ to model correspondence between spectrogram/text
+pairs, like an image captioner</p>
+<ul>
+<li>This is very slow, but allows you to choose the best candidates
+based on the text</li>
+</ul></li>
+<li><p>Then you feed it through a <em>diffusion model</em> to get a
+spectrogram</p>
+<ul>
+<li>‘Denoising Diffusion Probabilistic Model’ (DDPM), this is very slow
+too!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="diffusion-models">Diffusion Models</h3>
+<ul>
+<li>We train them by gradually ‘corrupting’ an image with noise until it
+reaches uniformity
+<ul>
+<li>This is ‘Forward Diffusion’</li>
+<li>“Let’s slowly turn this flower into noise and teach the model what
+flowers with increasing noise look like”</li>
+</ul></li>
+<li>Inference gives an associated input, and then gradually ‘denoises’
+random noise with the input, creating something which is progressively
+more like the output
+<ul>
+<li>“Let’s denoise this noise until there’s a flower”</li>
+</ul></li>
+<li>This is what’s behind Dall-E and StableDiffusion!</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/diffusionmodel.webp"></p>
+<p><a
+href="https://learnopencv.com/denoising-diffusion-probabilistic-models/">Image
+from LearnOpenCV.com</a></p>
+<hr />
+<h3 id="tortoise-is-an-image-generation-model">TorToise is an image
+generation model</h3>
+<ul>
+<li><p>“We’ll use a transformer and paired text/image model to create a
+‘prompt’, and then feed it to a diffusion model”</p></li>
+<li><p>The result is something which is very slow, but very nuanced!</p>
+<ul>
+<li>Image generation models are very good at finding lots of probable
+detail</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="dalle/hidingkitten.jpg"></p>
+<hr />
+<h3 id="creating-mel-spectrograms-tortoise-tts">Creating Mel
+Spectrograms (TorToise TTS)</h3>
+<p><img class="r-stretch" src="phonmedia/tts_tortoise.png"></p>
+<hr />
+<h3 id="fun-aside-this-means-tortoise-hallucinates">Fun Aside: This
+means Tortoise hallucinates</h3>
+<ul>
+<li>The ‘Stop Token’ task turns out to be very important!</li>
+</ul>
+<audio controls src="comp/tts_will_tortoise.wav">
+</audio>
+<hr />
+<h3 id="each-of-these-uses-different-approaches">Each of these uses
+different approaches</h3>
+<ul>
+<li>TacoTron uses an Encoder-Decoder, Autoregressive Approach to get
+spectrograms
+<ul>
+<li>It’s slow, but it’s effective!</li>
+</ul></li>
+<li>FastSpeech2 uses a fully parallel approach to generate a spectrogram
+(or waveform) from the sequence <em>all at once</em>
+<ul>
+<li>It’s fast, but it’s CPU intensive!</li>
+</ul></li>
+<li>Tortoise uses the text as a prompt to generate the spectrogram like
+an image generator would
+<ul>
+<li>It’s really slow, but takes an entirely different tack</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-are-lots-of-other-approaches">There are lots of other
+approaches</h3>
+<ul>
+<li><p>… but these three represent some of the more interesting
+approaches in current use</p></li>
+<li><p>So now, we have a mel spectrogram representing the input
+text</p></li>
+<li><p><strong>How do we turn that back into a
+waveform?</strong></p></li>
+</ul>
+<hr />
+<h2 id="neural-generation-of-waveforms">Neural Generation of
+Waveforms</h2>
+<hr />
+<h3 id="the-mel-spectrogram-inversion-problem">The Mel Spectrogram
+Inversion Problem</h3>
+<ul>
+<li>True Fourier Transforms are invertible
+<ul>
+<li>Inverse fourier transform recovers the input signal</li>
+</ul></li>
+<li>Generated spectrograms are not so invertible
+<ul>
+<li>They’re lacking phase and only have magnitude</li>
+<li>They’re often at a fixed window size, with time-frequency tradeoff
+in play</li>
+<li>Generated noise causes major</li>
+<li>Mel conversion adds more non-linearity to the inversion</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-is-one-theoretical-option">There is one theoretical
+option</h3>
+<ul>
+<li><p>The <a href="https://arxiv.org/pdf/2306.12504">Griffin-Lim
+Algorithm</a> is designed to approximate phase and invert
+spectrograms</p></li>
+<li><p>The results are often noisy, and unpleasant</p></li>
+<li><p>This is mostly presented to <a
+href="https://xkcd.com/356/">nerd-snipe</a> a few of you</p></li>
+</ul>
+<hr />
+<h3 id="mel-spectrogram-vocoders-generate-the-waveform">Mel Spectrogram
+Vocoders <em>generate</em> the waveform</h3>
+<ul>
+<li><p>The input is a Mel Spectrogram, and the output is a waveform for
+playback</p>
+<ul>
+<li>“Given this spectrogram, what should the corresponding speech
+waveform look like”</li>
+</ul></li>
+<li><p>This involves reconstructing the phase, as well as fine frequency
+and amplitude differences</p></li>
+<li><p>This also involves discarding artifacts in the mel spectrogram to
+approximate the voice</p></li>
+</ul>
+<hr />
+<h3 id="this-is-a-generative-process">This is a generative process</h3>
+<ul>
+<li><p>“Here’s a spectrogram, make up a wave that seems like it
+fits”</p></li>
+<li><p>The spectrogram is a prompt, not a deterministic input</p></li>
+</ul>
+<hr />
+<h3 id="were-going-to-talk-about-two-approaches-here">We’re going to
+talk about two approaches here</h3>
+<ul>
+<li><p>Wavenet (Sample Prediction)</p></li>
+<li><p>HiFi-GAN (Spectrogram upscaling and inversion)</p></li>
+</ul>
+<hr />
+<h3 id="wavenet">Wavenet</h3>
+<ul>
+<li><p><a href="https://arxiv.org/pdf/1609.03499">Published in 2016</a>
+by Google Deepmind</p></li>
+<li><p>This takes an input and predicts each sample as one of 65,536
+values</p>
+<ul>
+<li>Corresponding to a 16 bit audio signal</li>
+</ul></li>
+<li><p>It is autoregressive, and models each sample with consideration
+of the previous samples</p></li>
+<li><p>It uses ‘dilated convolutions’ to capture broader context</p>
+<ul>
+<li>Think convolutional filters which gradually look at wider spans of
+data</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="dilated-causal-convolutions">Dilated Causal Convolutions</h3>
+<p><img class="r-stretch" src="phonmedia/tts_wavenet_dilated.png"></p>
+<hr />
+<h3 id="wavenet-predicts-the-waveform-sample-by-sample">WaveNet predicts
+the waveform sample by sample!</h3>
+<ul>
+<li><p>Each sample is predicted based on the input and the last
+samples</p></li>
+<li><p>The waveform is built up moment-by-moment, and predicted
+directly</p></li>
+</ul>
+<hr />
+<h3 id="wavenet-has-advantages">WaveNet has advantages</h3>
+<ul>
+<li>You can use it with a variety of input data
+<ul>
+<li>Mel Spectrograms</li>
+<li>Phonemes</li>
+<li>Music</li>
+<li>Model layers</li>
+</ul></li>
+<li>It sounds very good
+<ul>
+<li>It’s quite good at creating natural-sounding speech</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wavenet-also-has-disadvantages">WaveNet also has
+disadvantages</h3>
+<ul>
+<li>These are big models
+<ul>
+<li>You need to accurately turn a large matrix into one of 65,536
+values</li>
+</ul></li>
+<li>This is a slow process
+<ul>
+<li>Sample-by-sample autoregression is another way to say ‘slow’</li>
+<li>Parallel WaveNet is designed to address this issue</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="fastspeech-2-uses-wavenet">FastSpeech 2 uses WaveNet</h3>
+<ul>
+<li><p>FastSpeech2’s waveform generator is based on WaveNet</p></li>
+<li><p><img class="r-stretch" src="phonmedia/tts_fastspeech2.png"></p></li>
+</ul>
+<hr />
+<h3 id="baidus-deep-voice-model-also-uses-wavenet">Baidu’s ‘Deep Voice’
+model also uses WaveNet</h3>
+<ul>
+<li><p>Like, directly. Out of the box.</p></li>
+<li><p>… but there’s another approach!</p></li>
+</ul>
+<hr />
+<h3 id="hifi-gan">HiFi-GAN</h3>
+<ul>
+<li><a href="https://arxiv.org/pdf/2010.05646">Created in 2020</a> by
+researchers from Kakao Enterprise
+<ul>
+<li>A South Korean AI company</li>
+</ul></li>
+<li>Uses a Generative Adversarial Network
+<ul>
+<li>CNN-based generator that effectively upscales Mel Spectrograms until
+they’re detailed enough to invert</li>
+<li>Set of discriminators that try to detect artificial waveforms
+vs. real ones</li>
+<li>Discriminators try to ‘catch out’ both fine detail and longer-term
+patterns</li>
+</ul></li>
+<li>Inference just uses the generator portion to create a waveform</li>
+</ul>
+<hr />
+<h3
+id="hifi-gan-predicts-the-waveform-by-improving-the-spectrogram-until-it-can-be-inverted">HiFi-GAN
+predicts the waveform by ‘improving’ the spectrogram until it can be
+inverted</h3>
+<ul>
+<li><p>Each layer effectively upscales the spectrogram, ‘adding back’
+information which it thinks was missing</p></li>
+<li><p>This (presumably) also involves some phase recovery</p></li>
+<li><p>The final step effectively ‘inverts’ the spectrogram using this
+information, turning it back into the likely wave</p></li>
+</ul>
+<hr />
+<h3
+id="hifi-gan-is-a-one-of-the-best-neural-vocoders-out-there">HiFi-GAN is
+a one of the best neural vocoders out there</h3>
+<ul>
+<li>It’s <em>much</em> faster than WaveNet
+<ul>
+<li>You’re working on the whole spectrogram at the same time</li>
+<li>It can approach real-time inference!</li>
+</ul></li>
+<li>Very good at creating real-sounding waveforms
+<ul>
+<li>Faking out humans is GAN territory</li>
+</ul></li>
+<li>It’s not specifically focused on speech
+<ul>
+<li>Since you’re just improving the spectrogram, you’re not making big
+assumptions about the kind of input data</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="these-represent-two-approaches-to-waveform-generation">These
+represent two approaches to waveform generation</h3>
+<ul>
+<li><p>WaveNet: “Guess the next sample based on the input and the last
+samples”</p>
+<ul>
+<li>This is also the approach in WaveRNN,</li>
+</ul></li>
+<li><p>HiFi-GAN: “Take the spectrogram and make it more and more
+detailed until we can just invert it”</p></li>
+<li><p>There are other approaches too</p>
+<ul>
+<li>Flow modeling (see <a
+href="https://arxiv.org/pdf/1811.00002">WaveGlow</a>)</li>
+<li>LPC prediction (see <a
+href="https://github.com/xiph/LPCNet">LPCNet</a>)</li>
+<li>Diffusion modeling (see <a
+href="https://github.com/lmnt-com/diffwave">DiffWave</a>)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="now-you-understand-how-neural-tts-generally-works">Now you
+understand how Neural TTS generally works</h3>
+<ul>
+<li><p><strong>Text Analysis:</strong> Let’s turn text into a string of
+phonemes and prosodic information</p></li>
+<li><p><strong>Phonemes-to-Intermediate-Representations:</strong> Let’s
+generate a mel spectrogram from that phoneme sequence</p></li>
+<li><p><strong>Intermediate Representations to Waveforms:</strong> Let’s
+turn that mel spectrogram into a waveform</p></li>
+</ul>
+<hr />
+<h3 id="now-i-know-what-youre-thinking">Now, I know what you’re
+thinking…</h3>
+<ul>
+<li>“Sure, we know how to create neural networks which model speech
+data…”</li>
+</ul>
+<hr />
+<h3 id="what-should-the-training-data-look-like">“What should the
+training data look like?!”</h3>
+<ul>
+<li><p>“Clearly we need a speaker, saying a lot of words”</p></li>
+<li><p>“… but what should that speaker sound like?”</p>
+<ul>
+<li><strong>Next time</strong></li>
+</ul></li>
+<li><p>“… and can we get multiple ‘voices’ out of one model?”</p>
+<ul>
+<li><strong>Next next time</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>There are many Neural TTS models, with many approaches, and many
+closed systems</p></li>
+<li><p>All Neural TTS has to do text analysis somehow</p></li>
+<li><p>Most models turn the text analysis into some acoustic
+intermediate representation</p></li>
+<li><p>Which we then turn into waves using a neural vocoder</p></li>
+<li><p>Some models collapse some of these steps, but ‘end to end’ isn’t
+quite the same in TTS as ASR</p></li>
+<li><p>Neural ASR is ridiculously good</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li><p>We’re going to have a discussion about the Sociolinguistics of
+Text-to-Speech models and computer voices</p></li>
+<li><p>Be thinking about…</p>
+<ul>
+<li>What should these models sound like?</li>
+<li>Who should these models sound like?</li>
+<li>Are these ‘social’ in any meaningful way?</li>
+<li>Should we try to make these imitate sociolects?</li>
+<li>What are the consequences of making different choices about models’
+perceived positionality?</li>
+</ul></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

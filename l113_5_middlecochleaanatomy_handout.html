@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1 id="the-anatomy-of-the-middle-and-inner-ear">The Anatomy of the
+Middle and Inner Ear</h1>
+<p>Will Styler - LIGN 113</p>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>The Middle Ear</p></li>
+<li><p>The Vestibular System</p></li>
+<li><p>The Cochlea</p></li>
+</ul>
+<hr />
+<h2 id="the-middle-ear">The Middle Ear</h2>
+<hr />
+<h3 id="the-outer-ear-ends-at-the-tm">The Outer Ear ends at the TM</h3>
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/middleear_notymp.jpg"></p>
+<hr />
+<h3 id="the-middle-ear-1">The Middle Ear</h3>
+<p><img class="r-stretch" src="hearing/middleear_netter.jpg"></p>
+<hr />
+<h3 id="the-eustachian-tubes">The Eustachian Tubes</h3>
+<p><img class="r-stretch" src="hearing/middleear_netter.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/eustachian_tube2.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/eustachian_tube.jpg"></p>
+<hr />
+<h3 id="the-eustachian-tubes-1">The Eustachian Tubes</h3>
+<ul>
+<li><p>a.k.a ‘Auditory Tube’, ‘Pharyngotympanic tube’</p></li>
+<li><p>Serve to regulate pressure inside the middle ear</p>
+<ul>
+<li>Allowing release of vaccuum and pressure in both directions</li>
+</ul></li>
+<li><p>Not always open!</p>
+<ul>
+<li><p>Opened by the tensor and levator veli palatini</p></li>
+<li><p>Otherwise, you’d hear your nasopharynx more!</p></li>
+</ul></li>
+<li><p>Contains a bony and cartilaginous portion</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/middleear_medial.jpg"></p>
+<hr />
+<h3 id="the-ossicular-chain">The Ossicular Chain</h3>
+<p><img class="r-stretch" src="hearing/middleear_netter.jpg"></p>
+<hr />
+<h3 id="comprised-of-three-bones">Comprised of three bones</h3>
+<ul>
+<li><p>Malleus (‘Hammer’)</p></li>
+<li><p>Incus (‘Anvil’)</p></li>
+<li><p>Stapes (‘Stirrup’)</p></li>
+<li><p>Suspended by ligaments and muscles</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/ossicles.jpg"></p>
+<hr />
+<h3 id="the-ossicular-chain-connects-the-tm-to-the-cochlea">The
+Ossicular Chain connects the TM to the cochlea</h3>
+<ul>
+<li><p>TM is attached to the malleus</p></li>
+<li><p>Malleus to incus to stapes</p>
+<ul>
+<li>via little tiny joints</li>
+</ul></li>
+<li><p>Stapes to the Oval window</p></li>
+<li><p>Ligaments serve to support the ossicles within the middle ear</p>
+<ul>
+<li>… and allow them to pivot</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/ossicular_chain.jpg"></p>
+<hr />
+<h3 id="the-ossicles-serve-four-important-roles">The Ossicles serve four
+important roles</h3>
+<ul>
+<li><p>They promote the acoustic reflex</p></li>
+<li><p>They amplify the acoustic signal</p></li>
+<li><p>They match the impedance between (external) air and (cochlear)
+fluid</p></li>
+<li><p>They protect the cochlea</p></li>
+</ul>
+<hr />
+<h3 id="the-acoustic-reflex">The Acoustic Reflex</h3>
+<ul>
+<li><p>Tightening the <em>stapedius</em> and <em>tensor tympani</em>
+muscles dampens the vibration of the ossicles</p></li>
+<li><p>This happens in (delayed) response to loud noises and our own
+speech</p></li>
+<li><p>More on this later!</p></li>
+</ul>
+<hr />
+<h3 id="enabling-the-acoustic-reflex">Enabling the acoustic reflex</h3>
+<p><img class="r-stretch" src="hearing/middleear_netter.jpg"></p>
+<hr />
+<h3 id="signal-amplification-and-impedance-matching">Signal
+Amplification and Impedance Matching</h3>
+<p><img class="r-stretch" src="hearing/middleear_netter.jpg"></p>
+<hr />
+<h3 id="impedance-matching-and-amplification">Impedance Matching and
+Amplification</h3>
+<ul>
+<li><p>Shrinking from TM to stapes increases force and improves
+<em>transduction</em></p></li>
+<li><p>Movement of bones matches the impedance</p></li>
+<li><p>We wouldn’t want the TM to be on the side of the cochlea</p></li>
+</ul>
+<hr />
+<h2 id="protecting-the-cochlea">Protecting the Cochlea</h2>
+<hr />
+<h3 id="the-ossicular-chain-can-be-injured">The Ossicular chain can be
+injured</h3>
+<ul>
+<li><p>Usually from head injury, TM perforation, or pressure</p></li>
+<li><p>Massive ‘conductive’ hearing loss</p></li>
+<li><p>Usually at the incus-stapes joint</p>
+<ul>
+<li>Sometimes at the incus-malleus joint</li>
+</ul></li>
+<li><p>An intact stapes usually means better outcomes</p></li>
+</ul>
+<hr />
+<h3 id="this-is-a-feature-not-a-bug">This is a feature, not a bug!</h3>
+<ul>
+<li><p>Better to injure the ossicles than cochlea!</p></li>
+<li><p>They can heal and repair, often</p></li>
+<li><p><a
+href="http://www.gracemedical.com/products/ossicular-prostheses/">Prosthetic
+ossicles</a> are a thing!</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/ossicular_prosthesis.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/ossicular_prosthesis2.jpg"></p>
+<hr />
+<h3 id="the-chorda-tympani-nerve">The Chorda Tympani Nerve</h3>
+<p><img class="r-stretch" src="hearing/ossicular_chain.jpg"></p>
+<hr />
+<h3 id="the-chorda-tympani-nerve-1">The Chorda Tympani Nerve</h3>
+<ul>
+<li><p>Carries tongue sensation, among other things</p></li>
+<li><p>One more reason you want your ear drums intact, thanks</p></li>
+</ul>
+<hr />
+<h3 id="thats-the-middle-ear">That’s the middle ear!</h3>
+<ul>
+<li><p>The ossicular chain</p></li>
+<li><p>The musculature involved in the acoustic reflex</p></li>
+<li><p>The Eustachian tubes</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/deeper.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="the-inner-ear">The ‘Inner Ear’</h3>
+<ul>
+<li><p>Comprised of the bony cavities within the temporal bone</p>
+<ul>
+<li>The ‘bony labyrinth’</li>
+</ul></li>
+<li><p>Contains the cochlea and the vestibular system</p></li>
+<li><p>These structures are tiny</p>
+<ul>
+<li><a
+href="https://link.springer.com/article/10.1007/s00330-005-2750-9">The
+Cochlea averages about 9mm long and 5mm high</a></li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/bony_labyrinth.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/bony_labyrinth_dissected.jpg"></p>
+<hr />
+<h3 id="the-vestibular-system">The Vestibular System</h3>
+<ul>
+<li><p>Dedicated to balance and orientation</p></li>
+<li><p>Includes both semicircular canals</p></li>
+<li><p>Filled with fluid and a method of detecting movement of that
+fluid</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/bony_labyrinth_dissected.jpg"></p>
+<hr />
+<h3 id="more-on-this-later">More on this later!</h3>
+<hr />
+<h2 id="the-cochlea">The Cochlea</h2>
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/bony_labyrinth.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/bony_labyrinth_dissected.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/bony_labyrinth_withcochlea.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/cochlea_cutaway.jpg"></p>
+<hr />
+<h3 id="the-cochlea-is-a-coiled-tube">The Cochlea is a coiled tube</h3>
+<ul>
+<li><p>About 2 3/4 turns</p></li>
+<li><p>Uncoiled it’d be ~35mm</p>
+<ul>
+<li>That’s 1.378” in ’Murica</li>
+</ul></li>
+<li><p>We talk about the ‘base’ and ‘apex’ of the cochlea</p>
+<ul>
+<li>The base is the widest part, the apex is the narrowest</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/bony_labyrinth_withcochlea.jpg"></p>
+<hr />
+<h3 id="the-interior-of-the-tube-is-complex">The interior of the tube is
+complex</h3>
+<ul>
+<li><p>There are three ‘cavities’ within the tube</p>
+<ul>
+<li><p>The Scala Vestibuli</p></li>
+<li><p>The Scala Media (also ‘cochlear duct’)</p></li>
+<li><p>The Scala Tympani</p></li>
+</ul></li>
+<li><p>The ‘tympani’ here refers to the round window</p>
+<ul>
+<li>Not the tympanic membrane</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/cochlea_cutaway.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/cochlea_cross.jpg"></p>
+<hr />
+<h3 id="these-cavities-are-filled-with-fluid">These cavities are filled
+with fluid</h3>
+<ul>
+<li><p>‘Perilymph’ in the Scalas Vestibuli and Tympani</p>
+<ul>
+<li>‘Peri’ like periphery, outside</li>
+</ul></li>
+<li><p>‘Endolymph’ in the Scala Media</p>
+<ul>
+<li>‘Endo’ like ‘endonym’, inside</li>
+</ul></li>
+<li><p><strong>The fact that there are two different fluids is super
+important later on</strong></p></li>
+</ul>
+<hr />
+<h3 id="connections-within-the-cochlea">Connections within the
+cochlea</h3>
+<ul>
+<li>The Scala Tympani and Scala Vestibuli meet at the
+<em>helicotrema</em></li>
+</ul>
+<p><img class="r-stretch" src="hearing/cochlea_cutaway.jpg"></p>
+<ul>
+<li>The Scala Media terminates at the helicotrema</li>
+</ul>
+<hr />
+<h3 id="the-scala-tympani-and-vestibuli-are-continuous">The Scala
+Tympani and Vestibuli are continuous</h3>
+<ul>
+<li><p>You could swim from the oval window to the round window</p>
+<ul>
+<li>Push off the oval window, up the Vestibuli, to the Helicotrema, down
+the Tympani, down to the round window</li>
+</ul></li>
+<li><p>The Scala media terminates at the helicotrema</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/cochlea_unrolled.jpg"></p>
+<hr />
+<h3 id="the-round-and-oval-windows-are-both-needed">The Round and Oval
+Windows are both needed</h3>
+<ul>
+<li>The round window pushes out when the oval window (stapes) pushes
+in</li>
+</ul>
+<hr />
+<h3 id="cochlea-internal-landmarks">Cochlea-internal landmarks</h3>
+<hr />
+<h3
+id="reissners-membrane-also-called-the-vestibular-membrane">Reissner’s
+Membrane (also called the ‘Vestibular Membrane’)</h3>
+<p><img class="r-stretch" src="hearing/cochlea_cross.jpg"></p>
+<hr />
+<h3 id="the-basilar-membrane">The Basilar Membrane</h3>
+<p><img class="r-stretch" src="hearing/cochlea_cross.jpg"></p>
+<hr />
+<h3 id="basilar-membrane-think-base-of-the-organ-of-corti">Basilar
+Membrane (think ‘base of the organ of corti’)</h3>
+<ul>
+<li><p>This is the surface which sound is able to deflect</p></li>
+<li><p>Stiffer at the base, more flexible at the apex</p>
+<ul>
+<li><p>Different areas respond to different frequencies</p></li>
+<li><p>This is called ‘tonotopic organization’</p></li>
+</ul></li>
+<li><p>Pressure waves cause basilar membrane displacement</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/cochlea_unrolled.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/cochlea_unrolled_wave.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/basilar_frequencies.jpg"></p>
+<hr />
+<h3 id="lots-more-on-tonotopic-organization-later">Lots more on
+tonotopic organization later!</h3>
+<hr />
+<h3
+id="so-the-basilar-membrane-vibrates-in-different-places-depending-on-frequency-of-input">So,
+the basilar membrane vibrates in different places depending on frequency
+of input</h3>
+<ul>
+<li>… but how do we pick that up?</li>
+</ul>
+<hr />
+<h3 id="the-organ-of-corti">The Organ of Corti!</h3>
+<p><img class="r-stretch" src="hearing/cochlea_cross.jpg"></p>
+<hr />
+<h3 id="key-takeaways">Key takeaways</h3>
+<ul>
+<li><p>The Middle Ear gets sound from the TM to the Oval Window</p></li>
+<li><p>The inner ear is a cavity within the temporal bone</p></li>
+<li><p>It contains the vestibular loops and the cochlea</p></li>
+<li><p>Cochlea is a spiraling wonderland of different cavities</p></li>
+<li><p>The basilar membrane moves with sound</p></li>
+<li><p>The Vibrations are picked up by the Organ of Corti!</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li>We’re gonna corti like it’s 1999</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

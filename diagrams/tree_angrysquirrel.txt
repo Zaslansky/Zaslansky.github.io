@@ -1,0 +1,7 @@
+tree_angrysquirreltex
+
+[S 
+  [NP The angry squirrel ]
+  [VP stole 
+    [NP the mixed nuts ] 
+    [PP from Walmart ] ] ]

@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="languages-of-north-america">Languages of North America</h1>
+<h3 id="lign-101---will-styler">LIGN 101 - Will Styler</h3>
+<hr />
+<h3 id="todays-agenda">Today’s agenda</h3>
+<ul>
+<li><p>Linguistic diversity in North America</p></li>
+<li><p>Three Awesome Native American Language Families</p></li>
+<li><p>Why Navajo made a great code in WWII/Korea.</p></li>
+</ul>
+<hr />
+<h3 id="so-theres-kind-of-a-pattern-in-world-languages">So, there’s kind
+of a pattern in World Languages</h3>
+<hr />
+<p><img class="r-stretch" src="lotwimg/americadiversitymap.png"></p>
+<hr />
+<p><img class="r-stretch" src="img/colonialism.png"></p>
+<hr />
+<p><img class="r-stretch" src="lotwimg/americaonecolor.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="lotwimg/nowspeakenglish.png"></p>
+<hr />
+<h3
+id="north-america-was-and-is-but-less-so-a-linguistically-diverse-place">North
+America was (and is, but less so) a linguistically diverse place!</h3>
+<hr />
+<p><img class="r-stretch" src="lotwimg/americadiversitymap.png"></p>
+<hr />
+<h3 id="north-american-indigenous-languages">North American Indigenous
+Languages!</h3>
+<ul>
+<li><p>Approximately 296 languages spoken above Mexico before
+colonialism</p>
+<ul>
+<li>(That we know of)</li>
+</ul></li>
+<li><p>These broke down into ~50 families</p></li>
+</ul>
+<hr />
+<h3 id="indigenous-language-families">Indigenous Language Families</h3>
+<p><img class="r-stretch" src="lotwimg/naallfamilies.png"></p>
+<hr />
+<h3 id="currently-surviving-indigenous-language-families"><em>Currently
+surviving</em> Indigenous Language Families</h3>
+<p><img class="r-stretch" src="lotwimg/naallfamiliesliving.png"></p>
+<hr />
+<h3 id="we-dont-have-time-to-talk-about-all-of-them">We don’t have time
+to talk about all of them</h3>
+<ul>
+<li>I’ll talk about a few families today</li>
+</ul>
+<hr />
+<h3 id="north-american-language-families">North American Language
+Families</h3>
+<p>(That we’re going to discuss today!)</p>
+<ul>
+<li><p>Siouan Languages</p></li>
+<li><p>Algonquian Languages</p></li>
+<li><p>Athabaskan/Na-Dené Languages</p></li>
+<li><p>Uto-Aztecan Languages</p></li>
+</ul>
+<hr />
+<h2 id="siouan-languages">Siouan Languages</h2>
+<hr />
+<p><img class="r-stretch" src="lotwimg/siouan_map.png"></p>
+<hr />
+<h3 id="siouan">Siouan</h3>
+<ul>
+<li><p>Also called “Siouxan” or “Catawban” or “Siouan-Catawban”</p></li>
+<li><p>Contained 20 languages</p></li>
+<li><p>Now contains 11 languages</p></li>
+</ul>
+<hr />
+<h3 id="well-known-siouan-languages">Well-known Siouan Languages</h3>
+<ul>
+<li><p>Dakota - 18,000 speakers</p></li>
+<li><p>Lakota - 6000 speakers</p>
+<ul>
+<li>This is the language used in “Dances with Wolves”</li>
+</ul></li>
+<li><p>Assiniboine/Nakota - 150 speakers</p></li>
+<li><p>Crow - 3000 speakers</p></li>
+<li><p>Osage - 10 speakers</p></li>
+<li><p>Hidatsa - 10 speakers</p></li>
+</ul>
+<hr />
+<h3
+id="dakota-nakota-and-lakota-are-often-just-considered-sioux">Dakota,
+Nakota and Lakota are often just considered “Sioux”</h3>
+<ul>
+<li><p>Together, they’re the fifth most widely spoken NA
+language</p></li>
+<li><p>They’ve got fun history!</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="lotwimg/dnlakota.png"></p>
+<hr />
+<p><lang>Lakota</lang><br><ldata>Siouxan - Great Plains</ldata></p>
+<p><img class="r-stretch" src="lotwimg/lakota_consonants.png"></p>
+<hr />
+<p><lang>Lakota</lang><br><ldata>Siouxan - Great Plains</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/g-p4A4NcN6Q">
+</iframe>
+<hr />
+<h3 id="txõka---lakota-for-big">/txõka/ - Lakota for “big”</h3>
+<h2 id="section"><img class="r-stretch" src="lotwimg/tonka.gif"></h2>
+<h3 id="tipi---lakota-for-house">/tipi/ - Lakota for “house”</h3>
+<p><img class="r-stretch" src="lotwimg/tipi.jpg"></p>
+<hr />
+<h3
+id="there-are-other-loanwords-but-we-dont-have-time-for-them-all.">There
+are other loanwords, but we don’t have time for them all.</h3>
+<ul>
+<li>So Sioux me!</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td><img class="r-stretch" src="humorimg/badpundog.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="algonquian-languages">Algonquian Languages</h2>
+<hr />
+<p><img class="r-stretch" src="lotwimg/algonquian_map.png"></p>
+<hr />
+<h3 id="algonquian">Algonquian</h3>
+<ul>
+<li><p>Part of “Algic” which also has Yurok and Wiyot</p></li>
+<li><p>Around 30 languages</p></li>
+<li><p>15 have survived</p></li>
+</ul>
+<hr />
+<h3 id="prominent-algonquian-languages">Prominent Algonquian
+Languages</h3>
+<ul>
+<li><p>Cree - 117,000 speakers (US and Canada)</p></li>
+<li><p>Ojibwe - ~25,000 speakers</p></li>
+<li><p>Blackfoot - ~3,200 speakers</p></li>
+<li><p>Cheyenne - ~2,000 speakers</p></li>
+<li><p>Arapaho - ~1,000 speakers</p></li>
+<li><p>Massachusett (Extinct)</p></li>
+</ul>
+<hr />
+<h3 id="algonquian-languages-are-polysynthetic">Algonquian Languages are
+<em>Polysynthetic</em></h3>
+<hr />
+<h3 id="polysynthetic-languages">Polysynthetic Languages</h3>
+<p>Languages which are highly synthetic, incorporating more than one
+noun into a single word</p>
+<ul>
+<li>Monday, Dr. Rood is going to present in Wichita, which is powerfully
+polysynthetic</li>
+</ul>
+<hr />
+<p><lang>Ojibwe</lang><br><ldata>Algonquian - Great Lakes
+Region</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/qCYf6cYR_es">
+</iframe>
+<hr />
+<h3 id="arapaho-is-the-language-native-to-the-boulder-area">Arapaho is
+the language native to the Boulder Area</h3>
+<ul>
+<li><a
+href="http://www.colorado.edu/csilw/arapahoproject/contemporary/maincontemp.htm">Find
+out more online!</a></li>
+</ul>
+<hr />
+<p><lang>Arapaho</lang><br><ldata>Algoniuan - Colorado</ldata></p>
+<audio data-autoplay src="lotwimg/arapaho_ducks.mp3">
+</audio>
+<p><img class="r-stretch" src="lotwimg/arapaho_ducks.png"></p>
+<hr />
+<h3 id="algonquian-loanwords">Algonquian Loanwords</h3>
+<ul>
+<li><p>Chipmunk</p></li>
+<li><p>Husky</p></li>
+<li><p>Moose</p></li>
+<li><p>Opossum</p></li>
+<li><p>Skunk</p></li>
+<li><p>Toboggan</p></li>
+<li><p>Hickory</p></li>
+</ul>
+<hr />
+<h2 id="woodchuck-is-a-borrowing">‘Woodchuck’ is a borrowing</h2>
+<ul>
+<li>From Naragansett <em>ockqutchaun</em></li>
+</ul>
+<hr />
+<h3 id="that-means-woodchucks-never-chucked-wood">That means woodchucks
+never chucked wood</h3>
+<p><img class="r-stretch" src="humorimg/conspiracykeanu.jpg">
+<!-- .element: class="fragment" --></p>
+<hr />
+<h2 id="na-dené-languages">Na-Dené Languages</h2>
+<hr />
+<p><img class="r-stretch" src="lotwimg/nadene_map.png"></p>
+<hr />
+<h3 id="na-dené-languages-1">Na-Dené Languages</h3>
+<ul>
+<li><p>Includes Tlingit (spoken in Canada and Alaska) and
+Athabaskan</p></li>
+<li><p>32 “Northern Athabaskan” Languages (spoken in Canada and
+Alaska)</p>
+<ul>
+<li>~4000 speakers</li>
+</ul></li>
+<li><p>7 “Coastal Athabaskan” Languages (in California and Oregon)</p>
+<ul>
+<li>5 are extinct, the other two have 8 speakers total.</li>
+</ul></li>
+<li><p>6 “Southern Athabaskan” Languages (in the American West and
+Southwest)</p>
+<ul>
+<li>3 are extinct, ~175,000 speakers (!!)</li>
+</ul></li>
+<li><p>Has a proposed (and widely liked) link to the Yenisean Languages
+of Siberia</p></li>
+</ul>
+<hr />
+<h3 id="prominent-na-dené-languages">Prominent Na-Dené Languages</h3>
+<ul>
+<li><p>Navajo - ~170,000 speakers</p></li>
+<li><p>Apache - ~14,000 speakers</p></li>
+<li><p>Jicarilla - ~300 speakers</p></li>
+</ul>
+<hr />
+<h3 id="lets-focus-on-navajo">Let’s focus on Navajo</h3>
+<hr />
+<h3 id="spoken-in-the-4-corners-region">Spoken in the 4 corners
+region</h3>
+<p><img class="r-stretch" src="lotwimg/navajo_map.png"></p>
+<hr />
+<h3
+id="in-wwi-wwii-korea-and-vietnam-radio-encryption-was-not-a-thing">In
+WWI, WWII, Korea and Vietnam, radio encryption was not a thing</h3>
+<ul>
+<li><p>This meant that anything you said into a radio, Hitler
+heard.</p></li>
+<li><p><strong>One solution: Use a language the enemies can’t
+understand!</strong></p></li>
+</ul>
+<hr />
+<h3 id="code-talkers">Code Talkers</h3>
+<ul>
+<li><p>Speakers of obscure languages who speak their language as “code”
+during war to communicate</p></li>
+<li><p>Choctaw, Cherokee, Comanche, Seminole, Navajo, and Basque were
+all used this way</p></li>
+<li><p>Code words were used (“Turtle” for “tank”, “Gah” (“rabbit”) for
+R) to further complicate things!</p></li>
+<li><p>The movie “Windtalkers” is about these soldiers</p></li>
+<li><p>Let’s talk about Navajo</p></li>
+</ul>
+<hr />
+<p><danger>What features would you want a language to have if you wanted
+it to be difficult for an outsider to understand?</danger></p>
+<hr />
+<h2 id="why-navajo-is-a-great-code-talking-language">Why Navajo is a
+great code-talking language</h2>
+<hr />
+<h3 id="lots-of-speakers">Lots of speakers!</h3>
+<ul>
+<li>This means lots of people to ship overseas</li>
+</ul>
+<hr />
+<h3 id="centrally-located-in-the-us">Centrally located in the US</h3>
+<ul>
+<li>If the Japanese took California, speakers are safe</li>
+</ul>
+<hr />
+<h3 id="no-close-relatives-spoken-overseas">No close relatives spoken
+overseas</h3>
+<ul>
+<li>Polish is a really bad code language in a war against the
+Russians…</li>
+</ul>
+<hr />
+<h3 id="unusual-consonants">Unusual Consonants!</h3>
+<p><img class="r-stretch" src="lotwimg/navajo_consonants.png"></p>
+<hr />
+<h3 id="suprasegmentals">Suprasegmentals</h3>
+<ul>
+<li><p>Vowel Length</p></li>
+<li><p>Vowel Nasality</p></li>
+<li><p>Tone (High vs. Low)</p></li>
+</ul>
+<hr />
+<h3 id="complex-modality">Complex <em>Modality</em></h3>
+<hr />
+<h3 id="modality">Modality</h3>
+<p>Marks the “reality” or nature of the action</p>
+<hr />
+<h3 id="navajo-modality">Navajo Modality</h3>
+<ul>
+<li><p>Markers for if a verb’s action is Incomplete</p></li>
+<li><p>… or complete</p></li>
+<li><p>… or typical</p></li>
+<li><p>… or in progress</p></li>
+<li><p>… or in the future</p></li>
+<li><p>… or possible/desired</p></li>
+</ul>
+<hr />
+<h3 id="complex-aspect">Complex <em>Aspect</em></h3>
+<hr />
+<h3 id="aspect">Aspect</h3>
+<p>Marks the nature of the temporal boundaries and progress of an
+action</p>
+<ul>
+<li><em>Mode and aspect can blend together, and it’s not always easy to
+distinguish them</em></li>
+</ul>
+<hr />
+<h3 id="navajo-aspect">Navajo Aspect</h3>
+<ul>
+<li><p>Mark whether the action is happening at a specific
+moment</p></li>
+<li><p>… or just generally happening</p></li>
+<li><p>… or ongoing for a while yet</p></li>
+<li><p>… or recently completed</p></li>
+<li><p>… or happening repeatedly</p></li>
+<li><p>… or temporally different from the last one</p></li>
+</ul>
+<hr />
+<h3 id="navajo-aspect-continued">Navajo Aspect (continued!)</h3>
+<ul>
+<li><p>… or over a few different targets/locations</p></li>
+<li><p>… or involves an abrupt change in direction</p></li>
+<li><p>… or involves a change in form</p></li>
+<li><p>… or requires motion in a straight line</p></li>
+<li><p>… or just occurs sporadically, here and there</p></li>
+</ul>
+<hr />
+<h3 id="noun-class-and-classifiers-which-attach-to-verbs">Noun class and
+classifiers which attach to verbs</h3>
+<ul>
+<li><p>-ʼą́ – Solid Roundish Objects</p></li>
+<li><p>-yį́ – Load, Pack, Burden</p></li>
+<li><p>-ł-jool – Non-Compact Matter</p></li>
+<li><p>-lá – Slender Flexible Object</p></li>
+<li><p>-tą́ – Slender Stiff Object</p></li>
+<li><p>-ł-tsooz – Flat Flexible Object</p></li>
+<li><p>-tłééʼ – Mushy Matter</p></li>
+<li><p>-nil – Plural Objects 1</p></li>
+<li><p>-jaaʼ – Plural Objects 2</p></li>
+<li><p>-ką́ – Open Container</p></li>
+<li><p>-ł-tį́ – Animate Object</p></li>
+<li><p><strong>Often, you <em>don’t need to mention the noun
+again!</em></strong></p></li>
+</ul>
+<hr />
+<h3 id="strongly-synthetic-morphology">Strongly synthetic
+morphology</h3>
+<ul>
+<li><p>Lots and lots of affixes</p></li>
+<li><p>It’s very agglutinating</p>
+<ul>
+<li>Lots of affixes pile up on verbs</li>
+</ul></li>
+<li><p>It’s also kind of fusional</p>
+<ul>
+<li>Phonological rules cause these suffixes to blend together</li>
+</ul></li>
+<li><p>So <em>only experienced speakers can pick the many affixes
+apart!</em></p></li>
+</ul>
+<hr />
+<h3 id="so-you-have-a-language-where">So you have a language where…</h3>
+<ul>
+<li><p>Many of the consonants are unusual</p></li>
+<li><p>Words are heavily modified by suprasegmentals</p></li>
+<li><p>Verb meaning is really complex</p></li>
+<li><p>Nouns aren’t usually necessary after the first mention</p></li>
+<li><p>All of this is accomplished in an unparsable affix-pile.</p></li>
+</ul>
+<hr />
+<p><lang>Navajo</lang><br><ldata>Na-Dené - SW United States</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/XFayFUiyv20?start=20">
+</iframe>
+<hr />
+<blockquote>
+<p>At the Battle of Iwo Jima, Major Howard Connor, 5th Marine Division
+signal officer, had six Navajo code talkers working around the clock
+during the first two days of the battle. These six sent and received
+over 800 messages, all without error. Connor later stated, “Were it not
+for the Navajos, the Marines would never have taken Iwo Jima.”</p>
+</blockquote>
+<hr />
+<p>From 1879 to 1938, the US Government forcibly sent Native American
+kids to boarding schools where children were beaten for speaking their
+native Language.</p>
+<ul>
+<li>… and the last of these schools closed in
+<strong><em>1984</em></strong></li>
+</ul>
+<hr />
+<h3 id="remember-all-those-extinct-language-families">Remember all those
+extinct language families?</h3>
+<hr />
+<p><img class="r-stretch" src="lotwimg/naallfamiliesliving.png"></p>
+<hr />
+<h3 id="remember-all-those-extinct-language-families-1">Remember all
+those extinct language families?</h3>
+<p>Our government fought hard to make that happen</p>
+<hr />
+<h3 id="this-isnt-so-distant">This isn’t so distant</h3>
+<hr />
+<h3 id="nichols-hall">Nichols Hall</h3>
+<p><img class="r-stretch" src="lotwimg/cheyennearapahohall.jpg"></p>
+<hr />
+<h3 id="david-h.-nichols">David H. Nichols</h3>
+<blockquote>
+<p>… was called upon by Territorial Governor John Evans in 1864 to
+suppress Indian uprisings. In his capacity as Captain of Company D,
+Nichols participated in the infamous Sand Creek Massacre on November 29,
+1864.</p>
+</blockquote>
+<ul>
+<li>Cheyenne-Arapaho hall was named “Nichols Hall” in his honor in
+<strong><em>1961</em></strong></li>
+</ul>
+<hr />
+<h3 id="cheyenne-arapaho-hall">Cheyenne Arapaho Hall</h3>
+<p><img class="r-stretch" src="lotwimg/cheyennearapahohall.jpg"></p>
+<hr />
+<h3 id="linguistic-diversity-is-important">Linguistic Diversity is
+important</h3>
+<ul>
+<li>… and there are always racist jerks who want to destroy it</li>
+</ul>
+<hr />
+<h3 id="on-a-lighter-note">On a lighter note…</h3>
+<hr />
+<p><lang>Navajo</lang><br><ldata>Na-Dené - SW United States</ldata></p>
+<p><iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/QzyphgquAFU"></iframe></p>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>North America <em>had</em> lots of linguistic diversity</p></li>
+<li><p>We still have some linguistic diversity</p>
+<ul>
+<li>Despite our government’s best efforts…</li>
+</ul></li>
+<li><p>Navajo is incredible</p></li>
+<li><p>You should take “Native American Languages” here</p></li>
+</ul>
+<hr />
+<h1 id="languages-of-mexico-and-meso-america">Languages of Mexico and
+Meso-America</h1>
+<h3 id="ling-1020---will-styler">LING 1020 - Will Styler</h3>
+<hr />
+<h3 id="todays-agenda-1">Today’s Agenda</h3>
+<ul>
+<li><p>Uto-Aztecan Languages</p></li>
+<li><p>Mayan Languages</p></li>
+<li><p>Agreement vs. Case</p></li>
+</ul>
+<hr />
+<h2 id="uto-azetcan">Uto-Azetcan</h2>
+<hr />
+<p><img class="r-stretch" src="lotwimg/utoaztecan_northamerica.png"></p>
+<hr />
+<p><img class="r-stretch" src="lotwimg/utoaztecan_mexico.png"></p>
+<hr />
+<h3 id="uto-aztecan-languages">Uto-Aztecan Languages</h3>
+<ul>
+<li><p>Spoken in the US and in Mexico</p></li>
+<li><p>30 languages</p></li>
+<li><p>One of the larger families in North America</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Prominent Uto-Aztecan Languages</td>
+</tr>
+<tr class="even">
+<td>* Nahuatl - ~1.5 <em>million</em> speakers</td>
+</tr>
+<tr class="odd">
+<td>* Tarahumara - ~45,000 speakers * We’ll talk about Tarahumara
+Monday</td>
+</tr>
+<tr class="even">
+<td>* Huichol - ~17,000 speakers</td>
+</tr>
+<tr class="odd">
+<td>* Tepehuan - ~16,000 speakers</td>
+</tr>
+<tr class="even">
+<td>* Pima - ~15,000 speakers</td>
+</tr>
+<tr class="odd">
+<td>* Hopi - 7000 speakers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="nahuatl">Nahuatl!</h2>
+<hr />
+<h3 id="want-to-incur-wills-wrath">Want to incur Will’s wrath?</h3>
+<p><img src="lotwimg/nawaddle.png">
+<!-- .element: class="fragment" --></p>
+<hr />
+<p><danger>Nahuatl is not pronounced “Na-waddle”!</danger></p>
+<p><img src="lotwimg/nawaddle.png"></p>
+<hr />
+<h1 id="ˈnaːwatɬ">/ˈnaːwatɬ/</h1>
+<ul>
+<li>ɬ is a voiceless lateral fricative</li>
+</ul>
+<hr />
+<h3 id="nahuatl-was-the-language-of-the-aztec-people">Nahuatl was the
+language of the Aztec People</h3>
+<p><img class="r-stretch" src="lotwimg/aztecs.jpg"></p>
+<hr />
+<h3 id="todays-messed-up-colorado-history-lesson">Today’s Messed-up
+Colorado History Lesson</h3>
+<hr />
+<h3 id="montezuma-was-a-great-aztec-leader">Montezuma was a great Aztec
+Leader</h3>
+<p><img class="r-stretch" src="lotwimg/montezuma.jpg"></p>
+<hr />
+<h3 id="he-was-killed-by-spaniards-led-by-hernan-cortez">He was killed
+by Spaniards led by Hernan Cortez</h3>
+<p><img class="r-stretch" src="lotwimg/cortez.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Montezuma has a county in Colorado</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="lotwimg/montezuma_county.gif"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-county-is-administered-by-the-city-of-cortez">The county is
+administered by the city of Cortez</h3>
+<p><img class="r-stretch" src="lotwimg/montezuma_county_2.png"></p>
+<hr />
+<p>Seriously, Colorado?</p>
+<hr />
+<h2
+id="section-1"><img class="r-stretch" src="humorimg/backattheranch.jpg"></h2>
+<h3 id="english-has-a-lotl-of-borrowings-from-nahuatl">English has a
+lotl of borrowings from Nahuatl</h3>
+<ul>
+<li><p>Coyote (from coyōtl)</p></li>
+<li><p>Mesquite (from mizquitl)</p></li>
+<li><p>Peyote (from peyōtl)</p></li>
+<li><p>Tomato (from tomatl)</p></li>
+<li><p>Chocolate (from xocolātl ‘bitter water’)</p></li>
+</ul>
+<hr />
+<h3 id="and-i-mean-a-lotl">And I mean a lotl!</h3>
+<ul>
+<li><p>Chili (from chīlli)</p></li>
+<li><p>Avocado (from āhuacatl)</p></li>
+<li><p>Guacamole (āhuacamōlli ‘Avocado Sauce’)</p></li>
+<li><p>Tamale (from tamalli)</p></li>
+<li><p>Chipotle (from chilpoctli ‘smoked chili’)</p></li>
+</ul>
+<hr />
+<h3 id="axolotl">Axolotl</h3>
+<p><img class="r-stretch" src="lotwimg/axolotl.jpg"></p>
+<p>(<a
+href="http://www.warrenphotographic.co.uk/00108-albino-axolotl">Image
+Source</a>)</p>
+<hr />
+<p><lang>Nahuatl</lang><br><ldata>Uto-Aztecan - Mexico</ldata>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/ZTBABGLJzIA?start=10"></iframe></p>
+<hr />
+<p>Here’s a picture of a gerbil in a sweater, because I can’t think of a
+transition.</p>
+<p><img class="r-stretch" src="img/gerbilsweater.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>## Mayan Languages</td>
+</tr>
+</tbody>
+</table>
+<h2
+id="section-2"><img class="r-stretch" src="lotwimg/mayan_map.png"></h2>
+<h3 id="mayan-languages">Mayan Languages</h3>
+<ul>
+<li><p>Spoken in Central America</p></li>
+<li><p><em>Really</em> well documented</p></li>
+<li><p>Around 6 <em>million</em> speakers</p>
+<ul>
+<li>K’iche has the most (2 million)</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="mayan-languages-were-the-language-of-the-mayan-civilization">Mayan
+Languages were the language of the Mayan Civilization</h3>
+<p><img class="r-stretch" src="lotwimg/chichenitza.jpg"></p>
+<hr />
+<h3 id="the-maya-had-an-awesome-ideographic-writing-system">The Maya had
+an awesome ideographic writing system</h3>
+<p><img class="r-stretch" src="lotwimg/mayan_script.jpg"></p>
+<hr />
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/u9LRbLXMzyM">
+</iframe>
+<hr />
+<p>Nova did a whole special on this.</p>
+<ul>
+<li><h3 id="you-can-watch-it-online-for-free">You can <a
+href="https://www.youtube.com/watch?v=H5ppfC6y-5s">watch it online for
+free</a></h3></li>
+</ul>
+<hr />
+<p>(Modern Mayan languages use the Latin alphabet, though)</p>
+<hr />
+<h3 id="features-of-mayan-languages">Features of Mayan Languages</h3>
+<ul>
+<li><p>Agglutinating and Polysynthetic</p></li>
+<li><p>VOS ordering</p></li>
+<li><p>Numerical Classifiers</p></li>
+<li><p>Relational Nouns!</p></li>
+</ul>
+<hr />
+<h3 id="relational-nouns">Relational Nouns</h3>
+<hr />
+<h3 id="relational-noun">Relational Noun</h3>
+<p>A noun used to express prepositional meaning</p>
+<ul>
+<li>These are an areal feature for Central America!</li>
+</ul>
+<hr />
+<p><lang>Zapotec</lang><br><ldata>Oto-Manguean - Mexico</ldata></p>
+<p>Mnnààa’ zuu zh:ààa’n bzêiny.</p>
+<p>woman NEU.stand the.buttocks.of deer</p>
+<p>‘The woman is standing at the buttocks of the deer’</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>Maya</lang><br><ldata>Mayan - Mexico</ldata></td>
+</tr>
+<tr class="even">
+<td>u-wach ulew</td>
+</tr>
+<tr class="odd">
+<td>it-face earth</td>
+</tr>
+<tr class="even">
+<td>“on the earth”</td>
+</tr>
+</tbody>
+</table>
+<p><lang>Zapotec</lang><br><ldata>Oto-Manguean - Mexico</ldata></p>
+<p>loh gyizhi’iilly</p>
+<p>face chair</p>
+<p>‘on the chair’</p>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<h3
+id="which-of-the-following-direct-translations-uses-a-relational-noun-to-express-the-squirrel-is-in-the-bus">Which
+of the following direct translations uses a relational noun to express
+‘the squirrel is in the bus’?</h3>
+<ol type="A">
+<li><p>‘Squirrel in bus’</p></li>
+<li><p>’Squirrel bus.LOCATIVE-CASE</p></li>
+<li><p>‘squirrel stomach bus’</p></li>
+<li><p>‘squirrel entered bus’</p></li>
+</ol>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<h3
+id="which-of-the-following-direct-translations-uses-a-relational-noun-to-express-the-squirrel-is-in-the-bus-1">Which
+of the following direct translations uses a relational noun to express
+‘the squirrel is in the bus’?</h3>
+<ol type="A">
+<li><p>‘Squirrel in bus’</p></li>
+<li><p>’Squirrel bus.LOCATIVE-CASE</p></li>
+</ol>
+<p><correct>C) ‘squirrel stomach bus’</correct></p>
+<h2 id="d-squirrel-entered-bus">D) ‘squirrel entered bus’</h2>
+<p><lang>K’iche</lang><br><ldata>Mayan - Mexico</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/7zQSfU5HkUc">
+</iframe>
+<hr />
+<p><img class="r-stretch" src="humorimg/segway.jpg"></p>
+<hr />
+<p>(Sorry, I needed a segue!)</p>
+<hr />
+<p><img class="r-stretch" src="humorimg/badpundog.jpg"></p>
+<hr />
+<h1 id="agreement">Agreement!</h1>
+<hr />
+<h3 id="whats-the-difference-between-case-and-agreement">“What’s the
+difference between case and agreement?”</h3>
+<hr />
+<h2 id="case-marks-roles-on-arguments">Case marks roles on
+arguments!</h2>
+<hr />
+<h3 id="russian-case-marking">Russian Case Marking</h3>
+<ul>
+<li>Will videt kochku</li>
+<li>Will-NOM see-3sg CAT-ACC</li>
+<li>“Will saw the cat”</li>
+</ul>
+<hr />
+<h3 id="with-case-you-make-the-arguments-wear-nametags">With case, you
+make the arguments wear nametags</h3>
+<ul>
+<li>So you know what role the arguments are playing</li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Will-NOM see-3sg CAT-ACC</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="lotwimg/myroleisagent.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="will-nom-see-3sg-cat-acc">Will-NOM see-3sg CAT-ACC</h3>
+<p><img class="r-stretch" src="lotwimg/myroleisobject.jpg"></p>
+<hr />
+<h2 id="agreement-marks-identity-on-verbs">Agreement marks identity on
+verbs!</h2>
+<ul>
+<li>“Rather than marking the arguments, let’s just make sure the verb
+points to who did it!”</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="lotwimg/chucknorriswashere.jpg"></p>
+<hr />
+<h3 id="spanish-agreement-marking">Spanish Agreement Marking</h3>
+<ul>
+<li><p>Yo veo el gato</p></li>
+<li><p>1sg see.1sgsubj el cat</p></li>
+<li><p>I see the cat</p></li>
+<li><p>The arguments aren’t marked</p></li>
+<li><p><em>… but the verb lets us know who did it!</em></p></li>
+</ul>
+<hr />
+<h3 id="spanish-agreement-marking-1">Spanish Agreement Marking</h3>
+<ul>
+<li><p>Michael Bay hizo peliculas malas</p></li>
+<li><p>Michael Bay make.3sgsubj.past movie-pl bad-pl</p></li>
+<li><p>“Michael Bay made bad movies”</p></li>
+<li><p><em>We know that the plural argument did it!</em></p></li>
+</ul>
+<hr />
+<h3 id="agreement-can-use-many-ways-of-showing-identity">Agreement can
+use many ways of showing identity</h3>
+<ul>
+<li><p>Person marking (1sg, 2sg, etc)</p>
+<ul>
+<li>2sg did it!</li>
+</ul></li>
+<li><p>Number marking (singular, plural, etc)</p>
+<ul>
+<li>The group with more than one item did it!</li>
+</ul></li>
+<li><p>Gender marking (masc, fem, neuter)</p>
+<ul>
+<li>It was the masculine thing!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="more-ways-of-showing-identity">More ways of showing
+identity!</h3>
+<ul>
+<li><p>Noun class</p>
+<ul>
+<li>It was the large, flat object!</li>
+</ul></li>
+<li><p>New vs. old information markers</p>
+<ul>
+<li>The thing I mentioned first did it!</li>
+</ul></li>
+<li><p><danger>Any others?</danger></p></li>
+</ul>
+<hr />
+<h3 id="lets-test-your-skills">Let’s test your skills!</h3>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p>squirrele eta acornu</p>
+<p>squirrel.NOM eat acorn.ACC</p>
+<p>“The Squirrel ate the Acorn”</p>
+<ol type="A">
+<li><p>“This is case”</p></li>
+<li><p>“This is agreement”</p></li>
+</ol>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p>kula-knas Michael Bay Will</p>
+<p>judge-object.is.evil Michael Bay Will</p>
+<p>“Will judges Michael Bay”</p>
+<ol type="A">
+<li><p>“This is case”</p></li>
+<li><p>“This is agreement”</p></li>
+</ol>
+<hr />
+<h2 id="so-are-we-all-in">So, are we all in…</h2>
+<h1 id="agreement-1">Agreement!?</h1>
+<hr />
+<p><img class="r-stretch" src="humorimg/badpundog.jpg"></p>
+<hr />
+<h2 id="three-methods-of-marking-grammatical-relations">Three methods of
+marking grammatical relations!</h2>
+<ul>
+<li><p>Word Order</p></li>
+<li><p>Case</p></li>
+<li><p>Agreement</p></li>
+</ul>
+<hr />
+<h3 id="some-languages-use-more-than-one.">Some languages use more than
+one.</h3>
+<ul>
+<li><p>Spanish uses word order and agreement</p></li>
+<li><p>Russian uses agreement and case</p></li>
+<li><p>English uses agreement, word order, and case.</p>
+<ul>
+<li>“I go” vs. “She goes”, word order, and “he/him”</li>
+</ul></li>
+</ul>
+<hr />
+<p>(When more than one is used, it’s usually because the first system
+isn’t quite robust enough)</p>
+<ul>
+<li><danger>Why can’t Spanish use just agreement?</danger></li>
+</ul>
+<hr />
+<h3 id="wrapping-up-1">Wrapping up</h3>
+<ul>
+<li><p>Uto-Aztecan languages are awesome</p>
+<ul>
+<li>We’ll learn more Monday</li>
+</ul></li>
+<li><p>Mayan languages are awesome</p>
+<ul>
+<li>Know their features</li>
+</ul></li>
+<li><p>Agreement and case are different</p>
+<ul>
+<li>… but both awesome</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="and-dont-forget-to-order-lots-of-ahuacamolli-next-time-you-go-to-chilpoctli">…
+and don’t forget to order lots of ahuacamolli next time you go to
+Chilpoctli</h3>
+<hr />
+<h2 id="in-recitation-something-awesome.">In Recitation: Something
+awesome.</h2>
+<hr />
+<h2 id="next-time-tarahumara-with-jesús-villalpando">Next time:
+Tarahumara with Jesús Villalpando</h2>
+<p><correct>No reading.</correct></p>
+<hr />
+<p><huge>Thank you!</huge></p>
+<hr />
+<hr />
+<p><huge>Thank you!</huge></p>
+<hr />
+</body>
+</html>

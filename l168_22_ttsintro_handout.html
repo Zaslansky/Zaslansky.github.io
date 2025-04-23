@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="an-introduction-to-text-to-speech-and-speech-synthesis">An
+Introduction to Text-to-Speech and Speech Synthesis</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="weve-looked-at-many-speech-to-something-tasks-now">We’ve looked
+at many speech-to-something tasks now</h3>
+<ul>
+<li><p><strong>Speech to File:</strong> Sound recording, formats, and
+codecs</p></li>
+<li><p><strong>Speech to Measurement:</strong> LPC, Pitch Detection, and
+Spectral/Cepstral work</p></li>
+<li><p><strong>Speech to Speech:</strong> Resynthesis, PSOLA, and other
+modifications</p></li>
+<li><p><strong>Speech to Text:</strong> Automatic Speech
+Recognition</p></li>
+</ul>
+<hr />
+<h3 id="now-lets-go-the-other-way">Now, let’s go the other way</h3>
+<ul>
+<li>Let’s finally turn stuff into speech!</li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Speech Synthesis and Text-to-Speech</p></li>
+<li><p>TTS Tasks</p></li>
+<li><p>Complexity of Input in TTS</p></li>
+<li><p>Complexity of Output in TTS</p></li>
+<li><p>Evaluating TTS</p></li>
+</ul>
+<hr />
+<h2 id="speech-synthesis-and-text-to-speech">## Speech Synthesis and
+Text-to-Speech</h2>
+<h3 id="im-going-to-be-weird">I’m going to be weird</h3>
+<ul>
+<li><p>(What a shock)</p></li>
+<li><p>We’re going to draw a sharp distinction between ‘Text-to-Speech’
+and ‘Speech Synthesis’</p>
+<ul>
+<li>Unlike Wikipedia and many other resources…</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="speech-synthesis">Speech Synthesis</h3>
+<ul>
+<li><p>Also known as ‘Voice Synthesis’</p></li>
+<li><p>The use of artificial, non-human means to create human
+speech</p></li>
+</ul>
+<hr />
+<h3 id="text-to-speech-synthesis">Text-to-Speech Synthesis</h3>
+<ul>
+<li><p>Also known as ‘TTS’</p></li>
+<li><p>The use of non-human means to turn <strong>written text</strong>
+into spoken language</p></li>
+<li><p><em>Text-to-Speech is a subtype of Speech
+Synthesis!</em></p></li>
+</ul>
+<hr />
+<h3 id="speech-synthesis-tasks-that-arent-tts">Speech Synthesis tasks
+that <em>aren’t</em> TTS</h3>
+<ul>
+<li><p><strong>Synthesis for Modification:</strong> Vocoding,
+Resynthesis, Neural Denoising</p></li>
+<li><p><strong>Physical Speech Emulation:</strong> “Let’s create a
+device which mimics the human vocal apparatus”</p></li>
+<li><p><strong>Articulatory Synthesis:</strong> “Let’s model movements
+of the mouth and tongue and vocal folds in software”</p></li>
+<li><p><strong>Vocal Synthesizers:</strong> Let’s create instruments
+which sound voice-like</p></li>
+<li><p>More on these later! (if we have time)</p></li>
+</ul>
+<hr />
+<h3 id="speech-synthesis-vs.-text-to-speech">Speech Synthesis
+vs. Text-to-Speech</h3>
+<ul>
+<li><p>Text-to-Speech takes linguistic units (e.g. text, IPA) as input
+and produces speech</p>
+<ul>
+<li>“Here’s a chunk of things to say, figure out how to say it”</li>
+</ul></li>
+<li><p>More generic speech synthesis tasks generally take
+<em>parameters</em> as input</p>
+<ul>
+<li>“Here’s what you need to create this sound which is
+speech-like”</li>
+</ul></li>
+<li><p>TTS is a much more common task!</p></li>
+<li><p><em>We’re going to focus on TTS here!</em></p></li>
+</ul>
+<hr />
+<h2 id="text-to-speech-tasks">Text-to-Speech Tasks</h2>
+<hr />
+<h3 id="tts-is-useful-for-many-things">TTS is useful for many
+things</h3>
+<ul>
+<li>Many of which are familiar to us already!</li>
+</ul>
+<hr />
+<h3 id="tts-for-modality-shifting">TTS for modality shifting</h3>
+<ul>
+<li><p>Turning notifications into spoken form while the human is
+driving/biking</p></li>
+<li><p>Providing text information as real time speech
+(e.g. navigation)</p></li>
+<li><p>Creating a constantly-updating weather forecast for radio
+broadcasting</p></li>
+</ul>
+<hr />
+<h3 id="tts-for-accessibility">TTS for Accessibility</h3>
+<ul>
+<li><p>Reading aloud text, books, and screen contents for folks who are
+blind (‘screen readers’)</p></li>
+<li><p>Turning text into audio for folks who are dyslexic or struggle
+with reading long text</p></li>
+<li><p>Allowing folks who are illiterate to turn text into spoken
+language</p></li>
+<li><p>Allowing people who cannot speak to communicate verbally</p></li>
+</ul>
+<hr />
+<h3 id="tts-for-human-interaction">TTS for human interaction</h3>
+<p><img class="r-stretch" src="diagrams/speech_processing_pipeline.jpg"></p>
+<hr />
+<h3 id="tts-for-human-interaction-1">TTS for human interaction</h3>
+<ul>
+<li><p>Providing the spoken half of an interactive dialog
+system</p></li>
+<li><p>Providing interactive spoken information for phone
+callers</p></li>
+<li><p>Providing spoken feedback for (e.g.) self-checkout
+kiosks</p></li>
+</ul>
+<hr />
+<h3 id="tts-for-language-learning-and-translation">TTS for language
+learning and translation</h3>
+<ul>
+<li><p>Providing spoken recordings for written words in
+dictionaries</p></li>
+<li><p>Creating listening comprehension tasks for language
+learners</p></li>
+<li><p>Speaking translations in a real-time-machine-translated
+conversation</p></li>
+</ul>
+<hr />
+<h3 id="tts-for-content-creation">TTS for content creation</h3>
+<ul>
+<li><p>That weird TikTok TTS voice</p></li>
+<li><p>Voiceovers for advertisements, robocalls, and video
+content</p></li>
+<li><p>Automatic creation of audiobooks from existing written
+titles</p></li>
+</ul>
+<hr />
+<h3 id="tts-for-research">TTS for research</h3>
+<ul>
+<li><p>Using elements of TTS analysis to study patterns in human
+speech</p></li>
+<li><p>Investigating ‘what the TTS system has learned’ about human
+language</p></li>
+<li><p>Creation of “““neutral”“” stimuli for experiments</p></li>
+<li><p>Creation of specialized stimuli for phonetic research</p>
+<ul>
+<li>This is often done with articulatory synthesis, but also sometimes
+with TTS</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="tts-for-reading-names-at-graduation">TTS for reading names at
+graduation</h3>
+<ul>
+<li><img class="r-stretch" src="humorimg/wtf.gif"></li>
+</ul>
+<hr />
+<h2 id="input-complexity-in-tts">Input Complexity in TTS</h2>
+<hr />
+<h3 id="tts-is-harder-and-easier-based-on-the-input-text">TTS is harder
+and easier based on the input text!</h3>
+<ul>
+<li><p>Different tasks require different levels of complexity for
+TTS</p></li>
+<li><p>One key component is <strong>complexity of the
+input</strong></p></li>
+<li><p>Let’s start with the least complex task…</p></li>
+</ul>
+<hr />
+<h3 id="phrase-playback-tasks">Phrase Playback Tasks</h3>
+<ul>
+<li>Many tasks can work by just playing prerecorded files
+<ul>
+<li>“Please place the items in the bagging area”</li>
+<li>“Alarm has been armed”</li>
+<li>“Bluetooth Connected”</li>
+</ul></li>
+<li>Every phrase has been pre-planned and recorded in entirety
+<ul>
+<li>The vocabulary is <em>fixed</em></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="phrase-playback-continued">Phrase Playback (Continued)</h3>
+<ul>
+<li>There is no language modeling at all
+<ul>
+<li>All input is in the form of ‘play soundfile X when…’</li>
+</ul></li>
+<li>The audio is not modified for prosody, and every file is
+independent</li>
+</ul>
+<hr />
+<h3 id="what-are-some-tasks-that-are-workable-with-phrase-playback">What
+are some tasks that are workable with phrase playback?</h3>
+<hr />
+<h3 id="domain-specific-tts-systems">Domain-Specific TTS Systems</h3>
+<blockquote>
+<p>…HIGH SURF THURSDAY AFTERNOON THROUGH FRIDAY…</p>
+</blockquote>
+<blockquote>
+<p>A long period west to northwest swell will bring high surf Thursday
+afternoon through Friday. The peak swell and surf will occur Thursday
+night into early Friday morning, with the highest surf in southern San
+Diego County. Minor coastal flooding will occur during periods of high
+tides.</p>
+</blockquote>
+<hr />
+<h3 id="domain-specific-tts-systems-1">Domain-Specific TTS Systems</h3>
+<ul>
+<li><p>“I want to be able to create any combination of items from a
+<strong>larger, fixed vocabulary</strong>”</p></li>
+<li><p>You’ll combine a series of pre-recorded chunks into many
+words</p></li>
+<li><p>You could record the entire set of possible phrases</p>
+<ul>
+<li>50 states, 3007 counties, 19354 ‘incorporated places’ in the US</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="what-are-some-tasks-that-are-workable-with-domain-specific-tts">What
+are some tasks that are workable with domain-specific TTS?</h3>
+<hr />
+<h3 id="arbitrary-text-systems">Arbitrary Text Systems</h3>
+<blockquote>
+<p>Joanna Rutkowska posted a great close-up photo of the tube of an
+ice-cream cone worm. The tube is made of sand grains, carefully selected
+and fitted together, and bound with a special adhesive. The worm has
+golden bristles used to rake through sediment so it can pick up yummy
+bits with little tentacles.</p>
+</blockquote>
+<hr />
+<h3 id="arbitrary-text-systems-1">Arbitrary Text Systems</h3>
+<ul>
+<li><p>Must be able to reproduce any written sentence</p></li>
+<li><p>Must be able to cope with any textual input</p></li>
+<li><p>Word’s not in the dictionary? Godspeed.</p></li>
+<li><p>This is most common, and <em>really hard</em> to do.</p></li>
+</ul>
+<hr />
+<h3
+id="what-are-some-tasks-that-are-only-workable-with-arbitrary-text-tts">What
+are some tasks that are only workable with arbitrary-text TTS?</h3>
+<hr />
+<h3 id="cross-linguistic-tts">Cross-Linguistic TTS</h3>
+<blockquote>
+<p>Purring softly, el gato kneads dough, С любовью и грацией, con paws
+that glow, Breadsticks rise, en la cocina, тепло.</p>
+</blockquote>
+<hr />
+<h3 id="cross-linguistic-tts-1">Cross-Linguistic TTS</h3>
+<ul>
+<li>Prepare for trouble, and make it double
+<ul>
+<li>Technically as many times as languages modeled</li>
+</ul></li>
+<li>You must be able to do language identification and then cope with an
+arbitrary vocabulary
+<ul>
+<li>Papa, Pan, Lima, Cafe, Pie, Radio, Mango, Base</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="what-are-some-tasks-that-are-only-workable-with-cross-linguistic-tts">What
+are some tasks that are only workable with cross-linguistic TTS?</h3>
+<hr />
+<h3
+id="so-inputs-of-varying-complexity-result-in-varying-pain-for-tts">So,
+inputs of varying complexity result in varying pain for TTS</h3>
+<ul>
+<li>… But the output is complicated too!</li>
+</ul>
+<hr />
+<h2 id="output-complexity-in-tts">Output Complexity in TTS</h2>
+<hr />
+<h3 id="the-sole-actual-requirement-is-perceptible-speech">The sole
+‘actual’ requirement is ‘perceptible speech’</h3>
+<ul>
+<li><p>Any voice will do in a pinch</p></li>
+<li><p>We want to do better than that!</p></li>
+<li><p><strong>So, we add complexity to the task</strong></p></li>
+</ul>
+<hr />
+<h3 id="emotional-voices">Emotional Voices</h3>
+<ul>
+<li>Human voices convey emotions
+<ul>
+<li>“I’m so sorry you didn’t do well on your homework”</li>
+</ul></li>
+<li>Increasingly, companies are trying to do this “right” in TTS
+<ul>
+<li>Godspeed!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="structured-prosody">Structured Prosody</h3>
+<ul>
+<li><p>Tasks like singing, reading poetry, or performing culturally
+specific speech and interaction patterns are <em>not</em> like normal
+speech</p></li>
+<li><p>Here, modeling the text like any other will be <em>way off</em>,
+and specific models are required</p></li>
+<li><p><strong>Vocaloid</strong> singing is one of the best examples of
+this, where the TTS must match a tune</p></li>
+</ul>
+<hr />
+<h3 id="voice-acting">Voice Acting</h3>
+<ul>
+<li><p>For audiobooks, often, we want an element of ‘performance’</p>
+<ul>
+<li>“… and then the dragon said to the villagers ‘You must dismantle
+your settlement or you will be removed!’”</li>
+</ul></li>
+<li><p>This requires models to understand not only who’s talking, but
+how they ‘should’ talk</p></li>
+</ul>
+<hr />
+<h3 id="human-like-voices">Human-like voices</h3>
+<ul>
+<li><p>“Robotic” voices are often less perceptible and
+desirable</p></li>
+<li><p>We (often) want TTS voices to sound “human”</p></li>
+<li><p>This raises the bar for ‘naturalness’ substantially</p></li>
+</ul>
+<hr />
+<h3 id="sociolinguistically-coded-voices">Sociolinguistically Coded
+Voices</h3>
+<ul>
+<li><p>We often want to go beyond human to “socially identifiable
+human”</p></li>
+<li><p>“Male” or “Female” or “Non-Binary”</p></li>
+<li><p>Different dialects</p>
+<ul>
+<li>“Southern”, “Australian”, “Indian”</li>
+</ul></li>
+<li><p>Different sociolects?</p></li>
+</ul>
+<hr />
+<h3 id="voice-cloning">“Voice Cloning”</h3>
+<ul>
+<li><p>Also known as voice ‘deepfakes’</p></li>
+<li><p>Creating a text-to-speech voice which can say arbitrary text
+<em>in a way that sounds like a specific person</em></p></li>
+<li><p>Hey, look, a dual-use dilemma!</p></li>
+</ul>
+<hr />
+<h3 id="human-imitating-features">Human-Imitating Features</h3>
+<ul>
+<li><p>Typing sounds during pauses?</p></li>
+<li><p>Adding in post-utterance breath sounds</p></li>
+<li><p>Adding in the sound of tidal breathing?</p></li>
+<li><p>Adding in background noise?</p></li>
+</ul>
+<hr />
+<h3 id="these-tasks-are-relatively-recent">These tasks are relatively
+recent</h3>
+<ul>
+<li><p>For many years, “less bad” was the sole goal</p></li>
+<li><p>“Oh god, another TTS voice”</p></li>
+<li><p>Recent neural technologies have allowed us to credibly attempt
+these kinds of nuance</p></li>
+<li><p>This required new technology because…</p></li>
+</ul>
+<hr />
+<h3 id="these-specific-desired-outputs-make-tts-harder">These specific
+desired outputs make TTS harder</h3>
+<ul>
+<li><p>As we ask TTS voices to go beyond ‘providing perceptible speech’,
+the task grows harder and more nuanced</p></li>
+<li><p>We are very attuned to emotional, cultural, and structural
+elements of voices</p></li>
+<li><p>We are wildly attentive to social factors in voices</p>
+<ul>
+<li>For better <a href="https://muse.jhu.edu/article/900094">and for
+worse</a></li>
+</ul></li>
+<li><p>This means that evaluating TTS is much more important
+here</p></li>
+</ul>
+<hr />
+<h2 id="evaluating-tts">Evaluating TTS</h2>
+<hr />
+<h3 id="evaluating-tts-is-hard">Evaluating TTS is hard</h3>
+<ul>
+<li>ASR is easy because there are clear and objective ‘right’ and
+‘wrong’ mappings for a given signal
+<ul>
+<li>Most of the time!</li>
+</ul></li>
+<li>TTS has fewer objective measures
+<ul>
+<li>“Which sound was there, acoustically” turns out to be hard in many
+cases</li>
+<li>We can ‘hear past’ missing sounds quite effectively</li>
+<li>Measurable errors are getting more and more rare!</li>
+</ul></li>
+<li>Evaluating TTS is largely based on human perception!
+<ul>
+<li>… but there are some specific tests which work</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="quantitative-and-objective-measures">Quantitative and Objective
+Measures</h3>
+<ul>
+<li><p>“How similar are the waveforms output to a human
+production?”</p></li>
+<li><p>There are dedicated systems for this which use algorithms to
+evaluate perceptibility (e.g. <a
+href="https://en.wikipedia.org/wiki/Perceptual_Evaluation_of_Speech_Quality">PESQ</a>
+or <a href="https://ieeexplore.ieee.org/document/5495701">STOI</a>)</p>
+<ul>
+<li>These generally do some kind of fourier comparison</li>
+</ul></li>
+<li><p>You can also do mel-spectrogram comparison or just
+good-old-fashioned mean-squared-error between waveforms!</p>
+<ul>
+<li>Why yes, these are loss functions!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="phonetic-contrast-based-testing">Phonetic Contrast-based
+Testing</h3>
+<ul>
+<li><p>Present the human with a minimal written pair, and ask which word
+they heard</p>
+<ul>
+<li>“Bean, Bin” - “Sipped, Shipped” - “Mace, Maze”</li>
+</ul></li>
+<li><p>This is called a ‘Diagnostic Rhyme Test’, and measures
+phoneme-specific contrasts</p></li>
+<li><p>“Was the model able to produce something perceptible as this
+phoneme?”</p></li>
+<li><p>Can also be done for more complex words</p>
+<ul>
+<li>Did you hear “He is quite median/meat-eatin’/media/needier”?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="intelligibility-scores">Intelligibility Scores</h3>
+<ul>
+<li>We are often ‘at ceiling’ with clean signal intelligibility
+<ul>
+<li>We are able to understand 100% of words clearly in running text</li>
+</ul></li>
+<li>You can add predictable noise at fixed volume to ‘make the task
+harder’ and reveal differences in voices
+<ul>
+<li>More intelligible voices will be audible with more noise</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="comparison-based-testing">Comparison-based testing</h3>
+<ul>
+<li>ABX testing
+<ul>
+<li>Three items are played, two different items, and then a third which
+‘matches’ one of the two</li>
+<li>“Does this third word sound more like the natural production or our
+last gen TTS?”</li>
+</ul></li>
+<li>Paired Comparison
+<ul>
+<li>Listen to A, then listen to B, then answer questions</li>
+<li>Which voice sounds better/more natural/more real/easier to
+understand?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="opinion-based-testing">Opinion-based testing</h3>
+<ul>
+<li><p>Rate this voice, 1-5, based on how natural/clean/high
+quality/intelligible it is</p></li>
+<li><p>Rate this voice based on how
+angry/happy/masculine/Indian/Australian it sounds</p></li>
+<li><p><strong>These are wildly subjective, and can reveal uncomfortable
+biases</strong></p>
+<ul>
+<li>Remember that people <a
+href="https://cognitiveresearchjournal.springeropen.com/articles/10.1186/s41235-022-00354-0">people
+judge speech as differently intelligible when they see faces of
+different races</a></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="tts-evaluation-then-ends-up-very-complicated">TTS Evaluation
+then ends up very complicated</h3>
+<ul>
+<li><p>Objective methods are useful, but don’t often capture
+nuance</p></li>
+<li><p>Comparison and Intelligibility measures give utility, but not as
+much ‘goodness’</p></li>
+<li><p>Subjective and Opinion-based testing gives great, but somewhat
+unreliable data about TTS as language users</p></li>
+</ul>
+<hr />
+<h3 id="there-are-organized-efforts-to-test-tts-systems">There are
+organized efforts to test TTS systems</h3>
+<ul>
+<li><p>TTS ‘bake-offs’ were a thing, featuring many systems doing the
+same benchmarks (see the (now-moribund) <a
+href="http://www.festvox.org/blizzard/">Blizzard Challenge</a>)</p></li>
+<li><p><a href="https://huggingface.co/blog/arena-tts">TTS Arena</a> is
+a great resource for testing many TTS models at once</p></li>
+<li><p>Specific datasets and Benchmarks exist for TTS evaluation
+(e.g. <a
+href="https://keithito.com/LJ-Speech-Dataset/">LJSpeech</a>)</p></li>
+<li><p>… but ultimately, it all boils down to human perceptions, and
+that makes TTS <em>hard</em></p>
+<ul>
+<li>Which we’ll talk more about next time!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Speech Synthesis and TTS are often synonyms, but aren’t
+quite</p></li>
+<li><p>TTS is used in many situations to create speech from
+text</p></li>
+<li><p>Different complexity levels of input make systems harder to
+implement</p></li>
+<li><p>Modern systems are expected to be much, much fancier</p></li>
+<li><p>Evaluating TTS is hard, and often boils down to subjective
+factors</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For next time</h3>
+<ul>
+<li>We’ll think about what levels TTS can work at, and why TTS is so
+damned hard</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

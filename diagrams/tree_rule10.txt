@@ -1,0 +1,4 @@
+tree_rule10tex
+
+[VP 
+  [V ] ]

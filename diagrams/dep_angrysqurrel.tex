@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+
+\begin{document}
+% In the preamble:
+
+% In the document:
+\begin{dependency}[theme = simple]
+   \begin{deptext}[column sep=1em]
+      The \& angry \& squirrel \& stole \& the \& mixed \& nuts \& from \& Walmart \& . \\
+   \end{deptext}
+   \deproot{4}{ROOT}
+   \depedge{3}{1}{DET}
+   \depedge{3}{2}{AMOD}
+   \depedge{4}{3}{NSUBJ}
+   \depedge{4}{7}{DOBJ}
+   \depedge{7}{6}{AMOD}
+   \depedge{7}{5}{DET}
+   \depedge{4}{9}{NMOD}
+   \depedge{9}{8}{CASE}
+\end{dependency}
+\end{document}

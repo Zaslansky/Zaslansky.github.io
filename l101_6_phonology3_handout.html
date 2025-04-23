@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="have-some-beautiful-art">Have some beautiful art</h3>
+<p><img class="r-stretch" src="img/lingmajorcastle.jpg"></p>
+<hr />
+<h1
+id="phonology-the-sound-patterns-of-language-are-really-really-awesome">Phonology:
+The Sound Patterns of Language are really, really awesome</h1>
+<h3 id="will-styler---lign-101">Matt Zaslansky - LIGN 101</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Signed language Phonology</p></li>
+<li><p>Syllables are fun</p></li>
+<li><p>Phonotactics</p></li>
+<li><p>Phonology Q/A</p></li>
+<li><p>Language Background</p></li>
+</ul>
+<hr />
+<h2 id="signed-language-phonology">Signed Language Phonology</h2>
+<hr />
+<h3 id="phonology-isnt-just-for-spoken-languages">Phonology isn’t just
+for spoken languages</h3>
+<ul>
+<li>Signed languages have phonology too!</li>
+</ul>
+<hr />
+<h3 id="signed-languages-have-parameters">Signed languages have
+parameters</h3>
+<ul>
+<li><p>Handshape</p></li>
+<li><p>Orientation</p></li>
+<li><p>Movement</p></li>
+<li><p>Location</p></li>
+<li><p>Expression</p></li>
+</ul>
+<hr />
+<h3
+id="all-of-these-parameters-can-participate-in-rules-and-natural-classes">All
+of these parameters can participate in rules and natural classes</h3>
+<ul>
+<li><p>They act just like phonetic features (e.g. velar, voiced, stop,
+fricative)</p></li>
+<li><p>Assimilation/Dissimilation/Epenthesis/Deletion of
+gestures</p></li>
+<li><p>Similar approaches to rule-writing can describe the process</p>
+<ul>
+<li>Feature -&gt; Variant / [context]_</li>
+</ul></li>
+<li><p>The <em>exact same</em> principles and approaches apply</p></li>
+<li><p>Minimal pairs are also a thing!</p></li>
+</ul>
+<hr />
+<h3 id="mother---father">MOTHER - FATHER</h3>
+<p><img class="small" src="img/asl_mom.gif"><img class="small" src="img/asl_dad.gif"></p>
+<p><small>ASL GIFs courtesy of Dr. Bill Vicars at
+<a href="http://www.lifeprint.com">http://www.lifeprint.com</a>
+</small></p>
+<hr />
+<h3 id="white---like">WHITE - LIKE</h3>
+<p><img class="small" src="img/asl_white.gif"><img class="small" src="img/asl_like.gif"></p>
+<hr />
+<h3 id="paper---cheese">PAPER - CHEESE</h3>
+<p><img class="small" src="img/asl_paper.gif"><img class="small" src="img/asl_cheese.gif"></p>
+<hr />
+<h3 id="there-is-one-big-difference">There is one big difference!</h3>
+<ul>
+<li><p>Parameters in sign are often Simultaneous</p>
+<ul>
+<li>Spoken language is mostly sequential, with sequences of sounds</li>
+</ul></li>
+<li><p>Signed language involves many simultaneous parameters affecting
+one another</p></li>
+<li><p>This leads to interesting dimensionality in interactions</p></li>
+</ul>
+<hr />
+<h3 id="signed-language-is-language">Signed language is language</h3>
+<ul>
+<li>Damnit</li>
+</ul>
+<hr />
+<h1 id="syllables">Syllables</h1>
+<hr />
+<h3
+id="syllables-seem-to-be-pretty-important-in-some-languages">Syllables
+seem to be pretty important in some languages</h3>
+<ul>
+<li><p>English is among them.</p></li>
+<li><p>English speakers have an intuitive sense of syllables</p></li>
+</ul>
+<hr />
+<h3 id="lets-try">Let’s try</h3>
+<ul>
+<li><p>Under</p>
+<ul>
+<li>/ʌn.dəɹ/</li>
+</ul></li>
+<li><p>Decoagulate</p>
+<ul>
+<li>/di.kow.æg.ju.lejt/</li>
+</ul></li>
+<li><p>Antipenultimate</p>
+<ul>
+<li>/æn.ti.pɛ.nʌl.tɪm.ɪt/</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="linguists-break-the-syllable-into-three-parts">Linguists break
+the syllable into three parts</h3>
+<p><img class="r-stretch" src="diagrams/syllable_simple.jpg"></p>
+<hr />
+<h3 id="linguists-break-the-syllable-into-three-parts-1">Linguists break
+the syllable into three parts</h3>
+<p><img class="r-stretch" src="diagrams/syllable.jpg"></p>
+<hr />
+<h3 id="lets-look-at-some-syllables">Let’s look at some syllables</h3>
+<hr />
+<p><img class="r-stretch" src="diagrams/syll_cat.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/syll_tea.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/syll_eat.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/syll_skip.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/syll_fences.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/syll_strengths.jpg"></p>
+<hr />
+<h3 id="phonological-rules-will-often-reference-syllables">Phonological
+rules will often reference syllables</h3>
+<ul>
+<li><p>English /l/ becomes [ɫ] in the coda position</p></li>
+<li><p>/ɛ/ is illegal in words without a coda in English</p></li>
+<li><p>Spanish will often re-syllabify words to turn codas into
+onsets</p>
+<ul>
+<li>“Van a gritar a las olas” (‘They will yell at the waves’)</li>
+</ul></li>
+<li><p><strong>So, they’re good to think about!</strong></p></li>
+</ul>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="in-the-word-star-the-coda-is">In the word ‘star’, the coda
+is…</h3>
+<ol type="A">
+<li><p>/st/</p></li>
+<li><p>/a/</p></li>
+<li><p>/ɹ/</p></li>
+<li><p>/aɹ/</p></li>
+<li><p>/taɹ/</p></li>
+</ol>
+<hr />
+<h3 id="in-the-word-star-the-coda-is-1">In the word ‘star’, the coda
+is…</h3>
+<ol type="A">
+<li><p>/st/</p></li>
+<li><p>/a/</p></li>
+<li><p><correct>/ɹ/</correct></p></li>
+<li><p>/aɹ/</p></li>
+<li><p>/taɹ/</p></li>
+</ol>
+<hr />
+<h3 id="english-aspiration">English Aspiration</h3>
+<ul>
+<li><p>We’ve been ignoring this all quarter</p></li>
+<li><p>But there’s more to /t/ than [t]</p></li>
+</ul>
+<hr />
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-xldj{border-color:inherit;text-align:left}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-xldj">
+wʌt
+</th>
+<th class="tg-0pky">
+skɪn<br>
+</th>
+</tr>
+<tr>
+<td class="tg-0pky">
+tʰaɹ
+</td>
+<td class="tg-0pky">
+spun<br>
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+pʰat<br>
+</td>
+<td class="tg-0pky">
+spat
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+ɹɛntʰɪŋ<br>
+</td>
+<td class="tg-0pky">
+ɹɪstaɹt<br>
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+kʰjubə
+</td>
+<td class="tg-0pky">
+pʰakʰɪt
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+staɹ<br>
+</td>
+<td class="tg-0pky">
+spɪnstə˞
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="t-is-aspirated-at-the-start-of-a-syllable">/t/ is aspirated at
+the start of a syllable!</h3>
+<ul>
+<li><p>… not just in the onset!</p></li>
+<li><p>So are /p/ and /k/</p></li>
+<li><p>Those sounds share a feature!</p></li>
+<li><p>They’re a <em>natural class</em></p></li>
+</ul>
+<hr />
+<h3 id="the-english-d-is-the-same-sound-as-the-spanish-t">The English
+[d] is the same sound as the Spanish [t]</h3>
+<hr />
+<h3
+id="different-languages-have-different-syllable-structures">Different
+languages have different syllable structures</h3>
+<ul>
+<li>This is an important element of…</li>
+</ul>
+<hr />
+<h1 id="phonotactics">Phonotactics</h1>
+<hr />
+<h3 id="phonotactics-1">Phonotactics</h3>
+<p>The study of what sounds and combinations of sounds are ‘legal’ in a
+language</p>
+<hr />
+<h3 id="every-language-has-a-set-of-phonemes-which-are-used">Every
+language has a set of phonemes which are used</h3>
+<ul>
+<li><p>This is called a language’s <strong>Phonemic
+Inventory</strong></p>
+<ul>
+<li>Sometimes ‘phonological inventory’</li>
+</ul></li>
+<li><p>Every language has one.</p>
+<ul>
+<li><h2 id="and-you-can-find-it-at-phoible">… and you can find it <a
+href="https://phoible.org/">at PHOIBLE</a></h2></li>
+</ul></li>
+</ul>
+<h3 id="piraha">Pirahã</h3>
+<p><img class="r-stretch" src="phonology/inventory_piraha.jpg"></p>
+<hr />
+<h3 id="hawaiian">Hawaiian</h3>
+<p><img class="r-stretch" src="phonology/inventory_hawaiian.jpg"></p>
+<hr />
+<h3 id="mandarin">Mandarin</h3>
+<p><img class="r-stretch" src="phonology/inventory_mandarin.jpg"></p>
+<hr />
+<h3 id="urdu">Urdu</h3>
+<p><img class="r-stretch" src="phonology/inventory_urdu.jpg"></p>
+<hr />
+<h3 id="malayalam">Malayalam</h3>
+<p><img class="r-stretch" src="phonology/inventory_malayalam.jpg"></p>
+<hr />
+<h3 id="a-languages-phonological-inventory-is-important">A language’s
+phonological inventory is important!</h3>
+<ul>
+<li><p>It tells you which phonemes are legal to use</p></li>
+<li><p>It tells you what the ‘options’ are when there are
+alternations</p></li>
+<li><p>It will play a big role in your analysis</p></li>
+<li><p>It really complicates word borrowings!</p></li>
+</ul>
+<hr />
+<h3 id="hawaiian-is-an-indigenous-language-of-hawaii">Hawaiian is an
+Indigenous language of Hawai’i</h3>
+<video class="r-stretch" controls width="700px" src="video/hawaiian.mp4">
+</video>
+<p>Video is from <a
+href="https://www.youtube.com/watch?v=G_sw5Q4ZyNc&amp;t=76s">OiwiTV’s
+ʻĀhaʻi ʻŌlelo Ola: ʻŌlelo Hawaiʻi: A Brief History</a></p>
+<hr />
+<h3 id="hawaiian-has-an-atypically-small-number-of-consonants">Hawaiian
+has an atypically small number of consonants</h3>
+<p><img class="r-stretch" src="phonology/inventory_hawaiian.jpg"></p>
+<hr />
+<h3 id="how-do-speakers-of-hawaiian-borrow-words-from-english">How do
+speakers of Hawaiian borrow words from English?</h3>
+<hr />
+<p><img class="r-stretch" src="phonmedia/enhawaiianborrowings.png"></p>
+<hr />
+<h3 id="lets-look-at-some-english-to-hawaiian-borrowings">Let’s look at
+some English-to-Hawaiian Borrowings</h3>
+<hr />
+<h3 id="iniseka">Iniseka</h3>
+<ul>
+<li>Insect</li>
+</ul>
+<hr />
+<h3 id="elepani">Elepani</h3>
+<ul>
+<li>Elephant</li>
+</ul>
+<hr />
+<h3 id="hipa">hipa</h3>
+<ul>
+<li>Sheep</li>
+</ul>
+<hr />
+<h3 id="kaioke">kaioke</h3>
+<ul>
+<li>Coyote</li>
+</ul>
+<hr />
+<h3 id="kanakalu">Kanakalu</h3>
+<ul>
+<li>Kangaroo</li>
+</ul>
+<hr />
+<h3 id="lakuna">Lakuna</h3>
+<ul>
+<li>Raccoon</li>
+</ul>
+<hr />
+<h3 id="nupepa">Nupepa</h3>
+<ul>
+<li>Newspaper</li>
+</ul>
+<hr />
+<h3 id="mokokaikala">Mokokaikala</h3>
+<ul>
+<li>Motorcycle</li>
+</ul>
+<hr />
+<h3 id="kakalina">Kakalina</h3>
+<ul>
+<li>Gasoline</li>
+</ul>
+<hr />
+<h3 id="kelepona">Kelepona</h3>
+<ul>
+<li>Telephone</li>
+</ul>
+<hr />
+<h3 id="kolokalaiwa">Kolokalaiwa</h3>
+<ul>
+<li>Screwdriver</li>
+</ul>
+<hr />
+<h3
+id="but-languages-also-differ-in-terms-of-the-combinations-they-allow">But
+languages also differ in terms of the combinations they allow</h3>
+<hr />
+<h3
+id="phonotactic-constraints-dictate-what-combinations-are-legal">Phonotactic
+Constraints dictate what combinations are ‘legal’</h3>
+<ul>
+<li><p>Some sounds can’t happen at the start or end of words</p></li>
+<li><p>Some sound combinations can’t happen</p></li>
+<li><p>Some syllable structures are favored or prevented</p></li>
+</ul>
+<hr />
+<h3 id="english-has-some-weird-phonotactic-constraints">English has some
+weird phonotactic constraints</h3>
+<ul>
+<li><p>End a word with a pronounced /h/ (“Bah”)</p></li>
+<li><p>Say the /ŋ/ in “ring” at the start of a word.
+(“Ngöndro”)</p></li>
+<li><p>End a word with the vowel in “bet” or “book”. (“Saké”)</p></li>
+<li><p>English has “s”, “k”, “v”, but say “Moskva”</p></li>
+</ul>
+<hr />
+<h3 id="so-do-other-languages">So do other languages</h3>
+<ul>
+<li><p>… and these come into play when we’re borrowing words</p></li>
+<li><p>Languages adapt words to fit their phonotactic constraints when
+borrowing.</p></li>
+</ul>
+<hr />
+<h3 id="japanese-requires-all-syllables-to-be-cv">Japanese requires all
+syllables to be CV</h3>
+<ul>
+<li>This means that borrowing from English (which has no such
+constraint) is complicated</li>
+</ul>
+<hr />
+<p><lang>Japanese</lang><br><ldata>Japonic - Japan</ldata></p>
+<p><img class="r-stretch" src="phonmedia/japanese_christmas.jpg"></p>
+<p>‘Merry Christmas’ - merii kurisumasu</p>
+<audio controls src="phonmedia/japanese_christmas.mp3">
+</audio>
+<p><small>(<a href="http://japanese.about.com/library/blqow33.htm">Image
+and Sound Credit</a>)</small></p>
+<hr />
+<h2 id="some-languages-allow-more-complexity-in-syllables">Some
+languages allow more complexity in syllables</h2>
+<hr />
+<h3 id="english">English</h3>
+<ul>
+<li><p>‘Sixths’ [sɪksθs]</p>
+<ul>
+<li>CVCCCC</li>
+</ul></li>
+<li><p>‘Strengths’ [stɹɛŋkθs]</p>
+<ul>
+<li>CCCVCCCC</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="russian">Russian</h3>
+<ul>
+<li><p>‘Glance’ - взгляд (/vzglʲat/)</p>
+<ul>
+<li>CCCCVC syllable</li>
+</ul></li>
+<li><p>‘Of Construction’ - строительств (/strʌˈʲitʲɛlʲstf/)</p>
+<ul>
+<li>CCCVCVCVCCCC</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="czech">Czech</h3>
+<ul>
+<li><p>Strč prst skrz krk - ‘Stick your finger down your throat’</p>
+<ul>
+<li>CCCC CCCC CCCC CCC</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="english-1">English</h3>
+<ul>
+<li><p>‘Able’ [ejbl̩]</p>
+<ul>
+<li>V CC</li>
+</ul></li>
+<li><p>‘Fun and games’ [fʌn n̩ gejmz]</p>
+<ul>
+<li>CVC C CVCC</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="this-is-just-scratching-the-surface-of-phonology">This is just
+scratching the surface of phonology</h3>
+<p><img class="r-stretch" src="img/tipoficeberg.jpg"></p>
+<hr />
+<h3 id="lignering-questions-in-phonology">LIGNering Questions in
+Phonology?</h3>
+<p>Phonology, phoneme, allophone, complimentary Distribution,
+Contrastive Distribution, Phonological rule, Natural Class, Minimal
+Pair, Insertion/Epenthesis, Deletion, Phonotactic Constraint, Syllable,
+Onset, Coda, Nucleus, Rhyme/Rime</p>
+<hr />
+<h3 id="lign-111-is-where-youll-go-for-more-of-this">LIGN 111 is where
+you’ll go for more of this!</h3>
+<p><img class="r-stretch" src="img/plug.jpg"></p>
+<hr />
+<h3
+id="a-persons-accent-is-often-guided-by-the-phonology-of-the-languages-in-their-language-background">A
+person’s ‘accent’ is often guided by the phonology of the languages in
+their language background</h3>
+<ul>
+<li>Wait, what is that?</li>
+</ul>
+<hr />
+<h2 id="language-background">Language Background</h2>
+<hr />
+<h3 id="lets-think-about-language-background-a-bit-more">Let’s think
+about language background a bit more</h3>
+<hr />
+<h3 id="l1-vs.-l2-shorthand">“L1” vs. “L2” shorthand</h3>
+<ul>
+<li><p>L1 is a ‘native’ language which you’ve learned well, generally as
+a child or young adult</p></li>
+<li><p>L2 is an ‘acquired’ language which you didn’t grow up speaking,
+but have acquired later on</p>
+<ul>
+<li>Many levels of fluency are possible</li>
+</ul></li>
+<li><p>‘Heritage Speakers’ have learned a language informally through
+exposure at home or from relatives, but may never have learned in school
+or spoken extensively outside the home</p>
+<ul>
+<li>Many levels of fluency are possible</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-native-speaker-problem">The ‘Native Speaker’ problem</h3>
+<ul>
+<li><p>What exactly is a ‘native speaker’ of a language?</p></li>
+<li><p>Where does this leave bilinguals?</p></li>
+<li><p>What about people who learned English as L2, but have used it
+more than their L1 in their lifetimes?</p></li>
+<li><p>What about heritage speakers?</p></li>
+<li><p><a
+href="https://www.frontiersin.org/articles/10.3389/fpsyg.2021.715843/full">See
+Cheng et al. 2022 for more discussion of this issue</a></p></li>
+</ul>
+<hr />
+<h3 id="more-useful-ways-to-think-about-language-background">More useful
+ways to think about language background</h3>
+<ul>
+<li><p>Which language(s) did you learn first?</p></li>
+<li><p>Which language(s) do you use most often?</p></li>
+<li><p>Which language(s) do you feel conversationally fluent
+in?</p></li>
+<li><p>Which language(s) do you have grammatical intuitions in?</p></li>
+<li><p>Which language(s) would you prefer to use in a given
+context?</p></li>
+<li><p>Which language(s) do you identify with, or feel an allegiance
+towards?</p></li>
+</ul>
+<hr />
+<h3 id="language-background-is-complicated">Language background is
+complicated</h3>
+<ul>
+<li><p>Every person has a rich language background</p></li>
+<li><p>This is important to consider as we do linguistic work</p></li>
+<li><p>… and trying to compact it down to one dimension or ‘term’ isn’t
+a great plan!</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li>We’ll dive into how words work</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

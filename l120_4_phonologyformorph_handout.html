@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="re-register-your-clicker-on-canvas-please">Re-register your
+clicker on Canvas, please!</h3>
+<p><img class="tall" src="ling_memes/whichbeer_ipa.jpg"></p>
+<hr />
+<h1>
+Phonology for Morphology
+</h1>
+<H3>
+Dr. Will Styler - LIGN 120
+</h3>
+<hr />
+<h3
+id="last-week-we-discussed-phonologically-conditioned-allomorphy">Last
+week, we discussed Phonologically Conditioned Allomorphy</h3>
+<ul>
+<li><p>“This morpheme could look like X, Y or Z depending on the
+surrounding sounds”</p></li>
+<li><p>Let’s do a bit of review on what this looks like</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>How do we write a phonological rule?</p></li>
+<li><p>What’s the difference between phonology and morphology?</p></li>
+<li><p>Why does Morphology need phonology?</p></li>
+<li><p>What do you need to know from Phonetics/Phonology to do this
+class?</p></li>
+<li><p>Common phonological processes in morphology</p></li>
+</ul>
+<hr />
+<h1 id="review-how-do-we-write-a-phonological-rule">Review: How do we
+write a phonological rule?</h1>
+<hr />
+<h3 id="the-basic-format">The Basic Format</h3>
+<p>/Starting State/ -&gt; [Ending State] / [When the transformation
+happens]</p>
+<hr />
+<h3 id="phonological-rule-format">Phonological Rule Format</h3>
+<ul>
+<li><p>“X turns into Y in environment Z”</p></li>
+<li><p>“X -&gt; Y” means “X turns into Y”</p>
+<ul>
+<li>-&gt; is an arrow. -&gt; is just easy to type.</li>
+</ul></li>
+<li><p>Then the “/” which means “in the environment”</p></li>
+<li><p>Then you add a blank, representing where the sound goes that’s
+getting transformed “__”</p></li>
+<li><p>… And you position that blank relative to the conditioning
+environment.</p></li>
+<li><p>Adding or removing sounds involves tranforming to or from
+‘ø’</p></li>
+</ul>
+<hr />
+<h3 id="remus-lupin---wolf-full-moon">/Remus Lupin/ -&gt; [Wolf] / [Full
+moon]</h3>
+<p><img src="img/lupin.jpg" /></p>
+<hr />
+<h3 id="if-n-turns-to-an-ŋ-before-k">If /n/ turns to an /ŋ/ before
+[k]…</h3>
+<ul>
+<li><p>/n/ -&gt; [ŋ] / __k</p></li>
+<li><p>If it happened after [k]…</p></li>
+<li><p>/n/ -&gt; [ŋ] / k__</p></li>
+</ul>
+<hr />
+<h3
+id="we-wont-require-formal-stating-of-phonological-rules-this-quarter">We
+won’t require formal stating of phonological rules this quarter</h3>
+<ul>
+<li><p>Rules don’t need to be stated using features</p>
+<ul>
+<li>(Although sometimes, it’s the best approach)</li>
+</ul></li>
+<li><p>You will not be graded on the quality or elegance of your
+phonological argumentation</p></li>
+<li><p>But if you’re explaining how an alternation works, a quick rule
+is a great way to do so</p></li>
+</ul>
+<hr />
+<h1 id="are-phonology-and-morphology-doing-the-same-thing">Are phonology
+and morphology doing the same thing?</h1>
+<hr />
+<h2 id="no.">No.</h2>
+<hr />
+<h3
+id="linguistics-students-often-mix-up-the-roles-of-morphology-and-phonology">Linguistics
+Students often mix up the roles of morphology and phonology</h3>
+<hr />
+<h3 id="the-english-plural">The English Plural</h3>
+<ul>
+<li><p>There are three realizations of the English Plural</p></li>
+<li><p>dogs, pubs, rags, dads, bins…</p></li>
+<li><p>cats, bucks, cliffs, myths</p></li>
+<li><p>dishes, fishes, kisses, pluses, judges</p></li>
+</ul>
+<hr />
+<h3
+id="a-common-mistake-among-new-phonology-students-is-to-write-rules-like-this">A
+common mistake among new phonology students is to write rules like
+this…</h3>
+<ul>
+<li><p>ø -&gt; [s] / [plural word] __</p></li>
+<li><p>ø -&gt; [z] / [plural word] [C +voice]__</p></li>
+<li><p>ø -&gt; [ɪz] / [plural word] [C +strident]__</p></li>
+<li><h3 id="why-is-this-problematic">Why is this problematic?</h3></li>
+</ul>
+<hr />
+<h3 id="phonology-isnt-in-the-business-of-modifying-meaning">Phonology
+isn’t in the business of modifying meaning</h3>
+<ul>
+<li><p>If adding something changes the meaning of the word, it’s
+morphology’s problem</p></li>
+<li><p>We don’t want to write phonological rules to account for
+morphological changes</p></li>
+<li><p><em>Phonology handles sound changes in the fully-constructed
+word!</em></p></li>
+</ul>
+<hr />
+<h3 id="we-consider-morphology-to-be-a-separate-process">We consider
+morphology to be a separate process</h3>
+<hr />
+<p><img src="img/dogs_at_cards.jpg" /></p>
+<hr />
+<h3 id="the-process">The Process</h3>
+<ul>
+<li><p>“First, we’ll choose our stem: /dɑg/”</p></li>
+<li><p>“But we need this to be plural, so we’ll also need to add the /s/
+suffix. This gives us /dɑg+s/”</p></li>
+<li><p>“Then, we’ll apply our phonological rule, /s/ -&gt; [z] / [C
++voice]__”</p>
+<ul>
+<li>/dɑg+s/ -&gt; [dɑgz]</li>
+</ul></li>
+<li><p>“This gives us the final surface form, [dɑgz]”</p></li>
+<li><p>See, that wasn’t so ruff!</p>
+<ul>
+<li>🤣</li>
+</ul></li>
+</ul>
+<hr />
+<p>(We’ll talk more about this process later, but this works for
+now)</p>
+<hr />
+<h3 id="phonology-and-morphology-are-doing-different-things">Phonology
+and morphology are doing different things</h3>
+<ul>
+<li>Morphology builds the words, and phonology adapts the sounds to make
+the word legal</li>
+</ul>
+<hr />
+<h3 id="oh-ok-so-i-can-forget-everything-i-learned-in-111">“Oh, OK, so I
+can forget everything I learned in 111?!”</h3>
+<ul>
+<li>(Nice try)</li>
+</ul>
+<hr />
+<h1 id="why-does-morphology-need-phonology">Why does Morphology need
+Phonology?</h1>
+<hr />
+<h2 id="review-allomorphs">Review: Allomorphs</h2>
+<p>The multiple forms which a given morpheme can take</p>
+<hr />
+<h3 id="allomorphs-are-generally-conditioned">Allomorphs are generally
+<em>conditioned</em></h3>
+<ul>
+<li><p>“This single <em>underlying</em> morpheme could show up <em>on
+the surface</em> in one of several ways”</p></li>
+<li><p>Phonology is regularly responsible.</p></li>
+<li><p>“We’ll see one of these variants, <em>depending on the
+phonological structure of the base</em>.”</p></li>
+</ul>
+<hr />
+<h3 id="examples-of-allomorphy">Examples of Allomorphy</h3>
+<ul>
+<li><p>-s, -z, and -ɪz are the three <em>allomorphs</em> of the English
+plural</p>
+<ul>
+<li>They are predictable by knowing the voicing and stridency of the
+prior C</li>
+</ul></li>
+<li><p>-t, -d, and -ɪd are the three <em>allomorphs</em> of the English
+past tense</p>
+<ul>
+<li>They are predictable by knowing the voicing and place of the prior
+C</li>
+</ul></li>
+<li><p><em>These allomorphs are the surface result of the application of
+phonological rules!</em></p></li>
+</ul>
+<hr />
+<h3 id="allomorphs-are-a-surface-concept">Allomorphs are a
+<em>surface</em> concept</h3>
+<ul>
+<li><p>There is one English plural suffix, but it has three <em>wholly
+predictable</em> allomorphs</p>
+<ul>
+<li>… but they are three actual realizations of the plural</li>
+</ul></li>
+<li><p><em>Even if you can give us the rule(s) that create them, we’ll
+still want you to list the allomorphs!</em></p></li>
+</ul>
+<hr />
+<h3
+id="so-we-need-phonology-for-phonologically-conditioned-allomorphy">So,
+we need phonology for phonologically-conditioned allomorphy</h3>
+<ul>
+<li>… and guess what: It’s <em>everywhere!</em></li>
+</ul>
+<hr />
+<h1 id="what-do-you-need-to-know-from-phonology-for-this-class">What do
+you need to know from Phonology for this class?</h1>
+<hr />
+<h3 id="having-taken-110-and-111-will-help-a-lot">Having taken 110 and
+111 will help a <em>lot</em></h3>
+<ul>
+<li><p>Your life will be around 30% better in this class if you’ve
+already taken LIGN 111</p></li>
+<li><p>Everything phonological we’ll do in this class will be easier
+than most of what we did in 111</p></li>
+</ul>
+<hr />
+<h3
+id="youll-want-to-know-about-basic-phoneticphonological-concepts">You’ll
+want to know about basic phonetic/phonological concepts</h3>
+<ul>
+<li><p>Consonants vs. Vowels</p></li>
+<li><p>Vowel height, backness, and rounding</p></li>
+<li><p>Consonant place, manner, and voicing</p></li>
+<li><p><a
+href="http://wstyler.ucsd.edu/talks/l111_13_syllables.html#/20">Syllables
+and syllabification</a></p></li>
+</ul>
+<hr />
+<h3 id="youll-need-to-be-familiar-with-the-ipa">You’ll need to be
+familiar with the IPA</h3>
+<ul>
+<li><p>You need to know how and why it’s organized</p></li>
+<li><p>You want to have it close at hand</p></li>
+<li><p><img class="wide" src="phonmedia/ipa_consonants.jpg"></p></li>
+</ul>
+<hr />
+<h3
+id="time-spent-learning-the-ipa-well-will-pay-off-over-and-over-again">Time
+spent learning the IPA well will pay off <em>over and over
+again</em></h3>
+<p><img src="img/bearsrepeating.jpg" /></p>
+<hr />
+<h3 id="youll-want-to-be-familiar-with-articulatory-thinking">You’ll
+want to be familiar with articulatory thinking</h3>
+<ul>
+<li><p>“Openness” of consonants and sonorance</p>
+<ul>
+<li><em>Why</em> would a /d/ infix become [z] between vowels?</li>
+</ul></li>
+<li><p>“Coarticulation” leading to changes in surrounding sounds</p>
+<ul>
+<li><em>Why</em> would /k/ be fronted before /i/?</li>
+</ul></li>
+<li><p>“Naturalness” of phonological rules and processes</p>
+<ul>
+<li>If /k/ is becoming [b] before a uvular, that’s likely not
+phonological</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="if-youve-not-taken-110-or-111-youre-going-to-have-an-uphill-battle">If
+you’ve not taken 110 OR 111, you’re going to have an uphill battle</h3>
+<ul>
+<li><p>We can help in office hours</p></li>
+<li><p>It’s a great idea to brush up on your IPA <em>now</em></p></li>
+<li><p>I can point you towards some books that might help</p>
+<ul>
+<li><a
+href="https://www.cambridge.org/core/books/introducing-phonology/33F7A04358A15407E6D73C8AA92D4FD9">Dave
+Odden’s Introducing Phonology</a> is a good one</li>
+</ul></li>
+<li><p>My <a href="http://savethevowels.org/111">slides for
+Phonology</a> are still online</p></li>
+</ul>
+<hr />
+<h3
+id="you-will-often-need-to-look-past-phonology-to-understand-the-problems-here">You
+will often need to “look past” phonology to understand the problems
+here</h3>
+<ul>
+<li><p>Common phonological problems will obscure your problems!</p></li>
+<li><p>We should talk about those!</p></li>
+</ul>
+<hr />
+<h1 id="common-phonological-processes-in-morphology">Common Phonological
+Processes in Morphology</h1>
+<hr />
+<h3 id="common-phonological-processes-in-morphology-1">Common
+Phonological Processes in Morphology</h3>
+<ul>
+<li>Assimilation</li>
+<li>Epenthesis</li>
+<li>Deletion</li>
+<li>Palatalization</li>
+<li>Metathesis</li>
+<li>Fortition or Lenition</li>
+<li>Harmony</li>
+<li>Neutralization*</li>
+</ul>
+<hr />
+<h3 id="whats-the-opposite-of">What’s the opposite of…</h3>
+<ul>
+<li>Logical</li>
+<li>Formal</li>
+<li>Variable</li>
+<li>Glorious</li>
+<li>Dependent</li>
+<li>Legal</li>
+<li>Regular</li>
+<li>Mobile</li>
+<li>Proper</li>
+<li>Expensive</li>
+<li>Relevant</li>
+<li>Sufficient</li>
+<li>Correct</li>
+</ul>
+<hr />
+<h3 id="im--il--ir--iŋ-in-"><clb>im-</clb> | <clp>il-</clp> |
+<clo>ir-</clo> | <clg>iŋ</clg> | <clr>in-</clr></h3>
+<p><clb> Mobile<br> Proper<br> </clb></p>
+<p><clo> Relevant<br> Regular<br> </clo></p>
+<p><clp> Logical<br> Legal<br> </clp></p>
+<p><clg> Correct<br> Glorious<br> </clg></p>
+<p><clr> Sufficient<br> Dependent<br> Formal<br> Variable<br>
+Expensive<br> </clr></p>
+<hr />
+<h3 id="im--il--ir--iŋ-in--1"><clb>im-</clb> | <clp>il-</clp> |
+<clo>ir-</clo> | <clg>iŋ</clg> | <clr>in-</clr></h3>
+<ul>
+<li><p><clb>im-</clb> before labials</p></li>
+<li><p><clp>il-</clp> before /l/</p></li>
+<li><p><clo>ir-</clo> before /ɹ/</p></li>
+<li><p><clg>iŋ</clg> before velars</p></li>
+<li><p><clr>in-</clr> everywhere else</p></li>
+</ul>
+<hr />
+<h3 id="this-is-assimilation">This is Assimilation</h3>
+<ul>
+<li><p>“Take on (some of) the characteristics of a nearby
+sound”</p></li>
+<li><p>Can be partial assimilation (‘match this feature’)</p></li>
+<li><p>… or total assimilation (‘become the same sound’)</p></li>
+<li><p><strong>Nasals LOVE to assimilate!</strong></p></li>
+</ul>
+<hr />
+<h3 id="epenthesis">Epenthesis</h3>
+<ul>
+<li><p>Insert a sound to prevent an awkward combination of
+sounds</p></li>
+<li><p>mod+d -&gt; modded</p></li>
+</ul>
+<hr />
+<h3 id="deletion">Deletion</h3>
+<ul>
+<li><p>Remove a sound to prevent an awkward combination of
+sounds</p></li>
+<li><p>in+relevant -&gt; irrelevant</p></li>
+</ul>
+<hr />
+<h3 id="palatalization">Palatalization</h3>
+<ul>
+<li><p>Palatal sounds often make other sounds palatal</p></li>
+<li><p>tree -&gt; ‘chree’</p></li>
+</ul>
+<hr />
+<h3 id="metathesis">Metathesis</h3>
+<ul>
+<li>Swap two adjacent sounds around in the word</li>
+</ul>
+<hr />
+<h3 id="metathesis-1">Metathesis</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-s268{text-align:left}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-s268">
+‘non-actual’<br>
+</th>
+<th class="tg-0lax">
+‘actual’<br>
+</th>
+<th class="tg-0lax">
+</th>
+</tr>
+<tr>
+<td class="tg-s268">
+qq’í
+</td>
+<td class="tg-0lax">
+qíq’
+</td>
+<td class="tg-0lax">
+‘restrain’<br>
+</td>
+</tr>
+<tr>
+<td class="tg-s268">
+pkʷ’ə́
+</td>
+<td class="tg-0lax">
+pə́kʷ’
+</td>
+<td class="tg-0lax">
+‘smoke’<br>
+</td>
+</tr>
+<tr>
+<td class="tg-s268">
+t’cə́
+</td>
+<td class="tg-0lax">
+t’ə́c
+</td>
+<td class="tg-0lax">
+‘shatter’
+</td>
+</tr>
+<tr>
+<td class="tg-s268">
+kʷ’sə́
+</td>
+<td class="tg-0lax">
+kʷ’ə́s
+</td>
+<td class="tg-0lax">
+‘count’
+</td>
+</tr>
+</table>
+</center>
+<p>(from Klallam, a Salish language of Vancouver)</p>
+<hr />
+<h3 id="fortition-or-lenition">Fortition or Lenition</h3>
+<ul>
+<li><p><strong>Fortition</strong>: Making a consonant stronger
+(i.e. more closed)</p>
+<ul>
+<li>/s/ -&gt; [t]</li>
+</ul></li>
+<li><p><strong>Lenition</strong>: Making a consonant weaker (i.e. more
+open)</p>
+<ul>
+<li>/b/ -&gt; [β]</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="harmony">Harmony</h3>
+<ul>
+<li><p>Where a feature from one segment spreads through the
+word</p></li>
+<li><p>Often occurs with vowel features (e.g. Turkish, Finnish,
+Yokuts)</p></li>
+<li><p>Can occur with nasality too (usually near Uruguay!)</p></li>
+</ul>
+<hr />
+<h3
+id="turkish-exhibits-vowel-harmony-in-morphological-datasets">Turkish
+exhibits vowel harmony in morphological datasets</h3>
+<ul>
+<li><img src="humorimg/hint.jpg" /></li>
+</ul>
+<hr />
+<h3 id="neutralization">Neutralization</h3>
+<ul>
+<li><p>This isn’t a phonological process, but a result</p></li>
+<li><p>When a phonological rule <em>removes a contrast</em></p></li>
+<li><p>“This morpheme <em>doesn’t seem to get attached here</em>”</p>
+<ul>
+<li>It did attach, but got removed!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="zoque">Zoque</h3>
+<p><img class="wide" src="morphology/zoque_neutralization.jpg"></p>
+<hr />
+<h3 id="not-all-missing-affixes-are-phonological">Not all missing
+affixes are phonological!</h3>
+<ul>
+<li><p>Sometimes, the morpheme isn’t attached for lexical
+reasons</p></li>
+<li><p>Cat -&gt; Cats</p></li>
+<li><p>Deer -&gt; Deer</p></li>
+<li><p>Elk -&gt; Elk</p></li>
+<li><p>Mouse -&gt; Mice</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Phonology and Morphology have different goals</p></li>
+<li><p>Morphology needs to ‘look past’ phonology</p></li>
+<li><p>You want to make sure you’ve got phonological basics for this
+class</p></li>
+<li><p>Understanding common phonological processes will help!</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li><p>Get a jump on the next discussion post</p></li>
+<li><p>We’ll give some tips for morphological analysis!</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning,shapes.multipart}
+\usepackage{fontspec}
+\setmainfont{Charis SIL}
+\begin{document}
+\tikzstyle{m1} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=blue!10]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\begin{tikzpicture}[node distance=0.5cm,every text node part/.style={align=center}]
+  \node (toplab) [] {\large Split-Morphology Hypothesis};
+  \node (concept) [below =of toplab] {``John redirected traffic''};
+   \node (m1) [m1,below= of concept] {\textbf{Morphological Processing (Derivation)} \\ re+direct};
+   \node (s) [m1,below= of m1] {\textbf{Syntactic Processing} \\ Orders Words; Assigns 3SG.PAST to V};
+   \node (m2) [m1,below= of s] {\textbf{Morphological Processing (Inflection)} \\ redirect+d};
+   \node (ph) [m1,below= of m2] {\textbf{Phonological Processing} \\ /d/ -> [ɪd] / [+cor]\_\_};
+   \node (surface) [below= of ph] {[ɹidə`ɹɛktɪd]};
+\draw [] (concept) -- (m1);
+\draw [] (m1) -- (s);
+\draw [] (s) -- (m2);
+\draw [] (m2) -- (ph);
+\draw [arrow] (ph) -- (surface);
+
+\node (toplab2) [right = of toplab] {\large Single Component Hypothesis};
+  \node (concept2) [below = of toplab2] {``John redirected traffic''};
+
+   \node (m12) [m1,below =of concept2] {\textbf{Morphological Processing} \\ re+direct+d};
+   \node (s2) [m1,below= of m12] {\textbf{Syntactic Processing} \\ Orders Words};
+   \node (ph2) [m1,below = of s2] {\textbf{Phonological Processing} \\ /d/ -> [ɪd] / [+cor]\_\_};
+   \node (surface2) [below = of ph2] {[ɹidə`ɹɛktɪd]};
+\draw [] (concept2) -- (m12);
+\draw [] (m12) -- (s2);
+\draw [] (s2) -- (ph2);
+\draw [arrow] (ph2) -- (surface2);
+\end{tikzpicture}
+
+\end{document}

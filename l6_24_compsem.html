@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+LIGN 6 - Computational Semantics
+</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+
+
+
+
+
+# Computational Semantics
+### Will Styler - LIGN 6
+
+---
+
+### Today's Plan
+
+- Why do we need meaning?
+
+- Semantics and Pragmatics
+
+- Lexical Semantics
+
+- Wordnet and Word Relationships
+
+---
+
+### Dependency parsing gives us some elements of meaning
+
+- Subject of the verb
+
+- Object of the verb
+
+- What modified the action of the verb
+
+- *We know things about the relationships among participants in the sentence*
+
+---
+
+### Gerflem flumduzzled the garibdo gerbeebily in Barblabble.
+
+- "Was the garibdo flumduzzled?"
+
+- "Where did the flumduzzling happen?"
+
+- "How was the garibdo flumduzzled?"
+
+- "What did Gerflem do?"
+
+- What *can't* we ask?
+
+---
+
+### It's all still gibberish until we know what the words mean
+
+---
+
+### Today, we're getting into 'meaning' and 'understanding'
+
+- Moving past grammatical knowledge into world knowledge
+
+---
+
+# Why do we need meaning?
+
+---
+
+### Many NLP tasks require little actual knowledge about the world or words
+
+- Alexa, create an event at 3pm called "Visit my watchmaker"
+
+- Alexa, add oranges and apples and candy bars to my shopping list
+
+	- Alexa, are apples on my shopping list?
+
+- Hey Siri, find all emails about "Moving expenses"
+
+---
+
+### ... but these commands become fragile quickly
+
+- Alexa, do I have any appointments with people who fix clocks?
+
+- Alexa, are there fruit on my shopping list?
+
+- Hey Siri, find all emails related to my San Diego move
+
+
+---
+
+### We expect these systems to do 'inference'
+
+---
+
+## Inference
+
+The use of evidence, world knowledge, and reasoning to reach a conclusion
+
+- "Using what you already know to go deeper"
+
+---
+
+### We expect some level of inference
+
+> "Sarah has three dogs, eight cats, two hamsters, four ferrets, and a son."
+
+- "Does Sarah have three dogs?"
+
+- "Does Sarah have a dog?"
+
+- "Does Sarah have any animals?"
+
+- "Is Sarah an animal hoarder?"
+
+---
+
+### Other kinds of inference
+
+- Alexa, what's my first appointment of the day?
+
+	- She lists first four appointments
+
+- Alexa, where will I be on September 8th?
+
+	- She lists all events
+
+- Alexa, do I have free time for lunch today?
+
+	- "Hmm, I don't know how to do that"
+
+---
+
+### We need to understand more than just the given text for these questions!
+
+- We need meaning!
+
+---
+			 
+# What is 'meaning'?
+
+---
+
+### We mean two things when we discuss what X 'means'
+
+- "What does this *always* mean, regardless of context or circumstance?"
+
+	- This is **Semantics**
+
+- "What does this mean *in this particularly context or circumstance*?"
+
+	- This is **Pragmatics**
+
+---
+
+### "John is in the living room"
+
+- What does this *always* mean?
+
+- What meanings could this have *in specific situations*?
+
+---
+
+## Semantics
+
+The study of meaning in Language
+
+---
+
+## Pragmatics
+
+The study of meaning in language *in context*
+
+---
+
+### We're going to start with semantics, then head into Pragmatics next week
+
+---
+
+### Semantics is a large field of linguistics
+
+- What is the relationship between linguistic signs, and the things they signify
+
+- "How can we determine the 'truth' or logical meaning of a sentence?"
+
+- "What do words, phrases, sentences, and narratives actually mean?"
+
+- "What differentiates word meanings?"
+
+---
+
+### There are many approaches to Semantics
+
+- **Formal Semantics**: Semantics distilled down to logic from sentences
+
+- **Cognitive Semantics**: What does meaning look like in the mind?
+
+- **Lexical Semantics**: What do individual words mean?
+
+---
+
+### Each of these can be interesting in Computational Semantics
+
+- ... but we're going to focus on Lexical semantics here, for lack of time
+
+---
+
+# Lexical Semantics
+
+---
+
+### Lexical Semantics is the study of word meaning
+
+- The senses of a given word
+
+- The relationships that words have to one another
+
+- The arguments that words generally take
+
+	- This is next week
+
+---
+
+### First, an important resource
+
+---
+
+### WordNet
+
+- [WordNet](http://wordnetweb.princeton.edu/perl/webwn) is a Lexical Database
+
+- It contains English words, their senses, as well as their relationships to other words
+
+- WordNet (and resources like it) are *hugely* important to computational Linguistics
+
+- We're going to refer to it a lot!
+
+---
+
+## Word Senses
+
+---
+
+### We've already talked some about polysemy
+
+- Words can have many 'senses'
+
+- Bank of a river, Bank of America, Bank of a Poker game
+
+- Lit (party) vs. Lit (fire) vs. English Lit
+
+- A word's sense is *crucial*
+
+	 - Every element of a word's meaning can change with a change in sense
+	
+---
+
+### Bass (from WordNet)
+
+<small>
+
+- S: (n) bass (the lowest part of the musical range)
+- S: (n) bass, bass part (the lowest part in polyphonic music)
+- S: (n) bass, basso (an adult male singer with the lowest voice)
+- S: (n) sea bass, bass (the lean flesh of a saltwater fish of the family Serranidae)
+- S: (n) freshwater bass, bass (any of various North American freshwater fish with lean flesh)
+- S: (n) bass, bass voice, basso (the lowest adult male singing voice)
+- S: (n) bass (the member with the lowest range of a family of musical instruments)
+- S: (n) bass (nontechnical name for any of numerous edible marine and freshwater spiny-finned fishes)
+- S: (adj) bass, deep (having or denoting a low vocal or instrumental range) "a deep voice"; "a bass voice is lower than a baritone voice"; "a bass clarinet"
+
+</small>
+
+---
+
+### Slug (from WordNet)
+
+<small>
+
+- S: (n) bullet, slug (a projectile that is fired from a gun)
+- S: (n) slug (a unit of mass equal to the mass that accelerates at 1 foot/sec/sec when acted upon by a force of 1 pound; approximately 14.5939 kilograms)
+- S: (n) slug (a counterfeit coin)
+- S: (n) sluggard, slug (an idle slothful person)
+- S: (n) slug (an amount of an alcoholic drink (usually liquor) that is poured or gulped) "he took a slug of hard liquor"
+- S: (n) type slug, slug (a strip of type metal used for spacing)
+- S: (n) slug (any of various terrestrial gastropods having an elongated slimy body and no external shell)
+- S: (n) punch, clout, poke, lick, biff, slug ((boxing) a blow with the fist) "I gave him a clout on his nose"
+
+</small>
+
+---
+
+### How can we tell which word sense is being used right now?
+
+---
+
+## Word Sense Disambiguation
+
+Using machine learning to detect *which sense* a usage of a written word represents
+
+---
+
+### Word Sense Disambiguation is done using two features
+
+- The word's POS tag
+
+	- This gives us 'lit' (v.) a fire vs. a 'lit' (adj.) party vs. English 'lit' (n.)
+
+- The word's 'embedding'
+
+	- 'What occurs within N words to both sides of the target word'
+
+	- "bass" fish vs. instrument vs. sound frequency vs. singer
+
+	- "slug" creature vs. bullet vs. punch vs. drink vs. lazy person
+
+- Assumption: "One sense per discourse"
+
+---
+
+### Word Sense Disambiguation is hard
+
+- Accuracy depends on how *coarse* your senses are
+
+	- Are you trying to disambiguate Freshwater, Saltwater, and 'common use' bass?
+	
+- It relies on good descriptions of the senses available
+
+- It relies on *up-to-date* descriptions of the senses available
+
+	- [WordNet doesn't currently have the new sense of 'lit'](http://wordnetweb.princeton.edu/perl/webwn?s=lit) 
+
+---
+
+### ... we're just going to assume that went OK!
+
+- Big assumption
+
+---
+
+### Now that we know the word's sense, what else do we want to know?
+
+---
+
+# Word Meaning Relationships
+
+---
+
+### Words have meanings
+
+- Different words have related meanings
+
+- ... and we find it helpful to talk about those relationships by classifying them
+
+---
+
+### Word Relationships
+
+- Synonym/Antonym
+
+- Metonymy
+
+- Hyponym/Hypernym (Subtype/Supertype)
+
+- Meronym/Holonym (Part/Whole)
+
+---
+
+## Synonym
+
+A words which shares the same denotational meaning, but with different spoken form
+
+- e.g. Cop/Police Officer, Sick/Ill, Sofa/Couch
+
+- The usage may be slightly different, but they 'mean' the same thing
+
+- WordNet divides words into 'Synsets'
+
+---
+
+### Hot Dog (frank.n.02) WordNet Synonyms
+
+> {'frankfurter', 'frank', 'dog', 'wiener', 'hot_dog', 'wienerwurst', 'hotdog', 'weenie'}
+
+---
+
+## Antonym
+
+A word which has a (nearly) opposite denotational meaning
+
+- e.g. up/down, sick/healthy, happy/sad, dead/alive, do/undo
+
+- "exactly" opposite is hard, but nearly opposite is fine
+
+---
+
+### Good (good.a.01) WordNet Antonym
+
+> {'bad'}
+
+---
+
+## Hyponym/Hypernym
+
+A word which is a specific instance of a broader class
+
+- e.g. Poodle/Dog, Laptop/Computer, iPad/Tablet, Skyscraper/Building
+
+- The greater class is a "hypernym"
+
+- "X is a type of Y": X are hyponyms, Y is the hypernym
+
+---
+
+### Hot Dog (frank.n.02) WordNet Hypernym path
+
+> [[Synset('entity.n.01'), Synset('physical_entity.n.01'), Synset('matter.n.03'), Synset('solid.n.01'), Synset('food.n.02'), Synset('meat.n.01'), Synset('sausage.n.01'), Synset('frank.n.02')]]
+
+---
+
+### Poodle (poodle.n.01) WordNet Hypernym Paths
+
+> [Synset('entity.n.01'), Synset('physical_entity.n.01'), Synset('object.n.01'), Synset('whole.n.02'), Synset('living_thing.n.01'), Synset('organism.n.01'), Synset('animal.n.01'), Synset('domestic_animal.n.01'), Synset('dog.n.01'), Synset('poodle.n.01')]]
+
+> [Synset('entity.n.01'), Synset('physical_entity.n.01'), Synset('object.n.01'), Synset('whole.n.02'), Synset('living_thing.n.01'), Synset('organism.n.01'), Synset('animal.n.01'), Synset('chordate.n.01'), Synset('vertebrate.n.01'), Synset('mammal.n.01'), Synset('placental.n.01'), Synset('carnivore.n.01'), Synset('canine.n.02'), Synset('dog.n.01'), Synset('poodle.n.01')]
+
+---
+
+### Hot Dog (frank.n.02) WordNet Hyponyms
+
+> [Synset('vienna_sausage.n.01')]
+
+---
+
+### Poodle (poodle.n.01) WordNet Hyponyms
+
+> [Synset('large_poodle.n.01'), Synset('miniature_poodle.n.01'), Synset('standard_poodle.n.01'), Synset('toy_poodle.n.01')]
+
+---
+
+## Meronymy/Holonomy
+
+The relationship between a part and its whole
+
+- Parts are meronyms of the whole
+
+- Wholes are holonyms of the parts
+
+- Can be thought of as parts (car/door) vs. substances (human/water)
+
+---
+
+### Car (car.n.01) WordNet Meronyms
+
+> [Synset('accelerator.n.01'), Synset('air_bag.n.01'), Synset('auto_accessory.n.01'), Synset('automobile_engine.n.01'), Synset('automobile_horn.n.01'), Synset('buffer.n.06'), Synset('bumper.n.02'), Synset('car_door.n.01'), Synset('car_mirror.n.01'), Synset('car_seat.n.01'), Synset('car_window.n.01'), Synset('fender.n.01'), Synset('first_gear.n.01'), Synset('floorboard.n.02'), Synset('gasoline_engine.n.01'), Synset('glove_compartment.n.01'), Synset('grille.n.02'), Synset('high_gear.n.01'), Synset('hood.n.09'), Synset('luggage_compartment.n.01'), Synset('rear_window.n.01'), Synset('reverse.n.02'), Synset('roof.n.02'), Synset('running_board.n.01'), Synset('stabilizer_bar.n.01'), Synset('sunroof.n.01'), Synset('tail_fin.n.02'), Synset('third_gear.n.01'), Synset('window.n.02')]
+
+---
+
+### Mouth (mouth.n.02) WordNet Holonyms
+
+> [Synset('face.n.01')]
+
+---
+
+### What kinds of questions can we answer knowing just word relations?
+
+Synonym/Antonym
+
+Hyponym/Hypernym (Subtype/Supertype)
+
+Meronym/Holonym (Part/Whole)
+
+---
+
+### Sample inferences which can come from WordNet
+
+- "Karen has three dogs", "Does she have any animals?"
+
+- "Roger has a car", "Does he have an automobile?"
+
+- Alexa, are all terriers dogs?
+
+	- "Yes, terriers are dogs"
+
+- Alexa, are all dogs terriers?
+
+	- "No, dogs are not terriers"
+	
+- Alexa, are humans animals?
+
+	- "Yes.  A person or human being belongs to the Homo Sapiens species, which make a person an animal biologically speaking."
+
+---
+
+### WordNet (and related resources) are *really* useful
+
+- This is why they've been created for many different languages
+
+- ... and expanded (c.f. [BabelNet](https://babelnet.org))
+
+- ... and even used for translation (c.f. [Open Multilingual Wordnet](http://compling.hss.ntu.edu.sg/omw/))
+
+- WordNet is built into NLTK
+
+	- [Here's a script I wrote to query it for this class](savethevowels.org/6/wordnetquery.py)
+	
+---
+
+### ... but WordNet is missing some things
+
+---
+
+### Hit
+
+- I hit the dragon with an arrow
+
+- SchwaCo stock hit $500 a share
+
+- Rob loves to hit the golf course on Fridays
+
+- The mafia hit stunned the local government
+
+- The fingerprints had three hits on old records
+
+- I hit on the dragon at the sleazy bar
+
+- I hit up the dragon for some gold until payday
+
+---
+
+### WordNet tells us nothing about how words interact with other elements of the sentence
+
+- Nothing about the *arguments* they need
+
+- Nothing about what's happening to the associated arguments
+
+- Nothing about the *roles* that other items in the sentence play
+
+- *Next time, we'll get there!*
+
+---
+
+### Wrapping up
+
+- We need our NLP systems to interact with *meaning*
+
+- We're going to focus on Lexical Semantics, word meaning, for this class
+
+- WordNet is a great resource for understanding more about words
+
+- Knowing the relationships between words can get us surprisingly far
+
+---
+
+### For Next Time
+
+- We all have a role to play in the grand verb of life
+
+---
+
+<huge>Thank you!</huge>
+
+
+
+
+
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

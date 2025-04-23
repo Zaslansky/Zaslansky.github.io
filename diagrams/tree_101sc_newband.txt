@@ -1,0 +1,23 @@
+tree_101sc_newbandtex
+
+[S 
+  [NP 
+    [DET The ] 
+    [N' 
+      [N' 
+        [N band ] ] 
+      [CP 
+        [C whom ] 
+        [S 
+          [NP 
+            [N' 
+              [N Michael ] ] ] 
+          [VP 
+            [V likes ] ] ] ] ] ] 
+  [VP 
+    [V went ] 
+    [PP 
+      [P on ] 
+      [NP 
+        [N' 
+          [N tour ] ] ] ] ] ]

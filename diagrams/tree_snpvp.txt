@@ -1,0 +1,5 @@
+tree_snpvptex
+
+[S 
+  [NP  ] 
+  [VP  ] ]

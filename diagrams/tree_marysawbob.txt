@@ -1,0 +1,11 @@
+tree_marysawbobtex
+
+[S 
+  [NP 
+    [N' 
+      [N Mary ] ] ] 
+  [VP 
+    [V saw ] 
+    [NP 
+      [N' 
+        [N Bob ] ] ] ] ]

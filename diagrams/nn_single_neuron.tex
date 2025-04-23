@@ -1,0 +1,41 @@
+
+%!TEX program = xelatex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{fontspec}
+    \setmainfont{Charis SIL}
+\begin{document}
+\def\layersep{2.5cm}
+
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+    \tikzstyle{input neuron}=[neuron, fill=green!50];
+    \tikzstyle{output neuron}=[neuron, fill=red!50];
+    \tikzstyle{hidden neuron}=[neuron, fill=blue!50];
+    \tikzstyle{annot} = [text width=4em, text centered]
+
+    % Draw the input neuron
+    \node[input neuron] (I-1) at (0,-1) {};
+
+    % Draw the single neuron in the hidden layer
+    \node[hidden neuron] (H1-1) at (\layersep,-1) {};
+
+    % Draw the output neuron
+    \node[output neuron] (O-1) at (2*\layersep,-1) {};
+
+    % Connect input neuron to the hidden neuron
+    \path (I-1) edge (H1-1);
+
+    % Connect hidden neuron to the output neuron
+    \path (H1-1) edge (O-1);
+
+    % Annotate the layers
+    \node[annot,above of=H1-1, node distance=1cm] (hl) {Neuron};
+    \node[annot,left of=hl] {Input};
+    \node[annot,right of=hl] {Output};
+
+\end{tikzpicture}
+
+\end{document}

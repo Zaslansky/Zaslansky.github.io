@@ -1,0 +1,15 @@
+tree_polarbears6tex
+
+[NP 
+  [NP 
+    [DET the ] 
+    [N' 
+      [ADJ excruciating ] 
+      [N' 
+        [N traffic ] ] ] ] 
+  [PP 
+    [P on ] 
+    [NP 
+      [DET the ] 
+      [N' 
+        [N 405 ] ] ] ] ]

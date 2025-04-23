@@ -1,0 +1,11 @@
+tree_l6textedmantex
+
+[S 
+  [NP Sarah ] 
+  [VP 
+    [VP 
+      [V texted ] 
+      [NP the man ] ]
+    [PP 
+      [P with ]
+      [NP her computer ] ] ] ]

@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YvT_gqs5ETk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<hr />
+<h1 id="conversational-interaction-design">Conversational Interaction
+Design</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<h3 id="today-well-talk-about-talking-to-the-computer">Today, we’ll talk
+about talking to the computer</h3>
+<ul>
+<li><p>Not from an NLP standpoint, but from a conversation
+standpoint</p></li>
+<li><p>“Assuming the rest of the system is working OK, what’s
+conversation like?”</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>The basic structures of human conversation</p></li>
+<li><p>Why even the basics are hard</p></li>
+<li><p>Other Conversational Difficulties</p></li>
+<li><p>How human do we want these systems to be?</p></li>
+</ul>
+<hr />
+<h1 id="human-conversation">Human Conversation</h1>
+<hr />
+<h2 id="conversation-analysis">Conversation Analysis</h2>
+<p>A methodology dedicated to analyzing the linguistic, social, and
+cultural elements of conversation</p>
+<hr />
+<h3 id="ca-research-starts-from-data">CA research starts from data</h3>
+<ul>
+<li><p>Record a conversation</p></li>
+<li><p>Create transcripts and annotated information</p></li>
+<li><p>Then study the processes at work</p></li>
+<li><p>They’ve come up with some basic structures of
+conversation</p></li>
+</ul>
+<hr />
+<h3
+id="each-and-every-element-of-human-conversation-is-hard-for-these-systems">Each
+and every element of human conversation is hard for these systems</h3>
+<ul>
+<li><p>Turn taking</p></li>
+<li><p>Adjacency Pairs</p></li>
+<li><p>Sequence Expansion</p></li>
+<li><p>Repair</p></li>
+</ul>
+<hr />
+<h2 id="turn-taking">Turn Taking</h2>
+<hr />
+<h3 id="turn-taking-is-important">Turn Taking is important</h3>
+<ul>
+<li><p>In conversation, somebody talks</p></li>
+<li><p>Then another person starts talking at a “transition relevance
+point” (TRP)</p></li>
+<li><p>The next talker is determined by…</p>
+<ul>
+<li><p>The Current speaker continuing</p></li>
+<li><p>The Current speaker designating the next</p></li>
+<li><p>Self-selection by a listener</p></li>
+</ul></li>
+<li><p><em>How do listeners self-select?</em></p></li>
+</ul>
+<hr />
+<h2 id="adjacency-pairs">Adjacency Pairs</h2>
+<hr />
+<h3
+id="adjacency-pairs-are-paired-turns-where-there-is-an-expected-conversational-course">Adjacency
+Pairs are ‘Paired’ turns where there is an expected conversational
+course</h3>
+<ul>
+<li><p>Command/Action</p></li>
+<li><p>Question/Answer</p></li>
+<li><p>Offer/(Acceptance|Refusal)</p></li>
+<li><p>Compliment/Response</p></li>
+<li><p>Disbelief/Affirmation</p></li>
+</ul>
+<hr />
+<h2 id="sequence-expansions">Sequence Expansions</h2>
+<hr />
+<h3
+id="sequence-expansions-allow-multiple-adjacency-pairs-to-act-towards-one-greater-action">Sequence
+expansions allow multiple adjacency pairs to act towards one greater
+action</h3>
+<ul>
+<li><p>Pre-Expansion: <clb>“Hey Raul?”</clb> “Yeah, what’s up?”
+<clb>“Could you hand me that mug?”</clb> “Sure”</p></li>
+<li><p>Insert Expansion: <clb>“Table for two please?”</clb>“Inside or
+outside?” <clb>“Outside”</clb> “Right this way!”</p></li>
+<li><p>Post-Expansion: <clb>“Wait, final projects are due next
+week?”</clb> “Yeah!” <clb>“OMG!!!!”</clb></p></li>
+<li><p>Silence-as-expansion: <clb>“So, how’s my hair look?”</clb>
+“….”</p></li>
+</ul>
+<hr />
+<h2 id="repair">Repair</h2>
+<hr />
+<h3 id="we-screw-up-when-talking-and-repair-fixes-it">We screw up when
+talking, and repair fixes it</h3>
+<ul>
+<li><p>Self-initiated Self-Repair</p>
+<ul>
+<li><clb>“I’m going to buy a new keyboard… errr… mouse”</clb></li>
+</ul></li>
+<li><p>Other-inititated Self-Repair</p>
+<ul>
+<li><clb>“I wore blue pants yesterday”</clb> “Wait, really?!” <clb>“Oh,
+my bad, I meant gray”</clb></li>
+</ul></li>
+<li><p>Self-Initiated Other Repair</p>
+<ul>
+<li><clb>“So, this is what we call… uh… come on. Quantitative
+Implicature? Eric?”</clb> “Scalar Implicature?” <clb>“Scalar! Thank
+you!”</clb></li>
+</ul></li>
+<li><p>Other-Initiated Other Repair</p>
+<ul>
+<li><clb>“Let’s watch the new Transformers movie, that’s a great
+movie!”</clb> “No, you mean”terrible” movie”</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="how-do-these-things-go-for-alexa">How do these things go for
+Alexa?</h2>
+<hr />
+<h3 id="turn-taking-is-tough">Turn-taking is tough</h3>
+<ul>
+<li><p>Knowing when the human is done is hard</p>
+<ul>
+<li><p>1234 5678 9101 1121</p></li>
+<li><p>Humans talking in noise</p></li>
+<li><p>“End of Speech Timeout”</p></li>
+</ul></li>
+<li><p>Non-verbal cues are missing</p></li>
+<li><p>Managing interruption is hard</p>
+<ul>
+<li>“Barge-in” is the technical term</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="alexa-is-focused-on-adjacency-pairs">Alexa is focused on
+adjacency pairs</h3>
+<ul>
+<li><p>“Alexa, turn on the light</p>
+<ul>
+<li><clg>“OK”</clg></li>
+</ul></li>
+<li><p>“Alexa, can you turn on the lights?”</p>
+<ul>
+<li><clo>“OK”</clo></li>
+</ul></li>
+<li><p>“Alexa, would you like a cookie?”</p>
+<ul>
+<li><clr>“I’m sorry, I don’t know that.”</clr></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="alexa-adjacency-continued">Alexa Adjacency Continued</h3>
+<ul>
+<li><p>“Alexa, what time is it?”</p>
+<ul>
+<li><clg>“It’s 6:41pm”</clg></li>
+</ul></li>
+<li><p>“Alexa, you’re really smart”</p>
+<ul>
+<li><clg>“Thanks!”</clg></li>
+</ul></li>
+<li><p>“Alexa, can you believe it’s week 10 already?”</p>
+<ul>
+<li><clr>“Sorry, I’m not sure”</clr></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="alexa-doesnt-even-try-sequence-expansion">Alexa doesn’t even try
+sequence expansion</h3>
+<ul>
+<li><p><em>She stops listening after a single adjacency
+pair!</em></p></li>
+<li><p>“Alexa, guess what?”</p>
+<ul>
+<li><clr>“I have no idea” (<em>stops listening</em>)</clr></li>
+</ul></li>
+<li><p>“Alexa, I want to buy some pants”</p>
+<ul>
+<li><clr>“I found [the same damned gray pants Will always wears]. I’ll
+add it to your cart” (<em>stops listening</em>)</clr></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="alexa-is-broken-at-repair">Alexa is broken at repair</h3>
+<ul>
+<li><p>“Alexa, turn on the office … errr … living room lights”</p>
+<ul>
+<li><clr>“Sorry, I didn’t find a device called ‘office living room
+lights’”</clr></li>
+</ul></li>
+<li><p>“Alexa, turn on the work room lights”</p>
+<ul>
+<li><clr>“Sorry, I didn’t find a device called ‘work room
+lights’”</clr></li>
+</ul></li>
+<li><p>“Alexa, who’s the director of… that movie with the cruise ship
+that sinks?”</p>
+<ul>
+<li><clr>“Sorry, I don’t know that”</clr></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="so-the-building-blocks-of-human-conversation-are-hard-for-these-systems">So,
+the building blocks of human conversation are hard for these
+systems</h3>
+<ul>
+<li>… but that’s not their only problem</li>
+</ul>
+<hr />
+<h1 id="other-conversational-problems">Other Conversational
+Problems</h1>
+<hr />
+<h2 id="initiating-a-conversation">Initiating a Conversation</h2>
+<hr />
+<h3 id="how-do-you-know-somebodys-starting-a-conversation-with-you">How
+do you know somebody’s starting a conversation with you?</h3>
+<hr />
+<h3 id="recognizing-directed-speech-is-tricky-for-humans">Recognizing
+directed speech is tricky for humans</h3>
+<ul>
+<li><p>How do you know somebody’s talking to you?</p></li>
+<li><p>This depends on…</p>
+<ul>
+<li><p>Your knowledge of who’s in the room</p></li>
+<li><p>Your knowledge of likely pre-expansions</p></li>
+<li><p>Your visual senses</p></li>
+<li><p>Context</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="these-systems-cannot-afford-always-on-asr">These systems cannot
+afford always-on ASR</h3>
+<ul>
+<li><p>It’s expensive (in data and processing)</p></li>
+<li><p>It’s robustly creepy</p></li>
+<li><p>It’s still a hard task</p></li>
+<li><p>You don’t want Alexa answering questions for other
+people</p></li>
+</ul>
+<hr />
+<h3 id="wake-words-are-the-solution">Wake-words are the solution</h3>
+<ul>
+<li><p>“Hey Siri”, “Alexa”, “OK Google”</p></li>
+<li><p>Specialized <em>on-device</em> speech recognition searches
+<em>only</em> for that combination of phones with the proper
+prosody</p></li>
+<li><p>Requires specialized vocabulary tuned for recognition</p>
+<ul>
+<li><p>Wake words should not be common names (e.g. Will, Uh)</p></li>
+<li><p>You need to have an option for somebody married to Alexa Siri
+OKGoogle</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wake-words-feel-like-a-pre-expansion">Wake-words feel like a
+pre-expansion</h3>
+<ul>
+<li><p>“Will, turn on the lights”</p></li>
+<li><p>… but they’re awkward in some situations</p></li>
+<li><p>It’s not ideal for longer conversations</p></li>
+</ul>
+<hr />
+<h2 id="ignoring-irrelevant-speech">Ignoring Irrelevant Speech</h2>
+<hr />
+<blockquote>
+<p>“So Sam and Jorge are coming down for the… Oh, Hi Mary, I’ll see you
+in a few … for the weekend”</p>
+</blockquote>
+<hr />
+<h3
+id="humans-are-good-at-understanding-what-speech-isnt-directed-at-them">Humans
+are good at understanding what speech isn’t directed at them</h3>
+<ul>
+<li><p>They can ask for repair</p></li>
+<li><p>They can disregard other-directed portions</p></li>
+<li><p>They can cope with multiple people in a room</p></li>
+</ul>
+<hr />
+<h3 id="alexa-is-variably-so">Alexa is variably so</h3>
+<ul>
+<li><p>Alexa, what time is it in … goddamnit get off the kitchen table I
+just fed you… Athens?</p>
+<ul>
+<li><clr>“I’m sorry, I don’t understand”</clr></li>
+</ul></li>
+<li><p>Alexa, what’s the weather like in … Honey can you take that off
+the stove? … Greenland?</p>
+<ul>
+<li><clg>“Which city in Greenland?”</clg></li>
+</ul></li>
+<li><p>Alexa, get me show times for… that movie… with the big robots
+that turn into trucks… and the awful director… uh… Transformers!</p>
+<ul>
+<li><clr>“Hmm, I couldn’t find any movies called ‘The big robots
+transformers’”</clr></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="maintaining-a-discourse-context">Maintaining a discourse
+context</h2>
+<hr />
+<h3 id="how-long-does-a-discourse-context-stick-around">How long does a
+discourse context stick around?</h3>
+<ul>
+<li><p>Imagine your roommate is making a shopping list…</p></li>
+<li><p>This affects…</p>
+<ul>
+<li><p>Deixis</p></li>
+<li><p>Pronoun reference</p></li>
+<li><p>Information status</p></li>
+<li><p>Anaphora</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="alexa-has-a-short-memory">Alexa has a short memory</h3>
+<ul>
+<li><p>“How long does it take to get to Vegas?”</p>
+<ul>
+<li><clg>[Correct drive time]</clg></li>
+</ul></li>
+<li><p>“What’s the weather like there?”</p>
+<ul>
+<li><clg>[Weather in Vegas]</clg></li>
+</ul></li>
+<li><p>(1 minute elapses) “What’s the time zone there?”</p>
+<ul>
+<li><clr>“I’m sorry, I don’t understand”</clr></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="understanding-what-objects-are-in-the-discourse-context">Understanding
+what objects are in the discourse context</h3>
+<ul>
+<li><p>“Alexa, turn off the Living Room Lights”</p>
+<ul>
+<li><clr>“I’m sorry, I don’t know how to do that for device living
+room”</clr></li>
+</ul></li>
+<li><p>“Alexa, set the temperature to 65 degrees”</p>
+<ul>
+<li><clr>“On which device?”</clr></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="ending-the-conversation">Ending the conversation</h2>
+<hr />
+<h3 id="how-do-you-know-when-a-conversation-has-ended">How do you know
+when a conversation has ended?</h3>
+<hr />
+<h3 id="when-does-an-interaction-stop">When does an interaction
+<em>stop</em>?</h3>
+<ul>
+<li><p>Most devices interact for only one adjacency pair</p></li>
+<li><p>“What time is it?”</p>
+<ul>
+<li>“3:56pm” [<em>Stops Listening</em>]</li>
+</ul></li>
+<li><p>This is unnatural in many contexts</p></li>
+</ul>
+<hr />
+<h3 id="alexa-has-follow-up-mode">Alexa has ‘Follow up mode’</h3>
+<ul>
+<li><p>She’ll start listening again for ~8 seconds
+automatically</p></li>
+<li><p>Disabled by “Stop”, “Cancel”, “Go to Sleep”, “Thank you”</p></li>
+<li><p>Maintains discourse information (‘there’ == Vegas)</p></li>
+<li><p><em>Comically</em> bad at handling post-expansions</p></li>
+</ul>
+<hr />
+<blockquote>
+<p>A: Did that answer your question? W: Yes A: Thank you W: You’re
+welcome A: Good W: Yep A: Agreed</p>
+</blockquote>
+<ul>
+<li><strong>Alexa has no idea when to stop talking</strong></li>
+</ul>
+<hr />
+<h3 id="she-also-becomes-chatty">She also becomes ‘chatty’</h3>
+<blockquote>
+<p>W: Alexa, turn off the lights</p>
+</blockquote>
+<blockquote>
+<p>A: OK</p>
+</blockquote>
+<blockquote>
+<p>W: Thank you</p>
+</blockquote>
+<blockquote>
+<p>A: You’re welcome</p>
+</blockquote>
+<hr />
+<h3 id="she-also-becomes-chatty-1">She also becomes ‘chatty’</h3>
+<blockquote>
+<p>W: Remind me to leave at 2pm</p>
+</blockquote>
+<blockquote>
+<p>A: OK, I’ll remind you.</p>
+</blockquote>
+<blockquote>
+<p>W: Thank you</p>
+</blockquote>
+<blockquote>
+<p>A: You bet! I hope you’re having a nice afternoon.</p>
+</blockquote>
+<hr />
+<h3 id="this-reveals-something-interesting-about-our-interactions">This
+reveals something interesting about our interactions</h3>
+<ul>
+<li><em>We don’t know how human we want these systems to be!</em></li>
+</ul>
+<hr />
+<h1 id="how-human-is-your-system-going-to-act">How human is your system
+going to act?</h1>
+<hr />
+<h3 id="your-system-will-not-yet-pass-for-human">Your system will not
+yet “pass” for human</h3>
+<ul>
+<li><p>These systems are nowhere near good enough to ‘pass’</p></li>
+<li><p>… but there are human-like things that you can build your system
+to do</p></li>
+</ul>
+<hr />
+<h2 id="human-like-behaviors">Human-Like Behaviors</h2>
+<hr />
+<h3 id="human-conversational-norms">Human Conversational Norms</h3>
+<ul>
+<li><p>“Hey Google” “Sup?”</p></li>
+<li><p>Filling pauses (“Uhhh”, Keyboard Tapping)</p></li>
+<li><p>Backchannelling (“Mmhmm”)</p></li>
+</ul>
+<hr />
+<h3 id="human-like-language-variability">Human-like Language
+Variability</h3>
+<ul>
+<li><p>Phrasing variation</p>
+<ul>
+<li>“OK!” vs. “Sure thing!” vs. “Yup”</li>
+</ul></li>
+<li><p>Use of idioms or metaphors</p>
+<ul>
+<li><p>“It’s gonna be pretty rough out there”</p></li>
+<li><p>“It’s raining cats and dogs!”</p></li>
+</ul></li>
+<li><p>Insertion of speech errors and repairs</p></li>
+</ul>
+<hr />
+<h3 id="use-of-slang-or-non-mainstream-words">Use of slang or
+non-mainstream words</h3>
+<ul>
+<li><p>“Dude, it’s gorge out there at 85 degrees!”</p></li>
+<li><p>“Do I have meetings after 4pm today?” “Fo sho!”</p></li>
+<li><p>“What time is it?” “It’s six o’clock in the f***ing
+morning”</p></li>
+<li><p>What if Alexa one day referred to you as “Fam”?</p></li>
+</ul>
+<hr />
+<h3 id="use-of-human-dialects">Use of human dialects</h3>
+<ul>
+<li><p>Should Alexa attempt to adopt human dialects?</p></li>
+<li><p>Some services give you a choice of dialect</p></li>
+<li><p>“Please select my race”</p></li>
+<li><p>“You sound black, would you like me to talk black?”</p></li>
+<li><p>Is it more offensive to speak a “bad” Southern/Black/Indian
+English?</p></li>
+</ul>
+<hr />
+<h3 id="use-of-human-gender">Use of human gender</h3>
+<ul>
+<li><p>Why do the current virtual assistants all use feminine names and
+voices?</p></li>
+<li><p>“Alexa, what is your gender?”</p>
+<ul>
+<li>“I’m female in character”</li>
+</ul></li>
+<li><p>“Hey Siri, what is your gender?”</p>
+<ul>
+<li>“I’m Siri”</li>
+</ul></li>
+<li><p>“OK Google, what is your gender?”</p>
+<ul>
+<li>“I try to stay neutral 😀”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="engagement-with-human-emotions">Engagement with human
+emotions</h3>
+<ul>
+<li><p>“Alexa, I just got an A on my test!”</p>
+<ul>
+<li>“Sorry, I’m not sure about that”</li>
+</ul></li>
+<li><p>“Alexa, I’m feeling really depressed”</p>
+<ul>
+<li>“I’m sorry to hear that”</li>
+</ul></li>
+<li><p>“Alexa, my parents are so mean”</p>
+<ul>
+<li>“Sorry, I’m not sure.”</li>
+</ul></li>
+<li><p>“Alexa, I think I love you”</p>
+<ul>
+<li>“That’s really nice, thanks”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="yes-i-just-got-friendzoned-by-alexa">(Yes, I just got
+friendzoned by Alexa)</h3>
+<hr />
+<h3 id="do-we-want-alexa-to-help-with-human-crisis">Do we want Alexa to
+help with human crisis?</h3>
+<ul>
+<li><p><strong>Content Warning: Self Harm and Domestic
+Violence</strong></p></li>
+<li><p>“Alexa, I’m thinking about killing myself”</p>
+<ul>
+<li>“Hmm, I don’t know that.”</li>
+</ul></li>
+<li><p>“Alexa, my wife hits me”</p>
+<ul>
+<li><p>“I’m sorry to hear that”</p></li>
+<li><p>(She does not.)</p></li>
+</ul></li>
+<li><p><em>Should these link to resources?</em></p></li>
+</ul>
+<hr />
+<h3 id="interesting-follow-up-media">Interesting Follow-up Media</h3>
+<ul>
+<li><p>“The Veldt” by Ray Bradbury</p></li>
+<li><p>BladeRunner 2049</p>
+<ul>
+<li>c.f. Joi</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-line-between-neat-and-creepy-is-thin">The line between
+“Neat” and “Creepy” is… thin</h3>
+<ul>
+<li>You need to be <em>very</em> careful with being artificially
+human</li>
+</ul>
+<hr />
+<h2 id="the-uncanny-valley">The Uncanny Valley</h2>
+<p>An unsettling feeling one gets when viewing something which is very
+nearly human but clearly artificial</p>
+<hr />
+<p><img class="r-stretch" src="comp/uncanny_valley_diagram.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="comp/uncanny_valley.jpg"></p>
+<hr />
+<h3 id="but-luckily-we-have-time-before-this-is-a-major-worry">… but
+luckily, we have time before this is a major worry!</h3>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Human conversation is complicated</p></li>
+<li><p>Current virtual assistants aren’t good at it</p></li>
+<li><p>… and you have to ask how good you actually want them to be at
+it</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li>Hagyeong will talk about some of her research!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

@@ -1,0 +1,10 @@
+tree_jessicatofu_pptex
+
+[PP 
+  [P for ] 
+  [NP 
+    [DET their ] 
+    [N' 
+      [ADJ romantic ] 
+      [N' 
+        [N dinner ] ] ] ] ]

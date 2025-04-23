@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/9jK-NcRmVcw">
+</iframe>
+<hr />
+<h3 id="administrative-notes">Administrative Notes</h3>
+<ul>
+<li><p><strong>Recitations are cancelled Friday!</strong></p></li>
+<li><p>The final will be 85 questions plus a long answer
+question</p></li>
+<li><p>Everybody’s taking the exam at the registered time.</p></li>
+<li><p>Missed exams will require a note from CU or a medical
+professional to make up</p></li>
+<li><p>All previous grades freeze at midnight</p></li>
+<li><p>Come talk to me right after lecture if you’re coming to my office
+hours</p></li>
+</ul>
+<hr />
+<h3
+id="for-the-give-two-grammatical-structures-not-found-in-english-question">For
+the “Give two grammatical structures not found in English” question</h3>
+<ul>
+<li><p>“Grammatical structures” are things like “Word order”,
+“Prepositions”, “Tense”, etc</p>
+<ul>
+<li>Basically anything we’ve covered this semester</li>
+</ul></li>
+<li><p>Pick something that English doesn’t use at all (or uses
+poorly)</p>
+<ul>
+<li>Word order, Prepositions and Tense are bad examples</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="any-other-final-or-final-questions">Any other final (or Final)
+questions?</h3>
+<ul>
+<li>Bring a #2 pencil and your student ID number to the exam</li>
+</ul>
+<hr />
+<section data-background="lotwimg/earth.jpeg">
+<section style="background-color:rgba(255, 255, 255, 0.4)">
+<h1>
+Languages of the World
+</h1>
+<h3>
+Will Styler
+</h3>
+</section>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td># Gratitude</td>
+</tr>
+</tbody>
+</table>
+<h3 id="thanks-to">Thanks to…</h3>
+<ul>
+<li><p>Asya Pereltsvaig for the textbook</p></li>
+<li><p>All of our guest lecturers for their nerding</p></li>
+<li><p>Kevin and Niloo (alphabetically) for their help and
+support</p></li>
+<li><p>You all, for being here!</p></li>
+</ul>
+<hr />
+<h1 id="flashback">Flashback!</h1>
+<hr />
+<h3
+id="this-class-will-teach-you-about-language-by-talking-about-languages.">This
+class will teach you about Language, by talking about languages.</h3>
+<ul>
+<li><p>Goal 1: Learn how linguists talk about Language</p></li>
+<li><p>Goal 2: Learn about the incredible diversity of language in the
+world</p></li>
+<li><p>Goal 3: Learn about the life cycle of languages</p></li>
+<li><p>Goal 4: Talk about languages!</p></li>
+<li><p>Goal 5: Turn you all into Linguists.</p></li>
+</ul>
+<hr />
+<h1 id="howd-we-do">How’d we do?</h1>
+<hr />
+<h2 id="goal-1-learn-how-linguists-talk-about-language">Goal 1: “Learn
+how linguists talk about Language”</h2>
+<hr />
+<blockquote>
+<p>Ojibwe is an Algonquian dialect continuum of the Great Lakes region.
+It’s polysynthetic, VSO/VOS, with heavy use of animacy, evidentiality,
+and modality. Phonologically, a seven vowel system is used, with both
+vowel length and nasality contrastive.</p>
+</blockquote>
+<ul>
+<li><h3 id="omg-we-can-understand-that-gibberish">OMG! We can understand
+that gibberish!</h3></li>
+</ul>
+<hr />
+<h3 id="success">Success!</h3>
+<hr />
+<p><img class="big" src="humorimg/celebration_fey.gif"></p>
+<hr />
+<h2
+id="goal-2-learn-about-the-incredible-diversity-of-language-in-the-world">Goal
+2: “Learn about the incredible diversity of language in the world”</h2>
+<hr />
+<h3 id="people-will-say-stupid-things-to-you.">People will say stupid
+things to you.</h3>
+<ul>
+<li><p>“Translators are overpaid. All they do is remember different
+words in other languages.”</p></li>
+<li><p>“German’s easy, it has most of the same sounds as
+English.”</p></li>
+<li><p>“Oh, come on. Indian can’t be endangered, there are 300
+reservations worth of speakers!”</p></li>
+<li><p>“English is the hardest/easiest/original language.”</p></li>
+</ul>
+<hr />
+<h3 id="you-can-smack-them-down">You can smack them down!</h3>
+<hr />
+<p><img class="big" src="humorimg/who-is-awesome.jpg"></p>
+<hr />
+<h2 id="goal-3-learn-about-the-life-cycle-of-languages">Goal 3: “Learn
+about the life cycle of languages”</h2>
+<hr />
+<h3 id="you-can-now-explain">You can now explain…</h3>
+<ul>
+<li><p>What language death is</p></li>
+<li><p>What language revitalization is</p></li>
+<li><p>Why languages tend to die in the first place</p></li>
+<li><p>Why that’s a bad thing.</p></li>
+</ul>
+<hr />
+<h3 id="thats-more-than-99-of-the-world-population-knows">That’s more
+than 99% of the world population knows!</h3>
+<ul>
+<li>… And you’re a better citizen of the world for it!</li>
+</ul>
+<hr />
+<p><img class="big" src="humorimg/carltondance.gif"></p>
+<hr />
+<h2 id="goal-4-talk-about-languages">Goal 4: “Talk about
+languages!”</h2>
+<hr />
+<h3 id="you-can-now-name-more-languages-than-90-of-americans">You can
+now name more languages than 90% of Americans</h3>
+<ul>
+<li><p>… and you can talk intelligently about them too!</p></li>
+<li><p>This doesn’t seem like much, but…</p></li>
+</ul>
+<hr />
+<h3
+id="people-love-when-you-know-something-about-their-language"><strong>People
+<em>love</em> when you know something about their
+language!</strong></h3>
+<ul>
+<li><p>“You’re the first person I’ve ever known who’s heard of
+Amharic!”</p></li>
+<li><p>“Every other American thinks Iranian people speak Arabic! Thank
+you!”</p></li>
+<li><p>“Oh, yeah, Russian’s hard. You guys are all about that Case!”</p>
+<ul>
+<li><p>🎶 “We’re bringing Dative baaaaack, why don’t you tell them
+Romance speakers that.” 🎶</p></li>
+<li><p>🎶 “I know y’all use noun claaass…” 🎶</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="youre-there-to-tell-them-that-every-foreign-tongue-is-perfect-from-the-bottom-to-the-top">You’re
+there to tell them that every foreign tongue is perfect from the bottom
+to the top</h3>
+<ul>
+<li><p>(because it is.)</p></li>
+<li><p>Seriously, you get a lot of mileage out of “Oh, ____, that’s a
+beautiful language!”</p></li>
+</ul>
+<hr />
+<p>… also…</p>
+<hr />
+<h3 id="you-know-lots-more-about-different-cultures-now-too">You know
+lots more about different cultures now, too!</h3>
+<ul>
+<li><p>You know why the Chechens and Russians don’t see eye-to-eye</p>
+<ul>
+<li>Same with the Basque, Uighur, Kurds, etc.</li>
+</ul></li>
+<li><p>You know that there was more than one Native American group</p>
+<ul>
+<li>(You’d be surprised, in Boulder…)</li>
+</ul></li>
+<li><p>You know that not all Africans are Khoisan language speakers</p>
+<ul>
+<li>(and that all the rest don’t speak Swahili)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="you-know-weird-things-now">You know weird things now!</h3>
+<ul>
+<li><p>You know that Stalin didn’t speak Russian well</p></li>
+<li><p>“I speak Hebrew!” “Awesome, I love conlangs! Do you speak Klingon
+too?”</p></li>
+<li><p>You know that Simba is named “Lion”</p></li>
+<li><p>You know that everything in Chipotle is Nahuatl</p>
+<ul>
+<li><a
+href="http://www.languagejones.com/blog-1/2014/11/10/language-jones-and-the-temple-ofburritos">Except
+the art.</a></li>
+</ul></li>
+<li><p>You know that we’ve stolen half our state names from Indigenous
+languages</p></li>
+</ul>
+<hr />
+<p>You know that Michael Bay only has one facial expression</p>
+<p><img class="big" src="img/michaelbay.jpg"></p>
+<hr />
+<p>You know that Michael Bay only has one facial expression</p>
+<h2 id="section"><img class="big" src="img/michaelbay2.jpg"></h2>
+<p>You know that Michael Bay only has one facial expression</p>
+<p><img class="big" src="img/michaelbay3.jpg"></p>
+<hr />
+<p>You know that Michael Bay only has one facial expression</p>
+<p><img class="big" src="img/michaelbay4.jpg"></p>
+<hr />
+<p><danger>What else did you learn?</danger></p>
+<hr />
+<h2 id="goal-5-turn-you-all-into-linguists.">Goal 5: “Turn you all into
+Linguists.”</h2>
+<hr />
+<p><img class="big" src="humorimg/missionaccomplished.png"></p>
+<ul>
+<li>Right?</li>
+</ul>
+<hr />
+<p><img class="big" src="humorimg/missionaccomplished.png"></p>
+<p>Right?</p>
+<audio data-autoplay src="humorimg/cricket.mp3">
+</audio>
+<hr />
+<h3
+id="oh-some-of-you-dont-yet-know-that-you-want-to-declare-a-ling-major">Oh,
+some of you don’t yet know that you want to declare a LING Major!</h3>
+<hr />
+<p>Taking this class was a <em>great</em> first step!</p>
+<hr />
+<h3 id="youve-got-a-huge-advantage-in-ling-2000">You’ve got a
+<em>huge</em> advantage in LING 2000</h3>
+<ul>
+<li><p>We covered a lot of similar material, just from a very different
+perspective</p></li>
+<li><p>Seriously, take LING 2000. You’ll need it for the major</p>
+<ul>
+<li>… which you’ve already declared</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="and-in-every-other-linguistics-class">… and in every other
+Linguistics class</h3>
+<ul>
+<li><p>We’ve covered elements of Language Sound Structures (LING
+3100)</p></li>
+<li><p>… and World Language Policies (LING 3545)</p></li>
+<li><p>… and Morphosyntax (LING 4420)</p></li>
+<li><p>… and Language and Culture (LING 4800)</p></li>
+<li><p>… and American Indian Languages (LING ____)</p></li>
+</ul>
+<hr />
+<h3 id="did-i-mention-the-ling-major-and-minor-are-pretty-small">Did I
+mention the LING Major and Minor are pretty small?</h3>
+<ul>
+<li><p>Especially if you’re taking a foreign language already!</p></li>
+<li><p>Email Deanna Fierman for more information on declaring</p>
+<ul>
+<li>Fierman@colorado.edu</li>
+</ul></li>
+<li><p>(You can’t blame a guy for trying, right?)</p></li>
+</ul>
+<hr />
+<h3 id="ok-ok-maybe-youre-not-all-going-to-declare-a-ling-major">OK, OK,
+maybe you’re not <em>all</em> going to declare a LING major</h3>
+<ul>
+<li>… but I’ve still warped all of your brains!</li>
+</ul>
+<hr />
+<h3
+id="youll-be-weirdly-interested-in-people-speaking-another-language-on-the-street">You’ll
+be weirdly interested in people speaking another language on the
+street</h3>
+<hr />
+<p><img class="big" src="humorimg/upsquirrellanguage.png"></p>
+<hr />
+<h3 id="hearing-an-ejective-in-the-wild-will-make-your-day.">Hearing an
+ejective in the wild will make your day.</h3>
+<ul>
+<li>(Seriously, you laugh now, but when you hear one…)</li>
+</ul>
+<hr />
+<h3 id="youre-much-better-equipped-to-learn-another-language">You’re
+<em>much</em> better equipped to learn another language</h3>
+<ul>
+<li><p>“So, this language does something <em>reallllllly</em>
+exotic…”</p>
+<ul>
+<li>Dude, it’s just case. Cool your jets.</li>
+</ul></li>
+<li><p>“Can we just drop the pretense and look at a pronoun
+chart?”</p></li>
+</ul>
+<hr />
+<h3 id="youre-also-better-equipped-to-handle-the-uninformed">You’re also
+better equipped to handle the uninformed</h3>
+<ul>
+<li><p>“We need somebody to offer customer support in Hmong. Let’s just
+buy Sandy a Rosetta Stone CD.”</p></li>
+<li><p>“Translator? I’ll just write the letter in English, then use
+Google Translate before I send it to them!”</p></li>
+<li><p>“Anja’s from Sweden, and Sweden’s right next to Finland, so she
+should be able to rewrite the manual in Finnish.”</p></li>
+<li><p>“Of course the savage languages are going to be endangered. They
+can’t express civilized concepts!”</p></li>
+</ul>
+<hr />
+<p><img class="big" src="humorimg/comeatmebro.jpg"></p>
+<hr />
+<h3
+id="youre-going-to-be-more-sympathetic-to-non-native-speakers-of-english">You’re
+going to be more sympathetic to non-Native speakers of English</h3>
+<ul>
+<li>Because seriously, English, go home, you’re drunk.</li>
+</ul>
+<hr />
+<h3
+id="and-youll-be-kinder-to-yourself-when-you-screw-up-another-language">…
+and you’ll be kinder to yourself when you screw up another language</h3>
+<ul>
+<li>Because that language is drunk too.</li>
+</ul>
+<hr />
+<p>… but most importantly of all…</p>
+<hr />
+<p>You understand that even though people around the world all use it
+differently…</p>
+<ul>
+<li><h1 id="language-is-magic">Language is magic</h1></li>
+</ul>
+<hr />
+<h3 id="go-be-wizards">Go be wizards!</h3>
+<ul>
+<li><img class="big" src="humorimg/wizardcat.jpg"></li>
+</ul>
+<hr />
+<p><huge>Thank you very much!</huge></p>
+<hr />
+</body>
+</html>

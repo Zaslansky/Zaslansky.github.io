@@ -1,0 +1,14 @@
+tree_catdragon_wrong4tex
+
+[S 
+  [NP 
+    [DET the ] 
+    [ADJ cute ] 
+    [N cat ] ] 
+  [VP 
+    [VP 
+      [V meowed ] ] 
+    [PP 
+      [P at ] 
+      [DET the ] 
+      [N dragon ] ] ] ]

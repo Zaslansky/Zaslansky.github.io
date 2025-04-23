@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h3 id="grab-an-ipa-chart-and-reference-guide-also-on-the-syllabus">Grab
+an IPA chart and reference guide (also on the syllabus)</h3>
+<hr />
+<h1 id="phonetics-the-sounds-of-language">Phonetics: The Sounds of
+Language</h1>
+<h3 id="will-styler---lign-101">Matt Zaslansky - LIGN 101</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>How does speech work?</p></li>
+<li><p>How can we write down speech?</p></li>
+<li><p>How do we describe consonants?</p></li>
+</ul>
+<hr />
+<h2 id="how-does-speech-work">How does speech work?</h2>
+<hr />
+<h3 id="the-speech-process">The Speech Process</h3>
+<ul>
+<li><p>Flapping bits of meat inside your head while blowing out
+air</p></li>
+<li><p>This creates vibrations in the air you’re expelling</p></li>
+<li><p>The ear picks these up, and inteprets them as speech.</p></li>
+<li><p>This process is studied in <strong>Phonetics</strong></p></li>
+</ul>
+<hr />
+<h3 id="the-lungs">The Lungs</h3>
+<p><img class="r-stretch" src="phonmedia/lungs.jpg"></p>
+<hr />
+<h3 id="sagittal-sections">Sagittal Sections</h3>
+<video class="wide" autoplay loop src="phonmedia/sagittal_will_video.webm">
+</video>
+<hr />
+<h3 id="sagittal-sections-1">Sagittal Sections</h3>
+<p><img class="r-stretch" src="phonmedia/sagittal_will.jpg"></p>
+<hr />
+<h3 id="flapping-bits-of-meat-articulation">Flapping bits of meat
+(“articulation”)</h3>
+<p><img class="big" src="phonmedia/nasalsagittal.jpg"></p>
+<hr />
+<h3 id="simplified-a-bit">Simplified a bit…</h3>
+<p><img class="r-stretch" src="phonmedia/sagittal_simple.jpg"></p>
+<hr />
+<h3
+id="you-will-not-be-responsible-for-any-anatomical-terms-not-required-for-transcription-on-exams">You
+will not be responsible for any anatomical terms not required for
+transcription on exams</h3>
+<hr />
+<h3 id="the-tongue">The Tongue</h3>
+<p><img class="r-stretch" src="phonmedia/tonguefromside.jpg"></p>
+<hr />
+<video class="wide" controls src="video/mri_joynash.mp4">
+</video>
+<hr />
+<video class="wide" controls src="video/mri_deck_the_halls.mp4">
+</video>
+<hr />
+<p><img class="r-stretch" src="humorimg/ohgodwhy.jpg"></p>
+<hr />
+<h3 id="lets-do-an-experiment">Let’s do an experiment</h3>
+<hr />
+<blockquote>
+<p>The North Wind and the Sun were disputing which was the stronger,
+when a traveler came along wrapped in a warm cloak.</p>
+</blockquote>
+<hr />
+<h3 id="speech-is-absolutely-insane">Speech is absolutely insane</h3>
+<ul>
+<li><p>It’s a series of fluid and overlapping gestures</p></li>
+<li><p>It’s amazingly complex</p></li>
+<li><p>… and it’s nothing like we think it is</p></li>
+</ul>
+<hr />
+<h3 id="how-do-we-wrap-our-heads-around-it">How do we wrap our heads
+around it?</h3>
+<ul>
+<li><p>First, we break speech into ‘segments’ or ‘phones’</p></li>
+<li><p>Then, we figure out how to describe those phones and their
+properties</p></li>
+<li><p>This lets us <em>transcribe</em> what was said, rather than what
+words were said</p></li>
+<li><p>But first you need to realize that…</p></li>
+</ul>
+<hr />
+<h2 id="your-writing-system-is-a-trainwreck">Your writing system is a
+trainwreck</h2>
+<ul>
+<li><img class="r-stretch" src="humorimg/trainwreck.png"></li>
+</ul>
+<hr />
+<h3 id="your-writing-system-is-lying-to-you">Your writing system is
+lying to you</h3>
+<ul>
+<li><p>Every minute of every day</p>
+<ul>
+<li><p>“They thoroughly and roughly wrought the boughs in the borough,
+through and through”</p></li>
+<li><p>C doesn’t exist</p></li>
+<li><p>The ‘ee’ in ‘pee’ is silent</p></li>
+<li><p>The ‘e’</p></li>
+<li><p>TH is neither a t nor an h, and represents two different
+sounds</p></li>
+</ul></li>
+<li><p>… and if you start thinking about letters, you’re going to start
+struggling</p></li>
+<li><p>For this class, consider your writing system with the same
+skepticism you would normally reserve for a guy with a broken bottle
+walking towards you in a dark alley.</p></li>
+</ul>
+<hr />
+<h3 id="but-wait-speech-is-super-complicated">… but wait, speech is
+super complicated</h3>
+<ul>
+<li><p>Our writing system is lying to us</p></li>
+<li><p>Many languages don’t have writing systems</p></li>
+<li><p>… and we still need to write down what was said in them</p></li>
+<li><h2 id="is-there-no-hope">Is there no hope?!</h2></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/surprised_owls.jpg"></p>
+<audio data-autoplay src="humorimg/dramatic.wav">
+</audio>
+<hr />
+<p>(Nah, it’s cool, we’ve got the IPA!)</p>
+<hr />
+<h3 id="the-international-phonetic-alphabet">The International Phonetic
+Alphabet</h3>
+<ul>
+<li><p>A system for <em>transcribing</em> what was said, that’s based on
+<em>describing</em> individual phones</p></li>
+<li><p>We’ll discuss a reduced set of the IPA focusing on the English
+language in this class</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/ipa_chart.jpg"></p>
+<hr />
+<h3 id="the-international-phonetic-alphabet-1">The International
+Phonetic Alphabet</h3>
+<ul>
+<li><p>A system for <em>transcribing</em> what was said, that’s based on
+<em>describing</em> individual phones</p></li>
+<li><p>The IPA should be able to transcribe speech in <em>any</em> human
+language or dialect</p></li>
+</ul>
+<hr />
+<h3 id="the-ipa-allows-us-to-transcribe-speech">The IPA allows us to
+‘transcribe’ speech</h3>
+<ul>
+<li><p>You throw away the writing system, and write down the
+<em>sequence of sounds</em> being produced</p></li>
+<li><p>“Black Lives Matter”</p></li>
+<li><p>In Will’s dialect: /blæk lajvz mæɾəɹ/</p>
+<ul>
+<li>Note the /z/, and the /ɾ/ tap, and the lack of “c”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-entire-ipa-is-shown-on-the-ipa-chart">The Entire IPA is
+shown on the IPA chart</h3>
+<pre><code>&lt;img class=&quot;r-stretch&quot; src=&quot;phonmedia/ipa_chart.jpg&quot;&gt;</code></pre>
+<hr />
+<h2
+id="important-note-most-online-ipa-charts-with-sound-are-awful">Important
+Note: Most Online IPA Charts with Sound are awful!</h2>
+<ul>
+<li><p>ipachart.com is bad and should feel bad</p></li>
+<li><p><a href="https://savethevowels.org/ipa"
+class="uri">https://savethevowels.org/ipa</a> is not</p></li>
+<li><p><a
+href="https://www.internationalphoneticassociation.org/IPAcharts/inter_chart_2018/IPA_2018.html">Here’s
+the International Phonetic Association’s Version</a></p></li>
+<li><p>If you’re just typing IPA, you can use <a
+href="https://wstyler.ucsd.edu/intipa/#/keyboard">this tool</a></p></li>
+<li><p>Use the quick reference guide too!</p></li>
+</ul>
+<hr />
+<h3 id="we-have-a-new-tool">We have a new tool!</h3>
+<h2 id="httpsavethevowels.orgipa"><a href="http://savethevowels.org/ipa"
+class="uri">http://savethevowels.org/ipa</a></h2>
+<ul>
+<li>Give this a try to see audio and video of IPA sounds!</li>
+</ul>
+<hr />
+<h3 id="to-understand-the-ipa-you-need-to-understand-how-sounds-work">To
+understand the IPA, you need to understand how sounds work</h3>
+<hr />
+<h2 id="how-do-we-describe-how-speech-sounds-are-made">How do we
+describe how speech sounds are made?</h2>
+<hr />
+<h3 id="we-break-the-world-into-two-kinds-of-speech-sounds">We break the
+world into two kinds of speech sounds</h3>
+<ul>
+<li><p><strong>Consonants:</strong> Constrict, obstruct, or divert air
+in the vocal tract when being produced</p></li>
+<li><p><strong>Vowels:</strong> Shape the (unobstructed) vocal tract to
+change the sound emitted</p></li>
+</ul>
+<hr />
+<h2 id="describing-consonants">Describing Consonants</h2>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Three steps to describing Consonants</td>
+</tr>
+<tr class="even">
+<td>* We need to know three things:</td>
+</tr>
+<tr class="odd">
+<td>* <strong>Place</strong>: Where is the sound made?</td>
+</tr>
+<tr class="even">
+<td>* <strong>Manner</strong>: What are we doing there?</td>
+</tr>
+<tr class="odd">
+<td>* <strong>Voicing</strong>: Are we making voicing?</td>
+</tr>
+</tbody>
+</table>
+<h2 id="place">Place</h2>
+<hr />
+<h3 id="place-of-articulation">Place of Articulation</h3>
+<ul>
+<li>Where is the sound being made?</li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Place</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="phonmedia/sagittal_flesh.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="place-1">Place</h3>
+<p><img class="r-stretch" src="phonmedia/sagittal_labeled.png"></p>
+<hr />
+<h3 id="place-2">Place</h3>
+<ul>
+<li><p><strong>Bilabial</strong>: As in
+“<strong><em>b</em></strong>oy”</p></li>
+<li><p><strong>Labiodental</strong>: As in
+“<strong><em>V</em></strong>ote”</p></li>
+<li><p><strong>Interdental</strong>: As in
+“<strong><em>Th</em></strong>ose”</p></li>
+<li><p><strong>Alveolar</strong>: As in
+“<strong><em>T</em></strong>o<strong><em>t</em></strong>e<strong><em>s</em></strong>!”</p>
+<ul>
+<li>Your alveolars may be <em>dental</em></li>
+</ul></li>
+<li><p><strong>Postalveolar</strong>: As in
+“<strong><em>J</em></strong>u<strong><em>dge</em></strong>”</p>
+<ul>
+<li>Your textbook calls these ‘palatal’</li>
+<li>We’ll accept either for this class</li>
+</ul></li>
+<li><p><strong>Velar</strong>: As in
+“<strong>C</strong>lam<strong>k</strong>i<strong>ng</strong></p></li>
+<li><p><strong>Glottal</strong>: As in
+“Uh<strong><em>-</em></strong>oh!”</p></li>
+</ul>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="the-first-and-last-sounds-in-king-are">The first and last sounds
+in “King” are…</h3>
+<ol type="A">
+<li><p><strong>Bilabial</strong>: As in
+“<strong><em>B</em></strong>at<strong><em>m</em></strong>an isn’t
+<strong><em>m</em></strong>e!”</p></li>
+<li><p><strong>Labiodental</strong>: As in
+“<strong><em>V</em></strong>owels aren’t
+<strong><em>f</em></strong>oul!”</p></li>
+<li><p><strong>Alveolar</strong>: As in
+“<strong><em>T</em></strong>o<strong><em>t</em></strong>e<strong><em>s</em></strong>
+<strong><em>l</em></strong>i<strong><em>t</em></strong>!”</p></li>
+<li><p><strong>Postalveolar</strong>: As in
+“<strong><em>J</em></strong>u<strong><em>dgy</em></strong>
+<strong><em>Ch</em></strong>eetahs”</p></li>
+<li><p><strong>Velar</strong>: As in “<strong>G</strong>o
+<strong>c</strong>all you<strong>ng</strong>
+<strong>c</strong>arpenters”</p></li>
+</ol>
+<hr />
+<h3 id="the-first-and-last-sounds-in-king-are-1">The first and last
+sounds in “King” are…</h3>
+<ol type="A">
+<li><p><strong>Bilabial</strong>: As in
+“<strong><em>B</em></strong>at<strong><em>m</em></strong>an isn’t
+<strong><em>m</em></strong>e!”</p></li>
+<li><p><strong>Labiodental</strong>: As in
+“<strong><em>V</em></strong>owels aren’t
+<strong><em>f</em></strong>oul!”</p></li>
+<li><p><strong>Alveolar</strong>: As in
+“<strong><em>T</em></strong>o<strong><em>t</em></strong>e<strong><em>s</em></strong>
+<strong><em>l</em></strong>i<strong><em>t</em></strong>!”</p></li>
+<li><p><strong>Postalveolar</strong>: As in
+“<strong><em>J</em></strong>u<strong><em>dgy</em></strong>
+<strong><em>Ch</em></strong>eetahs”</p></li>
+<li><p><correct><strong>Velar</strong>: As in “<strong>G</strong>o
+<strong>c</strong>all you<strong>ng</strong>
+<strong>c</strong>arpenters”</correct></p></li>
+</ol>
+<hr />
+<h3 id="there-are-other-places-english-doesnt-use">There are other
+places English doesn’t use</h3>
+<ul>
+<li><p>‘Uvular’ sounds are made involving the uvula</p>
+<ul>
+<li><p>As Cardi B says, ‘that little dangly thang that swang in the back
+of my throat’</p></li>
+<li><p>The French “r” sound in ‘rouge’</p></li>
+</ul></li>
+<li><p>‘Retroflex’ sounds curl the tongue up and back</p>
+<ul>
+<li>Present in Hindi/Urdu, as well as many other languages!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="reference-diagrams-for-place-of-articulation">Reference Diagrams
+for Place of Articulation</h3>
+<hr />
+<h3 id="bilabial">Bilabial</h3>
+<p><img class="r-stretch" src="phonmedia/sag_bilabial.jpg"></p>
+<hr />
+<h3 id="bilabial-1">Bilabial</h3>
+<video data-autoplay width="600" src="ipa/voiced_bilabial_stop.mp4">
+</video>
+<hr />
+<h3 id="dental">Dental</h3>
+<p><img class="r-stretch" src="phonmedia/sag_dental.jpg"></p>
+<hr />
+<video data-autoplay width="600" src="ipa/voiced_dental_fricative.mp4">
+</video>
+<hr />
+<h3 id="alveolar">Alveolar</h3>
+<p><img class="r-stretch" src="phonmedia/sag_alveolar.jpg"></p>
+<hr />
+<h3 id="alveolar-1">Alveolar</h3>
+<video data-autoplay width="600" src="ipa/voiced_alveolar_stop.mp4">
+</video>
+<hr />
+<h3 id="retroflex">Retroflex</h3>
+<p><img class="r-stretch" src="phonmedia/sag_retroflex.jpg"></p>
+<hr />
+<h3 id="retroflex-1">Retroflex</h3>
+<video data-autoplay width="600" src="ipa/voiced_retroflex_stop.mp4">
+</video>
+<hr />
+<h3 id="palatal">Palatal</h3>
+<p><img class="r-stretch" src="phonmedia/sag_palatal.jpg"></p>
+<hr />
+<h3 id="palatal-1">Palatal</h3>
+<video data-autoplay width="600" src="ipa/voiced_palatal_stop.mp4">
+</video>
+<hr />
+<h3 id="velar">Velar</h3>
+<p><img class="r-stretch" src="phonmedia/sag_velar.jpg"></p>
+<hr />
+<h3 id="velar-1">Velar</h3>
+<video data-autoplay width="600" src="ipa/voiced_velar_stop.mp4">
+</video>
+<hr />
+<h3 id="uvular">Uvular</h3>
+<p><img class="r-stretch" src="phonmedia/sag_uvular.jpg"></p>
+<hr />
+<h3 id="uvular-1">Uvular</h3>
+<video data-autoplay width="600" src="ipa/voiced_uvular_stop.mp4">
+</video>
+<hr />
+<h2 id="manner-of-articulation">Manner of Articulation</h2>
+<hr />
+<h3 id="manner">Manner</h3>
+<p>“So what are you doing with the articulators?”</p>
+<hr />
+<h3 id="manner-1">Manner</h3>
+<ul>
+<li><p><strong>Stops</strong>: Stop the airflow (also called
+‘plosives’)</p>
+<ul>
+<li>As in ‘<strong>c</strong>a<strong>t</strong>
+<strong>d</strong>o<strong>ck</strong>e<strong>t</strong>’</li>
+</ul></li>
+<li><p><strong><em>Taps</em></strong>: Throw your tongue against the
+roof of your mouth</p>
+<ul>
+<li>As in ‘la<strong>t</strong>er la<strong>dd</strong>er
+wi<strong>nn</strong>ers’</li>
+</ul></li>
+<li><p><strong>Fricatives</strong>: Constrict the airflow to make
+sounds</p>
+<ul>
+<li>As in ‘<strong>f</strong>la<strong>sh</strong>y
+<strong>s</strong>o<strong>v</strong>iet
+<strong>sh</strong>i<strong>f</strong>ter<strong>s</strong>’</li>
+</ul></li>
+<li><p><strong>Nasals</strong>: Channel the air out the nose</p>
+<ul>
+<li>As in ‘wi<strong>ng</strong>
+<strong>m</strong>a<strong>n</strong>’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="oral-stop-d">Oral Stop (/d/)</h3>
+<p><img class="r-stretch" src="phonmedia/sag_alveolar.jpg"></p>
+<hr />
+<h3 id="oral-stop-d-1">Oral Stop (/d/)</h3>
+<video data-autoplay width="600" src="ipa/voiced_alveolar_stop.mp4">
+</video>
+<hr />
+<h3 id="nasal-stop-n">Nasal Stop (/n/)</h3>
+<p><img class="r-stretch" src="phonmedia/sag_nasal.jpg"></p>
+<hr />
+<h3 id="nasal-stop-n-1">Nasal Stop (/n/)</h3>
+<video data-autoplay width="600" src="ipa/voiced_alveolar_nasal.mp4">
+</video>
+<hr />
+<h3 id="manner-continued">Manner (Continued)</h3>
+<ul>
+<li><p><strong>Approximants</strong>: Bring the tongue <em>toward</em>
+the place</p>
+<ul>
+<li>As in ‘<strong>y</strong>ou <strong>w</strong>ill’</li>
+</ul></li>
+<li><p><strong>Laterals</strong>: Channel air <em>around</em> the
+tongue</p>
+<ul>
+<li>As in ‘<strong>l</strong>atera<strong>l</strong>s’</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="ling_memes/preferredmannerstop.jpg"></p>
+<hr />
+<h3 id="the-initial-sounds-in-taco-bell-are">The initial sounds in “Taco
+Bell” are…</h3>
+<ol type="A">
+<li><p><strong>Stops</strong>: Stop the airflow</p></li>
+<li><p><strong>Fricatives</strong>: Constrict the airflow to make
+sounds</p></li>
+<li><p><strong>Nasals</strong>: Channel the air out the nose</p></li>
+<li><p><strong>Approximants</strong>: Bring the tongue <em>toward</em>
+the place</p></li>
+<li><p><strong>Laterals</strong>: Channel air <em>around</em> the
+tongue</p>
+<section class="clicker">
+</section></li>
+</ol>
+<hr />
+<h3 id="the-initial-sounds-in-taco-bell-are-1">The initial sounds in
+“Taco Bell” are…</h3>
+<p>A)<correct> <strong>Stops</strong>: Stop the airflow</correct></p>
+<ol start="2" type="A">
+<li><p><strong>Fricatives</strong>: Constrict the airflow to make
+sounds</p></li>
+<li><p><strong>Nasals</strong>: Channel the air out the nose</p></li>
+<li><p><strong>Approximants</strong>: Bring the tongue <em>toward</em>
+the place</p></li>
+<li><p><strong>Laterals</strong>: Channel air <em>around</em> the
+tongue</p></li>
+</ol>
+<hr />
+<h3 id="the-initial-sounds-in-vaguely-silly-phantom-show-are">The
+initial sounds in “Vaguely Silly Phantom Show” are…</h3>
+<section class="clicker">
+</section>
+<ol type="A">
+<li><p><strong>Stops</strong>: Stop the airflow</p></li>
+<li><p><strong>Fricatives</strong>: Constrict the airflow to make
+sounds</p></li>
+<li><p><strong>Nasals</strong>: Channel the air out the nose</p></li>
+<li><p><strong>Approximants</strong>: Bring the tongue <em>toward</em>
+the place</p></li>
+<li><p><strong>Laterals</strong>: Channel air <em>around</em> the
+tongue</p></li>
+</ol>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### The initial sounds in “Vaguely Silly Phantom Show” are…</td>
+</tr>
+<tr class="even">
+<td>A) <strong>Stops</strong>: Stop the airflow</td>
+</tr>
+<tr class="odd">
+<td>B) <correct><strong>Fricatives</strong>: Constrict the airflow to
+make sounds</correct></td>
+</tr>
+<tr class="even">
+<td>C) <strong>Nasals</strong>: Channel the air out the nose</td>
+</tr>
+<tr class="odd">
+<td>D) <strong>Approximants</strong>: Bring the tongue <em>toward</em>
+the place</td>
+</tr>
+<tr class="even">
+<td>E) <strong>Laterals</strong>: Channel air <em>around</em> the
+tongue</td>
+</tr>
+</tbody>
+</table>
+<h2 id="voicing">Voicing</h2>
+<hr />
+<h3 id="voicing-1">Voicing</h3>
+<ul>
+<li>Is the larynx buzzing, or not?</li>
+</ul>
+<hr />
+<p>Content Warning: Things are about to get weird.</p>
+<hr />
+<video class="r-stretch" controls src="video/laryngoscopy_transnasal.mp4">
+</video>
+<p><a href="https://www.youtube.com/watch?v=uwAR7J9471M">Video
+Source</a></p>
+<hr />
+<h3 id="this-is-not-the-only-such-video">This is not the only such
+video</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Ua8SuWNPrLE">Here’s one
+featuring Will Ramos of Lorna Shore</a> getting scoped during heavy
+metal vocals!
+<ul>
+<li>The twisting his larynx can do is <em>incredibly</em> unusual, and
+really cool!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="lets-pretend-were-snakes-eating-bees">Let’s pretend we’re snakes
+eating bees!</h3>
+<p><img  class="r-stretch" src="phonmedia/snakesbees.jpg"></p>
+<hr />
+<h3 id="voiced-vs.-voiceless">Voiced vs. Voiceless</h3>
+<ul>
+<li>Cat</li>
+<li>Bob</li>
+<li>Month</li>
+<li>Those</li>
+<li>Crash</li>
+<li>Judge</li>
+</ul>
+<hr />
+<h3 id="the-initial-sounds-in-phonetics-wins-popularity-are">The initial
+sounds in “Phonetics wins popularity” are…</h3>
+<ol type="A">
+<li><p>All Voiced</p></li>
+<li><p>All Voiceless</p></li>
+<li><p>Voiceless, Voiced, Voiceless</p></li>
+<li><p>Voiced, Voiceless, Voiced</p></li>
+<li><p>None of the above</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="the-initial-sounds-in-phonetics-wins-popularity-are-1">The
+initial sounds in “Phonetics wins popularity” are…</h3>
+<ol type="A">
+<li><p>All Voiced</p></li>
+<li><p>All Voiceless</p></li>
+<li><p><correct>Voiceless, Voiced, Voiceless</correct></p></li>
+<li><p>Voiced, Voiceless, Voiced</p></li>
+<li><p>None of the above</p></li>
+</ol>
+<hr />
+<h3 id="three-steps-to-describing-consonants">Three steps to describing
+Consonants</h3>
+<ul>
+<li><p>We need to know three things:</p></li>
+<li><p><strong>Place</strong>: Where is the sound made?</p></li>
+<li><p><strong>Manner</strong>: What are we doing there?</p></li>
+<li><p><strong>Voicing</strong>: Are we making voicing?</p></li>
+</ul>
+<hr />
+<h3 id="all-consonants-can-be-described-this-way">All consonants can be
+described this way</h3>
+<ul>
+<li><p>/m/ - Voiced Bilabial Nasal</p></li>
+<li><p>/t/ - Voiceless Alveolar Stop</p></li>
+<li><p>/g/ - Voiced Velar Stop</p></li>
+<li><p>/f/ - Voiceless Labiodental Fricative</p></li>
+</ul>
+<hr />
+<h3 id="there-are-a-couple-of-weird-ones">There are a couple of weird
+ones</h3>
+<ul>
+<li>/ɹ/ - The English “R”, a voiced ‘alveolar’ approximant
+<ul>
+<li>“Reed read the wrong resolution”</li>
+<li>Super weird</li>
+</ul></li>
+<li>/w/ - A voiced labio-velar approximant
+<ul>
+<li>“Will would wisely watch the wind”</li>
+<li>Has a voiceless version (“Cool whip” from Family Guy)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="affricates">‘Affricates’</h3>
+<p>If you combine a fricative and a stop, you get an affricate</p>
+<ul>
+<li><p><strong>J</strong>u<strong>dg</strong>e (d͡ʒʌd͡ʒ)</p></li>
+<li><p><strong>Ch</strong>eese (t͡ʃiz)</p></li>
+<li><p>Ca<strong>ts</strong> (kæts)</p></li>
+</ul>
+<hr />
+<p>Once we’ve organized sounds by place, manner, and voicing, we
+have…</p>
+<hr />
+<h3 id="english-consonants">English Consonants</h3>
+<p><img  class="r-stretch" src="phonmedia/ipa_consonants_english.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="phonmedia/ipa_conschart_reading.jpg"></p>
+<hr />
+<p><img  class="wide" src="phonmedia/ipa_consonants.jpg"></p>
+<hr />
+<h3 id="cant-figure-out-where-in-the-mouth-that-is">Can’t figure out
+where in the mouth that is?</h3>
+<p>Ask <a href="http://smu-facweb.smu.ca/~s0949176/sammy/">Sammy the
+Interactive Sagittal Section</a>!</p>
+<ul>
+<li>Or check UBC’s <a
+href="https://enunciate.arts.ubc.ca/">Enunciate</a> site</li>
+</ul>
+<hr />
+<h3 id="so-thats-consonants.">So, that’s consonants.</h3>
+<ul>
+<li><p>We’ll talk about vowels next time!</p>
+<ul>
+<li><p>But those are described also by thinking about where your tongue
+is in your mouth</p></li>
+<li><p>And what your lips are doing!</p></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="lets-practice">Let’s Practice!</h2>
+<hr />
+<h3 id="every-vowel-here-is-i">Every vowel here is /i/</h3>
+<ul>
+<li>BBs</li>
+<li>Meat</li>
+<li>Sheen</li>
+<li>Thief</li>
+<li>Reap</li>
+<li>Cheek</li>
+<li>Weeder</li>
+</ul>
+<hr />
+<h3 id="spoiler-alert">Spoiler alert</h3>
+<hr />
+<h3 id="every-vowel-here-is-i-1">Every vowel here is /i/</h3>
+<ul>
+<li>BBs /bibiz/</li>
+<li>Meat /mit/</li>
+<li>Sheen /ʃin/</li>
+<li>Thief /θif/</li>
+<li>Reap /ɹip/</li>
+<li>Cheek /t͡ʃik/</li>
+<li>Wheel /wil/</li>
+</ul>
+<hr />
+<h3 id="every-vowel-here-is-ɛ">Every vowel here is /ɛ/</h3>
+<ul>
+<li>Wrecked</li>
+<li>Them</li>
+<li>Gem</li>
+<li>Hedge</li>
+<li>Geth</li>
+</ul>
+<hr />
+<h3 id="spoiler-alert-1">Spoiler Alert</h3>
+<hr />
+<h3 id="every-vowel-here-is-ɛ-1">Every vowel here is /ɛ/</h3>
+<ul>
+<li>Wrecked /ɹɛkt/</li>
+<li>Them /ðɛm/</li>
+<li>Gem /d͡ʒɛm/</li>
+<li>Hedge /hɛd͡ʒ/</li>
+<li>Geth /gɛθ/</li>
+</ul>
+<hr />
+<h3 id="every-vowel-here-is-ɑ">Every vowel here is /ɑ/</h3>
+<ul>
+<li>Song</li>
+<li>Wrought</li>
+<li>Shop</li>
+<li>Rot</li>
+<li>Thought</li>
+<li>Chop</li>
+</ul>
+<hr />
+<h3 id="spoiler-alert-2">Spoiler Alert</h3>
+<hr />
+<h3 id="every-vowel-here-is-ɑ-1">Every vowel here is /ɑ/</h3>
+<ul>
+<li>Song /sɑŋ/</li>
+<li>Wrought /ɹɑt/</li>
+<li>Shop /ʃɑp/</li>
+<li>Rot /ɹɑt/</li>
+<li>Thought /θɑt/</li>
+<li>Chop /t͡ʃɑp/</li>
+<li>Unless, like me, you're not from California... in which case it's /sɔŋ/, /ɹɔt/, and /θɔt/!</li>
+</ul>
+<hr />
+<h3 id="so-thats-how-we-describe-consonants">So, that’s how we describe
+consonants</h3>
+<ul>
+<li><p>Place, manner, and voicing!</p></li>
+<li><p>Vowels talk about the height of the tongue, the front-backness of
+the tongue, and the rounding of the lips</p>
+<ul>
+<li>… and we have way more of them than the writing system makes you
+believe!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wrapping-it-up">Wrapping it up</h3>
+<ul>
+<li><p>Speech is crazy complicated</p></li>
+<li><p>The English writing system is a large lagoon of lies</p></li>
+<li><p>We describe consonants by talking about place, manner, and
+voicing</p></li>
+<li><p>The English writing system is a festival of falsehoods</p></li>
+<li><p>You can use your knowledge of articulation to help with
+transcription</p></li>
+<li><p>The English writing system is a dumpster of deception</p></li>
+<li><p>The IPA can save us!</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time…</h3>
+<ul>
+<li>Vowels, more on transcription, and some phonetic phun!</li>
+</ul>
+<hr />
+<h3
+id="download-an-ipa-chart-and-reference-guide-from-the-syllabus-or-take-one-here">Download
+an IPA chart and reference guide from the syllabus or take one
+here!</h3>
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

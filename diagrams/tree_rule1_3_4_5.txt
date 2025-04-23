@@ -1,0 +1,12 @@
+tree_rule1_3_4_5tex
+ 
+[NP 
+  [DET 
+    [NP 
+      [N' 
+        [N John ] ] ] 
+    [POSS 's ] ] 
+  [N' 
+    [ADJ cute ] 
+    [N' 
+      [N cat ] ] ] ]

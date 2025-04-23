@@ -1,0 +1,13 @@
+tree_dogchasedtex
+
+[S 
+  [NP 
+    [DET the ] 
+    [N' 
+      [N dog ] ] ] 
+  [VP 
+    [V chased ] 
+    [NP 
+      [DET the ] 
+      [N' 
+        [N cat ] ] ] ] ]

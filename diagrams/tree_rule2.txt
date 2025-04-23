@@ -1,0 +1,4 @@
+tree_rule2tex
+
+[NP 
+  [N'  ] ]

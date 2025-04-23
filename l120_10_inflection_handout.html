@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="tall" src="ling_memes/doro.jpg"></p>
+<hr />
+<h1 id="inflectional-morphology-of-nouns">Inflectional Morphology of
+Nouns</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Inflection Review</p></li>
+<li><p>Paradigms for Analysis</p></li>
+<li><p>What does inflection usually do to nouns?</p></li>
+</ul>
+<hr />
+<h1 id="inflectional-morphology">Inflectional Morphology</h1>
+<hr />
+<h2 id="inflectional-morphology-1">Inflectional Morphology</h2>
+<p>A morphological process which changes the meaning of a lexeme <em>in
+a given linguistic or grammatical context</em></p>
+<hr />
+<h3 id="inflection-vs.-derivation">Inflection vs. Derivation</h3>
+<ul>
+<li><p><strong>Derivation</strong> creates ‘new words’</p></li>
+<li><p><strong>Inflection</strong> produces new word forms relevant to a
+given linguistic context</p></li>
+</ul>
+<hr />
+<h3
+id="inflection-and-derivation-combine-to-build-the-paradigms-of-language">Inflection
+and Derivation combine to build the paradigms of language</h3>
+<ul>
+<li><p><strong>Derivation</strong> creates new words to put into
+inflectional paradigms</p></li>
+<li><p><strong>Inflection</strong> creates paradigms from a given
+word</p></li>
+</ul>
+<hr />
+<p><img class="wide" src="morphology/paradigms_inflection.jpg"></p>
+<hr />
+<h3 id="there-are-many-kinds-of-inflectional-paradigms">There are many
+kinds of inflectional paradigms</h3>
+<hr />
+<h3 id="verb-paradigms-in-spanish">Verb Paradigms in Spanish</h3>
+<p><img class="wide" src="morphology/spanish_irparadigm_top.jpg"></p>
+<hr />
+<h3 id="verb-paradigms-in-english">Verb Paradigms in English</h3>
+<p><img class="wide" src="morphology/english_verbparadigm.jpg"></p>
+<hr />
+<h3 id="case-paradigm-in-latin">Case Paradigm in Latin</h3>
+<p><img class="wide" src="morphology/latin_island_paradigm.jpg"></p>
+<hr />
+<h3 id="english-pronoun-paradigm">English pronoun paradigm</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-e3zv{font-weight:bold}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+</th>
+<th class="tg-e3zv">
+Singular
+</th>
+<th class="tg-e3zv">
+Plural
+</th>
+</tr>
+<tr>
+<td class="tg-e3zv">
+1st
+</td>
+<td class="tg-031e">
+I
+</td>
+<td class="tg-031e">
+we
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+2nd
+</td>
+<td class="tg-031e">
+you
+</td>
+<td class="tg-031e">
+y’all
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+3rd
+</td>
+<td class="tg-031e">
+he/she
+</td>
+<td class="tg-031e">
+they
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="spanish-pronoun-paradigm">Spanish pronoun paradigm</h3>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-e3zv{font-weight:bold}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+</th>
+<th class="tg-e3zv">
+Singular
+</th>
+<th class="tg-e3zv">
+Plural
+</th>
+</tr>
+<tr>
+<td class="tg-e3zv">
+1st
+</td>
+<td class="tg-031e">
+Yo
+</td>
+<td class="tg-031e">
+Nosotros
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+2nd
+</td>
+<td class="tg-031e">
+Tu/Usted
+</td>
+<td class="tg-031e">
+Vosotros/Ustedes
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+3rd
+</td>
+<td class="tg-031e">
+El/Ella
+</td>
+<td class="tg-031e">
+Ellos/Ellas
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="paradigms-are-a-useful-analytical-tool">Paradigms are a useful
+analytical tool!</h3>
+<ul>
+<li>They relate forms and meanings!</li>
+</ul>
+<hr />
+<h3 id="how-to-create-a-paradigm-as-an-analytical-tool">How to create a
+paradigm as an analytical tool</h3>
+<ul>
+<li><p>Determine the dimensions of meaning</p>
+<ul>
+<li>‘Person’, ‘Tense’, ‘Case’, ‘Number’, etc.</li>
+</ul></li>
+<li><p>Create a ‘grid’ which has slots for each possible form</p></li>
+<li><p>Fill in the forms!</p></li>
+</ul>
+<hr />
+<h3 id="some-data">Some data…</h3>
+<ul>
+<li>camino ‘I walk’</li>
+<li>caminabas ‘You were walking’</li>
+<li>caminamos ‘We walk’</li>
+<li>camináis ‘Y’all walk’</li>
+<li>caminaban ‘They were walking’</li>
+<li>caminábamos ‘We were walking’</li>
+<li>caminaba ‘I was walking’</li>
+<li>caminan ‘They walk’</li>
+<li><strong>What dimensions are present here?</strong></li>
+</ul>
+<hr />
+<h3 id="our-dimensions">Our dimensions</h3>
+<ul>
+<li><p>Present vs. Past</p></li>
+<li><p>1st vs. 2nd vs. 3rd person</p></li>
+<li><p>Singular vs. Plural</p></li>
+</ul>
+<hr />
+<h3 id="we-can-create-paradigms-and-fill-the-slots">We can create
+paradigms and fill the slots!</h3>
+<p><img class="wide" src="morphology/spanish_3d_paradigm_pres.jpg"></p>
+<hr />
+<p><img class="wide" src="morphology/spanish_3d_paradigm_imp.jpg"></p>
+<hr />
+<p><img class="wide" src="morphology/spanish_3d_paradigm.jpg"></p>
+<hr />
+<h3
+id="remember-that-different-words-can-use-different-paradigms">Remember
+that different words can use different paradigms!</h3>
+<ul>
+<li><p>‘Verb classes’ or ‘Inflectional classes’ are common</p></li>
+<li><p>Sometimes, part of the description is discussing the paradigms,
+and then labeling words by inflection class</p></li>
+</ul>
+<hr />
+<h3 id="verb-paradigms-in-kiowa">Verb Paradigms in Kiowa</h3>
+<center>
+<table>
+<tr>
+<th>
+</th>
+<th>
+‘go’ class
+</th>
+<th>
+‘read’ class<br>
+</th>
+<th>
+‘talk’ class
+</th>
+</tr>
+<tr>
+<td>
+1sg
+</td>
+<td>
+à-
+</td>
+<td>
+gyàt-
+</td>
+<td>
+yã-<br>
+</td>
+</tr>
+<tr>
+<td>
+2sg
+</td>
+<td>
+èm-
+</td>
+<td>
+bátk-
+</td>
+<td>
+gyát-
+</td>
+</tr>
+<tr>
+<td>
+3sg
+</td>
+<td>
+ø
+</td>
+<td>
+gyá-
+</td>
+<td>
+án-
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="finding-paradigms-is-really-useful">Finding paradigms is
+<em>really</em> useful</h3>
+<ul>
+<li><p>If there are paradigms in a dataset, start hunting down
+elements!</p></li>
+<li><p>It’s a great way to organize your thoughts</p></li>
+<li><p>… and a great way to present them!</p></li>
+<li><p><strong>Any dimension</strong> can be put into a paradigm</p>
+<ul>
+<li>Not just person, number, etc.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="a-brief-aside-exclusive-vs.-inclusive-1pl">A brief aside:
+Exclusive vs. Inclusive 1PL</h3>
+<ul>
+<li><p>Some languages have an additional contrast in the person
+paradigm</p></li>
+<li><p>‘Inclusive we’: “Myself and you (and perhaps others)”</p>
+<ul>
+<li>1PL.INCL</li>
+</ul></li>
+<li><p>‘Exclusive we’: “Myself and others, <em>but not you</em>.”</p>
+<ul>
+<li>1PL.EXCL</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="your-paradigms-need-to-have-dimensions-of-meaning">Your
+paradigms need to have dimensions of meaning</h3>
+<ul>
+<li>How do you know what dimensions to look for?</li>
+</ul>
+<hr />
+<h1 id="what-does-inflectional-morphology-usually-do">What does
+inflectional morphology usually do?</h1>
+<hr />
+<h3
+id="inflectional-morphology-usually-has-grammatical-meaning">Inflectional
+morphology usually has grammatical meaning</h3>
+<ul>
+<li><p>Inflectional markings give us information which helps interpret
+the sentences</p></li>
+<li><p>Inflectional meanings vary by sentential context</p>
+<ul>
+<li>‘He saw her last week’ vs. ‘She’s the one he saw’</li>
+</ul></li>
+<li><p>Inflectional meanings are often relevant to syntax</p></li>
+<li><p>The same sorts of inflectional meanings show up over and over
+again!</p></li>
+</ul>
+<hr />
+<h2 id="well-work-on-nouns-and-associated-words-today">We’ll work on
+Nouns (and associated words) today</h2>
+<ul>
+<li>… and get verby next week</li>
+</ul>
+<hr />
+<h3
+id="common-inflectional-meanings-on-nouns-and-the-things-that-modify-them">Common
+Inflectional Meanings on Nouns (and the things that modify them)</h3>
+<ul>
+<li><p>Number</p></li>
+<li><p>Gender and Noun Class</p></li>
+<li><p>Case Marking</p></li>
+<li><p>Other nominal markings</p></li>
+</ul>
+<hr />
+<h2 id="number-marking">Number Marking</h2>
+<hr />
+<h3 id="number-marking-1">Number Marking</h3>
+<ul>
+<li><p>Often Singular (unmarked) vs. Plural (marked)</p></li>
+<li><p>Sometimes collective (unmarked) vs. singulative (marked)</p>
+<ul>
+<li>ŋɛɛti ‘lice’ vs. ŋɛɛti-n ‘louse’</li>
+</ul></li>
+<li><p>Sometimes you’ll see ‘dual’ forms, or other number-based
+forms</p></li>
+</ul>
+<hr />
+<h2 id="gender-and-noun-class">Gender and Noun Class</h2>
+<hr />
+<h3 id="grammatical-gender">Grammatical Gender</h3>
+<p>Grouping words into multiple genres, and using different forms and
+“agreements” for each</p>
+<ul>
+<li><p>We call it “Grammatical Gender” when masculine/feminine are used,
+“Noun class” when there are other categories</p>
+<ul>
+<li>These terms are often used interchangeably</li>
+</ul></li>
+</ul>
+<hr />
+<p><lang>French</lang><br><ldata>IE:Italic - All over</ldata></p>
+<ul>
+<li><p>Un homme parfait - ‘a perfect man’ (masculine)</p></li>
+<li><p>Une femme parfaite - ‘a perfect woman’ (feminine)</p></li>
+<li><p>Un appartement parfait - ‘a perfect apartment’
+(masculine)</p></li>
+<li><p>Une tondeuse parfaite - ‘a perfect lawnmower’ (feminine)</p></li>
+</ul>
+<hr />
+<h3 id="agreement">Agreement</h3>
+<p>When words or forms change to “match” a characteristic of another
+part of the sentence</p>
+<hr />
+<p><lang>Portuguese</lang><br><ldata>IE:Italic - Brazil,
+Portugal</ldata></p>
+<ul>
+<li><p>Um gato preto - ‘a black cat’ (masculine)</p></li>
+<li><p>Uma gata preta - ‘a black cat’ (feminine)</p></li>
+<li><p>Um garfo prateado - ‘a silver fork’ (masculine)</p></li>
+<li><p>Uma colher prateada - ‘a silver spoon’ (feminine)</p></li>
+</ul>
+<hr />
+<p><lang>Russian</lang><br><ldata>IE:Slavic - Russia</ldata></p>
+<ul>
+<li><p>красивый дом (Krasiviy dom) - ‘Pretty house’ (masculine)</p></li>
+<li><p>красивая девушка (Krasivaya devushka) - ‘Pretty girl’
+(feminine)</p></li>
+<li><p>красивое море (Krasivoye Morye) - ‘Pretty sea’ (neuter)</p></li>
+</ul>
+<hr />
+<h3 id="grammatical-gender-facts">Grammatical Gender Facts</h3>
+<ul>
+<li><p>Often based on the form of the word, rather than the meaning</p>
+<ul>
+<li>The Russian word for “moon” is feminine, but the Polish word is
+masculine.</li>
+</ul></li>
+<li><p>Usually “masculine” and “feminine”, but there’s also
+“neuter”</p></li>
+<li><p>Other words (adjectives, verbs, articles) change to “agree” with
+the gender</p></li>
+<li><p>It’s not always about Gender at all…</p></li>
+</ul>
+<hr />
+<h3 id="animateinanimate-classes">Animate/Inanimate Classes</h3>
+<ul>
+<li><p>Marks gender based on animacy or “alive-ness”</p></li>
+<li><p>Used in Basque, English (he/she/it), Totonac, Navajo, Tamil, PIE
+(??), and more!</p></li>
+<li><p>In Navajo: Human &gt; Infant/Big Animal &gt; Medium-sized Animal
+&gt; Small Animal &gt; Natural Force &gt; Abstraction</p></li>
+</ul>
+<hr />
+<h3 id="larger-noun-class-systems">Larger Noun Class Systems</h3>
+<ul>
+<li><p>More than just a few categories</p></li>
+<li><p>Often semantically linked</p></li>
+<li><p>Sometimes phonologically linked</p></li>
+<li><p>Sometimes completely arbitrary</p></li>
+</ul>
+<hr />
+<p><lang>Zande</lang><br><ldata>Niger-Congo:Zande - Congo</ldata></p>
+<ol type="1">
+<li>Human (Male) - “Man”</li>
+<li>Human (Female) - “Wife”</li>
+<li>Animate - “Beast”</li>
+<li>Other - “House”</li>
+</ol>
+<hr />
+<p><lang>Swahili</lang><br><ldata>Niger-Congo:Bantu - East
+Africa</ldata></p>
+<ol type="1">
+<li>Singular Persons</li>
+<li>Plural Persons</li>
+<li>Singular Plants</li>
+<li>Plural Plants</li>
+<li>Singular Fruits</li>
+<li>Plural Fruits</li>
+<li>Singular things</li>
+<li>Plural things</li>
+<li>Singular Animals</li>
+<li>Plural Animals</li>
+<li>Singular ???</li>
+<li>Verbal nouns</li>
+<li>Things close to other things</li>
+</ol>
+<p>(and so on)</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>Dyirbal</lang><br><ldata>Pama-Nyungan - Australia</ldata></td>
+</tr>
+<tr class="even">
+<td>1. animate objects, men 2. women, water, fire, violence 3. edible
+fruit and vegetables 4. miscellaneous (includes things not classifiable
+in the first three)</td>
+</tr>
+</tbody>
+</table>
+<p><img class="big" src="img/womenfiredangerousthings.jpg"></p>
+<hr />
+<h3 id="navajo-noun-class-markers">Navajo Noun Class Markers</h3>
+<ul>
+<li>-ʼą́ – Solid Roundish Objects</li>
+<li>-yį́ – Load, Pack, Burden</li>
+<li>-ł-jool – Non-Compact Matter</li>
+<li>-lá – Slender Flexible Object</li>
+<li>-tą́ – Slender Stiff Object</li>
+<li>-ł-tsooz – Flat Flexible Object</li>
+<li>-tłééʼ – Mushy Matter</li>
+<li>-nil – Plural Objects 1</li>
+<li>-jaaʼ – Plural Objects 2</li>
+<li>-ką́ – Open Container</li>
+<li>-ł-tį́ – Animate Object</li>
+<li><strong>Often, you <em>don’t need to mention the noun
+again!</em></strong></li>
+</ul>
+<hr />
+<h3 id="grammatical-gender-is-common">Grammatical Gender is common!</h3>
+<ul>
+<li><p>~45% of languages have gender or noun classes (<a
+href="http://wals.info/chapter/31">according to WALS</a>)</p></li>
+<li><p>~75% of gender-using languages use sex-based Gender</p>
+<ul>
+<li>(Remember, it’s still arbitrary)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-are-other-kinds-of-inflection-done-to-nouns">There are
+other kinds of inflection done to nouns</h3>
+<ul>
+<li><p>Diminuitive and Augmentative affixes</p>
+<ul>
+<li><p>Gato -&gt; Gatito in Spanish</p></li>
+<li><p>Perro -&gt; Perrazo</p></li>
+</ul></li>
+<li><p>Determiners and possessives can attach as affixes</p></li>
+<li><p>Proper noun markers (e.g. in Basque)</p></li>
+<li><p><strong>… but number and gender are really
+common!</strong></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Paradigms are everywhere, and they’re a useful tool</p></li>
+<li><p>Inflectional morphology is often used to mark sentential
+context</p></li>
+<li><p>Nouns often are inflected for number and gender</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li>Data, then one more lecture on inflection, just in case.</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

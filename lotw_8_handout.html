@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><lang>Georgian</lang><br><ldata>Kartvelian - Georgia</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/tjMq9ZOjKXE">
+</iframe>
+<p>Dzvali - Kabu</p>
+<hr />
+<h1 id="caucasian-and-dravidian-languages">Caucasian and Dravidian
+Languages</h1>
+<h3 id="ling-1020---will-styler">LING 1020 - Will Styler</h3>
+<hr />
+<h3 id="administrative-notes">Administrative Notes</h3>
+<ul>
+<li><p>I’ve tweaked the schedule. Grab the latest copy</p>
+<ul>
+<li>No due-dates have changed, but the readings have.</li>
+</ul></li>
+<li><p>Niloo’s lecture is online now.</p></li>
+<li><p>Will’s office hours today end at 1pm</p>
+<ul>
+<li><h2
+id="if-youre-willing-to-talk-while-in-line-at-the-alferd-packer-grill">1:30,
+if you’re willing to talk while in line at the Alferd Packer
+grill</h2></li>
+</ul></li>
+</ul>
+<h2 id="todays-agenda">Today’s Agenda</h2>
+<ul>
+<li><p>Ergative/Absolutive Systems</p></li>
+<li><p>Caucasian Languages</p></li>
+<li><p>Dravidian Languages</p></li>
+</ul>
+<hr />
+<h1 id="case">Case!</h1>
+<hr />
+<h3 id="today-were-wrapping-up-the-idea-of-case.">Today, we’re wrapping
+up the idea of “case”.</h3>
+<hr />
+<p>(Here’s a touch of review, just in case)</p>
+<p><img class="big" src="humorimg/badpundog.jpg">
+<!-- .element: class="fragment" --></p>
+<hr />
+<h3 id="case-marks-grammatical-relations">Case marks grammatical
+relations</h3>
+<p><small>(Who did what to whom)</small></p>
+<hr />
+<p>Fundamentally, we need to know:</p>
+<ul>
+<li><h3 id="who-did-the-action">Who did the action?</h3></li>
+<li><h3 id="who-was-directly-affected-by-the-action">Who was directly
+affected by the action?</h3></li>
+</ul>
+<hr />
+<p>In linguistics, we break those into three “roles”:</p>
+<ul>
+<li><p><strong>Subject</strong> (of an intransitive sentence)</p></li>
+<li><p><strong>Agent</strong> (of a transitive sentence)</p></li>
+<li><p><strong>Object</strong> (of a transitive sentence)</p>
+<ul>
+<li>(This is as complex as we’ll get in this class)</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/SAO.png"></p>
+<hr />
+<h3
+id="languages-group-these-roles-differently-in-their-case-systems">Languages
+group these roles differently in their case systems</h3>
+<hr />
+<p>“Let’s mark Subject and Agent using the same morpheme!”</p>
+<p><img class="big" src="lotwimg/SAO_nomacc.png"></p>
+<hr />
+<p>This is called a “Nominative/Accusative” system</p>
+<p><img class="big" src="lotwimg/SAO_nomacc_labeled.png"></p>
+<hr />
+<h3 id="nominativeaccusative-systems">Nominative/Accusative Systems</h3>
+<ul>
+<li><p>Group S and A together</p>
+<ul>
+<li><p>The same case markers are used for S and A</p></li>
+<li><p>Subjects <em>and</em> agents are nominative!</p></li>
+</ul></li>
+<li><p>“I slept”, “I saw her”</p></li>
+<li><p>“<em>Me slept”, ”</em>Me saw her”</p></li>
+</ul>
+<hr />
+<p>“No, let’s mark Subject and <strong>object</strong> using the same
+morpheme!”</p>
+<p><img class="big" src="lotwimg/SAO_ergabs.png"></p>
+<hr />
+<p>This is called a “Ergative/Absolutive” system</p>
+<p><img class="big" src="lotwimg/SAO_ergabs_labeled.png"></p>
+<hr />
+<p>The case marker that marks S and O is called <em>Absolutive
+Case</em></p>
+<p><img class="big" src="lotwimg/SAO_ergabs_labeled.png"></p>
+<hr />
+<p>The case marker that marks A is called <em>Ergative Case</em></p>
+<p><img class="big" src="lotwimg/SAO_ergabs_labeled.png"></p>
+<p><small>(Think “Erg-” as “work”, as in “Ergonomics” or
+“Energy”)</small> <!-- .element: class="fragment" --></p>
+<hr />
+<h3 id="ergativeabsolutive-systems">Ergative/Absolutive Systems</h3>
+<ul>
+<li><p>Group S and O together</p>
+<ul>
+<li><p>The same case markers are used for S and O</p></li>
+<li><p>Subjects <em>and</em> objects are absolutive!</p></li>
+</ul></li>
+<li><p>Erg/Abs is less common than Nom-Acc</p></li>
+<li><p>Ergative/Absolutive is found in specific areas</p>
+<ul>
+<li><h2
+id="caucasian-languages-tibetan-australian-languages-basque-some-iranian-languages-some-american-indian-languages">Caucasian
+languages, Tibetan, Australian languages, Basque, some Iranian
+languages, some American Indian languages,</h2></li>
+</ul></li>
+</ul>
+<h3
+id="ergative-and-absolutive-replace-nominative-and-accusative-cases">“Ergative”
+and “Absolutive” <em>replace</em> Nominative and Accusative Cases</h3>
+<ul>
+<li><p>You’ll never have a “Nominative” or “Accusative” case in a truly
+Erg/Abs system</p></li>
+<li><p>You’ll never have an “Ergative” or “Absolutive” case in a truly
+Nom/Acc system</p>
+<ul>
+<li>(Some languages do switch around, like Nepali)</li>
+</ul></li>
+</ul>
+<hr />
+<p><lang>Basque</lang><br><ldata>Isolate - “Spain”</ldata></p>
+<ul>
+<li><p>Jon etorri dira.</p></li>
+<li><p>Jon-ABS come AUX</p></li>
+<li><p><em>“Jon came.”</em></p></li>
+<li><p>Nekanek Jon ikusi ditu.</p></li>
+<li><p>Nekane-ERG Jon-ABS seen AUX</p></li>
+<li><p><em>“Nekane saw Jon”</em></p></li>
+</ul>
+<hr />
+<ul>
+<li><p>Jon etorri dira. - “Jon came.”</p></li>
+<li><p>Nekane-k Jon ikusi ditu. - “Nekane saw Jon.”</p></li>
+<li><p><strong>S = Unmarked</strong></p></li>
+<li><p><strong>O = Unmarked</strong></p></li>
+<li><p><strong>A = -k</strong></p></li>
+<li><p><em>Absolutive Case</em> = Unmarked</p></li>
+<li><p><em>Ergative Case</em> = -k</p></li>
+</ul>
+<hr />
+<p><lang>Georgian</lang><br><ldata>Kartvelian - Georgia</ldata></p>
+<p><em>bitʃ‘-ma dzaghl-i bagh-ʃi damala.</em></p>
+<p>boy-erg dog-abs garden-dat.in hid.aor</p>
+<p>‘The boy hid the dog in the garden.’</p>
+<p><em>dzaghl-i bagh-ʃi daimala.</em></p>
+<p>dog-abs garden-dat.in hid.aor</p>
+<p>‘The dog hid in the garden.’</p>
+<ul>
+<li><strong>S and O = -i</strong> (absolutive case)</li>
+<li><strong>A = -ma</strong> (ergative case)</li>
+</ul>
+<hr />
+<h3 id="this-is-tea-from-georgia">This is tea from Georgia</h3>
+<p><img class="big" src="lotwimg/georgiantea.jpg"></p>
+<hr />
+<h1 id="ergativi-tea">Ergativi-tea!</h1>
+<p><img class="big" src="humorimg/badpundog.jpg">
+<!-- .element: class="fragment" --></p>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p><em>In an Ergative/Absolutive language, which case markers would be
+used for the sentences:</em></p>
+<p><strong><em>“Will needlessly dissed Michael Bay. Kevin
+laughed.”</em></strong></p>
+<ol type="a">
+<li><p>Will = ERG, Michael Bay = ABS, Kevin = ABS</p></li>
+<li><p>Will = ABS, Michael Bay = ERG, Kevin = ERG</p></li>
+<li><p>Will = ERG, Michael Bay = ABS, Kevin = ERG</p></li>
+<li><p>Will = ABS, Michael Bay = ERG, Kevin = ABS</p></li>
+</ol>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p><em>In an Ergative/Absolutive language, which case markers would be
+used for the sentences:</em></p>
+<p><strong><em>“Michael Bay misrepresented Optimus Prime. Will
+cried.”</em></strong></p>
+<ol type="a">
+<li><p>Michael Bay = ERG, Optimus = ABS, Will = ABS</p></li>
+<li><p>Michael Bay = ABS, Optimus = ERG, Will = ERG</p></li>
+<li><p>Michael Bay = ERG, Optimus = ABS, Will = ERG</p></li>
+<li><p>Michael Bay = ABS, Optimus = ERG, Will = ABS</p></li>
+</ol>
+<hr />
+<h3
+id="and-of-course-they-dont-have-to-group-or-the-groupings-can-change.">…
+and of course, they don’t have to group, or the groupings can
+change.</h3>
+<ul>
+<li>(Remember Nepali?)</li>
+</ul>
+<hr />
+<p>This is called “Split ergativity”</p>
+<p><img class="big" src="lotwimg/SAO.png"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Nepali</strong> - Ergative/Absolutive for <em>animate</em>
+subjects</td>
+</tr>
+<tr class="even">
+<td><img class="big" src="lotwimg/SAO_ergabs.png"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nepali</strong> - Nominative/Accusative for
+<em>inanimate</em> subjects</p>
+<p><img class="big" src="lotwimg/SAO_nomacc.png"></p>
+<hr />
+<p><strong>Hindi/Urdu</strong> - Ergative/Absolutive in the past</p>
+<p><img class="big" src="lotwimg/SAO_ergabs.png"></p>
+<hr />
+<p><strong>Hindi/Urdu</strong> - Nominative/Accusative in the
+present</p>
+<p><img class="big" src="lotwimg/SAO_nomacc.png"></p>
+<hr />
+<p>We don’t use consistent case names in these situations</p>
+<p><img class="big" src="lotwimg/SAO_spliterg.png"></p>
+<hr />
+<h3 id="this-is-nepali-tea">This is Nepali tea</h3>
+<p><img class="big" src="lotwimg/splitergativitea.jpg"></p>
+<ul>
+<li><h2 id="split-ergativi-tea">Split Ergativi-tea!</h2></li>
+</ul>
+<hr />
+<p>(Sorry)</p>
+<hr />
+<h3 id="so-there-are-three-ways-to-do-case">So, there are three ways to
+do Case</h3>
+<ul>
+<li><p>Nominative/Accusative - Groups S and A</p></li>
+<li><p>Ergative/Absolutive - Groups S and O</p></li>
+<li><p>Split Ergative - No grouping, or variable grouping</p></li>
+</ul>
+<hr />
+<h2 id="yay-were-done-learning-how-case-works">Yay! We’re done learning
+how case works!</h2>
+<p><small>Although we’ll keep touching on small variations from time to
+time…</small> <!-- .element: class="fragment" --></p>
+<hr />
+<p>Speaking of Ergative languages…</p>
+<hr />
+<h1 id="caucasian-languages">Caucasian Languages!</h1>
+<hr />
+<p><img class="big" src="lotwimg/caucasianmap.png"></p>
+<hr />
+<h3
+id="there-are-three-macro-families-that-linguists-mean-when-we-say-caucasian">There
+are three macro-families that linguists mean when we say
+“Caucasian”</h3>
+<ul>
+<li><p><strong>Northwest Caucasian</strong> - Kabardian, Abaza,
+Abkhaz</p></li>
+<li><p><strong>Northeast Caucasian</strong> - Chechen, Lezgic</p>
+<ul>
+<li>Some folks classify these as North Caucasian, with “West” and “East”
+branches</li>
+</ul></li>
+<li><p><strong>Kartvelian</strong> (or “South Caucasian”) - Georgian,
+Svan, Zan</p></li>
+<li><p>We can’t yet trace any higher-level families for these
+languages</p>
+<ul>
+<li>(but we <em>really</em> want to)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-caucasus-is-a-language-area">The Caucasus is a “language
+area”</h3>
+<hr />
+<h3 id="language-area">Language Area</h3>
+<p>An area where languages which are not known to be related all share
+some features.</p>
+<hr />
+<h3 id="features-of-caucasian-languages">Features of Caucasian
+Languages</h3>
+<ul>
+<li><p>Ergativity!</p></li>
+<li><p>Agglutinative morphology</p></li>
+<li><p>Ejectives and lots of consonants!</p></li>
+<li><p>Relatively few vowels 😢</p></li>
+</ul>
+<hr />
+<h2 id="ergativity">Ergativity!</h2>
+<ul>
+<li>…been there, done that, got the t-shirt</li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/ergtshirt.jpg"></p>
+<ul>
+<li><h1 id="its-an-ergativi-tee">(It’s an ergativi-tee!!!)</h1></li>
+</ul>
+<hr />
+<p><img class="big" src="humorimg/badpundog.jpg"></p>
+<hr />
+<h2 id="agglutinative-morphology">Agglutinative morphology</h2>
+<hr />
+<h3 id="agglutinative-morphology-1">Agglutinative morphology</h3>
+<p>When a language sticks lots of morphemes together to make very
+complex words, <em>without changing the morphemes</em></p>
+<hr />
+<h3 id="agglutinative">Agglutinative</h3>
+<p>Think “glue”, you’re just sticking moprhemes together!</p>
+<p><img class="big" src="lotwimg/glue.jpg"></p>
+<hr />
+<p><lang>Turkish</lang><br><ldata>Turkic - Turkey</ldata></p>
+<p><img class="big" src="lotwimg/agglutinatingturkish.png"></p>
+<p><small>Thanks <a
+href="http://webspace.ship.edu/cgboer/morphology.html">Dr. C. George
+Boeree</a>!</small></p>
+<hr />
+<h2 id="ejectives-and-tons-of-consonants">Ejectives, and <em>tons</em>
+of consonants!</h2>
+<hr />
+<p><lang>Abkhaz</lang><br><ldata>NW Caucasian -
+Georgia/Russia</ldata></p>
+<p><img class="big" src="lotwimg/abkhaz_consonants.png"></p>
+<hr />
+<h2 id="disappointingly-small-vowel-systems">Disappointingly small vowel
+systems</h2>
+<hr />
+<p><lang>Abkhaz</lang><br><ldata>NW Caucasian -
+Georgia/Russia</ldata></p>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+High
+</th>
+<th class="tg-031e">
+ɨ
+</th>
+</tr>
+<tr>
+<td class="tg-031e">
+Low
+</td>
+<td class="tg-031e">
+ə
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<p><strong>This is a recurring pattern: Lots of consonants, few vowels,
+and vice versa</strong></p>
+<p><small>This gets into information and coding theory, which gets
+awesome, quickly</small> <!-- .element: class="fragment" --></p>
+<hr />
+<h1 id="about-those-languages">About those languages…</h1>
+<hr />
+<h2 id="kartvelian">Kartvelian</h2>
+<p><img class="big" src="lotwimg/kartvelianmap.png"></p>
+<hr />
+<h3 id="kartvelian-1">Kartvelian</h3>
+<ul>
+<li><p>Georgian (around 4.5m speakers)</p></li>
+<li><p>Mingrelian (around 500k speakers)</p></li>
+<li><p>Laz (around 200k speakers)</p></li>
+<li><p>Svan (around 40k speakers)</p></li>
+</ul>
+<hr />
+<p><lang>Georgian</lang><br><ldata>Kartvelian - Georgia</ldata></p>
+<ul>
+<li><p>Vowel heavy for a caucasian language</p>
+<ul>
+<li>(… still only 5 of them…)</li>
+</ul></li>
+<li><p>Official language of Georgia</p></li>
+<li><p>Really awesome writing system</p></li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/georgian_script.png"></p>
+<hr />
+<h3 id="one-very-infamous-speaker">One very infamous speaker</h3>
+<p><img class="big" src="lotwimg/stalin.jpg"></p>
+<hr />
+<h3 id="joseph-stalin">Joseph Stalin</h3>
+<ul>
+<li><p>Born as “იოსებ ბესარიონის ძე ჯუღაშვილი” in Gori, Georgia</p>
+<ul>
+<li>([iɔsɛb bɛsɑriɔnis dzɛ dʒuɣɑʃvili])</li>
+</ul></li>
+<li><p>Changed his name to “Iosif Vissarionovich Stalin”</p>
+<ul>
+<li><p>Stalin = Russian word for “Steel” + “-in”, made of.</p></li>
+<li><p>Lenin = Russian word for “Iron” + “-in”, made of.</p></li>
+</ul></li>
+<li><p>Never quite mastered the Russian language</p></li>
+<li><p>Killed between 34-49 <em>million</em> people with his
+policies</p>
+<ul>
+<li>Likely killed by his interior minister</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/stalin_hipster.jpg"></p>
+<hr />
+<h2 id="northwest-caucasian">Northwest Caucasian</h2>
+<p><img class="big" src="lotwimg/nwcaucmap.png"></p>
+<p>(Red = Adyghe/Kabardian, Orange = Abhaz/Abaza)</p>
+<hr />
+<h3 id="northwest-caucasian-1">Northwest Caucasian</h3>
+<ul>
+<li><p>Adyghe (around 500k speakers)</p></li>
+<li><p>Kabardian (around 1.6m speakers)</p>
+<ul>
+<li>These two are often called “Circassian” together</li>
+</ul></li>
+<li><p>Abkhaz (around 100k speakers)</p></li>
+<li><p>Abaza (around 50k speakers)</p></li>
+</ul>
+<hr />
+<p><lang>Abkhaz</lang><br><ldata>NW Caucasian -
+Russia/Georgia</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/x0-C-lloFJA">
+</iframe>
+<hr />
+<h2 id="northeast-caucasian">Northeast Caucasian</h2>
+<p><img class="big" src="lotwimg/necaucasianmap.png"></p>
+<hr />
+<h3 id="northeast-caucasian-1">Northeast Caucasian</h3>
+<ul>
+<li><p>Chechen (around 1.3m speakers)</p></li>
+<li><p>Avar (around 700k speakers)</p></li>
+<li><p>Lezgi (around 500k speakers)</p></li>
+</ul>
+<hr />
+<p><lang>Chechen</lang><br><ldata>NE Caucasian - Chechnya
+(Russia)</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/NMXW7e0B9Cc">
+</iframe>
+<hr />
+<h1 id="speaking-of-lots-of-consonants">Speaking of lots of
+consonants…</h1>
+<hr />
+<h2 id="dravidian-languages">Dravidian Languages!</h2>
+<hr />
+<h3 id="remember-this-map">Remember this map?</h3>
+<p><img class="big" src="lotwimg/languagesofindia.jpg"></p>
+<hr />
+<p><img class="big" src="lotwimg/southasialanguagefamilies.jpg"></p>
+<hr />
+<h3 id="dravidian-languages-1">Dravidian Languages</h3>
+<ul>
+<li><p>A top-level language family</p></li>
+<li><p>Proto-Dravidian has been proposed as the language of the Indus
+River Civilization</p>
+<ul>
+<li>(… but not confirmed)</li>
+</ul></li>
+<li><p>Spoken by ~21% of India’s population</p></li>
+</ul>
+<hr />
+<h3 id="major-dravidian-languages">Major Dravidian Languages</h3>
+<ul>
+<li><p>Telugu - 85m speakers</p></li>
+<li><p>Tamil - 70m speakers</p></li>
+<li><p>Kannada - 49m speakers</p></li>
+<li><p>Malayalam - 38m speakers</p></li>
+</ul>
+<hr />
+<h3 id="features-of-dravidian">Features of Dravidian</h3>
+<ul>
+<li><p>Agglutinative Morphology</p></li>
+<li><p>SOV</p></li>
+<li><p>Grammatical Gender!</p></li>
+<li><p>Past/Non-Past tense system</p></li>
+<li><p>Lots of small sound distinctions!</p></li>
+</ul>
+<hr />
+<h3 id="oh-and-awesome-writing-systems">Oh, and awesome writing
+systems!</h3>
+<p><img class="big" src="lotwimg/indicscripts.gif"></p>
+<hr />
+<h2 id="small-sound-distinctions">Small sound distinctions?</h2>
+<hr />
+<p><lang>Malayalam</lang><br><ldata>Dravidian - India</ldata></p>
+<p><img class="big" src="lotwimg/malayalam_cons.png"></p>
+<hr />
+<p><img class="big" src="ling_memes/contrastsdentalsalveolars.jpg"></p>
+<hr />
+<p><lang>Malayalam</lang><br><ldata>Dravidian - India</ldata></p>
+<p><img src="lotwimg/malayalam_vowels.png"></p>
+<ul>
+<li>(again, lots of consonants mean fewer vowels needed!)</li>
+</ul>
+<hr />
+<p><lang>Malayalam</lang><br><ldata>Dravidian - India</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/27MJm2VMa48">
+</iframe>
+<hr />
+<p><lang>Telugu</lang><br><ldata>Dravidian - India</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/Rf-i1Pn_sgg">
+</iframe>
+<hr />
+<h2 id="wrapping-up">Wrapping up</h2>
+<ul>
+<li><p>Ergative languages group S and O</p></li>
+<li><p>Caucasian languages are awesome</p>
+<ul>
+<li>You should know their features.</li>
+</ul></li>
+<li><p>Dravidian languages are awesome</p>
+<ul>
+<li>You should know their features, too!</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="next-time-turkic-and-semitic-languages">Next time: Turkic and
+Semitic Languages!</h2>
+<p><correct>Pereltsvaig Ch. 5</correct></p>
+<hr />
+<p><huge>Thank you!</huge></p>
+<p>http://savethevowels.org/world/slides/lotw_8.html</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+tree_jessicatofu_extratex
+
+[S 
+  [NP 
+    [N' 
+      [N Jessica ] ] ] 
+  [VP 
+    [V dislikes ]
+    [CP 
+      [C that ] 
+      [S 
+        [NP 
+          [DET her ] 
+          [N' 
+            [ADJ silly ] 
+            [N' 
+              [N husband ] ] ] ]
+        [VP 
+          [VP 
+            [V cooked ] 
+            [NP 
+              [NP 
+                [DET a ] 
+                [N' 
+                  [ADJ big ] 
+                  [N' 
+                    [ADJ squishy ] 
+                    [N' 
+                      [N tofurkey ] ] ] ] ] 
+              [PP 
+                [P with ] 
+                [NP 
+                  [N' 
+                    [N onions ] ] ] ] ] ] 
+          [PP 
+            [P for ] 
+            [NP 
+              [DET their ] 
+              [N' 
+                [ADJ romantic ] 
+                [N' 
+                  [N dinner ] ] ] ] ] ] ] ] ] ]

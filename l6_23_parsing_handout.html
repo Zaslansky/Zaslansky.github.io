@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3
+id="remember-that-your-dean-of-student-affairs-is-here-to-help-you">Remember
+that your Dean of Student Affairs is here to help you!</h3>
+<p><a href="http://savethevowels.org/resources"
+class="uri">http://savethevowels.org/resources</a></p>
+<hr />
+<h1 id="automatic-syntactic-parsing">Automatic Syntactic Parsing</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Constituency vs. Dependency Parsing</p></li>
+<li><p>What is dependency parsing?</p></li>
+<li><p>How do we do dependency parsing automatically?</p></li>
+<li><p>Why do we use dependency parsing in NLP?</p></li>
+<li><p>How is syntactic parsing <em>actually useful</em> for natural
+language processing?</p></li>
+</ul>
+<hr />
+<h3 id="weve-talked-about-trees-in-terms-of-constituency">We’ve talked
+about trees in terms of constituency</h3>
+<ul>
+<li><p>A hierarchy of phrases, containing other phrases</p></li>
+<li><p>From this, we can get a sense of constituency</p></li>
+<li><p>… as well as of attachment</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_catdragon.jpg"></p>
+<hr />
+<h3 id="these-trees-come-from-phrase-structure-grammars">These trees
+come from Phrase Structure Grammars</h3>
+<ul>
+<li><p>Also called ‘Context Free Grammars’ by computer
+scientists</p></li>
+<li><p>A series of rules applied which detail grammatical and
+ungrammatical sentences</p></li>
+<li><p>With other rules describing changes (e.g. movement, etc)</p></li>
+</ul>
+<hr />
+<h3
+id="linguists-use-constituency-trees-for-linguistic-analysis">Linguists
+use constituency trees for linguistic analysis</h3>
+<ul>
+<li><p>For asking linguistic questions, constituency is
+<em>crucial</em></p></li>
+<li><p>It shows the units on which syntax operates</p></li>
+<li><p>It’s better to <em>generate</em> new sentences</p></li>
+<li><p>It handles <em>recursion</em></p></li>
+</ul>
+<hr />
+<h3 id="linguistic-syntax-is-done-using-constituency">Linguistic Syntax
+is done using constituency</h3>
+<ul>
+<li>… and for a long time so was most NLP</li>
+</ul>
+<hr />
+<h3 id="but-there-is-another-way">… but there is another way</h3>
+<hr />
+<h3 id="syntax-helps-tell-us-which-words-belong-to-other-words">Syntax
+helps tell us which words ‘belong’ to other words</h3>
+<ul>
+<li><p>“The cat jumped onto the table”</p></li>
+<li><p>“I poked the big bear with a stick”</p></li>
+<li><p>“I touched the Queen of England’s hat”</p></li>
+</ul>
+<hr />
+<h3 id="syntax-also-marks-who-did-what-to-whom">Syntax also marks who
+did what to whom</h3>
+<ul>
+<li><p>“Jony chased Dieter”</p></li>
+<li><p>“Jessica ate the veggie burger”</p></li>
+<li><p>“Felicia gave Juan a drink”</p></li>
+<li><p>“My aunt bought three cars and set them on fire”</p></li>
+</ul>
+<hr />
+<h3
+id="what-if-we-could-just-capture-which-words-are-connected-to-other-words">What
+if we could just capture which words are ‘connected’ to other words</h3>
+<ul>
+<li><p>Describe the nature of that connection (who did what to
+whom)</p></li>
+<li><p>… and skip some of the phrase structure questions</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img class="r-stretch" src="comp/not_from_syntactician.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="dependency-parsing">Dependency Parsing</h1>
+<hr />
+<h3 id="dependency-trees">Dependency Trees</h3>
+<ul>
+<li><p>Focus on demonstrating the relationship between elements in the
+sentence</p></li>
+<li><p>Dependency (‘what’s attached to what’)</p></li>
+<li><p>Relations (‘Who’s doing what to whom’)</p></li>
+<li><p>Visualizes this as a series of relationships</p></li>
+</ul>
+<hr />
+<h3 id="the-angry-squirrel-stole-the-mixed-nuts-from-walmart">The Angry
+Squirrel stole the Mixed Nuts from Walmart</h3>
+<p><img class="r-stretch" src="diagrams/tree_angrysquirrelfull.jpg"></p>
+<hr />
+<h3 id="the-angry-squirrel-stole-the-mixed-nuts-from-walmart-1">The
+Angry Squirrel stole the Mixed Nuts from Walmart</h3>
+<p><img class="r-stretch" src="diagrams/dep_angrysqurrel.jpg"></p>
+<hr />
+<h3 id="dependency-trees-mark-the-connections-between-words">Dependency
+Trees mark the connections between words</h3>
+<ul>
+<li><p>Words are connected to the words that ‘depend’ on them</p></li>
+<li><p>Every word is connected to another</p></li>
+</ul>
+<p><img class="r-stretch" src="diagrams/dep_angrysqurrel.jpg"></p>
+<hr />
+<h3 id="dependency-trees-often-mark-the-types-of-connections">Dependency
+Trees often mark the types of connections</h3>
+<ul>
+<li><p>‘Subject’ - The ‘do-er’ of the verb</p></li>
+<li><p>‘Direct Object’ - The ‘target’ of the verb</p></li>
+<li><p>‘Indirect Object’ - Often used for recipients</p></li>
+<li><p>Modifiers - Words that make the meaning of each word more
+specific</p></li>
+</ul>
+<p><img class="r-stretch" src="diagrams/dep_bakedcakealt.jpg"></p>
+<hr />
+<h3
+id="these-relations-have-meaning-that-doesnt-change-with-order">These
+‘relations’ have meaning that doesn’t change with order</h3>
+<hr />
+<p><img class="r-stretch" src="diagrams/dep_bakedcakealt.jpg"></p>
+<p><img class="r-stretch" src="diagrams/dep_bakedcake.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="comp/dependency_rels.jpg"></p>
+<p><small> From Jurafsky and Martin ‘Speech and Language Processing’
+2018</small></p>
+<hr />
+<p><a href="https://universaldependencies.org/guidelines.html">Here’s a
+link to the full guidelines</a></p>
+<hr />
+<h3
+id="any-sentence-that-can-be-constituency-parsed-can-be-dependency-parsed">Any
+sentence that can be constituency parsed, can be dependency parsed</h3>
+<p><img class="r-stretch" src="diagrams/tree_compling2.jpg"></p>
+<hr />
+<h3
+id="any-sentence-that-can-be-constituency-parsed-can-be-dependency-parsed-1">Any
+sentence that can be constituency parsed, can be dependency parsed</h3>
+<p><img class="r-stretch" src="diagrams/dep_compling2.jpg"></p>
+<hr />
+<h3
+id="lets-try-it-will-spotted-bigfoot-outside-the-medical-library">Let’s
+try it: “Will spotted Bigfoot outside the Medical Library”</h3>
+<p><img  src="comp/dependency_rels.jpg"></p>
+<hr />
+<h3 id="will-spotted-bigfoot-outside-the-medical-library">“Will spotted
+Bigfoot outside the Medical Library”</h3>
+<p><img class="r-stretch" src="diagrams/dep_bigfoot.jpg"></p>
+<hr />
+<h3 id="dependency-parsing-can-handle-huge-complexity">Dependency
+Parsing can handle huge complexity</h3>
+<p><img class="r-stretch" src="diagrams/dep_emperor.jpg"></p>
+<hr />
+<h3 id="so-dependency-parsing-is-a-different-beast">So, Dependency
+Parsing is a different beast</h3>
+<ul>
+<li><p>Focuses on demonstrating the relationship between elements in the
+sentence</p></li>
+<li><p>Dependency (‘what’s attached to what’)</p></li>
+<li><p>Relations between arguments (‘Who’s doing what to whom’)</p></li>
+<li><p>Misses some linguistic insight, but gets what we want for
+NLP</p></li>
+</ul>
+<hr />
+<h1 id="how-do-we-do-dependency-parsing-automatically">How do we do
+dependency parsing automatically?</h1>
+<hr />
+<p><img class="r-stretch" src="humorimg/nope_octopus.gif"></p>
+<hr />
+<h3 id="we-use-any-number-of-different-algorithms">We use any number of
+different algorithms</h3>
+<ul>
+<li><p>They examine each part of the sentence, and use machine learning
+to decide the proper relationships</p></li>
+<li><p>… but they’re a bit too complex (and linguistically
+uninteresting) for this class</p></li>
+<li><p>The Arc Standard approach is most commonly used</p>
+<ul>
+<li>You can <a
+href="https://web.stanford.edu/~jurafsky/slp3/13.pdf">read about it in
+this chapter</a> or <a
+href="https://www.youtube.com/watch?v=nC9_RfjYwqA">watch this
+lecture</a></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="were-going-to-focus-on-why-its-done">We’re going to focus on why
+it’s done</h3>
+<ul>
+<li>… and what it wins us</li>
+</ul>
+<hr />
+<h1 id="why-dependency-parsing-in-nlp">Why Dependency Parsing in
+NLP?</h1>
+<hr />
+<h2 id="dependency-parsing-is-useful">Dependency Parsing is useful</h2>
+<hr />
+<h3 id="we-can-still-see-some-elements-of-constituency">We can still see
+some elements of constituency</h3>
+<p><img class="r-stretch" src="diagrams/dep_compling2.jpg"></p>
+<hr />
+<h3
+id="ambiguity-is-very-easy-to-resolve-with-dependency-parses">Ambiguity
+is very easy to resolve with dependency parses</h3>
+<hr />
+<h3 id="the-angry-squirrel-stole-the-mixed-nuts-from-walmart-2">The
+Angry Squirrel stole [the Mixed Nuts] [from Walmart]</h3>
+<p><img class="r-stretch" src="diagrams/dep_angrysqurrel.jpg"></p>
+<hr />
+<h3 id="the-angry-squirrel-stole-the-mixed-nuts-from-walmart-3">The
+Angry Squirrel stole [the Mixed Nuts from Walmart]</h3>
+<p><img class="r-stretch" src="diagrams/dep_angrysqurrel_alt.jpg"></p>
+<hr />
+<h3 id="i-saw-the-man-with-the-telescope">“I saw the man with the
+telescope”</h3>
+<p><img class="r-stretch" src="diagrams/dep_manwithtelescope1.jpg"></p>
+<hr />
+<h3 id="i-saw-the-man-with-the-telescope-1">“I saw the man with the
+telescope”</h3>
+<p><img class="r-stretch" src="diagrams/dep_manwithtelescope2.jpg"></p>
+<hr />
+<h3 id="i-saw-the-queen-of-englands-hat">“I saw the Queen of England’s
+Hat”</h3>
+<p><img class="r-stretch" src="diagrams/dep_queenenglandshat1.jpg"></p>
+<hr />
+<h3 id="i-saw-the-queen-of-englands-hat-1">“I saw the Queen of England’s
+Hat”</h3>
+<p><img class="r-stretch" src="diagrams/dep_queenenglandshat2.jpg"></p>
+<hr />
+<h2
+id="dependency-parsing-works-better-in-some-other-languages">Dependency
+Parsing works better in some other languages</h2>
+<hr />
+<h3 id="in-russian-word-order-can-be-used-for-emphasis">In Russian, Word
+order can be used for emphasis</h3>
+<ul>
+<li>Koshka videt sobaku
+<ul>
+<li>“The cat sees the dog”</li>
+</ul></li>
+<li>Videt koshka sobaku
+<ul>
+<li>“The cat sees the dog”</li>
+</ul></li>
+<li>Sobaku videt Koshka
+<ul>
+<li>“The cat sees the dog”</li>
+</ul></li>
+<li>Russian is a “non-configurational” language</li>
+</ul>
+<hr />
+<h3 id="constituency-based-approaches-struggle-here">Constituency-based
+approaches struggle here</h3>
+<ul>
+<li><img class="r-stretch" src="humorimg/fail.jpg"></li>
+</ul>
+<hr />
+<h3 id="dependency-parsing-works-just-fine">Dependency parsing works
+just fine</h3>
+<hr />
+<p><img class="r-stretch" src="diagrams/dep_russian.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/dep_russian2.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/dep_russian3.jpg"></p>
+<hr />
+<h2 id="dependency-parsing-is-a-bit-simpler">Dependency Parsing is a bit
+simpler</h2>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_compling2.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/dep_compling2.jpg"></p>
+<hr />
+<h3 id="dependency-parsing-can-be-done-quickly">Dependency Parsing can
+be done quickly</h3>
+<ul>
+<li><p>Right now, dependency parsing is faster than constituency
+parsing</p></li>
+<li><p>This might change with new algos and approaches!</p></li>
+</ul>
+<hr />
+<h2
+id="dependency-parsing-hands-us-semantic-information-for-free">Dependency
+Parsing hands us semantic information for free!</h2>
+<hr />
+<h3 id="dependency-parsing-gives-us-arguments">Dependency Parsing gives
+us ‘arguments’</h3>
+<p><img src="diagrams/dep_bakedcakealt.jpg"></p>
+<p><img src="diagrams/dep_bakedcake.jpg"></p>
+<hr />
+<h3
+id="these-arguments-are-directly-useful-in-natural-language-understanding">These
+arguments are directly useful in natural language understanding!</h3>
+<hr />
+<h1 id="how-is-parsing-actually-useful-for-nlp-engineering">How is
+parsing actually useful for NLP engineering?</h1>
+<hr />
+<h2 id="dependency-parsing-hands-us-information">Dependency Parsing
+hands us information</h2>
+<hr />
+<h3 id="hey-siri-send-my-wife-a-romantic-text">“Hey Siri, send my wife a
+romantic text”</h3>
+<p><img class="r-stretch" src="diagrams/dep_sendwiferomantic.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/dep_sendwiferomantic.jpg"></p>
+<pre><code>If $ROOT == &quot;send&quot;
+    If $DOBJ == (&quot;text&quot; | &quot;message&quot; | &quot;sms&quot;)
+        $NUMBER = get.phonenumber($IOBJ)
+        If $AMOD.DOBJ == &quot;romantic&quot;:
+            $MESSAGE = &quot;omg ilu soooo much sweetie uwu 😍&quot;
+        If $AMOD.DOBJ == &quot;mean&quot;:
+            $MESSAGE = &quot;I ate your leftover enchiladas and they were gooooood&quot;
+        SEND.SMS $message TO $number</code></pre>
+<hr />
+<h2 id="when-parsing-fails-a-case-study">When parsing fails: A Case
+Study</h2>
+<hr />
+<h3 id="alexa-turn-on-the-office-lights-and-bedroom-lights">“Alexa, turn
+on the office lights and bedroom lights”</h3>
+<audio controls src="comp/alexa_lightfail.m4a">
+</audio>
+<hr />
+<h3 id="alexa-knows-how-to-turn-on-lights">Alexa knows how to turn on
+lights</h3>
+<ul>
+<li>“Turn on” takes a direct object (light) with modifiers
+(location)</li>
+</ul>
+<pre><code>If $ROOT == &quot;turn on&quot;
+    If $DOBJ == &quot;lights&quot;
+        ACTIVATE lights location $NMOD.DOBJ</code></pre>
+<hr />
+<h3 id="turn-on-the-office-lights">“Turn on the office lights”</h3>
+<p><img class="r-stretch" src="diagrams/dep_turnonlight.jpg"></p>
+<hr />
+<h3 id="turn-on-the-office-lights-and-turn-on-the-bedroom-lights">“Turn
+on the office lights and turn on the bedroom lights”</h3>
+<p><img class="r-stretch" src="diagrams/dep_turnonlightsfull.jpg"></p>
+<hr />
+<h3 id="turn-on-the-office-lights-and-bedroom-lights-expected">“Turn on
+the office lights and bedroom lights” (expected)</h3>
+<p><img class="r-stretch" src="diagrams/dep_turnonlights.jpg"></p>
+<hr />
+<h3 id="turn-on-the-office-lights-and-bedroom-lights-actual">“Turn on
+the office lights and bedroom lights” (actual)</h3>
+<p><img class="r-stretch" src="diagrams/dep_turnonlightsbad.jpg"></p>
+<p>“I didn’t find a device named ‘office lights bedroom lights’”</p>
+<hr />
+<h3 id="alexa-didnt-parse-the-syntax-and-failed">Alexa didn’t parse the
+syntax, and failed</h3>
+<ul>
+<li><p>… in a way that a human would never fail</p></li>
+<li><p>This is hard, but it’s fascinating</p></li>
+</ul>
+<hr />
+<h2 id="so-we-need-to-be-able-to-parse-syntax-to-do-nlp">So, we need to
+be able to parse syntax to do NLP</h2>
+<ul>
+<li>… and although Linguists tend to use constituency, NLP is
+dependency-based</li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Although most linguists do theory with constituency, in NLP,
+dependency is king</p></li>
+<li><p>Dependency parsing focuses on finding links between words and
+their types</p></li>
+<li><p>Dependency parsing has many advantages over constituency in
+NLP</p></li>
+<li><p>Dependency Parsing is useful for actual engineering
+tasks!</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li>What does it all mean?</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

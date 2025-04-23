@@ -1,0 +1,14 @@
+tree_moniquetex
+
+[S 
+  [NP 
+    [N' 
+      [N Monique ] ] ] 
+  [VP 
+    [V ate ] 
+    [NP 
+      [DET the ] 
+      [N' 
+        [ADJ reddest ] 
+        [N' 
+          [N strawberry ] ] ] ] ] ]

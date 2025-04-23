@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+		<title>LSA 2016 - Will Styler</title>
+<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+				
+<img class="big" src="humorimg/c3p0.png"> 
+
+---
+
+# Modeling human speech perception using machine learning
+
+### Will Styler
+
+University of Michigan Department of Linguistics
+
+Linguistic Society of America Annual Meeting, 2016
+
+---
+
+### Today's Case Study: Vowel Nasality
+
+* Vowel Nasality is the opening of the Velopharyngeal port during the vowel   <!-- .element: class="fragment" -->
+
+<center>  <!-- .element: class="fragment" -->
+<table>
+  <tr>
+    <th>‘Cat’<br>[kæt]</th>
+    <th>‘Can't’<br>[kæ̃nt]</th>
+
+  </tr>
+</table>
+</center>
+
+* What are the acoustic cues used for perceiving vowel nasality in English?   <!-- .element: class="fragment" -->
+
+* The biggest problem with this question is that...   <!-- .element: class="fragment" -->
+
+---
+
+## The signal is incredibly rich
+
+<img src="phonmedia/chen1997figure.png">   <!-- .element: class="fragment" -->
+
+<small>Figure from Chen 1997</small>   <!-- .element: class="fragment" -->
+
+---
+### Feature selection is half the battle
+
+* Some *a priori* choices must be made to reduce the feature space
+
+* ... but every time you exclude a feature, you run the risk of excluding *the* feature
+	
+* You want to test as many features as you can without injuring your participant
+
+* **So, I narrowed the field...**
+
+	* (kind of)
+
+---
+
+### 29 Potential Cues for evaluation
+
+* All spectral or temporal features in the signal
+
+* Some absolute, some relative
+
+* Features like...
+
+	* Formant Frequencies and Bandwidths
+	* Spectral Relationships (like A1-P0 or A3-P0)
+	* Nasal Peaks and Zeroes
+	* Spectral Tilt
+	* Vowel Duration
+	* ... and more!
+	
+---
+
+Testing 29 features is pretty problematic because...
+
+---
+
+### Humans are troublesome
+
+* Human responses aren't very transparent
+
+	* You just get linguistic decisions and timing
+
+* Subtle changes often produce subtle differences in response
+	* So you need a large n to effectively evaluate anything
+
+* They have limited endurance
+	* So you can't have a large n
+	
+* Observations are not independent
+	* Fatigue, learning, and real-world knowledge all play a role
+	
+* Running human experiments is... non-trivial
+	* ... and really, really expensive
+
+---
+
+### I needed a better way to test these 29 features...
+
+* A way to obtain more detailed information about judgements
+
+* A way to avoid bias and real-world knowledge
+
+* A way to let each trial and feature be independent
+
+	* ... and most importantly...
+
+* A way to do all of the above without ever leaving my apartment
+
+---
+
+# Machine Speech Perception
+
+---
+### The Basic Idea
+
+Human speech perception is just classifying sounds based on acoustical features
+
+* **Computers can do that too!**
+
+* Give the feature information to a classifier and ask for oral vs. nasal judgements
+
+	* Greater accuracy means a feature or grouping is more useful and informative!
+
+---
+
+### Machines have some advantages for studying speech perception!
+
+* Their decisions are easier to quantify
+
+* They'll tell you *how* they made the decision they did
+
+* They have no knowledge that you don't give to them
+
+* They make all decisions independently
+
+* They don't require payment or scheduling
+
+	* ... and most importantly...
+
+* They live in my apartment!
+
+---
+
+### Supervised Machine Classification 101
+
+* "Find the patterns in this training data, then use them to predict which group this new datapoint belongs to!"
+
+* Select a large corpus of data, and assign each observation to a group
+
+	* "Oral" vs. "Nasal" or "Good mail" vs. "Spam"
+
+* **Training:** Feed this labeled data into an algorithm so it can learn the patterns
+
+* **Testing:** Give the algorithm new data without labels, and check the accuracy of its classifications
+
+	* Better accuracy often indicates more useful information!
+
+---
+
+### Machine Classification is used *everywhere*
+
+* "Is this email spam, or not?"
+
+* "Is this handwritten symbol "1" or "2" or "3" or...?"
+
+* "Is this word a noun, or a verb, or an adjective, or...?"
+
+* So, these algorithms are well-studied and optimized!
+
+---
+
+### The Plan
+
+* 1) Collect a corpus of oral and nasal words, and measure each feature
+
+* 2) Give each feature to a Machine Learning Algorithm individually
+
+	* The most informative features should be the most accurate
+
+* 3) Find the best group of features
+
+	* Find the balance between "few features" and "good accuracy"
+	
+* 4) Test *those* features with expensive and difficult humans
+
+---
+
+### Labeling and Training
+
+* I recorded 12 English speakers making words with oral and nasal(ized) vowels
+
+	* "Oral" vowels were in CVC contexts, and "Nasal" were in CVN/NVC/NVN contexts
+	
+	* This resulted in 3823 words
+		
+* Then, I measured each of the 29 features at two timepoints per vowel
+	
+	* All measurement was done automatically by Praat Script
+	
+* Then I handed them to a Support Vector Machine as training data
+
+	* (I also tried some other algorithms, see Styler (2015))
+
+---
+
+### Support Vector Machines
+
+* A very common, very accurate machine learning algorithm
+
+* A specialized statistical model, tuned for prediction
+
+* Look at all the data in an n dimensional space
+	* n is the number of features
+
+* Try to find a hyperplane of some kind that provides the best separation
+
+* Classification is just seeing where the new data is relative to that line
+
+* This doesn't have to be linear
+
+	* ... and mine weren't, but that's details.
+
+---
+
+## **So how does it perform with nasality?**
+
+---
+
+### Single-Feature testing
+
+* Are any features good enough *on their own* to allow nasal perception?
+
+* 29 separate models (one per feature) classifying datapoints as "oral" or "nasal"
+
+* Each model outputs accuracy figures, which we can compare!
+
+---
+
+### Single-feature findings
+
+* F1's Bandwidth is the most useful and informative feature
+
+	* 67.6% SVM accuracy
+	
+* A1-P0, a measure of relative spectral prominence, gets second place
+
+	* 64.7% SVM accuracy
+	
+* F1's Amplitude takes 3rd place
+
+	* 62.5% SVM accuracy
+	
+* The worst feature performed at 51.23% accuracy
+	
+* *None of the features are good enough on their own!*
+
+---
+
+## What *group of features* provides the best information?
+
+---
+
+### Multi-feature modeling
+
+* Tested 10 *a priori* feature groupings
+	* Selected from various outputs of the machine learning and statistics
+	
+* Compared the accuracy *in light of the number of features*
+	* The winning model gets the best performance from the fewest features
+
+---
+
+### Multi-feature Results
+
+* SVMs with all features worked best (29 features)
+
+	* 84.7% accuracy
+	
+* Formant Frequency and Bandwidth, Spectral Tilt, A1-P0, and Vowel Duration was the best subgroup (5 features)
+
+	* 82.2% accuracy
+	
+* **We only lose 2.5% accuracy when we reduce our feature set by 69%!**
+
+	* That's a promising grouping!
+	
+---
+
+### Overall Machine Learning Results
+
+* **Formant Bandwidth** was the most useful single feature for English (62.5% accuracy)
+
+* ... and we've got a multi-feature grouping with very good accuracy (82.2% accuracy)!
+
+	* Formant Width, Formant Frequency, Spectal Tilt, A1-P0, and Duration
+
+* **So, let's test those five features with actual humans!**
+
+---
+
+# Human Perception
+
+---
+
+### Methods
+
+* English listeners can use vowel nasality to identify missing nasal consonants
+
+	* ba_ could be "bad" or "ban"
+
+* **Let's add or remove features from vowels to see what indicates "nasality"!**
+
+* If adding or removing a feature changes perception, or makes them react more slowly, it's important!
+
+---
+
+### The Modifications
+
+Use signal processing to simulate the oral-to-nasal change (or vice versa) in... 
+
+* 1) A1-P0 (or vice versa)
+
+* 2) Duration
+
+* 3) Spectral Tilt
+
+* 4) Formant Bandwidth and Frequency
+	* Combined
+
+* 5) Modify *all five features at once!*
+
+---
+
+### The Experiment
+
+* Recruited 42 normal-hearing Native English speakers from a department subject pool
+
+* Each listened to 400 words with different modifications
+
+* Analyzed both confusion and reaction time associated with stimulus changes
+
+
+---
+
+<center>
+<table>
+  <tr>
+    <th><h1>bad</h1></th>
+    <th><h1>ban</h1></th>
+
+  </tr>
+</table>
+</center> 
+
+<audio controls>
+  <source src="phonmedia/diss_hazel_BAD_nfor_ex_c.wav" type="audio/wav">
+</audio>
+
+---
+
+<center>
+<table>
+  <tr>
+    <th><h1>bomb</h1></th>
+    <th><h1>bob</h1></th>
+
+  </tr>
+</table>
+</center> 
+
+<audio controls>
+  <source src="phonmedia/diss_molly_BOMB_ofor_ex_c.wav" type="audio/wav">
+</audio>
+
+---
+
+### Human Perception Summary
+
+* Only **formant modification** had a significant effect on perception
+
+* Formant modification caused listeners to respond more slowly
+
+* Formant modification made oral vowels sound "nasal"
+
+* F1's bandwidth is probably the cue
+	
+	* This makes sense acoustically, and Hawkins and Stevens (1985) also points in that direction
+
+---
+
+So, the machine learning models predicted F1's bandwidth as the most useful feature...
+
+* ... and the humans agreed!
+
+* ### How similar *are* the SVMs and the humans?
+
+---
+
+# Humans vs. Machines
+
+* <img class="big" src="img/terminator.png">
+
+---
+
+*Let's give the computer the same experimental task as the humans, using the same altered stimuli, and see how they compare!*
+
+---
+
+### Testing Humans vs. Machines
+
+* 1) Train SVMs on the original data
+	* All English data, English CVC/CVN/NVC Words, and English *and* French data combined
+	
+* 2) Measure the stimuli used in the experiment
+
+* 3) Test those SVMs using the experimental stimuli data
+	* Again classifying "oral" or "nasal"
+
+* 4) Compare the by-condition confusion results to the humans
+
+---
+
+### Confusion by Condition
+
+
+<img src="img/diss_stimml_human_vs_machine_ex.png"> 
+
+---
+
+### Humans vs. Machines Summary
+
+* Humans and machines *did* show similar patterns
+
+	* Modifications that were difficult for humans were difficult for SVMs
+
+* The Generic English model showed the most similarity
+
+	* Adding in French training data was a **bad** idea
+	
+* Humans are still more accurate overall
+
+---
+
+### The SVMs didn't model the humans exactly!
+
+* SVMs predicted gradient usefulness of the features
+
+	* Humans based their decisions entirely on F1's Bandwidth
+
+* SVMs showed greater accuracy when all features were available
+
+	* Humans weren't meaningfully affected by the additional three features
+
+* So, SVMs can show relative informativeness of features
+
+* **... but I guess we still need humans to study human speech perception**
+
+---
+
+# Conclusions
+
+---
+
+### Modeling human speech perception using machine learning is helpful!
+
+* The SVM studies very effectively narrowed the field
+
+	* They eliminated the worst features quickly
+
+* The SVM studies and the humans both agreed on the best feature
+
+	* F1 Bandwidth won for both
+
+* Trained SVMs can perform similar experiments to humans, with similar results
+
+	* SVMs resembled the humans in relative confusion of features
+	
+* Other algorithms can provide different information
+
+	* RandomForests can give relative importance of features in groups
+
+---
+
+### ... and machine learning may work for you, too!
+
+* Great for identifying acoustic correlates and features
+
+* Great for identifying subtle differences in classes
+
+* Great for testing for learnable biases in stimuli
+
+* Great for "piloting" a perception study or testing a crazy idea
+
+* ... and the data comes free with other statistical analysis
+
+	* Most good algorithms are available as R or Python packages!
+
+---
+
+So, although human speech perception must be studied in humans...
+
+### Sometimes, it's a good idea to trust the machines!  <!-- .element: class="fragment" -->
+
+---
+
+### (Just be careful)
+
+<img src="img/hal_eye.jpg">  <!-- .element: class="fragment" -->
+
+---
+
+## Acknowledgements
+
+* The University of Colorado at Boulder and Dr. Rebecca Scarborough
+
+* The speakers and listeners who participated in the study
+
+* The great many electrons inconvenienced in the process of building these SVMs
+
+* The University of Michigan for feeding me, and the Michigan Phondi Group
+
+---
+
+### References
+
+* Chen, M. Y. (1997). Acoustic correlates of english and french nasalized vowels. The Journal of the Acoustical Society of America, 102(4):2350–2370.
+
+* Hawkins, S. and Stevens, K. N. (1985b). Acoustic and perceptual correlates of the non-nasal–nasal distinction for vowels. The Journal of the Acoustical Society of America, 77(4):1560–1575.
+
+* Styler, W. (2015) On the Acoustical and Perceptual Features of Vowel Nasality. PhD thesis, University of Colorado at Boulder, March 2015.
+---
+
+# Additional Information
+
+---
+
+### Feature List
+
+<img class="big" src="img/diss_featurelist.png">
+
+---
+
+### Single-Feature Models
+
+<img class="big" src="img/diss_ensvm_only.png">
+
+---
+
+### Multi-feature Machine Learning Results
+
+<img src="img/diss_multifeature.png">
+
+---
+
+### Feature Importance
+
+* <img src="img/diss_enfrimportance.png"> 
+
+---
+
+### Feature Addition (oral-made-nasal) Findings
+
+<img src="img/diss_conf.add.sum.png">
+
+* *Modifying formants (or all together) resulted in more confusion!*
+
+	* People called oral vowels "nasal" more often with modified formants
+	
+	* The pattern of the All-Modified stimuli was statistically similar.
+
+---
+<img src="img/diss_rt.add.sum.png">
+
+* *Modifying formants (or all together) resulted in slower reaction times!*
+
+	* People were slower to call vowels "oral" or "nasal" with modified formants
+
+---
+## Feature Reduction (Nasal-made-Oral) Findings
+
+---
+
+<img src="img/diss_conf.rem.sum.png">
+
+* Confusion wasn't affected by modificaton for nasal-to-oral stimuli!
+
+* **We never changed "nasal" to "oral" by modifying features**
+	
+---
+<img src="img/diss_rt.rem.sum.png">
+
+* *Modifying formants (or all features) resulted in slower reaction times!*
+
+	* People were slower to call vowels "oral" or "nasal" with modified formants
+
+---
+
+
+---
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

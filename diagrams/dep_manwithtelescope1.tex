@@ -1,0 +1,20 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+
+\begin{document}
+% In the preamble:
+
+% In the document:
+\begin{dependency}[theme = simple]
+   \begin{deptext}[column sep=1em]
+      I \& saw \& the \& man \& with \& the \& telescope \\
+   \end{deptext}
+   \deproot{2}{ROOT}
+   \depedge{2}{1}{NSUBJ}
+   \depedge{2}{4}{DOBJ}
+   \depedge{4}{3}{DET}
+   \depedge{2}{7}{NMOD}
+      \depedge{7}{6}{DET}
+      \depedge{7}{5}{CASE}
+\end{dependency}
+\end{document}

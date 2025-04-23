@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{fontspec}
+    \setmainfont{Charis SIL}
+\begin{document}
+% In the preamble:
+
+\begin{tikzpicture}[label distance=5mm]
+  \draw [<-, solid] (-3,0) node [] {} -- (-0.45,0) node[midway,above,sloped] (TextNode) {\tiny Past};
+  \draw [->, solid] (-0.45,0) node [] {} -- (3,0) node[midway,above,sloped] (TextNode) {\tiny Non-Past};
+
+ %\draw (0,-0.5) node[anchor=north]{\tiny Time};
+    \draw [-, solid] (-0.45,-0.1) node [] {} -- (-0.45,0.1) node[midway,above] (TextNode) {\tiny };
+
+      \draw (0,-0) node[circle,fill,inner sep=1pt]{};
+
+ \draw (0,-0.4) node[anchor=south]{\tiny Now};
+
+
+\end{tikzpicture}
+
+\end{document}

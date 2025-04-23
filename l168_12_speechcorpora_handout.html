@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="building-speech-corpora">Building Speech Corpora</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Language modeling and statistical learning</p></li>
+<li><p>What is a speech corpus?</p></li>
+<li><p>File Formats</p></li>
+<li><p>Metadata</p></li>
+<li><p>Avoiding Corpus Bias</p></li>
+</ul>
+<hr />
+<h3 id="weve-sort-of-skipped-a-step">We’ve sort of skipped a step</h3>
+<ul>
+<li><p>How exactly are we building all these neat ‘AI-powered tools’</p>
+<ul>
+<li><p>AI-based Noise Detection</p></li>
+<li><p>Machine Learning based Voice Activity Detection</p></li>
+<li><p>Codecs which classify audio as speech or non-speech</p></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="language-modeling-and-statistical-learning">Language Modeling
+and Statistical Learning</h2>
+<hr />
+<h2 id="language-model">Language Model</h2>
+<p>A probabilistic model which can predict and quantify the probability
+of a given word, construction, or sentence in a given type of
+language</p>
+<hr />
+<h3 id="lets-be-language-models">Let’s be language models</h3>
+<ul>
+<li><p>“Yesterday, we went fishing and ca____”</p></li>
+<li><p>“Pradeep is staying at a ________ hotel”</p></li>
+<li><p>“Although he claimed the $50,000 payment didn’t affect his
+decision in the case, this payment was a bribe, for all
+________”</p></li>
+<li><p>“I’m sorry, I can’t go out tonight, I _________”</p></li>
+<li><p>“I’m sorry, I can’t go out tonight, my _________”</p></li>
+<li><p>“Never ________”</p></li>
+</ul>
+<hr />
+<h3
+id="every-element-of-natural-language-processing-depends-on-good-language-models">Every
+element of natural language processing depends on good language
+models</h3>
+<ul>
+<li><p>We need to know what language actually looks like to be able to
+analyze it</p></li>
+<li><p>We need to know the patterns to be able to interpret
+them</p></li>
+<li><p>To find patterns, we need to look at the data we’re
+modeling</p></li>
+</ul>
+<hr />
+<h3
+id="language-models-are-created-by-analyzing-large-amounts-of-language-to-find-patterns">Language
+models are created by analyzing large amounts of language to find
+patterns</h3>
+<ul>
+<li>Relationships between text and waveforms
+<ul>
+<li>What patterns of sound go with this pattern of letters/words?</li>
+</ul></li>
+<li>Relationships between waveforms and text
+<ul>
+<li>What patterns of words go with this pattern of sound?</li>
+</ul></li>
+<li>Relationships between different <em>kinds</em> of waveforms
+<ul>
+<li>Speech and Non-Speech sounds</li>
+<li>Speech and Noise</li>
+</ul></li>
+<li>Relationships between elements of waveforms
+<ul>
+<li>What changes about f0 at different points in an utterance?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="machine-learning-is-statistical-in-nature">(Machine) Learning is
+statistical in nature</h3>
+<ul>
+<li><p>Algorithms look at many instances of a task being done, and
+generalize</p></li>
+<li><p>Sometimes it’s <em>supervised</em>, where we give labeled data
+and let it find probabilities</p></li>
+<li><p>Sometimes it’s <em>unsupervised</em>, where we ask the algorithm
+to group the examples on its own, and effectively intuit the
+structure</p></li>
+</ul>
+<hr />
+<h3
+id="calculating-probability-well-requires-large-amounts-of-data">Calculating
+Probability (well) requires large amounts of data!</h3>
+<ul>
+<li><p>… and the probabilities come <em>directly</em> from the data you
+give it</p></li>
+<li><p>So, we need to gather data to make this process work</p></li>
+</ul>
+<hr />
+<h3 id="data-data-data-all-the-rest-is-bullshit">“Data! Data! Data! All
+the rest is bullshit!”</h3>
+<p><a
+href="https://youtu.be/2-SPH9hIKT8?si=ynnJ1q-8xXoG01vT">Source</a></p>
+<hr />
+<h2 id="what-is-a-speech-corpus">What is a speech corpus?</h2>
+<hr />
+<h3 id="a-corpus-isnt-super-complicated">A corpus isn’t super
+complicated</h3>
+<ul>
+<li><p>It’s a bunch of language data pulled together into one
+place</p></li>
+<li><p>Generally includes metadata</p></li>
+<li><p>For speech, often includes transcripts</p></li>
+</ul>
+<hr />
+<h3 id="sample-public-speech-corpora">Sample Public Speech Corpora</h3>
+<ul>
+<li><strong><a
+href="https://buckeyecorpus.osu.edu/php/corpusInfo.php">Buckeye</a></strong>
+<ul>
+<li>1 hour per speaker for 40 speakers of different ages and
+genders</li>
+</ul></li>
+<li><strong><a
+href="https://catalog.ldc.upenn.edu/LDC97S42">Callhome</a></strong>
+<ul>
+<li>60 hours of transcribed phone calls from 1997</li>
+</ul></li>
+<li><strong><a href="https://mt.fbk.eu/must-c/">MuST-C</a></strong>
+<ul>
+<li>230+ hours of translated English TED talks per language for 14
+languages</li>
+</ul></li>
+<li><strong><a
+href="https://mlcommons.org/datasets/peoples-speech/">People’s
+Speech</a></strong>
+<ul>
+<li>30,000 hours of transcribed English speech</li>
+</ul></li>
+<li><strong><a href="https://aclanthology.org/2021.acl-long.80/">Vox
+Populi</a></strong>
+<ul>
+<li>400,000 hours across 23 languages unlabeled</li>
+<li>17,300 hours of labeled data in 15 languages</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="will-podcast-corpus">Will Podcast Corpus</h3>
+<ul>
+<li><p>Around 280 hours of mp3s from my Podcasts across five
+years</p></li>
+<li><p>96 hours of it is automatically transcribed and
+time-aligned</p></li>
+<li><p><em>Contact me if this is useful to you</em></p></li>
+</ul>
+<hr />
+<h3 id="we-should-assume-much-larger-corpora-exist-privately">We should
+assume much larger corpora exist privately</h3>
+<ul>
+<li><p>Mistaken OK Google and Siri activations</p></li>
+<li><p>Voicemails from things like Google Voice</p></li>
+<li><p>Call audio from callcenters</p></li>
+<li><p>Every YouTube, TikTok or Instagram Reel</p></li>
+<li><p>Data from widespread phone surveillance</p></li>
+</ul>
+<hr />
+<h3
+id="but-at-the-core-speech-corpora-are-large-buckets-of-speech-data">…
+but at the core, speech corpora are large buckets of speech data</h3>
+<ul>
+<li><p>With the data that allows it to be useful</p></li>
+<li><p>In a format that doesn’t suck</p>
+<ul>
+<li>Speaking of which…</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="corpus-files">Corpus Files</h2>
+<hr />
+<h3 id="what-should-files-in-a-speech-corpus-look-like">What should
+files in a speech corpus look like?</h3>
+<ul>
+<li><p>Reasonable chunks</p></li>
+<li><p>Reasonable and durable formats</p></li>
+<li><p>Easy accessibility</p></li>
+</ul>
+<hr />
+<h3 id="reasonable-chunks">Reasonable Chunks</h3>
+<ul>
+<li>Too big gets ridiculous
+<ul>
+<li>Have a 400 hour FLAC file…</li>
+</ul></li>
+<li>Too small hinders your ability to do work
+<ul>
+<li>‘We saved the corpus in one wav per phoneme’</li>
+</ul></li>
+<li>You want to split in natural chunks that fit the goal
+<ul>
+<li>Single-speaker utterances might make sense for ASR</li>
+<li>Multi-speaker conversations might make sense for testing speaker
+identification</li>
+</ul></li>
+<li>It’s often easier to split a corpus up than to squish it back
+together</li>
+</ul>
+<hr />
+<h3 id="reasonable-formats">Reasonable Formats</h3>
+<ul>
+<li>You want archival, durable formats
+<ul>
+<li>So, don’t depend on a new sound format from Google that they’ll kill
+in 8 months</li>
+<li>Think whether the data could be accessed in 20 years</li>
+<li>You generally want a format that can be easily converted to
+something else</li>
+</ul></li>
+<li>Your corpus should be recorded in as high quality as you can
+<ul>
+<li>You can always reduce quality, you can’t add it</li>
+</ul></li>
+<li>Associated text should be in a durable format (e.g. plaintext)</li>
+</ul>
+<hr />
+<h3 id="to-compress-or-not-to-compress">To Compress or not to
+Compress</h3>
+<ul>
+<li><p>What are benefits and downsides of uncompressed
+(e.g. WAV)?</p></li>
+<li><p>What are benefits and downsides of losslessly compressed
+(e.g. FLAC)?</p></li>
+<li><p>What are benefits and downsides of lossy compressed (e.g. Opus,
+mp3)?</p></li>
+</ul>
+<hr />
+<h3 id="many-speech-corpora-are-compressed">Many speech corpora are
+compressed</h3>
+<ul>
+<li><p>Storage costs being reduced by 80% is <em>very</em>
+tempting</p></li>
+<li><p>Bandwidth costs are huge for shipping uncompressed or lossless
+files</p></li>
+<li><p>VoxPopuli ships as Ogg Vorbis 16000Hz, 16-bit, mono-channel</p>
+<ul>
+<li>It’s still 6.4 Terabytes (!!!)</li>
+</ul></li>
+<li><p><em>Many corpora are built on already-compressed data!</em></p>
+<ul>
+<li>Saving an opus file recorded over bluetooth to WAV is
+<em>dumb</em></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="your-corpus-should-match-the-data-itll-be-working-with">Your
+corpus should match the data it’ll be working with</h3>
+<ul>
+<li><p>If you’re going to be doing ASR on 16000Hz, 16-bit, mono data,
+then you should train your model on that</p></li>
+<li><p>If you want to output 44100Hz 16-bit, then you’d best input it
+too</p></li>
+<li><p>If you’re working on spontaneous speech, don’t feed in audiobook
+recordings</p>
+<ul>
+<li>Don’t give YouTube data to a newsreader TTS</li>
+</ul></li>
+<li><p><em>The data you’re teaching the model from should match the data
+the model will work on!</em></p>
+<ul>
+<li>You don’t necessarily get better results if you start with cleaner
+data</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="speech-files-arent-enough">Speech files aren’t enough</h3>
+<ul>
+<li><p>Well, maybe for some tasks</p></li>
+<li><p>… but you’re probably going to need…</p></li>
+</ul>
+<hr />
+<h2 id="corpus-metadata">Corpus Metadata</h2>
+<hr />
+<h3 id="metadata-is-just-data-about-data">Metadata is just data about
+data</h3>
+<ul>
+<li>Basically any kind of data about your data can be metadata</li>
+</ul>
+<hr />
+<h3 id="technical-metadata">Technical Metadata</h3>
+<ul>
+<li><p>Sampling Rate and Bit depth</p></li>
+<li><p>Filetype and Codec(s)</p></li>
+<li><p>File Duration</p></li>
+<li><p>Number of channels</p></li>
+<li><p>Unique identifier for the file</p></li>
+</ul>
+<hr />
+<h3 id="practical-metadata">Practical metadata</h3>
+<ul>
+<li><p>Recording date/time</p></li>
+<li><p>Device type used for recording</p>
+<ul>
+<li>This helps control for microphone variation, etc</li>
+</ul></li>
+<li><p>License information (e.g. who can use the data for what)</p>
+<ul>
+<li>Also information about what the data can and can’t be used for</li>
+<li>Because privacy should matter</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="linguistically-useful-metadata">Linguistically Useful
+Metadata</h3>
+<ul>
+<li><p>Speaker/Device Unique Identifiers</p></li>
+<li><p>Geocoding (e.g. where was the data recorded)</p></li>
+<li><p>Language and Dialect information</p>
+<ul>
+<li>Not just language spoken, but language background</li>
+</ul></li>
+<li><p>Positionality of the Speaker (e.g. age, gender identity, race,
+sexuality, etc)</p></li>
+<li><p>Speaker Diarization</p>
+<ul>
+<li>“When is which person talking?”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="secondary-datastreams">Secondary Datastreams</h3>
+<ul>
+<li><p>“This other file has an English transcript with
+timestamps”</p></li>
+<li><p>“This other file has an Electroglottographic recording made at
+the same time”</p></li>
+<li><p>“This other file has the video associated with it”</p></li>
+<li><p>“This other file has a spoken translation of this in
+Czech”</p></li>
+<li><p>“This other file has a Spanish language transcript”</p></li>
+</ul>
+<hr />
+<h3 id="other-task-specific-annotations">Other Task-Specific
+Annotations</h3>
+<ul>
+<li><p>“This was a support call which was rated highly by the
+customer”</p></li>
+<li><p>“This person was happy/angry/sad during this recording”</p></li>
+<li><p>“This person was diagnosed with Parkinson’s disease”</p></li>
+<li><p>“This person is an Arabic speaker from Afghanistan, not Saudi
+Arabia”</p></li>
+</ul>
+<hr />
+<h3 id="with-the-sound-files-and-the-metadata-you-have-a-corpus">With
+the sound files, and the metadata, you have a corpus!</h3>
+<ul>
+<li><p>You can use it to train whatever models you’d like!</p></li>
+<li><p>… but wait, how do I know what data should go into the
+corpus?</p></li>
+</ul>
+<hr />
+<h2 id="corpus-balance-bias-and-privacy">Corpus Balance, Bias, and
+Privacy</h2>
+<hr />
+<h3 id="models-are-trained-on-corpora">Models are trained on
+corpora</h3>
+<ul>
+<li><p>They reflect the data you’ve given them</p></li>
+<li><p>They reflect <strong>only</strong> the data you’ve given
+them</p></li>
+<li><p>Many models struggle to ‘generalize’ to new types of data they’ve
+never seen before</p></li>
+<li><p>You need to make sure your corpus reflects your task!</p></li>
+</ul>
+<hr />
+<h3 id="what-kind-of-data-would-be-needed-for">What kind of data would
+be needed for…</h3>
+<ul>
+<li><p>A Starbucks ordering ‘AI’ which turns your spoken order into an
+online transaction?</p></li>
+<li><p>An algorithm which detects breakups on Discord calls to better
+target ads afterwards?</p></li>
+<li><p>A voicemail transcription service</p></li>
+<li><p>A Text-to-Speech engine which will run a 24-7 kpop news
+stream</p></li>
+<li><p>A voice-controlled elevator panel</p></li>
+</ul>
+<hr />
+<h3 id="models-are-biased-by-their-corpora">Models are biased by their
+corpora</h3>
+<ul>
+<li><p>The patterns in your corpus determine how your model will
+interact with the world</p>
+<ul>
+<li>“When you feed the entire internet into a language model, you get
+back a racist language model”</li>
+</ul></li>
+<li><p>Your model will be most effective with the types of data most
+represented in the corpus</p>
+<ul>
+<li>It’s easy for a model to overfit to a particular kind of data if
+overrepresented</li>
+<li>Underrepresented people will be underserved by the model</li>
+</ul></li>
+<li><p>This is a form of <em>sampling bias</em></p>
+<ul>
+<li>Broad performace is generally improved by sampling widely</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="what-would-be-the-downside-of-training-your-model-on-a-corpus-of">What
+would be the downside of training your model on a corpus of…</h3>
+<ul>
+<li><p>Will Styler’s Podcasts</p></li>
+<li><p>Outputs from a state-of-the-art text-to-speech engine</p></li>
+<li><p>News readers on 24 hour news channels</p></li>
+<li><p>Apple FaceTime call recordings</p></li>
+<li><p>Randomly sampled people representing exactly the racial, ethnic,
+linguistic, and gender statistics in the English-speaking world</p></li>
+</ul>
+<hr />
+<h3
+id="what-would-be-the-downside-of-training-your-model-on-a-corpus-of-1">What
+would be the downside of training your model on a corpus of…</h3>
+<ul>
+<li><p>YouTube videos</p></li>
+<li><p>Saved recordings from a central telecommunications facility
+covering every phone call to an international number</p>
+<ul>
+<li><a
+href="https://en.wikipedia.org/wiki/NSA_warrantless_surveillance_(2001%E2%80%932007)">This
+was a thing</a></li>
+</ul></li>
+<li><p>Recordings from a live microphone hidden in a bush between
+benches at a public shopping mall</p>
+<ul>
+<li>This is legal in many states, possibly even CA</li>
+</ul></li>
+<li><p>… but wait, is that ethical?</p></li>
+</ul>
+<hr />
+<h3 id="ethical-concerns-in-corpus-building">Ethical Concerns in Corpus
+Building</h3>
+<ul>
+<li><p>More data is generally more better</p></li>
+<li><p>Yet, language data come from real people</p></li>
+<li><p>Let’s assume people give fully informed consent to their data
+being collected and used</p>
+<ul>
+<li><em>Apple, Meta, Google have left the chat</em></li>
+</ul></li>
+<li><p>How can we be careful with sensitive data?</p></li>
+</ul>
+<hr />
+<h3 id="types-of-sensitive-data">Types of Sensitive Data</h3>
+<ul>
+<li><p><strong>Personally Sensitive Data</strong> can cause financial,
+social, or physical harm to individual people if in the wrong
+hands</p></li>
+<li><p><strong>Organizationally Sensitive Data</strong> can cause
+financial, reputational, or practical harm to a company, group or
+institution if in the wrong hands</p></li>
+<li><p>Some data can be both!</p></li>
+</ul>
+<hr />
+<h3 id="deidentifying-speech-data">Deidentifying speech data?</h3>
+<ul>
+<li>Speech data may always be identifiable
+<ul>
+<li>Interestingly, IRBs differ on whether this is true</li>
+</ul></li>
+<li>“Yeah, I’m going to Vons off Regents to pick up my fluticazone after
+I teach LING 168”
+<ul>
+<li>“Then I’m going to go indulge in my deep, dark Haribo
+addiction”</li>
+</ul></li>
+<li>“Oh, damn, I’ll do that as soon as I finish moving those boxes of
+confidential records into the secret warehouse”</li>
+</ul>
+<hr />
+<h3
+id="what-other-ethical-concerns-are-present-in-making-speech-corpora">What
+other ethical concerns are present in making speech corpora?</h3>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Language models learn from stored data</p></li>
+<li><p>Speech Corpora are very easy</p>
+<ul>
+<li>You collect data, metadata, and other datastreams in a sane
+format</li>
+</ul></li>
+<li><p>Speech Corpora are very hard</p>
+<ul>
+<li><p>You need to store a great deal of data and organize it
+well</p></li>
+<li><p>You need to balance your corpus effectively</p></li>
+<li><p>… and you need to do it all with an ethical approach</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li><p>I guess it’s time to make computers understand human speech</p>
+<ul>
+<li>Should be easy, right?</li>
+</ul></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

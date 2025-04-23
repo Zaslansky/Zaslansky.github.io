@@ -1,0 +1,40 @@
+tree_complementizercaketex
+
+[S 
+  [NP 
+    [N' 
+      [N People ] ] ] 
+  [VP 
+    [V cheered ] 
+    [CP 
+      [C as ] 
+      [S 
+        [NP 
+          [N' 
+            [N Will ] ] ] 
+        [VP 
+          [VP 
+            [V ate ] 
+            [NP 
+              [NP 
+                [DET the ] 
+                [N' 
+                  [ADJ massive ] 
+                  [N' 
+                    [ADJ chocolate ] 
+                    [N' 
+                      [N cake ] ] ] ] ] 
+              [PP 
+                [P from ]
+                [NP 
+                  [DET the ] 
+                  [N' 
+                    [ADJ new ] 
+                    [N' 
+                      [N bakery ] ] ] ] ] ] ]
+          [PP 
+            [P with ] 
+            [NP 
+              [DET his ] 
+              [N' 
+                [N wife ] ] ] ] ] ] ] ] ]

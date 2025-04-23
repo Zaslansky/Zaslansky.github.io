@@ -1,0 +1,5 @@
+tree_rule1tex
+
+[NP 
+  [DET ___ ] 
+  [N'  ] ]

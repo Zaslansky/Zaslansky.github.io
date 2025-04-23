@@ -1,0 +1,397 @@
+@charset "UTF-8";
+
+/*!
+ * Will Styler's Theme Core for Reveal.js
+ * http://lab.hakim.se/reveal-js
+ */
+
+body {
+	background-color: #fff;
+	font: 180% "Source Sans", "HelveticaNeue-Light", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	line-height: 1;
+	background: #fff;
+	font-style:inherit;
+}
+
+::selection {
+	text-shadow: none;
+}
+ 
+.reveal a {
+	position: relative;
+	color: #006A96;
+}
+
+.reveal strong, .reveal b {
+  font-weight: bold; }
+
+.reveal em {
+  font-style: italic; }
+
+.footer p {
+  position:absolute;
+  bottom: 45%;
+  left: -100%;
+  font-size: 0.75em;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+word-wrap: normal;
+word-break: keep-all;
+margin: 1em;
+-webkit-hyphens: none;
+-moz-hyphens: none;
+hyphens: none;
+line-height: 1.4em;
+text-align: center;
+}
+
+.reveal h1 { font-size: 1.65em;
+font-weight: bold;
+margin-bottom: 0.5em;
+}
+.reveal h2 { font-size: 1.35em; 
+			font-weight: bold;
+}
+.reveal h3 { font-size: 1.2em;
+			font-weight: bold;
+}
+.reveal h4 { font-size: 1.2em;
+}
+
+.reveal img,
+.reveal video {
+	max-width: 50%;
+	border-style: none;
+	height: auto;   
+}
+
+
+.reveal img.big {
+	width:auto;
+	border-style: none;
+	height:500px;
+	max-width: 60%;
+	max-height: 60%;
+}
+
+.reveal img.wide {
+	max-width: 100%;
+	border-style: none;
+	height: auto;  
+}
+
+.reveal img.xwide {
+	max-width: 130%;
+	border-style: none;
+	height: auto;  
+}
+
+
+.reveal img.tall {
+	max-height: 80%;
+	border-style: none;
+	height: auto;  
+}
+
+.reveal img.small {
+	width:auto;
+	height:300px;
+	border-style: none;
+	max-width: 50%;
+	max-height: 50%;
+    margin: 0 0 10px 10px;
+}
+
+.reveal img.tiny {
+	width:auto;
+	height:100px;
+	border-style: none;
+}
+.reveal .stretch {
+	max-width: none;
+	max-height: none;
+}
+.reveal ol,
+.reveal ul {
+	display:block;
+	text-align: center;
+	margins: 0;
+	padding: 0;
+}
+
+.reveal ul {
+	list-style-type: none;
+	text-align: center;
+	margin-bottom: 0em;
+	padding-bottom: 0em;
+	font-style:inherit;
+	
+}
+
+.reveal ul ul li {
+	margin-top: -0.6em;
+	margin-bottom: 1em;
+	
+	font-size: 0.85em;
+	list-style-type: none;
+	color: #585858;
+	font-style:inherit;
+	
+}
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+	/*display: inline;*/
+	margins: 0em;
+
+}
+
+.reveal p {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	line-height: 1.2em;
+	class:"fragment";
+}
+
+.reveal a {
+	color: #0322b4;
+}
+
+.reveal table th,
+.reveal table td,
+.reveal table tr {
+	float: none;
+	margin: 0 auto;
+	padding: 1em;
+	border-spacing:10px 50px;
+	text-align:center;
+	
+}
+
+.reveal table tr {
+	float: none;
+	margin: 0 auto;
+	border-spacing:10px 50px;
+	text-align:center;
+	
+}
+.reveal table h2 {
+	margin-bottom: 1em;
+}
+
+.reveal blockquote {
+	width: 80%;
+	margin: 1em;
+	padding: 0.5em;
+	text-style:italic;
+	font-family: "Times New Roman", Times, serif;
+	border: 1px dotted #dbdbdb;
+	box-shadow: none;
+	background-color: rgba (185, 185, 185, 0.4);
+ 	margin-left:auto;
+ 	margin-right:auto;
+}
+
+.reveal pre {
+    word-wrap: normal;
+    text-align:left;
+}
+
+.reveal code {
+    padding:1em;
+}
+
+
+.reveal small {
+	font-size: 0.7em;
+	line-height: 1.8em;		
+}
+
+.reveal lang {
+	font-size: 1.5em;
+	padding:0em;
+	margin-bottom:-1em;
+	font-style:italic;
+}
+
+.reveal ldata {
+	font-size: 0.7em;
+	margin-bottom: 0em;
+	color:#808080;
+	font-style:italic;
+}
+
+.reveal danger {
+	color:#FF0000;
+	font-weight:bold;
+}
+
+.reveal correct {
+	color:#39C900;
+	font-weight:bold;
+}
+
+.reveal clg{
+    	color:#39C900;
+	font-weight:bold;
+}
+
+.reveal clr{
+	color:#FF0000;
+	font-weight:bold;
+}
+
+.reveal clb{
+	color:#0000CC;
+	font-weight:bold;
+}
+
+.reveal clp{
+	color:#6600FF;
+	font-weight:bold;
+}
+
+.reveal clk{
+	color:#708cef;
+	font-weight:bold;
+}
+
+.reveal clo{
+	color:#CC6600;
+	font-weight:bold;
+}
+
+.reveal sc{
+        font-variant: small-caps;
+}
+
+.reveal src {
+	color:#808080;
+	vertical-align: top;
+	font-size:60%;
+	padding-left:0.3em;
+	position:relative;
+	top: -0.3em;
+}
+
+.reveal huge {
+	font-size: 3em;
+	line-height:1.75em;
+	font-weight:bold;
+}
+
+.reveal small * {
+	vertical-align: top;
+	text-decoration: none;
+}
+
+/* Global transition speed settings */
+.reveal[data-transition-speed="fast"] .slides section {
+	-webkit-transition-duration: 200ms;
+	   -moz-transition-duration: 200ms;
+	    -ms-transition-duration: 200ms;
+	        transition-duration: 200ms;
+}
+
+/* Slide-specific transition speed overrides */
+.reveal .slides section[data-transition-speed="fast"] {
+	-webkit-transition-duration: 200ms;
+	   -moz-transition-duration: 200ms;
+	    -ms-transition-duration: 200ms;
+	        transition-duration: 200ms;
+}
+/*********************************************
+ * CONTROLS
+ *********************************************/
+.reveal .controls .enabled {
+  opacity: 0.2;
+  cursor: pointer; }
+
+.reveal .controls .navigate-right.fragmented {
+  opacity: 0.1; }
+
+.reveal .controls .navigate-up.fragmented {
+  opacity: 0.1; }
+
+.reveal .controls .navigate-down.fragmented {
+  opacity: 0.1; }
+  
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.3); }
+
+.reveal .progress span {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+
+.reveal .progress {
+	position: fixed;
+	display: none;
+	height: 10px;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+}
+.reveal .progress:after {
+	content: '';
+	display: 'block';
+	position: absolute;
+	height: 20px;
+	width: 100%;
+	top: -20px;
+}
+.reveal .progress span {
+	display: block;
+	height: 100%;
+	width: 0px;
+}
+
+/*********************************************
+ * SLIDE NUMBER
+ *********************************************/
+
+.reveal .slide-number {
+	position: fixed;
+	display: block;
+	right: 15px;
+	bottom: 15px;
+	opacity: 0.75;
+	text-decoration:;
+	z-index: 31;
+	font-size: 1em;
+	background-color: #eee;
+	
+	
+}
+
+/*********************************************
+ * SLIDES
+ *********************************************/
+
+.reveal {
+	width: 100%;
+	height: 100%;
+	font-size:1em;
+	-ms-touch-action: none;
+}
+
+.reveal .slides {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+	z-index: 1;
+	text-align: center;
+	}

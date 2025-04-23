@@ -1,0 +1,5 @@
+tree_rule12tex
+
+[VP 
+  [V  ]
+  [PP ] ]

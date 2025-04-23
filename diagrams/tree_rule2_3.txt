@@ -1,0 +1,5 @@
+tree_rule2_3tex
+
+[NP 
+  [N' 
+    [N Will Styler ] ] ]

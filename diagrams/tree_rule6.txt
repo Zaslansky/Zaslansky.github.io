@@ -1,0 +1,5 @@
+tree_rule6tex
+
+[NP 
+  [NP ] 
+  [PP  ] ]

@@ -1,0 +1,23 @@
+tree_complementizer_hiddentex
+
+[S 
+  [NP 
+    [DET ___ ] 
+    [N' 
+      [N ___ ] ] ] 
+  [VP 
+    [V ___ ] 
+    [CP 
+      [C ___ ] 
+      [S 
+        [NP 
+          [DET ___ ] 
+          [N' 
+            [ADJ ___ ] 
+            [N' 
+              [N ___ ] ] ] ] 
+        [VP 
+          [V ___ ] 
+          [NP 
+            [N' 
+              [N ___ ] ] ] ] ] ] ] ]

@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3
+id="wills-wednesday-office-hours-are-cancelled-today-and-the-30th">Will’s
+Wednesday Office Hours are cancelled today and the 30th</h3>
+<p>Temporary office hours Tuesday 29th 12:30-1:30</p>
+<hr />
+<h3 id="surface-allophones-vs.-phonemes">“Surface Allophones”
+vs. Phonemes</h3>
+<ul>
+<li><p>Every sound comes to the surface as an allophone</p></li>
+<li><p>You never produce a phoneme, just the surface allophone which has
+the same form as the underlying phoneme.</p></li>
+<li><p>“These two sounds are phonemes” is not the most accurate
+phrasing</p>
+<ul>
+<li>“These two sounds represent two different phonemes”</li>
+</ul></li>
+<li><p>It’s a nitpick, but it’s a nit I should be better at
+picking.</p></li>
+</ul>
+<hr />
+<h3 id="its-complementary-distribution-not-complimentary">It’s
+“Complementary” distribution, not “Complimentary”</h3>
+<ul>
+<li><p>This is Will’s very favorite typo</p></li>
+<li><p>Allophones form a complementary set, which completely cover the
+options</p></li>
+<li><p>Allophones do not tell you that your hair looks great
+today</p></li>
+</ul>
+<hr />
+<h1 id="writing-phonological-rules-well">Writing Phonological Rules
+(well)</h1>
+<h3 id="will-styler---lign-111">Will Styler - LIGN 111</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Writing phonological rules</p></li>
+<li><p>Writing <em>graceful</em> phonological rules</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td># Phonological Rules</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="so-youve-figured-out-that-sounds-are-allophones-of-the-same-phoneme">So,
+you’ve figured out that sounds are allophones of the same phoneme!</h3>
+<ul>
+<li><p>They’re in a <em>complementary</em> distribution</p></li>
+<li><p>You can predict which one will show up based on the
+environment</p></li>
+<li><p><strong>How do I express that prediction to somebody
+else?</strong></p></li>
+</ul>
+<hr />
+<h3 id="phonological-rules">Phonological Rules</h3>
+<p>You describe the distribution of the allophones of a phoneme with
+phonological rules</p>
+<hr />
+<h3 id="first-a-note-on-notation">First, a note on notation</h3>
+<ul>
+<li><p>We’re going to differentiate words in IPA between // and
+[]</p></li>
+<li><p>/tap/ means ‘top’ at an abstract level (‘Underlying
+form’).</p></li>
+<li><p>[tap] means that sequence of sounds at a surface level (‘Surface
+form’).</p></li>
+<li><p>/tap/ exists in the speaker’s mind, [tap] exits a person’s
+mouth</p></li>
+<li><p>More later…</p></li>
+</ul>
+<hr />
+<h3 id="transformation-has-a-format">Transformation has a format</h3>
+<ul>
+<li><p>We need to know what it starts as</p></li>
+<li><p>What it turns into</p></li>
+<li><p>And when that transformation takes place</p></li>
+</ul>
+<hr />
+<p>/Starting State/ -&gt; [Ending State] / [When the transformation
+happens]</p>
+<hr />
+<h3 id="remus-lupin---wolf-full-moon">/Remus Lupin/ -&gt; [Wolf] / [Full
+moon]</h3>
+<p><img src="img/lupin.jpg" /></p>
+<hr />
+<h3 id="optimus-prime---truck-time-to-roll-out">/Optimus Prime/ -&gt;
+[Truck] / [Time to Roll Out]</h3>
+<p><img src="img/optimus.jpg" /></p>
+<hr />
+<h3 id="for-any-transformation-you-want-to-know">For ANY transformation,
+you want to know…</h3>
+<ul>
+<li><p>What it starts out as</p></li>
+<li><p>What it ends up as</p></li>
+<li><p>What conditions or environment triggers it</p></li>
+</ul>
+<hr />
+<h3 id="phonological-rule-format">Phonological Rule Format</h3>
+<ul>
+<li><p>“X turns into Y in environment Z”</p></li>
+<li><p>“X -&gt; Y” means “X turns into Y”</p>
+<ul>
+<li>-&gt; is an arrow. -&gt; is just easy to type.</li>
+</ul></li>
+<li><p>Then the “/” which means “in the environment”</p></li>
+<li><p>Then you add a blank, representing where the sound goes that’s
+getting transformed “__”</p></li>
+<li><p>… And you position that blank relative to the conditioning
+environment.</p></li>
+</ul>
+<hr />
+<h3 id="for-now-you-can-use-natural-classes-or-features">For now, you
+can use natural classes, or features</h3>
+<ul>
+<li><p>Once we’ve learned features, we’re going to have you use
+them</p></li>
+<li><p>I’ll present both</p></li>
+</ul>
+<hr />
+<h3 id="if-n-turns-to-an-ŋ-before-dorsal-consonants">If /n/ turns to an
+/ŋ/ before dorsal consonants…</h3>
+<ul>
+<li><p>/n/ -&gt; [ŋ] / __ [dorsal C]</p></li>
+<li><p>If it happened after dorsal sounds…</p></li>
+<li><p>/n/ -&gt; [ŋ] / [dorsal C] __</p></li>
+</ul>
+<hr />
+<h3 id="some-basic-phonological-rules">Some Basic Phonological
+Rules</h3>
+<ul>
+<li><p>Bruce Wayne –&gt; Batman / [Crime]__[Crime]</p></li>
+<li><p>/t/ -&gt; /t̪/ /__[dental C]</p></li>
+<li><p>/ej/ -&gt; [ej:] / __[+voice]</p></li>
+<li><p>/V/ -&gt; [Ṽ] / __[+nasal]</p></li>
+</ul>
+<hr />
+<h3 id="word-boundaries">Word Boundaries</h3>
+<ul>
+<li><p>“#” indicates a word boundary</p></li>
+<li><p>Words <em>actually</em> look like [#kʰæt#ʃoʊ#]</p></li>
+<li><p>The environment “__#” means “at the end of the word”</p>
+<ul>
+<li>“Right before the word boundary”</li>
+</ul></li>
+<li><p>The environment “#__” means “at the start of the word”</p>
+<ul>
+<li>“Right after the word boundary”</li>
+</ul></li>
+<li><p>Same thing goes for syllable (“.”) and morpheme (“+”)
+boundaries</p></li>
+</ul>
+<hr />
+<h3 id="other-symbols">Other Symbols</h3>
+<ul>
+<li><p>“V” means “any vowel”</p></li>
+<li><p>“C” means “any consonant”</p></li>
+<li><p>“ø” means “Nothing”</p></li>
+<li><p>α β γ are used for matching</p></li>
+</ul>
+<hr />
+<h3 id="insertiondeletion">Insertion/Deletion</h3>
+<ul>
+<li><p>“ø” means “Nothing”</p></li>
+<li><p>/t/ -&gt; ø / __#</p>
+<ul>
+<li>“t disappears at the end of the word”</li>
+</ul></li>
+<li><p>ø -&gt; [t] / V__V</p>
+<ul>
+<li>“t appears any time two vowels are directly adjacent”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="alpha-notation">Alpha notation</h3>
+<ul>
+<li><p>“These sounds should match for this feature”</p></li>
+<li><p>/n/ -&gt; [ŋ] / __[Velar C]</p></li>
+<li><p>/n/ -&gt; [n̪] / __[Dental C]</p></li>
+<li><p>/n/ -&gt; [m] / __[Bilabial C]</p></li>
+<li><p>/n/ -&gt; [n] / __[Alveolar C]</p></li>
+<li><p>/n/ -&gt; [αplace] / __[C αplace]</p></li>
+</ul>
+<hr />
+<h3 id="sonorants-match-the-nasality-of-the-preceding-c">Sonorants match
+the nasality of the preceding C</h3>
+<ul>
+<li>[+son] -&gt; [αnasal] / [+cons, αnasal]__</li>
+</ul>
+<hr />
+<h3 id="alpha-notation-1">Alpha Notation</h3>
+<ul>
+<li><p>You can use α β γ (and so forth) for any features</p></li>
+<li><p>If you just need one, use [α] (Greek letter alpha)</p></li>
+<li><p>If you need to match on two independent features, use
+[β]</p></li>
+<li><p>“Given two vowels of the same height, the second vowel is rounded
+if and only if the first vowel is rounded.”</p>
+<ul>
+<li>[+syll, αhigh] → [βround] / [αhigh, βround]__</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="set-notation">Set Notation</h3>
+<ul>
+<li><p>Groups of sounds can be presented as ordered sets</p></li>
+<li><p>/p t k/ -&gt; [ɸ θ x] / V__#</p>
+<ul>
+<li>This is different from /p t k/ -&gt; [θ x ɸ] / V__#</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="feature-matrices">Feature Matrices</h3>
+<ul>
+<li><p>Sometimes, you need to list multiple features</p></li>
+<li><p>One approach: <img
+src="phonology/bracketed_features.jpg" /></p></li>
+<li><p>The other: ø -&gt; [+syll,+high,+front,-round] /
+[+strid]__[+strid,+cont]</p></li>
+<li><p><strong>These two rules say the same thing. They are
+equivalent.</strong></p></li>
+<li><p>I’ll post a fancy bracketing in word guide on Canvas</p></li>
+</ul>
+<hr />
+<h3 id="dont-forget-the-brackets">Don’t forget the brackets</h3>
+<ul>
+<li><p>V -&gt; [+nasal] / [Nasal C]__</p></li>
+<li><p>V -&gt; [+nasal] / NasalC__</p></li>
+</ul>
+<hr />
+<h3 id="parentheses-mark-optional-elements">Parentheses mark optional
+elements</h3>
+<ul>
+<li><p>/d/ -&gt; [z] / __(C)#</p>
+<ul>
+<li>“d becomes z before a word boundary, or before a C followed by a
+word boundary”</li>
+</ul></li>
+<li><p>V -&gt; [αround] / <a href="C">+syll, αround</a>__</p>
+<ul>
+<li>Vowels match the rounding of the previous vowel, even if there’s an
+intervening consonant</li>
+</ul></li>
+<li><p>V -&gt; [αround] / <a href="%5B-syll,-nasal%5D">+syll,
+αround</a>__</p>
+<ul>
+<li>Vowels match the rounding of the previous vowel, even if there’s an
+intervening non-nasal consonant</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="lets-practice">Let’s Practice!</h2>
+<hr />
+<h3 id="formalize-the-following-rules">Formalize the following
+rules</h3>
+<p>(Assume that groupings represent complete natural classes)</p>
+<p>1: /d/ becomes a /n/ immediately after a nasal vowel</p>
+<p>2: /i/ and /u/ become /ɪ/ and /ʊ/ at the end of the word, even if
+there’s a nasal before the word’s end.</p>
+<p>3: /d/ will turn into /b/ or /d/ or /g/ when after /m/ or /n/ or /ŋ/,
+respectively</p>
+<p>4: A glottal stop is inserted between any two vowels with matching
+rounding</p>
+<p>5: All consonants except /m/ or /n/ or /ŋ/ are deleted word
+finally</p>
+<p>6: /p/ turns into /b/ at the start of a monosyllabic CV word, with
+any vowel</p>
+<hr />
+<h3 id="d-becomes-a-n-immediately-after-a-nasal-vowel">1: /d/ becomes a
+/n/ immediately after a nasal vowel</h3>
+<ul>
+<li>/d/ -&gt; [n] / [V +nas]__</li>
+</ul>
+<hr />
+<h3
+id="i-and-u-become-ɪ-and-ʊ-at-the-end-of-the-word-even-if-theres-a-nasal-before-the-words-end.">2:
+/i/ and /u/ become /ɪ/ and /ʊ/ at the end of the word, even if there’s a
+nasal before the word’s end.</h3>
+<ul>
+<li><p>/i u/ -&gt; [ɪ ʊ] / __([C +nasal])#</p></li>
+<li><p>[+syll, +high, +ATR] -&gt; [-ATR] / __([-syll, +nas])#</p>
+<ul>
+<li>Whoa, features are powerful!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="d-will-turn-into-b-or-d-or-g-when-after-m-or-n-or-ŋ-respectively">3:
+/d/ will turn into /b/ or /d/ or /g/ when after /m/ or /n/ or /ŋ/,
+respectively</h3>
+<ul>
+<li>/d/ -&gt; [αplace] / [C +nasal, αplace]__</li>
+</ul>
+<hr />
+<h3
+id="a-glottal-stop-is-inserted-between-any-two-vowels-with-matching-rounding">4:
+A glottal stop is inserted between any two vowels with matching
+rounding</h3>
+<ul>
+<li>ø -&gt; [ʔ] / [V αround]__[V αround]</li>
+</ul>
+<hr />
+<h3 id="all-consonants-except-m-or-n-or-ŋ-are-deleted-word-finally">5:
+All consonants except /m/ or /n/ or /ŋ/ are deleted word finally</h3>
+<ul>
+<li>[C -nasal] -&gt; ø / __#</li>
+</ul>
+<hr />
+<h3 id="p-turns-into-b-at-the-start-of-a-monosyllabic-cv-word">6: /p/
+turns into /b/ at the start of a monosyllabic CV word</h3>
+<ul>
+<li>/p/ -&gt; [b] / #__V#</li>
+</ul>
+<hr />
+<h2 id="but-wait">… but wait</h2>
+<ul>
+<li>How do you decide what goes on the left side of the rule?</li>
+</ul>
+<hr />
+<h1 id="choosing-underlying-forms">Choosing Underlying forms</h1>
+<hr />
+<h3
+id="when-you-write-rules-in-this-way-you-need-to-decide-on-an-underlying-form">When
+you write rules in this way, you need to decide on an underlying
+form</h3>
+<ul>
+<li><p>“How is this word ‘stored’?”</p></li>
+<li><p>“What elements of this word can I not predict?”</p></li>
+<li><p>“What don’t I want to deal with in this analysis?”</p></li>
+</ul>
+<hr />
+<h3 id="all-words-have-surface-and-underlying-forms">All words have
+surface and underlying forms</h3>
+<ul>
+<li><p>The surface forms contain the final form of the word</p></li>
+<li><p>The underlying forms contain only the unpredictable
+information</p></li>
+<li><p>The underlying forms <em>must</em> contain the information which
+your rules cannot predict</p></li>
+</ul>
+<hr />
+<h3 id="sometimes-the-surface-form-is-the-same-as-the-ur">Sometimes, the
+surface form is the same as the UR</h3>
+<ul>
+<li><p>‘Dot’ /dat/ -&gt; [dat]</p></li>
+<li><p>‘Eat’ /it/ -&gt; [it]</p></li>
+<li><p>No rules apply!</p></li>
+</ul>
+<hr />
+<h3
+id="sometimes-the-surface-form-contains-predictable-differences">Sometimes,
+the surface form contains predictable differences!</h3>
+<ul>
+<li><p>‘Dog’ /dag/ -&gt; [da:g]</p>
+<ul>
+<li>/V/ -&gt; [V:] / __[C +voice]</li>
+</ul></li>
+<li><p>‘Cat’ /kæt/ -&gt; [kʰæt]</p>
+<ul>
+<li>Aspiration Rule</li>
+</ul></li>
+<li><p><strong>We don’t need to store the predictable
+stuff</strong></p></li>
+</ul>
+<hr />
+<h3 id="sometimes-theres-a-lot-of-predictable-stuff">Sometimes, there’s
+a lot of predictable stuff</h3>
+<ul>
+<li><p>‘Planes’ /plejn+z/ -&gt; [pʰl̥ẽj̃nz]</p>
+<ul>
+<li>Nasalization</li>
+<li>Aspiration</li>
+<li>Approximant devoicing</li>
+<li>Plural allomorphy</li>
+</ul></li>
+<li><p>… but the underlying form remains pretty plain</p></li>
+<li><p><img src="humorimg/badpundog.jpg" /></p></li>
+</ul>
+<hr />
+<h3
+id="when-choosing-a-ur-you-always-want-to-include-the-unpredictable-stuff">When
+choosing a UR, you always want to include the unpredictable stuff</h3>
+<ul>
+<li>… and you want to make your life easier</li>
+</ul>
+<hr />
+<h3
+id="sometimes-your-rules-will-be-much-simpler-if-you-choose-one-ur-over-the-other">Sometimes,
+your rules will be much simpler if you choose one UR over the other</h3>
+<ul>
+<li><p>[l] and [r] alternate, and are about equally common</p></li>
+<li><p>[l] occurs before /ɛ ɡ n ɱ œ ʠ h w x ʤ ᴢ β æ m/</p></li>
+<li><p>[r] occurs before /i/</p></li>
+<li><p>/l/ -&gt; [r] / __i</p></li>
+<li><p>/r/ -&gt; [l] / [<em>loud sobbing</em>]</p></li>
+</ul>
+<hr />
+<h3
+id="always-choose-as-the-underlying-phoneme-that-which-makes-your-analysis-better">Always
+choose as the underlying phoneme that which makes your analysis
+better</h3>
+<ul>
+<li>URs are like Goblin steel: They absorb only what strengthens your
+analysis</li>
+</ul>
+<hr />
+<h3 id="but-wait-what-do-you-mean-by-better">… but wait, what do you
+mean by ‘better’?</h3>
+<hr />
+<h1 id="writing-phonological-rules-well-1">Writing Phonological Rules
+Well</h1>
+<hr />
+<h3
+id="phonology-has-good-answers-and-bad-answers-which-are-both-correct">Phonology
+has ‘good’ answers and ‘bad’ answers which are both correct</h3>
+<hr />
+<h3 id="a-bad-analysis-of-the-english-plural">A bad analysis of the
+English plural</h3>
+<ul>
+<li><p>/s/ -&gt; [z] / At the end of the words dog, pub, rag, dad,
+bin…</p></li>
+<li><p>/s/ -&gt; [s] / At the end of the words cat, buck, cliff,
+myth…</p></li>
+<li><p>/s/ -&gt; [ɪz] / At the end of words dish, fish, kiss, plus,
+judge…</p></li>
+</ul>
+<hr />
+<h3 id="a-slightly-less-bad-analyis-of-the-english-plural">A slightly
+less bad analyis of the English plural</h3>
+<ul>
+<li><p>/s/ -&gt; [z] / [j,g, d, ɹ, n, w, b, m, l, i, aj, v, u,
+oʊ…]__</p></li>
+<li><p>/s/ -&gt; [s] / [t, p, k, f, θ…]__</p></li>
+<li><p>/s/ -&gt; [ɪz] / [tʃ, dʒ, s, ʃ, z]__</p></li>
+</ul>
+<hr />
+<h3 id="a-decent-analysis-of-the-english-plural">A decent analysis of
+the English plural</h3>
+<ul>
+<li><p>/s/ -&gt; [z] / [C +voice]__</p></li>
+<li><p>/s/ -&gt; [ɪz] / [strident C]__</p></li>
+<li><p>/s/ -&gt; [s] / Elsewhere</p>
+<ul>
+<li>(You don’t need to write the ‘elsewhere’ rule)</li>
+</ul></li>
+<li><p>There’s a better approach, we’ll cover it later</p></li>
+</ul>
+<hr />
+<h3 id="we-can-talk-about-the-elegance-of-a-solution">We can talk about
+the elegance of a solution</h3>
+<ul>
+<li><p>An elegant solution will have a good balance of fit, complexity,
+and generality</p></li>
+<li><p><strong>Fit</strong>: How well does the analysis fit the
+data?</p></li>
+<li><p><strong>Generality</strong>: How much of the available data does
+it describe? Does it capture general patterns?</p></li>
+<li><p><strong>Complexity</strong>: Is there a way to handle the data
+which is less complex than the one you’re proposing?</p></li>
+<li><p><strong>Redundancy</strong>: Does it provide unnecessary
+information, or redundantly specify features?</p></li>
+</ul>
+<hr />
+<h3 id="fit">Fit</h3>
+<ul>
+<li><p>An analysis which doesn’t fit the data isn’t a good
+analysis</p></li>
+<li><p>Always make sure there are no datapoints which break your
+analysis</p></li>
+<li><p>This needs to come first</p></li>
+<li><p>If you can explain every form but one, you’re not done</p>
+<ul>
+<li>In this class. But exceptions do happen.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="generality">Generality</h3>
+<ul>
+<li><p>You don’t want to write five rules for five processes when you
+can write one</p></li>
+<li><p>Combine rules where you can</p></li>
+<li><p>This hardens your analysis against wugs and loanwords</p></li>
+<li><p>Most phonological rules deal in features or natural
+classes</p></li>
+<li><p>If you’re writing three rules for three similar processes, ask
+yourself questions</p>
+<ul>
+<li>Look for shared features or patterns</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="complexity">Complexity</h3>
+<ul>
+<li><p>An analysis should be as simple as possible</p></li>
+<li><p>Given two analyses which are functionally equivalent, the smaller
+one is better</p></li>
+<li><p>Some analyses are complex, but always ask yourself if you can do
+the job with fewer moving parts</p></li>
+</ul>
+<hr />
+<h3 id="check-for-redundancy">Check for redundancy</h3>
+<ul>
+<li><p>You do not need to tell us that these sonorants are
+voiced</p></li>
+<li><p>You do not need to say that alveolar sounds are coronal</p></li>
+<li><p>If one more person tells me about a stop consonant, I’m going to
+cry</p></li>
+</ul>
+<hr />
+<h3 id="check-for-redundancy-1">Check for Redundancy</h3>
+<hr />
+<h3 id="we-will-be-grading-elegance-on-homeworks">We will be grading
+elegance on homeworks</h3>
+<ul>
+<li><p>It won’t be a huge part of your grade</p></li>
+<li><p>An inelegant solution is better than none at all</p></li>
+<li><p>We understand that you’re still learning</p></li>
+<li><p>… but do your best to make your analysis elegant</p></li>
+</ul>
+<hr />
+<h3 id="always-try-to-break-your-rules">Always try to break your
+rules</h3>
+<ul>
+<li><p>Treat the rule as a hypothesis, then look for the data that
+doesn’t follow it</p></li>
+<li><p>If it breaks down, tweak or abandon</p></li>
+<li><p>For LIGN 111, if your rule doesn’t work with one of the words in
+the dataset, your rule doesn’t work</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Learn phonological rule notation</p></li>
+<li><p>Choose your URs carefully and strategically</p></li>
+<li><p>Write elegant rules, please!</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li>We’ll play with underlying forms in some very interesting data!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+<hr />
+</body>
+</html>

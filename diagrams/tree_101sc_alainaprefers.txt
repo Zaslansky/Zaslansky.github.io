@@ -1,0 +1,23 @@
+tree_101sc_alainapreferstex
+
+[S 
+  [NP 
+    [N' 
+      [N Alaina ] ] ] 
+  [VP 
+    [V prefers ] 
+    [NP 
+      [NP 
+        [N' 
+          [N homeworks ] ] ] 
+      [PP 
+        [P with ] 
+        [NP 
+          [N' 
+            [ADJ little ] 
+            [N' 
+              [ADJ tiny ] 
+              [N' 
+                [ADJ fixable ] 
+                [N' 
+                  [N errors ] ] ] ] ] ] ] ] ] ]

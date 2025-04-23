@@ -1,0 +1,10 @@
+tree_rule16tex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [AUX should ] 
+    [VP 
+      [V eat ] ] ] ]

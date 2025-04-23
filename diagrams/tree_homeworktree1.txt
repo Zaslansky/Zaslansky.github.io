@@ -1,0 +1,16 @@
+tree_homeworktree1tex
+
+[S 
+  [NP 
+    [N' 
+      [N ___ ] ] ] 
+  [VP 
+    [V ___ ] 
+    [NP 
+      [DET ___ ] 
+      [N' 
+        [ADJ ___ ] 
+        [N' 
+          [ADJ ____ ] 
+          [N' 
+            [N ___ ] ] ] ] ] ] ]

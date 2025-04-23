@@ -1,0 +1,15 @@
+tree_rule1_3_4_5alttex
+ 
+[NP 
+  [DET 
+    [NP 
+      [DET the ] 
+      [N' 
+        [ADJ hungry ] 
+        [N' 
+          [N professor ] ] ] ] 
+    [POSS 's ] ] 
+  [N' 
+    [ADJ cute ] 
+    [N' 
+      [N cat ] ] ] ]

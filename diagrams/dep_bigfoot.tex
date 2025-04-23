@@ -1,0 +1,20 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+
+\begin{document}
+% In the preamble:
+
+% In the document:
+\begin{dependency}[theme = simple]
+   \begin{deptext}[column sep=1em]
+      Will \& spotted \& Bigfoot \& outside \& the \& Medical \& Library \\
+   \end{deptext}
+   \deproot{2}{ROOT}
+   \depedge{2}{1}{NSUBJ}
+   \depedge{2}{3}{DOBJ}
+   \depedge{2}{7}{NMOD}
+   \depedge{7}{6}{AMOD}
+   \depedge{7}{5}{DET}
+   \depedge{7}{4}{CASE}
+\end{dependency}
+\end{document}

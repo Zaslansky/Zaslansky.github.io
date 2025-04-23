@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sociolinguistic-fundamentals">Sociolinguistic Fundamentals</h1>
+<h3 id="will-styler---lign-42">Will Styler - LIGN 42</h3>
+<hr />
+<h3
+id="sociolinguistics-is-the-study-of-the-intersection-of-language-and-social-factors">Sociolinguistics
+is the study of the intersection of language and social factors</h3>
+<ul>
+<li><p>Linguists often think of simplified speakers (‘Just an American
+English Speaker’)</p></li>
+<li><p>We think in terms of ‘what’s true about language for everybody
+’who speaks the language’ we’re studying?’</p></li>
+<li><p>Sociolinguistics brings people back into things, taking
+everything that sociology does, intersected with everything that
+linguistics does</p></li>
+</ul>
+<hr />
+<h3 id="sociolinguistics-is-a-huge-field">Sociolinguistics is a huge
+field</h3>
+<ul>
+<li><p>We could spend a whole quarter on the sociolinguistics of
+memes</p></li>
+<li><p>We’ll just focus on some core concepts</p></li>
+</ul>
+<hr />
+<h3 id="please-be-kind">Please be kind</h3>
+<ul>
+<li><p>Social identity is often a very sensitive topic</p></li>
+<li><p>You don’t need to share anything you’d rather not (remember,
+we’re Podcasting)</p></li>
+<li><p>Let’s avoid stereotypes, and speak to our own identities where we
+have more nuance</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Speech Communities and Social Networks</p></li>
+<li><p>Sociolinguistic Variation</p></li>
+<li><p>Indexicality and Identity</p></li>
+<li><p>Intersectionality</p></li>
+</ul>
+<hr />
+<h2 id="speech-communities">Speech Communities</h2>
+<hr />
+<h3 id="language-is-a-social-construct">Language is a social
+construct</h3>
+<ul>
+<li><p>Different groups of people language differently, in agreed-upon
+ways</p></li>
+<li><p>We call these different groups ‘speech communities’</p></li>
+</ul>
+<hr />
+<h3 id="example-speech-communities">Example Speech Communities</h3>
+<ul>
+<li>Social Groups
+<ul>
+<li>People who hang out together regularly</li>
+</ul></li>
+<li>Geographical Groups
+<ul>
+<li>People from Chula Vista</li>
+</ul></li>
+<li>Identity-based groups
+<ul>
+<li>Folks who identify as pansexual</li>
+</ul></li>
+<li>Interest-based groups
+<ul>
+<li>Folks who love mechanical watches</li>
+</ul></li>
+<li>Clubs and other socially-affiliated people
+<ul>
+<li>People who attend meetings together on a weekly basis</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="what-are-some-examples-of-speech-communities-that-youre-a-part-of">What
+are some examples of speech communities that you’re a part of?</h3>
+<ul>
+<li>Remember, you’re likely a part of many!</li>
+</ul>
+<hr />
+<h3
+id="sociolinguists-also-think-about-these-groups-in-terms-of-prestige">Sociolinguists
+also think about these groups in terms of prestige</h3>
+<ul>
+<li><p>Some groups are more respected by society than others</p></li>
+<li><p>What’s a speech community, which, rightly or wrongly, is given
+prestige in the US?</p></li>
+<li><p>What’s a speech community, which, rightly or wrongly, is of lower
+prestige in the US?</p></li>
+</ul>
+<hr />
+<h3 id="prestigious-isnt-always-the-right-choice">Prestigious isn’t
+always the ‘right’ choice</h3>
+<ul>
+<li><p>What’s a context in which a ‘prestige’ dialect would be
+awkward?</p></li>
+<li><p>This relates closely to ‘register’, with high registers often
+incorporating elements of prestigious language</p></li>
+<li><p>We <em>manage</em> our prestige, by varying our language</p>
+<ul>
+<li>Variation is everywhere!</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="sociolinguistic-variation">Sociolinguistic Variation</h2>
+<hr />
+<h3 id="language-features-differ-among-people">Language features differ
+among people</h3>
+<ul>
+<li><p>Sometimes it’s truly random</p></li>
+<li><p>Sometimes, it’s based on language use (e.g. how often you say
+things)</p></li>
+<li><p>Often, it’s <em>socially conditioned</em></p></li>
+<li><p>We call individual variations which are socially conditioned and
+informative <strong>sociolinguistic variables</strong></p></li>
+</ul>
+<hr />
+<h3
+id="any-language-variation-can-be-sociolinguistically-informative">Any
+language variation can be sociolinguistically informative</h3>
+<ul>
+<li><p>Changes in spelling or emoji use</p></li>
+<li><p>Changes in pronunciation or rules governing sound
+patterns</p></li>
+<li><p>Changes in words which are used</p></li>
+<li><p>Changes in sentence structure or grammatical differences</p></li>
+<li><p>Changes in meaning of words or sentences</p></li>
+<li><p><strong>Any language difference can be a sociolinguistic variable
+as long as it’s socially conditioned!</strong></p></li>
+</ul>
+<hr />
+<h3 id="different-people-language-differently">Different people language
+differently</h3>
+<ul>
+<li><p>Give me a language difference which <em>gives you no social
+information</em> about the speaker</p></li>
+<li><p>Give me a language difference which <em>gives you some social
+information</em> about the speaker</p></li>
+<li><p>Give me a language difference which <em>gives you excellent and
+reliable social information</em> about the speaker</p></li>
+</ul>
+<hr />
+<h3 id="our-language-use-varies-in-context">Our language use varies in
+<em>context</em></h3>
+<ul>
+<li><p>Give me two social contexts <em>with the same level or
+formality</em> in which you speak differently. How so?</p></li>
+<li><p>Give me a word which is <em>which is only used in one social
+context in your life</em>, and the context</p></li>
+</ul>
+<hr />
+<h3
+id="sociolinguistic-variation-tells-us-about-a-persons-social-identities">Sociolinguistic
+Variation tells us about a person’s social identities</h3>
+<ul>
+<li><p>We learn social things by observing sociolinguistic
+variables</p></li>
+<li><p><strong>What kinds of social things can we tell from somebody’s
+language?</strong></p></li>
+</ul>
+<hr />
+<h2 id="indexicality-and-identity">Indexicality and Identity</h2>
+<hr />
+<h3 id="we-exist-at-the-intersection-of-many-social-identities">We exist
+at the intersection of many social identities</h3>
+<ul>
+<li><p>Gender, Sexuality, Ethnicity, Age, Region, Hobbies, Fandoms,
+Communities, Beliefs, and more</p></li>
+<li><p>These can be facts about you, communities one belongs to, and
+more</p></li>
+<li><p>All of those elements of your identity contribute to how we act
+and function and live in the world</p></li>
+<li><p>We may not be <em>outwardly expressing</em> all of these
+identities at any given moment or context, but they’re always a part of
+us</p></li>
+</ul>
+<hr />
+<h3 id="social-identities-place-us-within-speech-communities">Social
+identities place us within speech communities</h3>
+<ul>
+<li><p>Speech communities have clusters of <em>sociolinguistic
+features</em> which are indicative of that community</p></li>
+<li><p>They can also be more or less ‘obvious’ or detectable by
+listeners</p>
+<ul>
+<li>Some are only obvious to people in that group</li>
+</ul></li>
+<li><p>Our sociolinguistic features <em>tell the world</em> about our
+identity</p></li>
+</ul>
+<hr />
+<h3 id="indexing-identities">Indexing Identities</h3>
+<ul>
+<li><p>Once folks know that a feature indicates an identity, those
+features can be said to <strong>index</strong> that particular
+identity</p></li>
+<li><p>Indexing is, effectively, showing or highlighting our identities
+for others</p></li>
+<li><p>Indexing our identities using sociolinguistic features can be
+intentional (performative), or unintentional</p></li>
+</ul>
+<hr />
+<h3 id="why-would-we-want-to-index-our-identities-consciously">Why would
+we want to index our identities consciously?</h3>
+<hr />
+<h3
+id="our-language-can-index-our-identities-consciously-or-unconsciously">Our
+language can index our identities, consciously or unconsciously</h3>
+<ul>
+<li>What variables, if any, do you <em>consciously use to index one of
+your identities</em>?
+<ul>
+<li>How do you speak to <em>show others you belong</em> or <em>show your
+identity to a stranger</em>?</li>
+</ul></li>
+<li>Can you think of something you’ve said which expressed one of your
+identities <em>without you intending to do so</em>?
+<ul>
+<li>What did somebody pick up on, without your intention to do so?</li>
+</ul></li>
+<li>This can be <em>strategic as well</em>
+<ul>
+<li>See <a href="https://muse.jhu.edu/article/900094">Wright 2023 on
+Linguistic Profiling</a> for a nice example of why that can be
+useful</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="what-are-other-sociolinguistic-variables-that-you-look-for-in-others-to-find-folks-similar-to-you">What
+are other sociolinguistic variables that you look for in others to find
+folks similar to you?</h3>
+<hr />
+<h2 id="intersectionality">Intersectionality</h2>
+<hr />
+<h3
+id="intersectionality-was-formalized-in-the-early-1990s">Intersectionality
+was formalized in the early 1990s</h3>
+<ul>
+<li>Although referenced by W.E.B Du Bois and others earlier, first
+introduced by Kimberlé Crenshaw</li>
+</ul>
+<p><img class="r-stretch" src="people/kimberle_crenshaw.jpg"></p>
+<hr />
+<h3 id="intersectionality-1">Intersectionality</h3>
+<ul>
+<li><p>We all have many identities</p></li>
+<li><p>Those identities all affect our language, social approaches,
+etc</p></li>
+<li><p><strong>Those identities all interact!</strong></p></li>
+</ul>
+<hr />
+<h3 id="simple-links">Simple links</h3>
+<p><img class="r-stretch" src="dalle/squirrelages.jpg"></p>
+<hr />
+<h3 id="interactions">Interactions!</h3>
+<p><img class="r-stretch" src="dalle/squirrelgiraffe.jpg"></p>
+<hr />
+<h3 id="our-identities-and-their-expressions-are-intersectional">Our
+identities and their expressions are <em>intersectional</em></h3>
+<ul>
+<li><p>Each person is complex, and likely has many different
+identities</p>
+<ul>
+<li>These identities may also have different levels of privilege and
+power</li>
+</ul></li>
+<li><p>Our identities are not isolated, instead, they mix and
+interact</p>
+<ul>
+<li>Your features for ‘nerdy’ might be different from mine because of
+your other identities</li>
+</ul></li>
+<li><p>Two people may ‘share an identity’, but have different
+experiences with it</p>
+<ul>
+<li>For one, it may be a core part of their identity, for another, it
+may be less important or an afterthought</li>
+</ul></li>
+<li><p><strong>Failure to account for intersectionality causes major
+analytical problems!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="treating-a-single-identity-as-homogenous-makes-you-do-dumb-things">Treating
+a single identity as homogenous makes you do dumb things</h3>
+<ul>
+<li><p>You’re unlikely to find one set of features for one identity
+consistent across all speakers</p>
+<ul>
+<li>… and it’ll be noisy even if you try!</li>
+</ul></li>
+<li><p>The linguistic expression of identifying as a woman may be
+different for white, black, latine, and trans women</p>
+<ul>
+<li>Consider interactions between identities when exploring these
+variables</li>
+</ul></li>
+<li><p>Some elements of identity can be more or less independent</p>
+<ul>
+<li>The interaction between identities can be weaker or stronger</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="treating-a-persons-identity-as-simple-and-all-important-also-causes-dumbth">Treating
+a person’s identity as simple and all-important also causes dumbth</h3>
+<ul>
+<li><p>Collapsing the complexity of individuals’ identities into single
+‘groups’ often leads to stereotyping and poorly fitting models</p>
+<ul>
+<li><p>‘All black people say…’</p></li>
+<li><p>‘You’re Bi, so you must…’</p></li>
+</ul></li>
+<li><p>Identities can (outwardly) appear to apply, but matter less to
+the individual</p>
+<ul>
+<li><p>Not all X people identify strongly as X</p></li>
+<li><p>Not all people from the South speak Southern English</p></li>
+<li><p><a href="http://paulereed.com/">Paul Reed</a> has shown that a
+person’s ‘Rootedness’ to a region is a better predictor of linguistic
+variables than location or place of birth</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="all-aspects-of-your-identity-are-reflected-in-your-positionality">All
+aspects of your identity are reflected in your ‘positionality’</h3>
+<ul>
+<li><p>Your positionality refers to the unique combination of
+identities, experiences, values, opinions, and perspectives that you
+have.</p></li>
+<li><p>It’s also worth considering areas where you have social power,
+and areas where you experience social oppression</p></li>
+<li><p>This highlights the fact that the same situation, statement, or
+question will be seen and addressed differently by folks with different
+positionalities</p></li>
+<li><p>Your positionality will strongly influence your interactions,
+language use, and sociolinguistic features</p></li>
+</ul>
+<hr />
+<h3
+id="we-now-have-a-vocabulary-for-thinking-about-social-variation-in-language">We
+now have a vocabulary for thinking about social variation in
+language</h3>
+<ul>
+<li><p><strong>Speech Communities</strong> are groups of people who
+language similarly</p></li>
+<li><p><strong>Sociolinguistic variables</strong> are socially
+meaningful variations in language usage</p></li>
+<li><p>Our <strong>social identities</strong> are
+<strong>indexed</strong> by our specific patterns of language
+use</p></li>
+<li><p>Our social identities are <strong>intersectional</strong>, and
+thus, the patterns of variation associated with those identities are
+complex</p></li>
+<li><p>These intersecting identities and associated experiences form our
+<strong>positionality</strong>, which we should contemplate as we think
+about our language use</p></li>
+</ul>
+<hr />
+<h3 id="how-does-this-play-out-online">How does this play out
+online?</h3>
+<hr />
+<h3 id="theres-a-lot-to-be-done-here">There’s a <em>lot</em> to be done
+here</h3>
+<ul>
+<li><p>Internet sociolinguistics could be a three quarter
+sequence</p></li>
+<li><p>Sociolinguistic meme projects are very, very welcome</p></li>
+<li><p>We’re just barely scratching the surface here!</p></li>
+</ul>
+</body>
+</html>

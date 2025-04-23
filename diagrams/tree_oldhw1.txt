@@ -1,0 +1,10 @@
+tree_oldhw1tex
+
+[S 
+  [NP 
+    [N' 
+      [N ___ ] ] ] 
+  [VP 
+    [AUX ___ ] 
+    [VP 
+      [V ___ ] ] ] ]

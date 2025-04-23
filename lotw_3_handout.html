@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><lang>Xhosa</lang><br><ldata>Niger-Congo:Bantu - South Africa</ldata>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/Qg4Fp-A7IRw"></iframe></p>
+<p>Miriam Makeba - “The Click Song”</p>
+<hr />
+<h1 id="sounds-of-the-worlds-languages">Sounds of the World’s
+Languages!</h1>
+<h3 id="ling-1020---will-styler">LING 1020 - Will Styler</h3>
+<hr />
+<p>Today’s lecture is meant to help you out, not to be memorized!</p>
+<ul>
+<li><p><em>You won’t be expected to know phonetic terms for the
+test!</em></p></li>
+<li><p>I just want you to know how to figure out how to make a
+sound</p></li>
+</ul>
+<hr />
+<h2 id="want-to-incur-wills-wrath">Want to incur Will’s wrath?</h2>
+<ul>
+<li>It’s easy! Just say…</li>
+</ul>
+<hr />
+<p><lang>English</lang><br><ldata>IE:Germanic, All over the damned
+place</ldata></p>
+<p><strong>“I’m not even gonna try and pronounce that.”</strong></p>
+<ul>
+<li><p>‘I embrace failure!’</p></li>
+<li><p>‘I don’t want to learn!’</p></li>
+<li><p>‘I hereby abandon my linguistic aspirations’</p></li>
+<li><p>‘Will, I summon thy righteous wrath upon me’</p></li>
+</ul>
+<hr />
+<h3 id="its-always-better-to-try">It’s always better to try!</h3>
+<ul>
+<li><p>Trying provides practice</p></li>
+<li><p>After trying, you’ll be more likely to do</p></li>
+<li><p>Sooner or later, you won’t have a choice</p></li>
+<li><p>… but you need to know how to start trying!</p></li>
+</ul>
+<hr />
+<h3 id="the-big-questions">The Big Questions</h3>
+<ul>
+<li><p>How does speech work?</p></li>
+<li><p>How do we describe speech sounds?</p></li>
+<li><p>How do languages around the world differ in terms of
+sound?</p></li>
+<li><p>What’s with the clicking in Africa?</p></li>
+<li><p>Are there sounds that “English speakers just can’t
+produce”?</p></li>
+<li><p>Are there other across-language differences in terms of
+sound?</p></li>
+</ul>
+<hr />
+<h2 id="how-does-speech-work">How does speech work?</h2>
+<hr />
+<h3 id="the-speech-process">The Speech Process</h3>
+<ul>
+<li><p>Flapping bits of meat inside your head</p></li>
+<li><p>This creates vibrations in the air</p></li>
+<li><p>The ear picks these up, and inteprets them as speech.</p></li>
+<li><p>This is studied in <strong>Phonetics</strong></p></li>
+<li><p><em>For more info about all this, take LING 2000 and
+3100!</em></p></li>
+</ul>
+<hr />
+<h3 id="flapping-bits-of-meat-articulation">Flapping bits of meat
+(“articulation”)</h3>
+<p><img class="big" src="phonmedia/nasalsagittal.jpg"></p>
+<hr />
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/0-aEN2xHBCc">
+</iframe>
+<hr />
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/1FTXmuBP3QE">
+</iframe>
+<hr />
+<p><img class="big" src="humorimg/ohgodwhy.jpg"></p>
+<hr />
+<h2 id="how-do-we-describe-speech-sounds">How do we describe speech
+sounds?</h2>
+<hr />
+<p>We’re going to focus on consonants today.</p>
+<p><small>(For the awesomeness of vowels, take LING 3100 or ask me in
+office hours!)</small></p>
+<p><!-- .element: class="fragment" --></p>
+<hr />
+<h3 id="describing-consonants">Describing Consonants</h3>
+<ul>
+<li><p>We need to know three things:</p></li>
+<li><p><strong>Place</strong>: Where is the sound made?</p></li>
+<li><p><strong>Manner</strong>: What are we doing there?</p></li>
+<li><p><strong>Voicing</strong>: Are we making voicing?</p></li>
+</ul>
+<hr />
+<h3 id="place">Place</h3>
+<p><img class="big" src="phonmedia/sagittal_flesh.jpg"></p>
+<hr />
+<h3 id="place-1">Place</h3>
+<p><img class="big" src="phonmedia/sagittal_labeled.png"></p>
+<hr />
+<h3 id="place-2">Place</h3>
+<ul>
+<li><p><strong>Bilabial</strong>: As in
+“<strong><em>b</em></strong>oy”</p></li>
+<li><p><strong>Labiodental</strong>: As in
+“<strong><em>V</em></strong>ote”</p></li>
+<li><p><strong>Alveolar</strong>: As in
+“<strong><em>T</em></strong>o<strong><em>t</em></strong>e<strong><em>s</em></strong>!”</p></li>
+<li><p><strong>Postalveolar</strong>: As in
+“<strong><em>J</em></strong>u<strong><em>dge</em></strong>”</p></li>
+<li><p><strong>Velar</strong>: As in
+“Ta<strong><em>c</em></strong>o<strong><em>c</em></strong>at”</p></li>
+<li><p><strong>Glottal</strong>: As in
+“Uh<strong><em>-</em></strong>oh!”</p></li>
+</ul>
+<hr />
+<h3 id="michael-bay-destroyed-my-childhood">“Michael Bay destroyed my
+childhood”</h3>
+<p><img class="big" src="humorimg/optimusfacepalm.jpg"></p>
+<!-- .element: class="fragment" -->
+<hr />
+<h3 id="manner">Manner</h3>
+<ul>
+<li><p><strong>Stops</strong>: Stop the airflow</p></li>
+<li><p><strong>Fricatives</strong>: Constrict the airflow to make
+sounds</p></li>
+<li><p><strong>Nasals</strong>: Channel the air out the nose</p></li>
+<li><p><strong>Approximants</strong>: Bring the tongue <em>toward</em>
+the place</p></li>
+<li><p><strong>Laterals</strong>: Channel air <em>around</em> the
+tongue</p></li>
+</ul>
+<hr />
+<p><img class="big" src="ling_memes/preferredmannerstop.jpg"></p>
+<hr />
+<h3 id="grumpy-cat-hates-humans">“Grumpy Cat hates humans”</h3>
+<p><img class="big" src="humorimg/fleasnavidad.jpg"><br />
+<!-- .element: class="fragment" --></p>
+<hr />
+<h3 id="voicing">Voicing</h3>
+<ul>
+<li>Is the larynx buzzing, or not?</li>
+</ul>
+<hr />
+<h2 id="lets-pretend-were-snakes-eating-bees">Let’s pretend we’re snakes
+eating bees!</h2>
+<p><img class="big" src="phonmedia/snakesbees.jpg"></p>
+<hr />
+<p>Once we’ve organized sounds by place, manner, and voicing, we
+have…</p>
+<hr />
+<h2 id="the-international-phonetic-alphabet">The International Phonetic
+Alphabet!</h2>
+<p><a href="phonmedia/IPA_chart_2005.pdf"><img class="big" src="phonmedia/ipa_wholechart.png"></a></p>
+<hr />
+<p>English Consonants</p>
+<p><img src="phonmedia/ipa_consonants_english.png"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="phonmedia/ipa_consonants.png"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="other-places-of-articulation">Other Places of Articulation</h3>
+<ul>
+<li><p><strong><em>Retroflex</em></strong>: Curl the tip of your tongue
+back</p></li>
+<li><p><strong><em>Palatal</em></strong>: Make an “eeeeee” sound, then
+raise your tongue.</p>
+<ul>
+<li>Or pretend you’re an angry cat.</li>
+</ul></li>
+<li><p><strong><em>Uvular</em></strong>: Bring the back of the tongue to
+your Uvula</p></li>
+<li><p><strong><em>Pharyngeal</em></strong>: Bring the back of your
+tongue to the back of your throat</p></li>
+</ul>
+<hr />
+<h3 id="cant-figure-out-where-in-the-mouth-that-is">Can’t figure out
+where in the mouth that is?</h3>
+<p>Ask <a
+href="http://homes.chass.utoronto.ca/~danhall/phonetics/sammy.html">Sammy
+the Interactive Sagittal Section</a>!</p>
+<hr />
+<h3 id="other-manners-of-articulation">Other Manners of
+Articulation</h3>
+<ul>
+<li><p><strong><em>Trill</em></strong>: Use the air to flap your tongue
+rapidly</p></li>
+<li><p><strong><em>Tap</em></strong>: Throw your tongue against the roof
+of your mouth</p></li>
+<li><p><strong><em>Lateral Fricative</em></strong>: Blow air quickly
+around the sides of your tongue!</p></li>
+</ul>
+<hr />
+<h2 id="vowels">Vowels!</h2>
+<hr />
+<p>Languages differ in terms of the number of available vowels</p>
+<hr />
+<h3 id="arabic-has-three-vowels">Arabic has three vowels</h3>
+<ul>
+<li><p>/i, a, u/</p></li>
+<li><p>(They do have meaningful vowel length, though!)</p></li>
+</ul>
+<hr />
+<h3 id="languages-often-have-five-vowels">Languages often have five
+vowels</h3>
+<ul>
+<li><p>/i, e, a, o, u/</p></li>
+<li><p>(as in Spanish, “misa, mesa, masa, mosca, muda”)</p></li>
+</ul>
+<hr />
+<h3 id="english-has-way-more-than-five-vowels">English has way more than
+five vowels!</h3>
+<ul>
+<li><p>/ i, ɪ, e, ɛ, æ, ə, ʌ, ɑ, ɔ, ʊ, u /</p></li>
+<li><p>beet, bit, bait, bet, bat, sof<strong>a</strong>, but, bot,
+bought, book, boot</p></li>
+</ul>
+<hr />
+<h3 id="there-are-other-vowels-that-we-dont-have">There are other vowels
+that we don’t have!</h3>
+<p><img class="big" src="phonmedia/ipa_vowels.png"></p>
+<hr />
+<p>“Are there any <em>types</em> of sounds that we don’t have?”</p>
+<ul>
+<li><strong>Yep!</strong></li>
+</ul>
+<hr />
+<h3 id="types-of-sounds-not-found-in-english">Types of sounds not found
+in English</h3>
+<p><img src="phonmedia/ipa_nonpulmonics.png"></p>
+<hr />
+<p>For more IPA info, see the <a
+href="http://savethevowels.org/resources/#ipa">resources listing</a> on
+the course site!</p>
+<hr />
+<h2 id="people-in-africa-speak-only-with-clicks">“People in Africa speak
+only with clicks”</h2>
+<hr />
+<p><img class="big" src="humorimg/false.jpg"></p>
+<hr />
+<h3 id="clicks-in-africa">Clicks in Africa</h3>
+<ul>
+<li><p>Clicks are used extensively in Khoisan languages</p>
+<ul>
+<li>(spoken by ~400,000 people)</li>
+</ul></li>
+<li><p>They’ve also been borrowed into Zulu and Xhosa, both Bantu
+languages (within Niger-congo)</p>
+<ul>
+<li>(~17.6 million speakers)</li>
+</ul></li>
+<li><p>This means that only ~1% of Africans speak a language where there
+are clicks</p></li>
+<li><p>All of these languages have lots of non-click sounds!</p></li>
+</ul>
+<hr />
+<p><lang>San</lang><br><ldata>Khoisan - Namibia</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/W6WO5XabD-s">
+</iframe>
+<hr />
+<p><img class="big" src="humorimg/omg.jpg"></p>
+<hr />
+<h2 id="i-could-never-do-that">“I could never do that!”</h2>
+<ul>
+<li>Yes, you can.</li>
+</ul>
+<hr />
+<p><lang>Xhosa</lang><br><ldata>Niger-Congo:Bantu - South
+Africa</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/31zzMb3U0iY">
+</iframe>
+<hr />
+<h1 id="anybody-can-pronounce-any-language">Anybody can pronounce any
+language!</h1>
+<hr />
+<h3 id="speech-organs-are-universal">Speech organs are universal</h3>
+<ul>
+<li><p>There is not a meaningful difference between your vocal tract and
+a !Xoo speaker’s</p></li>
+<li><p>The only difference between humans is practice!</p></li>
+<li><p>It’s easier if you start off speaking the language</p></li>
+<li><p>There are no sounds English speakers “just can’t produce”,
+<em>with practice</em>.</p></li>
+</ul>
+<hr />
+<h3 id="but-that-doesnt-mean-its-easy">… but that doesn’t mean it’s
+easy</h3>
+<ul>
+<li><p>Make a Voiceless Velar Fricative /x/ (as in “Chanuakkah”,
+“Challah”, “Bach”)</p></li>
+<li><p>Make a voiced alveolar trill /r/ (the Spanish Rolled R)</p></li>
+<li><p>Make a voiceless palatal fricative (ç) (as in an angry
+cat)</p></li>
+<li><p>Make a voiceless alveolar lateral fricative (ɬ) (as in
+“nahuatl”)</p></li>
+<li><p>Make a /!/ click between two vowels (/a!a/)</p></li>
+</ul>
+<hr />
+<h1 id="are-there-other-differences-in-how-we-use-sound">Are there other
+differences in how we use sound?</h1>
+<ul>
+<li>Yep!</li>
+</ul>
+<hr />
+<h2 id="tone">Tone</h2>
+<p>Changes in pitch during the word change the meaning of the word</p>
+<hr />
+<h3 id="level-tone">Level Tone</h3>
+<p>“High” vs. “Low” (sometimes “mid” or “rising/falling”)</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><lang>Zarma (Djerma)</lang><br><ldata>Nilo-Saharan:Songhay -
+Niger</ldata></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td><lang>Zarma (Djerma)</lang><br><ldata>Nilo-Saharan:Songhay -
+Niger</ldata></td>
+</tr>
+<tr class="odd">
+<td>Yesterday - “bi”</td>
+</tr>
+<tr class="even">
+<td>Wound - “bi”</td>
+</tr>
+<tr class="odd">
+<td><audio data-autoplay src="phonmedia/zarma_tonecontrast.mp3"></audio></td>
+</tr>
+<tr class="even">
+<td>* <strong>Which has the high tone?</strong></td>
+</tr>
+<tr class="odd">
+<td>* A - “Yesterday” * B - “Wound”</td>
+</tr>
+</tbody>
+</table>
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p><lang>Zarma (Djerma)</lang><br><ldata>Nilo-Saharan:Songhay -
+Niger</ldata></p>
+<p>Yesterday - “bi”</p>
+<p>Wound - “bi”</p>
+<p><strong>Which has the high tone?</strong></p>
+<p>A - “Yesterday”</p>
+<p>B - “Wound”</p>
+<audio data-autoplay src="phonmedia/zarma_tonecontrast.mp3">
+</audio>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td>Yesterday - “bi” - High</td>
+</tr>
+<tr class="odd">
+<td>Wound - “bi” - Low</td>
+</tr>
+<tr class="even">
+<td>Dark - “bi” - Short vowel</td>
+</tr>
+<tr class="odd">
+<td><strong>Which has the high tone?</strong></td>
+</tr>
+<tr class="even">
+<td><correct>A - “Yesterday”</correct></td>
+</tr>
+<tr class="odd">
+<td>B - “Wound”</td>
+</tr>
+<tr class="even">
+<td><audio data-autoplay src="phonmedia/zarma_tonecontrast.mp3"></audio></td>
+</tr>
+</tbody>
+</table>
+<h3 id="contour-tones">Contour Tones</h3>
+<p>Pitch patterns change meaning</p>
+<hr />
+<p><lang>Mandarin Chinese</lang><br><ldata>Sino-Tibetan -
+China</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/orx53ieqEI4">
+</iframe>
+<hr />
+<p><lang>Mandarin Chinese</lang><br><ldata>Sino-Tibetan -
+China</ldata></p>
+<h1 id="妈-麻-马-骂-吗">妈 麻 马 骂 吗</h1>
+<p>‘mother bother horse scold QUESTION’</p>
+<p>“Mom is bothered by the horse’s scolding”</p>
+<hr />
+<h3 id="voicing-types">Voicing Types</h3>
+<p>Differences in the configuration of the vocal folds resulting in
+different voicing patterns.</p>
+<hr />
+<h3 id="differences-in-voicing-type">Differences in Voicing Type</h3>
+<ul>
+<li><p><strong><em>Modal Voicing</em></strong>: What we mostly use in
+English</p></li>
+<li><p><strong><em>Creaky Voicing</em></strong>: Using less air than
+usual</p></li>
+<li><p><strong><em>Breathy Voicing</em></strong>: Using more air than
+usual</p></li>
+</ul>
+<hr />
+<p>Creaky and breathy voicing are used <em>stylistically</em> in
+English</p>
+<hr />
+<h3 id="contrastive-vowel-length">Contrastive Vowel length</h3>
+<p>When the duration of the vowel can change the meaning of the word</p>
+<hr />
+<p><lang>Arabic</lang><br><ldata>AA:Semitic - All over</ldata></p>
+<p>عِد‎ /ʕidd/ - ‘promise’</p>
+<p>عِيد‎ /ʕiːd/ - ‘feast’</p>
+<p>عُد‎ /ʕudd/ - ‘come back!’</p>
+<p>عُود‎ /ʕuːd/ - ‘lute’</p>
+<p>عَد‎ /ʕadd/ - ‘counted’</p>
+<p>عَاد‎ /ʕaːd/ - ‘came back’</p>
+<hr />
+<h3 id="this">This</h3>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/URgdIAz4QNg">
+</iframe>
+<hr />
+<h3 id="anything-else">Anything else?</h3>
+<hr />
+<h2 id="phonotactics">Phonotactics</h2>
+<p>The study of what combinations of sounds are ‘legal’ in a
+language</p>
+<hr />
+<p><lang>Japanese</lang><br><ldata>Japonic - Japan</ldata></p>
+<p><img src="phonmedia/japanese_christmas.jpg"></p>
+<p>‘Merry Christmas’ - merii kurisumasu</p>
+<p><small>(<a href="http://japanese.about.com/library/blqow33.htm">Image
+and Sound Credit</a>)</small></p>
+<hr />
+<p><lang>Japanese</lang><br><ldata>Japonic - Japan</ldata></p>
+<p><img src="phonmedia/japanese_christmas.jpg"></p>
+<p>‘Merry Christmas’ - merii kurisumasu</p>
+<p><small>(<a href="http://japanese.about.com/library/blqow33.htm">Image
+and Sound Credit</a>)</small></p>
+<ul>
+<li><em>Japanese does not allow anything but
+consonant-vowel-consonant-vowel</em></li>
+</ul>
+<audio data-autoplay src="phonmedia/japanese_christmas.mp3">
+</audio>
+<hr />
+<h3 id="borrowings">Borrowings</h3>
+<p>When a language borrows a word from another language</p>
+<hr />
+<p>Languages often adapt words to fit their rules when borrowing.</p>
+<hr />
+<h2 id="hawaiian-borrowings">Hawaiian Borrowings!</h2>
+<hr />
+<p><img class="big" src="phonmedia/enhawaiianborrowings.png"></p>
+<hr />
+<h3 id="iniseka">Iniseka</h3>
+<ul>
+<li>Insect</li>
+</ul>
+<hr />
+<h3 id="elepani">Elepani</h3>
+<ul>
+<li>Elephant</li>
+</ul>
+<hr />
+<h3 id="hipa">hipa</h3>
+<ul>
+<li>Sheep</li>
+</ul>
+<hr />
+<h3 id="kaioke">kaioke</h3>
+<ul>
+<li>Coyote</li>
+</ul>
+<hr />
+<h3 id="kanakalu">Kanakalu</h3>
+<ul>
+<li>Kangaroo</li>
+</ul>
+<hr />
+<h3 id="lakuna">Lakuna</h3>
+<ul>
+<li>Raccoon</li>
+</ul>
+<hr />
+<h3 id="nupepa">Nupepa</h3>
+<ul>
+<li>Newspaper</li>
+</ul>
+<hr />
+<h3 id="mokokaikala">Mokokaikala</h3>
+<ul>
+<li>Motorcycle</li>
+</ul>
+<hr />
+<h3 id="kakalina">Kakalina</h3>
+<ul>
+<li>Gasoline</li>
+</ul>
+<hr />
+<h3 id="kelepona">Kelepona</h3>
+<ul>
+<li>Telephone</li>
+</ul>
+<hr />
+<h3 id="kolokalaiwa">Kolokalaiwa</h3>
+<ul>
+<li>Screwdriver</li>
+</ul>
+<hr />
+<h2 id="some-languages-allow-more-complexity">Some languages allow more
+complexity!</h2>
+<hr />
+<p><lang>English</lang><br><ldata>I-E, Germanic, West Germanic - Damned
+Near Everywhere</ldata></p>
+<p>‘Strengths’ (/stɹɛŋkθs/)</p>
+<hr />
+<p><lang>Russian</lang><br><ldata>I-E, Slavic, East - Russia</ldata></p>
+<p>‘Glance’ - Всгляд (/vzglʲat/)</p>
+<p>‘Of Construction’ - строительств (/strʌˈʲitʲɛlʲstf/)</p>
+<hr />
+<p><lang>Czech</lang><br><ldata>I-E, Slavic, West, Czech-Slovak - The
+Czech Republic</ldata></p>
+<p>Strč prst skrz krk</p>
+<p>‘Stick your finger down your throat’</p>
+<hr />
+<h3 id="every-language-has-arbitrary-rules">Every language has arbitrary
+rules</h3>
+<ul>
+<li><p>End a word with a pronounced /h/ (“Bah”)</p></li>
+<li><p>Say the /ŋ/ in “ring” at the start of a word.
+(“Ngöndro”)</p></li>
+<li><p>End a word with the vowel in “bet” or “book”. (“Saké”)</p></li>
+<li><p>English has “s”, “k”, “v”, but say “Moskva”</p></li>
+</ul>
+<hr />
+<h3 id="theres-a-lot-more-to-sound-related-differences">There’s a LOT
+more to sound-related differences…</h3>
+<p><img class="big" src="img/tipoficeberg.jpg"></p>
+<hr />
+<h3 id="but-thats-ling-3100s-job">…but that’s LING 3100’s job!</h3>
+<p><img class="big" src="img/plug.jpg"></p>
+<hr />
+<h3 id="for-today-just-know">For today, just know…</h3>
+<ul>
+<li><p>Speech is all about place, manner, and voicing of
+meat-flapping</p></li>
+<li><p>Languages all use different sets of sounds</p></li>
+<li><p>Not all African languages are clicky, damnit</p></li>
+<li><p>Anybody can make any speech sound, with practice</p></li>
+<li><p>Tone is awesome</p></li>
+<li><p>Different languages allow different combinations of
+sounds</p></li>
+<li><p>Phonetics is awesome!</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+<p>http://savethevowels.org/talks/lotw_3.html</p>
+</body>
+</html>

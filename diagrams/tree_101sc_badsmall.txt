@@ -1,0 +1,18 @@
+tree_101sc_badsmalltex
+
+[S 
+  [NP 
+    [ILLEGAL-N' 
+      [ADJ Small ] 
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ cuddly ] 
+          [N' 
+            [N cat ] ] ] ] ] ] 
+  [BACKWARDS-VP 
+    [NP 
+      [DET the ] 
+      [N' 
+        [N dog ] ] ] 
+    [V scratched ] ] ]

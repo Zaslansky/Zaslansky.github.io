@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><lang>Zulu</lang><br><ldata>Niger-Congo:Bantu - Southern
+Africa</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/WJdHofDwlwg">
+</iframe>
+<p>Ladysmith Black Mambazo - Lelilungelo Elakho</p>
+<hr />
+<h1 id="niger-congo-languages">Niger-Congo Languages</h1>
+<h3 id="ling-1020---will-styler">LING 1020 - Will Styler</h3>
+<hr />
+<h3 id="administrative-notes">Administrative Notes</h3>
+<ul>
+<li><p>Monday, we’ll talk a bit more about the test</p></li>
+<li><p>Last call for exam accommodations and early-takings.</p></li>
+<li><p>For Friday, study the features of each language family</p></li>
+<li><p>Maybe Use <a
+href="http://savethevowels.org/world/FamilyReview.pdf">the handy review
+sheet Will made this morning because he loves you all in a professional
+and teacherly sort of way</a></p></li>
+</ul>
+<hr />
+<h3 id="ill-let-the-pereltsvaig-reading-handle-khoisan">I’ll let the
+Pereltsvaig reading handle Khoisan</h3>
+<ul>
+<li><p>… but you should watch some videos of <a
+href="https://www.youtube.com/watch?v=W6WO5XabD-s">San</a>, <a
+href="https://www.youtube.com/watch?v=NKEiUHoSAtU">Khoe Khoe</a>, and <a
+href="https://www.youtube.com/watch?v=NN7liLYhlxE">Hazda</a></p>
+<ul>
+<li>Because these are awesome languages</li>
+</ul></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>## Today’s Agenda</td>
+</tr>
+<tr class="even">
+<td>* Serial Verb Constructions!</td>
+</tr>
+<tr class="odd">
+<td>* Niger-Congo!</td>
+</tr>
+<tr class="even">
+<td>* The Bantu Languages</td>
+</tr>
+<tr class="odd">
+<td>* Ewe</td>
+</tr>
+</tbody>
+</table>
+<h1 id="serial-verb-constructions">Serial Verb Constructions!</h1>
+<hr />
+<h3 id="serial-verb-construction">Serial Verb Construction</h3>
+<p>A phenomenon where multiple verbs act together to express a single
+and composite verbal meaning.</p>
+<hr />
+<p><lang>Baule</lang><br><ldata>Niger-Congo - Côte d’Ivoire</ldata></p>
+<p><em>O-a-fa i swa n a-kle mi</em></p>
+<p>he-ANT-take his house DEF ANT-show me</p>
+<p>‘He has shown me his house’</p>
+<ul>
+<li><strong>‘Take’ and ‘Show’ are used to form a combined
+meaning!</strong></li>
+</ul>
+<hr />
+<p><lang>Igbo</lang><br><ldata>Niger-Congo - Nigeria</ldata></p>
+<p><em>o ti-wa-ra et́eré a</em></p>
+<p>he hit-split.open-TENSE plate the</p>
+<p>‘He shattered the plate’</p>
+<ul>
+<li><strong>‘hit’ + ‘split-open’ == ‘shattered’</strong></li>
+</ul>
+<hr />
+<h3 id="properties-of-svcs">Properties of SVCs</h3>
+<ul>
+<li><p>Multiple verbs are used, but only a single combined meaning is
+expressed</p></li>
+<li><p>All verbs share the agent and object</p></li>
+<li><p>All verbs share the same temporal marking</p></li>
+<li><p>The meaning often has to be paraphrased in translation</p></li>
+</ul>
+<hr />
+<p><lang>Taba</lang><br><ldata>Austronesian - Indonesia</ldata></p>
+<p><em>n-babas welik n-mot do</em></p>
+<p>3sg-bite pig 3sg-die REAL</p>
+<p>‘It bit the pig dead’</p>
+<ul>
+<li><strong>English lacks a verb for “bite until death”</strong></li>
+</ul>
+<hr />
+<p><lang>Alamblak</lang><br><ldata>Sepik (Papuan) - Papua New
+Guinea</ldata></p>
+<p><em>miyt ritm muh-hambray-an-m</em></p>
+<p>tree insects climb-search:for-1sg-3pl</p>
+<p>‘I climbed the tree searching for insects’</p>
+<ul>
+<li><strong>‘climb’ and ‘search’ are combined here, but not in
+translation!</strong></li>
+</ul>
+<hr />
+<h3
+id="often-svcs-take-the-place-of-single-verbs-in-other-languages">Often,
+SVCs take the place of single verbs in other languages</h3>
+<hr />
+<p><lang>Tetun Dili</lang><br><ldata>Austronesian - Timor</ldata></p>
+<p><em>labele fo ́ sai lia ne’e</em></p>
+<p>neg.can give exit voice this</p>
+<p>‘You can’t reveal this matter!’</p>
+<ul>
+<li><strong>‘Give+Exit’ with ‘voice’ expresses “reveal”</strong></li>
+</ul>
+<hr />
+<h3 id="lets-play-serial-verb-construction-or-not">Let’s play “Serial
+Verb Construction or not!”</h3>
+<hr />
+<p><strong>Language name hidden!</strong></p>
+<p>acwe alɔ rwot</p>
+<p>1sg+fat+hab 1sg+exceed+hab king</p>
+<p>‘I am fatter than the king’ (lit. I-fat I-exceed king)</p>
+<ul>
+<li>… Same arguments, combined meaning. <strong>This is an
+SVC!</strong></li>
+</ul>
+<hr />
+<p>The last example was from…</p>
+<p><lang>Lango</lang><br><ldata>Nilo-Saharan - Uganda/South
+Sudan</ldata></p>
+<hr />
+<p><strong>Language name hidden!</strong></p>
+<p>‘Hit the store, buy some fruit, and break this $100?’</p>
+<ul>
+<li>‘hit’ has different arguments than ‘buy’, ‘break’. Also lots of
+other syntactic baggage. <strong>Not an SVC</strong></li>
+</ul>
+<hr />
+<p>(That was English)</p>
+<hr />
+<p><strong>Language name hidden!</strong></p>
+<p>Teenage Mutant Ninja Turtles di-a ren-a jalak-a Michael Bay</p>
+<p>Teenage Mutant Ninja Turtles produce-3sg desecrate-3sg
+make.terrible-3sg Michael Bay</p>
+<p>‘Michael Bay produced “Teenage Mutant Ninja Turtles” poorly’</p>
+<ul>
+<li>Multiple verbs contributing their meanings to a single mix?
+<strong>Yep! SVC!</strong></li>
+</ul>
+<hr />
+<p>Yeah, made that last one up</p>
+<ul>
+<li><h2
+id="although-the-rest-of-the-examples-from-this-section-have-been-from-serial-verb-constructions-a-cross-linguistic-typology-by-sasha-aikhenvald-and-bob-dixon.-2006"><small>(although
+the rest of the examples from this section have been from ‘Serial Verb
+Constructions: A cross-linguistic typology’ by Sasha Aikhenvald and Bob
+Dixon. 2006)</small></h2></li>
+</ul>
+<h3 id="svcs-are-found-all-around-the-world">SVCs are found all around
+the world</h3>
+<ul>
+<li><p>Common in Papuan, Austronesian, Amazonian, and Nilo-Saharan
+languages</p></li>
+<li><p>They’re particularly common in…</p></li>
+</ul>
+<hr />
+<h1 id="niger-congo-languages-1">Niger-Congo Languages!</h1>
+<hr />
+<h3 id="niger-congo">Niger-Congo</h3>
+<ul>
+<li><p>This is a top-level language family</p></li>
+<li><p>85% of Africa’s population speak a N-C language!</p>
+<ul>
+<li>600 million people</li>
+</ul></li>
+<li><p>The largest family in the world in terms of number of languages
+(1514)</p></li>
+<li><p>Very diverse, with lots of sub-families</p></li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/nigercongomap.png"></p>
+<hr />
+<h3 id="features-of-niger-congo-languages">Features of Niger-Congo
+Languages</h3>
+<ul>
+<li><p>Phun Phonetic Pheatures</p>
+<ul>
+<li>Prenasalized Consonants, Labio-velar articulations, Nasalized
+Vowels, Tone, ATR Harmony</li>
+</ul></li>
+<li><p>Agglutinative Morphology</p></li>
+<li><p>SVO (mostly)</p></li>
+<li><p>Serial Verb Constructions</p></li>
+<li><p>Noun classes!</p></li>
+</ul>
+<hr />
+<h2 id="phonetic-features-of-niger-congo">Phonetic Features of
+Niger-Congo</h2>
+<hr />
+<h3 id="prenasalized-consonants">Prenasalized Consonants</h3>
+<p>Nasal-&gt;Consonant sequences that act like a single sound</p>
+<ul>
+<li>These are most common in the Bantu subgroup</li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>Swahili</lang><br><ldata>Niger-Congo:Bantu - Southern
+Africa</ldata></td>
+</tr>
+<tr class="even">
+<td><img class="big" src="lotwimg/swahiliconsonants.png"></td>
+</tr>
+</tbody>
+</table>
+<p>These Nd-mb clusters are often used to sound “exotic”</p>
+<hr />
+<p><img class="big" src="lotwimg/relic.jpg"></p>
+<hr />
+<blockquote>
+<p>“Mbwun - This carving is a representation of the mad god Mbwun,
+possibly carved by the Kothoga tribe of the Upper Amazon basin. This
+savage god, also known as He Who Walks On All Fours, was much feared by
+the other indigenous tribes of the area.” - Relic, Preston and Child</p>
+</blockquote>
+<ul>
+<li><h1 id="nope.">Nope.</h1></li>
+</ul>
+<hr />
+<p>(Guaraní is the only language in Amazonas which we know uses
+prenasalized stops, and that’s down towards Paraguay)</p>
+<hr />
+<p>(Nerd-rage aside…)</p>
+<hr />
+<h3 id="labio-velar-articulations">Labio-Velar Articulations</h3>
+<p>Making a stop with simultaneous gestures with the lips and back of
+the tongue</p>
+<hr />
+<p><lang>Ewe</lang><br><ldata>Niger-Congo - Togo and Ghana</ldata></p>
+<p><img src="lotwimg/eweconsonants.png"></p>
+<hr />
+<p><lang>Ewe</lang><br><ldata>Niger-Congo - Togo and Ghana</ldata></p>
+<ul>
+<li><p>Ewe is a <strong>Gbe</strong> language</p></li>
+<li><p>/eβegbe gbɔgblɔ/ - “Speaking Ewe”</p></li>
+<li><p>/dzetugbe/ - “Beautiful”</p></li>
+<li><p>/ele nyaɡblɔɡblɔ vivi tõ/ - “She’s telling an
+exciting/interesting story”</p>
+<ul>
+<li>“vivi” is a French borrowing</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="contrastive-nasality">Contrastive Nasality</h3>
+<p>When nasality during the vowel changes the meaning of the word</p>
+<hr />
+<p><lang>French</lang><br><ldata>IE:Italic - All over</ldata></p>
+<p><em>beau</em> (/bo/) - “beautiful”</p>
+<p><em>bon</em> (/bõ/) - “good”</p>
+<p><em>tas</em> (/ta/) - “heap”</p>
+<p><em>temps</em> (/tã/) - “weather”</p>
+<hr />
+<h3
+id="will-is-making-a-vowel-pair.-is-it-oral-nasal-or-nasal-oral">Will is
+making a vowel pair. Is it Oral-Nasal, or Nasal-Oral?</h3>
+<ol type="A">
+<li><p>Oral then Nasal</p></li>
+<li><p>Nasal then Oral</p></li>
+</ol>
+<hr />
+<p>(This is Will’s dissertation topic. <strong>Do not</strong> ask him
+about Nasalized vowels unless you’re prepared for some serious
+nerding.)</p>
+<hr />
+<h3 id="tone">Tone</h3>
+<p><img src="lotwimg/nigercongotone.png"></p>
+<ul>
+<li><small>(Thanks, Wikipedia!)</small></li>
+</ul>
+<hr />
+<h3 id="atr-harmony">ATR Harmony</h3>
+<p>Where all vowels in the word have the same tongue root position.</p>
+<ul>
+<li>Been there, done that, got the /ti ʃiɹt/.</li>
+</ul>
+<hr />
+<h2 id="grammatical-features-of-niger-congo">Grammatical Features of
+Niger-Congo</h2>
+<p><img class="big" src="humorimg/grammartime.jpg">
+<!-- .element: class="fragment" --></p>
+<hr />
+<h3 id="agglutinative-morphology">Agglutinative Morphology</h3>
+<ul>
+<li>’Nuff said</li>
+</ul>
+<hr />
+<h3 id="svo-word-order">SVO Word Order</h3>
+<ul>
+<li>Oddly familiar</li>
+</ul>
+<hr />
+<h3 id="serial-verb-constructions-1">Serial Verb Constructions</h3>
+<ul>
+<li>Been there, done that, go select try.on purchase-PAST t-shirt</li>
+</ul>
+<hr />
+<h3 id="noun-classes">Noun Classes!</h3>
+<ul>
+<li><p>Niger-Congo languages, especially Bantu, have really rich systems
+of grammatical gender and noun class</p></li>
+<li><p>The Bantu languages are claimed to have 22 total noun classes,
+not present in all of them</p></li>
+</ul>
+<hr />
+<p><lang>Zande</lang><br><ldata>Niger-Congo:Zande - Congo</ldata></p>
+<ol type="1">
+<li>Human (Male) - “Man”</li>
+<li>Human (Female) - “Wife”</li>
+<li>Animate - “Beast”</li>
+<li>Other - “House”</li>
+</ol>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><lang>Swahili</lang><br><ldata>Niger-Congo:Bantu - East
+Africa</ldata></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><lang>Swahili</lang><br><ldata>Niger-Congo:Bantu - East
+Africa</ldata></td>
+</tr>
+<tr class="even">
+<td>Ji-Ma:</td>
+</tr>
+<tr class="odd">
+<td>* manufactured products, natural or built places, abstract or
+concrete concepts * sehemu za mwili [parts of the body] * atunda na vitu
+vya kawaida [fruits and natural objects]</td>
+</tr>
+</tbody>
+</table>
+<p><lang>Swahili</lang><br><ldata>Niger-Congo:Bantu - East
+Africa</ldata></p>
+<p>U - U:</p>
+<ul>
+<li>concrete nouns with various plurals</li>
+<li>uncountable nouns, with no plural form</li>
+<li>nouns that are mostly formed from adjectives, nominals, or verbal
+roots</li>
+<li>names of countries</li>
+</ul>
+<hr />
+<p>(For more Swahili noun classes <a
+href="https://www2.ku.edu/~kiswahili/pdfs/Lesson_09.pdf">check this
+out</a>)</p>
+<hr />
+<h3 id="so-we-can-only-cover-a-few-languages">So, we can only cover a
+few languages</h3>
+<hr />
+<p><img class="big" src="lotwimg/nigercongomap.png"></p>
+<hr />
+<h3 id="the-bantu-languages">The Bantu Languages</h3>
+<ul>
+<li><p>Technically they’re
+“Niger-Congo:Atlantic-Congo:Benue-Congo:Southern Bantoid:Bantu”, but we
+just say “Bantu”</p></li>
+<li><p>Comparatively well-studied, for African languages</p></li>
+<li><p>Bantu languages took over many Khoisan-speaking populations</p>
+<ul>
+<li>This is the “Bantu Expansion”</li>
+</ul></li>
+<li><p>Prominent languages:</p>
+<ul>
+<li>Swahili (140m speakers, kind of)</li>
+<li>Shona (~15m speakers)</li>
+<li>Zulu (~10m speakers)</li>
+<li>Rwanda-Rundi (~13m speakers)</li>
+<li>Xhosa (~8m speakers), and lots more</li>
+</ul></li>
+<li><p>Several hundred languages (we can’t agree on how many)</p></li>
+<li><p>We subdivide them into different zones based on
+geography</p></li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/bantuzones.png"></p>
+<hr />
+<p>… What do you mean “140 million Swahili speakers, kind of”?</p>
+<ul>
+<li><h3 id="swahili-is-whats-called-a-lingua-franca">Swahili is what’s
+called a “Lingua Franca”</h3></li>
+</ul>
+<hr />
+<h3 id="lingua-franca"><em>Lingua Franca</em></h3>
+<p>A language used for communication across different groups in an
+area</p>
+<hr />
+<h3 id="swahili-is-whats-called-a-lingua-franca-1">Swahili is what’s
+called a “Lingua Franca”</h3>
+<ul>
+<li><p>Only around 5 million people speak Swahili as a first
+language</p></li>
+<li><p>… but more than 140 million speak it throughout Southeast
+Africa</p></li>
+<li><p>Most Swahili speakers only use it when talking to people who
+don’t speak their native language</p></li>
+<li><p>For many people, it contaminates or eventually replaces the
+native language</p></li>
+</ul>
+<hr />
+<p><lang>Swahili</lang><br><ldata>Niger-Congo:Bantu - Southeast
+Africa</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/KVLWkCErIZ8">
+</iframe>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>Shona</lang><br><ldata>Niger-Congo:Bantu - Zimbabwe and Zambia
+</ldata></td>
+</tr>
+<tr class="even">
+<td><iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/l969E-dvqqg"></iframe></td>
+</tr>
+</tbody>
+</table>
+<h3 id="weve-borrowed-a-lot-of-bantu">We’ve borrowed a lot of Bantu</h3>
+<ul>
+<li>Conga</li>
+<li>Chimpanzee</li>
+<li>Marimba</li>
+<li>Simba - Swahili for “lion”</li>
+<li>Impala - Zulu</li>
+<li>Jenga - Swahili for “build”</li>
+<li>Boogie-Woogie (<em>maybe</em>)</li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/ubuntu.png"></p>
+<ul>
+<li>‘Ubuntu’ is a Bantu term roughly meaning ‘kindness’ or ‘humanity
+towards others’</li>
+</ul>
+<hr />
+<h3 id="lets-look-at-one-other-niger-congo-language">Let’s look at one
+other Niger-Congo language</h3>
+<hr />
+<p><lang>Ewe</lang><br><ldata>Niger-Congo - Togo and Ghana</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/Fj0Mbavr950">
+</iframe>
+<hr />
+<h3 id="ewe-is-pronounced-eβe">Ewe is pronounced /eβe/</h3>
+<ul>
+<li>Sounds kind of like “Hey Way”, but without the “h”</li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/ewesheep.jpg"></p>
+<table>
+<tbody>
+<tr class="odd">
+<td><img class="big" src="lotwimg/ewesheepcrossed.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ewe-ewegbe">Ewe (Ewegbe)</h3>
+<ul>
+<li><p>Niger-Congo, spoken by ~3.5m people, mostly in Ghana and
+Togo</p></li>
+<li><p>Part of the Gbe subgroup of Niger-Congo</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img class="big" src="lotwimg/gbelanguages.png"></p>
+<hr />
+<h3 id="ewe-ewegbe-1">Ewe (Ewegbe)</h3>
+<p>Niger-Congo, spoken by ~3.5m people, mostly in Ghana, Togo, and
+Benin</p>
+<p>Part of the Gbe subgroup of Niger-Congo</p>
+<ul>
+<li><p>Serial Verb Constructions!</p></li>
+<li><p>SVO</p></li>
+<li><p><strong>No</strong> interesting noun classes</p></li>
+<li><p>Labio-Velars, Contrastive Nasality, Level tones</p></li>
+</ul>
+<hr />
+<p><lang>Ewe</lang><br><ldata>Niger-Congo - Togo and Ghana</ldata></p>
+<ul>
+<li><p>tó ‘mountain’ (High tone)</p></li>
+<li><p>tǒ ‘mortar’ (Rising tone)</p></li>
+<li><p>tò ‘buffalo’ (Low tone)</p></li>
+</ul>
+<hr />
+<h3 id="we-havent-even-scraped-the-surface-of-african-languages">We
+haven’t even scraped the surface of African languages</h3>
+<p><img class="big" src="lotwimg/africa_languages.jpg"></p>
+<ul>
+<li>… but you totally should, after this class. They’re awesome.</li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Serial Verb Constructions are when multiple verbs combine to have
+a single meaning.</p></li>
+<li><p>Niger-Congo is diverse, and has lots of fun features</p>
+<ul>
+<li>Features which you should know</li>
+</ul></li>
+<li><p>The Bantu Languages are very common throughout Southern
+Africa</p>
+<ul>
+<li>… and they’re growing!</li>
+</ul></li>
+<li><p>Ewe is an awesome language</p></li>
+<li><p>Africa has <em>massive</em> linguistic diversity</p></li>
+</ul>
+<hr />
+<h2 id="in-recitation-exam-review-part-one">In Recitation: Exam Review,
+part one!</h2>
+<hr />
+<h2 id="next-time-exam-overview-and-english.-oh-english.">Next time:
+Exam Overview, and English. Oh, English.</h2>
+<p><correct>No reading.</correct></p>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

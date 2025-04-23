@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h3 id="adriano-celentano---prisencolinensinainciusol">Adriano Celentano
+- Prisencolinensinainciusol</h3>
+<video controls src="video/prisencolinensinainciusol_adriano_celentano.mp4">
+</video>
+<hr />
+<h3 id="back-up-your-computers">Back up your computers</h3>
+<ul>
+<li><p>If your hard drive or computer failed tomorrow, what would you
+do?</p></li>
+<li><p>Keep a copy of important non-private documents on Google Drive or
+iCloud</p></li>
+<li><p>Buy an external drive and backup your whole machine</p>
+<ul>
+<li><p>Time Machine on Mac, Windows Backup on PC</p></li>
+<li><p>Or Backblaze, rsync, restic, etc</p></li>
+</ul></li>
+<li><p>Seriously, <em>your computer will likely die while you’re at
+UCSD</em>, be prepared</p></li>
+</ul>
+<hr />
+<h2 id="morphology-2-and-english-is-drunk">Morphology 2, and English is
+Drunk</h2>
+<h3 id="lign-101---will-styler">LIGN 101 - Will Styler</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>How do languages generally make words? (Morphological
+Type)</p></li>
+<li><p>Inflection vs. Derivation</p></li>
+<li><p>Where to draw the line between morphology and phonology?</p></li>
+<li><p>Go home, English, you’re drunk</p></li>
+</ul>
+<hr />
+<h3 id="do-languages-differ-in-how-they-like-to-build-their-words">Do
+languages differ in how they like to build their words?</h3>
+<ul>
+<li>Of course!</li>
+</ul>
+<hr />
+<h2 id="morphological-type">Morphological Type</h2>
+<hr />
+<h3 id="morphological-type-1">Morphological Type</h3>
+<p>A means of categorizing how languages put words together</p>
+<ul>
+<li>This is useful for comparing word-building strategies <em>across
+languages</em></li>
+</ul>
+<p>One relevant dimension asks a common question: <strong><em>Do words
+have lots of morphemes or few?</em></strong></p>
+<hr />
+<h3 id="do-words-have-lots-of-morphemes-or-few">Do words have lots of
+morphemes or few?</h3>
+<ul>
+<li><p>If words have few morphemes (like English or Chinese), they’re
+“isolating”</p></li>
+<li><p>If they have many (like Spanish or German), they’re
+“synthetic”</p>
+<ul>
+<li>Languages where whole sentences are single words are sometimes
+called “polysynthetic”</li>
+</ul></li>
+</ul>
+<hr />
+<p><lang>English</lang><br><ldata>IE:Germanic - All over</ldata></p>
+<p>I did see the cat on the street, he’s cute.</p>
+<p>I did see DEF cat on DEF street he-be.3sg cute.</p>
+<ul>
+<li>Only one morpheme in most words! <strong><em>This is
+Isolating!</em></strong></li>
+</ul>
+<hr />
+<p><lang>Russian</lang><br><ldata>IE:Slavic - Russian</ldata></p>
+<p>Ti uhodila so mnoi</p>
+<p>Ti u-hodi-la so mnoi</p>
+<p>2sg.NOM away-go.IMPERF-past.FEM with 1sg.INST</p>
+<p>“You left with me”</p>
+<ul>
+<li>This is looking more <strong>synthetic!</strong></li>
+</ul>
+<hr />
+<p><lang>Spanish</lang><br><ldata>IE:Italic - All over</ldata></p>
+<p><em>Esta escribiéndomelo</em></p>
+<p>be.3sg write-GER-1sg.DAT-3sg.MASC</p>
+<p>‘He/she is writing it to me.’</p>
+<ul>
+<li>Lots of morphemes per word! <strong><em>This is
+Synthetic!</em></strong></li>
+</ul>
+<hr />
+<p><lang>Turkish</lang><br><ldata>Turkic - Turkey</ldata></p>
+<p><img class="r-stretch" src="lotwimg/agglutinatingturkish.png"></p>
+<ul>
+<li>Whoa, that’s a lot of morphemes. <strong>Synthetic!</strong></li>
+</ul>
+<hr />
+<p><lang>Turkish</lang><br><ldata>Turkic - Turkey</ldata></p>
+<p><img class="r-stretch" src="morphology/turkish_agglutination.jpg"></p>
+<ul>
+<li>OK Turkish, now you’re just showing off…</li>
+</ul>
+<hr />
+<p><lang>German</lang><br><ldata>IE:Germanic - Germany</ldata></p>
+<p><em>Donaudampfschifffahrtselektrizitätenhauptbetriebswerkbauunterbeamtengesellschaft</em></p>
+<p>Donau-dampf-schiff-fahrts-elektrizitäten-haupt-betriebs-werk-bau-unter-beamten-gesellschaft</p>
+<p>Danube-steam-ship-transport’s-electricities-head-operation’s-work-building-under-officials-association</p>
+<hr />
+<p><lang>Wichita</lang><br><ldata>Caddoan - Oklahoma</ldata></p>
+<p>Kiyakiicíwa:cé:hirʔasʔirhawi</p>
+<p>‘There was the big buffalo lying there.’</p>
+<ul>
+<li>Uh… yeah. <strong><em>This is polysynthetic!</em></strong></li>
+</ul>
+<hr />
+<h3 id="its-always-a-continuum">It’s always a continuum</h3>
+<ul>
+<li><p>English is isolating, but Mandarin is <em>more</em>
+isolating</p></li>
+<li><p>Few languages are as polysynthetic as Wichita, but that’s
+OK!</p></li>
+</ul>
+<hr />
+<h3 id="morphological-type---review">Morphological Type - Review!</h3>
+<ul>
+<li><p>If a language has few morphemes per word, it’s
+<em>isolating</em></p></li>
+<li><p>If the language has multiple morphemes per word, it’s
+<em>synthetic</em></p></li>
+</ul>
+<hr />
+<h3 id="so-far-weve-been-talking-about-building-new-words">So far, we’ve
+been talking about building <em>new words</em></h3>
+<ul>
+<li>“How do I create a new word that I can use in a sentence?”</li>
+</ul>
+<hr />
+<h3 id="this-is-called-derivational-morphology">This is called
+‘Derivational Morphology’</h3>
+<hr />
+<h3 id="derivational-morphology">Derivational Morphology</h3>
+<ul>
+<li><p>Attaching affixes that change the part of speech of the root, or
+change something important about the meaning</p></li>
+<li><p>The meaning changes don’t apply to all words, and are sometimes
+unpredictable</p></li>
+</ul>
+<hr />
+<h3 id="examples-of-derivational-morphology">Examples of Derivational
+Morphology</h3>
+<ul>
+<li><p>control (verb) -&gt; controllable (adjective)</p></li>
+<li><p>amaze (verb) -&gt; amazement (noun)</p></li>
+<li><p>joy (noun) -&gt; joyful (adjective)</p></li>
+<li><p>teach (verb) -&gt; teacher (noun)</p></li>
+<li><p>roll (verb) -&gt; unroll (verb)</p></li>
+<li><p>write (verb) -&gt; rewrite (verb)</p></li>
+<li><p>fair (adjective) -&gt; unfair (adjective)</p></li>
+</ul>
+<hr />
+<h3 id="inflectional-morphology">Inflectional Morphology</h3>
+<ul>
+<li><p>Inflectional morphology predictably changes the meaning of the
+word in the sentence, but doesn’t change the part of speech or meaning
+of the whole word in a deep way.</p></li>
+<li><p>Inflectional morphology is <em>often added at the time of
+speaking</em></p></li>
+</ul>
+<hr />
+<h3 id="examples-of-inflectional-morphology-in-english">Examples of
+Inflectional Morphology in English</h3>
+<ul>
+<li>cat -&gt; cats (-s plural marker)</li>
+<li>we sing -&gt; he sings (-s 3rd person singular marker)</li>
+<li>he walks -&gt; he walked (-ed 3sg past tense marker)</li>
+</ul>
+<hr />
+<h3 id="inflectional-morphology-around-the-world">Inflectional
+Morphology around the World</h3>
+<hr />
+<h3 id="khanty-western-siberia">Khanty (Western Siberia)</h3>
+<p>xot ‘house’</p>
+<ul>
+<li><p>xot-yyn ‘two houses (dual)’</p></li>
+<li><p>xot-yt ‘houses (plural)’</p></li>
+</ul>
+<hr />
+<h3 id="russian-transliterated">Russian (Transliterated)</h3>
+<ul>
+<li><p>Devushk-a videt sobak-u</p>
+<ul>
+<li>The girl sees the dog</li>
+</ul></li>
+<li><p>Devushk-u videt sobak-a</p>
+<ul>
+<li>The dog sees the girl</li>
+</ul></li>
+<li><p>This is a <em>case system</em>. We’ll talk more about those
+later.</p></li>
+</ul>
+<hr />
+<h3 id="somali">Somali</h3>
+<ul>
+<li><p>xoola-hayga ‘my herd’</p></li>
+<li><p>xoola-haaga ‘your herd’</p></li>
+<li><p>xoola-heeda ‘her herd’</p></li>
+<li><p>xooli-hiisa ‘his herd’</p></li>
+</ul>
+<hr />
+<h3 id="spanish">Spanish</h3>
+<ul>
+<li><p>Habl-o ‘I speak (Present tense)’</p></li>
+<li><p>Habl-as ‘You speak (Present tense)’</p></li>
+<li><p>Habl-a ‘He/She/It speaks (Present tense)’</p></li>
+<li><p>Habl-amos ‘We speak (Present tense)’</p></li>
+<li><p>Habl-ais ‘Y’all speak (Present tense)’</p></li>
+<li><p>Habl-an ‘They speak (Present tense)’</p></li>
+</ul>
+<hr />
+<h3
+id="english-mom-can-we-stop-and-get-inflectional-morphology">English:
+“Mom, can we stop and get inflectional morphology?”</h3>
+<ul>
+<li><h3 id="mom-we-have-inflectional-morphology-at-home">Mom: “We have
+inflectional Morphology at home”</h3></li>
+</ul>
+<hr />
+<h3 id="inflectional-morphology-at-home">Inflectional morphology at
+home:</h3>
+<p><img class="r-stretch" src="morphology/english_inflectional.jpg"></p>
+<hr />
+<h3 id="so-we-have-derivational-and-inflectional-morphology">So, we have
+derivational and inflectional morphology</h3>
+<ul>
+<li><p>Derivational morphology is used to build new words</p></li>
+<li><p>Inflectional morphology changes their meanings in predictable
+ways in sentences</p></li>
+<li><p>The line between these can get blurry in some cases</p></li>
+<li><p>Most languages do a bit of each!</p></li>
+</ul>
+<hr />
+<h2 id="now-for-something-completely-different">Now, for something
+completely different</h2>
+<hr />
+<h2 id="language-warning">Language Warning</h2>
+<ul>
+<li><p>We discuss Language</p>
+<ul>
+<li>All of it</li>
+</ul></li>
+<li><p>We may discuss taboo subjects, words, constructions, or
+concepts</p></li>
+<li><p>It’s all meant to further academic pursuits</p></li>
+<li><p>Please come talk to me if you have any concerns.</p></li>
+</ul>
+<hr />
+<h2 id="go-home-english-youre-drunk">Go home English, you’re drunk</h2>
+<h3 id="ling-101---will-styler">LING 101 - Will Styler</h3>
+<hr />
+<h3 id="why-cant-these-immigrants-just-learn-english">“Why can’t these
+immigrants just learn English?!?”</h3>
+<hr />
+<h2 id="uh-have-you-looked-at-english-lately">“Uh, have you looked at
+English lately??”</h2>
+<hr />
+<h3
+id="nearly-every-part-of-this-language-is-completely-bizarre.">Nearly
+every part of this language is completely bizarre.</h3>
+<ul>
+<li>Non-Native Speakers: You know the deal.</li>
+</ul>
+<hr />
+<p>Let’s look at this from an outsider’s perspective</p>
+<hr />
+<h2 id="the-sound-system">The Sound System</h2>
+<hr />
+<h3 id="ɹeally">/ɹ/eally?</h3>
+<ul>
+<li><p>Very few languages use /ɹ/</p>
+<ul>
+<li>Mandarin Chinese shares this crazy</li>
+</ul></li>
+<li><p>We’ve got a bunch of ways to make it</p></li>
+</ul>
+<hr />
+<p><img src="phonmedia/englishr.jpg" /></p>
+<hr />
+<h2 id="intonation">Intonation</h2>
+<hr />
+<h3 id="the-prosody-or-pitch-and-timing-you-use-matters-a-lot">The
+prosody, or pitch and timing you use, matters a lot</h3>
+<ul>
+<li><p>“I had Five Guys for lunch yesterday.”</p></li>
+<li><p>“Let’s eat, Grandma!”</p></li>
+<li><p>“I’m so sorry to hear about your exam score”</p></li>
+<li><p>List intonation</p></li>
+</ul>
+<hr />
+<h2 id="vocabulary">Vocabulary</h2>
+<hr />
+<h3 id="english-has-done-a-lot-of-theft">English has done a
+<strong>lot</strong> of theft</h3>
+<hr />
+<p><strong>English</strong></p>
+<p>All <em>human</em> beings are born free and <em>equal</em> in
+<em>dignity</em> and rights. They are <em>endowed</em> with
+<em>reason</em> and <em>conscience</em> and should <em>act</em> towards
+one <em>another</em> in a <em>spirit</em> of brotherhood.</p>
+<p><strong>French</strong></p>
+<p>Tous les êtres humains naissent libres et égaux en dignité et en
+droits. Ils sont doués de raison et de conscience et doivent agir les
+uns envers les autres dans un esprit de fraternité.</p>
+<hr />
+<h3 id="on-the-purity-of-the-english-language">On the ‘Purity’ of the
+English language…</h3>
+<blockquote>
+<p>“We don’t just borrow words; on occasion, English has pursued other
+languages down alleyways to beat them unconscious and rifle their
+pockets for new vocabulary.” –James D. Nicoll</p>
+</blockquote>
+<hr />
+<section data-background="humorimg/darkalley.jpg">
+</section>
+<hr />
+<h3 id="no-language-is-an-island">No language is an island</h3>
+<ul>
+<li><p>Most languages borrow terms from elsewhere</p></li>
+<li><p>(but English is a thug)</p>
+<ul>
+<li>… and ‘thug’ is a loanword from Hindi!</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="the-writing-system">The Writing System</h2>
+<hr />
+<p><img src="phonmedia/aeiou.png"></p>
+<hr />
+<h1 id="ghoti">Ghoti</h1>
+<p><img class="big" src="img/fish_dieter.jpg"></p>
+<hr />
+<h3 id="ghoti-1">Ghoti</h3>
+<ul>
+<li><p>“gh” from “rough”</p></li>
+<li><p>“o” from “women”</p></li>
+<li><p>“ti” from “action”</p></li>
+<li><p>Pronounced like “Fish”</p></li>
+</ul>
+<hr />
+<h2 id="knight">Knight</h2>
+<p><img class="big" src="humorimg/blackknight.jpg"></p>
+<hr />
+<p>Then, we use these sounds to do silly things in the rest of the
+language</p>
+<hr />
+<h2 id="ablaut">Ablaut</h2>
+<hr />
+<h3 id="some-english-verbs-change-vowels-to-get-their-past-tense">Some
+English verbs change vowels to get their past tense</h3>
+<ul>
+<li>Sing -&gt; Sang</li>
+<li>Ring -&gt; Rang</li>
+<li>Bring -&gt; Brought</li>
+<li>Sting -&gt; Stung</li>
+<li>Ding -&gt; Dinged</li>
+<li>Smite -&gt; Smote</li>
+<li>Bite -&gt; Bit</li>
+<li>Yeet -&gt; Yote?</li>
+</ul>
+<hr />
+<h2 id="prepositions">Prepositions</h2>
+<hr />
+<p>I’ve got a conference [at/in] the Price Center</p>
+<ul>
+<li><p>I’ve got a conference at Indiana</p></li>
+<li><p>I’ve got a conference at Indianapolis</p></li>
+<li><p>I’ve got a conference at the Marriott in Indianapolis</p></li>
+</ul>
+<hr />
+<h3 id="wtf">WTF?</h3>
+<hr />
+<p>I’ve got a meeting on Friday</p>
+<ul>
+<li><p>I’ve got a meeting in August</p></li>
+<li><p>I’ve got a meeting at 3pm</p></li>
+<li><p>I’ve got a meeting during lunch</p></li>
+<li><p>I’ve got a meeting ø next week</p></li>
+</ul>
+<hr />
+<p>I saw her last night.</p>
+<ul>
+<li><p>I saw her last morning.</p></li>
+<li><p>I saw her last afternoon.</p></li>
+<li><p>I saw her last evening.</p></li>
+<li><p>I saw her last sunrise.</p></li>
+<li><p>I saw her yesterday afternoon.</p></li>
+<li><p>I saw her yesterday night.</p></li>
+</ul>
+<hr />
+<h3 id="am-i-getting-my-point-tothroughbyacross-to-you">Am I getting my
+point to/through/by/across to you?</h3>
+<ul>
+<li>I’m no good at/when/for explaining these things in/at/through
+lectures.</li>
+</ul>
+<hr />
+<h2 id="plurality">Plurality</h2>
+<hr />
+<p>Fish.</p>
+<p><img class="big" src="img/fish_dieter.jpg"></p>
+<hr />
+<p>Fish.</p>
+<p><img class="big" src="img/fish_jonydieter.jpg"></p>
+<hr />
+<p>Fishes.</p>
+<p><img class="big" src="img/fish_fishes.jpg"></p>
+<hr />
+<p>Leaf -&gt; Leaves</p>
+<ul>
+<li><p>Wife -&gt; Wives</p></li>
+<li><p>Staff -&gt; ??</p></li>
+</ul>
+<hr />
+<h3 id="the-plural-of-staff-is">The plural of “staff” is…</h3>
+<ol type="a">
+<li><p>Staffs (rhymes with “graphs”)</p></li>
+<li><p>Staffs (rhymes with “calves”)</p></li>
+<li><p>Staves (rhyme with “caves”)</p></li>
+<li><p>Stife (because English.)</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="staffs">Staffs</h3>
+<center>
+<table>
+<tr>
+<th>
+<img height="1000" src="lotwimg/staff.jpg">
+</th>
+<th>
+<img height="1000" src="lotwimg/staff.jpg">
+</th>
+</tr>
+</table>
+</center>
+<hr />
+<h3 id="staves">Staves</h3>
+<p><img class="big" src="lotwimg/tenofwands.jpg"></p>
+<hr />
+<p>Mouse -&gt; Mice</p>
+<ul>
+<li><p>Louse -&gt; Lice</p></li>
+<li><p>House -&gt; Hice</p></li>
+<li><p>Spouse -&gt; …</p></li>
+</ul>
+<hr />
+<h3 id="i-guess-you-could-say-polygamy-adds-spice-to-life">I guess you
+could say polygamy adds spice to life!</h3>
+<ul>
+<li><img src="humorimg/badpundog.jpg"></li>
+</ul>
+<hr />
+<p>(This is a language pun, not advocacy for or against any particular
+relationship structure)</p>
+<hr />
+<h3 id="count-vs.-mass-nouns">Count vs. Mass nouns</h3>
+<ul>
+<li><p>I have a car</p>
+<ul>
+<li>This is a “count noun”</li>
+</ul></li>
+<li><p>*I have a sand.</p>
+<ul>
+<li>This is a “mass noun”</li>
+</ul></li>
+<li><p>I ate an asparagus</p></li>
+<li><p>I ate a french fry</p></li>
+</ul>
+<hr />
+<h3 id="count-nouns-can-be-treated-like-mass-nouns">Count nouns can be
+treated like mass nouns</h3>
+<ul>
+<li><p>I saw a raccoon on the road</p></li>
+<li><p>I saw some raccoons on the road</p></li>
+<li><p>I saw some raccoon on the road</p></li>
+</ul>
+<hr />
+<p><img src="humorimg/escalatedquickly.jpg"></p>
+<hr />
+<p>Speaking of dead animals…</p>
+<hr />
+<h2 id="i-have-cow-with-english">I have cow with English</h2>
+<hr />
+<h3 id="whatd-you-have-for-dinner">What’d you have for dinner?</h3>
+<ul>
+<li>I had cow.
+<ul>
+<li>Needs to be “beef”</li>
+</ul></li>
+<li>I had pig.
+<ul>
+<li>“Pork”</li>
+</ul></li>
+<li>I had deer
+<ul>
+<li>“Venison”</li>
+</ul></li>
+<li>I had sheep
+<ul>
+<li>“Mutton”</li>
+<li>… but lamb?</li>
+</ul></li>
+<li>I had chicken.</li>
+</ul>
+<hr />
+<h3 id="animals-are-count-nouns-foods-are-mass-nouns">Animals are count
+nouns, foods are mass nouns</h3>
+<ul>
+<li><p>I hugged three pigs, *I ate three porks</p></li>
+<li><p>I bought some cows, I bought some beef</p></li>
+<li><p>I bought some chickens, I ate some chicken</p></li>
+<li><p>I ate some chickens</p></li>
+</ul>
+<hr />
+<p>(Yet, Will has several beefs with Michael Bay)</p>
+<ul>
+<li>Beeves?</li>
+</ul>
+<hr />
+<h2 id="affixes">Affixes</h2>
+<hr />
+<h3 id="english-has-lots-of-prefixes-and-suffixes">English has lots of
+prefixes and suffixes</h3>
+<ul>
+<li>i-
+<ul>
+<li>As in “iPhone”, “iPad”, “iMac”, “iDock”, “iBrator”</li>
+</ul></li>
+<li>-sauce
+<ul>
+<li>As in “sadsauce”, “awesomesauce”, ?“concisesauce”,
+?“pedanticsauce”</li>
+</ul></li>
+<li>-holic/-holism
+<ul>
+<li>As in “alcoholic”, “chocoholic”, “workaholic”, “enchiladaholism”,
+?“phonologoholic”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="what-affixes-can-attach-to-what-words">What affixes can attach
+to what words?</h3>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-viqs{color:black;text-align:left;vertical-align:top}
+.tg .tg-s268{text-align:left}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-s268">
+</th>
+<th class="tg-0lax">
+calm
+</th>
+<th class="tg-0lax">
+happy
+</th>
+<th class="tg-0lax">
+sweet<br>
+</th>
+<th class="tg-0lax">
+quiet
+</th>
+<th class="tg-0lax">
+evil
+</th>
+<th class="tg-0lax">
+linguistic<br>
+</th>
+</tr>
+<tr>
+<td class="tg-0lax">
+_ly<br>
+</td>
+<td class="tg-0lax">
+calmly
+</td>
+<td class="tg-0lax">
+happily
+</td>
+<td class="tg-0lax">
+sweetly
+</td>
+<td class="tg-0lax">
+quietly
+</td>
+<td class="tg-0lax">
+evilly
+</td>
+<td class="tg-0lax">
+linguistically
+</td>
+</tr>
+<tr>
+<td class="tg-0lax">
+un_<br>
+</td>
+<td class="tg-viqs">
+uncalm
+</td>
+<td class="tg-0lax">
+unhappy
+</td>
+<td class="tg-viqs">
+unsweet
+</td>
+<td class="tg-viqs">
+unquiet
+</td>
+<td class="tg-viqs">
+unevil
+</td>
+<td class="tg-0lax">
+unlinguistic
+</td>
+</tr>
+<tr>
+<td class="tg-0lax">
+_ish<br>
+</td>
+<td class="tg-0lax">
+calmish
+</td>
+<td class="tg-0lax">
+happyish
+</td>
+<td class="tg-0lax">
+sweetish
+</td>
+<td class="tg-0lax">
+quietish
+</td>
+<td class="tg-0lax">
+evilish<br>
+</td>
+<td class="tg-0lax">
+linguisticish
+</td>
+</tr>
+<tr>
+<td class="tg-0lax">
+to _<br>
+</td>
+<td class="tg-0lax">
+to calm
+</td>
+<td class="tg-viqs">
+to happy
+</td>
+<td class="tg-viqs">
+to sweet
+</td>
+<td class="tg-0lax">
+to quiet
+</td>
+<td class="tg-viqs">
+to evil
+</td>
+<td class="tg-viqs">
+to linguistic
+</td>
+</tr>
+<tr>
+<td class="tg-0lax">
+_ify
+</td>
+<td class="tg-viqs">
+calmify
+</td>
+<td class="tg-viqs">
+happify
+</td>
+<td class="tg-viqs">
+sweetify
+</td>
+<td class="tg-viqs">
+quietify<br>
+</td>
+<td class="tg-0lax">
+evilify
+</td>
+<td class="tg-viqs">
+linguisticify
+</td>
+</tr>
+</table>
+<hr />
+<h3 id="and-their-meanings-can-be-really-odd">… and their meanings can
+be really odd</h3>
+<ul>
+<li><p>“John works at Art of Espresso. He’s a coffee grinder.”</p></li>
+<li><p>“Mark has retired three times now. He’s a serial
+retirer.”</p></li>
+<li><p>“I just downloaded a new YouTube app. It’s a great
+YouTuber.”</p></li>
+<li><p>“Mark builds armor, he’s an armorer. Steven builds hooks, he’s a
+…”</p></li>
+</ul>
+<hr />
+<h3 id="but-it-has-exactly-one-infix">… but it has exactly one
+infix</h3>
+<hr />
+<h3 id="infix">Infix</h3>
+<p>A affix which is inserted into the middle of the word</p>
+<hr />
+<p>Will I tell you what it is?</p>
+<ul>
+<li><h3 id="abso-fucking-lutely">Abso-fucking-lutely</h3></li>
+</ul>
+<hr />
+<h3 id="fucking-is-the-only-infix-in-the-english-language">“Fucking” is
+the only infix in the English language</h3>
+<ul>
+<li>… and it has very strict rules where it can go</li>
+</ul>
+<hr />
+<h3 id="add-a--fucking--infix-to-the-word-constitutional">Add a
+-fucking- infix to the word “constitutional”</h3>
+<ol type="a">
+<li><p>Cons-fucking-titutional</p></li>
+<li><p>Consti-fucking-tutional</p></li>
+<li><p>Constitu-fucking-tional</p></li>
+<li><p>Constitution-fucking-al</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3
+id="expletives-must-occur-immediately-prior-to-the-stressed-syllable"><em>Expletives
+must occur immediately prior to the stressed syllable</em></h3>
+<ul>
+<li><p>“Missi-fucking-sippi”</p>
+<ul>
+<li>*Miss-fucking-isippi</li>
+</ul></li>
+<li><p>“He’s a deon-fucking-tologist”</p></li>
+<li><p>“Antidisestablishmen-fucking-tarianism”</p></li>
+</ul>
+<hr />
+<p>It’s time to talk about these issues</p>
+<hr />
+<h2 id="it">It</h2>
+<hr />
+<p>It ate my homework</p>
+<ul>
+<li><p>It’s getting hot in here</p></li>
+<li><p>It burns when I eat Habañeros</p></li>
+<li><p>It sucks when Michael Bay remakes your childhood
+favorites</p></li>
+<li><p>It’s about time we fix our writing system</p></li>
+</ul>
+<hr />
+<h3 id="expletive-it">Expletive ‘it’</h3>
+<ul>
+<li><p>Contributes nothing to the meaning of the sentence</p>
+<ul>
+<li>… but does serve a syntactic role</li>
+</ul></li>
+<li><p>“It” is a subject for sentences where there’s no subject at
+all</p></li>
+</ul>
+<hr />
+<h3 id="shouldnt-we-do-something-about-that">Shouldn’t we do something
+about that?</h3>
+<ul>
+<li><p>Which means the same thing as “Should we do something about
+that?”</p>
+<ul>
+<li><p>Go home English, you’re drunk.</p>
+<ul>
+<li>(Shouldn’t that be “drinked”)?</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="i-give-up">I give up</h3>
+<ul>
+<li>Speaking of which…</li>
+</ul>
+<hr />
+<h2 id="verb-particle-constructions">Verb particle constructions</h2>
+<hr />
+<h3 id="verb-particle-constructions-1">Verb Particle Constructions</h3>
+<p>When a verb has a different meaning when coupled with a particular
+preposition or particle</p>
+<hr />
+<h3 id="cut---to-slice">Cut - to slice</h3>
+<ul>
+<li><p>Cut in - To offer somebody a part of a venture</p></li>
+<li><p>Cut out - To stop something, or remove somebody from a venture,
+or lose audio</p></li>
+<li><p>Cut with - To adulterate a drug</p></li>
+<li><p>Cut off - To cease financial support, or merge leaving too little
+space</p>
+<ul>
+<li>… or remove a smaller part than the whole</li>
+</ul></li>
+<li><p>Cut it - To suffice for a task</p></li>
+</ul>
+<hr />
+<h3 id="cut-continued">Cut continued</h3>
+<ul>
+<li><p>Cut up - To slice into small pieces</p></li>
+<li><p>Cut down - To shorten something</p></li>
+<li><p>Cut across/through - To shorten one’s route by traversing an open
+space</p></li>
+<li><p>Cut on - To repeatedly make small cutting strokes at the
+periphery of an object</p></li>
+<li><p>Cut back - To reduce an existing option or investment, travel
+back in story</p></li>
+</ul>
+<hr />
+<p>Sometimes, we don’t know if we want the verb particle construction,
+or the preposition!</p>
+<hr />
+<h3 id="cut-up-the-center-of-the-fabric"><em>Cut up the center of the
+fabric</em></h3>
+<p><img class="big" src="lotwimg/cutup1.png"></p>
+<hr />
+<h3 id="cut-up-the-center-of-the-fabric-1"><em>Cut up the center of the
+fabric</em></h3>
+<p><img class="big" src="lotwimg/cutup2.png"></p>
+<hr />
+<h3 id="these-differences-can-have-major-consequences">These differences
+can have major consequences</h3>
+<hr />
+<h3 id="jackie-stole-my-lunchbox">“Jackie stole my lunchbox…”</h3>
+<ul>
+<li><p>“… then she threw my lunch up on the roof”</p></li>
+<li><p>“… then she threw up my lunch on the roof”</p></li>
+</ul>
+<hr />
+<h2 id="we-have-other-particles">We have other particles</h2>
+<hr />
+<h3 id="the-to-in-to-go">The ‘to’ in ‘to go’</h3>
+<ul>
+<li><p>Apparently, syntacticians have punted on this and call it a
+‘particle’</p></li>
+<li><p>In computational linguistics, we just call it ‘to’ and wash our
+hands of it</p></li>
+<li><p>Either way, it’s going to cause problems</p>
+<ul>
+<li>Like ‘it’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="then-theres-the-really-crazy-stuff">Then there’s the really
+crazy stuff</h3>
+<hr />
+<p><em>Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo
+buffalo.</em></p>
+<ul>
+<li><p>This is a fully grammatical sentence</p>
+<ul>
+<li>Buffalo NY, Buffalo (the animal), and the verb “buffalo” (to
+bully)</li>
+</ul></li>
+<li><p>“New York bison whom other New York bison bully, themselves bully
+New York bison”.</p></li>
+</ul>
+<hr />
+<p><img class="big" src="humorimg/surprisedbuffalo.jpg"></p>
+<hr />
+<h3 id="will-will-will-will-will-wills-will">Will, will Will will Will
+Will’s will?</h3>
+<ul>
+<li><p>Also fully grammatical English</p>
+<ul>
+<li>Will (being addressed), will (future) Will (a person) will
+(bequeath) Will (another person) Will’s will (a document).</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="its-not-just-english">It’s not just English!</h2>
+<hr />
+<h3 id="english-happens-to-be-absolutely-insane">English happens to be
+absolutely insane</h3>
+<ul>
+<li><p>It’s filled with irregularities, weirdnesses, odd constructions,
+and other silliness</p></li>
+<li><p><em>… but that’s no different than any other
+language.</em></p></li>
+</ul>
+<hr />
+<h2 id="all-languages-are-crazy">All languages are crazy!</h2>
+<ul>
+<li><p>We’re simplifying languages left and right for this class</p>
+<ul>
+<li><p>Partly because we don’t have the time</p></li>
+<li><p>… and because if we didn’t, you’d run screaming</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="the-tibetan-writing-system-is-even-more-out-of-date-than-englishs">The
+Tibetan Writing system is even more out of date than English’s</h3>
+<p><img src="lotwimg/tibetan.jpg" /></p>
+<hr />
+<h3 id="the-real-russian-case-system">The Real Russian Case System</h3>
+<p><img class="big" src="lotwimg/russiancaseendings.gif"></p>
+<hr />
+<h3 id="spanish-verbal-hell">Spanish Verbal Hell</h3>
+<p><img class="big" src="lotwimg/spanishverbs.jpg"></p>
+<hr />
+<h3 id="and-that-craziness-is-why-linguists-love-language-so-much">… and
+that craziness is why linguists love language so much!</h3>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>English is bat-poop cray-cray, in so many ways</p>
+<ul>
+<li>(Partly because you understood that sentence)</li>
+</ul></li>
+<li><p>… but so is every other language</p></li>
+<li><p>That’s why we love them</p></li>
+<li><p>Second language learners are fighting an uphill battle. Be
+kind!</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

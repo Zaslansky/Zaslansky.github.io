@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="r-stretch" src="memes/fuckonphone.jpg"></p>
+<hr />
+<h1 id="morphology-for-nlp">Morphology for NLP</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>What is morphology?</p></li>
+<li><p>What are words made of</p></li>
+<li><p>Parts of Speech</p></li>
+<li><p>New words</p></li>
+<li><p>Word sense and Polysemy</p></li>
+</ul>
+<hr />
+<h1 id="what-is-morphology">What is Morphology</h1>
+<hr />
+<h2 id="morphology">Morphology</h2>
+<ul>
+<li>The study of the shape and formation of words</li>
+</ul>
+<hr />
+<h3 id="words-are-not-monolithic-in-english">Words are not monolithic in
+English</h3>
+<ul>
+<li><p>They’re often made of smaller components</p></li>
+<li><p>walk vs. walk-ed</p></li>
+<li><p>brush vs. brush-ed</p></li>
+<li><p>cat vs. cat-s</p></li>
+<li><p>show vs. show-s</p></li>
+<li><p>The recurring parts are <strong>morphemes</strong></p></li>
+</ul>
+<hr />
+<h3 id="morpheme">Morpheme</h3>
+<p>The smallest piece of a word which expresses a meaning or
+function</p>
+<hr />
+<h3 id="many-words-are-composed-of-many-morphemes">Many words are
+composed of many morphemes</h3>
+<ul>
+<li><p><em>… and each morpheme’s meaning contributes to the word’s
+meaning!</em></p></li>
+<li><p>played (play-ed)</p>
+<ul>
+<li>play + past tense</li>
+</ul></li>
+<li><p>cats (cat-s)</p>
+<ul>
+<li>cat + plural</li>
+</ul></li>
+<li><p>blacken (black-en)</p>
+<ul>
+<li>black + ‘cause to become’</li>
+</ul></li>
+<li><p>unroll (un-roll)</p>
+<ul>
+<li>reverse of ‘roll’</li>
+</ul></li>
+<li><p>older (old-er)</p>
+<ul>
+<li>old + ‘comparative’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-are-two-kinds-of-morpheme">There are two kinds of
+morpheme</h3>
+<ul>
+<li>Bound, and Free Morphemes</li>
+</ul>
+<hr />
+<h3 id="free-morphemes">Free Morphemes</h3>
+<ul>
+<li><p>Can stand on their own, do not have to attach to some other
+form</p></li>
+<li><p>Cat, Show, Class, Panda, Walk, Purple</p></li>
+</ul>
+<hr />
+<h3 id="bound-morphemes">Bound Morphemes</h3>
+<ul>
+<li><p>Can’t stand on their own, must be attached to some other
+morpheme</p>
+<ul>
+<li>-ed, -s, -ing, -er, un-, -aholic, twi-, cran-</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="bound-morphemes-or-affixes">Bound Morphemes (or ‘Affixes’)</h3>
+<ul>
+<li><p><strong>Prefixes</strong> - Go before the root</p>
+<ul>
+<li>Re-do, Un-screw, Over-come</li>
+</ul></li>
+<li><p><strong>Suffixes</strong> - Go after the root</p>
+<ul>
+<li>walk-ed, cat-s, end-ing</li>
+</ul></li>
+<li><p>There are other kinds, but that’s LIGN 120 material!</p></li>
+</ul>
+<hr />
+<h3 id="morphemes-can-be-tricky-for-nlp">Morphemes can be tricky for
+NLP</h3>
+<ul>
+<li><p>Morphology makes the same thing show up in different
+forms</p></li>
+<li><p>“You walk”, “She walks”, “Marie walked”, “San is walking”,
+“Frank’s a walker”, but “I took three walks”</p>
+<ul>
+<li>That’s six different instances of ‘walk’, but we want to understand
+they mean the same thing</li>
+</ul></li>
+<li><p>“Three cats”, “One cat”, “cat-like reflexes”, “catnap”, but
+“catastrophe”</p></li>
+<li><p>“I see”, “She sees.”, “I saw the mountain”, but “I saw the log in
+half”</p></li>
+</ul>
+<hr />
+<h3 id="we-need-to-be-able-to-link-these-things">We need to be able to
+link these things</h3>
+<ul>
+<li>We need some way to understand that ‘walks’ and ‘walk’ and ‘walking’
+and ‘walker’ and ‘walked’ are the same</li>
+</ul>
+<hr />
+<h2 id="stemming">Stemming</h2>
+<p>‘Let’s just delete characters from words until all the forms of the
+word have the same form’</p>
+<ul>
+<li><p>Will not capture ‘see’ vs. ‘saw’ vs. ‘sawed’ or ‘try’
+vs. ‘tried’</p></li>
+<li><p>Does not understand that ‘I saw her’ is a different word than ‘I
+bought a saw’</p></li>
+<li><p>Stemming is <em>dumb</em>. It just removes letters according to
+rules</p></li>
+</ul>
+<hr />
+<h2 id="lemmatization">Lemmatization</h2>
+<p>’Let’s examine this word, look at the many morphological forms it can
+have, and figure out which <em>lemma</em> it’s a form of.</p>
+<ul>
+<li><p>Lemmatization requires <em>knowledge of individual words and
+their forms</em></p></li>
+<li><p>Lemmatization is much more accurate than stemming</p></li>
+<li><p>Lemmatization is much slower, and requires other resources (like
+<a href="https://wordnet.princeton.edu/">WordNet</a>)</p></li>
+</ul>
+<hr />
+<h3 id="youll-want-to-lemmatize-when-doing-information-retrieval">You’ll
+want to lemmatize when doing information retrieval</h3>
+<ul>
+<li><p>“takes” and “took” and “take” are all semantically the same</p>
+<ul>
+<li>You don’t want to build a language model separately for all
+three</li>
+</ul></li>
+<li><p>“How long would it take to walk to work?” vs. “How long would
+walking to work take?”</p>
+<ul>
+<li>‘walk’ is what’s important here.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="so-those-are-morphemes">So, those are morphemes</h3>
+<ul>
+<li><p>There are many, <em>many</em> kinds of morphemes</p></li>
+<li><p>Accomplishing many tasks</p></li>
+<li><p>… and they’re the building blocks of <em>words</em></p></li>
+</ul>
+<hr />
+<h1 id="words">Words</h1>
+<hr />
+<h3 id="words-are-made-up-of-morphemes">Words are made up of
+morphemes</h3>
+<ul>
+<li><p>Sometimes just one, sometimes many</p></li>
+<li><p>… but once constructed, words have many different types</p></li>
+</ul>
+<hr />
+<h3 id="lexical-categories">Lexical Categories</h3>
+<ul>
+<li><p>Also known as “Parts of Speech”</p></li>
+<li><p>The <em>types</em> of words which occur in language</p></li>
+</ul>
+<hr />
+<h3 id="lexical-categories-1">Lexical Categories</h3>
+<ul>
+<li><p><strong>Nouns</strong>: bike, car, cat, dog, tofu, dude,
+bling</p></li>
+<li><p><strong>Verbs:</strong> go, eat, talk, walk, yeet</p></li>
+<li><p><strong>Adjectives:</strong> lit, sweet, hot, cool,
+awesome</p></li>
+<li><p><strong>Adverbs:</strong> well, fast, slowly, easily</p></li>
+<li><p><strong>Pre/postpositions:</strong> with, from, on, in</p></li>
+</ul>
+<hr />
+<h3 id="lexical-categories-continued">Lexical Categories
+(Continued)</h3>
+<ul>
+<li><p><strong>Determiners:</strong> the, a, that, this, those</p></li>
+<li><p><strong>Pronouns:</strong> she, he, him, her, it, I, you,
+they</p></li>
+<li><p><strong>Conjunctions:</strong> and, or, whenever, while</p></li>
+<li><p><strong>Numeral:</strong> one, twice, third</p></li>
+<li><p><strong>Interjection:</strong> ouch, tsk, damnit!</p></li>
+</ul>
+<hr />
+<h3 id="how-do-we-identify-the-different-parts-of-speech">How do we
+identify the different parts of speech?</h3>
+<ul>
+<li>These generalizations will work for English, but similar ones are
+available</li>
+</ul>
+<hr />
+<h3 id="nouns">Nouns</h3>
+<ul>
+<li><p>Describe a person, place or thing</p></li>
+<li><p>Can be singular or plural</p>
+<ul>
+<li>book/books or car/cars, but not quickly/ *quicklys and beg/
+*begs</li>
+<li>red/reds?</li>
+</ul></li>
+<li><p>Can be paired with a determiner (e.g. “I like the/a…”)</p>
+<ul>
+<li><p>I like the book/car/cat/show</p></li>
+<li><ul>
+<li>I like the angry/rotate/beg/quickly</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="verbs">Verbs</h3>
+<ul>
+<li><p>Can take tense marking in English</p>
+<ul>
+<li>He rotates, she rotated</li>
+<li>He learns, she learned</li>
+<li>*He angrys, *He angryed</li>
+</ul></li>
+<li><p>Can work with modals</p>
+<ul>
+<li>I will fly, but *I will angry.</li>
+<li>I can run, but *I can cat.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="adjectives">Adjectives</h3>
+<ul>
+<li><p>Comparative Constructions</p>
+<ul>
+<li>Happy/Happier, but *learn/learner</li>
+<li>Angry/Angrier, but *cat/cater</li>
+</ul></li>
+<li><p>Superlative Constructions</p>
+<ul>
+<li>Mad/Maddest, but *commute/commutest</li>
+<li>Purple/Purplest, but *penguin/penguinest</li>
+</ul></li>
+<li><p>Very/too Constructions</p>
+<ul>
+<li>Very bad, very angry, very purple, very ugly</li>
+<li>*Very learn, *Very cat, *Very linguist</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-are-always-some-exceptions">There are always some
+exceptions</h3>
+<ul>
+<li><p>Words can be used as other categories</p>
+<ul>
+<li><p>“You look very… linguist today”</p></li>
+<li><p>“That’s pretty fly”</p></li>
+<li><p>“I can’t adult right now”</p></li>
+</ul></li>
+<li><p>Words that don’t fit the pattern</p>
+<ul>
+<li>*She looks much eleganter</li>
+<li>*I cutted the bush</li>
+<li>*Three sheeps ran across the path</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="adverbs-are-hard">Adverbs are hard</h3>
+<ul>
+<li><p>“the most nebulous and puzzling of the traditional word
+classes”</p>
+<ul>
+<li>(Quirk, Greenbaum, Leech, &amp; Svartvik, 1985)</li>
+</ul></li>
+<li><p>They can modify anything non-nominal</p></li>
+<li><p><img src="morphology/adverb_modification.jpg" /></p></li>
+</ul>
+<hr />
+<h3 id="there-are-many-flavors-of-adverbs">There are many flavors of
+adverbs</h3>
+<ul>
+<li><p><strong>Temporal</strong>: Now, then, yesterday, always,
+tomorrow, next week</p></li>
+<li><p><strong>Locative</strong>: Here, there, abroad</p></li>
+<li><p><strong>Sentence</strong>: Perhaps, fortunately, honestly,
+frankly</p></li>
+<li><p><strong>Manner</strong>: Quickly, carefully, excitedly,
+beautifully</p></li>
+<li><p><strong>Linking</strong>: Therefore, thus, consequently</p></li>
+<li><p><strong>Degree</strong>: Very, too, extremely</p></li>
+</ul>
+<hr />
+<h3 id="prepositions">Prepositions</h3>
+<ul>
+<li><p>Indicate a semantic relationship between other entities</p>
+<ul>
+<li><p>“Any relationship a squirrel can have with a tree”</p></li>
+<li><p>Under, around, on top of, behind, near, adjacent to, below,
+above, in, on…</p></li>
+</ul></li>
+<li><p>These don’t change form in English</p></li>
+</ul>
+<hr />
+<h3 id="pronouns">Pronouns</h3>
+<ul>
+<li><p>Substitute for noun phrases</p>
+<ul>
+<li><p>“I saw the gal who Kati noticed was carrying a hamster in her
+backpack”</p></li>
+<li><p>“I saw <strong>her</strong>”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-are-many-kinds-of-pronouns">There are many kinds of
+pronouns</h3>
+<ul>
+<li><p>Personal Pronouns</p>
+<ul>
+<li>1st Person (I, me, mine), 2nd person (You, Yours), 3rd
+(she/her/hers, he/him/his, them/them/theirs, and others)</li>
+</ul></li>
+<li><p>Indefinite Pronouns</p>
+<ul>
+<li>Someone, everybody, nobody, any, anything, something</li>
+</ul></li>
+<li><p>Interrogative Pronouns</p>
+<ul>
+<li>“You saw who/what where/when?”</li>
+</ul></li>
+<li><p>Relative pronouns</p>
+<ul>
+<li>“I saw the girl <strong>who</strong> knew the cat
+<strong>that</strong> ate the bird <strong>which</strong> I was
+watching.”</li>
+</ul></li>
+<li><p>Demonstrative pronouns</p>
+<ul>
+<li>This, these, that, those</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="determiners">Determiners</h3>
+<ul>
+<li><p>Determiners mark and precede nouns</p></li>
+<li><p><strong>The/an</strong> interesting book</p></li>
+<li><p><strong>Those</strong> cookies</p></li>
+<li><p><strong>Which</strong> movie did you see?</p></li>
+<li><p>Determiners don’t vary in form</p></li>
+</ul>
+<hr />
+<h3 id="types-of-determiners">Types of Determiners</h3>
+<ul>
+<li><p><strong>Possessive</strong>: My, your, her, our, his, its,
+their</p></li>
+<li><p><strong>Demonstrative</strong>: This, these, that, those</p></li>
+<li><p><strong>Interrogative</strong>: which, what, whose</p></li>
+<li><p><strong>Definite</strong>: the</p></li>
+<li><p><strong>Indefinite</strong>: a/an</p></li>
+</ul>
+<hr />
+<h3 id="conjunctions">Conjunctions</h3>
+<ul>
+<li><p>Used to link expressions</p></li>
+<li><p>Sunny <strong>and</strong> warm</p></li>
+<li><p>Red <strong>or</strong> blue?</p></li>
+<li><p>He rolled over <strong>while</strong> I was petting him.</p></li>
+</ul>
+<hr />
+<h3 id="all-languages-have-grammatical-categories">All languages have
+grammatical categories</h3>
+<ul>
+<li><p>Although the lines between them can be blurrier or
+cleaner</p></li>
+<li><p>… and some languages don’t necessarily use all of them</p></li>
+</ul>
+<hr />
+<h3
+id="well-talk-about-how-to-automatically-detect-part-of-speech-soon">We’ll
+talk about how to automatically detect Part-of-Speech soon</h3>
+<ul>
+<li>… but for now, know it’s there.</li>
+</ul>
+<hr />
+<h3 id="we-can-group-these-categories-into-larger-sets">We can group
+these categories into larger sets</h3>
+<ul>
+<li><p>Nouns, Verbs, Adjectives, Adverbs are <strong>content
+words</strong></p>
+<ul>
+<li>A very large set of words, which express new meanings</li>
+</ul></li>
+<li><p>Pre/Postpositions, Determiners, Pronouns, Conjunctions are
+<strong>function words</strong></p>
+<ul>
+<li>A small, finite set of words which help combine other words</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="content-and-function-words-change-differently-in-languages">Content
+and Function words change differently in languages</h3>
+<ul>
+<li><p>We very rarely gain new <strong>Function words</strong>
+(Pre/Postpositions, Determiners, Pronouns, Conjunctions)</p></li>
+<li><p>We often gain new <strong>Content words</strong> (Nouns, Verbs,
+Adjectives, Adverbs)</p></li>
+<li><p>Function words are a <strong>closed class</strong>, and content
+words are an <strong>open class</strong></p></li>
+</ul>
+<hr />
+<h3 id="new-function-words-are-pretty-rare">New function words are
+pretty rare</h3>
+<ul>
+<li><p>“I didn’t see The Island <strong>because</strong> Michael Bay”
+(new preposition)</p></li>
+<li><p>“I spent last night in the library doing homework
+<strong>slash</strong> looking at pictures of cats” (new
+conjunction)</p></li>
+</ul>
+<hr />
+<h3 id="new-content-words-are-really-common">New content words are
+really common</h3>
+<ul>
+<li><p>Simp (Noun/Verb)</p></li>
+<li><p>Poggers (Adjective)</p></li>
+<li><p>Mid (Adjective)</p></li>
+<li><p>Totes (Adverb)</p></li>
+<li><p>uwu (Interjection)</p></li>
+</ul>
+<hr />
+<h3 id="and-existing-words-can-gain-new-uses">… and existing words can
+gain new uses</h3>
+<ul>
+<li><p>Flex</p></li>
+<li><p>Diamond Hands</p></li>
+<li><p>Tea</p></li>
+<li><p>Drop</p></li>
+<li><p>Slay</p></li>
+<li><p>Facts/Fax</p></li>
+</ul>
+<hr />
+<h3 id="this-brings-up-a-major-problem-for-us">This brings up a major
+problem for us</h3>
+<ul>
+<li><p>Words can have different ‘senses’ which are different parts of
+speech</p></li>
+<li><p>These are classically called ‘Homonyms’</p></li>
+</ul>
+<hr />
+<h2 id="homonym">Homonym</h2>
+<p>A word which shares the same spoken and written forms, but has a
+different meaning</p>
+<ul>
+<li><p>e.g. Bank (river)/Bank (institution), Mug (coffee)/Mug (street
+robbery), Phone (iPhone)/Phone ([t] or [ŋ])</p></li>
+<li><p>This is different from <em>homophones</em> (e.g. “banned/band”)
+because the spelling is the same</p></li>
+<li><p>This brings up a problem that will haunt us throughout the
+quarter</p></li>
+</ul>
+<hr />
+<h2 id="polysemy">Polysemy</h2>
+<p>The fact that one word can have many different meanings</p>
+<hr />
+<h3 id="word-sense">Word Sense</h3>
+<p>The specific meaning of a word being used in a given situation</p>
+<hr />
+<h3 id="many-words-have-multple-senses">Many words have multple
+senses</h3>
+<ul>
+<li>… and those senses can have different parts of speech.</li>
+</ul>
+<hr />
+<h3 id="fit">Fit</h3>
+<ul>
+<li><p>She fit the package into the over-full trunk</p></li>
+<li><p>She’s fit to work on your project, given her background</p></li>
+<li><p>She’s having fits about the new deadline</p></li>
+<li><p>She’s quite fit for her age</p></li>
+<li><p>That fit nicely into my schedule</p></li>
+<li><p>She fits in well in San Diego</p></li>
+<li><p>Damn, he’s <em>fit</em></p></li>
+</ul>
+<hr />
+<h3 id="speaking-of-words-having-different-meanings">Speaking of words
+having different meanings…</h3>
+<ul>
+<li><p>What about when words have different meanings in
+conjunction?</p></li>
+<li><p>“bread chasing”</p></li>
+<li><p>“shut down” (vs. “shut up”, “shut out”, “shut in”…)</p></li>
+<li><p>“thank u, next.”</p></li>
+<li><p>“on the down low”</p></li>
+<li><p>“down bad”</p></li>
+</ul>
+<hr />
+<h3 id="multi-word-expressions">Multi-Word Expressions</h3>
+<ul>
+<li><p>When a group of words combine to have a meaning different from
+their compositional sum</p></li>
+<li><p>Similar to an ‘idiom’, but less rigidly defined.</p></li>
+<li><p>These present <em>huge</em> problems for NLP</p></li>
+<li><p>“I got down low to pet the puppy” vs. “Let’s keep this on the
+down low”</p></li>
+</ul>
+<hr />
+<h3 id="so-written-words-can-have-many-different-parts-of-speech">So,
+written words can have many different parts of speech</h3>
+<ul>
+<li><p>… and many different meanings indistinguishable by form</p></li>
+<li><p>… and combinations of words can mean something different
+too</p></li>
+<li><p>… and none of this can be discovered from written form
+alone</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/abandonallhope.jpg"></p>
+<hr />
+<p>(Nah, it’s OK, we’ve got syntax)</p>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Many words are made of smaller component morphemes</p></li>
+<li><p>We need to consider many forms of words, and unite them</p></li>
+<li><p>Words are of many different types or ‘Parts of speech’</p></li>
+<li><p>New words are a regular occurrence</p></li>
+<li><p>… and individual words can mean many different things</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

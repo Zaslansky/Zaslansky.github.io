@@ -1,0 +1,8 @@
+tree_rule1_3_4_alttex
+ 
+[NP 
+  [DET some ] 
+  [N' 
+    [ADJ angry ] 
+    [N' 
+      [N koalas ] ] ] ]

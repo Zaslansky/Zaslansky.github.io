@@ -1,0 +1,10 @@
+tree_jessicatofu_tofurkeytex
+
+[NP 
+  [DET a ] 
+  [N' 
+    [ADJ big ] 
+    [N' 
+      [ADJ squishy ] 
+      [N' 
+        [N tofurkey ] ] ] ] ]

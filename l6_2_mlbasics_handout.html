@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="activity-1-is-available-on-canvas">Activity 1 is available on
+Canvas!</h3>
+<ul>
+<li>Under ‘Discussions’</li>
+</ul>
+<hr />
+<h1 id="machine-learning-basics">Machine Learning Basics</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<h3 id="this-class-is-about-natural-language-processing">This class is
+about Natural Language Processing</h3>
+<ul>
+<li><p>A big part of that is teaching computers about the many patterns
+of language</p></li>
+<li><p>Facts about grammar, about words, about speech, about
+sound</p></li>
+<li><p>We need the computer to be able to make decisions and choices
+based on language patterns</p></li>
+</ul>
+<hr />
+<h3 id="these-decisions-can-exist-at-many-levels">These decisions can
+exist at many levels</h3>
+<ul>
+<li><p>Is ‘recrod’ a valid word in the language being used or a
+typo?</p></li>
+<li><p>Is the user using ‘record’ as a noun or a verb?</p></li>
+<li><p>Did the user really want to write ‘duck these COVID
+restrictions’?</p></li>
+<li><p>What device does the user want me to activate?</p></li>
+<li><p>Is this a negative or positive product review?</p></li>
+</ul>
+<hr />
+<h3 id="we-dont-want-to-hard-code-every-decision">We don’t want to
+hard-code every decision!</h3>
+<ul>
+<li><p>“The list of valid English words is…”</p></li>
+<li><p>“Unless the word ‘pond’ also occurs, don’t say ‘duck’…”</p></li>
+<li><p>“If ‘record’ comes after a noun or pronoun, it’s probably a
+verb…”</p></li>
+<li><p>“The thing after ‘Turn on the…’ is the thing you should turn
+on…”</p></li>
+</ul>
+<hr />
+<h3 id="but-some-decisions-are-very-difficult-to-hard-code">… but some
+decisions are very difficult to hard-code</h3>
+<ul>
+<li><p>What features would define a ‘bad’ review?</p>
+<ul>
+<li>Of a vacuum?</li>
+</ul></li>
+<li><p>How does this vary across product categories?</p>
+<ul>
+<li>“Goes through a lot of gas” for cars vs. air filters</li>
+</ul></li>
+<li><p>How does this vary across languages and cultures?</p></li>
+</ul>
+<hr />
+<h3 id="language-is-complex-variable-and-changing">Language is complex,
+variable, and changing</h3>
+<ul>
+<li><p>We don’t want to write code that’s based on only our knowledge of
+the world</p></li>
+<li><p>We don’t want to write code that’s based on only one speaker or
+situation</p></li>
+<li><p>We don’t want to write code for each grammatical feature</p></li>
+<li><p>We want our analysis to be able to change and evolve over time
+and adapt to different situations</p></li>
+<li><p>We want our processing to handle a complex set of
+situations</p></li>
+</ul>
+<hr />
+<h3
+id="there-are-always-more-possible-sentences-than-lines-of-code-to-analyze-them">There
+are always more possible sentences than lines of code to analyze
+them</h3>
+<ul>
+<li>“This dinner left my beloved as if she’d been given three daggers to
+the midsection”</li>
+</ul>
+<hr />
+<h3
+id="we-dont-want-to-hard-code-how-computers-should-interpret-most-language">We
+don’t want to hard-code how computers should interpret (most)
+language!</h3>
+<ul>
+<li>Let’s let the computer see the data and find the patterns
+itself!</li>
+</ul>
+<hr />
+<h3
+id="natural-language-processing-is-usually-a-multi-step-process">Natural
+language processing is usually a multi-step process</h3>
+<ul>
+<li><p>1: Collect Data</p></li>
+<li><p>2: Label Data with the classes of interest</p></li>
+<li><p>3: Find Features in the data which might be useful</p></li>
+<li><p>4: Train the algorithm on some of the data</p></li>
+<li><p>5: Test the algorithm and check the predictions</p></li>
+<li><p>6: Repeat with modifications until you’re done</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>What kinds of language data are used?</p></li>
+<li><p>What is Machine Learning?</p></li>
+<li><p>How do two common algorithms work?</p></li>
+<li><p>What’s the workflow for Machine Learning?</p></li>
+</ul>
+<hr />
+<h1 id="what-is-language-data">What is Language Data?</h1>
+<hr />
+<h3 id="first-a-few-terms">First, a few terms</h3>
+<hr />
+<h2 id="corpus-pl.-corpora">Corpus (pl. ‘Corpora’)</h2>
+<p>A body of data used for study, analysis, or training algorithms</p>
+<hr />
+<h2 id="lexicon">Lexicon</h2>
+<p>A listing of words in a given language, with or without additional
+information</p>
+<hr />
+<h3 id="language-corpora">Language Corpora</h3>
+<ul>
+<li><p>Speech data (e.g. phone conversations, siri interactions, recited
+sentences)</p>
+<ul>
+<li><p>Speech data are <em>acoustic</em>, not written words</p></li>
+<li><p>Can include secondary data streams (e.g. stereo, voice
+information)</p></li>
+</ul></li>
+<li><p>Text data (e.g. tweets, news-wire, literature, books, medical
+records, banks of emails)</p></li>
+<li><p>Conversation data (e.g. scripts, transcripts, etc.)</p></li>
+<li><p>Language resources (e.g. lexicons/dictionaries, ontologies,
+lexical resources)</p></li>
+</ul>
+<hr />
+<h3 id="corpora-are-often-annotated">Corpora are often annotated</h3>
+<ul>
+<li><p>We give the computer human-generated ‘answers’ which we want it
+to be able to reproduce in new data</p>
+<ul>
+<li>“Here’s the test and the key, learn from it, so you can take the
+next test”</li>
+</ul></li>
+<li><p>These annotations are <em>task specific</em>, and very expensive
+to make</p></li>
+<li><p>An annotated corpus has a bunch of raw data, and a bunch of
+metadata which the computer can use to learn from the raw-data</p>
+<ul>
+<li>“Line 7782, character 12-23 == ‘verb’”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="sample-data-annotations">Sample Data annotations</h3>
+<ul>
+<li><p><strong>Transcriptions</strong>: “What was said here, and
+when?”</p></li>
+<li><p><strong>Structural annotations</strong>: “How does this sentence
+work, grammatically?”</p></li>
+<li><p><strong>Type or class annotations</strong>: “What <em>kind</em>
+of language is this?” or ‘Is this a noun or verb or adjective
+or…?’</p></li>
+<li><p><strong>Semantic annotations</strong>: “What does this mean?” or
+“Is this a positive or negative sentiment?” or “When did this
+happen?”</p></li>
+<li><p><em>We’ll spend a lot of time talking about how this process
+works</em></p></li>
+</ul>
+<hr />
+<h3 id="language-data-is-the-key">Language data is the key</h3>
+<ul>
+<li><p>You cannot build a language system without language data to work
+from</p></li>
+<li><p>Your data needs to match the domain and problems you’re wanting
+to solve</p></li>
+<li><p>Your system is only as good as your data</p>
+<ul>
+<li><p>“Defenestrate”</p></li>
+<li><p>“Herbie”</p></li>
+<li><p>“The chair needs fixed”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="well-talk-about-many-kinds-of-language-data">We’ll talk about
+many kinds of language data</h3>
+<ul>
+<li><p>Each has strengths, weaknesses, and uses</p></li>
+<li><p>… and each presents unique challenges</p></li>
+</ul>
+<hr />
+<h3
+id="but-its-all-turned-into-working-systems-through-the-same-basic-set-of-techniques">…
+but it’s all turned into working systems through the same basic set of
+techniques</h3>
+<hr />
+<h2 id="machine-learning">Machine Learning</h2>
+<hr />
+<h3
+id="disclaimer-im-not-going-to-teach-you-how-to-do-machine-learning">Disclaimer:
+I’m not going to teach you <em>how</em> to do machine learning</h3>
+<ul>
+<li><p>That’s a Ph.D, not a single quarter</p></li>
+<li><p>It is an art as much as a science</p></li>
+<li><p>It’s constantly evolving</p></li>
+</ul>
+<hr />
+<h3 id="so-were-just-going-to-do-an-overview">So, we’re just going to do
+an overview</h3>
+<ul>
+<li><p>Give you simplified basics, and you’ll learn the details when you
+dive deeper for your tasks</p></li>
+<li><p>I just need you to know enough to get the concept</p></li>
+<li><p><em>This is going to happen a lot this quarter. That’s the
+point!</em></p></li>
+</ul>
+<hr />
+<h3 id="any-machine-learning-has-three-basic-steps">ANY Machine Learning
+has three basic steps</h3>
+<ul>
+<li><p>1: Use statistics to find useful patterns in some kind of data
+using a machine learning algorithm (‘Training’)</p></li>
+<li><p>2: Use those same statistics to use those patterns to make
+decisions and predictions (‘Testing’)</p></li>
+<li><p>3: Evaluate the results, make changes to the model or algorithm,
+and repeat!</p></li>
+</ul>
+<hr />
+<h3 id="what-doesnt-machine-learning-do">What <em>doesn’t</em> machine
+learning do?</h3>
+<ul>
+<li><p>Machine learning doesn’t deal with ‘meaning’ or
+‘understanding’</p></li>
+<li><p>It is not about ‘Artificial Intelligence’ (in any real
+sense)</p></li>
+<li><p><strong>ML is math done on data, to draw meaningful lines, which
+<em>seems</em> like learning</strong></p></li>
+<li><p>It is not <strong>actual human-like learning</strong></p></li>
+</ul>
+<hr />
+<h3
+id="machine-learning-is-focused-on-prediction-and-classification">Machine
+Learning is focused on prediction and classification</h3>
+<ul>
+<li><p>Predictions <em>anticipate</em> upcoming data</p>
+<ul>
+<li><p>“What’s the next data point likely to look like?</p></li>
+<li><p>“What’s the next word in this sentence likely to be?”</p></li>
+</ul></li>
+<li><p>Classifications <em>describe</em> the current data</p>
+<ul>
+<li><p>“We have groups here. What group does this new point belong
+to?”</p></li>
+<li><p>“Is this review positive or negative?”</p></li>
+</ul></li>
+<li><p><em>We’re going to focus on classification today!</em></p></li>
+</ul>
+<hr />
+<h3 id="ml-can-be-transparent-or-opaque">ML can be <em>transparent</em>
+or <em>opaque</em></h3>
+<ul>
+<li><p><strong>Transparent</strong> machine learning algorithms give us
+details about <em>why</em> they decided what they did</p>
+<ul>
+<li><p>What information or ‘features’ mattered most?</p></li>
+<li><p>How confident was the model in this decision?</p></li>
+<li><p>Where are the boundaries?</p></li>
+</ul></li>
+<li><p><strong>Opaque</strong> algorithms give us little information
+about their decision-making process</p>
+<ul>
+<li><p>You get input, a black box, and output</p></li>
+<li><p>Sometimes you get confidence, but not always</p></li>
+<li><p>Like humans, “Uh, I just know”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="research-vs.-engineering-tasks">Research vs. Engineering
+Tasks</h3>
+<ul>
+<li><p><strong>Research</strong> machine learning often focuses on
+transparency and learning as much as you can about the data and task</p>
+<ul>
+<li>The model isn’t meant to “do work”, it’s meant to explain what’s
+going on in the dataset</li>
+<li>Favors ‘transparent’, interpretable methods</li>
+</ul></li>
+<li><p><strong>Engineering</strong> machine learning focuses on raw
+predictive power, efficiency, and accuracy</p>
+<ul>
+<li>“I need to answer this for 20,000 queries each minute, so…”</li>
+<li>Favors accurate and fast methods, transparency isn’t as needed</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="supervision-in-machine-learning">Supervision in Machine
+Learning</h3>
+<ul>
+<li><p><em>Supervised Machine Learning</em> - We train on all the data,
+<em>annotated with the patterns we’re looking for</em>, then test and
+tweak.</p></li>
+<li><p><em>Semi-Supervised Maching Learning</em> - We train on <em>a
+very small amount of annotated data</em>, then test and tweak</p></li>
+<li><p><em>Unsupervised Machine Learning</em> - We give the machine
+<em>unannotated</em> data, then test and tweak</p></li>
+<li><p>These have strengths and weaknesses</p></li>
+<li><p>We’re going to focus on <em>supervised</em> machine learning
+today</p></li>
+</ul>
+<hr />
+<h1 id="machine-learning-algorithms">Machine Learning Algorithms</h1>
+<hr />
+<p><img class="r-stretch" src="img/kayaking.jpg"></p>
+<hr />
+<blockquote>
+<p>“I’m looking at a bird. What kind of bird is it?”</p>
+</blockquote>
+<hr />
+<p><img width=1200px src="img/birds_waterfowl.png"></p>
+<hr />
+<h2 id="the-worlds-dumbest-algorithm">The World’s Dumbest Algorithm</h2>
+<hr />
+<h3 id="its-a-duck-algorithm">“It’s a duck!” Algorithm</h3>
+<ul>
+<li><p>No matter the data, just says “Eh, it’s a duck”</p></li>
+<li><p>Surprisingly accurate</p>
+<ul>
+<li><p>If 78% of waterfowl on the lake are ducks, it’s accurate 78% of
+the time.</p></li>
+<li><p>If 10% of the waterfowl are ducks, it’s accurate 10% of the
+time.</p></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="the-worlds-second-dumbest-algorithm">The World’s Second Dumbest
+Algorithm</h2>
+<hr />
+<h3 id="its-probably-a-duck-algorithm">“It’s probably a duck!”
+Algorithm</h3>
+<ul>
+<li><p>Count the proportion of ducks in the training data, and then
+guess at random ‘Duck’ X percent of the time</p></li>
+<li><p>Much more accurate when the classes are imbalanced</p>
+<ul>
+<li><p>If only 10% are ducks, this will be <em>much</em> more accurate
+than “It’s a duck!”</p></li>
+<li><p>… but you’ll also start making mistakes on ducks, too!</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="two-easy-to-explain-algorithms">Two Easy-to-Explain
+Algorithms</h3>
+<ul>
+<li>Decision Trees and RandomForests
+<ul>
+<li>Because they’re transparent</li>
+</ul></li>
+<li>Support Vector Machines
+<ul>
+<li>Because they’re accurate <em>and</em> interpretable</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="decision-trees">## Decision Trees</h2>
+<p>Let’s pretend to be classifiers!</p>
+<blockquote>
+<p>“I’m looking at a bird. What kind of bird is it?”</p>
+</blockquote>
+<hr />
+<p>One Approach:</p>
+<ul>
+<li><strong>Ask questions, then make decisions based on the
+answer!</strong></li>
+</ul>
+<hr />
+<p><img width=1200px src="img/birds_waterfowl.png"></p>
+<hr />
+<h3
+id="decision-trees-classify-by-asking-the-right-sequence-of-questions">Decision
+trees classify by asking the right sequence of questions</h3>
+<ul>
+<li><p>Ask a question, then ask a different question based on the first
+one, then ask another…</p></li>
+<li><p>If the tree is well made, we should find the answer</p></li>
+<li><p>Often, we randomize the trees and find an <em>ensemble</em> of
+trees which gives the best results (a “Random Forest”)</p></li>
+</ul>
+<hr />
+<h3 id="lets-talk-about-another-approach">Let’s talk about another
+approach!</h3>
+<hr />
+<h2 id="support-vector-machines">Support Vector Machines!</h2>
+<hr />
+<p>Back to the waterfowl!</p>
+<hr />
+<center>
+<table>
+<tr>
+<th>
+<img height="1000" src="img/bird_mallard.jpg">
+</th>
+<th>
+<img height="1000" src="img/bird_swan.jpg">
+</th>
+</tr>
+</table>
+</center>
+<hr />
+<h3
+id="your-kayaking-relative-has-taken-a-hands-on-approach-to-classification">Your
+Kayaking Relative has taken a hands-on approach to classification</h3>
+<ul>
+<li><p>You are now recieving texts with bill length and body length
+measurements for birds</p></li>
+<li><p>The question is “Swan, or Duck?”</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/birds_lengthsize.png"></p>
+<hr />
+<h3 id="support-vector-machines-1">Support Vector Machines</h3>
+<ul>
+<li><p>Look at all the data in an n dimensional space</p>
+<ul>
+<li>n is the number of features</li>
+</ul></li>
+<li><p>Try to find a hyperplane with the best separation</p>
+<ul>
+<li>A hyperplane is just a line on many dimensions</li>
+</ul></li>
+<li><p>This hyperplane is delineated by the <em>support
+vectors</em></p></li>
+<li><p>Classification is just* seeing where the new data is relative to
+that line</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/birds_lengthsize_line.png"></p>
+<hr />
+<h3 id="support-vector-machines-2">Support Vector Machines</h3>
+<ul>
+<li><p>SVMs have been historically <em>very</em> powerful</p>
+<ul>
+<li>… and anything that beats them is usually really complex or
+opaque</li>
+</ul></li>
+<li><p>They’re a great choice for transparent machine learning</p></li>
+</ul>
+<hr />
+<h3 id="neural-networks-and-deep-learning">Neural Networks and “Deep
+Learning”</h3>
+<ul>
+<li><p>Better results</p></li>
+<li><p>Less worrying about features</p></li>
+<li><p>Massive complexity</p></li>
+<li><p><strong>Zero transparency</strong></p></li>
+<li><p>That’s soon!</p></li>
+</ul>
+<hr />
+<h3 id="so-how-do-we-use-any-of-this">… So, how do we use any of
+this?</h3>
+<hr />
+<h1 id="the-supervised-machine-learning-workflow">The Supervised Machine
+Learning Workflow</h1>
+<hr />
+<h3 id="the-process">The Process</h3>
+<ul>
+<li><p>1: Collect Data</p></li>
+<li><p>2: Label Data with the classes of interest</p></li>
+<li><p>3: Find Features in the data which might be useful</p></li>
+<li><p>4: Train the algorithm on some of the data</p></li>
+<li><p>5: Test the algorithm and check the predictions</p></li>
+<li><p>6: Repeat with modifications until you’re done</p></li>
+</ul>
+<hr />
+<h3 id="collect-data">1) Collect Data</h3>
+<ul>
+<li><p>More data is generally better</p></li>
+<li><p>Representative data is good</p></li>
+<li><p>Diverse data is ideal</p></li>
+<li><p>Balance of classes is helpful</p></li>
+</ul>
+<hr />
+<h3 id="label-data-with-the-classes-of-interest">2) Label Data with the
+classes of interest</h3>
+<ul>
+<li><p>Finding the classes can be half the battle</p></li>
+<li><p>Make boundaries between the classes clear</p></li>
+</ul>
+<hr />
+<h3 id="find-features-which-might-be-useful">3) Find Features which
+might be useful</h3>
+<ul>
+<li><p>You want to present information that the algorithm would find
+useful about the data</p>
+<ul>
+<li>Beak size, Bird Size, but for language</li>
+</ul></li>
+<li><p>Garbage in, garbage out</p></li>
+<li><p>Finding features can often be a huge part of the battle.</p></li>
+<li><p><strong>Deep neural nets can find their own features</strong></p>
+<ul>
+<li>This is a <em>huge advantage</em>, and a huge opacity</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="training-the-algorithm">4) Training the algorithm</h3>
+<ul>
+<li><p>First, hold back a chunk of your data for testing</p></li>
+<li><p>Present the labeled training data for the algo to learn the
+patterns</p>
+<ul>
+<li>This allows the algorithm to do the statistical analysis and find
+the patterns in the features which mean that this data point is class
+X.</li>
+</ul></li>
+<li><p>You’ll then have a ‘trained model’ which can be fed new data to
+get predictions</p></li>
+</ul>
+<hr />
+<h3 id="test-and-check-the-predictions">5) Test and check the
+predictions</h3>
+<ul>
+<li><p>Feed in the ‘test’ data and get predictions, then look at the
+accuracy</p></li>
+<li><p>What’s your motivation here?</p>
+<ul>
+<li><p>Engineering: “Which algorithm works best to do the task given my
+constraints?”</p></li>
+<li><p>Research: “Which features best represent the classes and provide
+the best information?”</p></li>
+</ul></li>
+<li><p>Failure mode analysis tells you what your model is failing to
+capture, and suggests features or weaknesses in the data</p></li>
+</ul>
+<hr />
+<h3 id="repeat-with-modifications-until-youre-done">6) Repeat with
+modifications until you’re done</h3>
+<ul>
+<li><p>Go back and change the data, labels, features, and algorithm in a
+way that you think will help.</p>
+<ul>
+<li>If it improves results, great!</li>
+<li>If not, whoops! Try again.</li>
+</ul></li>
+<li><p>Algorithms often have parameters that you can tune for better
+results</p></li>
+<li><p>You’ll eventually hit a point of diminishing returns/funding and
+stop</p>
+<ul>
+<li>There are many values of ‘done’</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="there-are-a-lot-of-choices-here">There are a <em>lot</em> of
+choices here</h2>
+<hr />
+<h3 id="some-of-the-many-choices">Some of the many choices</h3>
+<ul>
+<li><p>What kind of data?</p></li>
+<li><p>What kind of features?</p></li>
+<li><p>What kind of algorithm?</p></li>
+<li><p>What kind of testing?</p></li>
+<li><p>What to tweak?</p></li>
+</ul>
+<hr />
+<h3 id="machine-learning-is-often-considered-a-dark-art">Machine
+Learning is often considered a Dark Art</h3>
+<p><img src="humorimg/voldemort.jpg"></p>
+<hr />
+<h3 id="but-its-a-really-useful-dark-art">… but it’s a <em>really</em>
+useful dark art</h3>
+<hr />
+<h1 id="machine-learning-in-the-world">Machine Learning in the
+world</h1>
+<hr />
+<h3 id="machine-learning-is-everywhere-at-the-moment">Machine Learning
+is <em>everywhere</em> at the moment</h3>
+<ul>
+<li><p>One of the fastest growing fields in computing and
+programming</p></li>
+<li><p>This is a place where jobs are, if you like vector
+calculus</p></li>
+<li><p>Every time somebody says “AI”, they just mean ML</p></li>
+<li><p>Everybody wants their technology to be smarter</p>
+<ul>
+<li>(Or at least appear smarter)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="some-well-known-ml-tasks">Some well-known ML tasks</h3>
+<ul>
+<li><p>“Is this email spam, or not?”</p></li>
+<li><p>“Is my car about to crash?”</p>
+<ul>
+<li>“Did it just crash?”</li>
+</ul></li>
+<li><p>“Should we lend this person money?”</p></li>
+<li><p>“Is this handwritten symbol”1” or “2” or “3” or…?”</p></li>
+<li><p>“Is this word a noun, or a verb, or an adjective, or…?”</p></li>
+</ul>
+<hr />
+<h3 id="as-well-as-every-part-of-the-nlp-pipeline">As well as every part
+of the NLP pipeline</h3>
+<ul>
+<li><p>Answering our ‘How long to get home’ query involves a series of
+machine learning models</p></li>
+<li><p>Models feeding models feeding models</p></li>
+<li><p>There are few parts of natural language processing that
+<em>aren’t</em> machine learning.</p></li>
+</ul>
+<hr />
+<h3 id="soon-well-hear-about-deep-neural-networks">Soon, we’ll hear
+about Deep Neural Networks</h3>
+<ul>
+<li><p>This is the ‘Deep Learning’ everybody keeps talking
+about</p></li>
+<li><p>Deep neural networks are still statistical machine learning
+models</p></li>
+<li><p>They don’t require <em>any</em> feature extraction, and they’re
+wildly powerful</p></li>
+<li><p>They’re also very computationally expensive to run</p>
+<ul>
+<li>… so your phone, computer, and many other devices now have dedicated
+processors for training and using them</li>
+</ul></li>
+<li><p>… and they’re completely opaque</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Machine learning is everywhere</p></li>
+<li><p>There are many algorithms, but they all have similar basic
+workflows</p></li>
+<li><p>It’s absolutely fascinating</p></li>
+<li><p>You’ll need good language data to be able to do any of
+it!</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li>Read the Fromkin_Phonetics.pdf chapter on Canvas</li>
+</ul>
+<hr />
+<p><huge>Thank You!</huge></p>
+</body>
+</html>

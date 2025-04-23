@@ -1,0 +1,5 @@
+tree_rule9tex
+
+[S 
+  [NP  ] 
+  [VP  ] ]

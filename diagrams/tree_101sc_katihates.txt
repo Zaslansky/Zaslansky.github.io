@@ -1,0 +1,29 @@
+tree_101sc_katihatestex
+
+[S 
+  [NP 
+    [N' 
+      [N Kati ] ] ] 
+  [VP 
+    [V hates ] 
+    [CP 
+      [C when ] 
+      [S 
+        [NP 
+          [N' 
+            [ADJ LIGN101 ] 
+            [N' 
+              [N students ] ] ] ] 
+        [VP 
+          [VP 
+            [V use ] 
+            [NP 
+              [N' 
+                [ADJ incorrect ] 
+                [N' 
+                  [N rules ] ] ] ] ] 
+          [PP 
+            [P in ] 
+            [NP 
+              [N' 
+                [N trees ] ] ] ] ] ] ] ] ]

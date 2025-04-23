@@ -1,0 +1,10 @@
+tree_101sc_newnaptex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [AUX should ] 
+    [VP 
+      [V sleep ] ] ] ]

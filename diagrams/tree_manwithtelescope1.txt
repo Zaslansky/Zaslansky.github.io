@@ -1,0 +1,17 @@
+tree_manwithtelescope1tex
+
+[S 
+  [NP I ]
+  [VP 
+    [VP 
+      [V saw ]
+      [NP 
+        [DET the ] 
+        [N' 
+          [N man ] ] ] ]
+    [PP 
+      [P with ]
+      [NP 
+        [DET the ] 
+        [N' 
+          [N telescope ] ] ] ] ] ]

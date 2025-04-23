@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+LIGN 6 - Semantic Parsing
+</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+
+
+
+
+
+# Semantic Parsing
+### Will Styler - LIGN 6
+
+---
+
+### Today's Plan
+
+- Verb Arguments and Verb Senses
+
+- Semantic Frames
+
+- Semantic Roles and Role Labeling
+
+- How does doing any of this help us?
+
+---
+
+### Many words have multiple senses
+
+- (I really hope you've figured that out already)
+
+---
+
+### Fit
+
+- She fit the package into the over-full trunk
+
+- She's fit to work on your project, given her background
+
+- She's having fits about the new deadline
+
+- She's quite fit for her age
+
+- That fit nicely into my schedule
+
+- She fits in well in San Diego
+
+---
+
+### Fire
+
+- They fired 10 rounds at the target
+
+- They fired him after 10 years
+
+- They fired the pot in the kiln
+
+- The engine is fired by a steady stream of coal
+
+- The fire was started by lightning
+
+---
+
+### Hit
+
+- I hit the dragon with an arrow
+
+- SchwaCo stock hit $500 a share
+
+- Rob loves to hit the golf course on Fridays
+
+- The mafia hit stunned the local government
+
+- The fingerprints had three hits on old records
+
+- I hit on the dragon at the sleazy bar
+
+- I hit up the dragon for some gold until payday
+
+---
+
+### Oh no.
+
+---
+
+### Not all verbs take the same arguments!
+
+- Some verbs don't take an object
+
+	- "I dreamed"
+
+- Some verbs take an object always
+
+	- "I hit the dragon"
+
+- Some verbs take two objects
+
+	- "I baked Jessica a cake"
+
+- **Different verbs demand different arguments**
+
+---
+
+## Argument
+
+Some element of a sentence which helps complete the principal meaning of the sentence.
+
+- **Will** hit **the dragon**
+
+- **Mary** baked **Sam** **a cake**
+
+- **Maria** fired **six rounds**.
+
+---
+
+### It gets worse...
+
+---
+
+### Different verb *senses* demand different arguments
+
+---
+
+### Hit (strike)
+
+"I hit the dragon with an arrow"
+
+- Thing doing the hitting
+
+- Thing being hit
+
+- How the hitting is done (manner, or instrument)
+
+---
+
+### Hit (a value)
+
+"SchwaCo stock hit $500 a share"
+
+- Thing hitting the level/goal/landmark
+
+- The level/goal/landmark
+
+- *No instrument argument is possible*
+
+	- *"SchwaCo stock hit $500 a share with a good economy"
+
+---
+
+### Hit (go to activity)
+
+"Rob loves to hit the bowling alley with his friends"
+
+- Person going to the activity (animate)
+
+- Activity
+
+- *Doesn't take an inanimate subject or an instrument*
+
+	- *"The ball hit the links on weekends"
+	
+	- *"Rob loves hitting the ballfield with his bat"
+
+---
+
+### Hit on (make sexual advances)
+
+"Sherry hit on Steve at the party"
+
+- Person making the advances
+
+- Person hit on
+
+- *No instrument is permissible*
+
+	- ?"Sherry hit on Steve with a bad joke"
+	
+---
+
+### Hit up (to request)
+
+"I hit up the dragon for some gold"
+
+- Person making the request
+
+- Request
+
+- Requested from
+
+- *All three arguments are required*
+
+	- "I hit up the dragon" (For?)
+
+	- "I hit up for money" (Who?)
+	
+	- "Hit up for money" (???)
+	
+	- Can't be ditransitive (*"I hit up the dragon some gold")
+	
+---
+
+### Fire
+
+- They fired 10 rounds at the target
+
+- They fired him after 10 years
+
+- They fired the pot in the kiln
+
+- The engine is fired by a steady stream of coal
+
+- The fire was started by lightning
+
+---
+
+
+### We can think of every verb sense as having a "Frame"
+
+- A set of arguments which it expects
+
+- ... which combine to give the overall meaning of the sentence
+
+- This is the idea behind *Frame Semantics*
+
+- These are *lexically specific*
+
+- **This information can be seen as a part of the verb's meaning**
+
+---
+
+### Every verb sense has a frame
+
+- The [PropBank Project](http://verbs.colorado.edu/propbank/) has been working to produce frames for every verb in large chunks of text
+
+- [Here's the list of frames by verb](http://verbs.colorado.edu/propbank/framesets-english-aliases/)
+
+---
+
+### Cower
+
+> Will cowered in fright at the number of projects to grade
+
+Roles:
+
+- Arg0-PPT: afraid entity (vnrole: 40.5-Experiencer, 40.6-Experiencer) 
+
+---
+
+### Demolish
+
+> Lancelot demolished the unholy altar
+
+- Arg0-PAG: destroyer (vnrole: 44-Agent, 31.1-Stimulus)
+- Arg1-PPT: thing destroyed (vnrole: 44-Patient, 31.1-Experiencer)
+- Arg2-MNR: instrument of destruction (vnrole: 44-Instrument) 
+
+---
+
+### Conquer
+
+> Alexander the Great conquered Halicarnassus and its Persian occupants
+
+- Arg0-PAG: conquering hero, agent (vnrole: 42.3-agent)
+- Arg1-PPT: entity conquered, spoils (if unclear whether the spoils or the loser, use this arg) (vnrole: 42.3-patient)
+- Arg2-PPT: defeated entity; loser; former owner of arg1 (vnrole: 42.3-patient) 
+
+---
+
+### Cuddle
+
+> The two cats cuddled on the couch
+
+- Arg1-PAG: one half (vnrole: 36.2-agent)
+- Arg2-COM: second half (vnrole: 36.2-co-agent) 
+
+---
+
+### Different verb senses have different argument structures
+
+---
+
+### Hit (to strike)
+
+> Vladimir hit the orc with his spear
+
+- Arg0-PAG: agent, hitter - animate only! (vnrole: 18.1-1-agent, 40.8.3-experiencer, 17.1-1-agent) 
+- Arg1-GOL: thing hit (vnrole: 18.4-location, 18.1-1-patient, 40.8.3-patient, 47.8-1-theme, 17.1-1-theme) 
+- Arg2-MNR: instrument, thing hit by or with (vnrole: 18.4-theme, 18.1-1-instrument, 47.8-1-co-theme) 
+
+---
+
+### Hit (to reach)
+
+> The twitch streamer hit 6000 subscribers
+
+- Arg0-PAG: thing hitting / reaching (vnrole: 51.8-agent) 
+- Arg1-GOL: thing hit (vnrole: 51.8-destination) 
+
+---
+
+### Hit (the links)
+
+> Jian hit the beach to do some surfing
+
+- Arg0-PAG: entity turning to a new hobby 
+- Arg1-PPT: thing hit 
+
+---
+
+### Many verbs have optional arguments too
+
+- These are marked as 'ArgM'
+- COM: Comitative ('with', but not manner)
+- LOC: Locative 
+- DIR: Directional 
+- GOL: Goal
+- MNR: Manner
+- TMP: Temporal
+- EXT: Extent
+- REC: Reciprocals
+- PRP: Purpose
+- CAU: Cause
+
+---
+
+### More 'ARGM' types of arguments
+
+- DIS: Discourse 
+- ADV: Adverbials 
+- ADJ: Adjectival 
+- MOD: Modal
+- NEG: Negation 
+- DSP: Direct Speech
+
+---
+
+### The Emperor recently completely demolished the Cruiser in the Endor system with the Death Star to crush the Rebels
+
+- Arg0-PAG: Emperor
+- Arg1-PPT: Cruiser
+- Arg2-MNR: Death Star
+- ArgM-???: Recently
+- ArgM-???: Completely
+- ArgM-???: In the Endor system
+- ArgM-???: To crush the rebels
+
+---
+
+### The Emperor recently completely demolished the Cruiser in the Endor system with the Death Star to crush the Rebels
+
+- Arg0-PAG: Emperor
+- Arg1-PPT: Cruiser
+- Arg2-MNR: Death Star
+- ArgM-TMP: Recently
+- ArgM-EXT: Completely
+- ArgM-LOC: In the Endor system
+- ArgM-GOL: To crush the rebels
+
+---
+
+### OK, so verbs have frames, and arguments!
+
+- ... but verbs aren't the only thing that has a frame
+
+---
+
+## Predications
+
+- A predication is something that's said about the subject of the sentence
+
+---
+
+### Types of Predication
+
+- Mice **like cheese**.
+
+- Will **is a linguist**.
+
+- Jamba Juice pretzels **are alright as as food**.
+
+- I'm **sorry about the puns**.
+
+- His students **find Will to be strange**
+
+---
+
+### Non-Verbal Predications have semantic frames too!
+
+- "Sorry"
+
+- "Angry"
+
+- "Hangry"
+
+- "Romantic"
+
+---
+
+### Underappreciated
+
+- Arg0-PAG: underappreciator
+
+- Arg1-PPT: thing not valued highly enough
+
+---
+
+### Anxious
+
+- Arg0-CAU: cause of anxiety -- anxious over/about what?
+
+- Arg1-CAU: nervous entity
+
+---
+
+### Nonfunctioning
+
+- Arg0-PAG: non-worker
+
+- Arg1-PRD: job, project
+
+---
+
+### Overweight
+
+- Arg1-PPT: overweight entity
+
+- Arg2-EXT: amount over weight
+
+- Arg3-PRD: weight measurement
+
+---
+
+### Different adjective senses take different sets of arguments
+
+---
+
+### Lit (as in a building)
+
+- Arg0-CAU: thing providing light
+
+- Arg1-PPT: object which is covered in light
+
+---
+
+### Lit (as in a party)
+
+- Arg0-PPT: event which is off the hook
+
+---
+
+### This process gives us two important pieces of information
+
+- What arguments that a given predication **expects**
+
+- What the **semantic nature** of these arguments is
+
+---
+
+# Why do we need any of this?
+
+---
+
+## These representations are *independent of syntax*
+
+---
+
+### The argument structure doesn't change with word order
+
+- Will hit the dragon with an arrow.
+
+- It was the dragon that Will hit with an arrow.
+
+- Will used an arrow to hit the dragon.
+
+- An arrow was used by Will to hit the dragon.
+
+- The dragon, with an arrow, was hit.
+
+---
+
+## Word sense disambiguation gets easier!
+
+---
+
+### Knowing things about verb semantics helps 
+
+- Hit Verb: Dependency parse shows three arguments: "rock", "dragon", "Will"
+
+- Hit Verb: Parse shows "1000 points" and "Score".
+
+- Fit Adj: Parse shows only one argument, 'he'
+
+- Fit Adj: Parse shows two arguments, 'co-pilot', 'fly'
+
+---
+
+## It helps us understand text better
+
+---
+
+### Once you know a verb's sense, you know what to expect
+
+- "Uh oh.  There's firing going on. It's the business sense. We should find the argument doing the firing, who's being fired, and where they're being fired from."
+	
+- "Uh, wait, this is the "fired a gun" sense. We need to know what argument was fired, who pulled the trigger, and who, if anything, was fired at."
+
+- **You can track down the arguments that you didn't find!**
+
+---
+
+### Not all arguments are always given!
+
+- "The dragon was hit by an arrow"
+
+- "Lit!"
+
+- "I am anxious"
+
+- *Knowing the expected semantic roles tells you what's missing!*
+
+---
+
+## Frames + Dependency parsing *hands us semantics for free!*
+
+---
+
+### The Emperor recently completely demolished the Cruiser in the Endor system with the Death Star to crush the Rebels
+
+<img class="r-stretch" src="diagrams/dep_emperor.jpg">
+
+---
+
+### The Emperor recently completely demolished the Cruiser in the Endor system with the Death Star to crush the Rebels
+
+<img class="r-stretch" src="diagrams/dep_emperor_args.jpg">
+
+---
+
+## This is useful for question answering
+
+---
+
+### Questions often ask for arguments
+
+- "Who was hit?" 
+	- ARG1-PPT
+
+- "Who did the hitting?"
+	- ARG0-PAG
+
+- "Where did the hitting happen?"
+	- ARGM-LOC
+
+- "When did the hitting happen?"
+	- ARGM-TMP
+
+- "Why did the hitting happen?"
+	- ARGM-GOL or ARGM-CAU
+	
+---
+
+### Questions and arguments continued
+
+- "How much hitting was done?"
+	- ARGM-EXT
+	
+- "Did anybody help?"
+	- ARGM-COM
+
+- "What was used to hit?"
+	- ARGM-MNR
+	
+- "How was the hitting done?
+	- ARGM-ADV
+	
+- "Was the hitting done?"
+	- ARGM-NEG
+
+---
+
+### Answers are right in the parse
+
+- "Who demolished the cruiser?"
+
+- "Where was the cruiser demolished?"
+
+- "How was the cruiser demolished?"
+
+- "Why was the cruiser demolished?"
+
+<img class="r-stretch" src="diagrams/dep_emperor_args.jpg">
+
+---
+
+## This can be done automatically!
+
+---
+
+### We're good at automatic semantic role labeling
+
+- "Given this dependency parse, identify the arguments"
+
+	- Or, "Give me the dependency parse and arguments"
+
+- Around 90% precision (e.g. correct labels detected)
+
+- Around 80% recall (e.g. cases for labeling found)
+
+---
+
+## This can be expanded
+
+---
+
+### The AMR Project
+
+- The [AMR (Abstract Meaning Representations) Project](https://amr.isi.edu/index.html) builds on this work
+
+	- [A great introductory slide show](https://github.com/nschneid/amr-tutorial/tree/master/slides)
+
+- Brings additional elements to verb frames to enrich what's captured
+
+- Aims to create abstract meaning graphs from sentences which can be used for understanding
+
+- "Similar meanings will have similar representations"
+
+---
+
+## Semantic Representations like these are powerful
+
+---
+
+### Once we know the verb sense and the syntax, we know...
+
+- What arguments are expected
+
+- What arguments are missing
+
+- How to answer questions
+
+- How to represent meaning independent of syntax
+
+---
+
+## This is called 'Semantic Parsing'
+
+---
+
+### Semantic Parsing turns language data into a machine-usable semantic representation
+
+- These are 'shallow semantic parses'
+
+	- Also called 'slot filling' or 'frame semantic parsing'
+	
+- There are deeper semantic parses
+
+	- Going to lambda-calculus or other semantic representations
+
+- ... but this is what Alexa does, along with many other systems
+
+---
+
+### Use this for your projects!
+
+- When you're asking a question, think what role-labels you're asking for?
+
+- This is one of the most powerful things we're talking about all quarter!
+
+---
+
+### Use this for your projects!
+
+- When you're asking a question, think what role-labels you're asking for?
+
+- This is one of the most powerful things we're covering this quarter
+
+- Think about queries and responses as semantic parses in your option 1 project!
+
+---
+
+### Wrapping up
+
+- Different word senses take different sets of arguments
+
+- Knowing about predications and arguments helps us understand verbs better
+
+- There are many semantic roles which can be found
+
+- This kind of semantic parsing is *really* helpful in NLP
+
+---
+
+### For Next Time
+
+- We'll look at a different semantic domain: Events
+
+	- Read the RED Guidelines
+
+---
+
+<huge>Thank you!</huge>
+
+
+
+
+
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1 id="speech-technology-is-incredible">Speech Technology is
+Incredible</h1>
+<h3 id="will-styler---cssa-talk-series">Will Styler - CSSA Talk
+Series</h3>
+<p><a href="https://savethevowels.org/talks/cssa2025.html"
+class="uri">https://savethevowels.org/talks/cssa2025.html</a></p>
+<hr />
+<h3 id="introductions">Introductions</h3>
+<ul>
+<li><p>I’m an Associate Teaching Professor of Linguistics</p></li>
+<li><p>I’m a Computational Phonetician</p>
+<ul>
+<li>I study human speech perception and production using computers</li>
+<li>This involves a mix of experiments, data analysis, recordings, and
+instrumental measurements</li>
+</ul></li>
+<li><p>I’ve also done Natural Language Processing work</p></li>
+<li><p>I work to develop new tools for measurement and teaching</p></li>
+</ul>
+<hr />
+<h3 id="im-also-director-of-computational-social-science-at-ucsd">I’m
+also Director of <a href="https://css.ucsd.edu">Computational Social
+Science</a> at UCSD</h3>
+<ul>
+<li><p>We’re an interdisciplinary program uniting people across Social
+Science who work with and care about computation and data</p></li>
+<li><p>We believe that <strong>data matters because people
+matter</strong></p></li>
+<li><p>I’m here because I’m always thinking about computers as a tool
+for understanding humans!</p></li>
+</ul>
+<hr />
+<h3 id="but-there-remains-an-elephant-in-this-cssa-filled-room">But
+there remains an elephant in this CSSA-filled room</h3>
+<ul>
+<li>I’m not actually in Cognitive Science!</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/impostor.jpg"></p>
+<hr />
+<h3
+id="cognitive-science-wasnt-a-separate-program-where-i-grew-up">Cognitive
+Science wasn’t a separate program where I grew up</h3>
+<ul>
+<li><p>I have my BA, MA and Doctorate in Linguistics from the <a
+href="https://www.colorado.edu/linguistics/">University of Colorado at
+Boulder</a></p></li>
+<li><p>CU Boulder had the <a
+href="https://www.colorado.edu/ics/">Institute of Cognitive
+Science</a></p>
+<ul>
+<li>Collaborations between faculty in CS, Philosophy, Linguistics,
+Psych, Education, and more</li>
+</ul></li>
+<li><p>I went to their talks and was advised by an affiliate, but there
+was not a COGS major or Ph.D Specialization</p>
+<ul>
+<li>… but I am bothered by many COGS-flavored questions</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="but-i-do-have-a-lot-of-cogs-ties">But I do have a lot of COGS
+ties</h3>
+<ul>
+<li>I collaborate lots with <a
+href="https://quote.ucsd.edu/lasr/">Dr. Sarah Creel</a> in COGS
+<ul>
+<li>Who is an incredible person to talk to if you’re interested in
+speech in COGS</li>
+</ul></li>
+<li>CSS has <a
+href="https://css.ucsd.edu/people/faculty.html#Cognitive-Science">lots
+of Cognitive Scientists</a>!
+<ul>
+<li>Including <a href="https://seantrott.github.io/">Dr. Sean Trott</a>,
+one of our Core Faculty</li>
+<li>And <a href="https://shannon-ellis.com/">Dr. Shannon Ellis</a> is on
+our steering committee</li>
+</ul></li>
+<li>… and I know that Language folks over here are just as awesome and
+effective</li>
+</ul>
+<hr />
+<h3 id="no-matter-where-my-office-is-language-is-the-best">No matter
+where my office is, Language is the best</h3>
+<ul>
+<li><p>Speech is even cooler than Language</p></li>
+<li><p>… and all the more awesome when we put computers into the
+process</p></li>
+</ul>
+<hr />
+<h2 id="speech-technology">Speech Technology</h2>
+<hr />
+<h3 id="speech-technology-is-pervasive-in-the-us">Speech Technology is
+pervasive in the US</h3>
+<ul>
+<li><p>Siri/Alexa/GoogleAssistant</p></li>
+<li><p>ChatGPT Voice Mode</p></li>
+<li><p>Speech-to-Text Keyboards</p></li>
+<li><p>Text-to-Speech (e.g. in GPS or Twitch streams)</p></li>
+<li><p>… and much more!</p></li>
+</ul>
+<hr />
+<h3 id="speech-technology-is-absolutely-fascinating">Speech technology
+is absolutely fascinating</h3>
+<ul>
+<li><strong>… but the most interesting part is that it works at
+all!</strong></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Why is speech so hard to produce?</p></li>
+<li><p>How can computers produce speech?</p></li>
+<li><p>Why is speech so hard to perceive?</p></li>
+<li><p>How can computers perceive speech?</p></li>
+</ul>
+<hr />
+<h2 id="speech-is-hard">Speech is Hard</h2>
+<hr />
+<h3 id="human-speech-is-incredibly-difficult">Human Speech is incredibly
+difficult</h3>
+<ul>
+<li><p>This is an incredibly intricate gestural dance in your mind and
+mouth</p></li>
+<li><p>Let’s try it</p></li>
+</ul>
+<hr />
+<h3 id="a-linguistics-major-goes-very-well-with-cognitive-science">“A
+Linguistics Major goes very well with Cognitive Science”</h3>
+<ul>
+<li><p>First, focus on your jaw</p></li>
+<li><p>Now, on your tongue</p></li>
+<li><p>Now, feel the vibes</p></li>
+</ul>
+<hr />
+<h3 id="speech-is-hard-1">Speech is <em>hard</em></h3>
+<ul>
+<li><p>Fluid movement of your mouth and tongue</p></li>
+<li><p>Careful planning of air and breathing</p></li>
+<li><p>Control of pitch, gestures, and other aspects</p></li>
+<li><p>All to create tiny pressure variations in the air</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/sky.png"></p>
+<hr />
+<p><img class="r-stretch" src="phonmedia/skyspectrogram.png"></p>
+<hr />
+<h3 id="and-we-want-to-do-this-with-software">… and we want to do
+<em>this</em> with software?!?</h3>
+<ul>
+<li><p>‘Speech Synthesis’ or ‘Text-to-Speech’ (TTS)</p></li>
+<li><p><em>How do we do that?</em></p></li>
+</ul>
+<hr />
+<h3 id="the-task">The Task</h3>
+<p>“A Linguistics major goes very well with Cognitive Science”</p>
+<audio controls src="phonmedia/lingwithcogs.mp3">
+</audio>
+<hr />
+<h3 id="historically-the-steps-were-simple">Historically, the steps were
+simple</h3>
+<ul>
+<li>Analyze what the text needs to sound like (‘Text Analysis’)
+<ul>
+<li>Jelena saw 1985 listings in La Jolla CA for over $2 million</li>
+<li>/jɛlɛnə sɑ najntin hʌndɹɪd . . . /</li>
+</ul></li>
+<li>Now, transform that into a wave we can play back for the humans</li>
+</ul>
+<hr />
+<h3 id="for-a-long-time-we-cheated-using-humans">For a long time, we
+cheated using humans!</h3>
+<ul>
+<li><p><strong>Concatenative or ‘Unit Selection’ TTS</strong> chops up
+bits and pieces of existing speech to create new speech</p></li>
+<li><p>You record a huge database of speech from a voice actor, with
+optimum ‘coverage’</p>
+<ul>
+<li>You update as new words emerge (e.g. COVID, rizz, skibidi)</li>
+</ul></li>
+<li><p><strong>You then combine these words into sentences to match the
+text</strong></p>
+<ul>
+<li>… and you use fancy algorithms to smooth the results out.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-result-can-be-imperfect">The result can be imperfect</h3>
+<video controls src="video/donutquantity.mp4">
+</video>
+<hr />
+<h3
+id="then-artificial-neural-networks-arrived-and-everything-changed">Then,
+Artificial Neural Networks arrived, and everything changed</h3>
+<p><img class="r-stretch" src="dalle/cuteneuralnetwork.jpg"></p>
+<hr />
+<h3 id="the-worlds-worst-introduction-to-neural-networks">The World’s
+Worst Introduction to Neural Networks</h3>
+<p><img class="r-stretch" src="img/dnn.jpg"></p>
+<hr />
+<h3
+id="for-today-neural-networks-learn-to-transform-input-data-into-a-desired-output-data">For
+today, Neural Networks learn to transform input data into a desired
+output data</h3>
+<ul>
+<li><p>Training involves presenting the network with both input and
+output</p>
+<ul>
+<li>Then we change the network between to make the output closer to the
+desired output</li>
+</ul></li>
+<li><p>Then you feed in new input, and get new output</p></li>
+<li><p>They are wildly complex, and wildly powerful</p></li>
+<li><p><strong>Take COGS 181 to actually understand
+this!</strong></p></li>
+</ul>
+<hr />
+<h3 id="tacotron2-is-a-relatively-simple-neural-tts-system"><a
+href="https://arxiv.org/pdf/1712.05884">TacoTron2</a> is a relatively
+simple, neural TTS system</h3>
+<ul>
+<li><p>For now, we input text, we get speech</p></li>
+<li><p>It’s trained using speech with paired text</p></li>
+<li><p>It takes text, and generates spectrograms, chunk-by-chunk, which
+can be turned into a waveform</p></li>
+</ul>
+<hr />
+<h3 id="tacotron-2">TacoTron 2</h3>
+<p><img class="r-stretch" src="phonmedia/tts_tacotron2.png"></p>
+<hr />
+<h3 id="this-allows-us-to-go-from-text-to-speech">This allows us to go
+from text to speech!</h3>
+<ul>
+<li><p>We feed in text, and we get back a wave, with no humans involved
+past making training data!</p></li>
+<li><p>State-of-the-art models are getting very, very good!</p></li>
+</ul>
+<audio controls src="comp/tts_lingcogs.mp3">
+</audio>
+<hr />
+<h3 id="the-state-of-the-art-is-advanced-but-closed">The State of the
+Art is Advanced, but closed</h3>
+<ul>
+<li>Current state of the art models from ElevenLabs, OpenAI, Google, and
+Amazon are all closed and proprietary
+<ul>
+<li>If you want the best TTS in the world, it has to happen on somebody
+else’s computer</li>
+<li>Details are often not published and considered “trade secrets”</li>
+</ul></li>
+<li>It’s not currently possible to teach the state of the art in TTS!
+<ul>
+<li>… and this should disturb us as a society</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="neural-tts-can-be-trained-using-any-voice">Neural TTS can be
+trained using <em>any</em> voice</h3>
+<ul>
+<li><p>You can build a model from the ground up using any voice you’d
+like</p></li>
+<li><p>If all your training data are from a bored Bostonian, you’ll end
+up with a bored Bostonian TTS voice</p></li>
+<li><p>Yet, we might want different voices…</p></li>
+</ul>
+<hr />
+<blockquote>
+<p>All human beings are born free and equal in dignity and rights. They
+are endowed with reason and conscience and should act towards one
+another in a spirit of brotherhood.</p>
+</blockquote>
+<audio controls src="comp/tts_rights_brianvoice.mp3">
+</audio>
+<audio controls src="comp/tts_rights_rachelvoice.mp3">
+</audio>
+<hr />
+<h3 id="humans-know-that-content-and-style-are-different">Humans know
+that content and style are different</h3>
+<ul>
+<li>Speech expresses linguistic ‘content’
+<ul>
+<li>Phonemes, with ordering, and necessary pitch and timing for
+comprehension</li>
+<li>This is ‘all we need’ to understand the utterances</li>
+</ul></li>
+<li>There’s also ‘Style’, which gives us lots of other details
+<ul>
+<li>‘Speaker’ identity</li>
+<li>Social components</li>
+<li>Emotional content</li>
+<li>Plus things like speed, emphasis, pitch ‘tunes’, sarcasm</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="couldnt-we-just-abstract-out-the-style-component-and-apply-it-to-whatever-linguistic-content-wed-like">Couldn’t
+we just abstract out the ‘style’ component and apply it to whatever
+Linguistic content we’d like?</h3>
+<ul>
+<li>Yes!</li>
+</ul>
+<hr />
+<h3 id="heres-a-multi-speaker-version-of-tacotron-2">Here’s a
+Multi-Speaker Version of TacoTron 2</h3>
+<p><img class="r-stretch" src="phonmedia/tts_tacotron2_multispeaker.png"></p>
+<hr />
+<h3 id="the-results-of-this-are-terrifying">The results of this are…
+terrifying</h3>
+<ul>
+<li>… and has given rise to ‘Deepfake’ voices</li>
+</ul>
+<hr />
+<h3 id="neural-styler-transfer">Neural Styler Transfer</h3>
+<audio controls src="comp/tts_will_ling.wav">
+</audio>
+<p>(TacoTron2)</p>
+<audio controls src="comp/tts_will_elclone.wav">
+</audio>
+<p>(ElevenLabs)</p>
+<p>(Credit to Erick Amaro and Mia Khattar!)</p>
+<hr />
+<h3 id="multilingual-examples">Multilingual Examples</h3>
+<audio controls src="comp/tts_will_english.mp3">
+</audio>
+<p>(English)</p>
+<audio controls src="comp/tts_will_french.mp3">
+</audio>
+<p>(French)</p>
+<audio controls src="comp/tts_will_spanish.mp3">
+</audio>
+<p>(Spanish)</p>
+<audio controls src="comp/tts_will_mandarin.mp3">
+</audio>
+<p>(Mandarin)</p>
+<audio controls src="comp/tts_will_italian.mp3">
+</audio>
+<p>(Italian)</p>
+<audio controls src="comp/tts_will_russian.mp3">
+</audio>
+<p>(Russian)</p>
+<audio controls src="comp/tts_will_japanese.mp3">
+</audio>
+<p>(Japanese)</p>
+<hr />
+<h3 id="prosody-is-still-hard">Prosody is still hard</h3>
+<audio controls src="comp/tts_will_rick.mp3">
+</audio>
+<hr />
+<h3
+id="but-omg-this-thing-can-do-arbitrary-speech-in-an-arbitrary-voice">…
+but OMG, this thing can do arbitrary speech, in an arbitrary voice</h3>
+<ul>
+<li><p>… and it’s never had a tongue, had phonics training, and doesn’t
+actually know anything at all about mouths</p></li>
+<li><p>Arguably, it doesn’t know anything about English</p>
+<ul>
+<li>… although some systems use a language model too</li>
+</ul></li>
+<li><p><em>This is amazing!</em></p>
+<ul>
+<li>… but it can model more complexity still</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="code-switching">Code Switching</h3>
+<p>It’s like sometimes mezclo un poco de español con my English, cuando
+me siento particularmente spicy, y tengo curiosidad to know cómo la TTS
+handles it.</p>
+<audio controls src="comp/tts_will_codeswitch.mp3">
+</audio>
+<hr />
+<h3 id="wow.">Wow.</h3>
+<ul>
+<li><p>Not only can exposure to data allow a deep neural network to
+learn to map written language into speech in one language</p></li>
+<li><p>… but it can do it for two languages</p></li>
+<li><p>… at once</p></li>
+<li><p>… with clear mixing of the two</p></li>
+<li><p><strong>Espicy!</strong></p></li>
+</ul>
+<hr />
+<h1 id="what-about-speech-perception">What about Speech Perception?</h1>
+<hr />
+<h3 id="speech-perception-is-hard">Speech Perception is
+<em>hard</em></h3>
+<ul>
+<li><p>Speech is flapping bits of meat around in your head and throat
+while you expel air.</p></li>
+<li><p>This creates tiny vibrations in the air</p></li>
+<li><p><strong>Speech perception is turning the resulting vibrations in
+the air back into language</strong></p></li>
+</ul>
+<hr />
+<h3 id="lets-focus-on-one-of-the-really-hard-problems">Let’s focus on
+one of the really hard problems</h3>
+<hr />
+<h2 id="vowel-perception">Vowel Perception</h2>
+<hr />
+<h3 id="what-is-a-vowel">What is a vowel?</h3>
+<ul>
+<li><p>A vowel is letting the voice resonate in the vocal tract while
+you move the tongue</p></li>
+<li><p>If we change the position of the tongue, we change the
+resonances</p></li>
+</ul>
+<hr />
+<p><img src="phonmedia/aeiou.png"></p>
+<hr />
+<h3 id="english-has-lots-of-vowels">English has lots of vowels</h3>
+<p>/i/ - beet, see, seen, sear, seal</p>
+<p>/ɪ/ - bit, sit, tin, sill</p>
+<p>/ɛ/ - bet, set, sent, fair, sell</p>
+<p>/æ/ - bat, sat, pant, pal</p>
+<p>/ʌ/ - but, sun, pun, lull (ə in sofa, amount)</p>
+<p>/əɹ/ - bird, purr, earl, butter, clamor (this is often broken into
+two vowels!)</p>
+<p>/ɑ/ - bot, saw, star, paul, pawn, (cot*)</p>
+<p>/ɔ/ - corn /kɔɹn/, boy /bɔj/ (caught*)</p>
+<p>/ʊ/ - book, hood, puss</p>
+<p>/u/ - boot, who’d, loose, lure, loon</p>
+<hr />
+<h3 id="diphthongs-too">Diphthongs, too!</h3>
+<p>/ɔj/ - boy, soy, toy, join, oil, Roy</p>
+<p>/aj/ - buy, right, try, sigh, die, fire</p>
+<p>/ej/ - play, bay, may, ray, lay, trail</p>
+<p>/ow/ - boat, oat, wrote, pope, toll</p>
+<p>/aw/ - how, now, brown, cow, prow, louse</p>
+<hr />
+<p><img class="big" src="phonmedia/voweltongue.png"></p>
+<hr />
+<p><img class="big" src="phonmedia/voweltongue2.png"></p>
+<hr />
+<h3 id="what-do-vowels-sound-like">What do vowels sound like?</h3>
+<ul>
+<li><p>We talk about vowel quality in terms of “formants”</p></li>
+<li><p>These are bands of the spectrum where the energy is
+strongest</p></li>
+<li><p>The frequencies of these formants are how we distinguish
+vowels</p></li>
+</ul>
+<hr />
+<p><img class="big" src="phonmedia/iformants.png"></p>
+<hr />
+<p><img class="big" src="phonmedia/iformantslabeled.png"></p>
+<hr />
+<h3
+id="so-different-vowels-are-basically-different-formant-patterns">So,
+different vowels are basically different formant patterns</h3>
+<hr />
+<p><img class="big" src="phonmedia/vowelformants.gif"> <small>Different
+American English vowels, as spoken by a male speaker</small></p>
+<hr />
+<h3 id="speaker-vowel-space-variation">Speaker Vowel Space
+Variation</h3>
+<ul>
+<li><p>Different speakers produce different resonances, even for the
+“same” vowels</p>
+<ul>
+<li>Vocal tracts can be shorter, longer, wider…</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="heres-the-weird-part">Here’s the weird part!</h3>
+<ul>
+<li><p>Different speakers have different formants, even for the “same”
+vowels!</p></li>
+<li><p>Every person has a different set of basic vowel formant
+positions</p>
+<ul>
+<li>This is called the speaker’s “vowel space”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="idealized-formants">‘Idealized’ Formants</h3>
+<p><img class="r-stretch" src="phonmedia/ipaformantsgraph.png"></p>
+<hr />
+<h3 id="speaker-average-formants">Speaker Average Formants</h3>
+<p><img class="r-stretch" src="phonmedia/clearspeech_speakeraverages.png"></p>
+<hr />
+<h3 id="moment-to-moment-vowel-variation">Moment-to-moment Vowel
+Variation</h3>
+<ul>
+<li><p>Even the same speaker will have variation from moment to
+moment</p></li>
+<li><p>We often move our tongues differently, changing the vowel’s
+quality</p>
+<ul>
+<li>For many, many reasons</li>
+</ul></li>
+<li><p>This leads to constant and massive changes in vowel
+production</p></li>
+</ul>
+<hr />
+<h3 id="speaker-average-formants-1">Speaker Average Formants</h3>
+<p><img class="r-stretch" src="phonmedia/clearspeech_speakeraverages.png"></p>
+<hr />
+<h3 id="individual-token-formants">Individual Token Formants</h3>
+<p><img class="r-stretch" src="phonmedia/clearspeech_alltokens.png"></p>
+<hr />
+<h3 id="individual-token-formants-1">Individual Token Formants</h3>
+<p><img class="r-stretch" src="phonmedia/clearspeech_alltokensellipses.png"></p>
+<hr />
+<p><img class="r-stretch" src="humorimg/trainwreck.png"></p>
+<hr />
+<h3
+id="every-person-youve-ever-talked-with-has-had-different-vowel-formant-patterns">Every
+person you’ve ever talked with has had different vowel formant
+patterns</h3>
+<ul>
+<li>… and yet, we understand each other, somehow</li>
+</ul>
+<hr />
+<p><img class="big" src="img/magic.jpg"></p>
+<hr />
+<h3 id="humans-are-able-to-cope-with-this-easily-somehow">Humans are
+able to cope with this easily, somehow</h3>
+<ul>
+<li>… but what about computers?</li>
+</ul>
+<hr />
+<h2 id="automatic-speech-recognition">Automatic Speech Recognition</h2>
+<hr />
+<h3 id="asr-builds-mappings-from-audio-to-text">ASR builds mappings from
+audio to text</h3>
+<ul>
+<li><p>We feed the system lots of text, and lots of corresponding
+audio</p></li>
+<li><p>It learns the patterns of sound associated with a given
+text</p></li>
+<li><p>Some use language models to give better predictions</p></li>
+</ul>
+<hr />
+<h3 id="vintage-asr-used-to-require-explicit-speaker-adaptation">Vintage
+ASR used to require explicit speaker adaptation</h3>
+<ul>
+<li><p>Around the turn of the century, ASR software required
+personalization and ‘training’</p></li>
+<li><p>Setup began with “Read these texts aloud”</p>
+<ul>
+<li>It would then process for a little while as it ‘customized’ to your
+voice</li>
+</ul></li>
+<li><p>The model <em>simply wouldn’t work</em> without this level of
+customization</p></li>
+</ul>
+<hr />
+<h3
+id="then-artificial-neural-networks-arrived-and-everything-changed-again">Then,
+Artificial Neural Networks arrived, and everything changed (again)</h3>
+<p><img class="r-stretch" src="dalle/cuteneuralnetwork.jpg"></p>
+<hr />
+<h3 id="whisper-is-openais-neural-asr-tool">Whisper is OpenAI’s Neural
+ASR Tool</h3>
+<p><img class="r-stretch" src="phonmedia/asr_whisper.png"></p>
+<hr />
+<h3 id="but-it-is-wildly-effective">… but it is wildly effective</h3>
+<ul>
+<li><p>It works relatively quickly</p></li>
+<li><p>On relatively low-end hardware</p></li>
+<li><p>… and most amazing of all…</p></li>
+</ul>
+<hr />
+<h3
+id="whisper-can-get-human-like-performance-in-speech-transcription">Whisper
+can get human-like performance in speech transcription*</h3>
+<p><img class="r-stretch" src="phonmedia/asr_whispervshumans.png"></p>
+<hr />
+<h3 id="wow.-1">Wow.</h3>
+<ul>
+<li><p>These ASR tools just ‘listened’ to a bunch of audio with
+texts</p></li>
+<li><p>They built representations of speech</p></li>
+<li><p>They combined it with some knowledge of how text usually
+looks</p></li>
+<li><p>… and suddenly, it approaches human ability in speech
+perception*</p></li>
+</ul>
+<hr />
+<h3 id="wait-what-were-those-asterisks">Wait, what were those
+asterisks?</h3>
+<ul>
+<li>About that….</li>
+</ul>
+<hr />
+<h3
+id="how-many-of-you-have-had-great-experiences-with-speech-to-text">How
+many of you have had great experiences with speech-to-text?</h3>
+<ul>
+<li><p>How many think it’s OK?</p></li>
+<li><p>How many think it works terribly?</p></li>
+</ul>
+<hr />
+<h3
+id="these-tools-are-great-at-recognizing-speech-for-the-dialects-that-they-were-trained-on">These
+tools are great at recognizing speech <em>for the dialects that they
+were trained on</em></h3>
+<ul>
+<li><p>… but they’re substantially weaker at adapting to different
+dialects</p></li>
+<li><p>Many people are working on that</p>
+<ul>
+<li>… including your very own Oishani Bandopadhyay!</li>
+</ul></li>
+<li><p><strong>So, humans still win!</strong></p></li>
+</ul>
+<hr />
+<h3 id="hooray">Hooray!</h3>
+<p><img class="r-stretch" src="img/morpheus.jpg"></p>
+<hr />
+<p>Yet, there’s still one incredible fact…</p>
+<hr />
+<h3 id="neural-networks-can-be-as-good-as-humans-at-speech">Neural
+networks can be as good as humans at speech</h3>
+<ul>
+<li><p>… without tongues, ears, grammatical knowledge, or human
+brains</p></li>
+<li><p>Just like LLMs are the second thing <em>ever</em> which can do
+human language</p></li>
+<li><p><em>All it takes it lots of data and the right
+architecture</em></p>
+<ul>
+<li>Take LIGN 168 to understand more about speech tools and follow the
+progress!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="were-still-figuring-out-what-this-means-for-language">We’re
+still figuring out what this means for Language</h3>
+<ul>
+<li>… but one thing is for sure …</li>
+</ul>
+<hr />
+<h3
+id="its-a-fascinating-time-to-study-the-cognitive-science-of-language">It’s
+a fascinating time to study the Cognitive Science of Language!</h3>
+<ul>
+<li><p>… and to have a Linguistics double major</p></li>
+<li><p>(Sorry, couldn’t resist)</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+<hr />
+<h3
+id="bonus-content-formants-are-enough-for-speech-perception-in-humans">Bonus
+Content: Formants are enough for speech perception in humans</h3>
+<hr />
+<h3 id="lets-listen-to-some-sounds">Let’s listen to some sounds</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_f3.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/lingmajor_f2.mp3" type="audio/mp3">
+</audio>
+<audio controls>
+<source src="phonmedia/lingmajor_f1.mp3" type="audio/mp3">
+</audio>
+<p><br></p>
+<h3 id="now-lets-play-all-three-at-once">Now let’s play all three at
+once!</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_sine.mp3" type="audio/mp3">
+</audio>
+<p><br></p>
+<h3 id="does-this-help">Does this help?</h3>
+<audio controls>
+<source src="phonmedia/lingmajor_orig.mp3" type="audio/mp3">
+</audio>
+</body>
+</html>

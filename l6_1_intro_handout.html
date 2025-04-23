@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="navigating-my-slides">Navigating my Slides</h3>
+<p>All my slides are presented using <a
+href="revealjs.com">reveal.js</a>, and do not exist as Powerpoint or
+PDF, but instead, as websites.</p>
+<p>To navigate my slides, use the arrow keys, the onscreen controls, or
+swipe on mobile. To scan through slides, hit ‘Escape’.</p>
+<p>To print or make a PDF, add ?print-pdf to the URL after .html in
+Google Chrome and then ‘Print’ as usual.</p>
+<p>(Please note that PDF/printing is not ‘officially supported’ by the
+instructor, and the results may be wonky in places)</p>
+<hr />
+<h3 id="handout-mode">Handout Mode</h3>
+<p>You can also access a handout version of any slideshow by adding
+<code>_handout</code> right before .html in the slide URL.</p>
+<p>So, <a
+href="https://savethevowels.org/talks/l6_1_intro_handout.html">Handout
+Link</a></p>
+<hr />
+<h1 id="linguistics-6-computers-and-language">Linguistics 6: Computers
+and Language</h1>
+<h3 id="dr.-will-styler---spring-2022">Dr. Will Styler - Spring
+2022</h3>
+<p><img class="r-stretch" src="img/hal9000.jpg"></p>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Introductions</p></li>
+<li><p>What is this course about?</p></li>
+<li><p>What is a computer and how does it work?</p></li>
+<li><p>Why don’t computers speak English?</p></li>
+<li><p>What will we cover?</p></li>
+<li><p>What will we ignore?</p></li>
+</ul>
+<hr />
+<h1 id="introductions">Introductions</h1>
+<hr />
+<h2 id="dr.-will-styler">Dr. Will Styler</h2>
+<p>Instructor, Linguist, Gigantic Nerd</p>
+<p><img class="r-stretch" src="people/will.jpg"></p>
+<hr />
+<h2 id="ben-lang">Ben Lang</h2>
+<p>Graduate IA, Linguist</p>
+<p><img class="r-stretch" src="people/benlang.jpg"></p>
+<hr />
+<h2 id="hagyeong-shin">Hagyeong Shin</h2>
+<p>Graduate IA, Linguist</p>
+<p><img class="r-stretch" src="people/hagyeongshin.jpg"></p>
+<hr />
+<h2 id="yuri-bukhradze">Yuri Bukhradze</h2>
+<p>Undergraduate IA, Linguist</p>
+<p><img class="r-stretch" src="people/yuribukhradze.jpg"></p>
+<hr />
+<h3 id="who-are-you">Who are you?</h3>
+<ul>
+<li><p>What’s your year?</p></li>
+<li><p>Ling majors?</p></li>
+<li><p>Monolingual/Bilingual/Multilingual?</p></li>
+<li><p>What languages do we speak?</p></li>
+<li><p>What kinds of computers do you use?</p></li>
+</ul>
+<hr />
+<h2 id="syllabus-and-schedule">Syllabus and Schedule</h2>
+<p><a href="http://savethevowels.org/6"
+class="uri">http://savethevowels.org/6</a></p>
+<hr />
+<h2 id="syllabus-stuff-which-bears-repeating">Syllabus Stuff which bears
+repeating</h2>
+<p><img class="r-stretch" src="img/bearsrepeating.jpg"></p>
+<hr />
+<h3 id="syllabus-stuff-which-bears-repeating-1">Syllabus Stuff which
+bears repeating</h3>
+<ul>
+<li><p>Check your Canvas</p></li>
+<li><p>Come to office hours with questions.</p></li>
+<li><p>The syllabus will change!</p></li>
+<li><p><strong>We are here to help!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="were-going-to-be-posting-lecture-videos-on-podcast.ucsd.edu">We’re
+going to be posting lecture videos on Podcast.ucsd.edu</h3>
+<ul>
+<li><p>You’ll notice me restating questions afterwards</p></li>
+<li><p>You might end up with videos from Winter 2021 if I get sick or
+Podcast breaks down</p>
+<ul>
+<li>Sorry about that!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="were-back-in-meatspace">We’re back in meatspace!</h3>
+<ul>
+<li><p>Here’s hoping it stays that way</p>
+<ul>
+<li>We have a plan in place, in case it doesn’t</li>
+</ul></li>
+<li><p>Come to class healthy, masked, and prepared</p></li>
+<li><p><strong>Please make an effort to talk more loudly when asking
+questions or answering!</strong></p></li>
+<li><p>You have no excuse to come to class sick!</p>
+<ul>
+<li>The attendance policy is lax, and you can always just podcast.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="classroom-safety-requirements">Classroom safety
+requirements</h3>
+<ul>
+<li><p>Everyone must properly wear face coverings.</p></li>
+<li><p>Stay current with your COVID-19 testing.</p></li>
+<li><p>Monitor your symptoms, stay home if you’re sick and report
+positive cases.</p></li>
+<li><p>Keep your hands clean, cover your cough and don’t touch your
+face.</p></li>
+</ul>
+<hr />
+<h3 id="pro-tip-sincere-effort-is-incredibly-important-to-me">Pro-Tip:
+Sincere effort is incredibly important to me</h3>
+<ul>
+<li><p>‘Blow off’ the class, or try to lawyer or cajole your way into an
+A, and you’ll find much no sympathy nor help</p>
+<ul>
+<li>Low effort, low integrity, or ‘cut-corners’ work insults the people
+who you need help from</li>
+</ul></li>
+<li><p>Put in the effort for us, and we’ll put in effort for you</p>
+<ul>
+<li>We will bend over backwards to help students who are making a
+sincere effort</li>
+</ul></li>
+<li><p><strong>If you’re struggling, talk to us ASAP</strong></p></li>
+</ul>
+<hr />
+<h3 id="any-questions">Any questions?</h3>
+<hr />
+<h1 id="computers-dont-speak-our-language-natively">Computers don’t
+speak our language natively</h1>
+<hr />
+<h2 id="what-is-a-computer">What is a computer?</h2>
+<ul>
+<li>(Sorry, CSE people)</li>
+</ul>
+<hr />
+<h3 id="basic-computer-hardware-anatomy">Basic Computer Hardware
+Anatomy</h3>
+<ul>
+<li><p>The CPU (“Processor”)</p>
+<ul>
+<li>Does mathematical and logical operations on memory contents</li>
+</ul></li>
+<li><p>Memory (L1/L2/L3 Cache, Random Access Memory (RAM))</p>
+<ul>
+<li><p>Stores the values and data that the CPU needs <em>immediate,
+fast</em> access to</p></li>
+<li><p>Generally relatively small amounts of storage (e.g. totals in the
+tens of Gigabytes, or GB)</p></li>
+</ul></li>
+<li><p>Slow Storage (“Hard Drive (HD)”, “Solid State Drive (SSD)”,
+“Disk”)</p>
+<ul>
+<li><p>Stores the data that the CPU might need slower access to</p></li>
+<li><p>Large amounts of storage (Hundreds of GB to many Terabytes
+(TB))</p></li>
+</ul></li>
+<li><p>The IO</p>
+<ul>
+<li><p>Inputs (Network, Keyboards/Mice, etc.)</p></li>
+<li><p>Outputs (Network, Graphics/Monitors, Printers, Audio,
+etc.)</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="awkward-metaphor">Awkward Metaphor!</h3>
+<p><img class="r-stretch" src="img/office.jpg"></p>
+<hr />
+<h3 id="basic-computer-anatomy">Basic Computer Anatomy</h3>
+<ul>
+<li><p>CPU, Memory, and Storage</p></li>
+<li><p>Networking (e.g. Ethernet, Wifi, Bluetooth)</p></li>
+<li><p>Graphics Cards (GPUs) (Connects to a monitor or display)</p>
+<ul>
+<li>These are also used for many kinds of machine learning
+calculations!</li>
+</ul></li>
+<li><p>Audio Cards (Connects to speakers and microphones)</p></li>
+<li><p>Peripheral Connections (e.g. USB, Thunderbolt)</p></li>
+<li><p>Specialized chips (e.g. motion sensing, touchscreen controller,
+security chips (TPUs))</p></li>
+</ul>
+<hr />
+<h3 id="these-are-not-always-discrete-items">These are not always
+discrete items</h3>
+<ul>
+<li><p>Most computers have a “motherboard” which contains USB, Audio,
+Networking, I/O</p>
+<ul>
+<li>Slots for CPU/RAM/Storage/Video Cards</li>
+</ul></li>
+<li><p>Modern phones and some computers have everything on a single
+board</p></li>
+</ul>
+<hr />
+<h3 id="iphone-11">iPhone 11</h3>
+<p><img class="r-stretch" src="comp/iphone11.jpg"></p>
+<hr />
+<h3 id="iphone-11-1">iPhone 11</h3>
+<p><img class="r-stretch" src="comp/iphone11_2.jpg"></p>
+<hr />
+<h3 id="were-going-to-take-a-broad-view-of-computer-in-this-class">We’re
+going to take a broad view of “computer” in this class</h3>
+<ul>
+<li><p>Your computer</p></li>
+<li><p>A server in a server farm</p></li>
+<li><p>Your smartphone or tablet</p></li>
+<li><p>Your smartwatch</p></li>
+<li><p><em>Anything with a processor, memory, and storage</em></p></li>
+</ul>
+<hr />
+<h2 id="how-does-a-computer-work">How does a computer work?</h2>
+<hr />
+<h3 id="every-single-thing-your-computer-does-is-math">Every single
+thing your computer does is math</h3>
+<ul>
+<li><p>CPU fetches an instruction from memory</p></li>
+<li><p>CPU figures out what needs to be done with what data</p></li>
+<li><p>CPU takes the relevant data from the given places in memory and
+does the desired task</p>
+<ul>
+<li>Usually arithmetic or logical (is X the same as Y?)</li>
+</ul></li>
+<li><p>CPU puts the results back into the memory, and fetches the next
+instruction</p></li>
+<li><p>Repeat ~100,000,000,000 times per second</p></li>
+</ul>
+<hr />
+<h3 id="all-of-this-is-done-in-a-very-low-level-type-of-code">All of
+this is done in a very low level type of code</h3>
+<ul>
+<li><p>Programs are translated (‘compiled’) from a human-readable
+programming language like Python or C++ into processor
+instructions</p></li>
+<li><p>The programs themselves turn these low-level results back into
+something a human can understand</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### C++</td>
+</tr>
+<tr class="even">
+<td>``` #include <iostream> using namespace std;</td>
+</tr>
+<tr class="odd">
+<td>int main() { cout &lt;&lt; “Hello, LIGN 6!”; return 0; } ```</td>
+</tr>
+</tbody>
+</table>
+<h3 id="some-assembly-code">Some assembly code</h3>
+<pre class="assembly"><code># addition
+mov ax, 5   # load number in ax
+mov bx, 2   # load number in bx
+add ax, bx  # accumulate sum in ax
+
+# subtraction
+mov cx, 10
+mov dx, 3
+sub cx, dx  # accumulate difference in cx
+
+# multiplication - 8 bit source
+
+mov al, 5
+mov bl, 10
+mul bl # result in ax
+
+# divison - 8 bit source
+mov al, 23
+mov bl, 4
+div bl # quotient in al, remainder in ah
+</code></pre>
+<hr />
+<h3 id="heres-a-detailed-look-at-this-in-action">Here’s a detailed look
+at this in action</h3>
+<p><a href="https://www.youtube.com/watch?v=yOyaJXpAYZQ">Ben Eater’s
+‘Comparing C to Machine Language’</a></p>
+<p><a href="https://www.youtube.com/watch?v=yOyaJXpAYZQ"
+class="uri">https://www.youtube.com/watch?v=yOyaJXpAYZQ</a></p>
+<hr />
+<h2 id="so-computers-dont-speak-english">So, Computers don’t speak
+English?</h2>
+<hr />
+<h3 id="none-of-this-is-human-language">None of this is human
+language</h3>
+<ul>
+<li><p>Programming Languages are designed for computers, not for
+humans</p></li>
+<li><p>Commands are designed to be unambiguously converted into logical
+or mathematical instructions</p></li>
+<li><p>Limited set of functions and grammatical features</p></li>
+<li><p>Cannot be changed “on the fly”</p>
+<ul>
+<li>Shhh, Lisp people</li>
+</ul></li>
+<li><p>Programming languages are not fully productive nor
+creative</p></li>
+<li><p>There are <em>many</em> things which cannot be expressed in a
+programming language</p></li>
+</ul>
+<hr />
+<h3 id="human-language-is-very-different">Human Language is
+<em>very</em> different</h3>
+<ul>
+<li><p>Sentences cannot be unambiguously converted into logical and
+mathematical instructions</p></li>
+<li><p>Unlimited set of functions and grammatical features</p></li>
+<li><p>Can be modified “on the fly”</p></li>
+<li><p>Fully Productive and Creative</p></li>
+<li><p>Anything can be said using any human language, given sufficient
+time and vocabulary</p></li>
+</ul>
+<hr />
+<h3
+id="most-human-sentences-cannot-be-translated-for-a-computer-without-substantial-loss">Most
+human sentences cannot be “translated” for a computer without
+substantial loss</h3>
+<ul>
+<li><p>“Add 3 to 5, then check to see if the result is bigger than the
+number of characters in ‘Laptop’”</p></li>
+<li><p>“The cat is on the mat”</p></li>
+<li><p>“I’m going to watch the Office tonight”</p></li>
+<li><p>“That hurt my dignity, and made me very sad”</p></li>
+<li><p>“I love you”</p></li>
+</ul>
+<hr />
+<h3 id="computers-dont-understand-speech">Computers don’t understand
+speech</h3>
+<ul>
+<li><p>Sound waves are not fundamentally accessible to
+computers</p></li>
+<li><p>(Nor are visual inputs for signed language, but we’ll focus on
+speech)</p></li>
+<li><p>Data encoded by tongue gestures and carried by sound is hard to
+convert back</p></li>
+<li><p>We’re amazingly good at it</p></li>
+<li><p>Computers lack tongues to produce speech (and to percieve
+it?)</p></li>
+</ul>
+<hr />
+<h3 id="computers-dont-understand-the-world">Computers don’t understand
+the world</h3>
+<ul>
+<li><p>“The cat is on the mat”</p></li>
+<li><p>“I saw a penguin”</p></li>
+<li><p>“I saw the Penguin”</p></li>
+<li><p>“The diplomat is a bachelor.”</p></li>
+<li><p>“I long for her touch.”</p></li>
+</ul>
+<hr />
+<h3 id="there-is-a-vast-gulf-between-computers-and-human-language">There
+is a <em>vast</em> gulf between computers and human language</h3>
+<ul>
+<li>Luckily, there’s a field for that</li>
+</ul>
+<hr />
+<h2 id="natural-language-processing-nlp">Natural Language Processing
+(NLP)</h2>
+<p>The field dedicated to the computational processing, analysis, and
+interaction with human language</p>
+<ul>
+<li><p>(NLP also means ‘Neurolinguistic Programming’ in some circles,
+but it is <em>completely</em> unrelated to computational
+linguistics)</p></li>
+<li><p><strong>We’re focusing on Natural Language Processing this
+quarter!</strong></p></li>
+</ul>
+<hr />
+<h1 id="course-plan">Course Plan</h1>
+<hr />
+<h2 id="what-will-we-cover">What will we cover?</h2>
+<hr />
+<h3
+id="were-going-to-focus-on-interactions-with-language-technology">We’re
+going to focus on interactions with language technology</h3>
+<ul>
+<li><p>Virtual Assistants like Siri, Alexa, Google Assistant, or
+Cortana</p>
+<ul>
+<li><p>They have <em>all</em> of the language problems at once</p></li>
+<li><p>The most advanced consumer-facing Natural Language Processing
+around</p></li>
+</ul></li>
+<li><p>Other tools like predictive text, dictation,
+Text-to-Speech</p></li>
+<li><p>This is a Natural Language Processing course, but that’s our
+focus</p></li>
+</ul>
+<hr />
+<h3
+id="well-look-at-most-fields-within-natural-language-processing">We’ll
+look at most fields within natural language processing</h3>
+<ul>
+<li><p>Machine Learning</p></li>
+<li><p>Speech-to-Text (Automatic Speech Recognition, ASR)</p></li>
+<li><p>Text-to-Speech (TTS)</p></li>
+<li><p>Building a Language Model</p></li>
+<li><p>Natural Language Parsing</p></li>
+<li><p>Computational Semantics</p></li>
+<li><p>Computational Pragmatics</p></li>
+</ul>
+<hr />
+<h3 id="were-going-to-ask-the-same-four-questions-each-time">We’re going
+to ask the same four questions each time</h3>
+<ul>
+<li><p>How does it work for humans, roughly?</p></li>
+<li><p>How can we make it work for computers?</p></li>
+<li><p>What makes doing this really, <em>really</em> hard?</p></li>
+<li><p>What can we do to break it?</p></li>
+</ul>
+<hr />
+<h3
+id="were-going-to-talk-about-some-problems-at-a-more-technical-level">We’re
+going to talk about some problems at a more technical level</h3>
+<ul>
+<li><p>“How do you teach computers to learn?”</p></li>
+<li><p>“How do computers even work with sound, given that waves aren’t 0
+and 1?”</p></li>
+<li><p>“How do we work with the kinds of tools used in this
+field?”</p></li>
+<li><p>“How do we deal with the huge amounts of language data needed to
+model language?”</p></li>
+<li><p>“How do we create meaning-annotated data that computers can learn
+from?”</p></li>
+</ul>
+<hr />
+<h3 id="well-also-discuss-some-basic-linguistics">We’ll also discuss
+some basic linguistics</h3>
+<ul>
+<li><p>Speech and Speech Acoustics</p></li>
+<li><p>Morphology and Syntax</p></li>
+<li><p>Lexical Semantics</p></li>
+<li><p>Basic Pragmatics</p></li>
+</ul>
+<hr />
+<h3 id="and-were-gonna-try-and-do-that-in-a-single-quarter">… and we’re
+gonna try and do that in a single quarter</h3>
+<ul>
+<li><img class="r-stretch" src="humorimg/jlaw_yeah_ok.gif"></li>
+</ul>
+<hr />
+<h2 id="what-wont-we-cover">What <em>won’t</em> we cover?</h2>
+<hr />
+<h3 id="were-going-to-focus-on-english-in-this-class">We’re going to
+focus on English in this class</h3>
+<ul>
+<li><p>All of these issues will be present in other languages</p></li>
+<li><p>We’ll occasionally touch on issues which pertain to other
+languages</p></li>
+<li><p>English will provide us with more than enough issues.</p></li>
+<li><p>We’re also going to side-step machine translation</p></li>
+</ul>
+<hr />
+<h3 id="were-going-to-focus-on-spoken-languages">We’re going to focus on
+spoken languages</h3>
+<ul>
+<li><p>Signed languages are Language, and merit study</p>
+<ul>
+<li>… but they’re generally not written, and motion-capture questions
+are outside the scope</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="were-going-to-have-to-stay-close-to-the-surface">We’re going to
+have to stay close to the surface</h3>
+<ul>
+<li><p>Any one of these topics could be two graduate-level seminars</p>
+<ul>
+<li>One for humans, one for computers</li>
+</ul></li>
+<li><p>Think of this like a tasting menu of really hard problems in
+language and computing</p></li>
+<li><p>The joys of a lower division class in the quarter
+system!</p></li>
+</ul>
+<hr />
+<h3 id="were-not-going-to-teach-you-to-code">We’re not going to teach
+you to code</h3>
+<ul>
+<li><p>You’ll learn to use some phonetic software</p></li>
+<li><p>You’ll learn some Unix basics, and we’ll see some Python</p>
+<ul>
+<li>… and ambitious students will have the opportunity to write more
+code</li>
+</ul></li>
+<li><p>We’re going to rely on other people’s code (or mine) to make this
+class work</p>
+<ul>
+<li>… and we’ll focus on concepts, rather than code</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="you-wont-leave-this-class-being-able-to-write-the-next-alexa">You
+won’t leave this class being able to write the next Alexa</h3>
+<ul>
+<li><p>We’re focusing here on the problems, not the solutions</p></li>
+<li><p>We’re going to be the linguists in the room, not the
+engineers</p></li>
+<li><p>We’re thinking about this schematically, not in detail</p></li>
+</ul>
+<hr />
+<h3
+id="instead-i-hope-youll-leave-the-class-with-three-main-understandings">Instead,
+I hope you’ll leave the class with three main understandings</h3>
+<hr />
+<h2 id="current-nlp-tools-suck">Current NLP Tools suck</h2>
+<hr />
+<p><img class="r-stretch" src="comp/deanna_voicemail.jpg"></p>
+<hr />
+<p>“Hey Lowe it’s canary center med tech support just calling to see how
+your camp experiences calling if you need thing just let me know my
+phone number or my extension here is 94 it. Is sorry excuse me 49447
+again that’s 49447 have a good weekend bye.”</p>
+<ul>
+<li>“Hey Will it’s Deanna Roussin from Ed Tech support just calling in
+to see how your Canvas experience is going if you need anything just let
+me know. My phone number or my extension here is 94 […] Sorry excuse me
+49447 again that’s 49447. Have a good weekend. Bye.”</li>
+</ul>
+<audio controls src="comp/deanna_voicemail.mp3">
+</audio>
+<hr />
+<h3 id="from-t.s-eliots-the-wasteland">From T.S Eliot’s <em>The
+Wasteland</em></h3>
+<blockquote>
+<p>What are the roots that clutch, what branches grow<br> Out of this
+stony rubbish? Son of man,<br> You cannot say, or guess, for you know
+only<br> A heap of broken images, where the sun beats,<br> And the dead
+tree gives no shelter, the cricket no relief,<br> And the dry stone no
+sound of water. Only<br> There is shadow under this red rock,<br> (Come
+in under the shadow of this red rock),<br> And I will show you something
+different from either<br> Your shadow at morning striding behind you<br>
+Or your shadow at evening rising to meet you;<br> I will show you fear
+in a handful of dust.</p>
+</blockquote>
+<hr />
+<h3 id="from-t.s-eliots-the-wasteland-1">From T.S Eliot’s <em>The
+Wasteland</em></h3>
+<blockquote>
+<p>What are the roots that clutch, what branches grow<br> Out of this
+stony rubbish? Son of man,<br> You cannot say, or guess, for you know
+only<br> A heap of broken images, where the sun beats,<br> And the dead
+tree gives no shelter, the cricket no relief,<br> And the dry stone no
+sound of water. Only<br> There is shadow under this red rock,<br> (Come
+in under the shadow of this red rock),<br> And I will show you something
+different from either<br> Your shadow at morning striding behind you<br>
+Or your shadow at evening rising to meet you;<br> I will show you fear
+in a handful of dust.</p>
+</blockquote>
+<audio data-autoplay src="video/wasteland_tts.mp3">
+</audio>
+<hr />
+<p><img class="r-stretch" src="humorimg/siricallambulance.jpg"></p>
+<hr />
+<h3 id="alexa-whats-my-name">“Alexa, what’s my name?”</h3>
+<ul>
+<li>“I’m talking to Will, this is Will’s account”</li>
+</ul>
+<hr />
+<h3 id="alexa-who-am-i">“Alexa, who am I?”</h3>
+<ul>
+<li>“I’m talking to Will, this is Will’s account”</li>
+</ul>
+<hr />
+<h3 id="alexa-what-do-people-call-me">“Alexa, what do people call
+me?”</h3>
+<ul>
+<li>“Here’s something I found on the web… According to corporate.com,
+friends/family usually call me Alex, but when I meet people for the
+first time, I usually introduce myself with my full first name…”</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/wtf.gif"></p>
+<hr />
+<h3 id="alexa-what-do-my-friends-call-me">“Alexa, what do my friends
+call me?”</h3>
+<ul>
+<li>[Alexa shuts down]</li>
+</ul>
+<hr />
+<h3 id="alexa-id-like-to-make-a-purchase">“Alexa, I’d like to make a
+purchase”</h3>
+<ul>
+<li>“I can help you order reeveryday items, track a purchase”?</li>
+</ul>
+<hr />
+<h3 id="alexa-id-like-to-engage-in-a-transaction.">“Alexa, I’d like to
+engage in a transaction.”</h3>
+<ul>
+<li>[Alexa shuts down]</li>
+</ul>
+<hr />
+<h3
+id="alexa-id-like-to-give-you-currency-in-exchange-for-a-product.">“Alexa,
+I’d like to give you currency in exchange for a product.”</h3>
+<ul>
+<li>[Alexa shuts down]</li>
+</ul>
+<hr />
+<h2 id="current-virtual-assistants-are-also-amazing">Current Virtual
+Assistants are also amazing</h2>
+<hr />
+<h3 id="alexa-play-rappers-delight">“Alexa, play Rapper’s Delight”</h3>
+<ul>
+<li>“Rapper’s Delight by the Sugar Hill Gang on Spotify” <em>then plays
+it</em></li>
+</ul>
+<hr />
+<h3 id="alexa-whats-my-wifes-name">“Alexa, what’s my wife’s name?”</h3>
+<ul>
+<li><p>“If you don’t know, you’re in trouble soon.”</p></li>
+<li><p>“If you’d like me to remember your wife’s name, just tell
+me”Remember my wife’s name is Marge”</p></li>
+</ul>
+<hr />
+<h3 id="alexa-whats-my-cats-name">“Alexa, what’s my cat’s name?”</h3>
+<ul>
+<li><p>Historically answered “I would guess your cat’s name is fluffy,
+or pickles, or is it midnight? Whatever it is, I hope that kitty is
+doing well.”</p></li>
+<li><p>Now [Alexa shuts down]</p></li>
+</ul>
+<hr />
+<h3 id="hey-siri-how-long-to-work">“Hey Siri, how long to work?”</h3>
+<ul>
+<li><p>“Traffic to work is light, so it should take 10 minutes via Voigt
+drive”</p></li>
+<li><p>This is <strong>amazing</strong></p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="comp/route_to_work.png"></p>
+<hr />
+<h3
+id="this-quarter-will-focus-on-that-duality-these-systems-are-awful-and-amazing">This
+quarter will focus on that duality: These systems are awful, and
+amazing</h3>
+<ul>
+<li><p>We’ll talk about why that is</p></li>
+<li><p>We’ll about the kinds of tools that they use to get things
+done</p></li>
+<li><p>… and where progress remains to be made</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For next time…</h2>
+<ul>
+<li><p>Read the syllabus carefully</p></li>
+<li><p>Activity 1 is on Canvas under ‘Discussions’</p></li>
+<li><p>We’ll talk a bit about machine learning, and how computers can
+come anywhere near these problems</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

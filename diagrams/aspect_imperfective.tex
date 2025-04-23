@@ -1,0 +1,30 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{fontspec}
+    \setmainfont{Charis SIL}
+\begin{document}
+% In the preamble:
+
+\begin{tikzpicture}[label distance=5mm]
+    \draw [-, dotted] (0,0.25) node [] {} -- (-0,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [<-, solid] (-3,0) node [] {} -- (-0.45,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [-, solid] (-0.45,0) node [] {} -- (0.45,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [->, solid] (0.45,0) node [] {} -- (3,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [>-<, solid] (-0.45,0.75) node [] {} -- (0.45,0.75) node[midway,above,sloped] (TextNode) {\tiny ``I'm working''};
+    \draw [>-<, solid] (-0.45,0.25) node [] {} -- (0.45,0.25) node[midway,above,sloped] (TextNode) {\tiny ``I drink tea''};
+
+  \draw [>-<, solid] (1.45,0.5) node [] {} -- (2.45,0.5) node[midway,above,sloped] (TextNode) {\tiny ``I'll do some working''};
+
+  \draw [>-<, solid] (-2.45,0.5) node [] {} -- (-1.45,0.5) node[midway,above,sloped] (TextNode) {\tiny ``Trabajaba''};
+
+
+      \draw (0,-0) node[circle,fill,inner sep=1pt]{};
+
+ \draw (0,-0.4) node[anchor=south]{\tiny Now};
+
+ \draw (0,1.2) node[anchor=south]{Imperfective};
+
+\end{tikzpicture}
+
+\end{document}

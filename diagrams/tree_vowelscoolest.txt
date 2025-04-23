@@ -1,0 +1,16 @@
+tree_vowelscoolesttex
+
+[S 
+  [NP 
+    [N' 
+      [N Vowels ] ] ] 
+  [VP 
+    [V are ] 
+    [NP 
+      [DET the ] 
+      [N' 
+        [ADJ coolest ] 
+        [N' 
+          [ADJ speech ] 
+          [N' 
+            [N sounds ] ] ] ] ] ] ]

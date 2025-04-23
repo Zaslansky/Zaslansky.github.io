@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{fontspec}
+    \setmainfont{Charis SIL}
+\begin{document}
+% In the preamble:
+
+\begin{tikzpicture}[label distance=5mm]
+    \draw [-, dotted] (0,1) node [] {} -- (-0,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [<-, solid] (-3,0) node [] {} -- (-0.45,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [-, solid] (-0.45,0) node [] {} -- (0.45,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [->, solid] (0.45,0) node [] {} -- (3,0) node[midway,above,sloped] (TextNode) {\tiny };
+
+  \draw [>-|, solid] (-2.5,0.75) node [] {} -- (-0.5,0.75) node[midway,above,sloped] (TextNode) {\tiny ``She finished writing.''};
+
+    \draw [>-|, solid] (0.5,0.75) node [] {} -- (2.5,0.75) node[midway,above,sloped] (TextNode) {\tiny ``He'll stop driving at 6.''};
+
+
+      \draw (0,-0) node[circle,fill,inner sep=1pt]{};
+
+ \draw (0,-0.4) node[anchor=south]{\tiny Now};
+
+ \draw (0,1.2) node[anchor=south]{Completive};
+
+\end{tikzpicture}
+
+\end{document}

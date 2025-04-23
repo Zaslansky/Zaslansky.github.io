@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="need-some-emergency-wolf-care">Need some emergency wolf
+care?</h3>
+<audio controls src="https://savethevowels.org/168/wolfcare2024.mp3">
+</audio>
+<audio controls src="https://savethevowels.org/168/wolfcare_best2024.mp3">
+</audio>
+<hr />
+<h1 id="computational-speech-processing">Computational Speech
+Processing</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>What’s (probably) next for computational speech
+processing</p></li>
+<li><p>What have we learned?</p></li>
+<li><p>What does this all teach us about language?</p></li>
+</ul>
+<hr />
+<h1 id="whats-probably-next-for-computational-speech-processing">What’s
+(probably) next for computational speech processing</h1>
+<hr />
+<h3 id="we-dont-know-whats-next">We don’t know what’s next</h3>
+<ul>
+<li><p>We barely know what the computational speech processing world
+will look like in 2025</p></li>
+<li><p>Look back later in your career and laugh at how many things I got
+wrong</p>
+<ul>
+<li>Maybe I’ll even get a few things right!</li>
+</ul></li>
+<li><p>… but my track record isn’t amazing</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="ling_memes/nlp_clown.jpg"></p>
+<hr />
+<h3 id="lets-give-it-a-shot-anyways">Let’s give it a shot anyways!</h3>
+<hr />
+<h3 id="deep-neural-networks-will-keep-winning-for-nlp">Deep Neural
+Networks will keep winning for NLP</h3>
+<ul>
+<li><p>Unless something better emerges, for wealthy languages, DNNs have
+won</p></li>
+<li><p>There’s not serious competition in ASR, TTS, Denoising, and
+otherwise</p></li>
+<li><p>Improvements to LLMs will likely mean even stronger
+performance</p>
+<ul>
+<li>This may just be in terms of greater complexity and parameter
+counts</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="nlp-will-happen-on-other-peoples-computers-for-a-while">NLP will
+happen on other people’s computers for a while</h3>
+<ul>
+<li><p>Unless we can improve on the compute/memory constraints, these
+will not be affordable to run at home</p>
+<ul>
+<li>Many shareholders will be wealthier if those improvements don’t
+happen</li>
+</ul></li>
+<li><p>Remote models are closed by design, and privacy policies cannot
+be reasonably confirmed or trusted</p></li>
+<li><p>Paywalls and data harvesting will continue to be the
+norm</p></li>
+<li><p><strong>As a result…</strong></p></li>
+</ul>
+<hr />
+<h3 id="speech-processing-and-ai-will-be-bastions-of-inequality">Speech
+Processing (and AI) will be bastions of inequality</h3>
+<ul>
+<li>When core language technologies are kept proprietary and closed,
+they will only be available to people with money
+<ul>
+<li>Nobody will bother making good consumer ASR in minoritized languages
+and dialects</li>
+</ul></li>
+<li>This will further incentivize use of wealthy languages
+<ul>
+<li>… and further increase economic pressures towards language
+dormancy</li>
+</ul></li>
+<li>If you need to speak American English or Mandarin to interact with
+computers most efficiently, <em>this is a substantial problem</em></li>
+</ul>
+<hr />
+<h3 id="yet-there-is-hope">Yet there is hope!</h3>
+<hr />
+<h3 id="weve-seen-open-tools-form-infrastructure-before">We’ve seen open
+tools form infrastructure before</h3>
+<ul>
+<li><p>Open codecs are often preferable and quickly adopted</p>
+<ul>
+<li>Unless you’re trying to lock consumers into a particular
+ecosystem</li>
+</ul></li>
+<li><p>Compression tools tend to be open, as they should be</p></li>
+<li><p>Praat is free and open, as are most Python libraries</p></li>
+<li><p>Linux is the only serious operating system for deploying ‘AI’
+models</p></li>
+</ul>
+<hr />
+<h3 id="open-models-can-win">Open Models can win</h3>
+<ul>
+<li><a
+href="https://www.semianalysis.com/p/google-we-have-no-moat-and-neither">‘They
+have no moat’</a>
+<ul>
+<li>This is partly why we’re seeing companies pushing for protective
+regulation</li>
+</ul></li>
+<li>Major open models can still be competitive, as they build on each
+other!
+<ul>
+<li>Running them remains a logistical hurdle</li>
+</ul></li>
+<li>Open models have strong equity benefits
+<ul>
+<li>It’s not possible to fine tune a closed model for a smaller speech
+community</li>
+</ul></li>
+<li>Any regulation which enshrines serious privacy will need to also
+force transparency
+<ul>
+<li>This will favor open code and open weights</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="ok-we-get-it-linux-boy.-open-is-good.">“OK, we get it Linux boy.
+Open is good.”</h3>
+<ul>
+<li><p>My bad, rant slipped out.</p></li>
+<li><p>Back to more concrete predictions…</p></li>
+</ul>
+<hr />
+<h3
+id="linguists-will-shift-their-focus-to-validation-and-understanding">Linguists
+will shift their focus to validation and understanding</h3>
+<ul>
+<li><p>Even as building the models is increasingly statistical and
+Computer Science, studying them will remain linguistic</p></li>
+<li><p>We’ll use the same tools we’ve always used to understand
+speech-using humans, to understand speech-using computers</p></li>
+<li><p>We’ll learn how these models work by treating them like we
+already treat black-box language users</p></li>
+</ul>
+<hr />
+<h3 id="more-models-will-be-multi-modal-by-design">More models will be
+multi-modal by design</h3>
+<ul>
+<li>Multiple encoders allow multiple kinds of input
+<ul>
+<li>We’re likely already seeing this with GPT-4o</li>
+</ul></li>
+<li>Separate ASR models could be replaced with speech encoders as an
+input to a general language model
+<ul>
+<li>Why bother with two tasks and models when one could do?</li>
+</ul></li>
+<li>TTS will probably continue being its own task in the pipeline for a
+bit longer
+<ul>
+<li>There’s less to be gained from direct-to-TTS output</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="asr-may-become-a-subtask-of-llms">ASR may become a subtask of
+LLMs</h3>
+<ul>
+<li><p>Whisper’s end-to-end, intergrated-LM model is unlikely to be an
+anomaly</p></li>
+<li><p>Powerful ability to predict the next word is… uh… useful for
+ASR</p></li>
+<li><p>This will help with many of the remaining world inference
+issues</p>
+<ul>
+<li>e.g. Taking a wok from the Chinese restaurant</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="tts-may-move-towards-true-end-to-end-learning">TTS may move
+towards true end-to-end learning</h3>
+<ul>
+<li>Increases in memory or compute power will allow direct mapping from
+text to wave
+<ul>
+<li>The same could come from algorithmic improvements</li>
+</ul></li>
+<li>Mel spectrogram vocoders will be adorable in retrospect
+<ul>
+<li>An artifact of a time where we could do better than parameters, but
+waves were too much</li>
+</ul></li>
+<li>This will cause improvements in handling of difficult dialect issues
+<ul>
+<li>Text analysis will be a part of the learned embedding</li>
+<li>Emotion will also be more ‘human’ as models predict tone alongside
+text</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="this-may-lead-to-dialect-embeddings">This may lead to dialect
+embeddings</h3>
+<ul>
+<li><p>Current speaker adaptation approaches struggle with (e.g.) phone
+substitutions or major prosodic differences</p></li>
+<li><p>Embeddings based on (and affecting) models which include text
+analysis, prosody, and more will allow more robust dialect differences
+to be mapped</p></li>
+<li><p>This technology may be useful for sociolinguistic inquiry,
+broadly</p>
+<ul>
+<li>… and studying them could be wildly interesting!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="speech-technologies-will-become-more-embedded-in-our-lives">Speech
+Technologies will become more embedded in our lives</h3>
+<ul>
+<li>We will become quickly used to interacting with ‘AI’ agents by voice
+and speech
+<ul>
+<li>… and we’ll likely do it unknowingly more and more, too</li>
+</ul></li>
+<li>The idea of an ‘always on’ AI assistant interacting by voice and
+speech may not be far off
+<ul>
+<li>Jarvis (Iron Man) or Jane (Ender’s Saga)</li>
+</ul></li>
+<li>Some devices will abandon conventional interfaces
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Rabbit_r1">The Rabbit r1</a>
+is a good (but bad) initial example</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="and-youll-understand-how-it-all-works">… and you’ll understand
+how it all works!</h3>
+<ul>
+<li><p>(To the extent that we as a species do)</p></li>
+<li><p>Future methods will probably be conceptually similar to current
+neural approaches</p>
+<ul>
+<li>If not simpler!</li>
+</ul></li>
+<li><p>Differences in architecture and process will vary, but
+statistical learning is statistical learning!</p>
+<ul>
+<li>… and current trends are towards “Input -&gt; Magic -&gt;
+Output”</li>
+</ul></li>
+<li><p>Which brings us to an important question!</p></li>
+</ul>
+<hr />
+<h1 id="what-have-we-learned">What have we learned?</h1>
+<hr />
+<h3 id="we-looked-at-four-main-questions-this-quarter">We looked at four
+main questions this quarter</h3>
+<ul>
+<li><p>How do computers turn speech into numbers (and back)?</p></li>
+<li><p>How do computers <em>modify</em> speech?</p></li>
+<li><p>How do computers turn speech into text?</p></li>
+<li><p>How do computers turn text into speech?</p></li>
+</ul>
+<hr />
+<h3 id="how-do-computers-turn-speech-into-numbers-and-back">How do
+computers turn speech into numbers (and back)?</h3>
+<ul>
+<li><p>How do sound waves become binary strings?</p></li>
+<li><p>How do we extract meaningful features (e.g. pitch,
+formants)?</p></li>
+<li><p>How do we turn speech into a matrix of useful numbers?</p></li>
+<li><p>How do we turn speech into a <em>compressed</em> and more
+efficient representation?</p></li>
+</ul>
+<hr />
+<h3 id="how-do-computers-modify-speech">How do computers modify
+speech?</h3>
+<ul>
+<li><p>How do we filter a speaker’s voice out of noise?</p></li>
+<li><p>How do we transmit a voice with encryption/efficiency?</p></li>
+<li><p>How do we change the characteristics of a voice
+(autotune/resynthesis)</p></li>
+</ul>
+<hr />
+<h3 id="how-do-computers-turn-those-numbers-into-text">How do computers
+turn those numbers into text?</h3>
+<ul>
+<li><p>Automatic Speech Recognition (ASR)</p></li>
+<li><p>Legacy ASR Methods</p></li>
+<li><p>Wake Word Detection and other methods for improving ASR in our
+lives</p></li>
+<li><p>Determining the most probable string based on ambiguous
+words</p></li>
+</ul>
+<hr />
+<h3 id="how-do-computers-turn-that-text-into-speech">How do computers
+turn that text into speech?</h3>
+<ul>
+<li><p>Text-to-Speech (TTS, ‘Speech Synthesis’)</p></li>
+<li><p>Legacy methods like Unit Selection</p></li>
+<li><p>Modern Neural Models</p></li>
+<li><p>Modifying the ‘voice’ of TTS models and copying others</p></li>
+</ul>
+<hr />
+<h3 id="we-also-answered-other-questions-along-the-way">We also answered
+other questions along the way</h3>
+<ul>
+<li><p>How do we store sound on disk?</p></li>
+<li><p>How do we collect speech data for building corpora?</p></li>
+<li><p>How do cell phones send your voice over a bad
+connection?</p></li>
+<li><p>How do deep neural networks work?</p></li>
+</ul>
+<hr />
+<h3 id="and-we-thought-about-some-of-the-hard-questions">… and we
+thought about some of the hard questions</h3>
+<ul>
+<li><p>Where’s the right balance between ease of use and
+privacy?</p></li>
+<li><p>What kind of data <em>should</em> be used to improve these
+models?</p></li>
+<li><p>When is it acceptable to use these to replace humans?</p></li>
+<li><p>What <em>should</em> a computer sound like, anyways?</p></li>
+<li><p>Is it OK to make these systems sound like a particular
+person?</p></li>
+</ul>
+<hr />
+<h3
+id="and-we-now-understand-every-element-of-the-spoken-interaction-pipeline">And
+we now understand every element of the spoken interaction pipeline!</h3>
+<p><img class='r-stretch' src='diagrams/speech_processing_pipeline.jpg'></p>
+<hr />
+<h3 id="we-have-covered-a-ridiculous-amount-of-material-this-quarter">We
+have covered a ridiculous amount of material this quarter</h3>
+<ul>
+<li><p>WAV FFT DCT LPC MFCC MP3 OPUS LID i-vector DNN CNN ASR TTS
+Wav2Vec2</p></li>
+<li><p>Not to mention the 500,000 various neural architectures we had to
+breeze by</p></li>
+<li><p>I damned near apologize for the amount you all had to learn to do
+this right</p></li>
+</ul>
+<hr />
+<h3 id="yet-now-you-understand-a-lot">Yet, now you understand a
+<em>lot</em></h3>
+<ul>
+<li><p>You understand why the Nyquist Theorem is a roadmap to a happy
+life</p></li>
+<li><p>You know how your phone stores or streams that Daft Punk song,
+how it gets played back, and how it was created</p></li>
+<li><p>You understand what’s happening when your phone turns your words
+into text, badly</p></li>
+<li><p>You understand why your phone might say /lɪgən/ for LIGN 168, but
+/əlajn/ for ‘align’</p></li>
+<li><p>… and you know how to steal your professor’s voice for identity
+theft reasons</p>
+<ul>
+<li>Enthusiastic consent is required, thanks.</li>
+</ul></li>
+</ul>
+<hr />
+<h2
+id="what-did-you-learn-that-was-particularly-interesting-to-you">What
+did you learn that was particularly interesting to you?</h2>
+<hr />
+<h3 id="but-this-is-lign-168">… but this is LIGN 168</h3>
+<ul>
+<li><p>Not ECE or CS or DSC 168</p></li>
+<li><p>So, why do linguists care about this?</p></li>
+</ul>
+<hr />
+<h2 id="what-does-this-teach-us-about-language">What does this teach us
+about language?</h2>
+<hr />
+<h3
+id="computational-speech-processing-can-be-a-very-engineering-y-field">Computational
+Speech Processing can be a very engineering-y field</h3>
+<ul>
+<li><p>Solving problems people have with computers with
+computers</p></li>
+<li><p>Often, electrical engineers and data scientists and ‘AI’ people
+are leading the charge</p></li>
+<li><p>For many, it’s about language, not Language</p>
+<ul>
+<li>“Every time I fire a linguist, the performance of the speech
+recognizer goes up” - <a
+href="https://en.wikipedia.org/wiki/Frederick_Jelinek#cite_ref-6">Frederick
+Jelinek</a></li>
+</ul></li>
+<li><p>You can do a <em>lot</em> of computational speech processing
+without really understanding speech</p></li>
+</ul>
+<hr />
+<h3 id="but-we-can-learn-a-lot-about-speech-from-the-solutions">… but we
+can learn a lot about Speech from the solutions!</h3>
+<ul>
+<li><p>How machines understand speech tells us how humans might
+understand speech</p></li>
+<li><p>TTS systems tell us about what’s fixed and varying, and how we
+train them tells us what ‘matters’ for perception</p></li>
+<li><p>Computational measurement of speech has been instrumental (🤣) in
+advancing the field of phonetics</p></li>
+<li><p>… but the most important concept of all is…</p></li>
+</ul>
+<hr />
+<h1 id="framing">Framing</h1>
+<hr />
+<h3 id="wait-nevermind">Wait, nevermind</h3>
+<hr />
+<h1 id="speech-doesnt-have-to-be-special">Speech doesn’t have to be
+special!</h1>
+<hr />
+<h3 id="computers-can-do-speech-very-effectively-now">Computers can
+<em>do</em> speech very effectively now</h3>
+<ul>
+<li><p>Our existing algorithms for processing sound are unreasonably
+effective at working on and improving speech signals</p></li>
+<li><p>Current models are <em>really good</em> at understanding speech
+for people well-represented in the training data</p></li>
+<li><p>Current models are <em>really good</em> at reproducing speech for
+dialects well-represented in the training data</p></li>
+<li><p>We have <em>really good</em> engineering solutions to most
+computational speech problems (for wealthy languages and users)</p></li>
+</ul>
+<hr />
+<h3 id="yet-these-algorithms-are-not-speech-specific">Yet, these
+algorithms are not speech specific</h3>
+<ul>
+<li><p>Compression just finds sources and filters, and that’s not only
+an issue of speech</p></li>
+<li><p>ASR can just be associating patterns in waves with patterns of
+letters and sounds</p></li>
+<li><p>TTS can be done by creating images of spectrograms based on
+strings of letters</p></li>
+<li><p>The thing that makes speakers different can be ‘learned’ by
+statistics in an embedding space</p></li>
+</ul>
+<hr />
+<h2
+id="every-speech-task-we-considered-appears-to-be-solvable-with-statistical-learning">Every
+speech task we considered appears to be solvable with statistical
+learning!</h2>
+<hr />
+<p><img class="r-stretch" src="ling_memes/statistical_learning.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="ling_memes/statistical_learning_window.png"></p>
+<hr />
+<h3 id="this-doesnt-mean-humans-are-doing-the-same-thing">This doesn’t
+mean humans are doing the same thing</h3>
+<ul>
+<li><p>We are better at this than machines, still, so maybe there’s more
+to it than statistics</p>
+<ul>
+<li>Or we’re just deeper neural networks?</li>
+</ul></li>
+<li><p>Perhaps we treat speech as <em>more special</em> than machines
+do, and that makes us able to learn faster and more robustly</p></li>
+<li><p>Maybe we’re doing more symbolic reasoning, a weakness of current
+DNNs</p></li>
+<li><p>Maybe we just know more about the world, so we don’t make certain
+classes of errors</p></li>
+</ul>
+<hr />
+<h3 id="but-it-means-the-task-is-doable-with-just-math">… but it means
+the task is doable with just math!</h3>
+<ul>
+<li><p>Human speech doesn’t need specific algorithms which include
+innate linguistic knowledge to be produced and perceived</p></li>
+<li><p>Human speech doesn’t need reference to phonemes or phonological
+rules to be produced and perceived</p></li>
+<li><p>Human speech doesn’t need to be treated any differently than any
+other waveform to be linked to linguistic representations</p></li>
+<li><p>The same models which do vision, sequence understanding, and
+‘AI’, can be applied to solve speech tasks</p></li>
+</ul>
+<hr />
+<h3 id="so-we-learn-that-speech-doesnt-have-to-be-special-to-work">So,
+we learn that speech doesn’t have to be special to work</h3>
+<ul>
+<li><p>Speech processing doesn’t even need to be done by humans to be
+effective</p></li>
+<li><p>Yet…</p></li>
+</ul>
+<hr />
+<h3 id="studying-these-systems-shows-us-how-special-speech-is">Studying
+these systems shows us how special speech is!</h3>
+<ul>
+<li><p>The signal is wildly complicated, needing incredible nuance to
+capture and measure it well</p></li>
+<li><p>We are able to understand speech even when wildly distorted,
+modified, and resynthesized</p></li>
+<li><p>Capturing ‘basic’ characteristics like speaker identity, emotion,
+and dialect requires vast complexity</p></li>
+<li><p>Only after 70 years of speech research are computers able to
+approximate human perception and production of speech</p></li>
+</ul>
+<hr />
+<h3 id="and-its-worth-remembering-that">… and it’s worth remembering
+that …</h3>
+<audio controls src="comp/tts_will_outro.mp3">
+</audio>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

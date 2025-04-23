@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+LIGN 168 - ASR is Hard
+</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+
+
+
+
+# The problem is with speech recognition
+
+### Will Styler - LIGN 168
+
+---
+
+### First an important program note
+
+- Jewelry of text in today's presentation is the unedited output of Apple speech recognition
+
+	- <correct> "The majority of text..." </correct>
+
+- recent additions use Google speech to text after ID appled myself
+
+- God help us all
+
+---
+
+### today's plan
+
+- detecting speech is hard
+
+- Noise
+
+- Homophones
+
+- Vocabulary and limited training data
+
+- Variability in Speech
+
+- Speaker variability
+
+---
+
+## Detecting speech is hard
+
+---
+
+> Yoshihisa Ishikawa's one-night stay at a robot-staffed hotel in western Japan wasn't relaxing.  He was roused every few hours during the night by the doll-shaped assistant in his room asking: "Sorry, I couldn't catch that. Could you repeat your request?"  By 6 am, he realized the problem: His heavy snoring was triggering the robot. 
+
+[Source](https://www.efe.com/efe/english/technology/strange-robot-hotel-in-japan-loses-love-for-robots/50000267-3866728)
+
+---
+
+<img class="r-stretch" src="comp/trombone_asr.jpg">
+
+---
+
+## Noise
+
+---
+
+### Noise
+
+- Speech tools are expected to work anywhere
+
+- Headphones
+
+- Traffic
+
+- MusicPlaying in the background
+
+- hands-free use cases are often the loudest
+
+---
+
+## Homophones
+
+---
+
+## Homophones
+
+Two words which are spelled differently, with different meanings, and the same sounds
+
+---
+
+### Example homophones
+
+<correct>For this slide, I cheated with the keyboard</correct>
+
+- then/than
+
+- their/there/they're
+
+- Will/we'll
+
+- Genes/Jeans
+
+- Lift/Lyft
+
+- Outtie/Audi
+
+- Lie/Lye
+
+---
+
+<img class="r-stretch" src="humorimg/sofa_king.jpg">
+
+---
+
+### On the phones present a major problem for speech recognition
+
+- Humans use meaning to disambiguate
+
+	- He stole a walk from the Chinese restaurant
+	
+	- He live forever, it must be good genes
+
+	- Use lie to make so
+	
+	- <correct>"He used lye to make soap"</correct>
+
+- Without knowledge of the world, ASR systems can't cheat
+
+---
+
+### Dealing with homophones
+
+- Probability models
+
+	- Will get into these laterIn the quarter
+
+	- QuoteWhat's the probabilityOf this word, given the other oneQuote
+	
+	- 🤦‍♂️
+
+- Domain specific knowledge
+
+	- How likely is this person to talk about jeansVersus jeans
+
+	- Medical versus versus legal vs. general purpose dictation
+
+---
+
+### This is a problem that might need a IAI
+
+- There're a number of bees in speech recognition
+
+---
+
+## Vocabulary And limited training data
+
+---
+
+### There are many more words than we can train for
+
+- Some estimate the number of words80 speakers no between 25 and 30,000
+
+- Much larger in specific domains
+
+	- E.g. medical or legal language
+	
+- Names and foreign borrowingsAdd additionalComplexity
+
+---
+
+### Testing Vocabulary
+
+- Bill frequency Castrol coefficient (<correct>MFCC</correct>)
+
+- Dyshidrotic eczema
+
+- proof seven and presumption great hearing 
+
+	- <correct>"Proof Evident, Presumption Great Hearing"</correct>
+
+- Adenocarcinoma arising into pavilions at know
+
+	- <correct>Adenocarcinoma arising in tubovillious adenoma</correct>
+
+---
+
+### Testing Vocabulary continued
+
+- "The wallet that says badass motherfucker on it"
+
+- The Dalai Lama,Fidel Castro,Barack Obama,Zygmunt Fry Singer,Yelling at people can bitch,Gabriella Italian
+
+	- <correct>"The Dalai Lama, Fidel Castro, Barack Obama, Zygmunt Frajzyngier, Jelena Krivokapic, Gabriella Caballero"</correct>
+
+---
+
+### Names are very hard
+
+> "... again, this is Melinda Night, calling for a reference check for Eliza colonoscopy"
+
+- Siri did not understand 'Eliza Kolmanovsky'
+
+	- Whoops!
+	
+---
+
+<img class="r-stretch" src="comp/deanna_voicemail.jpg">
+
+---
+
+### Methods of coping with vocabulary issues
+
+- Packaging your product for specific domains
+
+- Mining existing data from the customer
+
+- IntegratingAddress book information for name recognition
+
+- Fuzzy searching usingA list of possibilities
+
+- More on this later
+
+---
+
+## Written Style
+
+---
+
+### we don't want text written out word for word necessarily 
+
+- capitalization is an important element that these models can miss 
+
+- If we don't include punctuation it can be very frustrating for readers and for the person sending 
+
+- intuitive punctuation is not straightforward
+
+- some systems allow you to say., " and other related punctuations, but it doesn't always work " well "
+
+---
+
+### are writing is idiosyncratic 
+
+- a general model punctuation could feel unnatural for some 
+
+- there's a vast difference between <correct>Okay.  OK.  OK  ok.  ok  k</correct>
+
+- emojis tend not to work well with voice typing 
+	- And it will never truly capture the millennial love for colon ruffle colon 
+
+- there is not just one quote correct way " to use punctuation for a person 
+
+---
+
+### our writing is situational 
+
+- The way that I write to a student in email is different than the way that I write to my wife 
+
+- If I texted like I emailed, people would assume I'm a lizard person 
+
+- our mood can affect our writing style as well as our desired register 
+
+---
+
+## Speech Variability
+
+---
+
+### Even for a single person,Speech berries
+
+- Changes in tempo
+
+- Changes in volume
+
+- Changes in pitch
+
+- Changes in dialect
+
+- Changes in degree of articulation
+
+---
+
+## Hyperarticulation
+
+Producing speech With an unusually Hi clarity and articulation
+
+---
+
+## Hypo articulation
+
+Producing speech with minimal effort And a minimally distinct gestures
+
+---
+
+###  your training data dictates the kind of speech you can recognize
+
+- if you trained only on conversational casual data you're only effective there
+
+- if you train on people reading books aloud in a sound booth, that's what you'll be best at
+
+- you need to choose training data that reflects the task well
+
+- you need data which resembles the source microphones and conditions
+
+---
+
+### Pitch Differences
+
+<img class="r-stretch" src="phonmedia/pitch_myname.jpg">
+
+---
+
+### You sound different at 2 AMThen in class
+
+- ASR needs to accommodateTo all states of your voice
+
+- You can't learn to specificallyWhat you Soundlike
+
+---
+
+## Speaker variability
+
+---
+
+### People differ substantially in terms of their speech
+
+- Differences in pitch
+
+- Differences in dialect
+
+- Differences inLanguage background
+
+- Differences in vocal track size and anatomy
+
+	- <correct>Tract, damnit</correct>
+	
+---
+
+<img class="r-stretch" src="phonmedia/clearspeech_speakeraverages.png"> 
+
+---
+
+<img class="r-stretch" src="phonmedia/clearspeech_alltokens.png"> 
+
+---
+
+<img class="r-stretch" src="humorimg/trainwreck.png">
+
+---
+
+<correct>This part's all human. </correct>
+
+---
+
+### Every person you've ever talked with has had different vowel formant patterns
+
+* ... and yet, we understand each other, somehow
+
+---
+
+### How do we accomplish this perceptual magic?
+
+---
+
+### Dealing with vowel variability
+
+* We stack the deck in our favor in the grammar of the language
+
+* We use non-formant-related cues such as vowel length
+
+* We adjust to individual speakers (or vocal tracts) through Speaker Normalization
+
+	- We don't yet understand how this works
+
+* We attend to context
+
+---
+
+## Context helps!
+
+---
+
+### The Role of Context
+
+* Context helps us to understand words even if the phonemes are acoustically ambiguous
+
+* Easier to understand “Hello” in its normal conversational context
+
+* If you’re not expecting a word, you’ll have to fight harder to understand it.
+
+	* “Hi, John!  Partial Nephrectomy!”
+
+	* “Ohh, Invasive Adenocarcinoma arising in tubulovillious adenoma”
+
+* Nobody runs into rooms and shouts "bat!"
+
+---
+
+<correct>Back to ASR-based lecture-writing. Nooooooo. </correct>
+
+---
+
+### ASR systems perform normalization
+
+- Sometimes it's explicitParenthesisQuoteFirst, read this paragraph for meQuote parenthesis
+
+- Sometimes assumptions are made on the basis of the pitchAnd other than domestic factors
+
+- Sometimes it emerges from the data
+
+---
+
+<img class="r-stretch" src="phonmedia/clearspeech_alltokens.png"> 
+
+---
+
+### Sometimes it can be avoided
+
+English vowels different duration
+
+Context can be very very helpful
+
+The more you can predict what is being said,The better
+
+---
+
+### ChildrenAre extra awful
+
+- Incredibly high pitches
+
+- Small vocal tracks
+
+- PoorSpeech abilitiesComparatively
+
+- Just bad communicators in general
+
+- Yet we expect a laxative work just fine
+
+	- <correct>"Yet we expect Alexa to work just fine"</correct>
+
+---
+
+### Speaker variability is the biggest problem that ASR faces
+
+Every single user sounds different,But expect the same results
+
+This is absolutely amazing,And terrifying
+
+---
+
+### Wrapping up
+
+- Speech recognition is really hard
+
+- There are many sources of noise, and ways to deal with it
+
+- Homophones cause amazingAnd terrible problems
+
+- Your system is only as good as its vocabulary
+
+- Speech is very variable within speakers
+
+- Speech varies across speakers as well
+
+---
+
+## For next time
+
+- legacy approaches to ASR
+
+---
+
+<huge>Thank you!</huge>
+
+
+
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

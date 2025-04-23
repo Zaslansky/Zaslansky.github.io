@@ -1,0 +1,10 @@
+tree_rule1_3_5tex
+
+[NP 
+  [DET 
+    [NP 
+      [N' 
+        [N John ] ] ] 
+    [POSS 's ] ] 
+  [N' 
+    [N cat ] ] ]

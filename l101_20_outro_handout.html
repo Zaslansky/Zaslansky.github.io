@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<section class="clicker">
+</section>
+<h3
+id="would-you-still-have-taken-lign-101-if-it-were-a-lower-division-class">Would
+you still have taken LIGN 101 if it were a lower-division class?</h3>
+<ul>
+<li><ol type="A">
+<li>Yes, because it’s a major requirement</li>
+</ol></li>
+<li><ol start="2" type="A">
+<li>Yes, absolutely</li>
+</ol></li>
+<li><ol start="3" type="A">
+<li>Yes, but I’m glad it counts as upper division</li>
+</ol></li>
+<li><ol start="4" type="A">
+<li>No, it wouldn’t have appealed to me as lower division class</li>
+</ol></li>
+<li><ol start="5" type="A">
+<li>No, it wouldn’t satisfy requirements I need as a lower division
+class</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="reminders">Reminders</h3>
+<ul>
+<li><p>All grades are final seven days after release</p>
+<ul>
+<li><p>All other grades are final at the start of the exam</p></li>
+<li><p>Double-check everything next week!</p></li>
+</ul></li>
+<li><p>Clicker and SONA scores are being sorted soon</p></li>
+<li><p>https://savethevowels.org/exam has all the information you
+want</p></li>
+<li><p>We’ll have a study session next Week (Wednesday 3-6pm in AP&amp;M
+4301)</p></li>
+</ul>
+<hr />
+<h1 id="linguistics-101-an-introduction-to-language">Linguistics 101: An
+Introduction to Language</h1>
+<h3 id="dr.-will-styler">Dr. Will Styler</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Your Linguistic Future</p></li>
+<li><p>Dostoevsky, Case, and Translation Theory</p></li>
+<li><p>A Life in Language</p></li>
+<li><p>The Secret to Great Linguistic Analysis</p></li>
+</ul>
+<hr />
+<h1 id="your-linguistic-future">Your Linguistic Future</h1>
+<hr />
+<h3 id="admit-it">Admit it…</h3>
+<ul>
+<li><p>You want to Major or Minor in Linguistics</p></li>
+<li><p>To find out more, contact <a href="mailto:linginfo@ling.ucsd.edu"
+class="email">linginfo@ling.ucsd.edu</a> :)</p></li>
+<li><p><img class="r-stretch" src="img/plug.jpg"></p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/joinme.jpg"></p>
+<hr />
+<h3 id="many-of-you-are-already-linguists-and-dont-know-it-yet">Many of
+you are already linguists and don’t know it yet</h3>
+<ul>
+<li><p>Serial language learners</p></li>
+<li><p>Language Analyzers</p></li>
+<li><p>Easily distracted by odd language use</p></li>
+<li><p>People fascinated by the differences and similarities among
+languages</p></li>
+<li><p><em>If any of those things sound like you, you might be a
+linguist</em></p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/languagefacts.jpg"></p>
+<hr />
+<h3 id="you-know-who-else-didnt-know-he-was-a-linguist">You know who
+else didn’t know he was a linguist?</h3>
+<ul>
+<li><img width="600px" src="people/will2004.jpg"></li>
+</ul>
+<hr />
+<h1 id="dostoevsky-case-and-translation-theory">Dostoevsky, Case, and
+Translation Theory</h1>
+<hr />
+<h3 id="what-made-will-a-linguist">What made Will a Linguist?</h3>
+<hr />
+<h3 id="i-started-college-as-a-russian-major">I started college as a
+Russian major</h3>
+<ul>
+<li><p>I was going to be a translator!</p></li>
+<li><p>Then Linguistics hunted me down.</p></li>
+</ul>
+<hr />
+<h2 id="case-systems">Case Systems</h2>
+<hr />
+<h3 id="grammatical-relations">Grammatical Relations</h3>
+<p>How a language marks who did what to whom</p>
+<hr />
+<h3 id="english-uses-word-order-to-mark-grammatical-relations.">English
+uses word order to mark grammatical relations.</h3>
+<ul>
+<li>… but that’s not the only way!</li>
+</ul>
+<hr />
+<h2 id="case-marking">Case Marking</h2>
+<ul>
+<li>Use of inflectional morphemes to mark Grammatical Relations</li>
+</ul>
+<hr />
+<h3 id="russian-has-case-markers">Russian has case markers</h3>
+<ul>
+<li><p>Each case marker corresponds to a grammatical role</p></li>
+<li><p><strong>Nominative Case</strong> - “The Subject”</p></li>
+<li><p><strong>Accusative Case</strong> - “The Object”</p></li>
+</ul>
+<hr />
+<h3 id="russian-case-marking">Russian Case Marking</h3>
+<ul>
+<li><p>sobaka vidye-la koshk-u</p></li>
+<li><p>dog.NOM see-SG.FEM.PST cat-ACC.FEM</p></li>
+<li><p>“The dog saw the cat.”</p></li>
+<li><p>koshka vidye-la sobak-u</p></li>
+<li><p>cat.NOM see-SG.FEM.PST dog-ACC.FEM</p></li>
+<li><p>“The cat saw the dog.”</p></li>
+</ul>
+<hr />
+<h3 id="russian-case-marking-1">Russian Case Marking</h3>
+<ul>
+<li><p>Ya tyebya vizh-u</p></li>
+<li><p>I.NOM you.ACC see-1SG</p></li>
+<li><p>“I see you”</p></li>
+<li><p>Ti myenya vid-ish</p></li>
+<li><p>you.NOM I.ACC see-2SG</p></li>
+<li><p>“You see me”</p></li>
+</ul>
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="if-we-put-the-sentence-niloo-hugged-the-turtle-into-russian-the-proper-cases-would-be">If
+we put the sentence “Niloo hugged the turtle” into Russian, the proper
+cases would be…</h3>
+<ol type="A">
+<li><p>Niloo - NOM, Turtle - ACC</p></li>
+<li><p>Niloo - ACC, Turtle - NOM</p></li>
+<li><p>Niloo - NOM, Turtle - NOM</p></li>
+<li><p>Niloo - ACC, Turtle - ACC</p></li>
+</ol>
+<hr />
+<h3
+id="if-we-put-the-sentence-niloo-hugged-the-turtle-into-russian-the-proper-cases-would-be-1">If
+we put the sentence “Niloo hugged the turtle” into Russian, the proper
+cases would be…</h3>
+<ol type="A">
+<li><p><correct>Niloo - NOM, Turtle - ACC</correct></p></li>
+<li><p>Niloo - ACC, Turtle - NOM</p></li>
+<li><p>Niloo - NOM, Turtle - NOM</p></li>
+<li><p>Niloo - ACC, Turtle - ACC</p></li>
+</ol>
+<hr />
+<h3 id="in-russian-word-order-can-be-used-for-pragmatics">In Russian,
+Word order can be used for Pragmatics</h3>
+<ul>
+<li>Koshka videla sobaku
+<ul>
+<li>“The cat saw the dog”</li>
+</ul></li>
+<li>Videla koshka sobaku
+<ul>
+<li>“The cat saw the dog”</li>
+</ul></li>
+<li>Sobaku videla Koshka
+<ul>
+<li>“The cat saw the dog”</li>
+</ul></li>
+<li>Russian is a “non-configurational” language</li>
+</ul>
+<hr />
+<h3 id="english-has-some-case-too">English has some case too!</h3>
+<ul>
+<li><p>I see him</p></li>
+<li><p>I-NOM see he-ACC</p></li>
+<li><p>He sees me</p></li>
+<li><p>He-NOM see-3sg I-ACC</p></li>
+</ul>
+<hr />
+<h3 id="you-know-what-other-language-has-case">You know what other
+language has case?</h3>
+<hr />
+<p><lang>Geonosian</lang><br><ldata>??? - Geonosis</ldata></p>
+<h2 id="section"><img class="r-stretch" src="img/geonosian.jpg"></h2>
+<p>(… and I didn’t think I was a linguist)</p>
+<hr />
+<h3 id="but-russian-has-more-cases">… but Russian has more cases!</h3>
+<hr />
+<h2 id="the-russian-case-system">The Russian Case System</h2>
+<ul>
+<li><p><strong>Nominative Case</strong> - “The Subject”</p></li>
+<li><p><strong>Accusative Case</strong> - “The Direct Object”</p></li>
+<li><p><strong>Dative Case</strong> - “The Indirect Object or
+Recipient”</p></li>
+<li><p><strong>Genitive Case</strong> - “The Possessor (and
+more)”</p></li>
+<li><p><strong>Locative Case</strong> - “The Location (and
+more)”</p></li>
+<li><p><strong>Instrumental Case</strong> - “The Tool (and
+more)”</p></li>
+</ul>
+<hr />
+<h3 id="genitive-case">Genitive Case</h3>
+<p>Marks possession</p>
+<hr />
+<h3 id="genitive-case-in-action">Genitive Case in Action</h3>
+<ul>
+<li>Ya vi-zhu sharik sobak-i</li>
+<li>1sg.NOM see-1sg ball-ACC dog-GEN</li>
+<li>“I see the dog’s ball”</li>
+</ul>
+<hr />
+<h3 id="locative-case">Locative Case</h3>
+<p>Marks the location of events</p>
+<ul>
+<li>(this is also called the “Prepositional Case”)</li>
+</ul>
+<hr />
+<h3 id="locative-case-in-action">Locative Case in action</h3>
+<ul>
+<li>Ya zhiv-u v Californi-i</li>
+<li>1sg.NOM live-1sg in California-LOC</li>
+<li>“I live in California”</li>
+</ul>
+<hr />
+<h3 id="instrumental-case">Instrumental Case</h3>
+<p>Marks an object being used</p>
+<hr />
+<h3 id="instrumental-case-in-action">Instrumental Case in Action</h3>
+<ul>
+<li><p>Andres pish-et karandash-om</p></li>
+<li><p>Andres-NOM write-3sg pencil-INST</p></li>
+<li><p>“Andres writes with a pencil”</p></li>
+<li><p>Ya yem borscht so smetanoy</p></li>
+<li><p>1sg-NOM eat borscht-ACC with sour.cream-INST</p></li>
+<li><p>“I eat borscht with sour cream”</p></li>
+</ul>
+<hr />
+<h3 id="dative-case">Dative Case</h3>
+<p>Marks the indirect object, or recipient of an item</p>
+<hr />
+<h3 id="dative-case-1">Dative Case</h3>
+<ul>
+<li><p>Kevin dayot tsvet-i Lis-ye</p></li>
+<li><p>Kevin-NOM give.3sg Flowers-ACC.PLUR Lisa-DAT</p></li>
+<li><p>“Kevin gave Lisa flowers”</p></li>
+<li><p>Enchilad-i mne da-la Niloo</p></li>
+<li><p>Enchilada-ACC.PLUR 1sg.DAT give-PAST.FEM Niloo-NOM</p></li>
+<li><p>“Niloo gave me Enchiladas”</p></li>
+</ul>
+<hr />
+<h3 id="dative-as-goal">Dative as “Goal”</h3>
+<ul>
+<li><p>Ya pomoga-yu Kevinu</p></li>
+<li><p>1sg.NOM help-present.1sg Kevin-DAT</p></li>
+<li><p>“I’m helping Kevin”</p></li>
+<li><p>Mne zvoni-l Barack Obama</p></li>
+<li><p>1sg-DAT call-past.masc Barack Obama-NOM</p></li>
+<li><p>“Barack Obama called me”</p></li>
+</ul>
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="if-we-put-the-sentence-jony-gave-dieter-some-food-into-russian-the-proper-cases-would-be">If
+we put the sentence “Jony gave Dieter some food” into Russian, the
+proper cases would be…</h3>
+<ol type="A">
+<li><p>Jony - ACC, Dieter - DAT, food - NOM</p></li>
+<li><p>Jony - NOM, Dieter - DAT, food - ACC</p></li>
+<li><p>Jony - NOM, Dieter - ACC, food - DAT</p></li>
+<li><p>Jony - DAT, Dieter - ACC, food - NOM</p></li>
+</ol>
+<hr />
+<h3
+id="if-we-put-the-sentence-jony-gave-dieter-some-pellets-into-russian-the-proper-cases-would-be">If
+we put the sentence “Jony gave Dieter some pellets” into Russian, the
+proper cases would be…</h3>
+<ol type="A">
+<li>Jony - ACC, Dieter - DAT, Pellets - NOM</li>
+</ol>
+<p><correct>B) Jony - NOM, Dieter - DAT, Pellets - ACC</correct></p>
+<ol start="3" type="A">
+<li><p>Jony - NOM, Dieter - ACC, Pellets - DAT</p></li>
+<li><p>Jony - DAT, Dieter - ACC, Pellets - NOM</p></li>
+</ol>
+<hr />
+<h2 id="the-russian-case-system-1">The Russian Case System</h2>
+<ul>
+<li><p><strong>Nominative Case</strong> - “The Subject”</p></li>
+<li><p><strong>Accusative Case</strong> - “The Direct Object”</p></li>
+<li><p><strong>Dative Case</strong> - “The Indirect Object or
+Recipient”</p></li>
+<li><p><strong>Genitive Case</strong> - “The Possessor (and
+more)”</p></li>
+<li><p><strong>Locative Case</strong> - “The Location (and
+more)”</p></li>
+<li><p><strong>Instrumental Case</strong> - “The Tool (and
+more)”</p></li>
+<li><p><em>It’s actually <strong>way</strong> more complicated than
+this!</em></p></li>
+</ul>
+<hr />
+<p>(Whoa! That looks like some of the argument roles we saw in lexical
+semantics!)</p>
+<hr />
+<h3 id="so-now-you-know-the-russian-system">So, now you know the Russian
+system</h3>
+<ul>
+<li>Just in case.</li>
+</ul>
+<hr />
+<h3 id="english-can-handle-nominative-and-accusative.">English can
+handle Nominative and Accusative.</h3>
+<ul>
+<li><p>I saw him</p>
+<ul>
+<li>I.NOM saw he.DAT</li>
+</ul></li>
+<li><p>… but Dative? We just can’t even.</p></li>
+</ul>
+<hr />
+<p>This is a problem for translators.</p>
+<hr />
+<p><img class="big" src="lotwimg/dostoevsky.jpg"></p>
+<hr />
+<p><img class="big" src="lotwimg/crimeandpunishment.jpg"></p>
+<p>(“Crime and Punishment”)</p>
+<hr />
+<h1 id="упокой-господь-мертвых-а-живым-еще-жить">“упокой господь
+мертвых, а живым еще жить!”</h1>
+<p>(Upokoy gospod myortvikh, a zhivim eshyo zhit!)</p>
+<ul>
+<li>This sentence is <em>super</em> hard to translate.</li>
+</ul>
+<hr />
+<h3 id="упокой-господь-мертвых-а-живым-еще-жить-1">“упокой господь
+мертвых, а живым еще жить!”</h3>
+<ul>
+<li><p>“God give peace to the dead, the living have still to live!” -
+Constance Garnett</p></li>
+<li><p>“May the Lord grant rest to the souls of the dead, and let life
+be the realm of the living!” - David McDuff</p></li>
+<li><p>“May the Lord grant rest to the dead, but the living have still
+got to live!” - Pevear and Volokhonsky</p></li>
+<li><p>“God rest the dead, but still live alive!” - Google Translate
+(2018)</p></li>
+<li><p>“God rest the dead, and the living still live!” - Google
+Translate (2023)</p></li>
+</ul>
+<hr />
+<h2 id="why-is-it-so-hard-to-translate">Why is it so hard to
+translate?</h2>
+<hr />
+<p><em>Upokoy gospod myortvikh…</em></p>
+<ul>
+<li><p>out-rest-IMPERATIVE God-NOM.sg dead-ACC.pl</p></li>
+<li><p>The “u-” means that the rest is “from here”.</p></li>
+<li><p>The verb is a command, to God.</p></li>
+<li><p>The dead are not “recieving” rest (dative), but they’re being
+rested (accusative).</p></li>
+</ul>
+<hr />
+<p><em>Upokoy gospod myortvikh…</em></p>
+<ul>
+<li><p>out-rest-IMPERATIVE God-NOM.sg dead-ACC.pl</p></li>
+<li><p>“God give peace to the dead…” - Constance Garnett</p></li>
+<li><p>“May the Lord grant rest to the souls of the dead…” - David
+McDuff</p></li>
+<li><p>“May the Lord grant rest to the dead…” - Pevear and
+Volokhonsky</p></li>
+<li><p>“God rest the dead…” - Google Translate</p></li>
+</ul>
+<hr />
+<p><em>…a zhivim eshyo zhit</em></p>
+<ul>
+<li><p>but living-DAT.pl still to.live</p></li>
+<li><p>The act of living is what continues</p></li>
+<li><p>The living are <em>not</em> doing the living.</p>
+<ul>
+<li>Dative means they are “recieving” their living.</li>
+</ul></li>
+</ul>
+<hr />
+<p><em>…a zhivim eshyo zhit</em></p>
+<ul>
+<li><p>but living-DAT.pl still to.live</p></li>
+<li><p>“…, the living have still to live!” - Constance Garnett</p></li>
+<li><p>“…, and let life be the realm of the living!” - David
+McDuff</p></li>
+<li><p>“…, but the living have still got to live!” - Pevear and
+Volokhonsky</p></li>
+<li><p>“… but still live alive!” - Google Translate (2018)</p></li>
+<li><p>“… and the living still live!” - Google Translate (2023)</p></li>
+</ul>
+<hr />
+<h3
+id="this-ignores-connotations-not-available-to-us-as-well-as-the-conversational-context">This
+ignores connotations not available to us, as well as the conversational
+context!</h3>
+<ul>
+<li>(Bad idea!)</li>
+</ul>
+<hr />
+<h3 id="yпокой-господь-мертвых-а-живым-еще-жить">Yпокой господь мертвых,
+а живым еще жить!</h3>
+<ul>
+<li><p>“God, take the dead and rest them, but those living still are
+given a life to live”</p></li>
+<li><p><strong>… but that’s a <em>terrible</em> English
+sentence.</strong></p></li>
+</ul>
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="which-sentence-do-you-find-most-pleasing-to-read-and-english-like">Which
+sentence do you find most pleasing to read and “English-like”?</h3>
+<ol type="A">
+<li><p>“God, take the dead and rest them, but those living still are
+given a life to live”</p></li>
+<li><p>“God give peace to the dead, the living have still to
+live!”</p></li>
+<li><p>“May the Lord grant rest to the dead, but the living have still
+got to live!”</p></li>
+<li><p>“God rest the dead, and the living still live!”</p></li>
+<li><p>I have no opinion here.</p></li>
+</ol>
+<hr />
+<h3 id="accuracy-vs.-flow">Accuracy vs. Flow</h3>
+<ul>
+<li><p>“God, take the dead and rest them, but those living still are
+given a life to live” - Will</p></li>
+<li><p>“God give peace to the dead, the living have still to live!” -
+Garnett</p></li>
+<li><p>“May the Lord grant rest to the dead, but the living have still
+got to live!” - Pevear and Volokhonsky</p></li>
+<li><p>“God rest the dead, and the living still live!” - Google
+Translate</p></li>
+</ul>
+<hr />
+<h3 id="translation-is-an-art-not-a-science">Translation is an art, not
+a science</h3>
+<ul>
+<li><p>You can’t capture Russian nuance in English, and vice
+versa</p></li>
+<li><p>All translations “favor” either the original or new language</p>
+<ul>
+<li>Learn which you prefer, and use it.</li>
+</ul></li>
+<li><p>Good translators know to stop worrying about the details so much
+and just language</p></li>
+<li><p>Translation Theory is the branch of Linguistics that struggles
+with these issues</p></li>
+</ul>
+<hr />
+<h2 id="all-translations-are-well-meaning-lies">“All translations are
+well-meaning lies”</h2>
+<hr />
+<h3 id="doing-this-analysis-broke-me">Doing this analysis broke me</h3>
+<ul>
+<li><p>“How the heck is anybody supposed to translate
+anything?”</p></li>
+<li><p>“Is truly accurate translation a thing?”</p></li>
+<li><p>“How could I even tell if I was ‘close enough’?”</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/help_kitten.jpg"></p>
+<hr />
+<h3 id="so-i-took-ling-101">So, I took LING 101</h3>
+<ul>
+<li><img class="r-stretch" src="people/zygmunt.jpg"></li>
+</ul>
+<hr />
+<h3 id="and-i-declared-a-linguistics-major">… and I declared a
+Linguistics major</h3>
+<ul>
+<li><img class="r-stretch" src="humorimg/more.jpg"></li>
+</ul>
+<hr />
+<h3 id="and-then-i-took-phonetics">… and then I took Phonetics</h3>
+<ul>
+<li><p>Then Morphology and Syntax</p></li>
+<li><p>Then Phonology</p></li>
+<li><p>LIGN 8’s Equivalent</p></li>
+<li><p>Then Semantics, then Pragmatics</p></li>
+<li><p>Then some independent studies</p>
+<ul>
+<li>This is an option at UCSD too!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="then-i-realized-i-couldnt-picture-doing-anything-else-with-my-life-but-keep-going">Then
+I realized I couldn’t picture doing <em>anything</em> else with my life
+but keep going</h3>
+<ul>
+<li><p>I started looking at Grad schools</p>
+<ul>
+<li>… and applying</li>
+</ul></li>
+<li><p><a href="http://wstyler.ucsd.edu/posts/linguist_jobs.html">This
+is not necessarily the right choice for many</a>, but it was for
+me</p></li>
+<li><p>I got into one of them</p>
+<ul>
+<li><p>Only one 😭</p></li>
+<li><p>(My application was hot garbage, though!)</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="i-continued-grad-school-at-cu-boulder">I continued Grad School
+at CU Boulder</h3>
+<p><img class="r-stretch" src="img/cu_boulder.jpg"></p>
+<hr />
+<h3 id="linguistics-grad-school">Linguistics Grad School</h3>
+<ul>
+<li><p>Phonetics</p></li>
+<li><p>Phonology</p></li>
+<li><p>Morphology</p></li>
+<li><p>Syntax</p></li>
+<li><p>Semantics and Pragmatics</p></li>
+<li><p>Field Methods</p></li>
+</ul>
+<hr />
+<h3 id="and-whatever-else-sounded-cool">… and whatever else sounded
+cool!</h3>
+<ul>
+<li><p>Computational Linguistics</p></li>
+<li><p>Language Acquisition</p></li>
+<li><p>Diachronic Linguistics</p></li>
+<li><p>Deeper explorations of phonetics and phonology</p></li>
+<li><p>Statistics</p></li>
+<li><p>Seminars are a thing!</p></li>
+</ul>
+<hr />
+<h3 id="and-i-attended-the-lsa-summer-institute">… and I attended the
+LSA Summer Institute</h3>
+<ul>
+<li><p>Every two years (<a
+href="https://www.linguisticsociety.org/content/umass-amherst-selected-host-2023-linguistic-institute">It’s
+at UMass Amherst in Summer 2023!</a>)</p></li>
+<li><p>Take courses from amazing professors in interesting
+topics</p></li>
+</ul>
+<hr />
+<h3 id="youll-also-be-put-to-work">You’ll also be put to work</h3>
+<ul>
+<li><p>As a TA or Graduate Instructor</p></li>
+<li><p>Working on or managing research projects</p></li>
+<li><p>You’ll write large papers, alongside your coursework</p></li>
+</ul>
+<hr />
+<h3 id="then-youll-write-a-dissertation">Then, you’ll write a
+dissertation!</h3>
+<ul>
+<li><p>A large research project where you need to advance the knowledge
+of the field (just a little!)</p></li>
+<li><p>Mine was <a href="http://wstyler.ucsd.edu/publications.html">‘On
+the Acoustical and Perceptual Features of Vowel Nasality’</a></p></li>
+</ul>
+<hr />
+<h3 id="and-then-i-got-a-ph.d">… and then I got a Ph.D</h3>
+<p><img class="r-stretch" src="people/willrebecca.jpg"></p>
+<hr />
+<h3 id="and-then-i-got-a-postdoc">… and then I got a PostDoc</h3>
+<p><img class="r-stretch" src="img/michigan_lorch.jpg"></p>
+<hr />
+<h3 id="a-typical-linguistic-post-doctoral-fellowship">A Typical
+Linguistic Post Doctoral Fellowship</h3>
+<ul>
+<li><p>Time to work on your own research</p></li>
+<li><p>Helping other folks work on theirs</p></li>
+<li><p>Advising Grad Students and Undergrads</p></li>
+<li><p>Sometimes teaching courses</p></li>
+<li><p>Time to get some publications and grow as a scholar</p></li>
+<li><p>Time to gain experience for the job market</p></li>
+</ul>
+<hr />
+<h2 id="linguistics-jobs">Linguistics Jobs</h2>
+<hr />
+<h3 id="linguists-have-one-big-problem-on-the-job-market">Linguists have
+one big problem on the job market</h3>
+<ul>
+<li><p><em>“Oh, you’re a linguist? Cool! How many languages do you
+speak?!”</em></p></li>
+<li><p>Lots of folks need linguists, but very few people know that they
+do or what we do!</p></li>
+<li><p>We’re called “Ontologists”, “Natural Language Specialists”,
+“Customer Feedback Analyst”, “Language specialist”, “Translation
+Director” and many, many more</p></li>
+<li><p>Here’s <a
+href="https://www.linguisticsociety.org/resource/linguistics-profession">a
+page from the LSA about Linguistics Jobs</a></p></li>
+</ul>
+<hr />
+<h3 id="what-else-do-linguists-do">What else do linguists do?</h3>
+<ul>
+<li>Check out the <a
+href="https://www.youtube.com/channel/UCNJRxM5T1SAtgT6Bhcext2Q">Linguistics
+Career Launch YouTube Channel</a></li>
+</ul>
+<hr />
+<h3 id="linguists-often-make-great-data-scientists">Linguists often make
+great data scientists</h3>
+<ul>
+<li><p>Industry loves Linguists, as we’re great at patterns</p></li>
+<li><p>Linguists have experience with language data, not just
+numbers</p></li>
+<li><p>This is where <a href="https://css.ucsd.edu/">the CSS program</a>
+can help!</p></li>
+</ul>
+<hr />
+<h3 id="industry-loves-computational-linguists">Industry loves
+computational linguists</h3>
+<ul>
+<li><p>Text to Speech, Speech Recognition, NLP, and more!</p>
+<ul>
+<li>Consider LIGN 6, 165, 167, 168 for this</li>
+</ul></li>
+<li><p>Google, Facebook, Apple, Amazon, and more hire and work with
+linguists!</p></li>
+</ul>
+<hr />
+<h3 id="the-department-of-defense-loves-linguists">The Department of
+Defense loves linguists</h3>
+<ul>
+<li><p>The NSA/CIA/FBI (and more!) want linguists for analysis</p></li>
+<li><p>Translation and language teaching like at the <a
+href="http://www.dliflc.edu/">DLIFLC</a></p></li>
+</ul>
+<hr />
+<h3 id="teaching-english-as-a-second-language">Teaching English as a
+second language</h3>
+<ul>
+<li><p>Everybody wants people to teach English as a Second
+Language</p></li>
+<li><p>Have language, will travel? Have job!</p></li>
+</ul>
+<hr />
+<h3 id="speech-pathology-and-audiology">Speech Pathology and
+Audiology</h3>
+<ul>
+<li><p>Speech Pathologists help adults and children having issues with
+communication, speech, swallowing, and voice.</p></li>
+<li><p>Audiologists help test, diagnose, and address many hearing
+disorders, and work with people to find treatments (e.g. hearing aids)
+which address their needs and desires.</p></li>
+<li><p>Both are steady, well-paid, and in demand jobs!</p></li>
+<li><p>For these careers, consider our <a
+href="https://linguistics.ucsd.edu/undergrad/majors/speech-language/index.html">Speech
+and Language Sciences Major!</a></p></li>
+</ul>
+<hr />
+<h3 id="academic-positions">Academic Positions</h3>
+<ul>
+<li><p>PostDocs are increasingly common</p></li>
+<li><p>Also administrative and lab-management positions</p></li>
+<li><p>… but lots of folks want to be a Tenure-Track Professor</p></li>
+</ul>
+<hr />
+<h3 id="as-a-professor">As a Professor…</h3>
+<ul>
+<li><p>You have job security (if you don’t screw up!)</p></li>
+<li><p>You’ll do research</p></li>
+<li><p>You’ll teach</p></li>
+<li><p>You’ll do administrative stuff</p></li>
+<li><p>You’ll fight for grant money</p></li>
+<li><p>… but you’ll do all of it in pursuit of a field you love</p></li>
+</ul>
+<hr />
+<h3 id="theres-one-problem-with-planning-to-be-a-professor">There’s one
+problem with planning to be a professor…</h3>
+<hr />
+<h3 id="the-linguistics-academic-job-market">The Linguistics Academic
+Job Market</h3>
+<p><img class="wide" src="humorimg/hell.jpg"></p>
+<hr />
+<h3 id="the-academic-job-market-is-tough">The Academic Job Market is
+tough</h3>
+<ul>
+<li><p>There will be 2-5 jobs per year in your subfield at well-known
+schools. Total.</p></li>
+<li><p>Competition is fierce</p>
+<ul>
+<li>Jobs can have 100+ Applicants</li>
+<li>10-15 get online interviews</li>
+<li>3-5 visit campus</li>
+<li>1 job!</li>
+</ul></li>
+<li><p>You have to love teaching</p>
+<ul>
+<li>Research-only jobs are very rare</li>
+</ul></li>
+<li><p>“Wait your turn, you only need one job”</p>
+<ul>
+<li>… but boy, that sucks.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="its-not-an-easy-path">It’s not an easy path</h3>
+<ul>
+<li><p>You’re going where the work is</p>
+<ul>
+<li>I hope your people are mobile!</li>
+</ul></li>
+<li><p>You need to be able to tread water for a few years</p></li>
+<li><p>You’re taking a vow of fiscal renunciation during Grad School</p>
+<ul>
+<li>… and you’ll make more money in industry than as a professor</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="after-four-long-years-on-the-job-market-there-i-was">After four
+long years on the job market, there I was</h3>
+<ul>
+<li><img width="400px" src="people/will_classroom.jpg"></li>
+</ul>
+<hr />
+<h3 id="and-i-love-it">… and I love it</h3>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Your life may not be like mine</td>
+</tr>
+<tr class="even">
+<td>- You may choose industry over academia</td>
+</tr>
+<tr class="odd">
+<td>- You may choose to pursue Linguistics as a component of a different
+career elsewhere</td>
+</tr>
+<tr class="even">
+<td>- You may combine your love of Language with your love of something
+else</td>
+</tr>
+<tr class="odd">
+<td>- You may even be able to convince yourself that you’re not a
+linguist</td>
+</tr>
+</tbody>
+</table>
+<h3 id="but-it-could-be">… but it could be</h3>
+<ul>
+<li><p>Maybe you’ll go down the rabbit hole</p></li>
+<li><p>Maybe this class will do for you what 101 did for me</p></li>
+<li><p>… and you’ll see the true beauty of language</p></li>
+</ul>
+<hr />
+<h3 id="youve-come-a-long-way-in-this-class">You’ve come a long way in
+this class</h3>
+<ul>
+<li>… but one thing is for sure</li>
+</ul>
+<hr />
+<h3 id="in-the-future-youll-all-need-to-do-linguistic-analysis">In the
+future, you’ll all need to do linguistic analysis</h3>
+<ul>
+<li><p>Perhaps as part of your teaching or research, if you decide to go
+the academic route</p></li>
+<li><p>Maybe in industry or defense, if that’s your path</p></li>
+<li><p>Maybe for fun, on the weekends</p>
+<ul>
+<li>… and during the week</li>
+</ul></li>
+<li><p>You’ll want to do it well!</p></li>
+</ul>
+<hr />
+<h1 id="the-secret-to-great-linguistic-analysis">The Secret to Great
+Linguistic Analysis</h1>
+<hr />
+<h3
+id="most-linguistics-students-dont-learn-this-until-graduate-school">Most
+linguistics students don’t learn this until graduate school</h3>
+<ul>
+<li><p>Many not until a post-doc</p></li>
+<li><p>Some, not until they’re full professors</p></li>
+<li><p>Some poor souls never figure it out!</p></li>
+<li><p><strong>… but you’ll know it today!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="well-end-the-class-like-weve-lived-the-class-staring-at-data">We’ll
+end the class like we’ve lived the class, staring at data!</h3>
+<ul>
+<li><em>To discover the secret to Great Linguistic Analysis, you’ll need
+to figure out…</em></li>
+</ul>
+<hr />
+<h3
+id="what-is-the-russian-morpheme-marking-first-person-e.g.-i-do-_____-for-these-verbs">What
+is the Russian morpheme marking first person (e.g. ‘I do _____’) for
+these verbs?</h3>
+<p><br></p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pk{font-weight:bold;border-color:inherit;text-align:left;vertical-align:top}
+
+</style>
+<table class="tg">
+<b>
+<tr>
+<th class="tg-0pk">
+Russian
+</th>
+<th class="tg-0pk">
+English
+</th>
+<th class="tg-0pk">
+Russian
+</th>
+<th class="tg-0pk">
+English
+</th>
+<th class="tg-0pk">
+Russian
+</th>
+<th class="tg-0pk">
+English
+</th>
+</tr>
+<pre><code>&lt;/b&gt;</code></pre>
+<tr>
+<td class="tg-0pky">
+djelat
+</td>
+<td class="tg-0pky">
+<em>‘to do’</em>
+</td>
+<td class="tg-0pky">
+pit
+</td>
+<td class="tg-0pky">
+<em>‘to drink’</em>
+</td>
+<td class="tg-0pky">
+staret
+</td>
+<td class="tg-0pky">
+<em>‘to grow old’</em>
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+djelaju
+</td>
+<td class="tg-0pky">
+<em>‘I do’</em>
+</td>
+<td class="tg-0pky">
+pju
+</td>
+<td class="tg-0pky">
+<em>‘I drink’</em>
+</td>
+<td class="tg-0pky">
+stareju
+</td>
+<td class="tg-0pky">
+<em>‘I grow old’</em>
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+djelajet
+</td>
+<td class="tg-0pky">
+<em>‘(s)he does’</em>
+</td>
+<td class="tg-0pky">
+pjet
+</td>
+<td class="tg-0pky">
+<em>‘(s)he drinks’</em>
+</td>
+<td class="tg-0pky">
+starejet<br>
+</td>
+<td class="tg-0pky">
+<em>‘(s)he grows old’</em>
+</td>
+</tr>
+<!--
+  <tr>
+    <td class="tg-0pky">tʃitaju</td>
+    <td class="tg-0pky">'I read'</td>
+    <td class="tg-0pky">risuju</td>
+    <td class="tg-0pky">'I draw'</td>
+  
+  </tr>
+  <tr>
+    <td class="tg-0pky">tʃitajet</td>
+    <td class="tg-0pky">'(s)he reads'</td>
+    <td class="tg-0pky">risujet</td>
+    <td class="tg-0pky">'(s)he draws'</td>
+
+  </tr>-->
+</table>
+<hr />
+<h1 id="the-secret-to-great-linguistic-analysis-was-ju-all-along">The
+secret to great linguistic analysis was /ju/ all along!</h1>
+<hr />
+<h3 id="go-forth-and-do-great-analysis">Go forth and do great
+analysis</h3>
+<ul>
+<li><p>… and see the beauty of language</p></li>
+<li><p>Wherever you may go</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

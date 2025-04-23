@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="tall" src="ling_memes/fork.jpg"></p>
+<hr />
+<h3 id="re-register-your-clicker-on-canvas-please">Re-Register Your
+Clicker on Canvas, please!</h3>
+<hr />
+<h1>
+What are Words and Morphemes?
+</h1>
+<h3>
+Dr. Will Styler - LIGN 120
+</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>What are words?</p></li>
+<li><p>Form and Meaning Relationships</p></li>
+<li><p>Morphemes</p></li>
+<li><p>Morpheme Variation and Allomorphy</p></li>
+</ul>
+<hr />
+<h1 id="what-are-words">What are words?</h1>
+<hr />
+<p>There is only one way to address this question…</p>
+<ul>
+<li><img src="img/sugarhillgang.jpg" /></li>
+</ul>
+<hr />
+<h3 id="sugar-hill-gang---rappers-delight">Sugar Hill Gang - Rapper’s
+Delight</h3>
+<ul>
+<li><p>“I said a hip, hop, the hibbie, the hibbie to the hip hip hop and
+you don’t stop the rocking to the bang bang boogie say up jump the
+boogie to the rhythm of the boogie the beat”</p></li>
+<li><p>[ɑsɛdə hɪp hɑp ðəhɪbi ðe hɪbi təðə hɪp hɪp hɑpʰɑjɨ doʊn stɑp ðə
+ɹɑkɪn tʰəðə bejŋ bejŋ bʊɡi seɪ ʔʌp dʒʌmp ðə bʊɡi tʰəðə ɹɪðm ʌ ðʌ bʊɡidə
+bit]</p></li>
+</ul>
+<audio controls>
+<source src="phonmedia/rappers_delight_excerpt.mp3" type="audio/mp3">
+</audio>
+<hr />
+<h3 id="what-defines-a-word">What defines a word?</h3>
+<ul>
+<li><p>A string of written characters delineated by blank spaces or
+punctuation?</p>
+<ul>
+<li>“I said a hip hop…”</li>
+</ul></li>
+<li><p>A string of discrete spoken phones or gesturual units delineated
+by pauses?</p>
+<ul>
+<li><p>/dʒʌmp/</p></li>
+<li><p>/ɑsɛdə/?</p></li>
+</ul></li>
+<li><p>A meaningful string of spoken phones?</p>
+<ul>
+<li><p>hip, hop, stop</p></li>
+<li><p>rock, ing?</p></li>
+<li><p>hɪbi?</p></li>
+<li><p>bʊɡi seɪ == ‘geese’?</p></li>
+</ul></li>
+</ul>
+<hr />
+<p><img src="humorimg/side_eye_chloe.jpg" /></p>
+<hr />
+<h3 id="are-single-words-monolithic">Are single words monolithic?</h3>
+<ul>
+<li><p>Compute</p></li>
+<li><p>Computer</p></li>
+<li><p>Computers</p></li>
+<li><p>Computing</p></li>
+<li><p>Will computered</p></li>
+<li><p>Will solved the problem by computering</p></li>
+<li><p>Will solved the problem computeringly</p></li>
+<li><p>Will chose the computeringlyest method to solve it</p></li>
+</ul>
+<hr />
+<h3 id="are-multiple-words-separate">Are multiple words separate?</h3>
+<ul>
+<li><p>I cut the paper</p></li>
+<li><p>I cut up the paper</p></li>
+<li><p>I cut the paper up</p></li>
+<li><p>I cut the paper across the middle</p></li>
+<li><p>I cut across the middle of the road</p></li>
+</ul>
+<hr />
+<h3 id="can-we-even-count-them">Can we even count them?</h3>
+<p><clk>A=1 word B=2 C=3 D=4 E=Dunno</clk></p>
+<ul>
+<li><p>Board</p></li>
+<li><p>Plywood Board</p></li>
+<li><p>Surfboard</p></li>
+<li><p>Chalkboard</p></li>
+<li><p>Replaceable Lightbulb</p></li>
+<li><p>Non-Replaceable Battery</p></li>
+</ul>
+<hr />
+<h3 id="word-is-a-super-weird-idea">‘Word’ is a super weird idea</h3>
+<hr />
+<h2 id="this-is-why-morphology-exists">This is why Morphology
+exists</h2>
+<hr />
+<h1 id="form-and-meaning-in-words">Form and Meaning in Words</h1>
+<hr />
+<h3
+id="morphology-studies-the-systematic-relationships-between-form-and-meaning-in-words">Morphology
+studies the systematic relationships between form and meaning in
+words</h3>
+<hr />
+<h3 id="some-words-share-no-form-but-share-elements-of-meaning">Some
+words share no form, but share elements of meaning</h3>
+<ul>
+<li><p>Cat and Feline</p></li>
+<li><p>Fish and Bass</p></li>
+<li><p>Rough and Jagged</p></li>
+<li><p><em>There’s no interpretable patterns of form and meaning
+here!</em></p></li>
+</ul>
+<hr />
+<h3 id="some-words-share-no-meaning-but-share-elements-of-form">Some
+words share no meaning, but share elements of form</h3>
+<ul>
+<li><p>Cat and Scatter</p></li>
+<li><p>Fish and Standoffish</p></li>
+<li><p>Rough and Truffle</p></li>
+<li><p><em>There’s no interpretable patterns of form and meaning
+here!</em></p></li>
+</ul>
+<hr />
+<h3 id="some-words-share-elements-of-meaning-and-elements-of-form">Some
+words share elements of meaning <em>and</em> elements of form</h3>
+<ul>
+<li><p>Cat, Cats, Catty, Catnip, Cattish</p></li>
+<li><p>Fishes, Fisher, Fishnet, Fisherman, Catfish</p></li>
+<li><p>Rough, Roughs, Roughing, Roughly, Roughneck, Roughed Up,
+Rougher</p></li>
+<li><p>Words seem to be in <em>families</em></p></li>
+<li><p><em>There are patterns we can find here!</em></p></li>
+</ul>
+<hr />
+<h3
+id="some-elements-of-a-words-form-seem-to-be-able-to-recombine-with-each-other">Some
+elements of a word’s form seem to be able to recombine with each
+other</h3>
+<ul>
+<li><p>‘cat’ can combine with -s, -er, -y, -ish, nip</p></li>
+<li><p>‘-s’ can combine with fish, cat, dog, apartment</p></li>
+<li><p>‘-ly’ can combine with rough, quick, thorough, sweet,
+morphological</p></li>
+<li><p><em>There are patterns we can find here!</em></p></li>
+</ul>
+<hr />
+<h3 id="and-often-there-are-patterns-in-those-attachments">… and often,
+there are patterns in those attachments</h3>
+<ul>
+<li><p>cats, dishes, dogs, apartments, computers, phones</p>
+<ul>
+<li>Xs = More than one of X</li>
+</ul></li>
+<li><p>clicker, computer, driver, refrigerator, punner, runner</p>
+<ul>
+<li>Xer = Somebody who does X</li>
+</ul></li>
+<li><p>quickly, slowly, facetiously, unfortunately, crazily,
+randomly</p>
+<ul>
+<li>Xly = In an X manner</li>
+</ul></li>
+<li><p><em>These are nothing but patterns in form and
+meaning!</em></p></li>
+</ul>
+<hr />
+<h3
+id="there-appear-to-exist-systematic-relationships-between-forms-and-meanings-of-words">There
+appear to exist systematic relationships between forms and meanings of
+words!</h3>
+<hr />
+<h3 id="these-relationships-make-words-feel-analyzeable">These
+relationships make words feel analyzeable</h3>
+<ul>
+<li><p>‘Parts that occur as parts of other words or stand alone may be
+independent beasts’</p></li>
+<li><p>cat+s</p></li>
+<li><p>click+er</p></li>
+<li><p>quick+ly</p></li>
+<li><p>compute+r+ing+ly+est</p></li>
+<li><p>BUT ‘squirrel’</p></li>
+</ul>
+<hr />
+<h3 id="some-pieces-of-words-seem-to-mean-something">Some pieces of
+words seem to mean something!</h3>
+<ul>
+<li><p>These pieces are called ‘morphemes’</p></li>
+<li><p><em>All words seem to be built of morphemes!</em></p></li>
+</ul>
+<hr />
+<h2 id="morpheme">Morpheme</h2>
+<p>The smallest <em>meaningful</em> constituents of a linguistic
+expression</p>
+<ul>
+<li>The ‘atom’ of linguistic meaning</li>
+</ul>
+<hr />
+<h3 id="we-subdivide-these-morphemes-into-types">We subdivide these
+morphemes into types</h3>
+<ul>
+<li><p><strong>Bases</strong> or <strong>Stems</strong> are the base
+from which other words are built</p>
+<ul>
+<li><p>‘dance’ in ‘dancer’</p></li>
+<li><p>‘cat’ in ‘cat+s’</p></li>
+<li><p>‘computer’ in ‘computer+y’</p></li>
+<li><p><strong>Roots</strong> cannot be subdivided further</p></li>
+</ul></li>
+<li><p><strong>Affixes</strong> are added to bases to change the
+meaning</p>
+<ul>
+<li><p>Prefixes, Suffixes, Infixes, Circumfixes</p></li>
+<li><p>-er in ‘dancer’</p></li>
+<li><p>-s in ‘cats’</p></li>
+<li><p>-en in ‘darken’</p></li>
+</ul></li>
+<li><p><strong>Compounds</strong> combine two bases</p>
+<ul>
+<li>Backpack, Dishwasher, Dancewear</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-can-also-talk-about-how-they-attach-to-things">We can also
+talk about how they attach to things</h3>
+<ul>
+<li><p><strong>Bound morphemes</strong> cannot be used on their own</p>
+<ul>
+<li>Affixes, like ’d or -er</li>
+</ul></li>
+<li><p><strong>Free morphemes</strong> can occur on their own</p>
+<ul>
+<li>Like ‘cat’ or ‘show’</li>
+</ul></li>
+<li><p><strong>Clitics</strong> are complicated as heck, but generally
+bound</p>
+<ul>
+<li><p>We’ll get to them later</p></li>
+<li><p>Things like I<clr>’m</clr> and we<clr>’ve</clr></p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="ok-lets-find-all-the-morphemes">OK!! Let’s find all the
+morphemes!</h3>
+<hr />
+<h1 id="identifying-morphemes-and-analyzing-words">Identifying Morphemes
+and Analyzing Words</h1>
+<hr />
+<h3 id="lets-help-out-some-aliens">Let’s help out some aliens</h3>
+<hr />
+<h3 id="you-can-tell-will-from-fashion-accessories-by-removing-them">You
+can tell ‘Will’ from ‘Fashion Accessories’ by removing them</h3>
+<ul>
+<li><p>Removing his shoes means you have a Will and some shoes</p>
+<ul>
+<li><p>The shoes are still functional for another person</p></li>
+<li><p>The Will stands alone, and is still attachable to other
+shoes</p></li>
+</ul></li>
+<li><p>Removing his watch means you have a Will and a watch</p>
+<ul>
+<li><p>The watch still functional for another person</p></li>
+<li><p>The Will stands alone, and is still attachable to other
+watches</p></li>
+</ul></li>
+<li><p>Removing his torso means you have a very lengthy sentence in
+front of you</p>
+<ul>
+<li>Neither subcomponent stands alone nor can be functionally attached
+to anything else</li>
+</ul></li>
+</ul>
+<hr />
+<!--Testing -->
+<h1 id="travelerish">Travelerish</h1>
+<ul>
+<li><p>Removing ‘ish’ leaves ‘traveler’ and ‘-ish’</p>
+<ul>
+<li>‘traveler’ stands alone, and ‘-ish’ has the same meaning attached to
+‘amateur’</li>
+</ul></li>
+<li><p>Removing ‘er’ leaves ‘travel’ and ‘-er’</p>
+<ul>
+<li><p>‘travel’ stands alone, and ‘-er’ attaches to ‘refrigerate’ or
+‘compute’</p></li>
+<li><p>-er cannot stand alone, it is a <strong>bound</strong> morpheme
+(or ‘affix’)</p></li>
+</ul></li>
+<li><p>Removing any component of ‘travel’ results in non-working
+forms</p>
+<ul>
+<li>This morpheme is a <strong>root</strong>, it cannot be broken down
+further</li>
+</ul></li>
+</ul>
+<hr />
+<p>Let’s try another word!</p>
+<hr />
+<h3 id="shamefulness">Shamefulness</h3>
+<ul>
+<li><p>Removing -ness gives us ‘shameful’ and ‘-ness’</p></li>
+<li><p>Removing -ful gives us ‘shame’ and ‘-ful’</p></li>
+<li><p>You can’t break ‘shame’, ‘-ful’, or ‘-ness’ any further</p></li>
+</ul>
+<hr />
+<p>OK! Let’s try something different!</p>
+<hr />
+<h1 id="arralanjardirr">arralanjardirr</h1>
+<p>(From Bardi, a language of Western Australia)</p>
+<hr />
+<p><img class="xwide" src="morphology/bardi_bowern_nogloss.jpg"></p>
+<p><small>From Bowern, C. (2004). Bardi verb morphology in historical
+perspective (Doctoral dissertation, Harvard University,
+pp. 47</small></p>
+<hr />
+<p><img class="xwide" src="morphology/bardi_bowern_nomorph.jpg"></p>
+<p><small>From Bowern, C. (2004). Bardi verb morphology in historical
+perspective (Doctoral dissertation, Harvard University,
+pp. 47</small></p>
+<hr />
+<p><img class="xwide" src="morphology/bardi_bowern_all.jpg"></p>
+<p><small>From Bowern, C. (2004). Bardi verb morphology in historical
+perspective (Doctoral dissertation, Harvard University,
+pp. 47</small></p>
+<hr />
+<h3 id="in-bardi-arra--marks-1pl-among-other-morphemes">In Bardi,
+‘Arra-’ marks 1PL (among other morphemes!)</h3>
+<ul>
+<li><p>We can tell by noticing it across many forms with related
+meanings</p></li>
+<li><p>It does not appear to change in these data!</p></li>
+</ul>
+<hr />
+<p><img src="ling_memes/fork.jpg" /></p>
+<hr />
+<h2 id="its-not-always-that-easy-alas">It’s not always that easy,
+alas!</h2>
+<hr />
+<h1 id="allomorphy">Allomorphy</h1>
+<hr />
+<h2 id="allomorphs">Allomorphs</h2>
+<p>The multiple forms which a given morpheme can take</p>
+<ul>
+<li>“This single <em>underlying</em> morpheme could show up <em>on the
+surface</em> in one of several ways”</li>
+</ul>
+<hr />
+<h1 id="cats-dogs-dishes">cats, dogs, dishes</h1>
+<ul>
+<li><p>Three roots (‘cat’, ‘dog’, ‘dish’)</p></li>
+<li><p>One meaning shift (‘PL’)</p></li>
+<li><p>kæt+s</p></li>
+<li><p>dɑg+z</p></li>
+<li><p>dɪʃ+ɪz</p></li>
+<li><p><strong>Are these three affixes the same
+morpheme?</strong></p></li>
+</ul>
+<hr />
+<h2 id="phonological-allomorphy">Phonological Allomorphy</h2>
+<p>When a morpheme has different forms which are <em>phonologically
+predictable</em></p>
+<ul>
+<li><p>Changes to the morpheme can be <em>wholly described using
+phonological rules!</em></p></li>
+<li><p>-s, -z, and -ɪz are the three <em>allomorphs</em> of the English
+plural</p></li>
+</ul>
+<hr />
+<h1 id="catch-and-caught">Catch and Caught</h1>
+<ul>
+<li><p>*catched and *caugh</p></li>
+<li><p>Feels similar to buy/bought, seek/sought</p></li>
+<li><p>… but batch and batched, and dispatch and dispatched</p>
+<ul>
+<li>This is <em>not</em> phonologically conditioned</li>
+</ul></li>
+<li><p><strong>Are catch and caugh- the same morpheme?</strong></p></li>
+</ul>
+<hr />
+<h2 id="weak-suppletive-allomorphy">Weak Suppletive Allomorphy</h2>
+<p>When a morpheme has allomorphs which cannot be described by
+phonological rules</p>
+<ul>
+<li><p>Catch/Caught is ‘weak suppletive allomorphy’, as there are
+similarities across the forms</p>
+<ul>
+<li>Catch/Caught share some segments, and there’s a pattern with
+seek/sought etc</li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="badwors-">Bad/Wors-</h1>
+<ul>
+<li><p>*Badder, *Baddest, but *Wor</p></li>
+<li><p>Also worse, worsen, worst</p></li>
+<li><p>… but badly, baddish</p></li>
+<li><p>Sad/Sadder/Saddest/Sadden/Sadly</p>
+<ul>
+<li>Again, it’s not phonological!</li>
+</ul></li>
+<li><p>Good/Better/Best feels similar in approach</p></li>
+<li><p><strong>Do these three forms share a morpheme?</strong></p></li>
+</ul>
+<hr />
+<h3 id="strong-suppletive-allomorphy">Strong suppletive allomorphy</h3>
+<ul>
+<li><p>Strong suppletive allomorphy shows <em>no</em> relation of form
+between the allomorphs</p></li>
+<li><p>Bad/Wors- share no phonological elements, but share many meaning
+elements</p>
+<ul>
+<li>These are two allomorphs of the same stem</li>
+</ul></li>
+</ul>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="the-change-from-mouse---mice-is-an-example-of">The change from
+Mouse -&gt; Mice is an example of…</h3>
+<ol type="A">
+<li><p>Phonological Allomorphy</p></li>
+<li><p>Weak Suppletive Allomorphy</p></li>
+<li><p>Strong Suppletive Allomorphy</p></li>
+</ol>
+<hr />
+<h3 id="the-change-from-mouse---mice-is-an-example-of-1">The change from
+Mouse -&gt; Mice is an example of…</h3>
+<ol type="A">
+<li>Phonological Allomorphy</li>
+</ol>
+<p><clg>B) Weak Suppletive Allomorphy</clg></p>
+<ol start="3" type="A">
+<li>Strong Suppletive Allomorphy</li>
+</ol>
+<hr />
+<h2 id="conditioning-allomorphy">Conditioning Allomorphy</h2>
+<hr />
+<h3 id="allomorphs-are-generally-conditioned">Allomorphs are generally
+<em>conditioned</em></h3>
+<ul>
+<li><p>There’s a reason why a given variant shows up.</p></li>
+<li><p>Very seldom do you see ‘free variation’, where any form is
+possible</p>
+<ul>
+<li>Although sometimes it’s hard to predict!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="why-do-allomorphs-appear-when-they-do">Why do allomorphs appear
+when they do?</h3>
+<ul>
+<li><p>Sometimes it’s phonological</p></li>
+<li><p>Sometimes, it’s morphological</p></li>
+<li><p>Sometimes, it’s lexical</p></li>
+</ul>
+<hr />
+<h3 id="phonologically-conditioned-allomorphy">Phonologically
+Conditioned Allomorphy</h3>
+<ul>
+<li><p>Conditioned by phonological rules</p></li>
+<li><p>Cats, Dogs and Dishes</p></li>
+</ul>
+<hr />
+<h3 id="morphologically-conditioned-allomorphy">Morphologically
+Conditioned Allomorphy</h3>
+<ul>
+<li><p>Conditioned by morphological context</p>
+<ul>
+<li>One form ‘goes with’ morphemes with specific grammatical or
+morphological properties</li>
+</ul></li>
+<li><p>Good, Better, Best</p></li>
+<li><p>In Spanish, voy, vas, but iré, irás, fui, fuiste</p></li>
+</ul>
+<hr />
+<h3 id="lexically-conditioned-allomorphy">Lexically Conditioned
+Allomorphy</h3>
+<ul>
+<li><p>Conditioned by some unknown property of the individual
+word</p></li>
+<li><p>Unpredictable unless you know how <em>that specific word</em>
+patterns</p></li>
+<li><p>break/broken, forsake/forsaken, walk/walked, creep/crept,
+drive/driven</p></li>
+</ul>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="the-change-from-mouse---mice-is-an-example-of-2">The change from
+Mouse -&gt; Mice is an example of…</h3>
+<ol type="A">
+<li><p>Phonologically Conditioned Allomorphy</p></li>
+<li><p>Lexically Conditioned Allomorphy</p></li>
+<li><p>Morphologically Conditioned Allomorphy</p></li>
+</ol>
+<hr />
+<h3 id="so-we-know-that-morphemes-vary">So, we know that morphemes
+vary</h3>
+<ul>
+<li><p>What the different variation patterns are called</p>
+<ul>
+<li>Phonological, Strong Suppletive, and Weak Suppletive Allomorphy</li>
+</ul></li>
+<li><p>And what can condition the variation</p>
+<ul>
+<li>Phonology, Morphology, and the Lexicon</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Words are made of morphemes</p></li>
+<li><p>We can find these morphemes by looking for patterns among many
+words</p></li>
+<li><p>Sometimes, those morphemes have variants called
+allomorphs</p></li>
+<li><p>Those allomorphs can be similar in form to the original, or not
+at all</p></li>
+<li><p>Different aspects of the language can trigger that
+allomorphy</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li><p>Complete the first discussion post and responses by Friday at
+Midnight</p></li>
+<li><p>Re-Register your clickers in Canvas</p></li>
+<li><p>We’ll try and find some morphemes!</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

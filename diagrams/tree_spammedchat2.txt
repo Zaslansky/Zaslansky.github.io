@@ -1,0 +1,23 @@
+tree_spammedchat2tex
+
+[S 
+  [NP 
+    [DET The 
+      [N' 
+        [ADJ angry ] 
+        [N' 
+          [N student ] ] ] ] ] 
+  [VP 
+    [VP 
+      [V spammed ]
+      [NP 
+        [DET the ] 
+        [N' 
+          [N chat ] ] ] ]
+    [PP 
+      [P with ]
+      [NP 
+        [N' 
+          [ADJ cursed ] 
+          [N' 
+            [N memes ] ] ] ] ] ] ]

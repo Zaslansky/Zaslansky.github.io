@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{fontspec}
+    \setmainfont{Charis SIL}
+\begin{document}
+% In the preamble:
+
+\begin{tikzpicture}[label distance=5mm]
+    \draw [-, dotted] (0,1) node [] {} -- (-0,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [<-, solid] (-3,0) node [] {} -- (-0.45,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [-, solid] (-0.45,0) node [] {} -- (0.45,0) node[midway,above,sloped] (TextNode) {\tiny };
+  \draw [->, solid] (0.45,0) node [] {} -- (3,0) node[midway,above,sloped] (TextNode) {\tiny };
+
+  \draw [|-|, solid] (-2.45,0.25) node [] {} -- (-1.45,0.25) node[midway,above,sloped] (TextNode) {\tiny ``Trabajé''};
+
+  \draw [|-|, solid] (2.45,0.25) node [] {} -- (1.45,0.25) node[midway,above,sloped] (TextNode) {\tiny ``I'll have it finished tomorrow''};
+
+  \draw [|-|, solid] (2.95,0.65) node [] {} -- (1.85,0.65) node[midway,above,sloped] (TextNode) {\tiny ``я убью тебя''};
+
+  \draw [|-|, solid] (-2,0.75) node [] {} -- (-0.75,0.75) node[midway,above,sloped] (TextNode) {\tiny ``I wrote a letter''};
+
+
+      \draw (0,-0) node[circle,fill,inner sep=1pt]{};
+
+ \draw (0,-0.4) node[anchor=south]{\tiny Now};
+
+ \draw (0,1.2) node[anchor=south]{Perfective};
+
+\end{tikzpicture}
+
+\end{document}

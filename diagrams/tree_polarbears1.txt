@@ -1,0 +1,10 @@
+tree_polarbears1tex
+
+[NP 
+  [DET The ] 
+  [N' 
+    [ADJ grumpy ] 
+    [N' 
+      [ADJ polar ] 
+      [N' 
+        [N bears ] ] ] ] ]

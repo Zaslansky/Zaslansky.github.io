@@ -1,0 +1,7 @@
+tree_l6lingmajortex
+
+[S 
+  [NP Linguistics ] 
+  [VP 
+    [V is ] 
+    [NP the best major ] ] ]

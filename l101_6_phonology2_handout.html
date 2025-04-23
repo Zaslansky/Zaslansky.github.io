@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)file:///C:/Users/Spart/Documents/GitHub/talks/talks/l101_6_phonology2_handout.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h3 id="study-groups-arent-always-a-good-idea">Study Groups aren’t
+always a good idea!</h3>
+<ul>
+<li><p>Sometimes it can help to teach and learn from others</p></li>
+<li><p>Don’t trust an answer you don’t fully understand</p>
+<ul>
+<li>“What’s the answer?” is dangerous, “Why is that the answer?” might
+save you.</li>
+</ul></li>
+<li><p>Bad answers often ‘go viral’</p>
+<ul>
+<li><p>I can usually tell a study group by the patterns of weird
+errors</p></li>
+<li><p>“Somebody who was very wrong thought they were very
+right!”</p></li>
+</ul></li>
+<li><p>The very best study group is office hours!</p></li>
+</ul>
+<hr>
+<h1 id="phonology-the-sound-patterns-of-language-are-awesome">Phonology:
+The Sound Patterns of Language are awesome</h1>
+<h3 id="will-styler---lign-101">Matt Zaslansky - LIGN 101</h3>
+<hr>
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Review</p></li>
+<li><p>Common Phonological Processes</p></li>
+<li><p>Natural Classes</p></li>
+<li><p>Let’s work some problems!</p></li>
+</ul>
+<hr>
+<h1 id="reviewing-phonemic-analysis">Reviewing Phonemic Analysis</h1>
+<hr>
+<h3 id="from-last-time">From last time…</h3>
+<hr>
+<h2 id="cool.-so-how-do-we-do-phonemic-analysis">Cool. So… how do we do
+phonemic analysis?</h2>
+<hr>
+<h3 id="step-0-check-for-minimal-pairs">Step 0: Check for minimal
+pairs</h3>
+<p>If you have a minimal pair where the meaning changes, the sounds are
+different phonemes and your work is done. Always.</p>
+<hr>
+<h3 id="if-you-have-a-minimal-pair-the-sounds-are-different-phonemes-and-your-work-is-done.">If
+you have a minimal pair, the sounds are different phonemes and your work
+is done.</h3>
+<p><img class="r-stretch" src="./l101_6_phonology2_handout_files/bankvault.jpg"></p>
+<hr>
+<h3 id="phonemic-analysis-in-four-easy-steps">Phonemic Analysis in four
+easy steps!</h3>
+<ul>
+<li><p>0: Check for Minimal Pairs, if none…</p></li>
+<li><p>1: Collect all the environments the sound you’re interested in
+can occur in</p></li>
+<li><p>2: State the distribution of the sounds.</p></li>
+<li><p>3: Decide which allophone is the basic <em>underlying</em>
+form</p></li>
+<li><p>4: Write rules to derive the other allophone(s) from it based on
+environment</p></li>
+</ul>
+<hr>
+<h3 id="check-for-minimal-pairs-if-none">0: Check for Minimal Pairs, if
+none…</h3>
+<ul>
+<li>Please. PLEASE.</li>
+</ul>
+<hr>
+<h3 id="collect-all-the-environments-the-sound-youre-interested-in-can-occur-in">1:
+Collect all the environments the sound you’re interested in can occur
+in</h3>
+<ul>
+<li><p>Write down what follows and precedes them</p></li>
+<li><p>Use __ to help focus your brain on the context</p></li>
+</ul>
+<hr>
+<h3 id="state-the-distribution-of-the-sounds.">2: State the distribution
+of the sounds.</h3>
+<ul>
+<li><p>“This one occurs before/after/around/near __”</p></li>
+<li><p>Sometimes you can only describe where one happens</p></li>
+<li><p>Test hypotheses!</p></li>
+</ul>
+<hr>
+<p><img class="r-stretch" src="./l101_6_phonology2_handout_files/wrong_step_discarded.jpg"></p>
+<hr>
+<h3 id="decide-which-allophone-is-the-basic-underlying-form">3: Decide
+which allophone is the basic <em>underlying</em> form</h3>
+<ul>
+<li><p>Choose the one you can’t predict</p></li>
+<li><p>Often it’s the “everywhere else” allophone</p></li>
+</ul>
+<hr>
+<h3 id="write-rules-to-derive-the-other-allophones-from-it-based-on-environment">4:
+Write rules to derive the other allophone(s) from it based on
+environment</h3>
+<ul>
+<li>We’ll talk about writing rules more shortly</li>
+</ul>
+<hr>
+<h3 id="all-sorts-of-environments-trigger-changes">All sorts of
+environments trigger changes</h3>
+<ul>
+<li><p>Adjacent sound or sounds</p></li>
+<li><p>Adjacent <em>types</em> of sound</p></li>
+<li><p>Word boundaries</p></li>
+<li><p>Syllable boundaries</p></li>
+<li><p>Sounds or later earlier in the word</p>
+<ul>
+<li>This is a bit more rare, but really neat!</li>
+</ul></li>
+</ul>
+<hr>
+<h1 id="phonological-rules">Phonological Rules</h1>
+<hr>
+<h3 id="so-youve-figured-out-that-sounds-are-allophones-of-the-same-phoneme">So,
+you’ve figured out that sounds are allophones of the same phoneme!</h3>
+<ul>
+<li><p>They’re in a <em>complementary</em> distribution</p></li>
+<li><p>You can predict which one will show up based on the
+environment</p></li>
+<li><p><strong>How do I express that prediction to somebody
+else?</strong></p></li>
+</ul>
+<hr>
+<h3 id="phonological-rules-1">Phonological Rules</h3>
+<p>You describe the distribution of the allophones of a phoneme with
+phonological rules</p>
+<hr>
+<hr>
+<h3 id="an-r-in-english">An [r] in English?</h3>
+<video class="r-stretch" controls="" width="700px" src="video/jynxi.mp4">
+</video>
+<p>Video is from <a href="https://www.youtube.com/watch?v=Lot-jfKxr74">Jynxi</a></p>
+<hr>
+<section class="clicker">
+</section>
+<h3 id="so-when-jynxi">So when Jynxi says [fɪɹst klɪpərə ivnɪŋ], which is a plausible rule for [r]?</h3>
+<ol type="A">
+<li><p>[r] -&gt; /ɹ/  / V__V</p></li>
+<li><p>/ɹ/ -&gt; [r] / V__V</p></li>
+<li><p>/d/ -&gt; [r]  / V__V</p></li>
+<li><p>/d/ -&gt; [r]  / C__C</p></li>
+<li><p>[r] -&gt; /d/  / C__C</p></li>
+</ol>
+<hr>
+<h3 id="so-when-jynxi">So when Jynxi says [fɪɹst klɪpərə ivnɪŋ], which is a plausible rule for [r]?</h3>
+<ol type="A">
+<li><p>[r] -&gt; /ɹ/  / V__V</p></li>
+<li><p>/ɹ/ -&gt; [r] / V__V</p></li>
+<li><p><correct>/d/ -&gt; [r]  / V__V</correct></p></li>
+<li><p>/d/ -&gt; [r]  / C__C</p></li>
+<li><p>[r] -&gt; /d/  / C__C</p></li>
+</ol>
+<hr>
+<h3 id="phonological-rule-format">Phonological Rule Format</h3>
+<ul>
+<li><p>“X turns into Y in environment Z”</p></li>
+<li><p>“X -&gt; Y” means “X turns into Y”</p>
+<ul>
+<li>-&gt; is an arrow, but just easier to type.</li>
+</ul></li>
+<li><p>Then the “/” which means “in the environment”</p></li>
+<li><p>Then you add a blank, representing where the sound goes that’s
+getting transformed “__”</p></li>
+<li><p>… And you position that blank relative to the conditioning
+environment.</p></li>
+</ul>
+<hr>
+<h3 id="all-of-this-is-on-your-quick-reference-chart">All of this is on
+your quick reference chart</h3>
+<ul>
+<li>Use it!</li>
+</ul>
+<hr>
+<h2 id="a-phoneme">A Phoneme</h2>
+<ul>
+<li><p>The Smallest Contrastive Unit of Sound in a language, in a
+<em>contrastive distribution</em> with other phonemes in the
+language</p></li>
+<li><p>Changing phonemes changes meanings, and is perceptible (and often
+confusing!) for listeners of a language</p></li>
+<li><p>Changing between phonemes creates…</p></li>
+</ul>
+<hr>
+<h2 id="minimal-pairs">Minimal Pairs</h2>
+<ul>
+<li><p>Two words with different meanings which differ by a single sound,
+indicating that those sounds are <strong>different
+phonemes</strong></p></li>
+<li><p>Think “boot” and “boon”, or “Niña” and “Piña”</p></li>
+</ul>
+<hr>
+<h2 id="allophones-of-a-phoneme">Allophones of a Phoneme</h2>
+<ul>
+<li><p>Different surface-level expressions of the same phoneme, which
+<em>alternate</em> depending on the environment, in a <em>complementary
+distribution</em></p></li>
+<li><p>Which allophone you get is dictated by a rule</p></li>
+<li><p>Think about [ej] and [ej:] or the many realizations of /t/ in
+English</p></li>
+</ul>
+<hr>
+<h2 id="underlying-form">Underlying Form</h2>
+<ul>
+<li><p>The sound which you decide is the ‘base’ form, from which rules
+create the other allophones</p></li>
+<li><p>This is a <em>strategic</em> decision. Choose the form that lets
+you write the fewest, cleanest rules.</p></li>
+</ul>
+<hr>
+<h2 id="allomorphs">Allomorphs</h2>
+<ul>
+<li><p>Different versions of morphemes which are swapped predictably
+based on the sound environment.</p></li>
+<li><p>Think the many plurals of English,</p></li>
+</ul>
+<hr>
+<h2 id="free-variation">Free Variation</h2>
+<ul>
+<li><p>Where a group of sounds can replace each other, or not, and
+there’s no pattern, just chaos</p></li>
+<li><p><strong>Don’t worry about this for LIGN 101, we won’t give you
+Free Variation on homeworks or exams</strong></p></li>
+</ul>
+<hr>
+<h3 id="sounds-have-relationships-with-one-another">Sounds have
+relationships with one another</h3>
+<ul>
+<li><p>They can be <em>independent</em> phonemes</p></li>
+<li><p>They can be <em>rule-governed</em> allophones</p></li>
+<li><p>They can <em>chaotically switching</em> free variation</p></li>
+</ul>
+<hr>
+<h3 id="signs-that-two-sounds-represent-different-phonemes">Signs that
+two sounds represent different phonemes</h3>
+<ul>
+<li><p><strong>Minimal pairs</strong></p></li>
+<li><p>Speakers hear them as ‘entirely distinct’</p></li>
+<li><p>There’s <em>no pattern besides changes in meaning which predicts
+their distribution</em></p></li>
+</ul>
+<hr>
+<h3 id="signs-that-two-sounds-are-allophones-of-the-same-phoneme">Signs
+that two sounds are allophones of the same phoneme</h3>
+<ul>
+<li><p>Changing the environment causes the sounds to
+<em>alternate</em></p></li>
+<li><p>The two sounds are predictable</p>
+<ul>
+<li>“Huh, this one always occurs in that environment!”</li>
+</ul></li>
+<li><p>Speakers hear switching between them as ‘a different way of
+saying’ the same thing</p>
+<ul>
+<li>Or maybe don’t hear the difference at all</li>
+</ul></li>
+</ul>
+<hr>
+<h3 id="we-write-phonological-rules-to-describe-where-allophones-occur">We
+write phonological rules to describe where allophones occur</h3>
+<ul>
+<li>These rules tell us <em>when</em> some or all of the forms
+occur</li>
+</ul>
+<hr>
+<h3 id="these-rules-have-formatting-conventions">These rules have
+formatting conventions</h3>
+<ul>
+<li><p>‘_’ replaces the sound which is being changed</p></li>
+<li><p>‘#’ means ‘word boundaries’</p>
+<ul>
+<li>Think of ‘cat’ as being like [#kæt#]</li>
+<li>_# is at the end of a word</li>
+<li>#_ is at the start of a word</li>
+</ul></li>
+</ul>
+<hr>
+<h3 id="aside-schwa-is-always-an-allophone-of-another-vowel">Aside:
+Schwa is always an allophone of another vowel</h3>
+<ul>
+<li><p>Schwa (/ə/) is a reduced form of a different vowel</p>
+<ul>
+<li>Photograph, the, con’vict</li>
+</ul></li>
+<li><p>Wedge (/ʌ/) is a specific vowel, with its own identity</p>
+<ul>
+<li>Not a reduced form of something else</li>
+</ul></li>
+</ul>
+<hr>
+<h3 id="so-now-we-know-how-alternations-work">So, now we know how
+alternations work!</h3>
+<hr>
+<h3 id="but-why-do-alternations-occur-anyways">… but why do alternations
+occur anyways?</h3>
+<hr>
+<h1 id="common-phonological-processes">Common Phonological
+Processes</h1>
+<hr>
+<h3 id="so-now-we-know-how-to-describe-all-these-crazy-rules">So, now we
+know how to describe all these crazy rules…</h3>
+<ul>
+<li><h2 id="but-what-do-languages-actually-do-with-them">… but what do
+languages actually DO with them?!</h2></li>
+</ul>
+<hr>
+<h3 id="four-common-types-of-phonological-processes">Four Common Types
+of Phonological Processes</h3>
+<ul>
+<li><p>Assimilation</p></li>
+<li><p>Dissimilation</p></li>
+<li><p>Insertion / Epenthesis</p></li>
+<li><p>Deletion / Elision</p></li>
+</ul>
+<hr>
+<h3 id="assimilation">1) Assimilation</h3>
+<ul>
+<li><p>When sounds change to become more like one another</p></li>
+<li><p>This is basically Peer Pressure</p></li>
+<li><p><img class="r-stretch" src="./l101_6_phonology2_handout_files/assimilation.jpg"></p></li>
+</ul>
+<hr>
+<h3 id="example-nasal-place-assimilation">Example: Nasal Place
+Assimilation</h3>
+<ul>
+<li><p>“Come on, we’re all being dental, you should try it
+too!”</p></li>
+<li><p>“Pine thugs” -&gt; [pajn̪ θʌgz]</p></li>
+<li><p>“Pine guys” -&gt; [pajŋ gajz]</p></li>
+</ul>
+<hr>
+<h3 id="extreme-example-nasal-harmony">Extreme Example: Nasal
+Harmony</h3>
+<ul>
+<li><p>When other phones in a word change to match the nasality of a
+nasal segment</p></li>
+<li><p><img class="r-stretch" src="./l101_6_phonology2_handout_files/nasal_harmony.jpg"></p>
+<ul>
+<li><p>“If I’m going to be nasal, you’re all going to be nasal with me,
+damnit!”</p></li>
+<li><p><small>From Epena Pedee, in Rose, S. and Walker, R. (2011).
+Harmony Systems. In The Handbook of Phonological Theory (eds J.
+Goldsmith, J. Riggle and A. C. Yu). doi:10.1002/9781444343069.ch8
+</small></p></li>
+</ul></li>
+<li><p>This also happens with vowels (e.g.&nbsp;Turkish) and
+elsewhere</p></li>
+</ul>
+<hr>
+<h3 id="extreme-example-vowel-harmony">Extreme Example: Vowel
+Harmony</h3>
+<p>When vowels change to match the other vowels in the word</p>
+<hr>
+<h3 id="turkish-has-back-front-vowel-harmony">Turkish has back-front
+vowel harmony</h3>
+<p>This means that vowels in a word must be either <em>all back</em> or
+<em>all front</em></p>
+<h2 id="section"><img class="r-stretch" width="600" src="./l101_6_phonology2_handout_files/turkishvowels.png"></h2>
+<p><lang>Turkish</lang><br><ldata>Turkic - Turkey</ldata></p>
+<p><em>Türkiye’-dir</em> - ‘it is Turkey’</p>
+<ul>
+<li><p><em>kapı-dır</em> - ‘it is the door’</p></li>
+<li><p><em>gül-dür</em> - ‘it is the rose’</p></li>
+<li><p><em>palto-dur</em> - ‘it is the coat’</p></li>
+<li><p><em>The vowel in the last syllable changes depending on the other
+vowels!</em></p></li>
+</ul>
+<hr>
+<h3 id="dissimilation">2) Dissimilation</h3>
+<ul>
+<li><p>When sounds change to become <em>less</em> like one
+another</p></li>
+<li><p><img class="r-stretch" width="600" src="./l101_6_phonology2_handout_files/dissimilation.jpg"></p></li>
+</ul>
+<hr>
+<h3 id="example-liquid-dissimilation">Example: Liquid Dissimilation</h3>
+<ul>
+<li><p>The third rural bird juror murderer demurred.</p></li>
+<li><p>“Colonel” is pronounced /kəɹnəl/</p></li>
+<li><p>“Purple” comes from “purpure”</p></li>
+<li><p>“surprise” /səɹpɹajz/ is usually /səpɹajz/, same with “berserk”
+and “february”</p>
+<ul>
+<li>This is deletion, done for dissimilation reasons</li>
+</ul></li>
+</ul>
+<hr>
+<h3 id="insertion-epenthesis">3) Insertion / Epenthesis</h3>
+<ul>
+<li><p>When a sound pops up to prevent an awkward or undesirable
+combination</p></li>
+<li><p>Basically, showing up on a friend’s bad date</p></li>
+<li><p><img class="r-stretch" width="600" src="./l101_6_phonology2_handout_files/epenthesis_alternate.jpg"></p></li>
+</ul>
+<hr>
+<h3 id="example-allomorphs-with-vowels">Example: Allomorphs with
+vowels</h3>
+<ul>
+<li><p>/dɪʃ/ + /s/ -&gt; [dɪʃɪz]</p></li>
+<li><p>/ɹat/ + /d/ -&gt; [ɹaɾɪd]</p></li>
+<li><p>The vowel ‘pops in’ to stop /ʃs/ and /td/ from being a
+thing</p></li>
+<li><p>Languages also LOVE to epenthesize to stop VV</p></li>
+</ul>
+<hr>
+<h3 id="deletion-elision">4) Deletion / Elision</h3>
+<ul>
+<li><p>When a sound is removed to stop an awkward or undesirable
+combination from occurring</p></li>
+<li><p>Basically, uninviting your friend’s ex from the party</p></li>
+<li><p><img class="r-stretch" width="600" src="./l101_6_phonology2_handout_files/deletion.jpg"></p></li>
+</ul>
+<hr>
+<h3 id="example-elision-in-english">Example: Elision in English</h3>
+<ul>
+<li><p>Fifth, /fɪfθs/ -&gt; [fɪθs]</p></li>
+<li><p>Family, /fæmɪli/ -&gt; [fæmli]</p></li>
+<li><p>Natural, /næt͡ʃəɹəl/ -&gt; [næt͡ʃɹəl]</p></li>
+</ul>
+<hr>
+<h3 id="four-common-types-of-phonological-processes-1">Four Common Types
+of Phonological Processes</h3>
+<ul>
+<li><p>Assimilation (Peer Pressure)</p></li>
+<li><p>Dissimilation (Rebellion)</p></li>
+<li><p>Insertion / Epenthesis (Showing up on a friend’s date)</p></li>
+<li><p>Deletion / Elision (Uninviting and unfriending)</p></li>
+</ul>
+<hr>
+<h3 id="there-are-other-phonological-processes">There are other
+phonological processes</h3>
+<ul>
+<li><p>They’re all awesome</p></li>
+<li><p>… but those four are super common</p></li>
+</ul>
+<hr>
+<h3 id="im-humanizing-these-patterns-for-a-reason">I’m humanizing these
+patterns for a reason</h3>
+<ul>
+<li>Before you start looking for a pattern, think about what’s changing,
+arising, or deleting, and what kinds of things might trigger it</li>
+</ul>
+<hr>
+<section class="clicker">
+</section>
+<h3 id="if-a-language-changes-d-to-t-next-to-a-voiceless-c-thats-an-example-of">If
+a language changes /d/ to [t] next to a voiceless C, that’s an example
+of…</h3>
+<ol type="A">
+<li><p>Assimilation</p></li>
+<li><p>Dissimilation</p></li>
+<li><p>Insertion / Epenthesis</p></li>
+<li><p>Deletion / Elision</p></li>
+</ol>
+<hr>
+<h3 id="if-a-language-changes-d-to-t-next-to-a-voiceless-c-thats-an-example-of-1">If
+a language changes /d/ to [t] next to a voiceless C, that’s an example
+of…</h3>
+<ol type="A">
+<li><p><correct>Assimilation</correct></p></li>
+<li><p>Dissimilation</p></li>
+<li><p>Insertion / Epenthesis</p></li>
+<li><p>Deletion / Elision</p></li>
+</ol>
+<hr>
+<h3 id="what-kinds-of-things-trigger-these-changes">What kinds of things
+trigger these changes?</h3>
+<hr>
+<h1 id="natural-classes">Natural Classes</h1>
+<hr>
+<h3 id="plural-patterns-in-english">Plural Patterns in English</h3>
+<ul>
+<li><p>[z] after /j g d ɹ n w b m ð l i aj v u ow/</p></li>
+<li><p>[s] after /t p k f θ/</p></li>
+<li><p>[ɪz] after /tʃ dʒ s ʃ z/</p></li>
+</ul>
+<hr>
+<h3 id="a-few-reasons-why-listing-sounds-is-no-good">A few reasons why
+listing sounds is no good</h3>
+<ul>
+<li><p>Lists are <em>inefficient</em></p></li>
+<li><p>Lists treat these phenomena as <em>unmotivated</em></p></li>
+<li><p>Lists <em>disguise relationships</em> among sounds</p></li>
+<li><p>Lists aren’t <em>graceful</em></p></li>
+</ul>
+<hr>
+<h3 id="relationships-among-speech-sounds-are-real">Relationships among
+speech sounds are real</h3>
+<ul>
+<li><p>Phonology is not just algebra with symbols</p></li>
+<li><p>Your IPA chart is not just an arbitrary scattering of
+sounds</p></li>
+<li><p>Phonetic motivation for changes is often based on
+geography</p></li>
+</ul>
+<hr>
+<h3 id="relationships-can-be-described-in-many-ways">Relationships can
+be described in many ways</h3>
+<ul>
+<li>… but the easiest way to start thinking is in terms of…</li>
+</ul>
+<hr>
+<h1 id="natural-classes-1">Natural Classes!</h1>
+<hr>
+<h3 id="lets-play-a-game">Let’s play a game!</h3>
+<p><img class="r-stretch" src="./l101_6_phonology2_handout_files/sesame_street.jpg"></p>
+<hr>
+<h3 id="one-of-these-sounds-is-not-like-the-other">One of these sounds
+is not like the other…</h3>
+<h2 id="t-k-p-s">/t/ /k/ /p/ /s/</h2>
+<ul>
+<li>/s/ is the only fricative, all the rest are voiceless stops</li>
+</ul>
+<hr>
+<h2 id="m-n-ŋ-b">/m/ /n/ /ŋ/ /b/</h2>
+<ul>
+<li>/b/ is the only oral sound, all the rest are nasal sounds</li>
+</ul>
+<hr>
+<h2 id="b-a-ŋ-i-s">/b/ /a/ /ŋ/ /i/ /s/</h2>
+<ul>
+<li><p>/s/ is the only voiceless sound, all the rest are voiced
+sounds</p></li>
+<li><p>/n/ is the only nasal sound, all the rest are oral</p></li>
+</ul>
+<hr>
+<h2 id="l-s-ŋ-j-i">/l/ /s/ /ŋ/ /j/ /i/</h2>
+<ul>
+<li><p>/i/ is the only vowel, all the rest are consonants</p></li>
+<li><p>/s/ is the only voiceless sound</p></li>
+<li><p>/ŋ/ is the only nasal</p></li>
+</ul>
+<hr>
+<h2 id="i-ɪ-ɛ-æ-ɔ">/i/ /ɪ/ /ɛ/ /æ/ /ɔ/</h2>
+<ul>
+<li><p>/ɔ/ is the only back vowel, all the rest are front
+vowels</p></li>
+<li><p>/ɔ/ is the only rounded vowel, all the rest are
+unrounded</p></li>
+</ul>
+<hr>
+<h2 id="t-n-s-z-k">/t/ /n/ /s/ /z/ /k/</h2>
+<ul>
+<li><p>/k/ is the only non-alveolar sound</p></li>
+<li><p>/n/ is the only nasal sound, all the rest are oral</p></li>
+</ul>
+<hr>
+<h2 id="p-t-k-b">/p/ /t/ /k/ /b/</h2>
+<ul>
+<li>/b/ is the only voiced stop</li>
+</ul>
+<hr>
+<h2 id="natural-class">Natural Class</h2>
+<p>A set of speech sounds in a given language that is able to be
+uniquely, completely, and succinctly described in terms of the shared
+phonetic (“natural”) properties of its members.</p>
+<hr>
+<p><img class="r-stretch" src="./l101_6_phonology2_handout_files/ipa_chart.jpg"></p>
+<hr>
+<h3 id="natural-class-examples">Natural Class Examples</h3>
+<ul>
+<li><p>Voiceless stops (English &amp; Spanish): [p, t, k]</p></li>
+<li><p>Voiced fricatives (English): [v, ð, z, ʒ]</p></li>
+<li><p>Voiced fricatives (Spanish): [β, ð, ɣ]</p></li>
+<li><p>Front vowels (English): [iː, ɪ, eɪ, ɛ, æ]</p></li>
+<li><p>Front vowels (Spanish): [i, e]</p></li>
+</ul>
+<hr>
+<h3 id="natural-classes-in-spoken-languages-are-usually-very-ipa-like">Natural
+Classes in spoken languages are usually very IPA-like</h3>
+<ul>
+<li><p>Common rows, columns, or regions on the IPA chart</p></li>
+<li><p>Anything where you can say ‘these share a feature in speech
+production’</p></li>
+<li><p><em>Knowing the IPA is hugely helpful in phonology!</em></p></li>
+</ul>
+<hr>
+<h3 id="phonological-rules-typically-involve-natural-classes">Phonological
+Rules <em>typically</em> involve natural classes</h3>
+<ul>
+<li><p>Natural classes can be the ‘targets’ of rules</p>
+<ul>
+<li>[p t k] are aspirated in English</li>
+</ul></li>
+<li><p>Natural classes can ‘trigger’ rules</p>
+<ul>
+<li>[tʃ dʒ s ʃ z] trigger the [ɪz] plural</li>
+</ul></li>
+<li><p>Very often, rules will act on groups of sounds which share
+features</p></li>
+</ul>
+<hr>
+<h3 id="so-as-youre-writing-your-phonological-rules">So, as you’re
+writing your phonological rules…</h3>
+<ul>
+<li><h2 id="keep-it-classy">Keep it classy!</h2>
+<ul>
+<li>(Naturally)</li>
+</ul></li>
+</ul>
+<hr>
+<h2 id="any-questions">Any questions?</h2>
+<hr>
+<h2 id="now-lets-try-some-datasets">Now, let’s try some datasets</h2>
+<hr>
+<h3 id="what-is-the-relationship-between-j-and-w-here">What is the
+relationship between [j] and [w] here?</h3>
+<table>
+<thead>
+<tr>
+<th>
+Falsificato
+</th>
+<th>
+English
+</th>
+<th>
+Falsificato
+</th>
+<th>
+English
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+iji
+</td>
+<td>
+blacksmith
+</td>
+<td>
+uwu
+</td>
+<td>
+small
+</td>
+</tr>
+<tr>
+<td>
+kaju
+</td>
+<td>
+monster
+</td>
+<td>
+jaja
+</td>
+<td>
+laughter
+</td>
+</tr>
+<tr>
+<td>
+howaj
+</td>
+<td>
+sacred
+</td>
+<td>
+buwe
+</td>
+<td>
+marker
+</td>
+</tr>
+<tr>
+<td>
+owowi
+</td>
+<td>
+surprise
+</td>
+<td>
+jobowni
+</td>
+<td>
+person
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="do-not-look-at-this-until-youve-worked-the-problem">DO NOT LOOK
+AT THIS UNTIL YOU’VE WORKED THE PROBLEM</h3>
+<hr>
+<h3 id="j---w-rounded-vowels___">/j/ -&gt; [w] / [rounded
+vowels]___</h3>
+<ul>
+<li><p>This implies that ‘/j/ -&gt; [j] / everywhere else’</p></li>
+<li><p>You don’t have to write the second part, it’s assumed</p></li>
+</ul>
+<hr>
+<h3 id="what-is-the-relationship-between-t-and-d-here">What is the
+relationship between [t] and [d] here?</h3>
+<table>
+<thead>
+<tr>
+<th>
+Fakodata
+</th>
+<th>
+English
+</th>
+<th>
+Fakodata
+</th>
+<th>
+English
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+taʃa
+</td>
+<td>
+kitten
+</td>
+<td>
+svitat
+</td>
+<td>
+bird
+</td>
+</tr>
+<tr>
+<td>
+pladna
+</td>
+<td>
+tack
+</td>
+<td>
+padme
+</td>
+<td>
+princess
+</td>
+</tr>
+<tr>
+<td>
+midna
+</td>
+<td>
+companion
+</td>
+<td>
+tatanka
+</td>
+<td>
+buffalo
+</td>
+</tr>
+<tr>
+<td>
+redmat
+</td>
+<td>
+rhythm
+</td>
+<td>
+krita
+</td>
+<td>
+painter
+</td>
+</tr>
+<tr>
+<td>
+sitka
+</td>
+<td>
+tree
+</td>
+<td>
+gjatzo
+</td>
+<td>
+ocean
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="do-not-look-at-this-until-youve-worked-the-problem-1">DO NOT
+LOOK AT THIS UNTIL YOU’VE WORKED THE PROBLEM</h3>
+<hr>
+<h3 id="t---d-___nasals">/t/ -&gt; [d] / ___[nasals]</h3>
+<ul>
+<li>This implies that ‘/t/ -&gt; [t] / everywhere else’</li>
+</ul>
+<hr>
+<h3 id="whats-the-relationship-between-d-and-j">What’s the relationship
+between [d] and [j]?</h3>
+<table>
+<thead>
+<tr>
+<th>
+Falsificato
+</th>
+<th>
+English
+</th>
+<th>
+Falsificato
+</th>
+<th>
+English
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+iji
+</td>
+<td>
+blacksmith
+</td>
+<td>
+dadeja
+</td>
+<td>
+paternity
+</td>
+</tr>
+<tr>
+<td>
+jadas
+</td>
+<td>
+talking
+</td>
+<td>
+jowonda
+</td>
+<td>
+vision
+</td>
+</tr>
+<tr>
+<td>
+kaju
+</td>
+<td>
+monster
+</td>
+<td>
+sijesda
+</td>
+<td>
+sleep
+</td>
+</tr>
+<tr>
+<td>
+hodil
+</td>
+<td>
+invest
+</td>
+<td>
+buwed
+</td>
+<td>
+markers
+</td>
+</tr>
+<tr>
+<td>
+meda
+</td>
+<td>
+technocrat
+</td>
+<td>
+jajas
+</td>
+<td>
+laughing
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="do-not-look-at-this-until-youve-worked-the-problem-2">DO NOT
+LOOK AT THIS UNTIL YOU’VE WORKED THE PROBLEM</h3>
+<hr>
+<h3 id="d-and-j-are-different-phonemes">/d/ and /j/ are different
+phonemes</h3>
+<ul>
+<li>There’s a minimal pair!</li>
+</ul>
+<hr>
+<h3 id="whats-the-relationship-between-t-and-s-here">What’s the
+relationship between [t] and [s] here?</h3>
+<table>
+<thead>
+<tr>
+<th>
+Beeyessa
+</th>
+<th>
+English
+</th>
+<th>
+Beeyessa
+</th>
+<th>
+English
+</th>
+<th>
+Beeyessa
+</th>
+<th>
+English
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+tint
+</td>
+<td>
+dark
+</td>
+<td>
+asint
+</td>
+<td>
+less dark
+</td>
+<td>
+intint
+</td>
+<td>
+darker
+</td>
+</tr>
+<tr>
+<td>
+tas
+</td>
+<td>
+fast
+</td>
+<td>
+asas
+</td>
+<td>
+less fast
+</td>
+<td>
+intas
+</td>
+<td>
+faster
+</td>
+</tr>
+<tr>
+<td>
+tust
+</td>
+<td>
+terrifying
+</td>
+<td>
+asust
+</td>
+<td>
+less terrifying
+</td>
+<td>
+intust
+</td>
+<td>
+more terrifying
+</td>
+</tr>
+<tr>
+<td>
+tontin
+</td>
+<td>
+cute
+</td>
+<td>
+asontin
+</td>
+<td>
+less cute
+</td>
+<td>
+intontin
+</td>
+<td>
+more cute
+</td>
+</tr>
+<tr>
+<td>
+tejki
+</td>
+<td>
+nerdy
+</td>
+<td>
+asejki
+</td>
+<td>
+less nerdy
+</td>
+<td>
+intejki
+</td>
+<td>
+nerdier
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="do-not-look-at-this-until-youve-worked-the-problem-3">DO NOT
+LOOK AT THIS UNTIL YOU’VE WORKED THE PROBLEM</h3>
+<hr>
+<h3 id="t---s-v___">/t/ -&gt; [s] / V___</h3>
+<ul>
+<li><p>This is the best answer</p></li>
+<li><p>[t] shows up in many more contexts than [s], so it’s
+underlying!</p></li>
+<li><p>It is incorrect to say something like ‘/t/ becomes [s] in ’less’
+words’.</p>
+<ul>
+<li><strong>Phonology just worries about sounds</strong></li>
+</ul></li>
+</ul>
+<hr>
+<h3 id="next-time">Next time</h3>
+<ul>
+<li>We’ll wrap up phonology, and talk about how words work</li>
+</ul>
+<hr>
+<p><huge>Thank you!</huge></p>
+
+
+</body></html>

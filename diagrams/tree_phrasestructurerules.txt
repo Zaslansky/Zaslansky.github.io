@@ -1,0 +1,9 @@
+tree_phrasestructurerulestex
+
+[NP 
+  [N' 
+    [ADJ Syntactic ] 
+    [N' 
+      [ADJ phrase structure ] 
+      [N' 
+        [N rules ] ] ] ] ]

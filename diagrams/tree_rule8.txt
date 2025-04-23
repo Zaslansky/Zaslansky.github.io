@@ -1,0 +1,5 @@
+tree_rule8tex
+
+[PP 
+  [P  ] 
+  [NP  ] ]

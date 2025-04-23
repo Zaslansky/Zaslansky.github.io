@@ -1,0 +1,18 @@
+tree_catdragon_wrong3tex
+
+[S 
+  [NP 
+    [N' 
+      [ADJ the ] 
+      [N' 
+        [ADJ cute ] 
+        [N' 
+          [N cat ] ] ] ] ] 
+  [VP 
+    [V meowed ] 
+    [NP 
+      [DET at ] 
+      [N' 
+        [ADJ the ] 
+        [N' 
+          [N dragon ] ] ] ] ] ]

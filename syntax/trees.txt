@@ -1,0 +1,130 @@
+slappedwithfish2$(S (NP John)(VP (VP (V slapped)(NP (DET his) (N' (N' (N friend)))))(PP (P with)(NP (DET the) (N' (ADJ smelly) (N' (N fish)))))))%
+dogs_long_wrong$ (S (NP (N' (N I))) (VP (V saw)(NP (NP (DET the) (N' (ADJ big) (N' (ADJ sweet) (N' (N dogs))))) (PP (P from) (NP (NP (N' (N La Jolla))) (PP (P with) (NP (N' (N fleas)))))))))%
+dogs_long_wrong2$ (S (NP (N' (N I))) (VP (VP (V saw) (NP (NP (DET the) (N' (ADJ big) (N' (ADJ sweet) (N' (N dogs))))) (PP (P from) (NP (N' (N La Jolla)))))) (PP (P with) (NP (N' (N fleas))))))%
+joyofsyntax$(S (NP (NP (DET The) (N' (ADJ overwhelming) (N' (ADJ unbridled) (N' (N joy))))) (PP (P of) (NP (N' (ADJ syntactic) (N' (N analysis))))))(VP (V ensures) (CP (C that) (S (NP (DET our) (N' (ADJ syntax) (N' (N homework)))) (VP (V satisfies) (NP (N' (N students))))))))%
+vowelscoolest$(S (NP (N' (N Vowels))) (VP (V are) (NP (DET the) (N' (ADJ coolest) (N' (ADJ speech) (N' (N sounds)))))))%
+lingtempts$(S (NP (N' (N Linguistics))) (VP (VP (V tempts) (NP (N' (ADJ STEM) (N' (N majors))))) (PP (P with) (NP (DET its) (N' (N awesomeness))))))%
+yuan2$(S (NP Yuan)(VP (VP (V poked)(NP (DET her) (N' (N colleague))))(PP (P with)(NP (DET two) (N' (ADJ mechanical) (N' (N pencils )))))))%
+yuan1$(S (NP Yuan)(VP (V poked)(NP (NP (DET her) (N' (N colleague)))(PP (P with)(NP (DET two) (N' (ADJ mechanical) (N' (N pencils))))))))%
+101sc_newate$(S (NP (N' (N Andres))) (VP (ADV quickly) (VP (V ate))))%
+101sc_newnap$(S (NP (N' (N Will))) (VP (AUX should) (VP (V sleep))))%
+101sc_newband$(S (NP (DET the) (N' (N' (N band)) (CP (C whom) (S (NP (N' (N Michael))) (VP (V like)))))) (VP (V went) (PP (P on) (NP (N' (N tour))))))%
+101sc_newjewelers$(S (NP (DET (NP (DET the)(N' (N jeweler))) (POSS 's)) (N' (N ring))) (VP (V had) (NP (N' (ADJ shiny) (N' (N rubies))))))%
+101sc_badjian$(S (ILLEGAL-NP (NP (N' (N Jian))) (CP (C while) (S (NP (DET his) (N' (N cat))) (VP (V slept))))) (VP (V ate)))%
+101sc_badsmall$(S (NP (ILLEGAL-N' (ADJ Small) (NP (DET the) (N' (ADJ cuddly) (N' (N cat)))))) (BACKWARDS-VP (NP (DET the) (N' (N dog))) (V scratched)))%
+101sc_badbaker$(S (BACKWARDS-NP (N' (N Baker)) (DET the)) (VP (V went) (BACKWARDS-PP (NP (DET the) (N' (N park))) (P to))))%
+101sc_enchiladas$(S (NP (NP (DET Her) (N' (ADJ incessant) (N' (N desire)))) (PP (P for) (NP (N' (N enchiladas))))) (VP (V consumed) (NP (DET her) (N' (ADJ every) (N' (ADJ waking) (N' (N thought)))))))%
+101sc_enchiladaslong$(S (NP (NP (DET Her) (N' (ADJ incessant) (N' (N desire)))) (PP (P for) (NP (N' (N enchiladas))))) (VP (VP (V consumed) (NP (DET her) (N' (ADJ every) (N' (ADJ waking) (N' (N thought)))))) (CP (C while) (S (NP (DET her) (N' (ADJ thoughtful) (N' (N partner)))) (VP (V drove) (PP (P to) (NP (DET the) (N' (N restaurant)))))))))%
+101sc_kittens$(S (NP (DET Two) (N' (ADJ stuffed) (N' (N kittens)))) (VP (VP (V plotted) (NP (N' (N revenge)))) (PP (P in) (NP (DET an) (N' (ADJ empty) (N' (ADJ quiet) (N' (N apartment))))))))%
+101sc_victoriasaw$(S (NP (N' (N Victoria))) (VP (VP (V saw) (NP (N' (N Vincent)))) (PP (P in) (NP (DET the) (N' (ADJ LingUA) (N' (N lounge)))))))%
+101sc_katihates$(S (NP (N' (N Kati))) (VP (V hates) (CP (C when) (S (NP (N' (ADJ LIGN101) (N' (N students)))) (VP (VP (V use) (NP (N' (ADJ incorrect) (N' (N rules))))) (PP (P in) (NP (N' (N trees)))))))))%
+101sc_jessicagasped$(S (NP (N' (N Jessica))) (VP (V gasped) (PP (P at) (NP (NP (DET the) (N' (ADJ housing) (N' (N prices)))) (PP (P in) (N' (N San Diego)))))))%
+101sc_willranted$(S (NP (N' (N Will))) (VP (V ranted)))%
+101sc_mahograded$(S (NP (N' (N Maho))) (VP (V graded) (NP (N' (N papers)))))%
+101sc_mattgraded$(S (NP (N' (N Matt))) (VP (VP (V graded) (NP (N' (N papers)))) (PP (P in) (NP (DET his) (N' (N office))))))%
+101sc_olivierran$(S (NP (N' (N Olivier))) (VP (VP (V ran) (NP (DET a) (N' (ADJ discussion) (N' (N section))))) (PP (P on) (NP (N' (N Friday))))))%
+101sc_alainaprefers$(S (NP (N' (N Alaina))) (VP (V prefers) (NP (NP (N' (N homeworks))) (PP (P with) (NP (N' (ADJ little) (N' (ADJ tiny) (N' (ADJ fixable) (N errors)))))))))%
+hikerwithketchup$(S (NP (DET The) (N' (N bear)))(VP (VP (V ate)(NP (DET the) (N' (N hiker))))(PP (P with)(NP (N' (N ketchup))))))%
+hikerwithketchup$(S (NP (DET The) (N' (N bear)))(VP (V ate)(NP (DET the) (N' (N' (N hiker))(PP (P with)(NP (N' (N ketchup))))))))%
+speakerproved$(S (NP (DET The) (N' (N' (N speaker)) (PP (P at) (NP (DET the) (N' (ADJ huge) (N' (ADJ prestigious) (N' (N conference))))))))(VP (V proved) (CP (C that) (S (NP (DET her) (N' (N theory))) (VP (V works))))))%
+l6lingmajor$(S (NP Linguistics) (VP (V is) (NP the best major)))%
+l6basic$(S (NP ___) (VP (V ___) (NP ___)))%
+l6basicpp$(S (NP ___) (VP (VP (V ___) (NP ___)) (PP (P ___) (NP ___))))%
+l6textedman$(S (NP Sarah) (VP (VP (V texted) (NP the man))(PP (P with)(NP her computer))))%
+catdragon$(S (NP (DET the) (N' (ADJ cute) (N' (N cat)))) (VP (V meowed) (PP (P at) (NP (DET the) (N' (N dragon))))))%
+catdragon_wrong1$(S (NP (DET the) (NP (DET cute) (N' (N cat)))) (VP (V meowed) (PP (P at) (NP (DET the) (N' (N dragon))))))%
+catdragon_wrong2$(S (NP (DET the) (N' (ADJ cute) (N' (N cat)))) (VP (V meowed) (CP (C at) (S (NP the) (VP (V dragon))))))%
+catdragon_wrong3$(S (NP (N' (ADJ the) (N' (ADJ cute) (N' (N cat))))) (VP (V meowed) (NP (DET at) (N' (ADJ the) (N' (N dragon))))))%
+catdragon_wrong4$(S (NP (DET the) (ADJ cute) (N cat)) (VP (VP (V meowed)) (PP (P at) (DET the) (N dragon))))%
+oldhw1$(S (NP (N' (N ___))) (VP (AUX ___) (VP (V ___))))%
+oldhw2$(S (NP (DET ___) (N' (ADJ ___) (N' (N ___)))) (VP (V ___) (NP (DET ___) (N' (N ___)))))%
+oldhw3$(S (NP (DET ___) (N' (ADJ ___) (N' (ADJ ___) (N' (N ___))))) (VP (V ___) (PP (P ___) (NP (DET ___) (N' (ADJ ___) (N' (N ___)))))))%
+compling$(NP (NP (DET Two) (N' (ADJ computational) (N' (N linguists)))) (PP (P from) (NP (N' (N San Diego)))))%
+compling2$(S (NP (NP (DET Two) (N' (ADJ computational) (N' (N linguists)))) (PP (P from) (NP (N' (N San Diego))))) (VP (V walked) (PP (P into) (NP (DET a) (N' (N bar))))))%
+
+ridiculousprofessor$(S (NP (NP (DET The) (N' (ADJ ridiculous) (N' (N professor)))) (PP (P from) (NP (N' (N Linguistics))))) (VP (V tripped) (PP (P over) (NP (DET the) (N' (N desk))))))%
+phrasestructurerules$(NP (N' (ADJ Syntactic) (N' (ADJ phrase structure) (N' (N rules)))))%
+phrasestructurerules_alt$(S (NP (N' (ADJ Syntactic) (N' (N phrase structure)))) (VP (V rules!)))%
+jessicatofu$(S (NP (N' (N Jessica))) (VP (V dislikes)(CP (C that) (S (NP (DET her) (N' (ADJ silly) (N' (N husband))))(VP (VP (V cooked) (NP (DET a) (N' (ADJ big) (N' (ADJ squishy) (N' (N tofurkey))))))(PP (P for) (NP (DET their) (N' (ADJ romantic) (N' (N dinner))))))))))%
+jessicatofu_jessica$(NP (N' (N Jessica)))%
+jessicatofu_hersilly$(NP (DET her) (N' (ADJ silly) (N' (N husband))))%
+jessicatofu_tofurkey$(NP (DET a) (N' (ADJ big) (N' (ADJ squishy) (N' (N tofurkey)))))%
+jessicatofu_pp$(PP (P for) (NP (DET their) (N' (ADJ romantic) (N' (N dinner)))))%
+jessicatofu_mainvp$(VP (VP (V cooked) (NP (DET a) (N' (ADJ big) (N' (ADJ squishy) (N' (N tofurkey))))))(PP (P for) (NP (DET their) (N' (ADJ romantic) (N' (N dinner))))))%
+jessicatofu_comp$(CP (C that) (S (NP (DET her) (N' (ADJ silly) (N' (N husband))))(VP (VP (V cooked) (NP (DET a) (N' (ADJ big) (N' (ADJ squishy) (N' (N tofurkey))))))(PP (P for) (NP (DET their) (N' (ADJ romantic) (N' (N dinner))))))))%
+pretensebear$(S (NP (NP (DET The) (N' (ADJ wealthy) (N' (ADJ pretentious) (N' (N bears))))) (PP (P from) (NP (N' (N La Jolla))))) (VP (V stole) (NP (NP (DET some) (N' (ADJ organic) (N' (N honey)))) (PP (P from) (NP (DET the) (N' (N Whole Foods)))))))%
+pretensebear$(S (NP (NP (DET The) (N' (N bears))) (PP (P from) (NP (N' (N La Jolla))))) (VP (V stole) (NP (NP (N' (ADJ organic) (N' (N honey)))) (PP (P from) (NP (N' (N Whole Foods)))))))%
+pretensebear_wrong$(S (NP (NP (DET The) (N' (N bears))) (N' (P from) (NP (N' (N La Jolla))))) (VP (V stole)(NP (N' (ADJ organic) (N' (N honey))))))%
+polarbearsfull$(S (NP (NP (DET The) (N' (ADJ grumpy) (N' (ADJ polar) (N' (N bears))))) (PP (P from) (NP (N' (N LA))))) (VP (V hated) (NP (NP (DET the) (N' (ADJ excruciating) (N' (N traffic)))) (PP (P on) (NP (DET the) (N' (N 405)))))))%
+polarbears1$(NP (DET The) (N' (ADJ grumpy) (N' (ADJ polar) (N' (N bears)))))%
+polarbears2$(PP (P from) (NP (N' (N LA))))%
+polarbears3$(NP (NP (DET The) (N' (ADJ grumpy) (N' (ADJ polar) (N' (N bears))))) (PP (P from) (NP (N' (N LA)))))%
+polarbears4$(NP (DET the) (N' (ADJ excruciating) (N' (N traffic))))%
+polarbears5$(PP (P on) (NP (DET the) (N' (N 405))))%
+polarbears6$(NP (NP (DET the) (N' (ADJ excruciating) (N' (N traffic)))) (PP (P on) (NP (DET the) (N' (N 405)))))%
+polarbears7$(VP (V hated) (NP (NP (DET the) (N' (ADJ excruciating) (N' (N traffic)))) (PP (P on) (NP (DET the) (N' (N 405))))))%
+complementizer1$(S (NP (N' (N I))) (VP (V love) (CP (C when) (S (NP (N' (N you))) (VP (V hug) (NP (N' (N squirrels))))))))%
+complementizer_hidden$(S (NP (DET ___) (N' (N ___))) (VP (V ___) (CP (C ___) (S (NP (DET ___) (N' (ADJ ___) (N' (N ___)))) (VP (V ___) (NP (N' (N ___))))))))%
+complementizer2$(S (NP (N' (N John))) (VP (V knows) (CP (C that) (S (NP (N' (N I))) (VP (V love) (CP (C when) (S (NP (N' (N you))) (VP (V hug) (NP (N' (N squirrels)))))))))))%
+complementizercake$(S (NP (N' (N People))) (VP (V cheered) (CP (C as) (S (NP (N' (N Will))) (VP (VP (V ate) (NP (NP (DET the) (N' (ADJ massive) (N' (ADJ chocolate) (N' (N cake))))) (PP (P from)(NP (DET the) (N' (ADJ new) (N' (N bakery)))))))(PP (P with) (NP (DET his) (N' (N wife)))))))))%
+complementizercake2$(S (NP (NP (DET The) (N' (ADJ proud) (N' (N baker)))) (PP (P from) (NP (N' (N San Bernadino))))) (VP (V loved) (CP (C that) (S (NP (N' (N people))) (VP (V cheered) (CP (C as) (S (NP (N' (N Will))) (VP (VP (V ate) (NP (NP (DET the) (N' (ADJ massive) (N' (ADJ chocolate) (N' (N cake))))) (PP (P from)(NP (DET the) (N' (ADJ new) (N' (N bakery)))))))(PP (P with) (NP (DET his) (N' (N wife))))))))))))%
+rule6$(NP (NP) (PP ))%
+rule8$(PP (P ) (NP ))%
+rule9$(S (NP ) (VP ))%
+rule10$(VP(V))%
+rule11$(VP(V )(NP))%
+rule12$(VP(V )(PP))%
+rule2_3_9_10$(S (NP (N' (N Will))) (VP (V ate)))%
+rule16$(S (NP (N' (N Will))) (VP (AUX should) (VP (V eat))))%
+rule2_3_8_9_12$(S (NP (N' (N Will))) (VP (V ate) (PP (P outside) (NP (N' (N AP&M))))))%
+rule2_3_9_11$(S (NP (N' (N Will))) (VP (V ate) (NP (DET the) (N' (N cake)))))%
+rule2_3_9_11_4$(S (NP (N' (N Will))) (VP (V ate) (NP (DET the) (N' (ADJ massive) (N' (ADJ chocolate) (N' (N cake)))))))%
+rule2_3_9_11_4_expanded$(S (NP (N' (N Will))) (VP (V ate) (NP (NP (DET the) (N' (ADJ massive) (N' (ADJ chocolate) (N' (N cake))))) (PP (P from)(NP (DET the) (N' (ADJ new) (N' (N bakery))))))))%
+rule2_3_9_11_4_expanded_more$(S (NP (N' (N Will))) (VP (VP (V ate) (NP (NP (DET the) (N' (ADJ massive) (N' (ADJ chocolate) (N' (N cake))))) (PP (P from)(NP (DET the) (N' (ADJ new) (N' (N bakery)))))))(PP (P with) (NP (DET his) (N' (N wife))))))%
+rule2_3_9_11_4_expanded_more_small$(S (NP (N' (N Will))) (VP (VP (V ate))(PP (P with) (NP (DET his) (N' (N wife))))))%
+rule6_8$ (NP (NP (DET the) (N' (N dog))) (PP (P from) (NP (DET the) (N' (N future)))))%
+rule6_8$ (NP (NP (DET the) (N' (N dog))) (PP (P from) (NP (DET the) (N' (N future)))))%
+rule7$(NP (DET the) (N' (N' (N man))(PP (P in)(NP (DET the) (N' (ADJ iron) (N' (N mask)))))))%
+rule1_3$(NP (DET the) (N' (N cat)))%
+rule1$(NP (DET ___) (N' ))%
+rule3$(N' (N ___))%
+rule2$(NP (N' ))%
+rule2_3$(NP (N' (N Will Styler)))%
+rule2_3_alt$(NP (N' (N Penguins)))%
+rule4$(N' (ADJ ___) (N' ))%
+rule1_3_4$ (NP (DET the) (N' (ADJ cute) (N' (N cat))))%
+rule1_3_4_alt$ (NP (DET some) (N' (ADJ angry) (N' (N koalas))))%
+rule4recursive$ (NP (DET the) (N' (ADJ cute) (N' (ADJ black) (N' (N cat)))))%
+rule4recursive2$ (NP (DET the) (N' (ADJ tiny) (N' (ADJ cute) (N' (ADJ black) (N' (N cat))))))%
+rule4recursive3$ (NP (DET the) (N' (ADJ little) (N' (ADJ tiny) (N' (ADJ cute) (N' (ADJ black) (N' (N cat)))))))%
+rule4recursive4$ (NP (DET the) (N' (ADJ little) (N' (ADJ tiny) (N' (ADJ cute) (N' (ADJ black) (N' (ADJ stray) (N' (N cat))))))))%
+rule1_3_4_5$ (NP (DET (NP (N' (N John))) (POSS 's)) (N' (ADJ cute) (N' (N cat))))%
+rule1_3_5$(NP (DET (NP (N' (N John))) (POSS 's)) (N' (N cat)))%
+rule1_3_4_5alt$ (NP (DET (NP (DET the) (N' (ADJ hungry) (N' (N professor)))) (POSS 's)) (N' (ADJ cute) (N' (N cat))))%
+rule5$(DET (NP ___) (POSS 's))%
+snpvp$(S (NP ) (VP ))%
+engprof$(S (NP (DET The) (N' (ADJ prescriptivist) (N' (ADJ English) (N' (N Professor))))) (VP (V glared) (PP (P at) (NP (DET the) (N' (ADJ rebellious) (N' (N Linguist)))))))%
+bigfoot$(S (NP (N' (N Will))) (VP (VP (V spotted) (NP (N' (N Bigfoot)))) (PP (P outside) (NP (DET the) (N' (ADJ Medical) (N' (N library)))))))%
+cowboyscowsescaped$(S (NP (DET The) (N' (N' (N cowboys)) (PP (P behind) (NP (DET the) (N' (ADJ decrepit) (N' (ADJ old) (N' (N barn))))))))(VP (V claimed) (CP (C that) (S (NP (DET the) (N' (N cows))) (VP (V escaped))))))%
+dogchased$(S (NP (DET the) (N' (N dog))) (VP (V chased) (NP (DET the) (N' (N cat)))))%
+dogchased_alt$(S (NP (DET This) (N' (N hedgehog))) (VP (V licked) (NP (DET a) (N' (N refrigerator)))))%
+marysawbob$(S (NP (N' (N Mary))) (VP (V saw) (NP (N' (N Bob)))))%
+marysawbobsparse$(S (NP Mary) (VP (V saw) (NP Bob)))%
+intheroom$ (PP (P in) (NP (DET the) (N' (N room))))%
+dogs_long$ (S (NP (N' (N I))) (VP (V saw)(NP (NP (NP (DET the) (N' (ADJ big) (N' (ADJ sweet) (N' (N dogs))))) (PP (P from) (NP (N' (N La Jolla))))) (PP (P with) (NP (N' (N fleas)))))))%
+angrysquirrelflat$ (S The angry squirrel stole the mixed nuts from Walmart)%
+angrysquirrel$(S (NP The angry squirrel)(VP stole (NP the mixed nuts) (PP from Walmart)))%
+angrysquirrelfull$(S (NP (DET The) (N' (ADJ angry) (N' (N squirrel))))(VP (V stole)(NP (DET the) (N' (N' (ADJ mixed)(N' (N nuts))) (PP (P from) (NP (N' (N Walmart))))))))%
+angrysquirrelfullalt$(S (NP (DET The) (N' (ADJ angry) (N' (N squirrel))))(VP (VP (V stole)(NP (DET the) (N' (ADJ mixed)(N' (N nuts))))) (PP (P from) (NP (N' (N Walmart))))))%
+manwithtelescope1$(S (NP I)(VP (VP (V saw)(NP (DET the) (N' (N man))))(PP (P with)(NP (DET the) (N' (N telescope))))))%
+manwithtelescope2$(S (NP I)(VP (V saw)(NP (NP (DET the) (N' (N' (N man))))(PP (P with)(NP (DET the) (N' (N telescope)))))))%
+lingmajor$(S (NP (N' (N Linguistics))) (VP (V is) (NP (DET the) (N' (ADJ best) (N' (N major))))))%
+monique$(S (NP (N' (N Monique))) (VP (V ate) (NP (DET the) (N' (ADJ reddest) (N' (N strawberry))))))%
+iate$(S (NP (N' (N I))) (VP (V ate)))%
+iseeyou$(S (NP (N' (N I))) (VP (V see) (NP (N' (N you)))))%
+homeworktree1$(S (NP (N' (N ___))) (VP (V ___) (NP (DET ___) (N' (ADJ ___) (N' (ADJ ____) (N' (N ___)))))))%
+slappedwithfish1$(S (NP John)(VP (V slapped)(NP (NP (DET his) (N' (N friend)))(PP (P with)(NP (DET the) (N' (ADJ smelly) (N' (N fish))))))))%
+queenenglandshat1$ (S(NP I)(VP (V saw)(NP (DET (NP (DET the) (NP (NP (N' (N Queen)))(PP (P of)(NP (N' (N England)))))) (POSS 's)) (N' (N Hat)))))%
+queenenglandshat2$ (S(NP I)(VP (V saw)(NP (DET the)(NP(NP (N'(N Queen)))(PP (P of)(NP (DET (NP (N' (N England)))(POSS 's)) (N' (N Hat))))))))
+
+

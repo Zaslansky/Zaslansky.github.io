@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+LIGN 168 - TTS Intro
+</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+
+
+
+# An Introduction to Text-to-Speech and Speech Synthesis
+
+### Will Styler - LIGN 168
+
+---
+
+### We've looked at many speech-to-something tasks now
+
+- **Speech to File:** Sound recording, formats, and codecs
+
+- **Speech to Measurement:** LPC, Pitch Detection, and Spectral/Cepstral work
+
+- **Speech to Speech:** Resynthesis, PSOLA, and other modifications
+
+- **Speech to Text:** Automatic Speech Recognition
+
+---
+
+### Now, let's go the other way
+
+- Let's finally turn stuff into speech!
+
+---
+
+### Today's Plan
+
+- Speech Synthesis and Text-to-Speech
+
+- TTS Tasks
+
+- Complexity of Input in TTS
+
+- Complexity of Output in TTS
+
+- Evaluating TTS
+
+
+---
+
+## Speech Synthesis and Text-to-Speech
+---
+
+### I'm going to be weird
+
+- (What a shock)
+
+- We're going to draw a sharp distinction between 'Text-to-Speech' and 'Speech Synthesis'
+
+	- Unlike Wikipedia and many other resources...
+
+---
+
+### Speech Synthesis
+
+- Also known as 'Voice Synthesis'
+
+- The use of artificial, non-human means to create human speech
+
+---
+
+### Text-to-Speech Synthesis
+
+- Also known as 'TTS'
+
+- The use of non-human means to turn **written text** into spoken language
+
+- *Text-to-Speech is a subtype of Speech Synthesis!*
+
+---
+
+### Speech Synthesis tasks that *aren't* TTS
+
+- **Synthesis for Modification:** Vocoding, Resynthesis, Neural Denoising
+
+- **Physical Speech Emulation:** "Let's create a device which mimics the human vocal apparatus"
+
+- **Articulatory Synthesis:** "Let's model movements of the mouth and tongue and vocal folds in software"
+
+- **Vocal Synthesizers:** Let's create instruments which sound voice-like
+
+- More on these later! (if we have time)
+
+---
+
+### Speech Synthesis vs. Text-to-Speech
+
+- Text-to-Speech takes linguistic units (e.g. text, IPA) as input and produces speech
+	- "Here's a chunk of things to say, figure out how to say it"
+
+- More generic speech synthesis tasks generally take *parameters* as input
+	- "Here's what you need to create this sound which is speech-like"
+
+- TTS is a much more common task!
+
+- *We're going to focus on TTS here!*
+
+---
+
+## Text-to-Speech Tasks
+
+---
+
+### TTS is useful for many things
+
+- Many of which are familiar to us already!
+
+---
+
+### TTS for modality shifting
+
+- Turning notifications into spoken form while the human is driving/biking
+
+- Providing text information as real time speech (e.g. navigation)
+
+- Creating a constantly-updating weather forecast for radio broadcasting
+
+---
+
+### TTS for Accessibility
+
+- Reading aloud text, books, and screen contents for folks who are blind ('screen readers')
+
+- Turning text into audio for folks who are dyslexic or struggle with reading long text
+
+- Allowing folks who are illiterate to turn text into spoken language
+
+- Allowing people who cannot speak to communicate verbally
+
+---
+
+### TTS for human interaction
+
+<img class="r-stretch" src="diagrams/speech_processing_pipeline.jpg">
+
+---
+
+### TTS for human interaction
+
+- Providing the spoken half of an interactive dialog system
+
+- Providing interactive spoken information for phone callers
+
+- Providing spoken feedback for (e.g.) self-checkout kiosks
+
+---
+
+### TTS for language learning and translation
+
+- Providing spoken recordings for written words in dictionaries
+
+- Creating listening comprehension tasks for language learners
+
+- Speaking translations in a real-time-machine-translated conversation
+
+---
+
+### TTS for content creation
+
+- That weird TikTok TTS voice
+
+- Voiceovers for advertisements, robocalls, and video content
+
+- Automatic creation of audiobooks from existing written titles
+
+---
+
+### TTS for research
+
+- Using elements of TTS analysis to study patterns in human speech
+
+- Investigating 'what the TTS system has learned' about human language
+
+- Creation of """neutral""" stimuli for experiments
+
+- Creation of specialized stimuli for phonetic research
+	- This is often done with articulatory synthesis, but also sometimes with TTS
+
+---
+
+### TTS for reading names at graduation
+
+- <img class="r-stretch" src="humorimg/wtf.gif">
+
+---
+
+## Input Complexity in TTS
+
+---
+
+### TTS is harder and easier based on the input text!
+
+- Different tasks require different levels of complexity for TTS
+
+- One key component is **complexity of the input**
+
+- Let's start with the least complex task...
+
+---
+
+### Phrase Playback Tasks
+
+- Many tasks can work by just playing prerecorded files
+	- "Please place the items in the bagging area"
+	- "Alarm has been armed"
+	- "Bluetooth Connected"
+
+- Every phrase has been pre-planned and recorded in entirety
+	- The vocabulary is *fixed*
+
+---
+
+### Phrase Playback (Continued)
+
+- There is no language modeling at all
+	- All input is in the form of 'play soundfile X when...'
+
+- The audio is not modified for prosody, and every file is independent
+
+---
+
+### What are some tasks that are workable with phrase playback?
+
+---
+
+### Domain-Specific TTS Systems
+
+> ...HIGH SURF THURSDAY AFTERNOON THROUGH FRIDAY...
+
+> A long period west to northwest swell will bring high surf
+Thursday afternoon through Friday. The peak swell and surf will
+occur Thursday night into early Friday morning, with the highest
+surf in southern San Diego County. Minor coastal flooding will
+occur during periods of high tides.
+
+---
+
+### Domain-Specific TTS Systems
+
+- "I want to be able to create any combination of items from a **larger, fixed vocabulary**"
+
+- You'll combine a series of pre-recorded chunks into many words
+
+- You could record the entire set of possible phrases
+
+	- 50 states, 3007 counties, 19354 'incorporated places' in the US
+
+---
+
+### What are some tasks that are workable with domain-specific TTS?
+
+---
+
+### Arbitrary Text Systems
+
+> Joanna Rutkowska posted a great close-up photo of the tube of an ice-cream cone worm. The tube is made of sand grains, carefully selected and fitted together, and bound with a special adhesive. The worm has golden bristles used to rake through sediment so it can pick up yummy bits with little tentacles.
+
+---
+
+### Arbitrary Text Systems
+
+- Must be able to reproduce any written sentence
+
+- Must be able to cope with any textual input
+
+- Word's not in the dictionary?  Godspeed.
+
+- This is most common, and *really hard* to do.
+
+---
+
+### What are some tasks that are only workable with arbitrary-text TTS?
+
+---
+
+### Cross-Linguistic TTS
+
+> Purring softly, el gato kneads dough,
+> С любовью и грацией, con paws that glow,
+> Breadsticks rise, en la cocina, тепло.
+
+---
+
+### Cross-Linguistic TTS
+
+- Prepare for trouble, and make it double
+	- Technically as many times as languages modeled
+
+- You must be able to do language identification and then cope with an arbitrary vocabulary
+	- Papa, Pan, Lima, Cafe, Pie, Radio, Mango, Base
+
+---
+
+### What are some tasks that are only workable with cross-linguistic TTS?
+
+---
+
+### So, inputs of varying complexity result in varying pain for TTS
+
+- ... But the output is complicated too!
+
+---
+
+## Output Complexity in TTS
+
+---
+
+### The sole 'actual' requirement is 'perceptible speech'
+
+- Any voice will do in a pinch
+
+- We want to do better than that!
+
+- **So, we add complexity to the task**
+
+---
+
+
+### Emotional Voices
+
+- Human voices convey emotions
+	- "I'm so sorry you didn't do well on your homework"
+
+- Increasingly, companies are trying to do this "right" in TTS
+	- Godspeed!
+
+---
+
+### Structured Prosody 
+
+ - Tasks like singing, reading poetry, or performing culturally specific speech and interaction patterns are *not* like normal speech
+
+- Here, modeling the text like any other will be *way off*, and specific models are required
+
+- **Vocaloid** singing is one of the best examples of this, where the TTS must match a tune
+
+---
+
+### Voice Acting
+
+- For audiobooks, often, we want an element of 'performance'
+
+	- "... and then the dragon said to the villagers 'You must dismantle your settlement or you will be removed!'"
+
+- This requires models to understand not only who's talking, but how they 'should' talk
+
+---
+
+### Human-like voices
+
+- "Robotic" voices are often less perceptible and desirable
+
+- We (often) want TTS voices to sound "human"
+
+- This raises the bar for 'naturalness' substantially
+
+---
+
+### Sociolinguistically Coded Voices
+
+- We often want to go beyond human to "socially identifiable human"
+
+- "Male" or "Female" or "Non-Binary"
+
+- Different dialects
+	- "Southern", "Australian", "Indian"
+
+- Different sociolects?
+
+---
+
+### "Voice Cloning"
+
+- Also known as voice 'deepfakes'
+
+- Creating a text-to-speech voice which can say arbitrary text *in a way that sounds like a specific person*
+
+- Hey, look, a dual-use dilemma!
+
+---
+
+### Human-Imitating Features
+
+- Typing sounds during pauses?
+
+- Adding in post-utterance breath sounds
+
+- Adding in the sound of tidal breathing?
+
+- Adding in background noise?
+
+---
+
+### These tasks are relatively recent
+
+- For many years, "less bad" was the sole goal
+
+- "Oh god, another TTS voice"
+
+- Recent neural technologies have allowed us to credibly attempt these kinds of nuance
+
+- This required new technology because...
+
+---
+
+### These specific desired outputs make TTS harder
+
+- As we ask TTS voices to go beyond 'providing perceptible speech', the task grows harder and more nuanced
+
+- We are very attuned to emotional, cultural, and structural elements of voices
+
+- We are wildly attentive to social factors in voices
+	- For better [and for worse](https://muse.jhu.edu/article/900094)
+
+- This means that evaluating TTS is much more important here
+
+---
+
+## Evaluating TTS
+
+---
+
+### Evaluating TTS is hard
+
+- ASR is easy because there are clear and objective 'right' and 'wrong' mappings for a given signal
+	- Most of the time!
+
+- TTS has fewer objective measures
+	- "Which sound was there, acoustically" turns out to be hard in many cases
+	- We can 'hear past' missing sounds quite effectively
+	- Measurable errors are getting more and more rare!
+
+- Evaluating TTS is largely based on human perception!
+	- ... but there are some specific tests which work
+
+---
+
+### Quantitative and Objective Measures
+
+- "How similar are the waveforms output to a human production?"
+
+- There are dedicated systems for this which use algorithms to evaluate perceptibility (e.g. [PESQ](https://en.wikipedia.org/wiki/Perceptual_Evaluation_of_Speech_Quality) or [STOI](https://ieeexplore.ieee.org/document/5495701)) 
+	- These generally do some kind of fourier comparison
+
+- You can also do mel-spectrogram comparison or just good-old-fashioned mean-squared-error between waveforms!
+	- Why yes, these are loss functions!
+
+---
+
+### Phonetic Contrast-based Testing
+
+- Present the human with a minimal written pair, and ask which word they heard
+
+	- "Bean, Bin" - "Sipped, Shipped" - "Mace, Maze"
+
+- This is called a 'Diagnostic Rhyme Test', and measures phoneme-specific contrasts
+
+- "Was the model able to produce something perceptible as this phoneme?"
+
+- Can also be done for more complex words
+	- Did you hear "He is quite median/meat-eatin'/media/needier"?
+
+---
+
+### Intelligibility  Scores
+
+- We are often 'at ceiling' with clean signal intelligibility
+	- We are able to understand 100% of words clearly in running text
+
+- You can add predictable noise at fixed volume to 'make the task harder' and reveal differences in voices
+	- More intelligible voices will be audible with more noise
+
+---
+
+### Comparison-based testing
+
+- ABX testing
+	- Three items are played, two different items, and then a third which 'matches' one of the two
+	- "Does this third word sound more like the natural production or our last gen TTS?"
+
+- Paired Comparison
+	- Listen to A, then listen to B, then answer questions
+	- Which voice sounds better/more natural/more real/easier to understand?
+
+---
+
+### Opinion-based testing
+
+- Rate this voice, 1-5, based on how natural/clean/high quality/intelligible it is
+
+- Rate this voice based on how angry/happy/masculine/Indian/Australian it sounds
+
+- **These are wildly subjective, and can reveal uncomfortable biases**
+	- Remember that people [people judge speech as differently intelligible when they see faces of different races](https://cognitiveresearchjournal.springeropen.com/articles/10.1186/s41235-022-00354-0)
+
+---
+
+### TTS Evaluation then ends up very complicated
+
+- Objective methods are useful, but don't often capture nuance
+
+- Comparison and Intelligibility measures give utility, but not as much 'goodness'
+
+- Subjective and Opinion-based testing gives great, but somewhat unreliable data about TTS as language users
+
+---
+
+### There are organized efforts to test TTS systems
+
+- TTS 'bake-offs' were a thing, featuring many systems doing the same benchmarks (see the (now-moribund) [Blizzard Challenge](http://www.festvox.org/blizzard/))
+
+- [TTS Arena](https://huggingface.co/blog/arena-tts) is a great resource for testing many TTS models at once
+
+- Specific datasets and Benchmarks exist for TTS evaluation (e.g. [LJSpeech](https://keithito.com/LJ-Speech-Dataset/))
+
+- ... but ultimately, it all boils down to human perceptions, and that makes TTS *hard*
+	- Which we'll talk more about next time!
+
+---
+
+### Wrapping up
+
+- Speech Synthesis and TTS are often synonyms, but aren't quite
+
+- TTS is used in many situations to create speech from text
+
+- Different complexity levels of input make systems harder to implement
+
+- Modern systems are expected to be much, much fancier
+
+- Evaluating TTS is hard, and often boils down to subjective factors
+
+---
+
+### For next time
+
+- We'll think about what levels TTS can work at, and why TTS is so damned hard
+
+---
+
+<huge>Thank you!</huge>
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

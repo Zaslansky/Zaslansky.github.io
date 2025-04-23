@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1 id="the-anatomy-of-the-outer-ear">The Anatomy of the Outer Ear</h1>
+<p>Will Styler - LIGN 113</p>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Questions about the Reading?</p></li>
+<li><p>‘Transduction’</p></li>
+<li><p>Overview of the Structures of the Ear</p></li>
+<li><p>The Pinna</p></li>
+<li><p>The Ear Canal</p></li>
+<li><p>The Tympanic Membrane</p></li>
+</ul>
+<hr />
+<h2 id="any-questions">Any questions?</h2>
+<hr />
+<h2 id="transduction">‘Transduction’</h2>
+<hr />
+<h3 id="were-going-to-talk-a-lot-about-transduction">We’re going to talk
+a lot about ‘transduction’</h3>
+<ul>
+<li><em>Transduction is a process by which one kind of signal, energy,
+or stimulus is converted into another form</em></li>
+</ul>
+<hr />
+<h3 id="we-are-surrounded-by-transducers">We are surrounded by
+transducers</h3>
+<ul>
+<li><p>Microphones</p></li>
+<li><p>Speakers</p></li>
+<li><p>Seismographs</p></li>
+<li><p>Thermometers</p></li>
+<li><p>What else?</p></li>
+</ul>
+<hr />
+<h3 id="the-auditory-system-is-all-about-transduction">The auditory
+system is all about transduction!</h3>
+<ul>
+<li><p>Transducing air pressure to mechanical pressure</p></li>
+<li><p>Transducing mechanical movements to neural signals</p></li>
+<li><p>Transducing neural signals into a model of the world</p></li>
+<li><p><strong>Thinking about transduction will help you all
+quarter!</strong></p></li>
+</ul>
+<hr />
+<h3 id="no-transduction-is-perfect">No transduction is perfect!</h3>
+<ul>
+<li><p>Energy is often lost</p></li>
+<li><p>The signal is often <em>distorted</em> subtly</p></li>
+<li><p>Sometimes parts of the signal are discarded entirely</p></li>
+<li><p>“What is being lost?” is another valuable question to
+ask!</p></li>
+</ul>
+<hr />
+<h2 id="the-structures-of-the-ear">The Structures of the Ear</h2>
+<hr />
+<h3 id="three-zones-that-most-folks-discuss">Three ‘Zones’ that most
+folks discuss</h3>
+<ul>
+<li><p>The ‘Outer Ear’</p></li>
+<li><p>The ‘Middle Ear’</p></li>
+<li><p>The ‘Inner Ear’</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/outerear_skull.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="the-outer-ear">The Outer Ear</h3>
+<ul>
+<li><p>The Pinna, Ear Canal, and Typmpanic Membrane</p></li>
+<li><p>Offers protection of the sensitive bits</p></li>
+<li><p>Provides Amplification</p></li>
+<li><p>Helps with localization</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="the-middle-ear">The Middle Ear</h3>
+<ul>
+<li><p>The Ossicular Chain, the Eustachian tube, and the surrounding
+space</p></li>
+<li><p>Provides transduction from air to mechanical movement</p></li>
+<li><p>Provides pressure regulation</p></li>
+<li><p>Provides limited protection via the Acoustic Reflexes</p>
+<ul>
+<li>… and dislocateable bones</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="functions-of-the-inner-ear">Functions of the Inner Ear</h3>
+<ul>
+<li><p>The Semicircular Canals, Cochlea, and Auditory Nerve</p></li>
+<li><p>Provides perception of orientation and motion</p>
+<ul>
+<li>Via the Vestibular System</li>
+</ul></li>
+<li><p>Provides transduction from physical vibration to neural
+signals</p>
+<ul>
+<li>Via the Cochlea and auditory nerve</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="were-going-to-go-through-the-system-in-that-order">We’re going
+to go through the system in that order</h3>
+<ul>
+<li><p>Outer, middle, inner</p></li>
+<li><p>… and today, we’re starting with the outer ear!</p></li>
+</ul>
+<hr />
+<h1 id="the-outer-ear-1">The Outer Ear</h1>
+<hr />
+<h2 id="the-pinna">The Pinna</h2>
+<p><img class="r-stretch" src="hearing/outerear_pinna.jpg"></p>
+<hr />
+<h3 id="the-pinna-1">The Pinna</h3>
+<ul>
+<li><p>Also called the Auricle</p></li>
+<li><p>The external apparatus of the ear</p></li>
+<li><p>Serves to protect the ear canal</p></li>
+<li><p>Helps with localization of sound</p></li>
+<li><p>Helps amplify sounds</p></li>
+</ul>
+<hr />
+<h3 id="what-does-the-pinna-protect-against">What does the Pinna protect
+against?</h3>
+<p><img class="r-stretch" src="hearing/outerear_pinna.jpg"></p>
+<hr />
+<h3 id="ear-canal-protection">Ear canal protection</h3>
+<ul>
+<li><p>Against pressure seals</p></li>
+<li><p>Against rain and water</p></li>
+<li><p>Against wind</p></li>
+</ul>
+<hr />
+<h3 id="how-does-the-pinna-direct-hearing">How does the Pinna direct
+hearing?</h3>
+<hr />
+<h3 id="localization-of-sound">Localization of Sound</h3>
+<hr />
+<h3 id="the-human-pinna-is-fixed">The human pinna is fixed</h3>
+<p><img class="r-stretch" src="hearing/outerear_pinna.jpg"></p>
+<hr />
+<h3 id="not-all-animals-have-a-fixed-pinna">Not all animals have a fixed
+pinna</h3>
+<p><img class="r-stretch" src="hearing/deerears.jpg"></p>
+<hr />
+<h3 id="not-all-animals-have-a-fixed-pinna-1">Not all animals have a
+fixed pinna</h3>
+<p><img class="r-stretch" src="hearing/catears.jpg"></p>
+<hr />
+<h3 id="the-pinna-still-provides-some-location-cues">The Pinna still
+provides some location cues</h3>
+<ul>
+<li><p>Front vs. Back</p></li>
+<li><p>Up vs down</p></li>
+</ul>
+<p><img class="r-stretch" src="hearing/outerear_pinna.jpg"></p>
+<hr />
+<h3 id="pinna-amplification">Pinna Amplification</h3>
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/hornwartime.jpg"></p>
+<hr />
+<h3 id="the-pinna-amplifies-sounds">The Pinna Amplifies sounds!</h3>
+<ul>
+<li><p>Amplification is strongest around 3000Hz</p>
+<ul>
+<li>Where lots of speech is!</li>
+</ul></li>
+<li><p>This is our first <em>distortion</em> step in hearing</p></li>
+</ul>
+<hr />
+<h3
+id="some-people-pour-rum-and-pineapple-juice-into-the-outer-ear">Some
+people pour rum and pineapple juice into the outer ear</h3>
+<ul>
+<li><p>… to make a pinna colada</p></li>
+<li><p>😂😂😂😂😂</p></li>
+</ul>
+<hr />
+<h3 id="once-sound-leaves-the-pinna-it-goes-into">Once sound leaves the
+pinna, it goes into…</h3>
+<hr />
+<h2 id="the-ear-canal">The Ear Canal</h2>
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="the-ear-canal-1">The Ear Canal</h3>
+<ul>
+<li><p>A long tube for air to travel into the skull</p></li>
+<li><p>Contains hairs, cerumen glands</p></li>
+<li><p>Around 1” long, 0.25” in diameter in adults</p></li>
+</ul>
+<hr />
+<h3 id="ear-canal-subareas">Ear Canal Subareas</h3>
+<ul>
+<li><p>Cartilaginous portion contains hairs and cerumen glands</p></li>
+<li><p>Bony portion has none</p></li>
+</ul>
+<hr />
+<h3 id="ear-canal-with-surrounding-anatomy">Ear Canal (with surrounding
+anatomy)</h3>
+<p><img class="r-stretch" src="hearing/outerear_hairs.jpg"></p>
+<hr />
+<h3 id="the-ear-canal-is-mostly-protective">The Ear Canal is mostly
+protective</h3>
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="cerumen-earwax">Cerumen (Earwax)</h3>
+<ul>
+<li><p>Cerumen lubricates, cleans, and protects the ear canal</p>
+<ul>
+<li>Also helps prevent some infections and fungal growth</li>
+</ul></li>
+<li><p>Naturally ‘pumped’ out of the ear with chewing and jaw
+movement</p>
+<ul>
+<li>Let’s check that!</li>
+</ul></li>
+<li><p>Should exit the ear naturally at the pinna</p></li>
+</ul>
+<hr />
+<h3 id="cerumen-types">Cerumen types</h3>
+<ul>
+<li><p>People produce two different types of cerumen!</p></li>
+<li><p>The ABCC11 gene controls your earwax type</p></li>
+<li><p>Wet wax (AA Genotype) is common in European and African folks</p>
+<ul>
+<li>Apparently also linked to body odor issues…</li>
+</ul></li>
+<li><p>Dry-Flaky wax (GA/GG) is common in East Asian and Indigenous
+American folks</p>
+<ul>
+<li>Comes out more readily</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="cerumen-impaction">Cerumen Impaction</h3>
+<p><img class="r-stretch" src="hearing/cerumenimpaction.jpg"></p>
+<hr />
+<h3 id="cerumen-impaction-is-a-common-cause-of-hearing-loss">Cerumen
+impaction is a common cause of hearing loss</h3>
+<ul>
+<li><p>… and it’s really easy to treat!</p></li>
+<li><p>There are even at-home kits</p></li>
+<li><p><strong>Do not stick things into your ears to ‘dig it
+out’</strong></p></li>
+</ul>
+<hr />
+<h3 id="ear-candling-is-not-supported-by-science">Ear Candling is… not
+supported by science</h3>
+<ul>
+<li><p>Not enough suction</p></li>
+<li><p>Nothing is removed</p></li>
+<li><p>There are <em>no</em> proven health benefits</p></li>
+<li><p>At best, you’re getting ripped off</p></li>
+</ul>
+<hr />
+<h3 id="cerumen-saruman">Cerumen ≠ Saruman</h3>
+<p><img class="r-stretch" src="img/saruman.jpg"></p>
+<hr />
+<p>(Although, actually, both can be removed by flushing the area with
+water…)</p>
+<hr />
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="the-tympanic-membrane-eardrum">The Tympanic Membrane
+(‘eardrum’)</h3>
+<p><img class="r-stretch" src="hearing/tympanic_membrane.jpg"></p>
+<hr />
+<h3 id="the-tympanic-membrane">The Tympanic Membrane</h3>
+<ul>
+<li><p>Blocks water and debris from entering the middle ear</p></li>
+<li><p>Partially transparent, made up of layers</p></li>
+<li><p>Captures sound vibrations, transmitting them into the
+<em>ossicular chain</em></p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/tympanic_labeled.jpg"></p>
+<hr />
+<h3 id="from-here-out-tm-unmarked-means-tympanic-membrane">From here
+out, ‘TM’ unmarked means ‘Tympanic Membrane’</h3>
+<ul>
+<li>… so don’t (tym)panic</li>
+</ul>
+<hr />
+<h3 id="the-tympanic-membrane-forms-a-seal">The Tympanic Membrane forms
+a seal!</h3>
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="why-is-this-seal-a-good-idea">Why is this seal a Good Idea?</h3>
+<ul>
+<li><p>Stops things from going into the middle ear</p></li>
+<li><p>Allows water to fill the outer ear without filling the middle
+ear</p></li>
+<li><p>Drums with holes have problems…</p></li>
+<li><p>One other issue we’ll discuss later!</p></li>
+</ul>
+<hr />
+<h3 id="the-seal-is-not-required-for-hearing">The seal is not
+<em>required</em> for hearing</h3>
+<ul>
+<li><p>People can still hear with holes or perforations</p></li>
+<li><p>Causes some troubles, but can be done therapeutically</p></li>
+<li><p>It can be rebuilt!</p></li>
+<li><p>… but generally, you want that seal!</p></li>
+</ul>
+<hr />
+<h3 id="the-tm-captures-sound">The TM captures sound!</h3>
+<ul>
+<li><p>It moves with air pressure variations</p></li>
+<li><p>… and transduces them into bone movement</p></li>
+<li><p>More on those bones next time!</p></li>
+</ul>
+<hr />
+<h3 id="so-thats-the-outer-ear">So that’s the Outer Ear</h3>
+<p><img class="r-stretch" src="hearing/outerear.jpg"></p>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>The Auditory system is all about <em>transduction</em></p></li>
+<li><p>The Ear is divided into Outer, Middle, and Inner areas</p>
+<ul>
+<li>Eareas?</li>
+</ul></li>
+<li><p>The Outer Ear has the Pinna, Ear Canal, and TM</p></li>
+<li><p>… and combined, they protect, amplify and transmit!</p></li>
+</ul>
+<hr />
+<h3 id="next-time-well-journey-beyond-the-tympanic-membrane">Next time,
+we’ll journey beyond the Tympanic Membrane</h3>
+<ul>
+<li>… and into…</li>
+</ul>
+<hr />
+<h2 id="the-middle-ear-1">The Middle Ear!</h2>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

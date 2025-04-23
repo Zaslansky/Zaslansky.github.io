@@ -1,0 +1,12 @@
+tree_rule4recursive2tex
+ 
+[NP 
+  [DET the ] 
+  [N' 
+    [ADJ tiny ] 
+    [N' 
+      [ADJ cute ] 
+      [N' 
+        [ADJ black ] 
+        [N' 
+          [N cat ] ] ] ] ] ]

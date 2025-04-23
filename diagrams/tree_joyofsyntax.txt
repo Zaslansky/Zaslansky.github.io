@@ -1,0 +1,35 @@
+tree_joyofsyntaxtex
+
+[S 
+  [NP 
+    [NP 
+      [DET The ] 
+      [N' 
+        [ADJ overwhelming ] 
+        [N' 
+          [ADJ unbridled ] 
+          [N' 
+            [N joy ] ] ] ] ] 
+    [PP 
+      [P of ] 
+      [NP 
+        [N' 
+          [ADJ syntactic ] 
+          [N' 
+            [N analysis ] ] ] ] ] ]
+  [VP 
+    [V ensures ] 
+    [CP 
+      [C that ] 
+      [S 
+        [NP 
+          [DET our ] 
+          [N' 
+            [ADJ syntax ] 
+            [N' 
+              [N homework ] ] ] ] 
+        [VP 
+          [V satisfies ] 
+          [NP 
+            [N' 
+              [N students ] ] ] ] ] ] ] ]

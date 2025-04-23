@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="tall" src="ling_memes/morphologyclickbait.jpg"></p>
+<p>(Thanks to an anonymous student!)</p>
+<hr />
+<h1 id="whole-word-morphology">Whole-word Morphology</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>The Storage of Linguistic Experience</p></li>
+<li><p>Emergence</p></li>
+<li><p>Whole-Word Storage</p></li>
+<li><p>The Weaknesses of Whole-Word Storage</p></li>
+</ul>
+<hr />
+<h2 id="previously-on-lign-120">Previously, on LIGN 120</h2>
+<p><img class="wide" src="img/duck.jpg"></p>
+<hr />
+<h3 id="how-are-words-being-built">How are words being built?</h3>
+<ul>
+<li><p>“Let’s see, I need to talk about gluing this thing, again, in the
+past. That’s ‘glue’, plus ‘re-’, and ‘-ed’.”</p></li>
+<li><p>“Let’s see, I need to talk about gluing this thing, again, in the
+past. Looks like ‘reglued’ is the word I need!”</p></li>
+</ul>
+<hr />
+<h1 id="lets-talk-about-our-reading">Let’s talk about our reading</h1>
+<hr />
+<h3 id="bybee-1998">Bybee 1998</h3>
+<blockquote>
+<p>“In the traditional view, the lexicon is a storage area for all and
+only the content words or morphemes of a language. The lexicon is
+relatively static compared to the grammar, which contains all the moving
+parts of sentence generation: in the metaphor of a dictionary, lexical
+items are just passive items on a list which wait to be recruited into
+syntactic structures.”</p>
+</blockquote>
+<hr />
+<h3 id="bybee-1998-continued">Bybee 1998 Continued</h3>
+<blockquote>
+<p>“Rather than arguing that a lexicon of this type does not exist, I am
+going to argue that if such a lexicon does exist it is because it is
+emergent from the storage of linguistic experience, which is of a very
+different nature than the traditional conception of a lexicon would
+suggest.”</p>
+</blockquote>
+<hr />
+<h3 id="emergent-from-the-storage-of-linguistic-experience">“Emergent
+from the Storage of Linguistic Experience”</h3>
+<ul>
+<li>This is the key to understanding these approaches</li>
+</ul>
+<hr />
+<h1 id="the-storage-of-linguistic-experience">The Storage of Linguistic
+Experience</h1>
+<hr />
+<h2 id="is-storage-expensive">Is storage expensive?</h2>
+<hr />
+<h3
+id="morpheme-based-lexicons-store-only-maximally-analyzed-stems-and-affixes">Morpheme-based
+Lexicons store only maximally analyzed stems and affixes</h3>
+<ul>
+<li><p>Generative approaches to grammar create all and only the attested
+forms</p></li>
+<li><p>Morpheme-based lexicons are great for efficiently handling
+regular patterns</p></li>
+<li><p>They struggle with irregularity and hard-to-memorize
+forms</p></li>
+<li><p><strong>Computation is cheap, but storage is
+expensive!</strong></p></li>
+</ul>
+<hr />
+<h3 id="in-this-view-we-store-the-minimum-required-to-do-assembly">In
+this view, we store the minimum required to do assembly</h3>
+<ul>
+<li><p>Phonemes, which build morphemes, which build words, which build
+sentences</p></li>
+<li><p>Very little storage, lots of computation, language is
+<em>generated</em></p></li>
+</ul>
+<hr />
+<h3 id="what-about-the-other-end-of-things">What about the other end of
+things?</h3>
+<p><img class="wide" src="morphology/lexicon_storage.jpg"></p>
+<hr />
+<h3 id="what-if-storage-was-cheap-and-easy">What if storage was cheap
+and easy?</h3>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="what-animal-was-on-the-previously-on-lign-120-slide-today">What
+animal was on the ‘Previously, on LIGN 120’ slide today?</h3>
+<ol type="A">
+<li><p>A Duck</p></li>
+<li><p>A Tiger</p></li>
+<li><p>A Hedgehog</p></li>
+<li><p>A Squirrel</p></li>
+<li><p>A Velociraptor</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3
+id="what-animal-was-on-the-previously-on-lign-120-slide-last-friday">What
+animal was on the ‘Previously, on LIGN 120’ slide last Friday?</h3>
+<ol type="A">
+<li><p>A Duck</p></li>
+<li><p>A Tiger</p></li>
+<li><p>A Hedgehog</p></li>
+<li><p>A Squirrel</p></li>
+<li><p>A Velociraptor</p></li>
+</ol>
+<hr />
+<h3 id="we-have-evidence-that-were-storing-a-lot-of-things">We have
+evidence that we’re storing a <em>lot</em> of things</h3>
+<ul>
+<li><p>What was the route from your childhood home to the grocery
+store?</p></li>
+<li><p>The color of your parents first car?</p></li>
+<li><p>Your first teacher in grade school’s name?</p></li>
+</ul>
+<hr />
+<h2 id="storing-linguistic-experience">Storing Linguistic
+Experience</h2>
+<hr />
+<h3 id="what-is-linguistic-experience">What is Linguistic
+experience?</h3>
+<ul>
+<li><p>Words, phrases, and sentences</p></li>
+<li><p>Individual phonetic realizations of words</p></li>
+<li><p><strong>Every single word ever spoken to you</strong></p>
+<ul>
+<li>Potentially with metadata</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="are-we-storing-individual-speech-tokens">Are we storing
+individual speech tokens?</h3>
+<ul>
+<li><p>Lightfoot 1989 found listeners retained familiarity with unknown
+talkers’ voices after <strong>10 days</strong></p></li>
+<li><p><small>Lightfoot, N. (1990). Effects of familiarity on serial
+recall for spoken word lists. The Journal of the Acoustical Society of
+America, 87(S1):S70–S71.</small></p></li>
+<li><p>Goldinger &amp; Azuma 2004 showed that <em>individual tokens</em>
+affect listener production <strong>6 days after hearing
+them</strong></p>
+<ul>
+<li><small>Goldinger, S. D. and Azuma, T. (2004). Episodic memory
+reflected in printed word naming. Psychon Bull Rev,
+11(4):716–722.</small></li>
+</ul></li>
+<li><p>What does your BFF sound like?</p></li>
+<li><p><em>So, it’s not insane to think that we’re storing a lot of
+data</em></p></li>
+</ul>
+<hr />
+<h3
+id="the-proposed-unit-of-storage-could-be-acoustic-representations-of-words">The
+proposed unit of storage could be <em>acoustic</em> representations of
+<em>words</em></h3>
+<p><img class="wide" src="phonmedia/sky.png"></p>
+<hr />
+<h3 id="bye-bye-phonemes-and-morphemes">Bye bye, Phonemes and
+Morphemes!</h3>
+<ul>
+<li><p>Words are stored as monolithic acoustic chunks</p></li>
+<li><p>We are storing the <em>surface forms</em></p>
+<ul>
+<li>We don’t need phonemes nor phonological processing</li>
+</ul></li>
+<li><p>The smallest unit of storage is the acoustic word, stored with
+its semantic reference to the real world</p></li>
+</ul>
+<hr />
+<h3 id="word-doesnt-just-mean-thing-bounded-by-spaces">‘Word’ doesn’t
+just mean ‘thing bounded by spaces’</h3>
+<ul>
+<li><p>Anything that happens frequently and without variation could be
+stored</p></li>
+<li><p>“Mai Tai”, or “For all intents and purposes”, “Inflectional
+Morphology”</p></li>
+<li><p>Set phrases could be stored as ‘words’</p></li>
+</ul>
+<hr />
+<h2 id="i-know-what-some-of-you-are-thinking">I know what some of you
+are thinking</h2>
+<ul>
+<li><img class="wide" src="humorimg/raisedfingermeme.jpg"></li>
+</ul>
+<hr />
+<h3 id="how-can-such-a-model-account-for">“How can such a model account
+for…”</h3>
+<ul>
+<li><p>The ‘felt’ reality of phonemes and morphemes?</p></li>
+<li><p>Phonological rules?</p></li>
+<li><p>Morphological productivity?</p></li>
+<li><p>Morphological creativity?</p></li>
+<li><p>… and, uh, Language?</p></li>
+</ul>
+<hr />
+<h1 id="emergent-grammar">Emergent Grammar</h1>
+<hr />
+<h2 id="emergence">Emergence</h2>
+<p>When an entity is observed to have properties that its parts do not
+have on their own</p>
+<hr />
+<p><img class="wide" src="img/snowflake.jpg"></p>
+<hr />
+<p><img class="wide" src="img/sand_ripples.jpg"></p>
+<hr />
+<h2 id="how-would-you-describe-this-complex-pattern">How would you
+describe this complex pattern?</h2>
+<p><img class="wide" src="img/langtonsant2.gif"></p>
+<hr />
+<h3 id="langtons-ant">Langton’s Ant</h3>
+<blockquote>
+<p>At a white square, turn 90° right, flip the color of the square, move
+forward one unit. At a black square, turn 90° left, flip the color of
+the square, move forward one unit</p>
+</blockquote>
+<p><img class="wide" src="img/langtonsant2.gif"></p>
+<hr />
+<h3 id="complexity-can-emerge-despite-simple-rules">Complexity can
+emerge despite simple rules</h3>
+<ul>
+<li>We don’t need elaborate rules to be a <em>part</em> of the system
+for the system to have elaborate patterns!</li>
+</ul>
+<hr />
+<h2 id="emergence-in-language">Emergence in Language</h2>
+<hr />
+<h3 id="lets-say-weve-memorized-a-lot-of-words">Let’s say we’ve
+memorized a <em>lot</em> of words</h3>
+<ul>
+<li><p>We know acoustic forms, and their mappings to semantic
+meanings</p></li>
+<li><p>We are sitting on a huge pile of forms with meanings</p></li>
+<li><p><strong>How does morphology work?</strong></p></li>
+</ul>
+<hr />
+<p><img class="small" src="morphology/sandwich_shop.jpg">
+<img class="small" src="morphology/vending_machine.jpg"></p>
+<hr />
+<h3 id="we-grab-the-word-we-need-in-the-moment-from-the-pile">We grab
+the word we need in the moment from the pile</h3>
+<ul>
+<li><p>… and plug it into the sentence(s)</p></li>
+<li><p>No phonology or morphology needed!</p></li>
+<li><p>Frequency effects come for free!</p>
+<ul>
+<li>More on this Wednesday!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="but-what-about-creativity-and-productivity">… but what about
+creativity and productivity!</h3>
+<ul>
+<li>“How are you going to handle the wugs?”</li>
+</ul>
+<hr />
+<p><img style="height:600px" src="morphology/wug_chopper.jpg"></p>
+<hr />
+<h3 id="analogy">Analogy</h3>
+<ul>
+<li><p>There are lots of form-meaning correspondences in the words we’ve
+memorized</p></li>
+<li><p><em>We can take advantage of those to build new, understandable
+forms!</em></p></li>
+</ul>
+<hr />
+<p><img class="wide" src="morphology/bybee_analogy.jpg"></p>
+<hr />
+<h3 id="sub-word-units-dont-exist-they-emerge">Sub-word units don’t
+<em>exist</em>, they <em>emerge</em></h3>
+<ul>
+<li><p>‘able’ is just that thing that is shared among all those words
+having to do with possibility</p></li>
+<li><p>‘-en’ doesn’t occur in many plural forms, that can’t be a
+thing</p></li>
+<li><p>Maybe ‘cran-’ is a type of berry?</p></li>
+<li><p>If ‘affixed’ forms occur often enough, and their ‘bare stems’
+occur often enough, we can come to ‘see’ the affix as an independent
+entity</p></li>
+</ul>
+<hr />
+<h3 id="analogy-allows-productivity">Analogy allows productivity</h3>
+<ul>
+<li><p>“Wug. That’s like drug, or hug, or dug, or rug. When I talk about
+two of those things, it seems to always end with this -z gesture. So,
+[wʌgz]?”</p></li>
+<li><p>Phonological and morphological rules are just formalizations of
+patterns visible across attested surface forms</p>
+<ul>
+<li>(which is relatively uncontroversial)</li>
+</ul></li>
+<li><p>Grammar comes from statistical patterns in language</p>
+<ul>
+<li>These are quantifiable and testable!</li>
+</ul></li>
+<li><p>This is exactly how reanalysis works, even in a generative
+world!</p></li>
+</ul>
+<hr />
+<h3 id="so-wrapping-back">So, wrapping back…</h3>
+<blockquote>
+<p>“Rather than arguing that a lexicon of this type does not exist, I am
+going to argue that if such a lexicon does exist it is because it is
+emergent from the storage of linguistic experience, which is of a very
+different nature than the traditional conception of a lexicon would
+suggest.”</p>
+</blockquote>
+<hr />
+<h3 id="usage-based-or-exemplar-method-strengths">Usage-based or
+‘Exemplar’ method strengths</h3>
+<ul>
+<li><p>Accounts easily for many phonetic phenomena</p></li>
+<li><p>Phonology comes ‘for free’</p></li>
+<li><p>Frequency-based effects are built in to the model</p></li>
+<li><p>Easily quantifiable and testable, <em>given sufficient
+data</em></p></li>
+<li><p>Handles notions of morphology with less complexity!</p></li>
+<li><p><strong>It’s complicated, but it works!</strong></p></li>
+</ul>
+<hr />
+<h1 id="weaknesses-of-the-whole-word-lexicon">Weaknesses of the
+Whole-Word Lexicon</h1>
+<hr />
+<h2 id="reality-of-bulk-storage">Reality of Bulk-Storage</h2>
+<hr />
+<h3 id="this-depends-on-a-big-assumption-about-storage">This depends on
+a big assumption about storage</h3>
+<ul>
+<li><p>If we can’t store this much, these theories are DOA</p></li>
+<li><p>… but it sure seems like we can</p></li>
+</ul>
+<hr />
+<h2 id="morphemes-sure-seem-real">Morphemes sure seem real</h2>
+<hr />
+<h3 id="phonological-rules-can-seem-to-privelege-morphemes">Phonological
+rules can seem to privelege morphemes</h3>
+<ul>
+<li><p>“This is legal across morphemes, but not within”</p></li>
+<li><p>“This can only be found in this one suffix”</p></li>
+</ul>
+<hr />
+<h3 id="morphological-rules-can-seem-based-on-derivation">Morphological
+rules can seem based on derivation</h3>
+<ul>
+<li><p>Dutch “ge-” only works if there are no other derivational
+affixes</p>
+<ul>
+<li>gesproken, but *gebesproken</li>
+</ul></li>
+<li><p>Other rules depend on the presence of absence of certain
+morphemes</p>
+<ul>
+<li>“Attach this as a prefix on a bare stem, but use this suffix if
+there’s other morphology there”</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="morphologically-complex-languages">Morphologically Complex
+Languages</h2>
+<hr />
+<h3 id="how-do-we-handle-agglutinating-languages">How do we handle
+agglutinating languages?</h3>
+<p><img class="wide" src="lotwimg/agglutinatingturkish.png"></p>
+<hr />
+<h3 id="what-about-polysynthetic-languages">What about polysynthetic
+languages?</h3>
+<p><img class="wide" src="morphology/wichita_gloss.jpg"></p>
+<hr />
+<h3
+id="is-the-word-a-sane-level-of-storage-when-it-is-often-the-largest-linguistic-unit">Is
+the ‘word’ a sane level of storage when it is often the largest
+linguistic unit?</h3>
+<ul>
+<li><p>If there’s a limited number of affixes, storage is
+tractable</p></li>
+<li><p>Imagine you could add a single noun to a single verb in a
+language…</p>
+<ul>
+<li>Your number of stored items increases by
+[#InflectedVerbForms]*[#Nouns]</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="word-remains-tricky">‘Word’ remains tricky</h2>
+<hr />
+<h3 id="when-we-store-whole-words-what-is-that">When we store whole
+words, what is that?</h3>
+<ul>
+<li><p>How do we differentiate words from sentences?</p></li>
+<li><p>Idioms?</p></li>
+<li><p>Sub-parts?</p></li>
+<li><p>‘Word’ is tough, here, too.</p></li>
+</ul>
+<hr />
+<h2 id="this-is-tough-for-actual-analysis">This is tough for actual
+analysis</h2>
+<hr />
+<h3 id="usage-based-methods-require-huge-amounts-of-data">Usage-based
+methods require huge amounts of data</h3>
+<ul>
+<li><p>Saying anything meaningful about data requires statistical
+generalizations across that data</p></li>
+<li><p>“How often does this form occur relative to that one?”</p></li>
+<li><p>“How regularly is this affix attested across the
+language?”</p></li>
+<li><p>Usage-based Linguistics depends on easy access to huge amounts of
+data</p>
+<ul>
+<li>This is intractable for language documentation</li>
+</ul></li>
+<li><p>You can’t ‘describe a language’ using usage-based methods</p>
+<ul>
+<li>Just individual phenomena!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="analogy-turns-into-generative-rules-quickly">‘Analogy’ turns
+into generative rules quickly</h3>
+<ul>
+<li><p>Are emergent morphemes so different from stored ones?</p></li>
+<li><p>If we compute the grammar as needed, and make reference to that
+grammar, aren’t we back where we started?</p></li>
+<li><p>It’s very hard to describe big patterns without some sort of
+generalizations!</p></li>
+</ul>
+<hr />
+<h3
+id="generative-linguistics-is-like-picking-up-broken-glass-in-carpet">Generative
+linguistics is like picking up broken glass in carpet</h3>
+<ul>
+<li><p>Disposing of the big chunks is easy and effective</p></li>
+<li><p>You’re gonna spend a long time chasing down those last
+slivers</p></li>
+<li><p>… and you’re still gonna need some tweezers from time to
+time</p></li>
+</ul>
+<hr />
+<h3
+id="usage-based-linguistics-is-like-picking-up-a-dumptruck-full-of-needles-on-a-smooth-concrete-floor">Usage-based
+Linguistics is like picking up a dumptruck full of needles on a smooth
+concrete floor</h3>
+<ul>
+<li><p>The task is incredibly simple, and 100% effective</p></li>
+<li><p>Once you’re done with an area, you’re done</p></li>
+<li><p>… but it’s going to take you forever</p></li>
+<li><p>… and you’ll probably want something more efficient for a big
+room!</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Whole-Word storage privileges computation over storage</p></li>
+<li><p>It replaces a great deal of complexity with bags of
+words</p></li>
+<li><p>Analogy allows novel forms and productivity</p></li>
+<li><p>It has some weaknesses, both with the seeming reality of sub-word
+chunks, in complex morphology, and in practical description</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li><p>We’ll talk about frequency as a force in morphology!</p></li>
+<li><p>… which absolutely bears on this discussion</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

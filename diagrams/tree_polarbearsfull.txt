@@ -1,0 +1,32 @@
+tree_polarbearsfulltex
+
+[S 
+  [NP 
+    [NP 
+      [DET The ] 
+      [N' 
+        [ADJ grumpy ] 
+        [N' 
+          [ADJ polar ] 
+          [N' 
+            [N bears ] ] ] ] ] 
+    [PP 
+      [P from ] 
+      [NP 
+        [N' 
+          [N LA ] ] ] ] ] 
+  [VP 
+    [V hated ] 
+    [NP 
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ excruciating ] 
+          [N' 
+            [N traffic ] ] ] ] 
+      [PP 
+        [P on ] 
+        [NP 
+          [DET the ] 
+          [N' 
+            [N 405 ] ] ] ] ] ] ]

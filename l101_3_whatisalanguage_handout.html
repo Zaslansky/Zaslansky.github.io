@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h3 id="please-complete-the-introductory-discussion">Please Complete the
+Introductory Discussion</h3>
+<ul>
+<li><p>If you didn’t already!</p></li>
+<li><p>Double check the syllabus for office hours (we have them on Tuesdays, Wednesdays, and Thursdays!)</p></li>
+</p></li>
+</ul>
+<hr />
+<h1 id="what-are-languages">What are languages?</h1>
+<h3 id="will-styler---lign-101">Matt Zaslansky - LIGN 101</h3>
+<hr />
+<h3 id="todays-plan">Today’s plan</h3>
+<ul>
+<li><p>What are languages, really?</p></li>
+<li><p>Language is fractal</p></li>
+<li><p>‘Right’ and ‘Wrong’ in Language</p></li>
+<li><p>‘Prescriptive’ vs. ‘Descriptive’ Grammar</p></li>
+</ul>
+<hr />
+<h1 id="what-are-languages-1">What are languages?</h1>
+<hr />
+<h3 id="there-are-7100-living-languages-in-the-world">There are ~7,100
+living languages in the world</h3>
+<p><small><a href="https://www.ethnologue.com">(Source)</a></small></p>
+<hr />
+<h3 id="languages-are-spoken-by-more-than-50-million-people">23
+languages are spoken by more than 50 million people</h3>
+<p><img class="r-stretch" src="img/ethnologue_lgtable.jpg"></p>
+<hr />
+<h3
+id="wow-thats-amazing-1.3-billion-people-all-speak-the-same-language">Wow,
+that’s amazing! 1.3 billion people all speak the same language!</h3>
+<hr />
+<p><img class="r-stretch" src="humorimg/raisedfingermeme.jpg"></p>
+<hr />
+<h3 id="language-is-a-bit-more-complicated-for-linguists">Language is a
+bit more complicated for Linguists!</h3>
+<hr />
+<h3 id="remember-that-multilingualism-is-common">Remember that
+multilingualism is common!</h3>
+<ul>
+<li><p>America is ridiculously monolingual compared to the rest of the
+world</p></li>
+<li><p>We talk about people having an “L1” (first acquired language(s)),
+“L2” (second acquired language), and so on</p></li>
+<li><p>Don’t forget that many folks have more than one language, and
+they can blend!</p></li>
+</ul>
+<hr />
+<h3 id="but-lets-focus-on-one-language">… but let’s focus on ‘one
+language’</h3>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_1.png"></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_2.png"></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_3.png"></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_5.png"></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_6.png"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### There are many different types of English</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="img/english_map.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="yet-all-are-clearly-english-right"><strong>Yet all are clearly
+‘English’, right?!</strong></h3>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_7.png"></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_8.png"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img class="r-stretch" src="dialects/dialects_9.png"></td>
+</tr>
+<tr class="even">
+<td>(and many more!)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="american-regional-dialect-tests">American Regional Dialect
+Tests</h3>
+<ul>
+<li><p>Syntax</p>
+<ul>
+<li>‘The gate needs fixed’</li>
+<li>‘I might could have some lunch’</li>
+</ul></li>
+<li><p>Pronunciation</p>
+<ul>
+<li>‘Pin’ vs. ‘Pen’</li>
+<li>‘Mary, ’Marry’, and ‘Merry’</li>
+<li>‘Dude’</li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="dud">[dud]</h1>
+<hr />
+<h1 id="duːːːːd">[duːːːːd]</h1>
+<hr />
+<h1 id="duːːːːd-1">[du̟ːːːːd]</h1>
+<hr />
+<p><img class="r-stretch" src="img/sellyouriron.jpg"></p>
+<hr />
+<h3 id="regional-vocabulary-differences">Regional Vocabulary
+Differences</h3>
+<p><img class="r-stretch" src="img/dragonfly.jpg"></p>
+<hr />
+<h3 id="whats-the-generic-word-for-a-fizzy-sweet-beverage">What’s the
+generic word for a fizzy, sweet beverage?</h3>
+<ol type="A">
+<li><p>Pop</p></li>
+<li><p>Soda</p></li>
+<li><p>Soda-Pop</p></li>
+<li><p>Coke</p></li>
+<li><p>Cooldrink</p></li>
+</ol>
+<section class="clicker">
+</section>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### What’s the generic word for a fizzy, sweet beverage?</td>
+</tr>
+<tr class="even">
+<td>A) Pop</td>
+</tr>
+<tr class="odd">
+<td>B) <correct>Soda</correct></td>
+</tr>
+<tr class="even">
+<td>C) Soda-Pop</td>
+</tr>
+<tr class="odd">
+<td>D) Coke</td>
+</tr>
+<tr class="even">
+<td>E) Cooldrink</td>
+</tr>
+</tbody>
+</table>
+<p>(Sorry, I couldn’t resist)</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### The Great Soda Debate</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="img/popvssoda.jpg"></td>
+</tr>
+<tr class="odd">
+<td>(Courtesy of <a href="http://popvssoda.com"
+class="uri">http://popvssoda.com</a>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="whats-this-thing">What’s this thing?</h3>
+<p><img class="r-stretch" src="img/bubbler.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/bubbler_map.jpg"></p>
+<hr />
+<h3
+id="not-everybody-from-a-region-will-have-all-of-the-dialect-features">Not
+everybody from a region will have (all of) the dialect features</h3>
+<ul>
+<li><p>This is as much a function of attitude as location</p>
+<ul>
+<li><p>‘Rootedness’ plays a major role (c.f. <a
+href="http://paulereed.com/">Paul Reed’s Work</a>)</p></li>
+<li><p>There are many aspects of a person’s identity that add up to
+“dialect”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="there-are-many-more-regions-and-regional-features-we-havent-covered">There
+are many more regions and regional features we haven’t covered</h3>
+<ul>
+<li>Consider this a taste, not a meal!</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_9.png"></p>
+<hr />
+<h3 id="its-not-that-simple">It’s not that simple</h3>
+<ul>
+<li>Young Speakers</li>
+<li>Old Speakers</li>
+<li>Men</li>
+<li>Women</li>
+<li>Non-Binary speakers</li>
+<li>Trans speakers</li>
+<li>Gay/Lesbian/Bisexual/Queer Speakers</li>
+<li>Speakers of AAVE</li>
+<li>Latinx/Chicano Speakers</li>
+<li>Educated Speakers</li>
+<li>Uneducated Speakers</li>
+<li>Urban Speakers</li>
+<li>Rural Speakers</li>
+<li>Nerds</li>
+<li>… and so on forever</li>
+</ul>
+<hr />
+<h3 id="these-are-sociolects">These are Sociolects</h3>
+<ul>
+<li><p>A sociolect is a dialect shared among members of a certain social
+group</p></li>
+<li><p>People can have influence from more than one sociolect at
+once</p>
+<ul>
+<li><p>We often switch sociolects when in different social
+situations</p></li>
+<li><p>Using a sociolect is a way of showing affiliation with a certain
+identity</p></li>
+</ul></li>
+<li><p>Some sociolects have prestige, others don’t</p>
+<ul>
+<li>… and which dialect is prestigious varies by context</li>
+</ul></li>
+<li><p>These are the bread and butter of sociolinguists</p></li>
+</ul>
+<hr />
+<h3 id="people-can-switch-among-their-dialects-and-sociolects">People
+can switch among their dialects and sociolects</h3>
+<p>See <a
+href="https://www.theatlantic.com/ideas/archive/2019/04/alexandria-ocasio-cortez-code-switches-black-english/586723/">“It
+Wasn’t ‘Verbal Blackface.’ AOC Was Code-Switching.”</a></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_10.png"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img class="r-stretch" src="dialects/dialects_11.png"></td>
+</tr>
+</tbody>
+</table>
+<p><img class="r-stretch" src="dialects/dialects_13.png"></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_14.png"></p>
+<hr />
+<p><img class="r-stretch" src="img/snowflake.jpg"></p>
+<hr />
+<h3 id="idiolect">Idiolect</h3>
+<ul>
+<li><p>You use language in a certain way, that way is your
+“idiolect”</p></li>
+<li><p>Your esoteric pronunciations</p></li>
+<li><p>The expressions and catch phrases that you use and
+prefer</p></li>
+<li><p>The specific meanings that given words or phrases have to
+you</p></li>
+<li><p>The features which you’ve inherited from your region(s) or social
+group(s)</p></li>
+</ul>
+<hr />
+<h3 id="more-idiolect-features">More Idiolect Features</h3>
+<ul>
+<li><p>Odd spellings or emojis you use (LOL vs. lol, “Thanx”)</p></li>
+<li><p>Your writing style, speech style</p></li>
+<li><p>Your individual set of speech organs (which may change the way
+your speech sounds)</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_15.png"></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_17.png"></p>
+<hr />
+<p><img class="r-stretch" src="dialects/dialects_18.png"></p>
+<hr />
+<h2 id="language-is-fractal">Language is fractal</h2>
+<hr />
+<p><img class="r-stretch" src="img/fractal.jpg"></p>
+<hr />
+<h3 id="language-is-fractal-1">Language is fractal</h3>
+<ul>
+<li><p>You see larger patterns at first</p></li>
+<li><p>Then you look closer and find more patterns and
+structure</p></li>
+<li><p>Then you look closer and find more patterns and
+structure</p></li>
+<li><p>Then you look closer and find more patterns and
+structure</p></li>
+<li><p>Then you look closer and find more patterns and
+structure</p></li>
+<li><p>Then you look closer and find more patterns and
+structure</p></li>
+<li><p>… you get the idea</p></li>
+</ul>
+<hr />
+<h3 id="its-very-hard-to-find-clear-lines">It’s very hard to find clear
+lines</h3>
+<ul>
+<li><p>It can be hard to define what is a single language</p>
+<ul>
+<li><p>The distinction between ‘language’ and ‘dialect’ is often
+political</p></li>
+<li><p>If you like them, they speak a dialect of your language,
+otherwise, whole different language</p></li>
+</ul></li>
+<li><p>Everybody speaks at least one dialect, sociolect, and
+idiolect</p></li>
+<li><p>People often have features from multiple dialects or sociolects
+or languages</p></li>
+<li><p>Each of these things overlap in complicated ways</p></li>
+<li><p><strong>There’s a reason that the social elements of language
+have an entire subfield</strong></p></li>
+</ul>
+<hr />
+<h3
+id="we-try-to-discuss-variation-in-terms-of-languages-dialects-sociolects-and-idiolects">We
+try to discuss variation in terms of languages, dialects, sociolects and
+idiolects</h3>
+<ul>
+<li><p>Dialects are a particular form of language used by a certain
+social or geographical group of people</p></li>
+<li><p>A sociolect is a particular social group’s specific
+dialect</p></li>
+<li><p>Your idiolect is your unique way of using language and
+speaking</p></li>
+<li><p>Your speech and language is variable from situation to situation,
+from word to word</p></li>
+<li><p>As you look closer and closer at language, you find more patterns
+and complexity, not less</p></li>
+</ul>
+<hr />
+<h3
+id="i-can-tell-pat-really-sent-the-text-they-always-use-the-emoji.-this-is-an-example-of-their">“I
+can tell Pat really sent the text, they always use the 🤷‍ emoji”. This is
+an example of their…</h3>
+<ol type="A">
+<li><p>Dialect</p></li>
+<li><p>Sociolect</p></li>
+<li><p>Idiolect</p></li>
+<li><p>Emojiolect</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3
+id="i-can-tell-pat-really-sent-the-text-they-always-use-the-emoji.-this-is-an-example-of-their-1">“I
+can tell Pat really sent the text, they always use the 🤷‍ emoji”. This is
+an example of their…</h3>
+<ol type="A">
+<li><p>Dialect</p></li>
+<li><p>Sociolect</p></li>
+<li><p><correct>Idiolect</correct></p></li>
+<li><p>Emojiolect</p></li>
+</ol>
+<hr />
+<h3 id="linguists-are-interested-in-how-everybody-talks">Linguists are
+interested in how <em>everybody</em> talks</h3>
+<ul>
+<li><p>Not just one prestigious or ‘correct’ variety</p></li>
+<li><p>Not just the ‘academic’ or ‘mainstream’ dialects</p></li>
+<li><p>Not just what goes in textbooks or dictionaries</p></li>
+<li><p>… and as such …</p></li>
+</ul>
+<hr />
+<h3 id="we-dont-tend-to-believe-in-a-correct-variety-of-a-language">We
+don’t tend to believe in a ‘correct variety’ of a language</h3>
+<ul>
+<li><p>It’s hard to pin down which one <em>would be</em> correct</p>
+<ul>
+<li>“Which region/dialect/sociolect/idiolect is right?”</li>
+</ul></li>
+<li><p>The situationally ‘correct or ’appropriate’ variety is about
+social context</p>
+<ul>
+<li>“That variety is bad here” does not mean “That variety is bad”</li>
+</ul></li>
+<li><p><strong>‘Correct’ is a social judgement, not a linguistic
+one</strong></p></li>
+</ul>
+<hr />
+<h3
+id="so-we-think-about-grammar-differently-than-your-english-professor">So,
+we think about ‘grammar’ differently than your English professor</h3>
+<hr />
+<h1 id="prescriptive-and-descriptive-grammar">Prescriptive and
+Descriptive Grammar</h1>
+<hr />
+<h3 id="speakers-of-a-language-have-intuitions-about-grammar">Speakers
+of a language have intuitions about grammar</h3>
+<hr />
+<h3 id="which-of-these-sentences-is-grammatical-english">Which of these
+sentences is ‘grammatical’ English?</h3>
+<ol type="A">
+<li><p>“John went with Tina to the cat show”</p></li>
+<li><p>“The boy flame take watchingsly”</p></li>
+<li><p>“Correct Horse Battery Staple”</p></li>
+<li><p>“Esta oración no es inglés”</p></li>
+<li><p>I’m not sure which is grammatical</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="descriptive-grammar">Descriptive Grammar</h3>
+<p>The grammatical rules of the language, dialect, and sociolect being
+spoken which <em>describe</em> how (a group of) people <em>actually talk
+or write</em>.</p>
+<hr />
+<h3
+id="the-boy-flame-take-watchingsly-is-descriptively-ungrammatical">“The
+boy flame take watchingsly” is descriptively ungrammatical</h3>
+<ul>
+<li><p>‘Grammatical’ sentences are in harmony with the local
+rules</p></li>
+<li><p>People ‘stumble’ over ungrammatical sentences</p></li>
+<li><p><strong>When something is descriptively ungrammatical, it’s often
+hard to understand</strong></p>
+<ul>
+<li>Although not all hard-to-understand sentences are
+ungrammatical!</li>
+</ul></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Symbol Usage Note</td>
+</tr>
+<tr class="even">
+<td>Linguists mark ungrammatical sentences with a star, questionable
+ones with a ?</td>
+</tr>
+<tr class="odd">
+<td>- *The boy flame take watchingsly</td>
+</tr>
+<tr class="even">
+<td>- ?Which friends has Thomas painted a picture of them?</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="dialects-and-sociolects-and-idiolects-each-have-their-own-descriptive-grammar">Dialects
+and Sociolects and Idiolects each have their own descriptive
+grammar!</h3>
+<ul>
+<li>… and they follow it!</li>
+</ul>
+<hr />
+<h3 id="african-american-english">African American English</h3>
+<ul>
+<li><p>Also known as ‘AAVE’ (African American Vernacular English) or
+historically, ‘Ebonics’</p></li>
+<li><p>Negative Concord</p>
+<ul>
+<li>Can’t nobody say he don’t work</li>
+<li>*Nobody can say he doesn’t work.</li>
+</ul></li>
+<li><p>Habitual be</p>
+<ul>
+<li>He be drivin all over the place</li>
+<li>*He often drives all over the place lately</li>
+</ul></li>
+<li><p>Copula deletion</p>
+<ul>
+<li>They not like us</li>
+<li>*They are not like us</li>
+</ul></li>
+<li><p><strong>These grammatical rules are followed carefully by
+speakers of AAE</strong></p></li>
+</ul>
+<hr />
+<h3
+id="it-is-patently-false-to-claim-that-black-or-chicano-southern-etc-speakers-have-no-grammar">It
+is patently false to claim that Black (or Chicano, Southern, etc)
+speakers ‘have no grammar’</h3>
+<ul>
+<li><p>Damnit.</p></li>
+<li><p>They use the grammar of their dialect as carefully as you do
+yours!</p></li>
+</ul>
+<hr />
+<p>Let’s try a different set of grammar judgements…</p>
+<hr />
+<h3 id="which-of-these-sentences-is-grammatical-english-1">Which of
+these sentences is ‘grammatical’ English?</h3>
+<ol type="A">
+<li><p>‘I never know what I should write with’</p></li>
+<li><p>‘I don’t know who she photographed’</p></li>
+<li><p>‘Ron and Jerry stayed home last night’</p></li>
+<li><p>‘We hope to considerably advance machine learning
+technology’</p></li>
+<li><p>I’m not sure which is grammatical</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="according-to-some-people-c-is-only-the-correct-answer">According
+to some people, C is only the correct answer</h3>
+<ol type="A">
+<li><p>‘I never know what I should write with’</p></li>
+<li><p>‘I don’t know who she photographed’</p></li>
+<li><p><correct>‘Ron and Jerry stayed home last
+night’</correct></p></li>
+<li><p>‘We hope to considerably advance machine learning
+technology’</p></li>
+<li><p>I’m not sure which is grammatical</p></li>
+</ol>
+<ul>
+<li><strong>A B and D all violated rules of prescriptive
+grammar</strong></li>
+</ul>
+<hr />
+<h3 id="prescriptive-grammar">Prescriptive Grammar</h3>
+<p>Made up or social rules that <em>prescribe</em> how people
+<em>should</em> talk or write</p>
+<hr />
+<h3 id="the-rules-being-violated">The ‘rules’ being violated</h3>
+<ul>
+<li><ol type="A">
+<li>‘I never know what I should write with’</li>
+</ol>
+<ul>
+<li>“Never end a sentence with a preposition”</li>
+</ul></li>
+<li><ol start="2" type="A">
+<li>‘I don’t know who she photographed’</li>
+</ol>
+<ul>
+<li>“‘whom’ should be used for a direct object”</li>
+</ul></li>
+<li><ol start="4" type="A">
+<li>‘We hope to stunningly advance machine learning technology’</li>
+</ol>
+<ul>
+<li>“How dare you split an infinitive, you ingrate!”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="which-one-of-these-clicker-questions-was-harder">Which one of
+these clicker questions was harder?</h3>
+<hr />
+<h3 id="prescriptive-grammar-rules-are-social-rules">Prescriptive
+grammar rules are social rules</h3>
+<ul>
+<li><p>They are not universally observed</p></li>
+<li><p>They do not generally affect your ability to be
+understood</p></li>
+<li><p>They’re often based in written ambiguity (e.g. there, they’re,
+their)</p></li>
+<li><p>They’re often quoted from one particular source (Strunk and
+White, 🤣)</p></li>
+<li><p>They’re often associated with a specific setting or
+institution</p></li>
+</ul>
+<hr />
+<h3
+id="what-other-prescriptive-grammar-rules-are-you-familiar-with">What
+other prescriptive grammar rules are you familiar with?</h3>
+<hr />
+<h3 id="lets-work-on-that-distinction-a-bit-more">Let’s work on that
+distinction a bit more</h3>
+<hr />
+<h3 id="which-of-these-rules-is-a-descriptive-grammar-rule">Which of
+these rules is a <em>descriptive</em> grammar rule?</h3>
+<ol type="A">
+<li><p>“Say ‘I’ll make do’, not ‘I’ll make due’”</p></li>
+<li><p>“All sentences must include a verb”</p></li>
+<li><p>“Always include the punctuation inside the quote”</p></li>
+<li><p>“In-text citations should be surrounded by parentheses”</p></li>
+<li><p>“Emojis cannot be used in professional correspondence”</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="which-of-these-rules-is-a-descriptive-grammar-rule-1">Which of
+these rules is a <em>descriptive</em> grammar rule?</h3>
+<ol type="A">
+<li><p>“Say ‘I’ll make do’, not ‘I’ll make due’”</p></li>
+<li><p><correct>“All sentences must include a verb”</correct></p></li>
+<li><p>“Always include the punctuation inside the quote”.</p></li>
+<li><p>“In-text citations should be surrounded by parentheses”</p></li>
+<li><p>“Emojis cannot be used in professional correspondence”</p></li>
+</ol>
+<hr />
+<h3 id="which-of-these-sentences-is-a-descriptively-ungrammatical">Which
+of these sentences is a <em>descriptively</em> ungrammatical?</h3>
+<ol type="A">
+<li><p>“Me and Mark are going clubbing”</p></li>
+<li><p>“I hate polar bears, there paws are too big.”</p></li>
+<li><p>“Frank Suzanne live Dallas”</p></li>
+<li><p>“Herbert ain’t gone to the store yet”</p></li>
+<li><p>“Michael Bay luvs 2 desecrate good cartoonz.”</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3
+id="which-of-these-sentences-is-a-descriptively-ungrammatical-1">Which
+of these sentences is a <em>descriptively</em> ungrammatical?</h3>
+<ol type="A">
+<li><p>“Me and Mark are going clubbing”</p></li>
+<li><p>“I hate polar bears, there paws are too big.”</p></li>
+<li><p><correct>“Frank Suzanne live Dallas”</correct></p></li>
+<li><p>“Herbert ain’t gone to the store yet”</p></li>
+<li><p>“Michael Bay luvs 2 desecrate good cartoonz.”</p></li>
+</ol>
+<hr />
+<h3 id="linguists-are-interested-in-descriptive-grammar">Linguists are
+interested in <em>descriptive grammar</em></h3>
+<ul>
+<li><p>We don’t believe there is a ‘correct’ variety</p></li>
+<li><p>A rule which a large number of people don’t follow isn’t a real
+rule</p>
+<ul>
+<li>… or it’s not a rule in all dialects</li>
+</ul></li>
+<li><p>And if you speak a non-standard variety, we think that’s
+awesome!</p></li>
+</ul>
+<hr />
+<h3 id="its-fun-to-see-when-prescriptive-corrections-are-made">It’s fun
+to see <em>when</em> prescriptive corrections are made</h3>
+<ul>
+<li><p>Sometimes, people truly believe the rules are real</p>
+<ul>
+<li>Awwwwwww….</li>
+</ul></li>
+<li><p>Often, they’re trying to help</p>
+<ul>
+<li>“If you want to be taken seriously in [context], you’ll need to talk
+like this”</li>
+</ul></li>
+<li><p>Sometimes, they’re trying to show superiority</p>
+<ul>
+<li>“You bring an argument before me yet you cannot master even basic
+grammatical structure! Fool!”</li>
+</ul></li>
+<li><p>… and frustratingly often, it’s because …</p></li>
+</ul>
+<hr />
+<h3
+id="attacking-peoples-language-is-often-used-as-a-covert-way-of-attacking-people">Attacking
+people’s language is often used as a covert way of attacking people</h3>
+<ul>
+<li><p>“Somebody needs to teach these inner-city kids to be more
+articulate”</p></li>
+<li><p>“You’re in America, learn to speak English right”</p></li>
+<li><p>“You’re so shrill, you should be more lady-like in your
+speech”</p></li>
+<li><p>“He’s a nice boy, but why does he have to talk so
+Mexican?”</p></li>
+<li><p><a
+href="https://www.npr.org/2015/07/23/425608745/from-upspeak-to-vocal-fry-are-we-policing-young-womens-voices">“Damned
+teenage girls filling their speech with [insert thing we all
+do]”</a></p></li>
+</ul>
+<hr />
+<h3 id="whole-languages-get-similar-ideological-treatments">Whole
+languages get similar ideological treatments</h3>
+<ul>
+<li><p>People love describing languages as ‘rough’ or ‘unevolved’ or
+‘angry’ or ‘primitive’ or ‘romantic’ (and so on)</p>
+<ul>
+<li>These ideas are generally not supported by or evaluable in
+linguistic theory!</li>
+</ul></li>
+<li><p>They often cite characteristics found in huge numbers of
+languages as ‘evidence’ of this</p></li>
+<li><p>These are usually social judgements applied to people via their
+languages</p>
+<ul>
+<li>… rather than facts about the languages themselves</li>
+</ul></li>
+<li><p>Be careful with these kinds of language ideologies, as they can
+be hurtful</p>
+<ul>
+<li>… and ask yourself why and how they’re being discussed!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="of-course-its-not-all-like-that">Of course, it’s not all like
+that</h3>
+<ul>
+<li><p>Most people mean well</p></li>
+<li><p>There’s value to learning how to talk like the Old People with
+Power want you to talk in some contexts</p>
+<ul>
+<li>“Code switching” among dialects for fun and profit.</li>
+</ul></li>
+<li><p>… but it’s important to think carefully about these
+things</p></li>
+</ul>
+<hr />
+<h3 id="this-is-why-linguists-dont-like-being-called-grammarians">This
+is why Linguists don’t like being called ‘grammarians’</h3>
+<ul>
+<li><p>It’s why we spend so much time talking about the difference
+between descriptive and prescriptive grammar in LIGN 101</p></li>
+<li><p>… and it’s why we’ll spend the rest of the quarter talking about
+descriptive grammar, rather than prescriptive grammar</p></li>
+</ul>
+<hr />
+<h1 id="wrapping-up">Wrapping up</h1>
+<ul>
+<li><p>Language is fractal with massive amounts of variation</p>
+<ul>
+<li>We try to subdivide variation into dialects, sociolects, and
+idiolects</li>
+</ul></li>
+<li><p>It’s hard to identify a ‘correct’ variety, and that’s a social
+thing anyways</p></li>
+<li><p>Descriptive rules describe what’s actually being said</p></li>
+<li><p>Prescriptive rules prescribe what somebody <em>thinks</em> should
+be said</p></li>
+<li><p>Linguists care about descriptive grammar, and don’t tend to buy
+into ‘prescriptive rules’</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For next time</h2>
+<ul>
+<li><p>Read Fromkin’s chapter on ‘Phonetics’ if you’d like</p></li>
+<li><p>… and don’t be a pedantic twit</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+<!--
+### [This hot grammarian garbage](https://www.inc.com/christina-desmarais/43-embarrassing-phrases-even-smart-people-use.html)
+
+<img class="r-stretch" src="img/grammargarbage.jpg">
+
+### [This hot grammarian garbage](https://www.inc.com/christina-desmarais/43-embarrassing-phrases-even-smart-people-use.html)
+
+- 18) Must of, should of, would of, and could of
+
+    - "The proper versions were corrupted by contractions such as "must've.""
+
+    - 🤦‍🤦‍🤦‍🤦‍🤦‍🤦‍
+    
+- 21) The first-year anniversary
+
+    - "The use of the word "year" is redundant. "The first anniversary" or "the 50th anniversary" suffice."
+
+    - 🤢 🤢 🤢 🤢 🤢 🤢
+
+- 36) Overuse of "literally"
+
+    - "So, if you say, "My head literally exploded," you are lying."
+    
+    - 🤮 🤮 🤮 🤮 🤮 🤮
+
+### Female, born 1954, Beckenham, Kent, UK. Writer and actor
+
+<audio controls src="dialects/IDEAengland67.mov"></audio>
+
+<small>(sound clip from IDEA, https://www.dialectsarchive.com/)</small>
+
+
+### White, male, actor, born Chicago, 1953
+
+<audio controls src="dialects/IDEAillinois10.mov"></audio>
+
+<small>(sound clip from IDEA, https://www.dialectsarchive.com/)</small>
+
+
+
+### Black, male, born 1959, and raised Cambridge, MA. Firefighter
+
+<audio controls src="dialects/IDEAMassachusetts5.mov"></audio>
+
+<small>(sound clip from IDEA, https://www.dialectsarchive.com/)</small>
+
+
+
+### White female, born 1987 Montivideo, MN, raised Becker, college student
+
+<audio controls src="dialects/IDEAMinnesota6.mov"></audio>
+
+<small>(sound clip from IDEA, https://www.dialectsarchive.com/)</small>
+
+### Male, Black, born 1979, Freetown, Sierra Leone
+
+<audio controls src="dialects/IDEAsierraleone1.mov"></audio>
+
+<small>(sound clip from IDEA, https://www.dialectsarchive.com/)</small>
+
+### Female, European, Christchurch, New Zealand, born 1958, School principal
+
+<audio controls src="dialects/IDEAnewzealand7.mov"></audio>
+
+<small>(sound clip from IDEA, https://www.dialectsarchive.com/)</small>
+-->
+</body>
+</html>

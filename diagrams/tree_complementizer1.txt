@@ -1,0 +1,19 @@
+tree_complementizer1tex
+
+[S 
+  [NP 
+    [N' 
+      [N I ] ] ] 
+  [VP 
+    [V love ] 
+    [CP 
+      [C when ] 
+      [S 
+        [NP 
+          [N' 
+            [N you ] ] ] 
+        [VP 
+          [V hug ] 
+          [NP 
+            [N' 
+              [N squirrels ] ] ] ] ] ] ] ]

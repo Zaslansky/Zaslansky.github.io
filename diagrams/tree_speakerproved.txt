@@ -1,0 +1,29 @@
+tree_speakerprovedtex
+
+[S 
+  [NP 
+    [DET The ] 
+    [N' 
+      [N' 
+        [N speaker ] ] 
+      [PP 
+        [P at ] 
+        [NP 
+          [DET the ] 
+          [N' 
+            [ADJ huge ] 
+            [N' 
+              [ADJ prestigious ] 
+              [N' 
+                [N conference ] ] ] ] ] ] ] ]
+  [VP 
+    [V proved ] 
+    [CP 
+      [C that ] 
+      [S 
+        [NP 
+          [DET her ] 
+          [N' 
+            [N theory ] ] ] 
+        [VP 
+          [V works ] ] ] ] ] ]

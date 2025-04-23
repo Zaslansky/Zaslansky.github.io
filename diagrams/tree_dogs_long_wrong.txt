@@ -1,0 +1,28 @@
+tree_dogs_long_wrongtex
+ 
+[S 
+  [NP 
+    [N' 
+      [N I ] ] ] 
+  [VP 
+    [V saw ]
+    [NP 
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ big ] 
+          [N' 
+            [ADJ sweet ] 
+            [N' 
+              [N dogs ] ] ] ] ] 
+      [PP 
+        [P from ] 
+        [NP 
+          [NP 
+            [N' 
+              [N La Jolla ] ] ] 
+          [PP 
+            [P with ] 
+            [NP 
+              [N' 
+                [N fleas ] ] ] ] ] ] ] ] ]

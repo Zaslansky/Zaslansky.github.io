@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="data-pipelines-and-data-storage">Data Pipelines and Data
+Storage</h1>
+<h3 id="will-styler---css-bootcamp">Will Styler - CSS Bootcamp</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Finding and Collecting Data</p></li>
+<li><p>Data formatting</p></li>
+<li><p>Organizing Data Storage</p></li>
+<li><p>How to design a data pipeline</p></li>
+<li><p>Handling Sensitive data and Encryption</p></li>
+<li><p>Data Compression</p></li>
+<li><p>Validating Data and Hashing</p></li>
+</ul>
+<hr />
+<h3 id="lets-think-today-about-how-to-be-good-data-shepherds">Let’s
+think today about how to be good data shepherds</h3>
+<ul>
+<li>Throughout the lifetime of your data</li>
+</ul>
+<hr />
+<h2 id="finding-data">Finding Data</h2>
+<hr />
+<h3 id="some-data-are-found">Some data are found</h3>
+<ul>
+<li><p><strong>What are examples of found data?</strong></p></li>
+<li><p>Downloaded datasets from online</p></li>
+<li><p>Other folks’ data given freely</p></li>
+<li><p>Pre-aggregated statistics and data</p></li>
+<li><p>Existing Databases</p></li>
+<li><p>Existing corpora</p></li>
+</ul>
+<hr />
+<h3 id="concerns-for-collecting-existing-data">Concerns for collecting
+existing data</h3>
+<ul>
+<li><p>Keep records of date-of-acquisition and source/url</p></li>
+<li><p>Preserve or note original filenames</p></li>
+<li><p>If you take a subset or remove unnecessary data, keep the
+script(s) which did so</p></li>
+<li><p>Changes to data could be an <strong>actual legal
+liability</strong> for you, so be careful</p>
+<ul>
+<li><p>Think <em>forensically</em>, and maintain a chain of
+custody</p></li>
+<li><p>You might want to use hashing, which we’ll discuss later</p></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="collecting-data">Collecting Data</h2>
+<hr />
+<h3 id="collecting-your-own-data">Collecting your own data</h3>
+<ul>
+<li>What are forms of data collection you might do?</li>
+</ul>
+<hr />
+<h3 id="concerns-for-collecting-new-data">Concerns for collecting new
+data</h3>
+<ul>
+<li><p>Are you naming your files reasonably?</p></li>
+<li><p>Are you collecting the data in easy-to-ingest formats?</p></li>
+<li><p>Are you anticipating the cleaning and processing you’ll have to
+do?</p></li>
+<li><p>What metadata do you need?</p></li>
+<li><p>How are you backing your data up?</p></li>
+<li><p>Where does the data live, and how is it organized?</p></li>
+</ul>
+<hr />
+<h3 id="regardless-youll-need-to-think-about-format">Regardless, you’ll
+need to think about format…</h3>
+<hr />
+<h2 id="data-formatting">Data Formatting</h2>
+<hr />
+<h3 id="what-are-bad-data-formatting-choices">What are <em>bad</em> data
+formatting choices?</h3>
+<hr />
+<h3 id="what-are-good-data-formatting-choices">What are <em>good</em>
+data formatting choices?</h3>
+<hr />
+<h3 id="good-data-formatting-ideas">Good data formatting ideas</h3>
+<ul>
+<li><p>Use ‘tidy’ formats which are easy to analyze and
+visualize</p></li>
+<li><p>Use lowercase column, identifier, and category names without
+whitespaces or special characters</p>
+<ul>
+<li><p>The closer to base <a
+href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> you are, the
+better</p></li>
+<li><p>Avoid punctuation and whitespace</p></li>
+<li><p>No initial numbers</p></li>
+</ul></li>
+<li><p>Code logical variables with numeric 0 and 1</p></li>
+<li><p>ISO Date/Time (2022-09-05T09:25:22.317640-07:00)</p></li>
+</ul>
+<hr />
+<h3 id="store-your-data-in-robust-interoperable-formats">Store your data
+in robust, interoperable formats</h3>
+<ul>
+<li><p>.wav for audio, mp4 for video (with care paid to codecs)</p></li>
+<li><p>csv or tab-delineated (tsv) for tabular</p></li>
+<li><p>.txt or .md or .tex for text, using UTF-16 where you can</p></li>
+<li><p>Image formats are mostly good-to-go, but jpg, tiff, and png are
+great</p></li>
+<li><p>Avoid proprietary formats which require specific software to
+open</p>
+<ul>
+<li>“What happens if every software company I use shut down tomorrow and
+turned off their servers?”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="store-your-data-in-clear-folder-structures">Store your data in
+clear folder structures</h3>
+<ul>
+<li><p>There should be one place where a given file should be</p></li>
+<li><p>Like files in like folders</p></li>
+<li><p>Use version control to manage changes, not folder copies</p></li>
+<li><p>It’s very easy to combine a folder full of csv files into a
+single larger dataframe with a for loop</p>
+<ul>
+<li><strong>Why would this be useful?</strong></li>
+</ul></li>
+<li><p>Keep things in one place for easy backup</p></li>
+</ul>
+<hr />
+<h3 id="filenames-are-useful-for-storing-information">Filenames are
+useful for storing information</h3>
+<ul>
+<li><p>Use meaningful filenames which you can
+<code>filename.split("_")</code> later</p></li>
+<li><p><code>exp1_control_p26_bend_airflow.wav</code></p>
+<ul>
+<li>project_condition_participant_word_rectype</li>
+</ul></li>
+<li><p>Consistent naming schemes make life easier</p></li>
+</ul>
+<hr />
+<h3 id="time-spent-organizing-data-is-not-wasted">Time spent organizing
+data is not wasted</h3>
+<ul>
+<li><p>“I know we didn’t collect a participant 87, as it would have been
+in this folder”</p></li>
+<li><p>You’re helping future researchers to reproduce your
+analysis</p></li>
+<li><p>You’re helping your future self too!</p></li>
+<li><p>Organized data is easier to put into…</p></li>
+</ul>
+<hr />
+<h2 id="data-pipelines">Data Pipelines</h2>
+<hr />
+<h3 id="youre-unlikely-to-use-just-one-tool-to-look-at-your-data">You’re
+unlikely to use just one tool to look at your data</h3>
+<ul>
+<li><p>Sometimes, you’ll need to create additional metadata</p></li>
+<li><p>Sometimes, you’ll need additional analyses to feed into your
+final goal</p></li>
+<li><p>Sometimes, you’ll need to pre- or post-process the data</p></li>
+<li><p>Sometimes, your analysis will have many steps involved</p></li>
+</ul>
+<hr />
+<h3 id="sample-pipeline-tasks">Sample Pipeline Tasks</h3>
+<ul>
+<li><p>Data annotation</p></li>
+<li><p>Data post-processing</p></li>
+<li><p>Derived Data Creation</p></li>
+<li><p>Data format conversion</p></li>
+<li><p>Dimensionality Reduction and Clustering</p></li>
+<li><p>Server-side computes</p></li>
+</ul>
+<hr />
+<h3 id="in-python-youre-more-likely-to-stay-within-python">In Python,
+you’re more likely to stay within python</h3>
+<ul>
+<li><p>World-class ML and Stats are available in one place</p></li>
+<li><p>Libraries exist for working with audio, text, and images</p></li>
+<li><p>NLP tools are absolutely available</p></li>
+<li><p>Python is server-side run friendly</p></li>
+<li><p>This is part of the reason we’re teaching you python</p></li>
+</ul>
+<hr />
+<h3
+id="this-means-its-possible-to-have-one-script-to-rule-them-all-in-a-jupyter-notebook">This
+means it’s possible to have ‘one script to rule them all’ in a Jupyter
+Notebook</h3>
+<ul>
+<li><p>Goes from ‘raw’ to ‘ready for publication’ (in enough
+time)</p></li>
+<li><p>Hooray for stateless analysis!</p></li>
+</ul>
+<hr />
+<h3 id="sometimes-thats-not-practical">Sometimes that’s not
+practical</h3>
+<ul>
+<li><p>Different tools which don’t play nice with others (e.g. ArcGIS,
+MATLAB)</p></li>
+<li><p>Different toolkits with one specific analysis you need</p></li>
+<li><p>Compute times that are too large to run everything
+repeatedly</p></li>
+<li><p>Loads split across different machines</p></li>
+<li><p>Multi-person workflows</p></li>
+</ul>
+<hr />
+<h3 id="multi-person-workflows">Multi-Person Workflows</h3>
+<ul>
+<li><p>Having multiple humans working on the same data</p></li>
+<li><p>What can this look like?</p></li>
+<li><p>Why would you do this?</p></li>
+</ul>
+<hr />
+<h3 id="what-are-good-practices-for-data-pipelines">What are good
+practices for data pipelines?</h3>
+<hr />
+<h3 id="what-are-the-dangers-of-doing-this-badly">What are the dangers
+of doing this badly?</h3>
+<hr />
+<h3 id="some-good-pipelining-ideas">Some good pipelining ideas</h3>
+<ul>
+<li><p>Document the process well</p>
+<ul>
+<li><p>“First, data goes into MATLAB, turning the raw position data into
+a matrix of X, Y, Z, pitch, roll, yaw by time coordinates…”</p></li>
+<li><p>Every project should come with a lab manual</p></li>
+</ul></li>
+<li><p>Use scripts rather than GUI-based processing, and keep all the
+scripts used together in one place</p></li>
+<li><p>Use lots of ‘if this file exists, skip this step’ commands to
+make sure you can delete everything but the raw data</p></li>
+<li><p>Put expensive steps early in the pipeline if you can so they get
+re-run less often</p></li>
+</ul>
+<hr />
+<h3 id="good-pipeline-ideas-continued">Good Pipeline Ideas,
+Continued</h3>
+<ul>
+<li><p>Use the same, interoperable formats between steps</p></li>
+<li><p>Clearly store intermediate or derived forms of data</p>
+<ul>
+<li>Folders or filenames for ‘raw’, ‘matlab_processed’,
+‘processed_annotated’, ‘analysis_ready’</li>
+</ul></li>
+<li><p>Write every step to be run as a batch, across all the data</p>
+<ul>
+<li>Makes it easy to add a participant and re-run</li>
+</ul></li>
+<li><p>Consider making a mega-script to run the sub-steps all in order,
+if that makes sense</p></li>
+</ul>
+<hr />
+<h3 id="when-you-screw-this-up">When you screw this up…</h3>
+<ul>
+<li><p>“Wait, did I actually do all the processing for this particular
+person’s data?”</p></li>
+<li><p>“Oh no, I don’t remember which scripts we ran in which
+order!”</p></li>
+<li><p>“We forgot a participant, but re-processing all the data would
+take a week”</p></li>
+<li><p>“Uh, sorry, I just realized I exported all the position data from
+MATLAB without doing the correction step, can you re-run with these
+files?”</p></li>
+<li><p>“Hey, can we fly you back out here to train your replacement’s
+replacement? The last guy left a mess, and we don’t know how he was
+processing the data.”</p></li>
+</ul>
+<hr />
+<h3 id="in-summary">In summary</h3>
+<ul>
+<li><p>Make your entire analysis reproduce from code with one
+click</p></li>
+<li><p>If you can’t do that, make it reproduce from a small number of
+well-documented clicks</p></li>
+<li><p>If you can’t do that, document the heck out of every single click
+required so that it’s easy to re-do later</p></li>
+<li><p>Doing otherwise hurts Will where he’s quite sensitive</p></li>
+</ul>
+<hr />
+<h2 id="special-concerns-for-sensitive-data">Special Concerns for
+Sensitive Data</h2>
+<hr />
+<h3 id="sensitive-data-types">Sensitive data types</h3>
+<ul>
+<li><p>What kinds of data are freely shareable?</p></li>
+<li><p>What kinds of data are sensitive <em>temporarily</em>?</p></li>
+<li><p>What kinds of data are <em>always</em> sensitive?</p></li>
+</ul>
+<hr />
+<h3 id="how-little-data-can-i-save">“How little data can I save?”</h3>
+<ul>
+<li><p>“Do I have to video record sessions?”</p></li>
+<li><p>“Can we blur participant faces in saved interview
+recordings?”</p></li>
+<li><p>“Should I save the audio, or just transcripts?”</p></li>
+<li><p>“We don’t really need to keep phone numbers or birthdates,
+right?</p></li>
+<li><p>“Do I need a document linking names to participant IDs?”</p></li>
+</ul>
+<hr />
+<h3 id="data-deidentification">Data Deidentification</h3>
+<ul>
+<li><p>Store identifiers rather than names</p></li>
+<li><p>‘Bin’ the data such that ‘birthday’ becomes ‘30-35’ and ‘La
+Jolla’ becomes ‘Southern California’</p></li>
+<li><p>Remove or replace other potentially identifying data.</p>
+<ul>
+<li>“Add a random date offset between 2 and 300 days for each patient’s
+records”</li>
+<li>“Exchange every instance of location names with another location
+name”</li>
+</ul></li>
+<li><p>Ask for proxy data</p>
+<ul>
+<li>“Give me documents which look like intelligence reports, but aren’t
+intelligence reports”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="deidentified-doesnt-always-mean-freely-shareable">“Deidentified”
+doesn’t always mean “freely shareable”</h3>
+<ul>
+<li><p>“On $DATE, we visited $CITY. The Eiffel tower was so beautiful
+lit up for Christmas.”</p></li>
+<li><p>“During the interview, 324ef2a described why he hates when people
+call him”Wliliam”, and prefers 45ce78f instead.”</p></li>
+<li><p>“Mr. 238d4f indicated that as the Pastor of a Seventh Day
+Adventist church near his hometown of Ann Arbor, he must keep his
+homosexuality secret.”</p></li>
+<li><p>“In these anonymous location data, find all people who spend 8
+hours daily near PEB 425 on weekdays starting on July 25th but not on
+Sep 5th, who go to Vons in UTC regularly, and who remained on campus
+until 5:30 on Monday Sep. 12th. Show me all addresses in which they
+overnight.”</p></li>
+<li><p><a
+href="https://www.theregister.com/2021/09/16/anonymising_data_feature/">De-Identified
+Data can be re-identified</a>, so think like an attacker would</p></li>
+</ul>
+<hr />
+<h3 id="types-of-sensitive-data">Types of Sensitive Data</h3>
+<ul>
+<li><p><strong>Personally Sensitive Data</strong> can cause financial,
+social, or physical harm to individual people if in the wrong
+hands</p></li>
+<li><p><strong>Organizationally Sensitive Data</strong> can cause
+financial, reputational, or practical harm to a company, group or
+institution if in the wrong hands</p></li>
+<li><p>Some data can be both!</p></li>
+</ul>
+<hr />
+<h3 id="personally-sensitive-data">Personally Sensitive Data</h3>
+<ul>
+<li><p>Medical records (<a
+href="https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act">HIPAA</a>)</p></li>
+<li><p>Educational Recrods (<a
+href="https://en.wikipedia.org/wiki/Family_Educational_Rights_and_Privacy_Act">FERPA</a>)</p></li>
+<li><p>Qualitative data with identifying and socially meaningful
+information (e.g. interviews)</p></li>
+<li><p>Sensitive financial, locational, and identity information (ID
+theft, doxxing, (cyber)stalking)</p></li>
+<li><p>Data which can link people to activities they’d rather keep
+anonymous (e.g. screen names linked to phone numbers, cryptocurrency
+wallet purchase records)</p></li>
+<li><p>What else?</p></li>
+</ul>
+<hr />
+<h3 id="organizationally-sensitive-data">Organizationally Sensitive
+Data</h3>
+<ul>
+<li><p>Data describing audits or investigations in progress</p></li>
+<li><p>Data which would be valuable to a competing entity (e.g. sales
+data, R&amp;D budget, upcoming product performance)</p></li>
+<li><p>Data which provides insider information (e.g. upcoming sales
+figures, information about a recall)</p></li>
+<li><p>Code or data which constitute ‘trade secrets’ or ‘secret
+sauce’</p></li>
+</ul>
+<hr />
+<h3 id="organizationally-sensitive-data-continued">Organizationally
+Sensitive Data, Continued</h3>
+<ul>
+<li><p>Data protected by privacy policies or data-use
+agreements</p></li>
+<li><p>Data with constraints placed by an institutional review
+board</p></li>
+<li><p>Classified Governmental Data</p></li>
+<li><p>What else?</p></li>
+</ul>
+<hr />
+<h3
+id="data-which-are-both-personally-and-organizationally-sensitive">Data
+which are both personally and organizationally sensitive</h3>
+<ul>
+<li><p>Identities of spies or domestic violence survivors in an
+organization’s network</p></li>
+<li><p>User data of apps targeted at LGBTQ+ individuals</p></li>
+<li><p>Library records</p></li>
+<li><p>User collected phone data</p></li>
+</ul>
+<hr />
+<h3
+id="organizationally-sensitive-data-can-become-less-sensitive">Organizationally
+sensitive data can become less sensitive</h3>
+<ul>
+<li><p>Companies/Organizations/Governments break down</p></li>
+<li><p>Time gated data (e.g. earnings or audit reports)</p></li>
+<li><p>Programs can be declassified</p></li>
+<li><p>Proprietary technology can leak or become irrelevant</p></li>
+<li><p>… but personal data is more or less permanently
+sensitive</p></li>
+</ul>
+<hr />
+<h3 id="working-with-sensitive-data">Working with Sensitive Data</h3>
+<ul>
+<li><p>Centralize the data, and work on the remote server via SSH/VNC
+over VPN</p></li>
+<li><p>Designate specific folders for sensitive data, and remove them
+from local backups</p></li>
+<li><p>Create code and annotations in a format that doesn’t include any
+of the raw data</p>
+<ul>
+<li><p>References to columns and anonymous identifiers, rather than
+names</p></li>
+<li><p>References to character offsets rather than text
+(e.g. ‘characters 30-45 in MED_DOC_1342 are a medication’)</p></li>
+</ul></li>
+<li><p>What else?</p></li>
+</ul>
+<hr />
+<h3 id="use-general-best-practices">Use general best practices</h3>
+<ul>
+<li><p>Use long, high-entropy passphrases and a password manager</p>
+<ul>
+<li>“correct horse Battery staple css 22” is better than
+“aslfkjh32r4”</li>
+</ul></li>
+<li><p>Encrypt the data on your computer and use a locking code on your
+phone</p></li>
+<li><p>Use a VPN if you’re connecting via sketchy wifi/ethernet</p></li>
+<li><p>Keep your computer up to date</p></li>
+<li><p>Don’t save anything sensitive ‘to the cloud’</p></li>
+<li><p>If you must transfer files online, only transfer encrypted
+files</p></li>
+</ul>
+<hr />
+<h2 id="encryption">Encryption</h2>
+<hr />
+<h3 id="encryption-algorithms-oversimplified">Encryption Algorithms
+(Oversimplified)</h3>
+<ul>
+<li><p>‘Trap door’ functions are hard <em>only in one
+direction</em></p></li>
+<li><p><em>Prime Factorization</em> is a good example</p>
+<ul>
+<li><p>‘This number is the product of two very large prime numbers, what
+are they?’</p></li>
+<li><p><em>Extremely</em> expensive to calculate prime factors</p></li>
+<li><p><em>Extremely</em> easy to confirm that you’ve got the correct
+answer</p></li>
+</ul></li>
+<li><p>Your passphrase is used to generate a key which is a large number
+in a trapdoor function</p>
+<ul>
+<li>The bits of the file are shuffled around such that they can only be
+un-shuffled in the right order with that number in hand using an
+algorithm like AES</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-numbers-used-are-very-large">The numbers used are very
+large</h3>
+<ul>
+<li><p>AES-256 uses 256 bit numbers to do this math</p></li>
+<li><p>115,​792,​089,​237,​316,​195,​423,​570,​985,​008,​687,​907,​853,​269,​984,​665,​640,​564,​039,​457,​584,​007,​913,​129,​639,​935
+is the largest 256 bit number</p></li>
+<li><p>You would need to try a <em>lot</em> of numbers (2^255 keys) to
+get the answer</p>
+<ul>
+<li><p>If every computer on Earth worked together to crack an AES 256
+key, it would take approximately
+13,668,946,​519,203,305,​597,215,004,​987,461,470,​161,805,533,​714,878,481
+years <a
+href="https://scrambox.com/article/brute-force-aes/">(Source)</a></p></li>
+<li><p>Not perfectly secure, but damned close</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="encryption-programs">Encryption Programs</h3>
+<ul>
+<li><p>Use your OS’s built-in encryption as a base layer
+(e.g. Bitlocker, Filevault, Luks)</p>
+<ul>
+<li>This protects against laptop thieves</li>
+</ul></li>
+<li><p>Use <code>gocryptfs</code> for anything which shouldn’t be
+unlocked when your computer is</p>
+<ul>
+<li>… or which shouldn’t be backed up unencrypted</li>
+</ul></li>
+<li><p>Tools like Restic or Borg with rclone allow for ‘zero knowledge’
+backups</p></li>
+<li><p><strong>Encryption can cause irrevocable data loss if you forget
+your key</strong></p>
+<ul>
+<li>Powerful tools can hurt you</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="encryption-is-awkward-across-borders">Encryption is awkward
+across borders</h3>
+<hr />
+<h3 id="rubber-hose-cryptanalysis">Rubber Hose Cryptanalysis</h3>
+<p><img class="r-stretch" src="img/rubber_hose.png"></p>
+<hr />
+<h3
+id="but-what-if-the-data-arent-that-interesting-but-just-need-to-be-stored">…
+but what if the data aren’t that interesting, but just need to be
+stored?</h3>
+<hr />
+<h2 id="long-term-data-storage">Long Term Data Storage</h2>
+<hr />
+<h3 id="sometimes-projects-actually-end">Sometimes, projects actually
+end</h3>
+<ul>
+<li><p>You move on</p></li>
+<li><p>The folders just never get opened again (😭 )</p>
+<ul>
+<li>(until they do)</li>
+</ul></li>
+<li><p>What do you do with all the data?</p></li>
+</ul>
+<hr />
+<h3 id="how-do-you-archive-and-store-data">How do you archive and store
+data?</h3>
+<ul>
+<li><p>Option 1: Just leave it on your hard drive</p></li>
+<li><p>Option 2: Compress it on your hard drive</p></li>
+<li><p>Option 3: Store it elsewhere</p></li>
+</ul>
+<hr />
+<h3 id="just-leave-it-pros-and-cons">“Just Leave it” Pros and Cons</h3>
+<ul>
+<li><p>Easy to get at the data later if you need them</p></li>
+<li><p>Data becomes searchable on your computer</p></li>
+<li><p>Data takes up lots of space on your machine</p></li>
+<li><p>Easy to accidentally modify the data</p>
+<ul>
+<li>Version control!</li>
+</ul></li>
+<li><p>Data is searchable on your computer (even when you don’t want
+to)</p></li>
+</ul>
+<hr />
+<h3 id="file-compression">File Compression</h3>
+<ul>
+<li><p>“How can I more cleverly store these files while retaining all
+the information, even if it takes some computing time to decompress
+later?”</p></li>
+<li><p>Dictionary-based coding</p></li>
+<li><p>Good algorithms are <code>gzip</code> (.gz) and <code>zstd</code>
+(.zst)</p></li>
+<li><p><strong>This is lossless compression, so don’t worry about
+it</strong></p></li>
+</ul>
+<hr />
+<h3 id="file-archiving">File Archiving</h3>
+<ul>
+<li><p>This turns a folder into a single file, for later use</p></li>
+<li><p>“Store the files and their structure in a monolithic
+file”</p></li>
+<li><p><code>tar</code> is the best implementation of this</p></li>
+<li><p>Archiving isn’t necessarily compression</p>
+<ul>
+<li>Although some things like <code>zip</code> do both!</li>
+</ul></li>
+<li><p>Also valuable for encrypting files</p></li>
+</ul>
+<hr />
+<h3 id="how-to-do-file-compression">How to do file compression</h3>
+<ul>
+<li><p>Install <code>zstd</code> and <code>tar</code></p></li>
+<li><p><code>zstd myfile.txt</code> and
+<code>zstd -d myfile.txt</code></p></li>
+<li><p><code>tar --zstd -cf directory.tar.zst directory/</code></p></li>
+<li><p><code>tar --zstd -xf directory.tar.zst</code> to
+decompress</p></li>
+</ul>
+<hr />
+<h3 id="this-turns-your-folder-into-folder.tar.zst">This turns your
+folder into <code>folder.tar.zst</code></h3>
+<ul>
+<li><p>It’s just one file you have to worry about</p></li>
+<li><p>You can extract everything again later</p></li>
+<li><p>… and it takes up much less space</p>
+<ul>
+<li>How much less depends on the contents</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="compress-it-pros-and-cons">“Compress it” Pros and Cons</h3>
+<ul>
+<li><p>Easier file management, transfer, and storage</p></li>
+<li><p>Much less space required</p></li>
+<li><p>You don’t need to worry about accidentally changing or deleting
+files</p></li>
+<li><p>If that one file gets deleted or corrupted, you have a
+problem</p></li>
+<li><p>Harder to search through the archive or ‘just grab
+something’</p></li>
+</ul>
+<hr />
+<h3 id="either-way-back-it-up">Either way, back it up!</h3>
+<ul>
+<li><p>Or consider uploading it to a university or public data
+repository!</p></li>
+<li><p>… but how do you know if your 12GB tar.zst was corrupted during
+upload?</p></li>
+</ul>
+<hr />
+<h2 id="hashing-algorithms">Hashing Algorithms</h2>
+<hr />
+<h3 id="hashing-algorithms-solve-problems">Hashing Algorithms solve
+problems</h3>
+<ul>
+<li><p>How can you be sure that two archives called
+<code>mydata.tar.zst</code> are really the same thing, or that your file
+isn’t corrupt?</p></li>
+<li><p>How can you give a set of changes in a git repository a
+guaranteed-to-be-unique name?</p></li>
+<li><p>How can you make sure that a document which has been digitally
+‘signed’ hasn’t been modified since the signature?</p></li>
+<li><p>How can I confirm that the password somebody entered is the same
+one they set up <em>without storing the password</em>?</p></li>
+</ul>
+<hr />
+<h3 id="cryptographic-hashing-algorithms">Cryptographic Hashing
+Algorithms</h3>
+<ul>
+<li><p>Take an input data array of arbitrary length and turn it into a
+unique output of a fixed length ()</p></li>
+<li><p>The same data will always produce the same hash</p></li>
+<li><p>Data which is different, even only by a bit, produces an
+uncorrelated hash</p></li>
+<li><p>It is a <em>one-way</em> function, and you can’t regenerate the
+original input or easily generate an input which has a particular
+hash</p></li>
+<li><p>‘Hash Collision’, when two files have the same hash and different
+contents, is also avoided</p></li>
+<li><p>Common ones include the SHA family (<code>SHA-N</code>),
+<code>BLAKE3</code>, and <code>md5</code></p></li>
+</ul>
+<hr />
+<h3 id="you-can-hash-any-data">You can hash any data</h3>
+<ul>
+<li><p><strong>Strings and numbers</strong> can be hashed together or
+apart</p></li>
+<li><p><strong>File hashes</strong> use the entire contents of a file to
+generate a single unique string</p></li>
+<li><p><strong>Passwords hashes</strong> generally include a ‘salt’
+chunk of secret data alongside the user password, making it expensive to
+guess and impossible to spot password reuse</p>
+<ul>
+<li><code>storedpass = sha256(secretsalt+userpass)</code></li>
+</ul></li>
+<li><p><strong>Identifier hashes</strong> turn sensitive information
+into anonymous labels in a way which allows only the researcher to
+confirm that data belongs to a particular person</p>
+<ul>
+<li><code>idhash = sha256(firstname+lastname+secretsalt)</code></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="demonstration">Demonstration</h3>
+<ul>
+<li><p><code>sha-256</code> is a well known, secure hashing
+algorithm</p></li>
+<li><p>Celex is a 5mb lexical resource with 5,042,831
+characters</p></li>
+<li><p>I’ll remove one character</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="comp/sha_before.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="comp/sha_after.jpg"></p>
+<hr />
+<pre class="#!/bin/bash"><code>~ % sha256sum celex.txt
+73e585cdafecf42caf7dc4e96dbec07d69b02e696482fc8709c9a293319ebbb5  celex.txt
+~ % sha256sum celex_mod.txt
+c036d295123c827950bf36db2f1044e66afe07a66683bec51708dae024a85947  celex_mod.txt</code></pre>
+<hr />
+<h3 id="hashing-is-amazingly-useful">Hashing is amazingly useful</h3>
+<ul>
+<li><p>“Do I have any duplicate files on this system?”</p></li>
+<li><p>“Are these two stored analyses really the same?”</p></li>
+<li><p>“I just moved this important archive to a new computer via a
+sketchy connection, is it still intact?”</p></li>
+<li><p>“Is the version of the program I downloaded really the same as
+the one the developers ‘signed’”</p></li>
+</ul>
+<hr />
+<h3 id="sha-256-produces-long-secure-hashes">SHA-256 produces long,
+secure hashes</h3>
+<ul>
+<li><p>You can get much shorter, less secure hashes
+(e.g. <code>md5</code>) if you need less guaranteed collision resistance
+or need the hash to be smaller</p>
+<ul>
+<li>MD5 is <strong>broken</strong> for cryptographic uses, collisions
+are easy to generate</li>
+</ul></li>
+<li><p>Generally, SHA-3 with N &gt; 256 isn’t a bad plan</p></li>
+<li><p><strong>This will be weirdly useful to you</strong></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Finding and collecting data are different, but both have
+problems</p></li>
+<li><p>Sane data formats are important</p></li>
+<li><p>Data often has multi-step pipelines which you should be mindful
+of</p></li>
+<li><p>Sensitive data are important to be careful with</p></li>
+<li><p>Data can be stored as-is, archived, or compressed</p></li>
+<li><p>Hash algorithms let you check data integrity and do lots of other
+useful things</p></li>
+</ul>
+</body>
+</html>

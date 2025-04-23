@@ -1,0 +1,24 @@
+tree_ppattach3tex
+ 
+[S 
+  [NP 
+    [N' 
+      [N Dua Lipa ] ] ] 
+  [VP 
+    [VP 
+      [V sang ] 
+      [NP 
+        [NP 
+          [DET a ] 
+          [N' 
+            [N song ] ] ] 
+        [PP 
+          [P about ] 
+          [NP 
+            [N' 
+              [N levitation ] ] ] ] ] ] 
+    [PP 
+      [P in ] 
+      [NP 
+        [N' 
+          [N San Diego ] ] ] ] ] ]

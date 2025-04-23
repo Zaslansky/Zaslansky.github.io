@@ -1,0 +1,25 @@
+tree_101sc_kittenstex
+
+[S 
+  [NP 
+    [DET Two ] 
+    [N' 
+      [ADJ stuffed ] 
+      [N' 
+        [N kittens ] ] ] ] 
+  [VP 
+    [VP 
+      [V plotted ] 
+      [NP 
+        [N' 
+          [N revenge ] ] ] ] 
+    [PP 
+      [P in ] 
+      [NP 
+        [DET an ] 
+        [N' 
+          [ADJ empty ] 
+          [N' 
+            [ADJ quiet ] 
+            [N' 
+              [N apartment ] ] ] ] ] ] ] ]

@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="working-on-somebody-elses-computer">Working on Somebody Else’s
+Computer</h1>
+<h3 id="will-styler---css-bootcamp">Will Styler - CSS Bootcamp</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Working on somebody else’s computer</p></li>
+<li><p>Alternatives to bare metal running</p></li>
+</ul>
+<hr />
+<h1 id="you-dont-always-want-to-use-your-own-machine">You don’t always
+want to use your own machine</h1>
+<hr />
+<h3 id="why-use-your-own-machine">Why use your own machine?</h3>
+<ul>
+<li><p>You trust it (more)</p></li>
+<li><p>You own it</p></li>
+<li><p>It’s cheaper, generally</p></li>
+<li><p>You can use applications more easily</p></li>
+</ul>
+<hr />
+<h3 id="why-use-somebody-elses-machine">Why use somebody else’s
+machine?</h3>
+<ul>
+<li><p>It’s cheaper</p></li>
+<li><p>It has software you don’t or can’t</p></li>
+<li><p>It’s more powerful</p></li>
+<li><p>You’re being forced to</p>
+<ul>
+<li>Data confidentiality</li>
+<li>Proprietary software</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-do-you-do-that">How do you do that?</h3>
+<ul>
+<li>Physical use
+<ul>
+<li>Hook up a mouse and keyboard and log in to the machine</li>
+</ul></li>
+<li>ssh
+<ul>
+<li><code>ssh wstyler@ssrde.ucsd.edu</code></li>
+<li>Opens a secure shell to the other computer</li>
+<li>You get to use whatever shell you’d like</li>
+</ul></li>
+<li>Remotely hosted software (like Datahub)
+<ul>
+<li>You send commands, it sends output</li>
+<li>Graphics on your screen don’t get sent, they get generated</li>
+</ul></li>
+<li>VNC
+<ul>
+<li>Sends the ‘screen image’ from their computer to yours, and lets you
+move the mouse</li>
+<li>Generally a bad plan unless you need to run a GUI app</li>
+</ul></li>
+<li>Running Scheduled Jobs</li>
+</ul>
+<hr />
+<h2 id="running-software">Running Software</h2>
+<hr />
+<h3 id="software-can-be-run-in-many-ways">Software can be run in many
+ways</h3>
+<ul>
+<li><p>Interactive Running</p></li>
+<li><p>Scripted running</p></li>
+<li><p>Scheduled Running</p></li>
+</ul>
+<hr />
+<h3 id="interactive-running">Interactive Running</h3>
+<ul>
+<li><p>The human is guiding the process</p></li>
+<li><p>Often a window is open, the app is ‘running’ and waiting for you
+to do things</p></li>
+<li><p>Jupyter/ArcGIS/Word is a good example of this</p></li>
+<li><p>“Driving the software”</p></li>
+</ul>
+<hr />
+<h3 id="scripted-running">Scripted Running</h3>
+<ul>
+<li><p>Some applications can be run as a ‘batch command’</p></li>
+<li><p>Input is provided ahead of time, in the form of a command or
+script</p></li>
+<li><p>The user’s only interaction is directing the script to
+run</p></li>
+<li><p>“Set it up then let it run”</p></li>
+<li><p>Output is directed to a file, or continues in the
+background</p></li>
+</ul>
+<hr />
+<h3 id="interactive-running-pros-and-cons">Interactive Running Pros and
+Cons</h3>
+<ul>
+<li><p>Very easy to debug and use in real time</p>
+<ul>
+<li>Variables are set and you can ‘play around’</li>
+</ul></li>
+<li><p>Easier for something you’re building</p></li>
+<li><p>Some software doesn’t support batch running or scripting</p></li>
+<li><p>Doing the thing takes the same amount of time each time you do it
+for new data</p>
+<ul>
+<li>You become faster repeating tasks, but <strong>you are the
+bottleneck</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="scripted-running-pros-and-cons">Scripted Running Pros and
+Cons</h3>
+<ul>
+<li><p>Setting up an automated script can take as along as doing the
+work manually</p>
+<ul>
+<li>Can be run over and over with new data</li>
+</ul></li>
+<li><p>You set it up, then go get lunch</p></li>
+<li><p>Scripts are often portable, and run easily on any machine with
+the software installed</p></li>
+<li><p>Scripts run with less ‘overhead’ (e.g. windows, graphics,
+etc)</p></li>
+<li><p>Debugging is much more painful and needs other
+approaches</p></li>
+<li><p>Nobody is helping you, you need to figure it out</p></li>
+</ul>
+<hr />
+<h3 id="scripted-running-works-on-remote-machines">Scripted running
+works on remote machines</h3>
+<ul>
+<li><p>ssh into another machine, run your script, leave</p></li>
+<li><p>Sometimes, it’s required!</p></li>
+</ul>
+<hr />
+<h3 id="scheduled-running">Scheduled Running</h3>
+<ul>
+<li><p>Prepare a scripted code chunk ahead of time</p></li>
+<li><p>Then let another program run the script at the designated
+moments</p></li>
+<li><p>This can be locally (e.g. with <code>cron</code> or
+<code>systemd</code>)</p></li>
+<li><p>This can be remotely, with a scheduling program</p></li>
+</ul>
+<hr />
+<h3 id="slurm-and-compute-scheduling">Slurm and Compute Scheduling</h3>
+<ul>
+<li><p>“Hey server, here’s a job, run it when you can”</p></li>
+<li><p>You don’t control when it starts and stops</p></li>
+<li><p>You can request the resources you need</p></li>
+<li><p>This is how many compute clusters run</p></li>
+</ul>
+<hr />
+<pre><code>#!/bin/bash
+#SBATCH --job-name=slurm-test    # create a short name for your job
+#SBATCH --output=slurm-%A.%a.out # stdout file
+#SBATCH --error=slurm-%A.%a.err  # stderr file
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=1               # total number of tasks across all nodes
+#SBATCH --cpus-per-task=1        # cpu-cores per task (&gt;1 if multi-threaded tasks)
+#SBATCH --mem-per-cpu=16G         # memory per cpu-core (4G is default)
+#SBATCH --gres=gpu:1             # number of gpus per node
+#SBATCH --time=20:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --mail-type=begin        # send email when job begins
+#SBATCH --mail-type=end          # send email when job ends
+#SBATCH --mail-user=you@ucsd.edu
+
+
+conda activate tf2-gpu
+python3 mython.py</code></pre>
+<hr />
+<h2 id="what-problems-come-about-when-working-remotely">What problems
+come about when working remotely?</h2>
+<hr />
+<h3 id="remote-computer-problem-1-security">Remote Computer Problem 1:
+Security</h3>
+<ul>
+<li><p>Don’t save anything sensitive ‘to the cloud’</p>
+<ul>
+<li>Make sure you have strong guarantees about your data’s integrity
+before doing anything ‘cloud’</li>
+</ul></li>
+<li><p>If you must transfer files online, only transfer encrypted
+files</p></li>
+<li><p>Ask yourself if you trust the administrators on the
+machine</p></li>
+<li><p>Are you connecting securely to the machine?</p>
+<ul>
+<li>SSH is secure, but you shouldn’t do the connection from public
+wifi</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="remote-computer-problem-2-data-storage-and-backup">Remote
+Computer Problem 2: Data Storage and Backup</h3>
+<ul>
+<li>Data will need to be sent to, and retrieved from the remote server
+<ul>
+<li>Unless it ‘lives’ there</li>
+<li>How will you do this securely?</li>
+</ul></li>
+<li>How can you ensure that the data there is backed up?
+<ul>
+<li>What guarantees does the server provider offer?</li>
+<li>Do you believe them?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="remote-computer-problem-3-storage-costs">Remote Computer Problem
+3: Storage Costs</h3>
+<ul>
+<li><p>You pay for compute, and pay separately for storage</p></li>
+<li><p>You may pay for the ingress/egress (that is, sending data to and
+from)</p></li>
+<li><p>Just keeping a large dataset online can be pricy</p></li>
+<li><p>Servers you ‘own’ may have more limited storage space for you to
+use</p></li>
+</ul>
+<hr />
+<h3 id="remote-computer-problem-4-connectivity">Remote Computer Problem
+4: Connectivity</h3>
+<ul>
+<li>You can’t count on your internet connection staying up
+<ul>
+<li>Wifi disconnections, VPN logouts, Internet Outages, etc.</li>
+<li>Some shells are designed for this (e.g. <a
+href="https://mosh.org/">mosh</a>)</li>
+</ul></li>
+<li>You might not want to keep your computer connected for the duration
+of a non-scheduler-based 20 hour compute
+<ul>
+<li>This is where tools like <a
+href="https://brainhack-princeton.github.io/handbook/content_pages/hack_pages/tmux.html">tmux</a>
+can be used to log in, start a session, disconnect, and reconnect to it
+later</li>
+</ul></li>
+<li>Slow connections mean slow connections
+<ul>
+<li>Sending text back and forth over SSH is very fast, but latency is
+rough</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="remote-computer-problem-5-neighbors">Remote Computer Problem 5:
+Neighbors</h2>
+<ul>
+<li>You may be the only person logged in, or you may be one of 20 people
+hammering a 24 core machine
+<ul>
+<li>Your scheduled job may take 10 minutes to start, or 10 hours, or 10
+days</li>
+</ul></li>
+<li>Not all systems will enforce user storage limits
+<ul>
+<li>So, your neighbor might write 1.2 TB of “placeholder data FIXME” to
+a file before your job runs, blocking you from writing out</li>
+</ul></li>
+<li>‘Cloud’ providers will sell you dedicated cores and RAM and storage
+that is guaranteed ‘yours’
+<ul>
+<li>“VPS” or ‘Virtual Private Server’</li>
+<li>This is ‘your own machine’, with nobody else on it</li>
+<li>You can choose the number of cores, amount of RAM, disk space, and
+adjust them in real time</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="but-wait">… but wait…</h3>
+<ul>
+<li>How can they sell you a machine with an arbitrary number of cores,
+amount of RAM, disk space, and let you change that at any given
+moment?</li>
+</ul>
+<hr />
+<h2 id="what-is-a-machine-anyways">What is a ‘machine’, anyways?</h2>
+<hr />
+<h3 id="a-computer-is-practically-five-things">A Computer is,
+practically, five things:</h3>
+<ul>
+<li><p>Hardware</p></li>
+<li><p>An operating system</p></li>
+<li><p>The software environment</p></li>
+<li><p>A file system</p></li>
+<li><p>A user interface</p></li>
+</ul>
+<hr />
+<h3 id="your-computer-has-one-of-each-of-these-things">Your computer has
+one of each of these things</h3>
+<ul>
+<li>It has <em>only one</em> of each of hardware, OS, environment,
+files, and a user interface
+<ul>
+<li>Maybe multiple file systems</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="there-can-be-more-or-less-than-one-of-each">There can be more or
+less than one of each</h3>
+<ul>
+<li>Virtualization
+<ul>
+<li>“Use one piece of hardware to spawn many OSes with many
+environments, filesystems, and interfaces”</li>
+</ul></li>
+<li>Containerization
+<ul>
+<li>“Use one set of hardware and one OS to run many environments”</li>
+<li>Sometimes multiple file systems, sometimes a unified system</li>
+<li>Docker, Podman, Kubernetes, Distrobox…</li>
+</ul></li>
+<li>Headless running
+<ul>
+<li>“We don’t need a user interface at all on this machine, it can just
+respond to application requests”</li>
+</ul></li>
+<li>Storage Area Networks (SANs)
+<ul>
+<li>“This computer doesn’t need storage, it can just use the storage
+from another computer”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="why-use-virtualization">Why use virtualization?</h3>
+<ul>
+<li>“Use one piece of hardware to spawn many OSes with many
+environments, filesystems, and interfaces”</li>
+</ul>
+<hr />
+<h3 id="why-use-containerization">Why use containerization?</h3>
+<ul>
+<li>“Use one set of hardware and OS to run many environments”</li>
+</ul>
+<hr />
+<h3 id="why-run-a-computer-headless">Why run a computer headless?</h3>
+<ul>
+<li>“We don’t need a user interface at all on this machine, it can just
+respond to application requests”</li>
+</ul>
+<hr />
+<h3 id="why-use-a-storage-area-network">Why use a Storage area
+network?</h3>
+<ul>
+<li>“This computer doesn’t need storage, it can just use the storage
+from another computer”</li>
+</ul>
+<hr />
+<h3 id="why-use-a-boring-bare-metal-install-on-a-computer">Why use a
+boring, bare-metal install on a computer?</h3>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>There are many ways to work on somebody else’s computer</p>
+<ul>
+<li>Interactive running with SSH</li>
+<li>Scripts</li>
+<li>Scheduled Jobs</li>
+</ul></li>
+<li><p>There are problems associated with remote work</p></li>
+<li><p>Not all “computers” are physical machines, and there are many
+ways to run code</p></li>
+</ul>
+</body>
+</html>

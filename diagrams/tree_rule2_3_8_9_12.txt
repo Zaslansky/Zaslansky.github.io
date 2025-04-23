@@ -1,0 +1,13 @@
+tree_rule2_3_8_9_12tex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [V ate ] 
+    [PP 
+      [P outside ] 
+      [NP 
+        [N' 
+          [N AP&M ] ] ] ] ] ]

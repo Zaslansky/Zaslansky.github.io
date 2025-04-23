@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="wide" src="ling_memes/wugs_not_drugs.jpg"></p>
+<hr />
+<h3 id="questions-from-last-time">Questions from last time?</h3>
+<ul>
+<li>Analytical techniques don’t have to be cognitively real to be
+useful!</li>
+</ul>
+<hr />
+<h1 id="frequency-and-morphology">Frequency and Morphology!</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h3 id="weve-talked-about-two-views-on-the-lexicon">We’ve talked about
+two views on the lexicon</h3>
+<ul>
+<li><p><strong>Morpheme-based Lexicon:</strong> We’re storing chunks of
+words and recombining them at the time of speech</p></li>
+<li><p><strong>Word-based Lexicon:</strong> We’re storing words as
+chunks, and breaking them apart when we need to</p></li>
+</ul>
+<hr />
+<h3
+id="today-well-look-at-something-thats-closely-related-to-that-debate">Today,
+we’ll look at something that’s closely related to that debate!</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>What is frequency?</p></li>
+<li><p>Frequency and Basic Forms</p></li>
+<li><p>Frequency and Productivity</p></li>
+<li><p>Frequency and Morphological Marking</p></li>
+<li><p>Frequency and Oddity</p></li>
+</ul>
+<hr />
+<h1 id="what-is-frequency">What is Frequency?</h1>
+<hr />
+<h3 id="not-all-words-are-used-with-the-same-frequency">Not all words
+are used with the same frequency</h3>
+<ul>
+<li><p>We use ‘to be’ much more than ‘to defenestrate’</p>
+<ul>
+<li>(I hope!)</li>
+</ul></li>
+<li><p>We talk about plural cars more often than plural
+octopodes</p></li>
+<li><p>These distributions are really unequal!</p></li>
+</ul>
+<hr />
+<h3 id="zipfs-law">Zipf’s Law</h3>
+<ul>
+<li><p>“In a given corpus of natural language, the frequency of a word
+is inversely proportional to its rank in the frequency table”</p></li>
+<li><p><em>The most common words are <strong>really</strong>
+common!</em></p>
+<ul>
+<li>… and the rarest words are super rare</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="wide" src="morphology/zipf2.jpg"></p>
+<hr />
+<h3 id="we-find-frequency-through-observation">We find frequency through
+observation</h3>
+<ul>
+<li><p>“How often does a word occur in natural language?”</p></li>
+<li><p>This is often checked using text corpora</p></li>
+</ul>
+<hr />
+<h2 id="text-corpus">Text Corpus</h2>
+<p>A large body of natural language text collected for linguistic
+inquiry</p>
+<hr />
+<h3 id="corpora-have-a-bunch-of-language-data">Corpora have a bunch of
+language data</h3>
+<ul>
+<li><p>Brown corpus: One million words</p></li>
+<li><p><a href="http://wstyler.ucsd.edu/enronsent.html">EnronSent
+Corpus</a>: 14 million words</p></li>
+<li><p><a href="http://www.anc.org/">OpenANC Corpus</a>: 15 million
+words (annotated)</p></li>
+<li><p>NY Times corpus: 1.8 million articles</p></li>
+<li><p><a href="https://corpus.byu.edu/coca/">Corpus of Contemporary
+American English (COCA)</a>: 560 million words</p></li>
+<li><p>iWeb Corpus: 14 <em>billion</em> words</p></li>
+</ul>
+<hr />
+<h3 id="we-can-use-a-corpus-to-check-frequency">We can use a corpus to
+check frequency!</h3>
+<ul>
+<li><p><a href="https://corpus.byu.edu/coca/">COCA Frequency</a> of
+‘are’: 2,567,146 tokens</p></li>
+<li><p>‘walk’: 67,178 tokens</p></li>
+<li><p>‘walked’: 58,702 tokens</p></li>
+<li><p>‘scratch’: 6,020 tokens</p></li>
+<li><p>‘cray’: 347 tokens</p></li>
+<li><p>‘chamfer’: 33 tokens</p></li>
+<li><p>‘yeet’: 0 tokens</p></li>
+</ul>
+<hr />
+<h3
+id="corpus-frequency-should-have-some-relation-to-usage-frequency">Corpus
+frequency should have some relation to usage frequency</h3>
+<ul>
+<li><p>Words that almost never show up in large amounts of text are
+probably quite rare</p>
+<ul>
+<li>… or the text isn’t representative (c.f. yeet)</li>
+</ul></li>
+<li><p>We can <strong>calculate and quantify</strong> the relative
+frequency of words</p></li>
+</ul>
+<hr />
+<p><img class="wide" src="humorimg/coolstoryhouse.jpg"></p>
+<hr />
+<h3 id="why-does-frequency-matter-for-morphology">Why does frequency
+matter for morphology?</h3>
+<hr />
+<h1 id="frequency-and-basic-forms">Frequency and Basic Forms</h1>
+<hr />
+<h2 id="whats-the-most-basic-form-of-a-word">What’s the most basic form
+of a word?</h2>
+<hr />
+<h3 id="deriving-basic-from-structure">Deriving ‘basic’ from
+structure</h3>
+<ul>
+<li><p>We’ve been making an assumption: More morphology makes it ‘less
+basic’</p></li>
+<li><p>‘cat’ is basic, ‘cats’ is derived</p></li>
+<li><p>‘govern’ is basic, ‘government’ is derived</p></li>
+<li><p>‘equal’ is basic, ‘unequalled’ is derived</p></li>
+</ul>
+<hr />
+<h3 id="we-can-think-of-this-as-a-structure-based-view">We can think of
+this as a structure-based view</h3>
+<ul>
+<li><p><strong>The base form is the simplest form
+observed!</strong></p></li>
+<li><p>Modifications to the simplest morphological form result in a
+derived form!</p></li>
+</ul>
+<hr />
+<h3 id="this-doesnt-have-to-be-true">This doesn’t have to be true!</h3>
+<ul>
+<li><p>Some kinds of words <em>never</em> surface without additional
+morphology</p>
+<ul>
+<li>Think Spanish verbal morphology, which is <em>obligatory</em></li>
+</ul></li>
+<li><p>Some words are seldom found without additional morphology</p>
+<ul>
+<li>‘couth’</li>
+</ul></li>
+<li><p>Remember, we might be storing whole words</p>
+<ul>
+<li>All forms are equivalent in complexity then!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="deriving-basic-from-frequency">Deriving ‘basic’ from
+frequency</h3>
+<ul>
+<li><p>Another approach: <strong>The most frequent form is the most
+basic form!</strong></p>
+<ul>
+<li>This is <em>regardless of form!</em></li>
+</ul></li>
+<li><p>Govern (3,856) vs. <clg>Government (240,841)</clg></p></li>
+<li><p>Settle (13,201) vs. <clg>Settlement (16,394)</clg></p></li>
+<li><p><clg>Enhance (11,672)</clg> vs. Enhancement (2,548)</p></li>
+</ul>
+<hr />
+<h3 id="these-two-approaches-make-different-predictions">These two
+approaches make different predictions</h3>
+<ul>
+<li><p>‘Govern’ is the basic form in a <em>structure-based</em>
+approach</p></li>
+<li><p>‘Government’ is the basic form in a <em>frequency-based</em>
+approach</p></li>
+</ul>
+<hr />
+<h3 id="frequency-seems-to-play-a-role-in-the-lexicon">Frequency seems
+to play a role in the lexicon</h3>
+<ul>
+<li><p>The most frequent words are easier and faster to access</p></li>
+<li><p>We preferentially hear frequent words in ambiguous
+situations</p></li>
+<li><p>We learn more frequent forms more easily</p></li>
+<li><p>Common use makes for stronger mental representation!</p></li>
+<li><p><strong>Frequency is a reasonable way to think about
+‘basicness’</strong></p></li>
+</ul>
+<hr />
+<p>… but does frequency win us anything else?</p>
+<hr />
+<h1 id="frequency-and-productivity">Frequency and Productivity</h1>
+<hr />
+<h2 id="why-are-some-patterns-productive">Why are some patterns
+productive?</h2>
+<hr />
+<h3 id="plemkal---walked">plemkal - ‘walked’</h3>
+<ul>
+<li><p>glentap - ‘cried’</p></li>
+<li><p>klampe - ‘sung’</p></li>
+<li><p>flutap - ‘yelled’</p></li>
+<li><p>slapte - ‘grabbed’</p></li>
+<li><p>vlagre - ‘wakened’</p></li>
+</ul>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="if-hug-is-beemte-the-word-for-hugged-is">If ‘hug’ is ‘beemte’,
+the word for ‘hugged’ is…</h3>
+<ol type="A">
+<li><p>beemtap</p></li>
+<li><p>breemte</p></li>
+<li><p>bleemte</p></li>
+<li><p>veemte</p></li>
+<li><p>wugiz</p></li>
+</ol>
+<hr />
+<h3 id="gar---cat-garfalb---catty">Gar - ‘cat’ Garfalb - ‘catty’</h3>
+<ul>
+<li><p>Bar - ‘noodle’ Barfalb - ‘noodly’</p></li>
+<li><p>Ger - ‘rock’ Gerfalb - ‘rocky’</p></li>
+<li><p>Fes - ‘sponge’ Fesfalb - ‘spongey’</p></li>
+<li><p>Fest - ‘party’ Festfalb - ‘party-like’</p></li>
+<li><p>Ren - ‘knight’ Renfalb - ‘knight-like’</p></li>
+</ul>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="if-dog-is-rup-the-word-for-dog-like-is.">If ‘dog’ is ‘rup’, the
+word for ‘dog-like’ is….</h3>
+<ol type="A">
+<li><p>Ruplen</p></li>
+<li><p>Ruplab</p></li>
+<li><p>Rupfalb</p></li>
+<li><p>Rupples</p></li>
+<li><p>Rupopodes</p></li>
+</ol>
+<hr />
+<h3 id="we-need-to-see-examples-of-the-pattern-in-action-to-use-it">We
+need to see examples of the pattern in action to use it</h3>
+<ul>
+<li>Morphological patterns must be ‘seen’ to be used!</li>
+</ul>
+<hr />
+<h3
+id="lexicalization-is-when-we-stop-seeing-the-pattern">Lexicalization is
+when we stop ‘seeing’ the pattern</h3>
+<ul>
+<li><p>‘oxen’, ‘children’, ‘brethren’, ‘women’</p></li>
+<li><p>Speakers no longer recognize ‘-en’ as a plural marker</p></li>
+<li><p>Words that are never seen die off!</p></li>
+</ul>
+<hr />
+<h3
+id="do-speakers-have-to-see-the-pattern-with-a-certain-frequency-for-it-to-stay-productive">“Do
+speakers have to see the pattern with a certain frequency for it to stay
+productive?”</h3>
+<ul>
+<li><h1 id="yes">Yes!</h1></li>
+</ul>
+<hr />
+<h3 id="the-parsing-line">The ‘parsing line’</h3>
+<ul>
+<li><p>The base form needs to be common enough that speakers ‘see’ the
+pattern</p></li>
+<li><p>Hay and Baayen (2002) describe one way to calculate this</p></li>
+</ul>
+<hr />
+<h3 id="put-simply">Put simply…</h3>
+<ul>
+<li><p>When the majority of words participating in a morphological
+pattern are <strong>more frequent</strong> than their bases, then that
+morphological pattern is <em>not likely to be productive</em></p></li>
+<li><p>When the majority of words participating in a morphological
+pattern are <strong>less frequent</strong> than their bases, then that
+morphological pattern is <em>likely to be productive</em></p></li>
+<li><p>This is referred to as the <strong>parsing
+ratio</strong></p></li>
+</ul>
+<hr />
+<h3 id="parsing-ratio-for--ity">Parsing Ratio for ‘-ity’</h3>
+<ul>
+<li><p>Modern/Modernity, Secure/Security, Insane/Insanity</p></li>
+<li><p>17% of complex words containing ity are <em>less frequent than
+their bases</em></p></li>
+<li><p>83% of complex words containing ity are <em>more frequent</em>
+than their bases</p></li>
+<li><p>-ity has a <strong>parsing ratio</strong> of 0.17</p></li>
+<li><p>The complex form (with -ity) is more basic!</p></li>
+</ul>
+<hr />
+<h3 id="parsing-ratios">Parsing Ratios</h3>
+<ul>
+<li><p>-ity has a parsing ratio of 0.17</p></li>
+<li><p>-ment has a parsing ratio of 0.24</p></li>
+<li><p>-ery has a parsing ratio of 0.34</p></li>
+<li><p>-er has a parsing ratio of 0.5</p></li>
+<li><p>-like has a parsing ratio of 0.68</p></li>
+<li><p>-less has a parsing ratio of 0.86</p></li>
+</ul>
+<hr />
+<h3 id="this-isnt-a-perfect-measure-but-it-does-help">This isn’t a
+perfect measure, but it does help!</h3>
+<ul>
+<li><p>It shows us why we ‘see’ some affixes in the pile more than
+others</p></li>
+<li><p>It gives us a way to quantify how ‘easy to parse’ a new word
+would be</p>
+<ul>
+<li>This was a <em>big</em> element of the ‘productive vs. creative’
+discussion!</li>
+</ul></li>
+<li><p>It helps us understand affix (and word!) lexicalization!</p></li>
+</ul>
+<hr />
+<h3 id="what-else-does-frequency-help-us-with">What else does Frequency
+help us with?</h3>
+<hr />
+<h1 id="frequency-and-marking">Frequency and Marking</h1>
+<hr />
+<h2 id="how-often-do-we-use-word-forms">How often do we use word
+forms?</h2>
+<hr />
+<h3 id="your-book-has-a-great-discussion-of-frequency-asymmetries">Your
+book has a great discussion of frequency asymmetries!</h3>
+<ul>
+<li>You did the reading, right?</li>
+</ul>
+<hr />
+<h3 id="how-often-do-we-use-different-word-forms">How often do we use
+different word forms?</h3>
+<ul>
+<li><p>Singulars happen more often than plurals</p>
+<ul>
+<li>For most nouns!</li>
+</ul></li>
+<li><p>Subjects happen more often than Objects</p>
+<ul>
+<li>Every sentence has a subject</li>
+</ul></li>
+<li><p>3rd Person Singular forms are <em>really</em> common</p></li>
+</ul>
+<hr />
+<p>This combines with another fundamental truth of human language</p>
+<ul>
+<li><h1 id="we-are-lazy-as-heck">We are lazy as heck</h1></li>
+</ul>
+<hr />
+<p><img class="wide" src="humorimg/sleepalldaypartynever.jpg"></p>
+<hr />
+<h3 id="we-see-phonological-reduction-in-frequent-words">We see
+phonological reduction in frequent words</h3>
+<ul>
+<li><p>Memories vs. Mammaries</p></li>
+<li><p>Artillery in and out of the military</p></li>
+<li><p><strong>This is really neat!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="frequent-inflectional-forms-are-less-likely-to-be-morphologically-marked">Frequent
+inflectional forms are less likely to be morphologically marked!</h3>
+<ul>
+<li><p>Singulars happen more often than plurals</p>
+<ul>
+<li><danger>So let’s mark plurals!</danger></li>
+</ul></li>
+<li><p>Subjects happen more often than Objects</p>
+<ul>
+<li><danger>So let’s mark accusative/ergative!</danger></li>
+</ul></li>
+<li><p>3rd Person Singular forms are <em>really</em> common</p>
+<ul>
+<li><danger>Zero all the morphemes!</danger></li>
+</ul></li>
+<li><p>This is a general pattern…</p></li>
+</ul>
+<hr />
+<h3 id="less-frequent-forms-are-longer-and-more-complex">Less frequent
+forms are longer and more complex!</h3>
+<ul>
+<li><p>We see more zero-marking in frequent forms</p></li>
+<li><p>We see shorter forms for more frequent inflections</p></li>
+<li><p>It’s not universal, but it’s common!</p></li>
+</ul>
+<hr />
+<h3 id="frequent-meanings-are-also-expressed-more-clearly">Frequent
+meanings are also expressed more clearly</h3>
+<ul>
+<li><p>We see less <em>syncretism</em> in frequent forms</p>
+<ul>
+<li>Where multiple inflectional meanings have the same form</li>
+</ul></li>
+<li><p>Frequent meanings are more <em>differentiated</em></p>
+<ul>
+<li>Marking tends to be more specific for frequent cells!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="which-brings-us-to-the-last-topic">Which brings us to the last
+topic…</h3>
+<hr />
+<h1 id="frequency-and-oddity">Frequency and Oddity</h1>
+<hr />
+<section data-background-color=#708cef>
+&lt;/sec
+<section data-background-color=#708cef>
+&lt;/sec
+<section data-background-color="#708cef">
+</section>
+<h3 id="whats-the-past-tense-form-of-sing">What’s the past tense form of
+‘sing’?</h3>
+<ol type="A">
+<li><p>sing</p></li>
+<li><p>sang</p></li>
+<li><p>sung</p></li>
+<li><p>singed</p></li>
+<li><p>I have no idea</p></li>
+</ol>
+<hr />
+<section data-background-color=#708cef>
+&lt;/sec
+<section data-background-color=#708cef>
+&lt;/sec
+<section data-background-color="#708cef">
+</section>
+<h3 id="whats-the-past-tense-form-of-ping">What’s the past tense form of
+‘ping’?</h3>
+<ol type="A">
+<li><p>ping</p></li>
+<li><p>pung</p></li>
+<li><p>pang</p></li>
+<li><p>pinged</p></li>
+<li><p>I have no idea</p></li>
+</ol>
+<hr />
+<h3 id="frequent-words-are-more-readily-able-to-be-irregular">Frequent
+words are more readily able to be irregular!</h3>
+<ul>
+<li><p>Across languages, verbs like ‘be’, ‘do’, ‘go’, ‘come’, and ‘say’
+are most likely to have irregular morphology</p></li>
+<li><p>English ‘to be’ has ‘am, is, are, was, were, be, being,
+been’</p></li>
+<li><p>Spanish ‘ser’ (‘to be’) has se-, fu-, es- allomorphs</p></li>
+</ul>
+<hr />
+<p><img class="wide" src="morphology/zipf2.jpg"></p>
+<hr />
+<h3 id="irregular-forms-need-to-be-memorized">Irregular forms need to be
+memorized!</h3>
+<ul>
+<li><p>… and that can only happen when they’re regularly
+encountered</p></li>
+<li><p>If speakers rarely encounter an unusual form, the irregular form
+won’t persist</p></li>
+<li><p>Children will naturally regularize unusual patterns</p>
+<ul>
+<li>(unless we correct them out of it!)</li>
+</ul></li>
+<li><p><strong>Frequency can protect words from analogical
+change!</strong></p>
+<ul>
+<li>… and can cement their forms!</li>
+</ul></li>
+</ul>
+<hr />
+<p>The can was yaughten down the hallway. The can was yaughten down the
+hallway. The can was yaughten down the hallway. The can was yaughten
+down the hallway. The can was yaughten down the hallway. The can was
+yaughten down the hallway. The can was yaughten down the hallway. The
+can was yaughten down the hallway. The can was yaughten down the
+hallway. The can was yaughten down the hallway. The can was yaughten
+down the hallway. The can was yaughten down the hallway. The can was
+yaughten down the hallway. The can was yaughten down the hallway. The
+can was yaughten down the hallway. The can was yaughten down the
+hallway. The can was yaughten down the hallway. The can was yaughten
+down the hallway. The can was yaughten down the hallway. The can was
+yaughten down the hallway. The can was yaughten down the hallway. The
+can was yaughten down the hallway. The can was yaughten down the
+hallway. The can was yaughten down the hallway. The can was yaughten
+down the hallway. The can was yaughten down the hallway. The can was
+yaughten down the hallway. The can was yaughten down the hallway. The
+can was yaughten down the hallway. The can was yaughten down the
+hallway. The can was yaughten down the hallway. The can was yaughten
+down the hallway. The can was yaughten down the hallway. The can was
+yaughten down the hallway. The can was yaughten down the hallway. The
+can was yaughten down the hallway. The can was yaughten down the
+hallway. The can was yaughten down the hallway. The can was yaughten
+down the hallway. The can was yaughten down the hallway. The can was
+yaughten down the hallway. The can was yaughten down the hallway. The
+can was yaughten down the hallway. The can was yaughten down the
+hallway.</p>
+<hr />
+<h3 id="more-frequent-forms-replace-or-level-less-frequent-ones">More
+frequent forms replace (or level) less frequent ones</h3>
+<ul>
+<li><p>If we don’t see a word often, we’ll assume it works ‘like the
+other words’</p></li>
+<li><p>Strange characteristics become less strange</p></li>
+<li><p><strong>Rare and weird words get unweirded!</strong></p></li>
+</ul>
+<hr />
+<h3 id="so-frequency-is-helpful-in-morphology">So, Frequency is helpful
+in Morphology!</h3>
+<ul>
+<li><p>It lets us quantify word usage in practice</p></li>
+<li><p>It helps us find basic forms</p></li>
+<li><p>It helps us understand productivity</p></li>
+<li><p>It helps us understand why we mark the things we do</p></li>
+<li><p>… and it keeps words short and irregular</p></li>
+</ul>
+<hr />
+<h3
+id="amber-will-talk-more-about-frequency-in-her-talk-on-june-7th">Amber
+will talk more about frequency in her talk on June 7th!</h3>
+<ul>
+<li>It’s going to be awesome</li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li>We’ll talk about weirdly-shaped words, then wrap up the
+lexicon!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

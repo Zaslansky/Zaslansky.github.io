@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="crappyjokes">#crappyjokes</h1>
+<p>Did you know deer can jump higher than the average house?</p>
+<p>It’s because of their strong hind legs and the fact that the average
+house can’t jump.</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/mvBaHIGhrX8"></iframe>
+<br></td>
+</tr>
+<tr class="even">
+<td><correct>Legião Urbana - Meninos e Meninas</correct><br></td>
+</tr>
+<tr class="odd">
+<td><correct>Brazilian Portuguese</correct></td>
+</tr>
+</tbody>
+</table>
+<p><danger>NO!</danger></p>
+<p><img class="big" src="img/ebola.jpg"></p>
+<hr />
+<h3 id="dont-come-to-class-sick">Don’t come to class sick!</h3>
+<ul>
+<li><p>Lecture attendance isn’t mandatory</p></li>
+<li><p>Recitation can be missed with a doctor’s notes</p></li>
+<li><p>We’re happy to go over course content one-on-one when you feel
+better.</p></li>
+<li><p>You’ll recover sooner in bed than in lecture!</p></li>
+</ul>
+<hr />
+<h1 id="indo-european-languages-of-europe">Indo-European Languages of
+Europe!</h1>
+<h3 id="ling-1020---will-styler">LING 1020 - Will Styler</h3>
+<hr />
+<h2 id="todays-agenda">Today’s Agenda</h2>
+<ul>
+<li><p>Grammatical Gender and Noun Class</p></li>
+<li><p>‘Indo-European’</p></li>
+<li><p>Indo-European Families</p></li>
+<li><p>Germanic, Celtic, and Italic Languages and Features</p></li>
+</ul>
+<hr />
+<h3
+id="part-of-learning-about-languages-is-learning-about-what-languages-do">Part
+of learning about languages is learning about what languages do</h3>
+<ul>
+<li><p>When it’s appropriate, we’ll start lectures by talking about a
+grammatical feature or linguistic idea</p></li>
+<li><p>It’ll usually be linked to what we’re discussing</p></li>
+<li><p>Today, <strong>Grammatical Gender!</strong></p></li>
+</ul>
+<hr />
+<h3 id="grammatical-gender">Grammatical Gender</h3>
+<p>Grouping words into multiple genres, and using different forms and
+“agreements” for each</p>
+<ul>
+<li><p>We call it “Grammatical Gender” when masculine/feminine are used,
+“Noun class” when there are other categories</p>
+<ul>
+<li><h2 id="these-terms-are-often-used-interchangeably">These terms are
+often used interchangeably</h2></li>
+</ul></li>
+</ul>
+<p><lang>French</lang><br><ldata>IE:Italic - All over</ldata></p>
+<ul>
+<li><p>Un homme parfait - ‘a perfect man’ (masculine)</p></li>
+<li><p>Une femme parfaite - ‘a perfect woman’ (feminine)</p></li>
+<li><p>Un appartement parfait - ‘a perfect apartment’
+(masculine)</p></li>
+<li><p>Une tondeuse parfaite - ‘a perfect lawnmower’ (feminine)</p></li>
+</ul>
+<hr />
+<h3 id="agreement">Agreement</h3>
+<p>When words or forms change to “match” a characteristic of another
+part of the sentence</p>
+<hr />
+<p><lang>Portuguese</lang><br><ldata>IE:Italic - Brazil,
+Portugal</ldata></p>
+<ul>
+<li><p>Um gato preto - ‘a black cat’ (masculine)</p></li>
+<li><p>Uma gata preta - ‘a black cat’ (feminine)</p></li>
+<li><p>Um garfo prateado - ‘a silver fork’ (masculine)</p></li>
+<li><p>Uma colher prateada - ‘a silver spoon’ (feminine)</p></li>
+</ul>
+<hr />
+<p><lang>Russian</lang><br><ldata>IE:Slavic - Russia</ldata></p>
+<ul>
+<li><p>красивый дом (Krasiviy dom) - ‘Pretty house’ (masculine)</p></li>
+<li><p>красивая девушка (Krasivaya devushka) - ‘Pretty girl’
+(feminine)</p></li>
+<li><p>красивое море (Krasivoye Morye) - ‘Pretty sea’ (neuter)</p></li>
+</ul>
+<hr />
+<h3 id="grammatical-gender-facts">Grammatical Gender Facts</h3>
+<ul>
+<li><p>Often based on the form of the word, rather than the meaning</p>
+<ul>
+<li>The Russian word for “moon” is feminine, but the Polish word is
+masculine.</li>
+</ul></li>
+<li><p>Usually “masculine” and “feminine”, but there’s also
+“neuter”</p></li>
+<li><p>Other words (adjectives, verbs, articles) change to “agree” with
+the gender</p></li>
+<li><p>It’s not always about Gender at all…</p></li>
+</ul>
+<hr />
+<h3 id="animateinanimate-classes">Animate/Inanimate Classes</h3>
+<ul>
+<li><p>Marks gender based on animacy or “alive-ness”</p></li>
+<li><p>Used in Basque, English (he/she/it), Totonac, Navajo, Tamil, PIE
+(??), and more!</p></li>
+<li><p>In Navajo: Human &gt; Infant/Big Animal &gt; Medium-sized Animal
+&gt; Small Animal &gt; Natural Force &gt; Abstraction</p></li>
+</ul>
+<hr />
+<p><lang>Zande</lang><br><ldata>Niger-Congo:Zande - Congo</ldata></p>
+<ol type="1">
+<li>Human (Male) - “Man”</li>
+<li>Human (Female) - “Wife”</li>
+<li>Animate - “Beast”</li>
+<li>Other - “House”</li>
+</ol>
+<hr />
+<p><lang>Swahili</lang><br><ldata>Niger-Congo:Bantu - East
+Africa</ldata></p>
+<ol type="1">
+<li>Singular Persons</li>
+<li>Plural Persons</li>
+<li>Singular Plants</li>
+<li>Plural Plants</li>
+<li>Singular Fruits</li>
+<li>Plural Fruits</li>
+<li>Singular things</li>
+<li>Plural things</li>
+<li>Singular Animals</li>
+<li>Plural Animals</li>
+<li>Singular ???</li>
+<li>Verbal nouns</li>
+<li>Things close to other things</li>
+</ol>
+<p>(and so on)</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>Dyirbal</lang><br><ldata>Pama-Nyungan - Australia</ldata></td>
+</tr>
+<tr class="even">
+<td>1. animate objects, men 2. women, water, fire, violence 3. edible
+fruit and vegetables 4. miscellaneous (includes things not classifiable
+in the first three)</td>
+</tr>
+</tbody>
+</table>
+<p><img class="big" src="img/womenfiredangerousthings.jpg"></p>
+<hr />
+<h3 id="grammatical-gender-is-common">Grammatical Gender is common!</h3>
+<ul>
+<li><p>~45% of languages have gender or noun classes (<a
+href="http://wals.info/chapter/31">according to WALS</a>)</p></li>
+<li><p>~75% of gender-using languages use sex-based Gender</p>
+<ul>
+<li>(Remember, it’s still arbitrary)</li>
+</ul></li>
+<li><p>It’s <em>very</em> often found in Indo-European, but also common
+elsewhere</p>
+<ul>
+<li>Features like this <em>support</em> a relation, but don’t prove
+it.</li>
+</ul></li>
+</ul>
+<hr />
+<p>Keep an eye out for grammatical gender in the rest of the course!</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img class="big" src="humorimg/backattheranch.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="indo-european">‘Indo-European’</h1>
+<hr />
+<h3 id="about-indo-european">About Indo-European</h3>
+<ul>
+<li><p>Around 440 Languages (half are Indo-Aryan)</p></li>
+<li><p>45% of the world’s population speak an IE language</p>
+<ul>
+<li>IE is the largest major family <em>by number of speakers</em></li>
+</ul></li>
+<li><p>Extremely well studied (we’ve been after it since the 16th
+century)</p></li>
+<li><p>Based on cognates, and some shared structures</p></li>
+</ul>
+<hr />
+<h3 id="wheres-indo-europe">“Where’s Indo-Europe?”</h3>
+<ul>
+<li><p>That’s a great way to start a fist-fight at a Linguistic Society
+of America meeting</p></li>
+<li><p>Pereltsvaig handles this nicely.</p></li>
+<li><p>The current “best bet” is the Pontic Steppe, but that could
+change!</p></li>
+</ul>
+<hr />
+<h3 id="the-spread-of-indo-european-maybe">The Spread of Indo-European
+(maybe)</h3>
+<p><img class="big" src="lotwimg/ieexpansion_kurgan.png"></p>
+<hr />
+<h1 id="so-whats-the-family-tree-like">“So, what’s the family tree
+like?”</h1>
+<hr />
+<h2 id="its-complicated">It’s complicated</h2>
+<hr />
+<h3 id="proto-indo-european">Proto-Indo-European</h3>
+<ul>
+<li><p>All IE languages descended from “Proto-Indo-European”
+(“PIE”)</p></li>
+<li><p>PIE must have had a mother, but we don’t <em>reliably</em> know
+what it was</p></li>
+<li><p>…but that hasn’t stopped people from trying</p>
+<ul>
+<li><p>“Nostratic” (with IE, Uralic, Caucasian, Dravidian,
+Afroasiatic)</p></li>
+<li><p>“Eurasiatic” (with IE, Uralic, Altaic, Eskimo-Aleut, Kartvelian,
+Dravidian, Korean)</p></li>
+<li><p>“Pontic” (with IE, Northwest Caucasian)</p></li>
+</ul></li>
+<li><p>These macro-families are not “wrong”, just not provably
+right.</p></li>
+</ul>
+<hr />
+<h2 id="what-about-from-pie-down">What about from PIE down?</h2>
+<hr />
+<h3 id="thats-complicated-too">That’s complicated, too!</h3>
+<p><a href="http://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/IndoEuropeanTree.svg/1280px-IndoEuropeanTree.svg.png"><img class="big" src="lotwimg/iechart.png"></a></p>
+<hr />
+<h3 id="we-can-simplify-a-bit">We can simplify a bit…</h3>
+<p><img class="big" src="lotwimg/indoeuropean.gif"></p>
+<hr />
+<h3 id="and-a-bit-more">… and a bit more</h3>
+<p><img class="big" src="lotwimg/iefamilies.png"></p>
+<hr />
+<p><img width="1200px" src="lotwimg/iefamiliesmap.png"></p>
+<hr />
+<p>Today, we’re going to talk about…</p>
+<ul>
+<li><p>Germanic</p></li>
+<li><p>Celtic</p></li>
+<li><p>Italic (“Romance”)</p>
+<ul>
+<li><p>We’ll hit Slavic Wednesday, Indo-Iranian next week</p></li>
+<li><p>We won’t have time for Albanian, Greek, and Armenian :(</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="germanic">Germanic</h3>
+<p><img width="1200px" src="lotwimg/iefamiliesmap.png"></p>
+<p>(in red)</p>
+<hr />
+<h3 id="features-of-germanic">Features of Germanic</h3>
+<ul>
+<li><p>“Umlaut” - Vowel changes in related words (like “sing/sang”,
+“mouse/mice”)</p></li>
+<li><p>“Grimm’s Law” - PIE /t d dh/ -&gt; Germanic /θ t d/</p></li>
+<li><p>Consonant heavy, first syllable stress</p></li>
+<li><p>Grammatical Gender</p></li>
+<li><p>Huge numbers of vowels</p>
+<ul>
+<li><p>English: 15, German: 16, Swedish: 18, Danish: 17</p></li>
+<li><p>Portuguese: 9, Spanish: 5, Russian: 11, Farsi: 6, Gaelic:
+11</p></li>
+</ul></li>
+</ul>
+<hr />
+<p><strong>English</strong></p>
+<p>All human beings are born free and equal in dignity and rights. They
+are endowed with reason and conscience and should act towards one
+another in a spirit of brotherhood.</p>
+<p><strong>Dutch</strong></p>
+<p>Alle mensen worden vrij en gelijk in waardigheid en rechten geboren.
+Zij zijn begiftigd met verstand en geweten, en behoren zich jegens
+elkander in een geest van broederschap te gedragen.</p>
+<p><strong>German</strong></p>
+<p>Alle Menschen sind frei und gleich an Würde und Rechten geboren. Sie
+sind mit Vernunft und Gewissen begabt und sollen einander im Geist der
+Brüderlichkeit begegnen.</p>
+<hr />
+<p><lang>German</lang><br><ldata>IE:Germanic - Germany</ldata></p>
+<ul>
+<li><p>der Wagen ‘The car’</p></li>
+<li><p>die Stadt ‘The city’</p></li>
+<li><p>das Auto ‘The car’</p></li>
+</ul>
+<hr />
+<p><lang>Afrikaans</lang><br><ldata>IE:Germanic - South
+Africa</ldata></p>
+<ul>
+<li><p>Daughter of Dutch, split in the 18th Century</p></li>
+<li><p>Dutch settlers in South Africa became isolated, and bam,
+Afrikaans</p>
+<ul>
+<li>Lots of borrowing from Bantu and Khoisan languages, also English and
+Malay</li>
+</ul></li>
+<li><p>15-23 million speakers in South Africa and Namibia</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><lang>Afrikaans</lang><br><ldata>IE:Germanic - South
+Africa</ldata></td>
+</tr>
+<tr class="even">
+<td><iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/m3TTi_gAS5c"></iframe></td>
+</tr>
+</tbody>
+</table>
+<p><lang>Icelandic</lang><br><ldata>IE:Germanic - Iceland</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/7QKAdCZEkcY">
+</iframe>
+<hr />
+<p><lang>Frisian</lang><br><ldata>IE:Germanic - Germany and
+Netherlands</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/TRfodZPL57A">
+</iframe>
+<hr />
+<h3
+id="english-and-frisian-are-isolated-from-the-rest-of-germanic">English
+and Frisian are isolated from the rest of Germanic</h3>
+<p><img class="big" src="lotwimg/indoeuropean.gif"></p>
+<hr />
+<h2 id="celtic">Celtic</h2>
+<p><img width="1200px" src="lotwimg/iefamiliesmap.png"></p>
+<p>(in orange)</p>
+<hr />
+<h3 id="features-of-celtic">Features of Celtic</h3>
+<ul>
+<li><p>Verb-Subject-Object (VSO) word order</p></li>
+<li><p>Vowel mutation for plurals</p></li>
+<li><p>Counting by twenties</p></li>
+<li><p>Grammatical Gender</p></li>
+</ul>
+<hr />
+<h3 id="counting-by-twenties">Counting by twenties??</h3>
+<hr />
+<p><lang>Cornish</lang><br><ldata>IE:Celtic - UK </ldata></p>
+<ul>
+<li>1 - onan</li>
+<li>2 - dew</li>
+<li>11 - unnek</li>
+<li>15 - pymthek</li>
+<li>17 - seytek</li>
+<li>20 - ugens</li>
+<li>21 - onan warn ugens</li>
+<li>22 - dew warn ugens</li>
+<li>31 - uunek warn ugens</li>
+<li>35 - pymthek warn ugens</li>
+<li>37 - seytek warn ugens<br />
+</li>
+<li>40 - dew-ugens</li>
+</ul>
+<hr />
+<p><img class="big" src="humorimg/rooster.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>English</strong></td>
+</tr>
+<tr class="even">
+<td>All human beings are born free and equal in dignity and rights. They
+are endowed with reason and conscience and should act towards one
+another in a spirit of brotherhood.</td>
+</tr>
+<tr class="odd">
+<td><strong>Breton</strong></td>
+</tr>
+<tr class="even">
+<td>Dieub ha par en o dellezegezh hag o gwirioù eo ganet an holl dud.
+Poell ha skiant zo dezho ha dleout a reont bevañ an eil gant egile en ur
+spered a genvreudeuriezh.</td>
+</tr>
+<tr class="odd">
+<td><strong>Welsh</strong></td>
+</tr>
+<tr class="even">
+<td>Genir pawb yn rhydd ac yn gydradd â’i gilydd mewn urddas a hawliau.
+Fe’u cynysgaeddir â rheswm a chydwybod, a dylai pawb ymddwyn y naill at
+y llall mewn ysbryd cymodlon.</td>
+</tr>
+</tbody>
+</table>
+<p><lang>Irish</lang><br><ldata>IE:Gaelic - Ireland</ldata></p>
+<ul>
+<li><p>Is carr é - ‘It’s a car’ (Car is masculine)</p></li>
+<li><p>Is cláirseach í - ‘It’s a harp’ (Harp is feminine)</p></li>
+<li><p>Madra beag - ‘Little dog’ (Dog is masculine)</p></li>
+<li><p>Cláirseach bheag - ‘Little harp’</p></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td><lang>Irish</lang><br><ldata>IE:Gaelic - Ireland</ldata></td>
+</tr>
+<tr class="odd">
+<td>* Madra beag - ‘Little dog’ (masculine)</td>
+</tr>
+<tr class="even">
+<td>* Cláirseach bheag - ‘Little harp’ (feminine)</td>
+</tr>
+<tr class="odd">
+<td>‘City’ (chathair) is a feminine noun. A little city is…</td>
+</tr>
+<tr class="even">
+<td>A. chathair beag</td>
+</tr>
+<tr class="odd">
+<td>B. chathair bheag</td>
+</tr>
+</tbody>
+</table>
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<p><lang>Irish</lang><br><ldata>IE:Gaelic - Ireland</ldata></p>
+<ul>
+<li><p>Madra beag - ‘Little dog’ (masculine)</p></li>
+<li><p>Cláirseach bheag - ‘Little harp’ (feminine)</p></li>
+</ul>
+<p>‘City’ (chathair) is a feminine noun. A little city is…</p>
+<p>A. chathair beag</p>
+<p><correct>B. chathair bheag</correct></p>
+<hr />
+<p><lang>Irish</lang><br><ldata>IE:Gaelic - Ireland</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/jD-_l5p3MzI">
+</iframe>
+<hr />
+<p><lang>Scottish Gaelic</lang><br><ldata>IE:Gaelic -
+Scotland</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/Lktt_DlpsJA">
+</iframe>
+<hr />
+<h2 id="italic-romance">Italic (“Romance”)</h2>
+<p><img width="1200px" src="lotwimg/iefamiliesmap.png"></p>
+<p>(in blue)</p>
+<hr />
+<h3 id="these-all-came-from-latin">These all came from Latin</h3>
+<p><img class="big" src="lotwimg/romancetree.png"></p>
+<hr />
+<h3 id="features-of-italic">Features of Italic</h3>
+<ul>
+<li><p>Strict SVO word order</p></li>
+<li><p>Grammatical gender!</p></li>
+<li><p>Complex verb conjugations</p></li>
+</ul>
+<hr />
+<h3 id="how-complex-are-we-talking">… how complex are we talking?</h3>
+<hr />
+<p><lang>English</lang><br><ldata>IE:Germanic - All over</ldata></p>
+<p>We would have been sleeping</p>
+<p><lang>Spanish</lang><br><ldata>IE:Italic - All over</ldata></p>
+<p>Durmiéramos</p>
+<p>Sleep-2pl.SUBJ.PAST.IMPERFECT</p>
+<hr />
+<p><lang>Spanish</lang><br><ldata>IE:Italic - Spain/The
+Americas</ldata></p>
+<ul>
+<li><p>El perro magnifico - ‘The Magnificent dog’ (masculine)</p></li>
+<li><p>La puerta magnifica - ‘The Magnificent door’ (feminine)</p></li>
+<li><p>El coche pequeño - ‘The little car’ (masculine)</p></li>
+<li><p>La arpa pequeña - ‘The little harp’ (feminine)</p></li>
+</ul>
+<hr />
+<h3 id="romance-languages-are-fairly-well-known-in-the-us">Romance
+languages are fairly well known in the US</h3>
+<ul>
+<li>(except one)</li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><lang>Romanian</lang><br><ldata>IE:Italic - Romanian</ldata></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><lang>Romanian</lang><br><ldata>IE:Italic - Romania</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/TcRWiz1PhKU">
+</iframe>
+<hr />
+<p><lang>Romanian</lang><br><ldata>IE:Italic - Romania</ldata></p>
+<iframe data-autoplay width="840" height="690" src="http://www.youtube.com/embed/Bk7Sxpmr7wI">
+</iframe>
+<hr />
+<p><danger>We ran out of time in lecture, so this is where we
+stopped!</danger></p>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Grammatical gender is the assignment of categories to nouns, and
+agreement with those categories</p></li>
+<li><p>Indo-European is the most widely spoken language family</p></li>
+<li><p>We don’t know too much about its origins</p></li>
+<li><p>Germanic, Celtic and Romance languages are awesome</p></li>
+</ul>
+<hr />
+<h2 id="next-time-russian-and-the-beauty-of-case.">Next time: Russian,
+and the beauty of Case.</h2>
+<p><correct>No reading</correct></p>
+<hr />
+<p><huge>Thank you!</huge></p>
+<p>http://savethevowels.org/world/slides/lotw_4.html</p>
+</body>
+</html>

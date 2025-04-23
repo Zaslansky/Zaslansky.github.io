@@ -1,0 +1,15 @@
+tree_101sc_badbakertex
+
+[S 
+  [BACKWARDS-NP 
+    [N' 
+      [N Baker ] ] 
+    [DET the ] ] 
+  [VP 
+    [V went ] 
+    [BACKWARDS-PP 
+      [NP 
+        [DET the ] 
+        [N' 
+          [N park ] ] ] 
+      [P to ] ] ] ]

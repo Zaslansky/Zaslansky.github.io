@@ -1,0 +1,19 @@
+tree_hikerwithketchuptex
+
+[S 
+  [NP 
+    [DET The ] 
+    [N' 
+      [N bear ] ] ]
+  [VP 
+    [V ate ]
+    [NP 
+      [NP 
+        [DET the ] 
+        [N' 
+          [N hiker ] ] ] 
+      [PP 
+        [P with ]
+        [NP 
+          [N' 
+            [N ketchup ] ] ] ] ] ] ] ]

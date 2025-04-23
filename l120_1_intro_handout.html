@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<section data-background="img/puzzleworld.jpg">
+<section style="background-color:rgba(255, 255, 255, 0.5)">
+<h1>
+Linguistics 120: Morphology
+</h1>
+<h3>
+Dr. Will Styler - Spring 2019
+</h3>
+</section>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Introductions</p></li>
+<li><p>Syllabus and Canvas</p></li>
+<li><p>What is Morphology?</p></li>
+<li><p>What are the learning goals?</p></li>
+<li><p>How will we accomplish them?</p></li>
+</ul>
+<hr />
+<h1 id="introductions">Introductions</h1>
+<hr />
+<h2 id="dr.-will-styler">Dr. Will Styler</h2>
+<p>Instructor, Linguist, Gigantic Nerd</p>
+<p><img class="big" src="img/people_will.jpg"></p>
+<hr />
+<h2 id="andres-aguilar">Andres Aguilar</h2>
+<p>TA, Ph.D Student</p>
+<p><img src="img/people_andresaguilar.jpg"></p>
+<hr />
+<h2 id="amber-thompson">Amber Thompson</h2>
+<p>TA, Ph.D Student</p>
+<p><img src="img/people_amberthompson.jpg"></p>
+<hr />
+<h2 id="matt-zaslansky">Matt Zaslansky</h2>
+<p>TA, Ph.D Student</p>
+<p><img src="img/people_mattzaslansky.jpg"></p>
+<hr />
+<h3 id="who-are-you">Who are you?</h3>
+<ul>
+<li><p>What’s your year?</p></li>
+<li><p>Monolingual/Bilingual/Multilingual?</p></li>
+<li><p>What languages do we speak?</p></li>
+</ul>
+<hr />
+<h2 id="syllabus-and-schedule">Syllabus and Schedule</h2>
+<p><a href="http://savethevowels.org/120"
+class="uri">http://savethevowels.org/120</a></p>
+<hr />
+<h2 id="syllabus-stuff-which-bears-repeating">Syllabus Stuff which bears
+repeating</h2>
+<p><img src="img/bearsrepeating.jpg"></p>
+<hr />
+<h1 id="do-not-print-the-syllabus">DO NOT PRINT THE SYLLABUS</h1>
+<hr />
+<h3 id="syllabus-stuff-which-bears-repeating-1">Syllabus Stuff which
+bears repeating</h3>
+<ul>
+<li><p>Check your email/Canvas</p></li>
+<li><p>Come to office hours.</p></li>
+<li><p>The syllabus will change <em>a lot</em>!</p></li>
+<li><p><strong>We are here to help!</strong></p></li>
+</ul>
+<hr />
+<h1 id="the-130-elephants-in-the-room">The 130 Elephants in the
+Room</h1>
+<hr />
+<h3 id="this-course-is-usually-60-70-people">This course is usually
+60-70 people</h3>
+<ul>
+<li><p>Small groups are possible</p></li>
+<li><p>Sections are a thing</p></li>
+<li><p>Moveable tables</p></li>
+<li><p><em>This is not what happened</em></p></li>
+</ul>
+<hr />
+<p><img src="humorimg/thisisfine.jpg" /></p>
+<hr />
+<h3 id="we-wanted-to-be-able-to-keep-you-all-on-track">We wanted to be
+able to keep you all on track</h3>
+<ul>
+<li>… but this is uncharted territory for the department</li>
+</ul>
+<hr />
+<h3
+id="were-doing-our-best-to-make-this-a-great-experience-for-you">We’re
+doing our best to make this a great experience for you</h3>
+<ul>
+<li><p>But please, understand that some things may be a bit
+bumpy!</p></li>
+<li><p><img src="humorimg/lab_accident.jpg" /></p></li>
+</ul>
+<hr />
+<h1 id="canvas">Canvas</h1>
+<hr />
+<h3 id="were-moving-to-canvas">We’re moving to Canvas!</h3>
+<ul>
+<li><p>This will replace TritonEd within a few years</p></li>
+<li><p>This is a pilot program</p></li>
+<li><p>Let’s take a look!</p></li>
+</ul>
+<hr />
+<h1 id="what-is-this-course-about">What is this course about?</h1>
+<hr />
+<h2 id="clickers">Clickers!</h2>
+<ul>
+<li><p>Clicker questions will start counting for points next
+week</p></li>
+<li><p><strong>Any iClicker will work.</strong></p>
+<ul>
+<li><p>Please feel free to buy used</p></li>
+<li><p>Or borrow a friend’s for this class</p></li>
+</ul></li>
+<li><p>Easy points!</p></li>
+</ul>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="this-is-a-clicker-question">This is a clicker question!</h3>
+<ol type="A">
+<li><p>One Answer</p></li>
+<li><p>Another</p></li>
+<li><p>A third</p></li>
+<li><p>The answer is D</p></li>
+<li><p>I’m not paying attention.</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="this-is-a-clicker-question-1">This is a clicker question!</h3>
+<ol type="A">
+<li><p>One Answer</p></li>
+<li><p>Another</p></li>
+<li><p>A third</p></li>
+<li><p><correct>The answer is D</correct></p></li>
+<li><p>I’m not paying attention.</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3
+id="when-should-you-tell-will-about-any-special-accomodations-youll-need">When
+should you tell Will about any special accomodations you’ll need?</h3>
+<ol type="A">
+<li><p>Within the first two weeks</p></li>
+<li><p>By the end of the quarter</p></li>
+<li><p>When I’m freaking out about my grade at the end of the
+quarter</p></li>
+<li><p>I won’t tell him, then pretend I did when it’s an issue at the
+end of the quarter</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3
+id="when-should-you-tell-will-about-any-special-accomodations-youll-need-1">When
+should you tell Will about any special accomodations you’ll need?</h3>
+<ol type="A">
+<li><p><correct>Within the first two weeks</correct></p></li>
+<li><p>By the end of the quarter</p></li>
+<li><p>When I’m freaking out about my grade at the end of the
+quarter</p></li>
+<li><p>I won’t tell him, then pretend I did when it’s an issue at the
+end of the quarter</p></li>
+</ol>
+<hr />
+<h2 id="you-need-to-re-register-your-clickers-in-canvas">You need to
+re-register your clickers in Canvas</h2>
+<ul>
+<li>Only this once.</li>
+</ul>
+<hr />
+<ul>
+<li><h2 id="you-need-to-re-register-your-clickers-in-canvas-1">YOU NEED
+TO RE-REGISTER YOUR CLICKERS IN CANVAS</h2></li>
+</ul>
+<hr />
+<h1 id="ok-so-what-are-we-studying">OK, so, what are we studying?</h1>
+<hr />
+<h2 id="morphology">Morphology</h2>
+<p>The study of how words are constructed in language</p>
+<hr />
+<h3 id="morphology-is-in-a-very-central-place-in-linguistics">Morphology
+is in a very central place in Linguistics</h3>
+<ul>
+<li><img src="img/linguistics_circles.jpg" /></li>
+</ul>
+<hr />
+<h3
+id="morphology-is-in-a-very-central-place-in-linguistics-1">Morphology
+is in a very central place in Linguistics</h3>
+<ul>
+<li><p>Close enough to Phonetics that you still have sound
+issues</p></li>
+<li><p>All up in Phonology’s business</p></li>
+<li><p>It’s the gateway to Syntax</p></li>
+<li><p>… and it’s often the source of lexical meaning differences in
+Semantics</p></li>
+</ul>
+<hr />
+<h3 id="you-cannot-escape-morphology">You cannot escape Morphology</h3>
+<ul>
+<li>If you can’t take words apart, words will take <em>you</em>
+apart</li>
+</ul>
+<hr />
+<h3 id="morphology-is-both-theoretical-and-practical">Morphology is both
+theoretical and practical</h3>
+<ul>
+<li><p>“How do words work in Language”</p></li>
+<li><p>“How do words work in <em>this</em> language”</p></li>
+</ul>
+<hr />
+<h3 id="because-morphology-is-huge-in-scope">Because Morphology is
+<em>huge</em> in scope</h3>
+<ul>
+<li>There’s <em>so</em> much to cover that we need to think carefully
+about what’s on the table and not</li>
+</ul>
+<hr />
+<h1 id="learning-goals">Learning Goals</h1>
+<hr />
+<h3 id="in-this-course-well-teach-you-about">In this course, we’ll teach
+you about…</h3>
+<ul>
+<li><p>Morphological Analysis</p></li>
+<li><p>Morphological Typology</p></li>
+<li><p>Word Creation</p></li>
+<li><p>The Lexicon</p></li>
+<li><p>The Fuzzy Edges of Word-dom</p></li>
+<li><p>How Morphology works in Languages</p></li>
+</ul>
+<hr />
+<h3 id="morphological-analysis">Morphological Analysis</h3>
+<ul>
+<li><p>How do we look at complete words and their meanings and determine
+the morphemes present?</p></li>
+<li><p>How can you determine the morphological properties of an unknown
+language?</p></li>
+<li><p>What are the best strategies for finding the relationship between
+a word’s form and its meaning?</p></li>
+<li><p>What properties of words can carry meaning?</p></li>
+<li><p><strong>How do we solve morphological problems?</strong></p></li>
+</ul>
+<hr />
+<h3 id="morphological-typology">Morphological Typology</h3>
+<ul>
+<li><p>What is a word?</p></li>
+<li><p>What kinds of morphemes are found around the world?</p></li>
+<li><p>What kinds of morphemes are <em>common</em> around the
+world?</p></li>
+<li><p>What <em>categories</em> of morphemes are useful to
+distinguish?</p></li>
+<li><p>How does morphology work in different languages?</p></li>
+<li><p>How does morphology work in signed languages?</p></li>
+</ul>
+<hr />
+<h3 id="word-creation">Word Creation</h3>
+<ul>
+<li><p>How are new words formed?</p></li>
+<li><p>What’s the difference between inflectional and derivational
+morphology?</p></li>
+<li><p>What kinds of word creation processes are <em>productive</em>
+and/or <em>creative</em> right now?</p></li>
+<li><p>What processes are commonly used when creating new
+words?</p></li>
+<li><p>How do new words get their meanings?</p></li>
+</ul>
+<hr />
+<h3 id="the-lexicon">The Lexicon</h3>
+<ul>
+<li><p>How are words stored in the mind?</p></li>
+<li><p>What information accompanies words?</p></li>
+<li><p>What are we actually storing when we store a word?</p></li>
+<li><p>How does this representation affect our speech and language
+use?</p></li>
+</ul>
+<hr />
+<h3 id="the-fuzzy-edges-of-word-dom">The Fuzzy Edges of Word-dom</h3>
+<ul>
+<li><p>What is a word, anyways?</p></li>
+<li><p>Do affixes ever feel like words?</p></li>
+<li><p>When does a compound become a word?</p></li>
+<li><p>What kind of problems do these expressions cause in analyzing
+language?</p></li>
+</ul>
+<hr />
+<h2 id="whats-out-of-scope-for-the-class">What’s out-of-scope for the
+class?</h2>
+<hr />
+<h3 id="topics-were-not-covering-here">Topics we’re not covering
+here</h3>
+<ul>
+<li><p>Analyzing phonological alternations</p>
+<ul>
+<li>Nope.</li>
+</ul></li>
+<li><p>Polysynthetic languages</p>
+<ul>
+<li>Nonopepenopenope.</li>
+</ul></li>
+<li><p>Complex templatic morphology</p>
+<ul>
+<li>NnopeOnopePnopeE.</li>
+</ul></li>
+<li><p>Methods for field elicitation of morphology</p>
+<ul>
+<li><p>You should take field methods</p></li>
+<li><p>OMG you should take field methods</p></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="learning-goal-summary">Learning Goal Summary</h2>
+<ul>
+<li><p>You’ll learn how linguists think words are formed, stored, and
+created</p></li>
+<li><p>You’ll learn how to analyze language data to find relationships
+between word form and meaning</p></li>
+<li><p>You’ll learn why morphology is just <em>so</em> damned
+cool</p></li>
+</ul>
+<hr />
+<h1 id="how-are-we-going-to-accomplish-these-goals">How are we going to
+accomplish these goals?</h1>
+<hr />
+<h2 id="in-class-presentations">In-class Presentations</h2>
+<hr />
+<h3 id="lecture-days">‘Lecture’ days</h3>
+<ul>
+<li><p>I’ll have a plan and a presentation</p></li>
+<li><p>You all will ask questions, and we will have discussions</p></li>
+<li><p>Clickers will help us to check knowledge</p></li>
+<li><p><em>Active learning does not work unless you’re active.</em></p>
+<ul>
+<li>Damnit.</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="readings">Readings</h2>
+<hr />
+<h3 id="your-book-is-actually-really-good">Your book is actually really
+good</h3>
+<ul>
+<li>Haspelmath and Sims <em>Understanding Morphology</em></li>
+</ul>
+<hr />
+<h2 id="language-data">Language Data</h2>
+<hr />
+<p><img src="humorimg/data_trumpet.jpg" /></p>
+<hr />
+<h3 id="three-ways-of-applying-data-to-your-brain">Three ways of
+applying data to your brain</h3>
+<ul>
+<li><p>Discussion Problems</p></li>
+<li><p>Homework assignments</p></li>
+<li><p>In-class problem-sets</p></li>
+</ul>
+<hr />
+<h2 id="discussion-problems">Discussion Problems</h2>
+<ul>
+<li><p>You’ll all have the same problem-set</p></li>
+<li><p>You’ll work out a (partial) solution on your own, then post it on
+Canvas</p></li>
+<li><p>Then you’ll talk with other students about their
+solutions</p></li>
+<li><p>You’ll be graded on your effort and the quality of your replies,
+not the solution <em>per se</em>.</p></li>
+<li><p><strong>These replaced four full homeworks</strong></p>
+<ul>
+<li>You’re welcome ❤</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="homework-problem-sets">Homework problem sets</h3>
+<ul>
+<li><p>These let you work on problems on your own</p></li>
+<li><p>These give us a chance to evaluate your work</p></li>
+<li><p>You can discuss these with your classmates</p>
+<ul>
+<li>But you need to write up your own work, and mention who you’ve
+collaborated with</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="in-class-group-analysis">In-class Group Analysis</h3>
+<ul>
+<li><p>Designed to give you a chance to work with actual data</p></li>
+<li><p>We’ll be here to help</p></li>
+<li><p>You’ll also get to help your classmates</p>
+<ul>
+<li>This a part of the learning process</li>
+</ul></li>
+<li><p>Pick a group you want to work with</p>
+<ul>
+<li>Feel free to float around.</li>
+</ul></li>
+<li><p>Sorry about the classroom layout!</p></li>
+</ul>
+<hr />
+<h3 id="one-thing-id-like-to-address">One thing I’d like to
+address…</h3>
+<hr />
+<h1 id="group-work">“Group work!?”</h1>
+<ul>
+<li><img src="humorimg/disgusted.jpg" /></li>
+</ul>
+<hr />
+<h3 id="why-do-group-work">Why do group work?</h3>
+<ul>
+<li><p>Groups stimulate creativity and alternate solutions</p></li>
+<li><p>Discussing topics helps cement learning</p></li>
+<li><p>It helps you be involved in decision-making</p></li>
+<li><p>You’re gonna do group work for the rest of your life</p></li>
+</ul>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3
+id="lign-111-students-did-you-learn-a-bunch-from-the-group-work-portions-of-the-class">LIGN
+111 Students: Did you learn a bunch from the group work portions of the
+class?</h3>
+<ol type="A">
+<li><p>Yes</p></li>
+<li><p>Eh…</p></li>
+<li><p>No</p></li>
+</ol>
+<hr />
+<h3 id="whatre-the-downsides">What’re the downsides?</h3>
+<ul>
+<li><p>Conformity pressure</p></li>
+<li><p>Differing skill and preparation levels</p></li>
+<li><p>It takes more time!</p></li>
+<li><p>This lecture hall is gonna be tricky</p></li>
+</ul>
+<hr />
+<h2 id="sitting-in-row-g-is-banned-on-group-work-days">Sitting in Row G
+is <em>banned</em> on group work days</h2>
+<ul>
+<li><p>This is so we can freely access all groups in this
+classroom</p></li>
+<li><p>We’ll remind you, but that’s why</p></li>
+</ul>
+<hr />
+<h3 id="were-gonna-see-how-well-this-works">We’re gonna see how well
+this works</h3>
+<ul>
+<li><p>Optimizations will be made</p></li>
+<li><p>The schedule will change (except due dates)</p></li>
+<li><p>DO NOT PRINT THE SYLLABUS</p></li>
+</ul>
+<hr />
+<h1 id="this-quarter">This quarter…</h1>
+<ul>
+<li><p>We’ll learn how linguists think words work</p></li>
+<li><p>We’ll learn the best practices for analyzing words in language
+data</p></li>
+<li><p>We’ll delve into a truly wonderful area of linguistics</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li><p>Re-Register your clickers in Canvas</p></li>
+<li><p>We’ll dive into some data</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<video controls src="video/ppap.mp4">
+<hr />
+<h1 id="clitics-compounds-and-other-weird-chunks-of-meaning">Clitics,
+Compounds, and other weird chunks of meaning</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h3 id="weve-talked-about-the-idea-of-richer-storage">We’ve talked about
+the idea of richer storage</h3>
+<ul>
+<li><p>“Maybe we’re storing bigger, analyzable chunks”</p></li>
+<li><p>And we’ve now talked about frequency having important effects</p>
+<ul>
+<li>Frequency makes weirdness permissible</li>
+</ul></li>
+<li><p>Today, let’s talk about some other strange chunks</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Clitics</p></li>
+<li><p>Compounds</p></li>
+<li><p>Closing the Lexical Discussion</p></li>
+</ul>
+<hr />
+<h1 id="some-clitical-thinking">Some Clitical Thinking</h1>
+<hr />
+<h3 id="weve-discussed-word-being-a-slippery-concept">We’ve discussed
+‘word’ being a slippery concept</h3>
+<ul>
+<li><p>There’s no clear definition that works well for
+everything</p></li>
+<li><p>Some multi-word chunks feel ‘cohesive’</p>
+<ul>
+<li>copy machine, phone charger, over-the-top</li>
+</ul></li>
+<li><p>Some affixes feel ‘wordy’</p></li>
+</ul>
+<hr />
+<h2 id="clitics">Clitics</h2>
+<p>Affixes that show word-like independence</p>
+<hr />
+<h3 id="the-s-possessive-clitic">The ’s Possessive Clitic</h3>
+<ul>
+<li><p>girl</p></li>
+<li><p>the girl’s book</p></li>
+<li><p>the little girl’s book</p></li>
+<li><p>the little girl from Canada’s book</p></li>
+<li><p><strong>This affix can attach to a variety of words with the same
+meaning!</strong></p>
+<ul>
+<li>It can even attach to different syntactic categories!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-s-copular-clitic">The ’s copular clitic</h3>
+<ul>
+<li><p>John’s doing great in the class.</p></li>
+<li><p>Fixing the scooter you broke’s gonna be expensive</p></li>
+<li><p>That car in red’s super hard to find.</p></li>
+<li><p><strong>This has the same distribution as ‘is’, but acts like an
+affix.</strong></p></li>
+</ul>
+<hr />
+<h3 id="the-ve-modal-clitic">The ’ve modal clitic</h3>
+<ul>
+<li><p>I would’ve youghten him out of there had I known</p></li>
+<li><p>All the ones I’ve seen’ve been blue.</p></li>
+<li><p>The purple’ve sold out already.</p></li>
+<li><p>You already’ve seen it?</p></li>
+</ul>
+<hr />
+<h3 id="they-dont-feel-like-affixes">They don’t feel like affixes</h3>
+<ul>
+<li><p>They don’t have <strong>selectional restrictions</strong>, and
+can attach to most things</p>
+<ul>
+<li>Compare ‘*the car you wreckeds are expensive’</li>
+</ul></li>
+<li><p>They have <strong>freedom of host</strong>, and can attach to
+many lexical categories</p></li>
+<li><p>They appear to attach <strong>after stress has been
+assigned</strong></p>
+<ul>
+<li>Dígamelo! should be ‘digaMElo’ according to Spanish rules</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="clitics-are-strange">Clitics are strange</h3>
+<ul>
+<li><p>… and your book goes into more detail about how in Chapter
+9</p></li>
+<li><p>But they’re an example of something that doesn’t quite ‘fit’ in a
+world of affixes and stems</p></li>
+<li><p>If we conceptualize morphology as only having two states,
+‘attached affix’ and ‘stem’, we’re gonna have a rough time.</p></li>
+</ul>
+<hr />
+<h3
+id="clitics-are-attached-chunks-that-feel-like-theyre-independent">Clitics
+are attached chunks that feel like they’re independent</h3>
+<ul>
+<li><p>… and force us to consider a morphology which allows gradient
+attachment</p></li>
+<li><p>What about the opposite?</p></li>
+<li><p><strong>Let’s think about independent chunks, that feel
+attached!</strong></p></li>
+</ul>
+<hr />
+<h1 id="compounds">Compounds</h1>
+<hr />
+<h3
+id="sometimes-separate-words-feel-more-connected-than-the-space-makes-them-seem">Sometimes,
+separate words feel more connected than the space makes them seem</h3>
+<ul>
+<li><p>‘Backpack’ is not ‘back’ and ‘pack’</p>
+<ul>
+<li>Front pack and back pack</li>
+</ul></li>
+<li><p>‘Laptop’ is not ‘lap’ and ‘top’</p>
+<ul>
+<li>‘I put my laptop on a desk, so it’s a desktop computer’</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="compounds-1">Compounds</h2>
+<p>Compounds are single complex lexemes composed of two or more
+lexemes</p>
+<ul>
+<li><p>Compounds can be two <em>or more</em> words. ‘Blue cheese salad
+dressing’</p></li>
+<li><p>Don’t get too hung up on spaces, dashes, and lacks
+thereof!</p></li>
+</ul>
+<hr />
+<h3 id="example-compounds">Example Compounds</h3>
+<ul>
+<li><p>Chinese: zhèn zhi̊ (press-down + paper) = paperweight</p></li>
+<li><p>Swedish: piphuvud (pipe + head) = pipe bowl</p></li>
+<li><p>Czech: lido-jed (human + eat) = cannibal</p></li>
+<li><p>Koasati: ʧonhǎtka (oʧona ‘metal’ + hatka- ‘white’) =
+bucket</p></li>
+<li><p>Tłı̨chǫ Yatıì (Dogrib): dlòotsǫ̀ǫ̀ (dlòo ‘squirrel’ + tsǫ̀ǫ̀ ‘dung’) =
+‘peanut butter’</p></li>
+</ul>
+<hr />
+<h3 id="compounds-form-from-high-frequency-use">Compounds form from high
+frequency use</h3>
+<ul>
+<li><p>‘wrist watch’ was an innovation, until it wasn’t</p></li>
+<li><p>‘Lap top computer’ wasn’t always a ‘laptop’</p></li>
+<li><p>‘data set’ isn’t a compound to most people, but it is to
+us!</p></li>
+<li><p>‘nail bed’ is a thing to people who do fingernails
+professionally</p></li>
+</ul>
+<hr />
+<h3 id="compounds-act-like-words">Compounds act like words!</h3>
+<ul>
+<li><p>They have idiosyncratic or restricted meanings</p></li>
+<li><p>They have phonological and prosodic cohesion</p></li>
+<li><p>They act like stems</p></li>
+</ul>
+<hr />
+<h3 id="idiosyncratic-and-restricted-meanings">Idiosyncratic and
+Restricted Meanings</h3>
+<ul>
+<li><p>Not all packs on the back are backpacks</p></li>
+<li><p>rainfall, snowfall, *hailfall, *sleetfall</p></li>
+<li><p>You can dog walk somebody who isn’t a dog</p></li>
+<li><p>A tower computer placed on the lap is not a laptop
+computer</p></li>
+<li><p>They can feel <strong>idiomatic</strong></p>
+<ul>
+<li>Their meaning isn’t interpretable from their parts (e.g. ‘kick the
+bucket’)</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="the-meanings-of-compounds-can-be-variably-persistent-by-analogy">The
+meanings of compounds can be variably persistent by analogy</h3>
+<ul>
+<li><p>Butt Dial</p>
+<ul>
+<li>Butt text? Butt telegram? Butt email?</li>
+</ul></li>
+<li><p>Booty call</p>
+<ul>
+<li>Booty text? Booty telegram? Booty email?</li>
+</ul></li>
+<li><p>Break a leg</p>
+<ul>
+<li>Break both legs? Break everything?</li>
+</ul></li>
+<li><p>Big Mac</p>
+<ul>
+<li>Little Mac? Mega Mac?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="compounds-have-phonological-and-prosodic-cohesion">Compounds
+have phonological and prosodic cohesion</h3>
+<ul>
+<li><p>She gave me a Krispy Kreme Donut</p></li>
+<li><p>I had Five Guys for dinner last night</p></li>
+<li><p>Compounds can have specific tone patterns</p></li>
+<li><p>Phonological rules can apply differently within
+compounds</p></li>
+</ul>
+<hr />
+<h3 id="brown-coat">Brown Coat</h3>
+<p><img class="tall" src="img/firefly_mal.jpg"></p>
+<hr />
+<h3 id="compounds-act-like-stems">Compounds act like stems</h3>
+<ul>
+<li><p>Affixes may not apply within them</p></li>
+<li><p>What’s the plural of…</p>
+<ul>
+<li>Lightsaber</li>
+<li>Light year</li>
+<li>Big Mac</li>
+<li>Queen of England</li>
+<li>Hunter-Gatherer</li>
+<li>Cheese Platter</li>
+<li>Toothbrush</li>
+<li>Mousetrap</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="compounds-have-different-semantic-types">Compounds have
+different semantic types</h2>
+<hr />
+<h3 id="compound-types">Compound Types</h3>
+<ul>
+<li><p><strong>Endocentric</strong>: referent a ‘kind’ of one of its
+members</p>
+<ul>
+<li>lipstick, swordfish, tower crane, textbook, cellphone,
+pocketknife</li>
+</ul></li>
+<li><p><strong>Exocentric</strong>: referent is ‘outside’ of the
+members’ meanings</p>
+<ul>
+<li>pickpocket, laptop, blowhard, pushover</li>
+</ul></li>
+<li><p><strong>Coordinative</strong>: referent is a combination of the
+members’ meanings</p>
+<ul>
+<li>Southwest, blue-green, dumpster fire, upper-right, freeze-dry</li>
+</ul></li>
+<li><p><strong>Appositional</strong>: both members have the same
+referent</p>
+<ul>
+<li>God-Emperor, Singer-Songwriter, Owner/Operator, Washer/Dryer</li>
+</ul></li>
+</ul>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="which-type-of-compound-is-meathead">Which type of compound is
+‘meathead’?</h3>
+<ol type="A">
+<li><p><strong>Endocentric</strong>: referent a ‘kind’ of one of its
+members</p></li>
+<li><p><strong>Exocentric</strong>: referent is ‘outside’ of the
+members’ meanings</p></li>
+<li><p><strong>Coordinative</strong>: referent is a combination of the
+members’ meanings</p></li>
+<li><p><strong>Appositional</strong>: both members have the same
+referent</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="which-type-of-compound-is-sleepwalk">Which type of compound is
+‘sleepwalk’?</h3>
+<ol type="A">
+<li><p><strong>Endocentric</strong>: referent a ‘kind’ of one of its
+members</p></li>
+<li><p><strong>Exocentric</strong>: referent is ‘outside’ of the
+members’ meanings</p></li>
+<li><p><strong>Coordinative</strong>: referent is a combination of the
+members’ meanings</p></li>
+<li><p><strong>Appositional</strong>: both members have the same
+referent</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="which-type-of-compound-is-trashcan">Which type of compound is
+‘trashcan’?</h3>
+<ol type="A">
+<li><p><strong>Endocentric</strong>: referent a ‘kind’ of one of its
+members</p></li>
+<li><p><strong>Exocentric</strong>: referent is ‘outside’ of the
+members’ meanings</p></li>
+<li><p><strong>Coordinative</strong>: referent is a combination of the
+members’ meanings</p></li>
+<li><p><strong>Appositional</strong>: both members have the same
+referent</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="which-type-of-compound-is-pass-fail">Which type of compound is
+‘pass-fail’?</h3>
+<ol type="A">
+<li><p><strong>Endocentric</strong>: referent a ‘kind’ of one of its
+members</p></li>
+<li><p><strong>Exocentric</strong>: referent is ‘outside’ of the
+members’ meanings</p></li>
+<li><p><strong>Coordinative</strong>: referent is a combination of the
+members’ meanings</p></li>
+<li><p><strong>Appositional</strong>: both members have the same
+referent</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<h3 id="which-type-of-compound-is-bittersweet">Which type of compound is
+‘bittersweet’?</h3>
+<ol type="A">
+<li><p><strong>Endocentric</strong>: referent a ‘kind’ of one of its
+members</p></li>
+<li><p><strong>Exocentric</strong>: referent is ‘outside’ of the
+members’ meanings</p></li>
+<li><p><strong>Coordinative</strong>: referent is a combination of the
+members’ meanings</p></li>
+<li><p><strong>Appositional</strong>: both members have the same
+referent</p></li>
+</ol>
+<hr />
+<h2 id="compounds-have-internal-structure">Compounds have internal
+structure</h2>
+<hr />
+<h3 id="endocentric-compounds-have-heads">Endocentric Compounds have
+‘Heads’</h3>
+<ul>
+<li><p>The head determines the lexical category</p>
+<ul>
+<li>‘Light rail’, ‘overdo’, ‘dog walk’, ‘catsuit’</li>
+</ul></li>
+<li><p>The head carries the inflection for the compound</p>
+<ul>
+<li>‘whitewashed’, ‘sidestepping’, ‘undertaker’, ‘cheese platters’</li>
+</ul></li>
+<li><p>The other element modifies or specifies the meaning of the head,
+it’s the ‘dependent’</p>
+<ul>
+<li>‘What kind of stepping? Side stepping!’</li>
+</ul></li>
+<li><p>Endocentric compounds refer to a subtype of the head.</p>
+<ul>
+<li>‘textbooks’, ‘grad school’, ‘cat show’</li>
+</ul></li>
+<li><p>If there’s no head, the compound is exocentric!</p></li>
+</ul>
+<hr />
+<h3 id="head-positioning-is-language-specific">Head positioning is
+language specific</h3>
+<ul>
+<li><p>English places the head on the right: Light years</p></li>
+<li><p>Spanish places the head on the left: año luz (‘light year’) -&gt;
+‘años luz’ (‘light years’)</p></li>
+<li><p>So does Tagalog: matang-lawin, eyes-hawk, ‘hawkeyes’</p></li>
+</ul>
+<hr />
+<h2 id="compounds-can-be-ambiguous">Compounds can be ambiguous</h2>
+<hr />
+<h3 id="whats-the-head">What’s the head?</h3>
+<ul>
+<li><p>I saw a French Literature Professor</p></li>
+<li><p>He’s got a Justin Bieber Face Tattoo</p></li>
+<li><p>Borderline Personality Disorder Tests</p></li>
+</ul>
+<hr />
+<h3 id="we-can-think-about-this-in-terms-of-trees">We can think about
+this in terms of trees!</h3>
+<p><img class="wide" src="morphology/compoundtrees.jpg"></p>
+<hr />
+<h3
+id="compounds-are-when-multiple-words-end-up-stored-like-one-word">Compounds
+are when multiple words end up stored like one word</h3>
+<ul>
+<li><p>With specific meanings, phonological wordiness, and word-like
+inflection</p></li>
+<li><p>Unlike clitics, which are affixes that act wordy on
+occasion!</p></li>
+<li><p>… which brings us back to that lexicon bit</p></li>
+</ul>
+<hr />
+<h1 id="final-words-on-the-lexicon">Final Words on the Lexicon</h1>
+<ul>
+<li>Get it? Words? :D</li>
+</ul>
+<hr />
+<h3 id="weve-talked-about-two-possibilities">We’ve talked about two
+possibilities!</h3>
+<ul>
+<li><p><strong>Morpheme-based Lexicon</strong>: Storage is expensive, so
+let’s store the smallest parts and use rules to combine them</p></li>
+<li><p><strong>Word-based Lexicon</strong>: Storage is cheap, store
+EVERYTHING and then use analogy to fill in the blanks</p></li>
+</ul>
+<hr />
+<h3 id="both-have-advantages-and-disadvantages">Both have advantages and
+disadvantages</h3>
+<hr />
+<h3 id="pros-of-a-morpheme-based-lexicon">Pros of a Morpheme-based
+Lexicon</h3>
+<ul>
+<li><p>Uniting forms with rules can be very
+<strong>elegant</strong></p></li>
+<li><p>The lexicon is <strong>compact</strong> and
+<strong>efficient</strong>. Little storage space is required</p></li>
+<li><p>Rules can efficiently generate a <em>lot</em> of the variants we
+see</p></li>
+<li><p>Our analysis (forms+rules) <strong>generates</strong> legal
+forms, which leaves us ready for productivity!</p></li>
+<li><p>Phonemes and Morphemes sure <em>feel</em> real!</p></li>
+</ul>
+<hr />
+<h3 id="cons-of-a-morpheme-based-lexicon">Cons of a Morpheme-based
+Lexicon</h3>
+<ul>
+<li><p>The elegance and efficiency is reduced as irregularity
+increases</p></li>
+<li><p>Non-compositional meanings aren’t efficient</p></li>
+<li><p>Non-concatenative morphology is hard</p></li>
+<li><p><strong>Frequency effects are harder to account
+for</strong></p></li>
+</ul>
+<hr />
+<h3 id="pros-of-a-whole-word-lexicon">Pros of a Whole-Word Lexicon</h3>
+<ul>
+<li><p>Storage appears to be pretty cheap</p></li>
+<li><p>Emergence is pretty compelling for explaining learning and
+language change</p></li>
+<li><p>Reanalysis works <strong>great</strong></p></li>
+<li><p>Phonetic phenomena work <strong>great</strong> in a usage-based
+world</p></li>
+<li><p>Phonology goes away!</p></li>
+<li><p>Frequency effects come free with the model!</p></li>
+</ul>
+<hr />
+<h3 id="cons-of-a-whole-word-lexicon">Cons of a Whole-Word Lexicon</h3>
+<ul>
+<li><p>Your students glare at you when you explain it</p></li>
+<li><p>Morphemes sure feel real in phonological and morphological
+rules</p></li>
+<li><p>Polysynthetic languages result in a combinatorial
+explosion</p></li>
+<li><p>‘Analogy’ is magic, and ends up looking like generative rules
+when formalized</p></li>
+<li><p>It takes <strong>forever</strong> to accomplish anything</p>
+<ul>
+<li>… and it’s just not workable for linguistic fieldwork</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="is-there-a-middle-ground">Is there a middle ground?</h3>
+<hr />
+<h1 id="yes">Yes!</h1>
+<hr />
+<h2 id="the-dual-route-lexicon">The Dual-route Lexicon</h2>
+<hr />
+<h3 id="life-in-a-dual-route-lexicon">Life in a Dual-Route Lexicon</h3>
+<ul>
+<li><p>We’re storing lots of words, including some frequent ‘complex’
+chunks</p>
+<ul>
+<li>Compounds and Common Morphologically Complex forms</li>
+</ul></li>
+<li><p>We also have the ability to decompose words according to
+rules</p>
+<ul>
+<li>Affixes, Phonology, and Morphological rules are not opaque to
+us</li>
+</ul></li>
+<li><p>We choose the method of access that makes most sense at the
+time!</p></li>
+</ul>
+<hr />
+<h3 id="the-dual-route-lexicon-schematized">The Dual-Route Lexicon
+Schematized</h3>
+<p><img class="tall" src="morphology/dualroute.jpg"></p>
+<hr />
+<h3 id="put-differently">Put differently…</h3>
+<ul>
+<li>“Store as chunks the things that make sense to store as chunks, but
+remember that there are patterns and abstractions!”</li>
+</ul>
+<hr />
+<h3 id="pros-of-the-dual-route-approach">Pros of the Dual-Route
+Approach</h3>
+<ul>
+<li><p>Best of both worlds</p></li>
+<li><p>Frequency effects and whole-word-like phenomena are
+explained</p></li>
+<li><p>Analogy is done better than ‘Magic!’</p></li>
+</ul>
+<hr />
+<h3 id="cons-of-the-dual-route-approach">Cons of the Dual-Route
+Approach</h3>
+<ul>
+<li><p>We lose the simplicity of both sides</p></li>
+<li><p>Hello again, Phonemes and Phonology</p></li>
+<li><p>Now we have two systems awkwardly taped together</p>
+<ul>
+<li>… and we have to describe where they switch off</li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="wills-hot-take">Will’s Hot Take</h1>
+<ul>
+<li>Compound!</li>
+</ul>
+<hr />
+<p><img class="wide" src="img/soapbox.jpg"></p>
+<hr />
+<h3
+id="whole-word-morpheme-based-and-dual-route-approaches-are-all-plausible">Whole-Word,
+Morpheme-based, and Dual-Route Approaches are all plausible</h3>
+<ul>
+<li><p>None of them make predictions that are provably false</p></li>
+<li><p>They seem cognitively possible</p></li>
+<li><p>They account for relevant amounts of data</p></li>
+<li><p>They’ve all stood up to scrutiny in the community</p></li>
+<li><p><strong>We don’t know which of these approaches is ‘more
+real’</strong></p></li>
+</ul>
+<hr />
+<h3 id="linguistics-is-about-analysis">Linguistics is about
+analysis</h3>
+<ul>
+<li><p>“How do I best explain what’s going on in this chunk of
+language?”</p></li>
+<li><p>Theories are tools which help us</p></li>
+<li><p>Every theoretical tool has strengths and weaknesses</p></li>
+<li><p>Some problems are <em>stupid easy</em> with one theory, and
+<em>ridiculously hard</em> for another</p></li>
+</ul>
+<hr />
+<h3
+id="you-can-analyze-a-given-phenomenon-with-any-of-these-theories">You
+can analyze a given phenomenon with any of these theories</h3>
+<ul>
+<li><p>You can make morpheme-based approaches deal with high-frequency
+phonological reduction</p></li>
+<li><p>You can make usage-based approaches deal with wugs and
+morpheme-driven processes</p></li>
+<li><p>You can make a dual-route approach account for all the data, and
+specify the switching pattern</p></li>
+</ul>
+<hr />
+<h3 id="you-can-also-open-a-beer-with-a-chainsaw">You can also open a
+beer with a chainsaw</h3>
+<ul>
+<li><p><img class="wide" src="img/beerchainsaw.gif"></p></li>
+<li><h1 id="but-that-does-not-mean-you-should"><danger>… but that does
+not mean you should</danger></h1></li>
+</ul>
+<hr />
+<h3 id="choose-the-right-tool-for-the-job">Choose the right tool for the
+job</h3>
+<ul>
+<li><p>Look at the problem you have in the data</p></li>
+<li><p>Choose the approach that’s best suited to address it</p></li>
+<li><p>… and get the analysis done</p></li>
+</ul>
+<hr />
+<h3
+id="maybe-well-figure-out-the-cognitive-reality-of-all-of-this-some-day">Maybe
+we’ll figure out the cognitive reality of all of this some day</h3>
+<ul>
+<li><p>… but for now, I’m just going to use what works</p></li>
+<li><h1 id="ツ_">¯\_(ツ)_/¯</h1></li>
+</ul>
+<hr />
+<p><huge>&lt;/ <img class="wide" src="img/soapbox.jpg">&gt;</huge></p>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li><p><strong>No Class on Monday!</strong></p></li>
+<li><p>Wednesday, we’ll look at some amazing data!</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

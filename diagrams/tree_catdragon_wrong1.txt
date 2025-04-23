@@ -1,0 +1,17 @@
+tree_catdragon_wrong1tex
+
+[S 
+  [NP 
+    [DET the ] 
+    [NP 
+      [DET cute ] 
+      [N' 
+        [N cat ] ] ] ] 
+  [VP 
+    [V meowed ] 
+    [PP 
+      [P at ] 
+      [NP 
+        [DET the ] 
+        [N' 
+          [N dragon ] ] ] ] ] ]

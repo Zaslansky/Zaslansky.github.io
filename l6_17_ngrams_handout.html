@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3
+id="please-help-me-out-by-completing-a-mid-quarter-teaching-feedback-form">Please
+help me out by completing a Mid-Quarter Teaching Feedback form!</h3>
+<p><a href="http://savethevowels.org/feedback"
+class="uri">http://savethevowels.org/feedback</a></p>
+<hr />
+<p><img width="50%" src="humorimg/thecount.jpg"></p>
+<h1 id="n-gram-language-models">N-Gram Language Models</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<h3 id="the-plan">The Plan</h3>
+<ul>
+<li><p>What are N-Grams?</p></li>
+<li><p>Examples from the EnronSent Corpus</p></li>
+<li><p>How N-Grams can form a language model</p></li>
+<li><p>What are the strengths of N-Gram models?</p></li>
+<li><p>What are their weaknesses?</p></li>
+<li><p>How can we improve on them?</p></li>
+</ul>
+<hr />
+<h3 id="what-is-an-n-gram">What is an N-gram?</h3>
+<ul>
+<li><p>An N-gram is a sequence of words that is N items long</p></li>
+<li><p>1 word is a ‘unigram’, 2 is a ‘bigram’, 3 is a
+‘trigram’…</p></li>
+<li><p>We identify sequences in the text, then count their
+frequencies</p></li>
+<li><p>And that’s N-Gram analysis</p></li>
+<li><p>“How often does this sequence of words occur?”</p></li>
+</ul>
+<hr />
+<h3 id="how-do-we-find-n-gram-counts">How do we find N-Gram counts?</h3>
+<ul>
+<li><p>Choose a (large) corpus of text</p></li>
+<li><p>Tokenize the words</p></li>
+<li><p>Count the number of times each word occurs</p></li>
+</ul>
+<hr />
+<h2 id="tokenization">Tokenization</h2>
+<p>The language-specific process of separating natural language text
+into component units, and throwing away needless punctuation and
+noise.</p>
+<hr />
+<h3 id="tokenization-can-be-quite-easy">Tokenization can be quite
+easy</h3>
+<blockquote>
+<p>Margot went to the park with Talisha and Yuan last week.</p>
+</blockquote>
+<ul>
+<li><h2
+id="margot-went-to-the-park-with-talisha-and-yuan-last-week-.">[‘Margot’,
+‘went’, ‘to’, ‘the’, ‘park’, ‘with’, ‘Talisha’, ‘and’, ‘Yuan’, ‘last’,
+‘week’, ‘.’]</h2></li>
+</ul>
+<h3 id="tokenization-can-also-be-awful.">Tokenization can also be
+awful.</h3>
+<blockquote>
+<p>Although we <em>aren’t</em> sure why <em>John-Paul O’Rourke</em> left
+on the <em>22nd</em>, <em>we’re</em> sure that he <em>would’ve</em> had
+his <em>Tekashi 6ix9ine</em> CD, <em>co-authored</em> manuscript (dated
+<em>8-15-1985</em>), and at least <em>$150 million</em> in
+<em>cash-money</em> in his <em>back pack</em> if he’d planned to leave
+for <em>New York University</em>.</p>
+</blockquote>
+<ul>
+<li>[‘Although’, ‘we’, ‘are’, “n’t”, ‘sure’, ‘why’, ‘John-Paul’,
+“O’Rourke”, ‘left’, ‘on’, ‘the’, ‘22nd’, ‘,’, ‘we’, “‘re”, ’sure’,
+‘that’, ‘he’, ‘would’,”‘ve”, ’had’, ‘his’, ‘Tekashi’, ‘6ix9ine’, ‘CD’,
+‘,’, ‘co-authored’, ‘manuscript’, ‘(’, ‘dated’, ‘8-15-1985’, ‘)’, ‘,’,
+‘and’, ‘at’, ‘least’, ‘$’, ‘150’, ‘million’, ‘in’, ‘cash-money’, ‘in’,
+‘his’, ‘back’, ‘pack’, ‘if’, ‘he’, “‘d”, ’planned’, ‘to’, ‘leave’,
+‘for’, ‘New’, ‘York’, ‘University’, ‘.’]</li>
+</ul>
+<hr />
+<h3 id="tokenization-problems">Tokenization Problems</h3>
+<ul>
+<li><p>Which punctuation is meaningful?</p></li>
+<li><p>How do we handle contractions?</p></li>
+<li><p>What about multiword expressions?</p></li>
+<li><p>Do we tokenize numbers?</p></li>
+</ul>
+<hr />
+<h3 id="tokenization-can-be-done-automatically">Tokenization can be done
+automatically</h3>
+<ul>
+<li><p>I used <a href="http://www.nltk.org/">nltk</a>’s
+nltk.word_tokenize() function</p>
+<ul>
+<li>… with the Punkt English language tokenizer model.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-do-we-find-n-gram-counts-1">How do we find N-Gram
+counts?</h3>
+<p>Choose a (large) corpus of text</p>
+<p>Tokenize the words</p>
+<ul>
+<li><p>Count all individual words (using something like <a
+href="https://www.nltk.org/">nltk</a>)</p>
+<ul>
+<li><p>Then all pairs of words…</p></li>
+<li><p>Then all triplets…</p></li>
+<li><p>All quadruplets…</p></li>
+<li><p>… and so forth</p></li>
+</ul></li>
+<li><p>The end result is a table of counts by N-Gram</p></li>
+</ul>
+<hr />
+<h2 id="lets-try-it-in-our-data">Let’s try it in our data!</h2>
+<ul>
+<li><p>We’ll use the <a
+href="http://savethevowels.org/enronsent/">EnronSent Email
+Corpus</a></p></li>
+<li><p>~96,000 DOE-seized emails within the Enron Corporation from
+2007</p></li>
+<li><p>~14,000,000 words</p></li>
+<li><p>This is a pretty small corpus for serious N-Gram work</p>
+<ul>
+<li><h2 id="but-its-a-nice-illustrative-case">But it’s a nice
+illustrative case</h2></li>
+</ul></li>
+</ul>
+<pre><code data-trim>
+
+#!/usr/bin/env python
+
+import nltk
+from nltk import word_tokenize
+from nltk.util import ngrams
+
+es = open('enronsent_all.txt','r')
+text = es.read()
+token = nltk.word_tokenize(text)
+
+unigrams = ngrams(token,1)
+bigrams = ngrams(token,2)
+trigrams = ngrams(token,3)
+fourgrams = ngrams(token,4)
+fivegrams = ngrams(token,5)
+
+</code></pre>
+<hr />
+<h3 id="unigrams">Unigrams</h3>
+<ul>
+<li><p>‘The’ 560,524</p></li>
+<li><p>‘to’ 418,221</p></li>
+<li><p>‘Enron’ 391,190</p></li>
+<li><p>‘Jeff’ 10,717</p></li>
+<li><p>‘Veterinarian’ 2</p></li>
+<li><p>‘Yeet’ 0</p></li>
+</ul>
+<hr />
+<h3 id="bigrams">Bigrams</h3>
+<ul>
+<li><p>‘of the’ 61935</p></li>
+<li><p>‘need to’ 15303</p></li>
+<li><p>‘at Enron’ 6384</p></li>
+<li><p>‘forward to’ 4303</p></li>
+<li><p>‘wordlessly he’ 2</p></li>
+</ul>
+<hr />
+<h3 id="trigrams">Trigrams</h3>
+<ul>
+<li><p>‘Let me know’ 6821</p></li>
+<li><p>‘If you have’ 5992</p></li>
+<li><p>‘See attached file’ 2165</p></li>
+<li><p>‘are going to’ 1529</p></li>
+</ul>
+<hr />
+<h3 id="four-grams">Four-Grams</h3>
+<ul>
+<li><p>‘Please let me know’ 5512</p></li>
+<li><p>‘Out of the office’ 947</p></li>
+<li><p>‘Delete all copies of’ 765</p></li>
+<li><p>‘Houston , TX 77002’ 646</p></li>
+<li><p>‘you are a jerk’ 35</p></li>
+</ul>
+<hr />
+<h3 id="five-grams">Five-Grams</h3>
+<ul>
+<li><p>‘If you have any questions’ 3294</p></li>
+<li><p>‘are not the intended recipient’ 731</p></li>
+<li><p>‘enforceable contract between Enron Corp.’ 418</p></li>
+<li><p>‘wanted to let you know’ 390</p></li>
+</ul>
+<hr />
+<h3 id="note-that-the-frequencies-of-occurrence-dropped-as-n-rose">Note
+that the frequencies of occurrence dropped as N rose</h3>
+<ul>
+<li><p>‘The’ 560,524</p></li>
+<li><p>‘of the’ 61,935</p></li>
+<li><p>‘Let me know’ 6,821</p></li>
+<li><p>‘Please let me know’ 5,512</p></li>
+<li><p>‘If you have any questions’ 3,294</p></li>
+<li><p><em>We’ll come back to this later</em></p></li>
+</ul>
+<hr />
+<h3 id="ok-great.">OK, Great.</h3>
+<ul>
+<li><p>You counted words. Congratulations.</p></li>
+<li><p><strong>What does this win us?</strong></p></li>
+</ul>
+<hr />
+<h3 id="n-grams-give-us-more-than-just-counts">N-Grams give us more than
+just counts</h3>
+<ul>
+<li><p>If we know how often Word X follows Word Y (rather than Word
+Z)…</p></li>
+<li><p><strong>“What is the probability of word X following word
+Y?”</strong></p>
+<ul>
+<li><p>p(me | let) &gt; p(flamingo | let)</p></li>
+<li><p>We calculate log probabilities to avoid descending to
+zero</p></li>
+</ul></li>
+<li><p>Probabilities are more useful than counts</p></li>
+<li><p><strong>Probabilities allow us to predict</strong></p></li>
+</ul>
+<hr />
+<h3 id="n-grams-can-give-us-a-language-model">N-Grams can give us a
+language model</h3>
+<ul>
+<li><p>Answers “Is this likely to be a grammatical sentence?”</p></li>
+<li><p>Any natural language processing application needs a language
+model</p></li>
+<li><p>We can get a surprisingly rich model from N-Gram-derived
+information alone</p></li>
+</ul>
+<hr />
+<h3 id="these-probabilities-tell-us-about-grammar">These probabilities
+tell us about Grammar</h3>
+<ul>
+<li><p>“You are” (11,294 occurrences) is more likely than “You is” (286
+occurrences)</p></li>
+<li><p>“Would have” (2362) is more likely than “Would of” (17)</p></li>
+<li><p>“Might be able to” (240) is more common than “might could”
+(4)</p>
+<ul>
+<li>“Thought Scott might could use some help…”</li>
+</ul></li>
+<li><p>“Two agreements” (35) is more likely than “Two agreement”
+(2)</p></li>
+<li><p>“Throw in” (35) and “Throw out” (33) are much more common than
+‘Throw’ + other prepositions</p></li>
+<li><p><strong>n-grams provide a very simple <em>language model</em>
+from which we can do inference</strong></p></li>
+</ul>
+<hr />
+<h3 id="these-probabilities-tell-us-about-meaning">These probabilities
+tell us about meaning</h3>
+<ul>
+<li>Words which often co-occur are likely related in some way!</li>
+</ul>
+<hr />
+<h2 id="the-distributional-hypothesis">The Distributional
+Hypothesis</h2>
+<p>“A word is characterized by the company it keeps” - John Rupert
+Firth</p>
+<ul>
+<li>Words which appear in similar contexts share similar meanings</li>
+</ul>
+<hr />
+<h3 id="these-probabilities-tell-us-about-the-world">These probabilities
+tell us about the world</h3>
+<ul>
+<li><p>Probabilities of language are based in part on our interaction
+with the world</p></li>
+<li><p>People at Enron ‘go to the’ bathroom (17), Governor (7), Caymans
+(6), assembly (6), and senate (5)</p></li>
+<li><p>People at Enron enjoy good food (18), Mexican Food (17), Fast
+Food (13), Local Food (4), and Chinese Food (2)</p>
+<ul>
+<li>But “Californian Food” isn’t a thing</li>
+</ul></li>
+<li><p>Power comes from California (9), Generators (6), EPMI (3), and
+Canada (2)</p>
+<ul>
+<li>… and mostly gets sold to California (29)</li>
+</ul></li>
+<li><p><strong>Probable groupings tell us something about how this world
+works</strong></p></li>
+</ul>
+<hr />
+<h3 id="even-unigram-counts-are-interesting-in-the-right-context">Even
+Unigram counts are interesting, in the right context</h3>
+<hr />
+<h2 id="enter-google-ngrams">Enter Google Ngrams</h2>
+<p><a href=https://books.google.com/ngrams>https://books.google.com/ngrams</a></p>
+<hr />
+<h3 id="some-things-never-change">Some things never change</h3>
+<hr />
+<p><img class="r-stretch" src="img/eat.png"></p>
+<h3 id="eat">Eat</h3>
+<hr />
+<p><img class="r-stretch" src="img/sleep.png"></p>
+<h3 id="sleep">Sleep</h3>
+<hr />
+<p><img class="r-stretch" src="img/walk.png"></p>
+<h3 id="walk">Walk</h3>
+<hr />
+<p><img class="r-stretch" src="img/eatsleepwalk.png"></p>
+<h3 id="eatsleepwalk">Eat/Sleep/Walk</h3>
+<hr />
+<h3 id="some-words-you-might-expect-to-change-over-time">Some words, you
+might expect to change over time</h3>
+<hr />
+<p><img class="r-stretch" src="img/automobile.png"></p>
+<h3 id="automobile">Automobile</h3>
+<hr />
+<p><img class="r-stretch" src="img/computer.png"></p>
+<h3 id="computer">Computer</h3>
+<hr />
+<p><img class="r-stretch" src="img/laptop.png"></p>
+<h3 id="laptop">Laptop</h3>
+<hr />
+<p><img class="r-stretch" src="img/download.png"></p>
+<h3 id="download">Download</h3>
+<hr />
+<p><img class="r-stretch" src="img/google.png"></p>
+<h3 id="google">Google</h3>
+<hr />
+<p><img class="r-stretch" src="img/confederacy.png"></p>
+<h3 id="confederacy">Confederacy</h3>
+<hr />
+<h3 id="some-words-are-falling-out-of-use">Some words are falling out of
+use</h3>
+<hr />
+<p><img class="r-stretch" src="img/bilious.png"></p>
+<h3 id="bilious">Bilious</h3>
+<hr />
+<p><img class="r-stretch" src="img/blackguard.png"></p>
+<h3 id="blackguard">Blackguard</h3>
+<hr />
+<p><img class="r-stretch" src="img/ngram_retarded.png"></p>
+<h3 id="retarded">Retarded</h3>
+<hr />
+<h3 id="society-is-represented-in-distributions">Society is represented
+in distributions</h3>
+<hr />
+<p><img class="r-stretch" src="img/nazi.png"></p>
+<h3 id="nazi">Nazi</h3>
+<hr />
+<p><img class="r-stretch" src="img/war.png"></p>
+<h3 id="war">War</h3>
+<hr />
+<p><img class="r-stretch" src="img/ngram_colorterms.png"></p>
+<h3 id="color-terms">Color Terms</h3>
+<hr />
+<p><img class="r-stretch" src="img/sex.png"></p>
+<h3 id="sex">Sex</h3>
+<hr />
+<h3 id="lets-play-a-game">Let’s play a game!</h3>
+<hr />
+<p>Clue: Type of person (belonging to a certain group or culture)</p>
+<p><img class="r-stretch" src="img/hippyhidden.png"></p>
+<ul>
+<li>Hippy</li>
+</ul>
+<hr />
+<p>Clue: Home/Office Technology</p>
+<p><img class="r-stretch" src="img/typewriterhidden.png"></p>
+<ul>
+<li>Typewriter</li>
+</ul>
+<hr />
+<p>Clue: Country</p>
+<p><img class="r-stretch" src="img/ussrhidden.png"></p>
+<ul>
+<li>USSR</li>
+</ul>
+<hr />
+<p>Clue: Military Technology</p>
+<p><img class="r-stretch" src="img/ngram_atomicbombhidden.png"></p>
+<ul>
+<li>Atomic Bomb</li>
+</ul>
+<hr />
+<p>Clue: Transportation Technology</p>
+<p><img class="r-stretch" src="img/ngram_rocket.png"></p>
+<ul>
+<li>Rocket</li>
+</ul>
+<hr />
+<p>Clue: Food Product</p>
+<p><img class="r-stretch" src="img/ngram_spam.png"></p>
+<ul>
+<li>Spam</li>
+</ul>
+<hr />
+<h3 id="warring-words">Warring Words</h3>
+<hr />
+<p><img class="r-stretch" src="img/vitriol.png"></p>
+<h3 id="vitriol-vs.-sulfuric-acid">Vitriol vs. Sulfuric Acid</h3>
+<hr />
+<p><img class="r-stretch" src="img/aeroplane.png"></p>
+<h3 id="aeroplane-vs.-airplane">Aeroplane vs. Airplane</h3>
+<hr />
+<p><img class="r-stretch" src="img/vhs.png"></p>
+<h3 id="vhs-vs.-dvd">VHS vs. DVD</h3>
+<hr />
+<p><img class="r-stretch" src="img/handicapped.png"></p>
+<h3 id="handicapped-vs.-disabled">Handicapped vs. Disabled</h3>
+<hr />
+<p><img class="r-stretch" src="img/flammable.png"></p>
+<h3 id="flammable-vs.-inflammable">Flammable vs. Inflammable</h3>
+<p><img width="200" src="img/whorf.png"></p>
+<hr />
+<h3 id="n-gram-models-are-really-useful">N-Gram models are
+<em>really</em> useful</h3>
+<ul>
+<li><p>Provide some grammatical information</p>
+<ul>
+<li>“What word forms regularly occur together?”</li>
+</ul></li>
+<li><p>Provide some real-world information</p>
+<ul>
+<li>“What are people most commonly talking about?”</li>
+</ul></li>
+<li><p>They can solve real world problems</p></li>
+</ul>
+<hr />
+<h3 id="n-gram-uses-in-the-real-world">N-Gram uses in the real
+world</h3>
+<ul>
+<li><p>Speech recognition</p>
+<ul>
+<li><p>“I took a walk for exercise”</p></li>
+<li><p>“I need a wok for stir fry”</p></li>
+</ul></li>
+<li><p>Typo detection</p>
+<ul>
+<li><p>“I made a bog mistake”</p></li>
+<li><p>“She got lost in a peat big”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="and-all-of-this-comes-from-counting-words">… and all of this
+comes from counting words</h2>
+<hr />
+<h2 id="n-gram-modeling-strengths">N-Gram Modeling Strengths</h2>
+<hr />
+<h3 id="n-gram-modeling-is-relatively-simple">N-Gram Modeling is
+relatively simple</h3>
+<ul>
+<li><p>Easy to understand and implement conceptually</p></li>
+<li><p>Syntax and semantics don’t need to be understood</p></li>
+<li><p>You don’t need to annotate a corpus or build ontologies</p></li>
+<li><p><em>As long as you can tokenize the words, you can do an N-Gram
+analysis</em></p></li>
+<li><p>Makes it possible for datasets where other NLP tools might not
+work</p></li>
+<li><p>A basic language model comes for free</p></li>
+</ul>
+<hr />
+<h3 id="n-gram-modeling-is-easily-scalable">N-Gram Modeling is easily
+scalable</h3>
+<ul>
+<li><p>It works the same on 1000 words or 100,000,000 words</p></li>
+<li><p>Modest computing requirements</p></li>
+<li><p>More data means a better model</p>
+<ul>
+<li><p>You see more uses of more N-Grams</p></li>
+<li><p>Your ability to look at higher Ns is limited by your
+dataset</p></li>
+<li><p>Probabilities become more defined</p></li>
+</ul></li>
+<li><p>… and we have a LOT of data</p></li>
+</ul>
+<hr />
+<h2 id="n-gram-modeling-weaknesses">N-Gram Modeling Weaknesses</h2>
+<hr />
+<h3 id="they-only-work-with-strict-juxtaposition">They only work with
+strict juxtaposition</h3>
+<ul>
+<li><p>“The tall giraffe ate.” and “The giraffe that ate was tall.”</p>
+<ul>
+<li>We view these both as linking “Giraffe” and “Tall”, but the model
+doesn’t</li>
+</ul></li>
+<li><p>“I bought an awful Mercedes.” vs. “I bought a Mercedes. It’s
+awful.”</p></li>
+<li><p>“The angry young athlete” and “The angry old athlete”</p>
+<ul>
+<li>These won’t register as tri-gram matches</li>
+</ul></li>
+<li><p>We’ll fix this later!</p></li>
+</ul>
+<hr />
+<h3 id="very-poor-at-handling-uncommon-or-unattested-n-grams">Very poor
+at handling uncommon or unattested N-Grams</h3>
+<ul>
+<li><p>Models are only good at estimating items they’ve seen
+previously</p></li>
+<li><p>“Her Onco-Endocrinologist resected Leticia’s carcinoma”</p></li>
+<li><p>“Bacon flamingo throughput demyelination ngarwhagl”</p></li>
+<li><p>This is is why <em>smoothing</em> is crucial</p>
+<ul>
+<li><p>Assigning very low probabilities to unattested
+combinations</p></li>
+<li><p>… and why more data means better N-Grams</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="n-gram-models-are-missing-information">N-Gram models are missing
+information</h3>
+<ul>
+<li><p>Syntax, Coreference, and Part of Speech tagging provide important
+information</p></li>
+<li><p>“You are” is more likely than “You is” (286 occurrences)</p>
+<ul>
+<li><p>“… the number I have given you is my cell phone…”</p></li>
+<li><p>No juxtaposition without resolving anaphora</p></li>
+</ul></li>
+<li><p>“Time flies like an arrow, fruit flies like a banana”</p>
+<ul>
+<li>Part-of-speech distinguishes these bigrams</li>
+</ul></li>
+<li><p><strong>There’s more to language than
+juxtaposition</strong></p></li>
+</ul>
+<hr />
+<h3 id="n-grams-arent-the-solution-to-every-problem">N-Grams aren’t the
+solution to every problem</h3>
+<ul>
+<li><p>They’re missing crucial information about linguistic
+structure</p></li>
+<li><p>They handle uncommon and unattested forms poorly</p></li>
+<li><p>They only work with strict juxtaposition</p></li>
+</ul>
+<hr />
+<h2 id="improvements-on-n-gram-models">Improvements on N-Gram
+Models</h2>
+<hr />
+<h3 id="skip-grams">Skip-Grams</h3>
+<ul>
+<li><p>Skip-gram models allow non-adjacent occurences to be
+counted</p></li>
+<li><p>“Count the instances where X and Y occur within N words of each
+other”</p></li>
+<li><p>“My Mercedes sucks” and “My Mercedes really sucks” both count
+towards ‘Mercedes sucks’</p></li>
+<li><p>This helps with the data sparseness issue of N-grams</p></li>
+</ul>
+<hr />
+<h3 id="word-embeddingsword2vec">Word Embeddings/Word2Vec</h3>
+<ul>
+<li><p>A Word Embedding turns a word’s co-occurrence properties into a
+vector of numbers</p></li>
+<li><p>Captures in an opaque way the similarity of different words on
+the basis of co-occurrence.</p></li>
+<li><p><a href="https://arxiv.org/abs/1301.3781">Word2Vec</a> is the
+most commonly used approach to this</p></li>
+<li><p>Feeds SkipGram data into a deep neural network to generate a
+vector which describes a word’s ‘embedding’ in the text</p></li>
+<li><p>Like MFCCs, it’s turning big, transparent data into smaller,
+opaque data.</p>
+<ul>
+<li>“Dimensionality reduction”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="but-still-ngram-modeling-forms-the-core">… but still, ngram
+modeling forms the core!</h3>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>N-Gram Models are a simple, powerful tool for NLP</p></li>
+<li><p>They have minimal requirements for the data, and scale
+well</p></li>
+<li><p>They provide rich information when used intelligently</p></li>
+<li><p>They form the basis of the cutting edge techniques for
+NLP</p></li>
+<li><p>They’re not the only tool we need to model language</p>
+<ul>
+<li>… but they’re a damned good start</li>
+</ul></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

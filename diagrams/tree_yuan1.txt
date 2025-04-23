@@ -1,0 +1,19 @@
+tree_yuan1tex
+
+[S 
+  [NP Yuan ]
+  [VP 
+    [V poked ]
+    [NP 
+      [NP 
+        [DET her ] 
+        [N' 
+          [N colleague ] ] ]
+      [PP 
+        [P with ]
+        [NP 
+          [DET two ] 
+          [N' 
+            [ADJ mechanical ] 
+            [N' 
+              [N pencils ] ] ] ] ] ] ] ]

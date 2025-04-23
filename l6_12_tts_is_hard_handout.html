@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3
+id="text-to-speech-system-designers-dont-need-resumes">Text-to-speech
+system designers don’t need resumes</h3>
+<ul>
+<li>They just let their work speak for itself</li>
+</ul>
+<hr />
+<h3 id="from-last-time">From Last Time</h3>
+<hr />
+<h3 id="tacotron2">TacoTron2</h3>
+<ul>
+<li><p>Uses an RNN to go directly from Text to speech</p></li>
+<li><p><a href="https://arxiv.org/abs/1712.05884">The Tacotron 2 TTS
+System</a></p></li>
+<li><p><a
+href="https://google.github.io/tacotron/publications/tacotron2/index.html">Samples</a></p></li>
+</ul>
+<hr />
+<h3 id="amazons-neural-tts">Amazon’s Neural TTS</h3>
+<ul>
+<li><a
+href="https://developer.amazon.com/blogs/alexa/post/7ab9665a-0536-4be2-aaad-18281ec59af8/varying-speaking-styles-with-neural-text-to-speech">Samples</a></li>
+</ul>
+<hr />
+<h3 id="microsoft-robutrans">Microsoft RobuTrans</h3>
+<ul>
+<li><p><a
+href="https://ojs.aaai.org//index.php/AAAI/article/view/6337">Robutrans</a>
+uses a transformer architecture for TTS</p></li>
+<li><p>Feeds in text, turns that into ‘linguistic features’, which map
+into mel-spectra</p></li>
+<li><p>There’s a step dedicated to handling prosodic issues</p></li>
+<li><p>There’s a final WaveNet step which turns the mel spectra into
+audio samples</p></li>
+</ul>
+<hr />
+<h3 id="neural-networks-are-winning">Neural Networks are winning</h3>
+<ul>
+<li><p>If you can afford them, they produce great results</p></li>
+<li><p>Less hand-annotation</p></li>
+<li><p>Better analogy to new words</p></li>
+<li><p>You’ll likely be playing with Neural TTS</p></li>
+<li><p>Apple is even <a
+href="https://www.shacknews.com/article/112048/apple-announces-neural-tts-support-for-siri-at-wwdc-2019">marketing
+using Neural Text-to-Speech</a></p></li>
+<li><p><a href="https://arxiv.org/pdf/2106.15561.pdf">Here’s a great
+overview on Neural Text-To-Speech</a></p></li>
+</ul>
+<hr />
+<h3 id="theyre-not-without-problems">They’re not without problems</h3>
+<ul>
+<li><p>They require <em>lots</em> of training data and time</p>
+<ul>
+<li>Much harder for low-resource languages</li>
+</ul></li>
+<li><p>NN TTS models can do strange things like skipping or duplicating
+or continuiously repeating words if the NN state becomes misaligned</p>
+<ul>
+<li><p>You can even get infinite strings of repeating words</p></li>
+<li><p>You can also get strange ‘blendings’ and ‘slurrings’ which are
+unlike any word</p></li>
+</ul></li>
+<li><p>These problems are occasionally harder to ‘recover’ for
+humans</p>
+<ul>
+<li>Missing, duplicated, or slurred words are harder for human
+understanding than a ‘mispronunciation’</li>
+</ul></li>
+<li><p>Real time is hard with ‘autoregressive’ models (where inference
+or prediction depends on the prior state)</p></li>
+</ul>
+<hr />
+<h3 id="lets-try-a-neural-tts-system">Let’s try a Neural TTS system</h3>
+<p><a href="https://cloud.google.com/text-to-speech/"
+class="uri">https://cloud.google.com/text-to-speech/</a></p>
+<hr />
+<h1 id="text-to-speech-synthesis-is-hard">Text-to-Speech Synthesis is
+hard</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<blockquote>
+<p>It should be abundantly clear that TTS systems are far from perfect.
+There are a number of issues, ranging from text analysis, to names, to
+numbers, like combining units, and worst of all, it’s fiendishly
+difficult to get the prosody right.</p>
+</blockquote>
+<audio controls src="comp/ttshard_introp.m4a">
+</audio>
+<hr />
+<p>(The majority of today’s TTS samples are from Apple’s ‘say’ command,
+which is behind the times, but illustrative!)</p>
+<hr />
+<h3 id="todays-plan">Today’s plan</h3>
+<ul>
+<li><p>Text analysis is hard</p></li>
+<li><p>Fluidly combining units is hard</p></li>
+<li><p>Prosody is hard to get right</p></li>
+</ul>
+<hr />
+<h1 id="text-analysis-is-hard">Text Analysis is hard</h1>
+<hr />
+<h3 id="detecting-the-end-of-sentences">Detecting the end of
+sentences</h3>
+<blockquote>
+<p>It’s difficult to even detect something like the end of a sentence.
+Although periods and exclamation and question marks provide good
+information, there are situations (e.g. the word e.g.) where periods can
+be used on their own. And we’ll often end sentences by trailing off,
+blank lines, etc</p>
+</blockquote>
+<audio controls src="comp/ttshard_endofsentence.m4a">
+</audio>
+<hr />
+<h3 id="acronyms-and-initialisms">Acronyms and Initialisms</h3>
+<blockquote>
+<p>Initialisms are read aloud as a series of letters, like the CIA,
+UCSD, NSA, and FYI. Acronyms are pronounced, like NASA, DARPA, FAFSA, or
+RAV4. And some have very specific pronunciations, like NAACP or AAA.</p>
+</blockquote>
+<p>Apple <audio controls src="comp/ttshard_acronyms.m4a"></audio></p>
+<p>IBM <audio controls src="comp/ttshard_acronyms_ibm.wav"></audio></p>
+<hr />
+<h3 id="numbers">Numbers</h3>
+<blockquote>
+<p>Numbers are hard because we read numbers differently depending on
+their function. You’re born in 1999, your pin number is 1999, you might
+have 1999 grains of rice in a cooker, but January 25 is 25 days after
+the 1.</p>
+</blockquote>
+<audio controls src="comp/ttshard_numbers.m4a">
+</audio>
+<hr />
+<h3 id="homographs-are-hard">Homographs are hard!</h3>
+<ul>
+<li><p>“We could lead in lead removal.”</p>
+<ul>
+<li>Noun vs. verb</li>
+</ul></li>
+<li><p>“The wedding dress sewer fell into the sewer”</p></li>
+<li><p>“The plumbing contractor is unionized.”</p></li>
+<li><p>“The acetic acid is unionized.”</p></li>
+</ul>
+<hr />
+<h3 id="the-lexicon">The Lexicon</h3>
+<ul>
+<li><p>Preparedness across many domains</p>
+<ul>
+<li><p>Medical, Legal, Military, International Places and
+Concepts</p></li>
+<li><p>Miscellaneous Technical Jargon</p></li>
+<li><p>Local street names</p></li>
+</ul></li>
+<li><p>Code switching (switching between languages)</p></li>
+</ul>
+<hr />
+<h3 id="jargon">Jargon</h3>
+<blockquote>
+<p>Adenocarcinoma in Tubovillious Adenoma bona fide certiorari de jure
+collusion RICO ex post facto CVN AWACS Escapement Tourbillion Remontoir
+de Egalite</p>
+</blockquote>
+<p>Apple <audio controls src="comp/ttshard_jargon.m4a"></audio></p>
+<p>IBM <audio controls src="comp/ttshard_jargon_ibm.wav"></audio></p>
+<hr />
+<h3 id="placenames">Placenames</h3>
+<blockquote>
+<p>On my map is Lebon Drive, Gilman Drive, Miramar Road, Muir Lane,
+Caminito Santa Fe, Soledad Mountain Road, San Joaquin Drive, Arcadia
+Road, and I’m now in La Jolla and thinking of Moscow, Guangzhou and
+Darjeeling.</p>
+</blockquote>
+<p>Apple <audio controls src="comp/ttshard_streets.m4a"></audio></p>
+<p>IBM <audio controls src="comp/ttshard_streets_ibm.wav"></audio></p>
+<hr />
+<h3 id="codeswitching">Codeswitching</h3>
+<blockquote>
+<p>Mañana me voy a Walmart to buy some calcetines y un poco del
+Chocolate that you really like</p>
+</blockquote>
+<p>Apple
+<audio controls src="comp/ttshard_codeswitching.m4a"></audio></p>
+<hr />
+<h3 id="names-are-super-hard">Names are super hard</h3>
+<ul>
+<li><p>Spelling is arbitrary and variable</p></li>
+<li><p>Names from around the world</p></li>
+<li><p>1.5 million names in 72 million households (1987 Donnelly
+list)</p></li>
+<li><p>20%+ of tokens in newswire</p></li>
+</ul>
+<hr />
+<h3 id="lets-check-some-names">Let’s check some names</h3>
+<audio controls src="comp/ttshard_l6names.m4a">
+</audio>
+<!-- say "Farrell Ackerman, Eric Bakovic, David Barner, Leon Bergen, Gabriela Caballero, Emily Clem, Marc Garellek, Grant Goodall, Andy Kehler, Robert Kluender, Rachel Mayberry, John Moore, Sharon Rose, Will Styler, Eva Wittenberg, Michelle Yuan, Roger Levy"  -o faculty.aiff -->
+<hr />
+<h3 id="oof.">Oof.</h3>
+<ul>
+<li>… but this gets at a truth</li>
+</ul>
+<hr />
+<h3
+id="language-tasks-that-are-hard-for-humans-are-often-even-harder-for-machines">Language
+tasks that are hard for humans are often even harder for machines!</h3>
+<ul>
+<li><p>Humans are bad at names too</p></li>
+<li><p>We know some subset of names common in our region</p></li>
+<li><p>Spelling or pronounced variants still cause problems</p>
+<ul>
+<li><p>“Alycia”</p></li>
+<li><p>“Andres” vs. “Andries”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="katelyn-caitlin-caitlyn-kaetlin-katelin-katelynn-kate-lynn-caitlynn-kaeytlynn">Katelyn,
+Caitlin, Caitlyn, Kaetlin, Katelin, Katelynn, Kate Lynn, Caitlynn,
+Kaeytlynn</h3>
+<audio controls src="comp/ttshard_caitlyn.m4a">
+</audio>
+<hr />
+<h3 id="text-analysis-is-hard-1">Text Analysis is hard</h3>
+<ul>
+<li><p>The writing system is awful</p></li>
+<li><p>The proper pronunciation isn’t always clear</p></li>
+<li><p>Technical, Local, and field-specific jargon is
+everywhere</p></li>
+<li><p>Place names are hard</p></li>
+<li><p>Names are nearly impossible</p></li>
+</ul>
+<hr />
+<p>… but wait, there’s more!</p>
+<hr />
+<h1 id="unit-selection-is-hard">Unit Selection is Hard</h1>
+<hr />
+<h3
+id="concatenative-synthesis-synthesis-has-lots-of-problems">Concatenative
+Synthesis Synthesis has lots of problems</h3>
+<hr />
+<h3
+id="concatenative-synthesis-database-creation-step-by-step">Concatenative
+Synthesis Database Creation (Step by step)</h3>
+<hr />
+<h3
+id="step-1-record-a-lot-of-speech-from-an-actual-human-tens-to-hundreds-of-hours">Step
+1) Record a LOT of speech from an actual human (tens to hundreds of
+hours)</h3>
+<hr />
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ibNBKeM8BoA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<hr />
+<h3 id="step-2-divide-into-segments-at-the-desired-unit-levels">Step 2)
+Divide into segments at the desired unit levels</h3>
+<ul>
+<li>Segmenting sounds is hard remember?</li>
+</ul>
+<hr />
+<h3
+id="step-3-capture-important-phonetic-information-about-each-segment-e.g.-pitch-duration-syllable-position-etc">Step
+3) Capture important phonetic information about each segment
+(e.g. pitch, duration, syllable position, etc)</h3>
+<ul>
+<li>So you’ve got all the problems of phonetic research, too!</li>
+</ul>
+<hr />
+<h3 id="step-4-add-additional-words-to-the-database-as-needed.">Step 4)
+Add additional words to the database as needed.</h3>
+<ul>
+<li>What if the voice actor leaves the company? Stops working?</li>
+</ul>
+<hr />
+<h3 id="and-synthesis-is-hard-too">… and Synthesis is hard too</h3>
+<hr />
+<h3
+id="step-1-text-modeling-for-prosody-and-phones-to-determine-the-plan">Step
+1) Text Modeling (for prosody and phones) to determine the plan</h3>
+<ul>
+<li>Uh, yeah. Tough.</li>
+</ul>
+<hr />
+<h3 id="step-2-choose-the-optimal-chunks">Step 2) Choose the optimal
+chunks</h3>
+<ul>
+<li><p>You don’t always have the optimal chunks</p></li>
+<li><p>The “San” from San Diego may be subtly different from the “San”
+in “San Ysidro”</p></li>
+<li><p>Many criteria for optimal fit</p></li>
+</ul>
+<hr />
+<h3 id="step-3-concatenate-combine-end-to-end-the-chunks">Step 3)
+Concatenate (combine end-to-end) the chunks</h3>
+<ul>
+<li><p>Different volumes?</p></li>
+<li><p>Different pitches?</p></li>
+<li><p>Even just stitching them together is non-trivial</p></li>
+<li><p>What’s the spacing between items?</p></li>
+</ul>
+<hr />
+<h3 id="step-4-modify-the-prosody-and-duration-where-needed">Step 4)
+Modify the prosody and duration where needed</h3>
+<ul>
+<li><p>Pitch correction isn’t perfect, even with a perfect model of
+pitch</p></li>
+<li><p>We’re still missing other prosodic elements</p></li>
+</ul>
+<hr />
+<h3 id="weve-all-heard-bad-unit-selection">We’ve all heard bad unit
+selection</h3>
+<audio controls src="comp/nws_radio.mp3">
+</audio>
+<hr />
+<h3 id="neural-networks-fix-some-of-this">Neural Networks fix some of
+this</h3>
+<ul>
+<li><p>It’s generating, rather than combining</p></li>
+<li><p>But still, difficult!</p></li>
+</ul>
+<hr />
+<h1 id="prosody-is-hard">Prosody is hard</h1>
+<hr />
+<h3 id="emotional-prosody">Emotional prosody</h3>
+<ul>
+<li><p>“Did you hear John’s back in the hospital?”</p></li>
+<li><p>“I’m really, really excited about the LIGN 6 final
+project!!”</p></li>
+<li><p>“My wife decided she wants to go to a steakhouse
+tonight.”</p></li>
+<li><p>The risks of incorrect emotion are very high</p></li>
+<li><p>Do we want to simulate this?</p></li>
+</ul>
+<hr />
+<h3 id="computers-get-judgemental-about-donuts">Computers get
+judgemental about donuts</h3>
+<hr />
+<video controls src="video/donutquantity.mp4">
+</video>
+<hr />
+<h3 id="meaning-differences-from-prosody">Meaning Differences from
+prosody</h3>
+<ul>
+<li><p>“I think I’ll come tomorrow”</p></li>
+<li><p>“Bill is coming if he’s allowed”</p></li>
+<li><p>“John should know that”</p></li>
+<li><p>“I really like eating at Taco Bell. It is the peak of gourmet
+cuisine.”</p></li>
+</ul>
+<hr />
+<h3 id="getting-the-timing-right-is-hard">Getting the timing right is
+hard</h3>
+<audio controls src="comp/alexa_nextappt.wav">
+</audio>
+<hr />
+<h3 id="text-to-speech-remains-a-hard-problem">Text to Speech remains a
+hard problem</h3>
+<ul>
+<li>… but we’ve come a LONG way</li>
+</ul>
+<video controls src="video/earlytts.mp4">
+</audio>
+<hr />
+<h3 id="even-the-free-tools-are-quite-good">Even the free tools are
+quite good</h3>
+<ul>
+<li><a href="http://www.cstr.ed.ac.uk/projects/festival/">Festival</a>
+is the best known free TTS</li>
+</ul>
+<hr />
+<p>(Just in case you want to implement TTS for your final project)</p>
+<ul>
+<li>Speaking of which…</li>
+</ul>
+<hr />
+<h1 id="lets-talk-projects">Let’s talk Projects</h1>
+<hr />
+<h3 id="important-dates">Important Dates</h3>
+<ul>
+<li><p>Week 6 - <strong>Proposal Due</strong></p></li>
+<li><p>Finals Week - <strong>Final Project Due</strong></p></li>
+</ul>
+<hr />
+<h3 id="topics">Topics</h3>
+<ul>
+<li><p>1: Build a system</p></li>
+<li><p>2: Implement an NLP tool on your local machine and solve a small
+problem</p></li>
+<li><p>3: Choose your own adventure</p></li>
+<li><p>All of these are graded according to <a
+href="https://wstyler.ucsd.edu/6/l6_final_rubric.html">the final project
+rubric</a></p></li>
+</ul>
+<hr />
+<h3 id="self-grading">Self Grading</h3>
+<ul>
+<li><p><strong>You will grade your own project using the
+rubric!</strong></p></li>
+<li><p>Details are up on the rubric</p></li>
+<li><p>We’ll check that you were honest and accurate in your
+evaluation</p></li>
+</ul>
+<hr />
+<h3 id="build-a-system">Build-a-System</h3>
+<ul>
+<li><p>Come up with a creative ‘Virtual Assistant’ type product</p></li>
+<li><p>Build for a specific domain, use case, or situation</p></li>
+<li><p>Describe the easy and hard parts of each element (ASR, TTS,
+Parsing, Semantics, Interaction)</p></li>
+<li><p>Think outside the box here</p>
+<ul>
+<li>More creative ideas are more fun to write and grade</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="implement-a-tool">Implement a tool</h3>
+<ul>
+<li><p>Pick a tool for ASR, TTS, Parsing/Tagging, Semantic Analysis, or
+similar, and implement it</p></li>
+<li><p>Get it running <em>on your machine</em> (or our linux
+server)</p></li>
+<li><p>Throw some data at it</p></li>
+<li><p>Do a basic analysis of how well or poorly it works</p></li>
+<li><h3
+id="come-talk-to-me-in-office-hours-to-plan-this-out-before-the-proposal">Come
+talk to me in office hours to plan this out before the
+proposal</h3></li>
+</ul>
+<hr />
+<h3 id="choose-your-own-adventure">Choose your own adventure</h3>
+<ul>
+<li><p>Align this course’s goals with your own work or
+interests</p></li>
+<li><p>If there’s a way to make this interesting for you, I want
+that.</p></li>
+<li><h3
+id="come-to-office-hours-to-pitch-your-ideas-before-the-proposal">Come
+to office hours to pitch your idea(s) before the proposal</h3></li>
+</ul>
+<hr />
+<h3 id="group-work-is-highly-encouraged">Group work is <em>highly</em>
+encouraged!</h3>
+<ul>
+<li><p>Pairing Linguistically experienced folks with computationally
+experienced folks?</p></li>
+<li><p>People of similar interests</p></li>
+<li><p>Mutual learning!</p></li>
+<li><p>You’ll submit just one final paper, declaring who did
+what</p></li>
+<li><p><strong>Check the Discord to see who’s interested in
+what</strong></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Every element of TTS is difficult</p>
+<ul>
+<li><p>Text modeling</p></li>
+<li><p>Breadth of vocabulary</p></li>
+<li><p>Unit concatenation</p></li>
+<li><p>Prosody</p></li>
+</ul></li>
+<li><p>Start thinking about your final projects</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For next time</h3>
+<p>We’re shifting gears into text, and talking about how to look at
+Linguistic data</p>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

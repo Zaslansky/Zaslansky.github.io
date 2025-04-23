@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+LIGN 6 - Pragmatics for NLP
+</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+
+
+
+### Please try to attend next Wednesday and Friday
+
+- This is an in-class discussion which will not be Podcasted, and I want your voices!
+
+---
+
+# Pragmatics for NLP
+### Will Styler - LIGN 6
+
+---
+
+### Today's Plan
+
+- What is Pragmatics?
+
+- Grice and the Cooperative Principle
+
+- Implicature
+
+- Deixis
+
+---
+
+### We've been talking about meaning in isolation
+
+- "What does this verb mean, *everywhere*?"
+
+- "What is *always* true about the relation between "up" and "down"?"
+
+- "What is *always* true about Y, given X?"
+
+---
+
+### ... but words mean something different in context
+
+- "Can you see?"
+
+- "I'm open"
+
+- "Take that"
+
+- "I feel you"
+
+---
+
+### When meaning stops being about the word and starts being about the situation, we've entered the land of...
+
+---
+
+# Pragmatics
+
+---
+
+## Pragmatics
+
+The study of meaning in a discourse context
+
+---
+
+### Pragmatics is contextual
+
+- It considers the current conversation
+
+- It assumes things about the current world
+
+- It uses elements of our situation to 'fill in the blanks'
+
+---
+
+### Everything in pragmatics flows from the idea of discourse
+
+- Conversation and linguistic interaction
+
+- We have conversations with goals in mind
+
+	- Social goals
+	
+	- Practical goals
+	
+	- Informational goals
+
+- ... and we assume some cooperation
+
+---
+
+### The "Cooperative Principle" helps us accomplish these goals
+
+- "I will try to act in such a way as to help the exchange of information, rather than hinder it"
+
+- This is not a rule in the sense of grammatical rules, but a guiding principles
+
+- It can be broken down into four maxims, developed by H. Paul Grice
+
+- **Few things anger humans faster than uncooperative systems!**
+
+---
+
+# Gricean Maxims
+
+---
+
+## The Maxim of Quality
+
+**"Tell the truth and give accurate information"**
+
+- Do not say things you believe to be false
+
+- Do not say things you don't know (or have evidence to believe) to be true
+
+---
+
+## The Maxim of Quantity
+
+**"Give enough information, but not too much"**
+
+- Be as informative as required, but not more so
+
+- It's just as uncooperative to give too much information as to give too little
+
+---
+
+## The Maxim of Relation
+
+**"Give relevant information and only relevant information"**
+
+- Your responses should have *something* to do with the matter under discussion
+
+---
+
+## The Maxim of Manner
+
+**"Be as clear as you can be"**
+
+- Don't be obscure when you can avoid it
+
+- Avoid ambiguous words or phrasings
+
+- Avoid unnecessary wordyness
+
+	- Quantity is about too much info, Manner is about too many words for too little info
+
+- Organize your thoughts
+
+---
+
+### Let's test this...
+
+*Alexa, how long does it take to drive from UCSD to UCLA?* 
+
+- (About two hours)
+
+---
+
+## The Maxim of Quality
+
+**"Tell the truth and give accurate information"**
+
+Do not say things you believe to be false
+
+Do not say things you don't know (or have evidence to believe) to be true
+
+---
+
+## The Maxim of Quantity
+
+**"Give enough information, but not too much"**
+
+Be as informative as required, but not more so
+
+It's just as uncooperative to give too much information as to give too little
+
+---
+
+## The Maxim of Relation
+
+**"Give relevant information and only relevant information"**
+
+Your responses should have *something* to do with the matter under discussion
+
+---
+
+## The Maxim of Manner
+
+**"Be as clear as you can be"**
+
+Don't be obscure when you can avoid it
+
+Avoid ambiguous words or phrasings
+
+Avoid unnecessary wordyness
+
+Organize your thoughts
+
+---
+
+
+### We assume people are following these maxims
+
+- It allows us to get a lot more done.
+
+	- Less confirmation, clarification
+
+	- More efficiency
+
+---
+
+<img class="r-stretch" src="img/grice_prado.jpg">
+
+---
+
+### Violating a maxim
+
+- *Actually being uncooperative* by failing to follow these guidelines
+
+- Violating maxims actually messes up conversations
+
+---
+
+### Flouting a Maxim
+
+- Intentionally violating a maxim *in a way that the listener can detect* to express a specific meaning
+
+- This *carries meaning* in the conversation
+
+- It can have great comedic effect
+
+- Unless it's undetected, the conversation is not messed up at all
+
+---
+
+### Examples of Maxim Flouting
+
+- "Oh, yes, Taco Bell is truly gourmet cuisine" (it is clearly not)
+
+- "Is this going to be on the test?" "That's a good question."
+
+- "How does my hair look?" "We haven't been to a cat show in a while."
+
+---
+
+## Grice and NLP
+
+---
+
+### We don't just need these maxims for humans
+
+- Each and every Gricean maxim is in play for Human-Computer Interaction
+
+- Violations of the maxim on either side are problematic
+
+---
+
+## The Maxim of Quality
+
+**"Tell the truth and give accurate information"**
+
+- How is this useful when Siri's talking?
+
+- How is this useful when talking to Siri?
+
+---
+
+## The Maxim of Quantity
+
+**"Give enough information, but not too much"**
+
+- How is this useful when Siri's talking?
+
+- How is this useful when talking to Siri?
+
+---
+
+## The Maxim of Relation
+
+**"Give relevant information and only relevant information"**
+
+- How is this useful when Siri's talking?
+
+- How is this useful when talking to Siri?
+
+---
+
+## The Maxim of Manner
+
+**"Be as clear as you can be"**
+
+- How is this useful when Siri's talking?
+
+- How is this useful when talking to Siri?
+
+---
+
+# Maxims and Meaning
+
+---
+
+### These maxims affect meaning
+
+- "John was alone in the room... or so he believed"
+
+- "Karl, who was absolutely not a lizard-person, went to the store"
+
+- "Marvin left at 5:44 and 30 seconds."
+
+- "Did Ramchand ever work with Sam?" "He hates dogs."
+
+- "Did Sarah buy chicken?" "I think so".
+
+---
+
+### Conversational Implicature
+
+What is suggested, but not expressed or entailed, by an utterance.
+
+- As a listener, you "draw an implicature" from a statement.
+
+---
+
+### "Mary finally bought a hard drive to back up her computer" implies that...
+
+- Mary didn't have one before
+	
+- She'd needed one for a long time
+	
+- Her computer wasn't backed up
+
+- Mary owns a computer
+	
+---
+
+###  "Mary finally bought a hard drive to back up her computer" *does not* imply that...
+
+- Mary is Icelandic
+
+- Mary owns a Mac
+
+- She went to Costco for the hard drive
+
+- ... everything else
+
+---
+
+### Implicatures do not need to be true in every situation
+
+---
+
+### "Mary finally bought a hard drive to back up her computer" implies that...
+
+- Mary didn't have one before
+	
+- She'd needed one for a long time
+	
+- Her computer wasn't backed up
+
+- Mary owns a computer
+	
+---
+
+### Implicatures are possible *because* of the Cooperative Principle
+
+- We can draw implicatures because we think people are cooperating
+
+- We are trying to find a way that the other person's phrasing is in accordance with the maxims
+
+---
+
+### Sample implicatures
+
+- "Ian and Steven sure have been hanging out a lot"
+
+- "CAPS is just down the way in Gailbraith Hall"
+
+- "Was this before or after your conviction for armed robbery?"
+
+- "Lots of folks wear deodorant"
+
+- "Alexa, make me leave at 4:58"
+
+---
+
+### Implicatures depend on the maxims to work
+
+---
+
+### "Robert might have eaten the cookie"
+
+- Implies that the speaker is unsure whether Robert ate the cookie.
+
+- If the cookie is known to have been eaten by Robert, this is a Quality violation.
+
+---
+
+### "Bub ate some of the cat treats"
+
+- Implies Bub didn't eat them all
+
+	- This is called a "scalar implicature"
+
+- If she did, this statement is a Quantity violation
+
+---
+
+### "John, who is 100% not a lizard person, is coming to dinner"
+
+- Implies that John might, in fact, be a lizard person
+
+- If he is not, this statement is a Relevance violation
+
+---
+
+### "Who do you think stole the cookie?" "I heard Robert was in town"
+
+- Implies reason to believe that Robert might have stolen the cookie
+
+- If not, this statement is a Relevance violation
+
+---
+
+### Implicature is important
+
+- It's everywhere!
+
+- It can be intentional or unintentional
+
+- They can even be deceptive
+
+---
+
+### Implicature is *hard* for NLP
+
+- It requires you to understand the maxims, *then* act accordingly
+
+- We'll solve *many* problems before we solve this one.
+
+---
+
+### There's one more contextual phenomenon we have to worry about
+
+---
+
+## Deictic Words
+
+Words whose meaning depends on the conversational context
+
+---
+
+### Types of Deictic Words
+
+- Pronouns: Me, Us, Him, Her, It, Them
+
+- Temporal Expressions: Today, Next Month, Now, Then, Soon
+
+- Locatives: Here, there, close, across the street
+
+- Demonstratives: This, That, The other, those
+
+---
+
+### Find the Deictic Words
+
+A) "Rick and Graham had their wedding there."
+
+B) "I'm not sure who you're talking about."
+
+C) "Mahesh will see to it next week."
+
+D) "Sally took the students out to dinner at a Sushi restaurant."
+
+E) "John saw a coffee shop across the parking lot."
+
+---
+
+### Deictic Expressions need context to be understood
+
+- This is a big problem in natural language processing
+
+- "Jian will meet you here."
+
+- "Ron scheduled her for two weeks out"
+
+- "She'll need to come back for a consult shortly"
+
+- "Mark's parked across the street from there."
+
+---
+
+### Remember TIMEX normalization?  Anaphora?
+
+- Yep, deixis.
+
+- We're doing deixis all over the place in NLP!
+
+---
+
+### Sometimes, the deixis is implied but not explicit
+
+- "What's the temperature?" (Here)
+
+- "What's my last appointment?" (Today)
+
+- "Set a Lyft to pick me up" (at the nearest street)
+
+- "Turn off the lights" (now)
+
+---
+
+### We'll talk about the discourse context next time
+
+- "The cat will win the show for sure"
+
+---
+
+### Wrapping up
+
+- NLP needs to understand both meaning, and meaning in context
+
+- Gricean Maxims help virtual assistants interact with us properly
+
+- Implicature is *really* difficult, but pretty important
+
+- Deixis needs to be understood
+
+---
+
+### For Next Time
+
+- How do we actually want to design these systems to interact with us?
+
+---
+
+<huge>Thank you!</huge>
+
+
+
+
+
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

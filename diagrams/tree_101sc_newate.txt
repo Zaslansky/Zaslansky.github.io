@@ -1,0 +1,10 @@
+tree_101sc_newatetex
+
+[S 
+  [NP 
+    [N' 
+      [N Andres ] ] ] 
+  [VP 
+    [ADV quickly ] 
+    [VP 
+      [V ate ] ] ] ]

@@ -1,0 +1,11 @@
+tree_iseeyoutex
+
+[S 
+  [NP 
+    [N' 
+      [N I ] ] ] 
+  [VP 
+    [V see ] 
+    [NP 
+      [N' 
+        [N you ] ] ] ] ]

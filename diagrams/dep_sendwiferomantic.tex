@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+
+\begin{document}
+
+% In the document:
+\begin{dependency}[theme = simple]
+   \begin{deptext}[column sep=1em]
+      Send \& my wife \& a \& romantic \& text \\
+   \end{deptext}
+   \deproot{1}{ROOT}
+   \depedge{1}{2}{IOBJ}
+   \depedge{1}{5}{DOBJ}
+   \depedge{5}{3}{DET}
+   \depedge{5}{4}{AMOD}
+\end{dependency}
+\end{document}

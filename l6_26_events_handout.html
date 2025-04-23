@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="its-grade-change-and-exception-request-season">It’s grade change
+and exception request season</h3>
+<ul>
+<li><p>Please check out my guide to grade change and exception requests
+before sending one!</p></li>
+<li><p><a href="https://wstyler.ucsd.edu/gradechanges/"
+class="uri">https://wstyler.ucsd.edu/gradechanges/</a></p></li>
+<li><p>Good requests are <em>always</em> welcome, but problematic
+requests burn bridges, show poor integrity, and work against
+you</p></li>
+<li><p>Please, don’t be that student.</p></li>
+</ul>
+<hr />
+<h1
+id="representing-complex-meaning-an-eventful-case-study">Representing
+Complex Meaning: An Eventful Case Study</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<h3 id="so-far-weve-focused-on-word-based-meaning">So far, we’ve focused
+on word-based meaning</h3>
+<ul>
+<li><p>Yet there are some kinds of meaning that aren’t lexical</p></li>
+<li><p>… but we still want to train computers to learn them</p></li>
+</ul>
+<hr />
+<h3 id="the-question-always-is-training-data">The question, always, is
+training data</h3>
+<ul>
+<li><p>We can’t just say “Hey, Neural network: Learn how events
+work”</p></li>
+<li><p>We need to give the computer the kind of data it is supposed to
+generate</p></li>
+<li><p>This involves <em>annotation</em></p></li>
+<li><p>Today, we’ll look at a case study!</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li>Richer Event Descriptions using RED</li>
+</ul>
+<hr />
+<h1 id="the-red-richer-event-description-project">The RED (Richer EVENT
+Description) Project</h1>
+<hr />
+<h3 id="lots-of-folks-want-to-know-about-events">Lots of folks want to
+know about events</h3>
+<p><img class="r-stretch" src="img/cia.jpg"></p>
+<hr />
+<h3 id="lots-of-folks-want-to-know-about-events-1">Lots of folks want to
+know about events</h3>
+<p><img class="r-stretch" src="img/nsa.jpg"></p>
+<hr />
+<h3 id="lots-of-folks-want-to-know-about-events-2">Lots of folks want to
+know about events</h3>
+<p><img class="r-stretch" src="img/fbi.jpg"></p>
+<hr />
+<h3 id="lots-of-folks-want-to-know-about-events-3">Lots of folks want to
+know about events</h3>
+<p><img class="r-stretch" src="img/doctor.jpg"></p>
+<hr />
+<h3 id="lots-of-folks-want-to-know-about-events-4">Lots of folks want to
+know about events</h3>
+<p><img class="r-stretch" src="img/lawyer.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Annotation needs to find things that are important.</td>
+</tr>
+<tr class="even">
+<td>- Different people think different things are important.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lets-think-about-one-use-case">Let’s think about one use
+case</h3>
+<p><img class="r-stretch" src="img/nsa.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="comp/fatleonard.jpg"></p>
+<ul>
+<li><blockquote>
+<p>“Federal Authorities say a Malaysian Businessman nicknamed Fat
+Leonard obtained U.S. military secrets in 2009. He lined up hookers,
+Lady Gaga tickets and other bribes for a commander.”</p>
+</blockquote></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/nsa.jpg"></p>
+<h3 id="uh-yeah.-im-interested-in-this.">“Uh… yeah. I’m interested in
+this.”</h3>
+<hr />
+<h3 id="what-kind-of-information-do-they-want-to-know">What kind of
+information do they want to know?</h3>
+<hr />
+<h3 id="whos-fat-leonard">Who’s Fat Leonard?</h3>
+<ul>
+<li><blockquote>
+<p>“Federal Authorities say <clr>a Malaysian Businessman</clr> nicknamed
+<clr>Fat Leonard</clr> obtained U.S. military secrets in 2009.
+<clr>He</clr> lined up hookers, Lady Gaga tickets and other bribes for a
+commander.”</p>
+</blockquote></li>
+<li><p><clr>A Malaysian Businessman</clr> == <clr>Fat Leonard</clr> ==
+<clr>He</clr></p></li>
+<li><p>This is called ‘Anaphora’ or ‘Coreference’</p></li>
+</ul>
+<hr />
+<h3 id="what-did-he-do">What did he do?</h3>
+<ul>
+<li><blockquote>
+<p>“Federal Authorities say a Malaysian Businessman nicknamed Fat
+Leonard <clb>obtained</clb> U.S. military secrets in 2009. He lined up
+hookers, Lady Gaga tickets and other bribes for a commander.”</p>
+</blockquote></li>
+<li>He <clb>obtained</clb> U.S. military secrets (an EVENT)</li>
+</ul>
+<hr />
+<h3 id="when">When?</h3>
+<ul>
+<li><blockquote>
+<p>“Federal Authorities say a Malaysian Businessman nicknamed Fat
+Leonard <clb>obtained</clb> U.S. military secrets in <clo>2009</clo>. He
+lined up hookers, Lady Gaga tickets and other bribes for a
+commander.”</p>
+</blockquote></li>
+<li><p><clo>2009</clo> CONTAINS <clb>obtained</clb></p></li>
+<li><p>This is a temporal relation</p></li>
+</ul>
+<hr />
+<h3 id="how-did-that-happen">How did that happen?</h3>
+<ul>
+<li><blockquote>
+<p>“Federal Authorities say a Malaysian Businessman nicknamed Fat
+Leonard <clb>obtained</clb> U.S. military secrets in 2009. He <clb>lined
+up</clb> hookers, Lady Gaga tickets and other bribes for a
+commander.”</p>
+</blockquote></li>
+<li><p><clb>lined up</clb> CAUSES <clb>obtained</clb></p></li>
+<li><p>This is a causal relation</p></li>
+</ul>
+<hr />
+<h3 id="according-to-who">According to who?</h3>
+<ul>
+<li><blockquote>
+<p>“<clr>Federal Authorities</clr> say a Malaysian Businessman nicknamed
+Fat Leonard <clb>obtained</clb> U.S. military secrets in 2009. He
+<clb>lined up</clb> hookers, Lady Gaga tickets and other bribes for a
+commander.”</p>
+</blockquote></li>
+<li><p><clr>Federal Authorities</clr> REPORTING <clb>lined up</clb>,
+<clb>obtained</clb></p></li>
+<li><p>This is an Epistemic relation</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/nsa.jpg"></p>
+<ul>
+<li><p><strong>“Thanks.”</strong></p></li>
+<li><p>[<em>droning intensifies</em>]</p></li>
+</ul>
+<hr />
+<h3 id="but-other-people-need-events-too">… but other people need events
+too!</h3>
+<hr />
+<p><img class="r-stretch" src="img/doctor.jpg"></p>
+<h3
+id="i-have-30-seconds-to-learn-and-understand-this-patients-entire-medical-history">“I
+have 30 seconds to learn and understand this patient’s entire medical
+history”</h3>
+<hr />
+<blockquote>
+<p>“She was admitted for an appendectomy on January 12th. She had a rash
+after surgery, which we successfully treated with hydrocortisone on the
+18th.”</p>
+</blockquote>
+<ul>
+<li><img class="wide" src="comp/hydrocortisone_timeline.jpg"></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/doctor.jpg"></p>
+<h3 id="how-can-we-focus-on-more-effective-treatments">“How can we focus
+on more effective treatments?”</h3>
+<hr />
+<h3 id="event-questions-for-medicine">Event Questions for Medicine</h3>
+<ul>
+<li><p>“Which treatments most often result in no cancer within six
+months?”</p></li>
+<li><p>“How many patients report a change in pain level after
+hysterectomy for endometriosis?”</p></li>
+<li><p>“What disorders are most likely to occur within six months of
+starting Adderall?”</p></li>
+<li><p>“Are there any new symptoms or disorders which occur more often
+than chance following administration of the COVID-19 vaccine?”</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/lawyer.jpg"></p>
+<h3 id="i-want-to-sue-somebody-with-lots-of-money">“I want to sue
+somebody with lots of money!”</h3>
+<hr />
+<h3 id="event-questions-for-medical-law">Event Questions for Medical
+Law</h3>
+<ul>
+<li><p>“Was there a spike in cancer cases in 2012 following
+Fukushima?”</p></li>
+<li><p>“Find all cases where the patient took Vioxx for at least a year
+before they had a heart attack or stroke”</p></li>
+<li><p>“In what percentage of cases does a patient report facial
+numbness after this plastic surgery technique?”</p></li>
+</ul>
+<hr />
+<h3
+id="so-to-keep-both-doctors-lawyers-and-spies-happy-we-need-to-build-a-system-which-finds">So,
+to keep both Doctors, Lawyers, and Spies happy, we need to build a
+system which finds…</h3>
+<ul>
+<li><p>1: EVENTs and Entities</p></li>
+<li><p>2: Temporal Expressions</p></li>
+<li><p>3: Temporal Relations</p></li>
+<li><p>4: Causal Relations</p></li>
+<li><p>5: Reporting Relations</p></li>
+<li><p>6: Coreference relations</p></li>
+</ul>
+<hr />
+<h3
+id="but-in-order-to-build-the-system-we-need-to-create-the-training-data">…
+but in order to build the system, we need to create the training
+data</h3>
+<ul>
+<li>This means annotation!</li>
+</ul>
+<hr />
+<h2 id="how-do-you-make-a-good-annotation-schema">How do you make a good
+annotation schema?</h2>
+<hr />
+<h3 id="a-good-annotation-schema-has-a-few-things-going-for-it">A good
+annotation schema has a few things going for it</h3>
+<ul>
+<li><p>Humans can apply it consistently and uniformly</p></li>
+<li><p>Each markable item must have only one possible “answer”</p></li>
+<li><p>Each markable must have at least one answer which fits</p></li>
+</ul>
+<hr />
+<h3 id="bad-annotation-schemas-have-many-possible-answers">Bad
+Annotation schemas have many possible answers</h3>
+<hr />
+<h3 id="umls-2009">UMLS ~2009</h3>
+<blockquote>
+<p>“Her appendicitis caused acute peritonitis”</p>
+</blockquote>
+<ul>
+<li>appendicitis CAUSES peritonitis</li>
+<li>appendicitis BRINGS_ABOUT peritonitis</li>
+<li>appendicitis PRODUCES peritonitis</li>
+<li>appendicitis PRECEDES peritonitis</li>
+<li>peritonitis RESULT_OF appendicitis</li>
+<li>peritonitis FUNCT_RELATED_TO appendicitis</li>
+<li>peritonitis SECONDARY_TO appendicitis</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/howaboutno.jpg"></p>
+<hr />
+<h3 id="will-being-in-idiot-in-2011">Will being in idiot in 2011</h3>
+<blockquote>
+<p>“The bombing followed an attack in Basra”</p>
+</blockquote>
+<ul>
+<li>bombing AFTER attack</li>
+<li>attack BEFORE bombing</li>
+</ul>
+<hr />
+<h3
+id="when-creating-annotation-schemas-you-should-capture-everything-necessary-and-delineate-clearly">When
+creating annotation schemas, you should capture everything necessary,
+and delineate clearly</h3>
+<hr />
+<h2 id="how-red-works">How RED works</h2>
+<p><clb>EVENT</clb> - Something which makes sense on a timeline and has
+a temporal nature.</p>
+<p><clo>TIMEX</clo> - Words or phrases which link to a timeline</p>
+<p><clr>ENTITY</clr> - Something else</p>
+<ul>
+<li>Then, mark the <em>relations</em> between these things.</li>
+</ul>
+<hr />
+<h3 id="step-1-event-and-entity-annotation">Step 1: <clb>EVENT</clb> and
+<clr>ENTITY</clr> annotation</h3>
+<blockquote>
+<p>“<clr>She</clr> was <clb>admitted</clb> for an
+<clb>appendectomy</clb> on January 12th. <clr>She</clr> had a
+<clb>rash</clb> after <clb>surgery</clb>, which <clr>we</clr>
+successfully <clb>treated</clb> with <clb>hydrocortisone</clb> on the
+18th.”</p>
+</blockquote>
+<hr />
+<h2 id="complication">Complication!</h2>
+<p><img class="r-stretch" src="img/complication.jpg"></p>
+<hr />
+<h3 id="is-sudafed-an-event-in">Is “Sudafed” an EVENT in…</h3>
+<ul>
+<li><p>“The white supremacists stole Sudafed to fund their terrorist
+dinner parties”</p></li>
+<li><p>“Sudafed resolved her cold on March 15th.”</p></li>
+<li><p>“Tainted Sudafed has caused 2 deaths so far.”</p></li>
+</ul>
+<hr />
+<h3 id="we-need-to-say-more-about-these-events">We need to say more
+about these events!</h3>
+<hr />
+<h3 id="step-1.5-event-properties">Step 1.5: <clb>EVENT</clb>
+properties</h3>
+<ul>
+<li><p>DocTimeRel - When did it happen relative to the writing?</p></li>
+<li><p>Type - Is it evidential? Aspectual?</p></li>
+<li><p>Polarity - Positive or Negative?</p></li>
+<li><p>Modality - Did it actually happen?</p></li>
+<li><p>Aspect - Was it constant or intermittent?</p></li>
+<li><p>Representation - Was it explicitly mentioned, or
+implied?</p></li>
+</ul>
+<hr />
+<h3 id="doctimerel">DocTimeRel</h3>
+<p><img class="wide" src="comp/doctimerel.jpg"></p>
+<hr />
+<h3 id="modality">Modality</h3>
+<ul>
+<li><p>ACTUAL - It happened</p></li>
+<li><p>UNCERTAIN/HEDGED - It maybe happened</p></li>
+<li><p>HYPOTHETICAL - It could happen</p></li>
+<li><p>GENERIC - It’s a thing that happens, but this isn’t a specific
+one</p></li>
+</ul>
+<hr />
+<h2 id="complication-1">Complication!</h2>
+<p><img class="r-stretch" src="img/complication.jpg"></p>
+<hr />
+<h3 id="whats-the-modality-of-pneumonia-in">What’s the modality of
+“pneumonia” in:</h3>
+<ul>
+<li><p>“She has pneumonia”</p></li>
+<li><p>“She may develop pneumonia”</p></li>
+<li><p>“Pneumonia is particularly deadly to the elderly”</p></li>
+<li><p>“Her chest sounds are not inconsistent with pneumonia”</p></li>
+<li><p>“The X-Ray is strongly suspicious for pneumonia, but not
+conclusive”</p></li>
+</ul>
+<hr />
+<h3 id="whats-the-modality-of-bombing-in">What’s the modality of
+“bombing” in:</h3>
+<ul>
+<li><p>“The general stated that bombing the compound overnight “was
+still an option””</p></li>
+<li><p>“With the advent of newer technologies, bombings are deadlier
+than ever.”</p></li>
+<li><p>“He came home after allegedly poaching Cassowaries.”</p></li>
+<li><p>“We will conduct a bombing at 0300”</p></li>
+<li><p>“We may conduct a bombing at 0300”</p></li>
+</ul>
+<hr />
+<h3 id="ok-we-know-what-the-events-are-but-when-did-they-happen">OK, we
+know what the events are, but <em>when did they happen?</em></h3>
+<hr />
+<h3 id="step-2-temporal-expression-timex-annotation">Step 2: Temporal
+Expression (<clo>TIMEX</clo>) annotation</h3>
+<blockquote>
+<p>“<clr>She</clr> was <clb>admitted</clb> for an
+<clb>appendectomy</clb> on <clo>January 12th</clo>. <clr>She</clr> had a
+<clb>rash</clb> after <clb>surgery</clb>, which <clr>we</clr>
+successfully <clb>treated</clb> with <clb>hydrocortisone</clb> on
+<clo>the 18th</clo>.”</p>
+</blockquote>
+<hr />
+<h3 id="timex-types">TIMEX Types:</h3>
+<ul>
+<li><p>DATE (January 13th, Last Week, Lately)</p></li>
+<li><p>TIME (5 minutes from now, 6:45)</p></li>
+<li><p>DURATION (For 20 minutes, Since last week)</p></li>
+<li><p>QUANTIFIER (Twice, Eight times)</p></li>
+<li><p>SET (Twice a week, BID)</p></li>
+<li><p>PREPOSTEXP (“Preoperative”, “Post-partum”)</p></li>
+</ul>
+<hr />
+<h2 id="complication-2">Complication!</h2>
+<p><img class="r-stretch" src="img/complication.jpg"></p>
+<hr />
+<h3 id="what-times-do-the-following-timexs-represent">What times do the
+following <clo>TIMEX</clo>s represent?</h3>
+<ul>
+<li><p>“The bombing occurred <clo>2/13/12 at 2am</clo>”</p></li>
+<li><p>“<clo>Next Tuesday</clo>, she’ll come in for a
+follow-up”</p></li>
+<li><p>“She’s been having trouble sleeping <clo>lately</clo>.”</p></li>
+<li><p>“She should expect soreness <clo>postoperatively</clo>.”</p></li>
+<li><p>“<clo>Post-9/11</clo> security theater has robbed us of many
+civil liberties”</p></li>
+</ul>
+<hr />
+<h3 id="this-is-called-temporal-expression-normalization">This is called
+‘Temporal Expression Normalization’</h3>
+<ul>
+<li>It’s yet another hard task!</li>
+</ul>
+<hr />
+<h3 id="step-3-temporal-relation-tlink-annotation">Step 3: Temporal
+Relation (TLINK) Annotation</h3>
+<ul>
+<li>BEFORE</li>
+<li>OVERLAP</li>
+<li>CONTAINS</li>
+<li>BEGINS_ON</li>
+<li>ENDS_ON</li>
+<li>SIMULTANEOUS</li>
+</ul>
+<hr />
+<blockquote>
+<p>“<clr>She</clr> was <clb>admitted</clb> for an
+<clb>appendectomy</clb> on <clo>January 12th</clo>. <clr>She</clr> had a
+<clb>rash</clb> after <clb>surgery</clb>, which <clr>we</clr>
+successfully <clb>treated</clb> with <clb>hydrocortisone</clb> on
+<clo>the 18th</clo>.”</p>
+</blockquote>
+<ul>
+<li><clb>admitted</clb> BEFORE <clb>appendectomy</clb></li>
+<li><clo>January 12th</clo> CONTAINS <clb>appendectomy</clb></li>
+<li><clo>January 12th</clo> CONTAINS <clb>admitted</clb></li>
+<li><clb>rash</clb> BEGINS_ON <clb>surgery</clb></li>
+<li><clb>rash</clb> ENDS_ON <clb>treated</clb></li>
+<li><clb>treated</clb> OVERLAP <clb>hydrocortisone</clb></li>
+<li><clo>the 18th</clo> CONTAINS <clb>treated</clb></li>
+</ul>
+<hr />
+<h2 id="complication-3">Complication!</h2>
+<p><img class="r-stretch" src="img/complication.jpg"></p>
+<hr />
+<blockquote>
+<p>“The patient developed a mild post-surgical rash, which was treated
+with hydrocortisone at the follow-up, many years after Napoleon’s exile
+to Elba.”</p>
+</blockquote>
+<p><img src="naturallanguagedataimg/napoleonhydro.png"></p>
+<ul>
+<li><clb>Napoleon’s exile to Elba</clb> BEFORE
+<clb>hydrocortisone</clb></li>
+</ul>
+<hr />
+<h3
+id="every-event-in-the-history-of-the-universe-is-temporally-related-to-every-other-event-in-this-history-of-the-universe.">Every
+event in the history of the universe is temporally related to every
+other event in this history of the universe.</h3>
+<ul>
+<li>That’s a lot of relations</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/shelob.jpg"></p>
+<hr />
+<h3 id="the-solution-narrative-containers">The Solution: Narrative
+Containers!</h3>
+<ul>
+<li><p>Don’t mark the relations between EVENTs.</p></li>
+<li><p>Instead, put EVENTs in temporal buckets and relate the
+buckets</p></li>
+</ul>
+<p><img class="wide" src="comp/buckets.jpg"></p>
+<hr />
+<p><img class="wide" src="comp/russian_dolls.jpg"></p>
+<hr />
+<blockquote>
+<p>December 19th: The patient underwent an MRI and EKG as well as
+emergency surgery. During the procedure, the patient experienced mild
+tachycardia, and she also bled significantly during the initial
+incision.</p>
+</blockquote>
+<hr />
+<p><img src="comp/narrcon1.jpg"></p>
+<hr />
+<p><img src="comp/narrcon2.jpg"></p>
+<hr />
+<p><img src="comp/narrcon3.jpg"></p>
+<hr />
+<h3 id="done">Done!</h3>
+<hr />
+<blockquote>
+<p>December 28th: The patient experienced a stroke at approximately
+9:30am, during her surgery. She then had an MI on the 30th.</p>
+</blockquote>
+<hr />
+<p><img src="comp/narrcon4.jpg"></p>
+<hr />
+<p><img src="comp/narrcon5.jpg"></p>
+<hr />
+<h3 id="the-4-commandments-of-tlinks">The 4 Commandments of TLINKs</h3>
+<ul>
+<li><ol type="1">
+<li>TLINK all EVENTs to their narrative containers</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>TLINK all explicitly stated temporal relations</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>Try to only link EVENTs and TIMEX3s within the same sentence</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>Don’t link things that happened to things that didn’t</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="step-4-causal-relations-annotation">Step 4: Causal Relations
+Annotation</h3>
+<blockquote>
+<p>“<clr>She</clr> was <clb>admitted</clb> for an
+<clb>appendectomy</clb> on <clo>January 12th</clo>. <clr>She</clr> had a
+<clb>rash</clb> after <clb>surgery</clb>, which <clr>we</clr>
+successfully <clb>treated</clb> with <clb>hydrocortisone</clb> on
+<clo>the 18th</clo>.”</p>
+</blockquote>
+<p>-<clb>appendectomy</clb> CAUSES <clb>admitted</clb></p>
+<hr />
+<h2 id="complication-4">Complication!</h2>
+<p><img class="r-stretch" src="img/complication.jpg"></p>
+<hr />
+<h3 id="whats-a-cause">What’s a cause?</h3>
+<ul>
+<li><p>“She pulled the trigger, firing the gun and killing the
+T-Rex.”</p></li>
+<li><p>“The general ordered the pilot to drop a bomb on the
+village”</p></li>
+<li><p>“She pours sugar into her Mountain Dew. She’s now
+diabetic.”</p></li>
+<li><p>“The rockfall destroyed the overfull dam”</p></li>
+<li><p>“The over-filling destroyed the rockfall-damaged dam”</p></li>
+</ul>
+<hr />
+<h3 id="our-solution-causes-and-preconditions">Our solution: Causes, and
+Preconditions</h3>
+<ul>
+<li><p>“She pulled the trigger, firing the gun and killing the
+T-Rex.”</p></li>
+<li><p>“The general ordered the pilot to drop a bomb on the
+village”</p></li>
+<li><p>“She pours sugar into her Mountain Dew. She’s now
+diabetic.”</p></li>
+<li><p>“The rockfall destroyed the overfull dam”</p></li>
+<li><p>“The over-filling destroyed the rockfall-damaged dam”</p></li>
+</ul>
+<hr />
+<h3 id="it-gets-complicated">It gets complicated</h3>
+<ul>
+<li><p>“Her shot killed the T-Rex”</p></li>
+<li><p>“She fired the gun, killing the T-Rex.”</p></li>
+<li><p>“She pulled the trigger, firing the gun and killing the
+T-Rex.”</p></li>
+<li><p>“She pulled the trigger, disengaging the safeties and releasing
+the hammer which collided with the firing pin, hitting the primer and
+firing the bullet whose strike killed the T-Rex.”</p></li>
+</ul>
+<hr />
+<h3 id="step-5-reporting-annotation">Step 5: Reporting Annotation</h3>
+<blockquote>
+<p>“<clr>Federal Authorities</clr> say a Malaysian Businessman nicknamed
+Fat Leonard <clb>obtained</clb> U.S. military secrets in 2009. He
+<clb>lined up</clb> hookers, Lady Gaga tickets and other bribes for a
+commander.”</p>
+</blockquote>
+<p><clr>Federal Authorities</clr> REPORTING <clb>lined up</clb>,
+<clb>obtained</clb></p>
+<hr />
+<h2 id="no-complication">No complication!</h2>
+<p><img class="r-stretch" src="img/sundial.jpg"></p>
+<hr />
+<h3 id="step-6-coreference">Step 6: Coreference</h3>
+<blockquote>
+<p>“<clr>She</clr> was <clb>admitted</clb> for an
+<clb>appendectomy</clb> on <clo>January 12th</clo>. <clr>She</clr> had a
+<clb>rash</clb> after <clb>surgery</clb>, which <clr>we</clr>
+successfully <clb>treated</clb> with <clb>hydrocortisone</clb> on
+<clo>the 18th</clo>.”</p>
+</blockquote>
+<ul>
+<li><clr>She</clr> == <clr>She</clr></li>
+<li><clb>surgery</clb> == <clb>appendectomy</clb></li>
+</ul>
+<hr />
+<h2 id="complication-5">Complication!</h2>
+<p><img class="r-stretch" src="img/complication.jpg"></p>
+<hr />
+<h3 id="coreference-is-difficult">Coreference is difficult</h3>
+<ul>
+<li><p>“The Bay Harbor Butcher is off the streets, as Dexter Morgan, the
+alleged killer, was arrested by police over the weekend”</p></li>
+<li><p>“Bill Clinton was the President of the United States in 1999. Now
+Joe Biden is POTUS.”</p></li>
+</ul>
+<hr />
+<h2 id="but-once-we-figure-it-out-we-really-understand-events">… but
+once we figure it out, we <em>really</em> understand events</h2>
+<ul>
+<li><p>“What happened?”</p></li>
+<li><p>“When?”</p></li>
+<li><p>“What could have happened, but didn’t?”</p></li>
+<li><p>“What caused it?”</p></li>
+<li><p>“Says who!”</p></li>
+</ul>
+<hr />
+<h3 id="and-you-just-have-to-teach-a-computer-how-to-do-it">… and you
+just have to teach a computer how to do it</h3>
+<ul>
+<li><p>Easy!</p></li>
+<li><p>(It was not easy)</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Events are complicated</p></li>
+<li><p>Time is complicated</p></li>
+<li><p>Temporal Relations? Complicated.</p></li>
+<li><p>Causality is crazy complicated.</p></li>
+<li><p>Coreference? You guessed it. Complicated.</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li>Computational Pragmatics</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1 id="intro-to-hearing-science-and-hearing-disorders">Intro to Hearing
+Science and Hearing Disorders</h1>
+<p>Will Styler - LIGN 113</p>
+<hr />
+<h3 id="the-plan">The Plan</h3>
+<ul>
+<li><p>What is sound?</p></li>
+<li><p>What is hearing?</p></li>
+<li><p>What are we covering?</p></li>
+<li><p>What are we skipping?</p></li>
+</ul>
+<hr />
+<h3 id="what-is-sound">What is sound?</h3>
+<p><img src="phonmedia/sound_diagram.jpg" /></p>
+<hr />
+<p><img src="phonmedia/slinky_wave.jpg" /></p>
+<hr />
+<h2 id="sound-is-compression-and-rarefaction-in-a-medium">Sound is
+compression and rarefaction in a medium</h2>
+<ul>
+<li><p>Sound needs something to travel in (like air or water)</p>
+<ul>
+<li>Without a medium, no sound</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="yes-your-childhood-is-a-lie">(Yes, your childhood is a lie)</h3>
+<p><img src="humorimg/star_wars_battle.jpg" /></p>
+<hr />
+<h3 id="thinking-of-sound-as-waves-is-helpful">Thinking of sound as
+waves is helpful</h3>
+<ul>
+<li><p>How do speakers work?</p></li>
+<li><p>Why does clapping cause a sound, but waving your hand through the
+air doesn’t?</p></li>
+<li><p>Why are gunshots loud?</p></li>
+<li><p>If a tree falls in the forest and nobody’s around to hear it,
+does it still make a sound?</p></li>
+</ul>
+<hr />
+<h3 id="sound-has-two-main-properties-we-care-about-for-hearing">Sound
+has two main properties we care about for hearing</h3>
+<ul>
+<li><p>Amplitude/Power (“Loudness”)</p></li>
+<li><p>Frequency (“Pitch”)</p></li>
+</ul>
+<hr />
+<h3 id="amplitudepower-loudness">Amplitude/Power (“Loudness”)</h3>
+<ul>
+<li>High amplitude = Loud</li>
+</ul>
+<p><img src="phonmedia/sound_diagram.jpg" /></p>
+<hr />
+<h3 id="frequency-pitch">Frequency (“Pitch”)</h3>
+<ul>
+<li>Low frequency == Low pitch</li>
+</ul>
+<p><img src="phonmedia/sound_diagram.jpg" /></p>
+<hr />
+<h1 id="what-is-hearing">What is hearing?</h1>
+<hr />
+<h3 id="hearing-is-a-perceptual-process">Hearing is a perceptual
+process</h3>
+<ul>
+<li><p>Turning pressure variations in the audible range into their
+perceptual reflex</p></li>
+<li><p>A monolithic signal enters the ear, but a frequency-organized
+signal enters the mind</p></li>
+<li><p><strong>This is not a linear, clean mapping!</strong></p></li>
+<li><p>This signal is (usually) <strong>binaural</strong>, coming from
+both ears</p></li>
+</ul>
+<hr />
+<h3 id="we-can-then-turn-this-signal-into-a-schema-of-the-world">We can
+then turn this signal into a schema of the world</h3>
+<hr />
+<h3 id="hearing-is-amazing">Hearing is amazing</h3>
+<audio controls src="hearing/samplesound1.wav">
+</audio>
+<hr />
+<h3 id="hearing-is-amazinger">Hearing is amazinger</h3>
+<audio controls src="hearing/samplesound2.wav">
+</audio>
+<hr />
+<h3 id="we-use-hearing-for-amazing-things">We use hearing for amazing
+things</h3>
+<ul>
+<li><p>Am I alone here?</p></li>
+<li><p>Am I in danger?</p></li>
+<li><p>“Is that sound real, or being played back by speakers?”</p></li>
+<li><p>“Something doesn’t sound right…”</p></li>
+<li><p>“Are you OK?”</p></li>
+</ul>
+<hr />
+<h3 id="but-that-doesnt-mean-hearing-is-perfect-either">… but that
+doesn’t mean hearing is perfect, either</h3>
+<ul>
+<li><p>It is fragile</p></li>
+<li><p>It changes over time</p></li>
+<li><p>It is limited</p></li>
+<li><p>We don’t hear sounds exactly as they are</p></li>
+</ul>
+<hr />
+<h3 id="do-we-hear-frequency-in-a-linear-and-reliable-way">Do we hear
+frequency in a linear and reliable way?</h3>
+<p>Is the jump in file A the same as in file B?</p>
+<p>A. <audio controls src="phonmedia/jump_400_600.wav"></audio></p>
+<p>B. <audio controls src="phonmedia/jump_10400_10600.wav"></audio></p>
+<p>A. <audio controls src="phonmedia/jump_400_500.wav"></audio></p>
+<p>B. <audio controls src="phonmedia/jump_6400_6500.wav"></audio></p>
+<hr />
+<h3 id="do-we-hear-frequency-in-a-linear-and-reliable-way-1">Do we hear
+frequency in a linear and reliable way?</h3>
+<p>Is the jump in file A the same as in file B?</p>
+<p>A. 400Hz - 600Hz
+<audio controls src="phonmedia/jump_400_600.wav"></audio></p>
+<p>B. 10,400Hz - 10,600Hz
+<audio controls src="phonmedia/jump_10400_10600.wav"></audio></p>
+<p>A. 400Hz- 500Hz
+<audio controls src="phonmedia/jump_400_500.wav"></audio></p>
+<p>B. 6400Hz - 6500Hz
+<audio controls src="phonmedia/jump_6400_6500.wav"></audio></p>
+<hr />
+<h3 id="so-hearing-can-be-studied-in-a-few-different-ways">So, hearing
+can be studied in a few different ways</h3>
+<ul>
+<li><p>Anatomically (What are the physical structures?)</p></li>
+<li><p>Acoustically (What are we hearing?)</p></li>
+<li><p>Physiologically (How does this work in the body?)</p></li>
+<li><p>Behaviorally (How do we respond to sound?)</p></li>
+</ul>
+<hr />
+<h2 id="hearing-science">Hearing Science</h2>
+<p>Scientific study of the structures, mechanisms, functions, and
+behavioral results of human hearing</p>
+<hr />
+<h3 id="but-hearing-relies-on-many-complex-structures-and-systems">… but
+hearing relies on many complex structures and systems</h3>
+<ul>
+<li>So it can fail!</li>
+</ul>
+<hr />
+<h2 id="hearing-disorders">Hearing Disorders</h2>
+<p>Physiological or Physical diseases, conditions or traumas resulting
+in sub-normal hearing ability</p>
+<hr />
+<h3 id="this-course-is-structured-broadly-in-six-main-segments">This
+course is structured broadly in six main segments</h3>
+<ul>
+<li><p>Anatomy of Hearing</p></li>
+<li><p>Acoustics</p></li>
+<li><p>Physiology of Hearing</p></li>
+<li><p>Psychoacoustics</p></li>
+<li><p>Hearing Disorders and Testing</p></li>
+<li><p>Hearing Interventions</p></li>
+</ul>
+<hr />
+<h3 id="anatomy">Anatomy</h3>
+<ul>
+<li><p>What are the structures of the ear?</p></li>
+<li><p>How are they connected?</p></li>
+<li><p>How do we divide the ear into subparts?</p></li>
+<li><p><em>What elements of human anatomy are important for
+hearing?</em></p></li>
+</ul>
+<hr />
+<h3 id="acoustics">Acoustics</h3>
+<ul>
+<li><p>What is sound?</p></li>
+<li><p>What are its characteristics?</p></li>
+<li><p>How is it transmitted?</p></li>
+<li><p>How can we visualize, measure, and understand sound?</p></li>
+<li><p>What sounds and parts of the sound spectrum are most important
+for quality of life?</p></li>
+<li><p><em>What is hearing picking up on, anyways?</em></p></li>
+</ul>
+<hr />
+<h3 id="physiology">Physiology</h3>
+<ul>
+<li><p>How does the ear <em>work</em>?</p></li>
+<li><p>How does the cochlea work?</p></li>
+<li><p>What reflexes, phenomena, and physiological processes aid,
+protect, and influence hearing?</p></li>
+<li><p>How is auditory information transmitted to the brain?</p></li>
+<li><p>What happens once it’s there?</p></li>
+<li><p><em>How does hearing work in humans?</em></p></li>
+</ul>
+<hr />
+<h3 id="psychoacoustics">Psychoacoustics</h3>
+<ul>
+<li><p>Are we perceiving sounds as they really are in the
+world?</p></li>
+<li><p>How do we perceive acoustic phenomena like pitch and
+loudness?</p></li>
+<li><p>How is hearing <em>non-linear</em>?</p></li>
+<li><p>How can we tell where sound is coming from in the world aroud
+us?</p></li>
+<li><p><em>How are we processing and intepreting our auditory
+input?</em></p></li>
+</ul>
+<hr />
+<h3 id="hearing-disorders-and-testing">Hearing Disorders and
+Testing</h3>
+<ul>
+<li><p>What are common causes of hearing loss?</p></li>
+<li><p>What physiological processes are affected by various
+disorders?</p></li>
+<li><p>Where do these disorders come from? How do they develop?</p></li>
+<li><p>How can we identify and diagnose them?</p></li>
+<li><p>What is the role of audiologists in this process?</p></li>
+</ul>
+<hr />
+<h3 id="hearing-interventions">Hearing Interventions</h3>
+<ul>
+<li><p>What methods are used to treat hearing disorders for patients who
+feel that desire?</p></li>
+<li><p>What medical interventions exist?</p></li>
+<li><p>What surgical interventions exist?</p></li>
+<li><p>How do hearing aids work? Who do they help?</p></li>
+<li><p>How do cochlear implants work? What are their downsides</p></li>
+<li><p><em>What causes hearing loss, and how can it be treated for folks
+who want that?</em></p></li>
+</ul>
+<hr />
+<h2 id="one-big-note">One big note</h2>
+<hr />
+<h3
+id="this-course-will-take-a-clinical-treatment-focused-approach">This
+course will take a clinical, treatment-focused approach</h3>
+<ul>
+<li><p>We will take a more medical approach, ‘restoring towards common
+function’</p></li>
+<li><p>We will refer to deafness and hearing loss as
+‘disordered’</p></li>
+<li><p>We will talk about ‘treating’ hearing loss</p></li>
+<li><p>We will discuss Cochlear implants and Hearing Aids and their
+effects on quality of life</p></li>
+<li><p>This is because this is the approach taken in most Audiology
+programs!</p></li>
+</ul>
+<hr />
+<h3
+id="this-does-not-mean-this-is-the-correct-attitude-or-approach">This
+<em>does not</em> mean this is the ‘correct’ attitude or approach</h3>
+<ul>
+<li><p>There are many perspectives, particularly within the Deaf
+community, on hearing ‘loss’ and hearing ‘treatment’</p>
+<ul>
+<li>It’s not great to call an element of somebody’s identity a
+‘disorder’</li>
+</ul></li>
+<li><p>Understand that the point here is to understand the systems in
+play</p>
+<ul>
+<li>Such that you can later help guide people towards the best choices
+for them</li>
+</ul></li>
+<li><p>We’ll talk more about this Friday!</p></li>
+</ul>
+<hr />
+<h1 id="what-wont-we-be-covering-this-quarter">What won’t we be covering
+this quarter?</h1>
+<hr />
+<h3 id="topics-were-skipping-in-anatomy">Topics we’re skipping in
+Anatomy</h3>
+<ul>
+<li><p>Greater biological processes supporting hearing</p></li>
+<li><p>Anything at the other end of the auditory nerves</p></li>
+<li><p>Surrounding anatomy of the head and neck</p></li>
+<li><p>Anything developmental!</p></li>
+</ul>
+<hr />
+<h3 id="topics-were-skipping-in-acoustics">Topics we’re skipping in
+Acoustics</h3>
+<ul>
+<li><p>Electronic filtering</p></li>
+<li><p>Digital Signal Processing and Digital Enhancement of
+Audio</p></li>
+<li><p>Infrasound and 20,000 Hz+ noise</p></li>
+<li><p>Electrical Engineering for hearing science</p></li>
+</ul>
+<hr />
+<h3 id="topics-were-skipping-in-physiology">Topics we’re skipping in
+physiology</h3>
+<ul>
+<li><p>Processing of auditory signals inside the brain</p></li>
+<li><p>Development and growth of the auditory system</p></li>
+</ul>
+<hr />
+<h3 id="topics-were-skipping-in-psychoacoustics">Topics we’re skipping
+in psychoacoustics</h3>
+<ul>
+<li><p>Musical psychoacoustics (e.g. missing fundamentals, sound
+‘aesthetics’)</p></li>
+<li><p>Applied psychoacoustics (e.g. music therapy, product design,
+etc)</p></li>
+<li><p>Behavioral differences associated with assisted and CI
+hearing</p></li>
+</ul>
+<hr />
+<h3 id="topics-were-skipping-in-hearing-disorders">Topics we’re skipping
+in hearing disorders</h3>
+<ul>
+<li><p>Many, MANY less common disorders</p></li>
+<li><p>Auditory Processing Disorders</p></li>
+<li><p>(Most) trauma-related hearing loss</p></li>
+</ul>
+<hr />
+<h3 id="topics-were-skipping-in-hearing-interventions">Topics we’re
+skipping in hearing interventions</h3>
+<ul>
+<li><p>Hearing aid fitting</p></li>
+<li><p>Cochlear implant configuration, training, and adjustment</p></li>
+</ul>
+<hr />
+<h3 id="do-you-have-any-other-curiosities">Do you have any other
+curiosities?</h3>
+<ul>
+<li><p>What else would you like to learn about hearing?</p>
+<ul>
+<li>Even if it’s been discused as ‘skipped’?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="this-quarter">This quarter…</h3>
+<ul>
+<li><p>We’ll talk about the ears</p></li>
+<li><p>Sound</p></li>
+<li><p>How we’re able to hear</p></li>
+<li><p>… and what it’s like when it goes right, and wrong!</p></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li><p>Differing perspectives on hearing science, and the importance and
+compassion and choice</p></li>
+<li><p><strong>Please do the reading on Canvas</strong></p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

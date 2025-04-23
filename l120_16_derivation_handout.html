@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>title: Derivational Morphology author: Dr. Will Styler - LIGN 120
+—</p>
+<p></p>
+<hr />
+<h2 id="a-quick-note">A quick note!</h2>
+<ul>
+<li><p>I’m trying new presentation software</p></li>
+<li><p>Here goes nothing!</p></li>
+<li><p>Only a PDF will be available for today’s lecture</p></li>
+</ul>
+<h2 id="since-wills-battling-some-microbe-or-another">Since Will’s
+battling some microbe or another</h2>
+<ul>
+<li>Please give your answers to the clicker questions in the discussion
+thread on Canvas titled ‘Clicker and Discussion Questions for Monday May
+5th’</li>
+</ul>
+<hr />
+<p>{} {}</p>
+<h1 id="derivation-vs.-compounding">Derivation vs. Compounding</h1>
+<h2 id="compounding">Compounding</h2>
+<ul>
+<li><p>The combination of two free morphemes to produce a new
+lexeme</p></li>
+<li><p>Backpack, Throughput, Facebook, Smalltalk, Sleepwalk</p></li>
+</ul>
+<h2 id="derivation-combines-a-bound-morpheme-with-a-free-one">Derivation
+combines a bound morpheme with a free one</h2>
+<ul>
+<li>Back-pack vs. Pack-er, Small-talk vs. Talk-ative, sleep-walk
+vs. sleep-y-ness</li>
+</ul>
+<h2 id="well-talk-about-compounding-later-on-this-quarter">We’ll talk
+about compounding later on this quarter</h2>
+<ul>
+<li><p>… but today we’ll focus on other kinds of Derivation</p></li>
+<li><p>Hope this wasn’t a letdown</p></li>
+</ul>
+<h1 id="derivation-by-category-change">Derivation by Category
+Change</h1>
+<h2
+id="derivation-often-changes-the-lexical-category-of-words">Derivation
+<em>often</em> changes the lexical category of words</h2>
+<ul>
+<li>“Hmm, I have this verbal meaning, but I need it as an
+adjective”</li>
+</ul>
+<h2 id="a-note-on-de-">A note on de-</h2>
+<ul>
+<li><p>When derivation changes the lexical category, we mark that shift
+with de-</p></li>
+<li><p>‘Deverbal’ forms were verbs (‘extraction’)</p></li>
+<li><p>‘Denominal’ forms were nouns (‘to chauffer’)</p></li>
+</ul>
+<h2 id="nominal-derivations">Nominal Derivations</h2>
+<h2 id="a-note-on-nominal">A note on ‘Nominal’</h2>
+<ul>
+<li><p>“Nominal” means “Pertaining to nouns”</p>
+<ul>
+<li>Mostly because “Nouny” isn’t a thing</li>
+</ul></li>
+<li><p>(This is a derivational suffix!)</p></li>
+</ul>
+<h2 id="nominalization">Nominalization</h2>
+<ul>
+<li>Changing lexical categories to nouns</li>
+</ul>
+<h2 id="some-deadjectival-nouns">Some deadjectival Nouns</h2>
+<ul>
+<li><p><strong>De-Adjectival Quality Nouns</strong>: Thoroughness,
+Grandiosity</p></li>
+<li><p><strong>Person Nouns</strong>: Smarty, Dummy, Cutie</p></li>
+<li><p><strong>DeState Nouns:</strong> Happiness, Sadness,
+Nerdiness</p></li>
+</ul>
+<h2 id="some-deverbal-nouns">Some deverbal Nouns</h2>
+<ul>
+<li><p>Agent Nominalization</p>
+<ul>
+<li>Infector, Driver, Computer, Gardener</li>
+</ul></li>
+<li><p>Patient Nominalizations</p>
+<ul>
+<li>Detainee, Retiree, Defenestratee</li>
+</ul></li>
+<li><p>Instrument Nominalization (Action to Instrument)</p>
+<ul>
+<li>Grinder, Planer, Shooter, Retainer</li>
+</ul></li>
+<li><p>Product Nominalization (Action to Product)</p>
+<ul>
+<li>Scratch, Break, Purchase, Convert</li>
+</ul></li>
+<li><p>Abstract Nominalization</p>
+<ul>
+<li>Deliverance, Reflectance, Hydration</li>
+</ul></li>
+</ul>
+<h2 id="the-meanings-can-be-unpredictable">The meanings can be
+unpredictable</h2>
+<ul>
+<li><p>“John works at Art of Espresso. He’s a coffee grinder.”</p></li>
+<li><p>“Mark has retired three times now. He’s a serial
+retirer.”</p></li>
+<li><p>“I just downloaded a new YouTube app. It’s a great
+YouTuber.”</p></li>
+<li><p>“Mark builds armor, he’s an armorer. Steven builds hooks, he’s a
+…”</p></li>
+</ul>
+<h2 id="there-are-big-holes-in-these-paradigms">There are big holes in
+these paradigms!</h2>
+
+<h2 id="paradigmatic-holes-continued">Paradigmatic Holes, Continued</h2>
+
+<h2 id="adjectival-derivations">Adjectival Derivations</h2>
+<h2 id="some-adjective-derivations">Some Adjective Derivations</h2>
+<ul>
+<li><p><strong>Denominal Adjectives</strong></p>
+<ul>
+<li>Waterless, Computational, Linguistic, Academic, Recreational,
+Shoe-al?</li>
+</ul></li>
+<li><p><strong>Deverbal Adjectives</strong></p>
+<ul>
+<li>Pronounceable, Readable, Edible, Typeable</li>
+</ul></li>
+</ul>
+<h2 id="verbal-derivations">Verbal Derivations</h2>
+<ul>
+<li><p><strong>Resultatives</strong></p>
+<ul>
+<li>Victimize, Summarize, Theorize</li>
+</ul></li>
+<li><p><strong>Locative Verbs</strong></p>
+<ul>
+<li>Hospitalize, Institutionalize, Jail, School</li>
+</ul></li>
+<li><p><strong>Instrumental Verbs</strong></p>
+<ul>
+<li>Hammer, Screw, Water, Anodize</li>
+</ul></li>
+<li><p><strong>Ornative Verbs</strong></p>
+<ul>
+<li>To paper, rubberize, salt, gild</li>
+</ul></li>
+<li><p><strong>Ablative Verbs</strong></p>
+<ul>
+<li>Shell, behead, stem</li>
+</ul></li>
+</ul>
+<h2 id="verbal-derivations-continued">Verbal Derivations Continued</h2>
+<ul>
+<li><p><strong>Tricky Denominals</strong></p>
+<ul>
+<li>Glorify, Deify, Anodize</li>
+</ul></li>
+<li><p><strong>Deadjectival Verbs</strong></p>
+<ul>
+<li>Flatten, Smoothen, Finalize, Clarify, Sharpen, Enrich</li>
+</ul></li>
+</ul>
+<h2 id="adverbial-derivations">Adverbial Derivations</h2>
+<ul>
+<li><p>Not all adverbs are derived</p>
+<ul>
+<li>e.g. tomorrow, then, only</li>
+</ul></li>
+<li><p>Some are denominal</p>
+<ul>
+<li>e.g. width-wise, step-wise, homeward, schoolward</li>
+</ul></li>
+<li><p>Deadjectival is very common</p>
+<ul>
+<li>e.g. quickly, dumbly, amazedly, slowly</li>
+</ul></li>
+</ul>
+<h2 id="the-word-dethroner-is">The word ‘dethroner’ is…</h2>
+<p>A - Deverbal</p>
+<p>B - Denominal</p>
+<p>C - Deadjectival</p>
+<p>D - Deadverbial</p>
+<p>E - Dethronal</p>
+<p><strong>Click in!</strong></p>
+<h2 id="the-word-computering-is">The word ‘computering’ is…</h2>
+<p>A - Deverbal</p>
+<p>B - Denominal</p>
+<p>C - Deadjectival</p>
+<p>D - Deadverbial</p>
+<p>E - Dethronal</p>
+<p><strong>Click in!</strong></p>
+<h2 id="but-not-all-derivation-involves-changes-in-lexical-categories">…
+but not all derivation involves changes in lexical categories</h2>
+<h1 id="derivations-within-a-lexical-category">Derivations within a
+lexical category</h1>
+<h2 id="deriving-nouns-from-nouns">Deriving Nouns from Nouns</h2>
+<ul>
+<li><p><strong>Status Nouns</strong></p>
+<ul>
+<li>adulthood, childhood, studenthood, cathood</li>
+</ul></li>
+<li><p><strong>Inhabitant Nouns</strong></p>
+<ul>
+<li>Californian, Coloradan, German, Massachusettian?</li>
+</ul></li>
+<li><p><strong>Gendered Nouns</strong></p>
+<ul>
+<li>Heir -&gt; Heiress, Steward -&gt; Stewardess</li>
+</ul></li>
+</ul>
+<h2 id="deriving-adjectives-from-other-adjectives">Deriving Adjectives
+from other adjectives</h2>
+<ul>
+<li><p><strong>Opposites</strong></p>
+<ul>
+<li>unhealthy, unwell, unattractive, unpopular</li>
+</ul></li>
+<li><p><strong>Intensives</strong></p>
+<ul>
+<li>Cute, Ubercute, Supercute, Megacute, Cuteacular</li>
+</ul></li>
+<li><p><strong>Attenuatives</strong></p>
+<ul>
+<li>Nice, Niceish, Good-to-fair</li>
+</ul></li>
+</ul>
+<h2 id="deriving-verbs-from-other-verbs">Deriving Verbs from other
+verbs</h2>
+<ul>
+<li><p><strong>Repetitive Verbs</strong></p>
+<ul>
+<li>remake, redo, recast</li>
+</ul></li>
+<li><p><strong>Reversive Verbs</strong></p>
+<ul>
+<li>unmake, undo, uncast, unbreak</li>
+</ul></li>
+<li><p><strong>Preposition-containing Verbs</strong></p>
+<ul>
+<li>undercut, encircle, uplift, overkill</li>
+</ul></li>
+</ul>
+<h2 id="there-are-many-many-more-derivational-processes">There are many,
+many more derivational processes</h2>
+<ul>
+<li>… with new ones arriving every day!</li>
+</ul>
+<h1 id="new-derivational-affixes">New Derivational Affixes</h1>
+<h2 id="new-affixes-can-enter-the-language">New affixes can enter the
+language!</h2>
+<ul>
+<li><p>Techno- (from ‘Technology’)</p>
+<ul>
+<li>Techno-geek, Technophile, Technofetishist</li>
+</ul></li>
+<li><p>Cyber- (from ‘Cybernetics’)</p>
+<ul>
+<li>Cyber, Cybergoth, Cybersecurity, Cyberattack, Cyberterrorism</li>
+</ul></li>
+<li><p>i-</p>
+<ul>
+<li>iMac, iBook, iPhone, iOS, iPad, iClicker, iRepair, iFixIt</li>
+</ul></li>
+<li><p>-gate</p>
+<ul>
+<li>Watergate, Monicagate, Gamergate, Emailgate, Russiagate,
+Bridgegate</li>
+</ul></li>
+</ul>
+<h1 id="lets-find-some-affixes">Let’s find some affixes!</h1>
+<h2 id="in-small-groups">In small groups…</h2>
+<ul>
+<li><p>Describe as many derivational affixes as you can, providing:</p>
+<ul>
+<li><p>The affix (its form)</p></li>
+<li><p>Its meaning or function</p></li>
+<li><p>Three words it <em>can</em> attach to</p></li>
+<li><p>Three words it <em>cannot</em> attach to</p></li>
+</ul></li>
+</ul>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<ul>
+<li><p>Derivational morphology often changes lexical categories</p></li>
+<li><p>There are within-category derivations</p></li>
+<li><p>New derivational affixes do happen</p></li>
+<li><p>Reanalysis is another common source of these affixes</p></li>
+</ul>
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li><p>Matt’s going to talk about his work</p></li>
+<li><p>Then, we’ll be productive</p></li>
+</ul>
+<hr />
+<p>Thank you!</p>
+</body>
+</html>

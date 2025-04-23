@@ -1,0 +1,20 @@
+tree_lingtemptstex
+
+[S 
+  [NP 
+    [N' 
+      [N Linguistics ] ] ] 
+  [VP 
+    [VP 
+      [V tempts ] 
+      [NP 
+        [N' 
+          [ADJ STEM ] 
+          [N' 
+            [N majors ] ] ] ] ] 
+    [PP 
+      [P with ] 
+      [NP 
+        [DET its ] 
+        [N' 
+          [N awesomeness ] ] ] ] ] ]

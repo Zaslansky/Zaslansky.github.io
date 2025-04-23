@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="syntax-for-nlp">Syntax for NLP</h1>
+<h3 id="will-styler---lign-6">Will Styler - LIGN 6</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Why do we need Syntax?</p></li>
+<li><p>Constituency and Constituency Testing</p></li>
+<li><p>Syntactic Hierarchy</p></li>
+<li><p>Syntax Trees</p></li>
+</ul>
+<hr />
+<h3 id="jony-chased-dieter">“Jony chased Dieter”</h3>
+<p><img class="r-stretch" src="img/fish_jonydieter.jpg"></p>
+<hr />
+<h3 id="english-uses-word-order-to-mark-who-did-what-to-whom.">English
+uses word order to mark who did what to whom.</h3>
+<ul>
+<li><p>“Will ate the veggie burger.”</p></li>
+<li><p>“Jony chased Dieter”</p></li>
+<li><p>“Dieter chased Jony”</p></li>
+<li><p>“Will waved to Hagyeong”</p></li>
+<li><p>“Will insulted Michael Bay”</p></li>
+</ul>
+<hr />
+<h3 id="and-if-we-screw-it-up-thats-a-problem">… and if we screw it up,
+that’s a problem</h3>
+<ul>
+<li><p>*Ate Will the Veggie Burger</p></li>
+<li><p>*Jony Dieter Chased</p></li>
+<li><p>*Will Burger Veggie Ate</p></li>
+</ul>
+<hr />
+<h3 id="and-then-things-move-around">… and then things move around</h3>
+<ul>
+<li><p>“Will ate the veggie burger”</p></li>
+<li><p>“Will ate it”</p></li>
+<li><p>“Will ate what?”</p></li>
+<li><p>“What did Will eat?”</p></li>
+<li><p>*“What did Will eat it?”</p></li>
+</ul>
+<hr />
+<h3 id="and-things-get-ambiguous">… and things get ambiguous</h3>
+<ul>
+<li><p>“Will likes ambiguity more than most people”</p>
+<ul>
+<li><p>“Will likes ambiguity more than most people do”</p></li>
+<li><p>“Will likes ambiguity more than he likes most people”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="clearly-its-complicated">Clearly, it’s complicated</h3>
+<ul>
+<li>… and this is why we have…</li>
+</ul>
+<hr />
+<h1 id="syntax">Syntax!</h1>
+<hr />
+<h3
+id="syntax-is-the-study-of-the-structure-of-sentences-and-utterances">Syntax
+is the study of the structure of sentences and utterances</h3>
+<ul>
+<li><p>“What determines the order and arragement of words in
+sentences?”</p></li>
+<li><p>“What orderings and arrangements are grammatical in a
+language?”</p></li>
+<li><p>“How do we identify the meaning of words given their
+ordering?”</p></li>
+<li><p>“How does the ordering within a sentence change in
+contexts?”</p></li>
+</ul>
+<hr />
+<h3 id="lets-start-from-the-basics">Let’s start from the basics</h3>
+<hr />
+<h1 id="constituency">Constituency</h1>
+<hr />
+<h3 id="syntactic-constituent">Syntactic Constituent</h3>
+<p>A group of words which ‘go together’ in the structure of the
+sentence</p>
+<ul>
+<li><p><em>Constituents are always a continuous string of words</em></p>
+<ul>
+<li>No skipping words, these are continuous chunks!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="constituents-are-chunks-that-when-split-off-make-sense">Constituents
+are chunks that, when split off, make sense</h3>
+<hr />
+<h3 id="we-have-intuitions-about-how-things-can-be-split">We have
+intuitions about how things can be split</h3>
+<p><img class="r-stretch" src="img/kit_kat_cuts_1.jpg"></p>
+<hr />
+<h3 id="we-know-what-breaks-are-good">We know what breaks are
+“good”</h3>
+<p><img class="r-stretch" src="img/kit_kat_cuts_2.jpg"></p>
+<hr />
+<h3 id="and-we-know-that-even-if-other-breaks-are-possible">… and we
+know that even if other breaks are possible…</h3>
+<hr />
+<h3 id="they-shouldnt-always-be-done">They shouldn’t always be done</h3>
+<p><img class="r-stretch" src="img/kit_kat_cuts_4.jpg"></p>
+<hr />
+<h3 id="lets-break-me-off-a-piece-of-that-syntactic-structure">Let’s
+break me off a piece of that syntactic structure!</h3>
+<hr />
+<h2 id="constituency-testing">Constituency Testing</h2>
+<hr />
+<h3 id="constituency-testing-1">Constituency Testing</h3>
+<p>Using grammatical tests and manipulations to determine whether
+something is a valid constituent</p>
+<ul>
+<li><p>“Can this chunk be swapped for something else?”</p></li>
+<li><p>“Can this chunk form a standalone answer?”</p></li>
+</ul>
+<hr />
+<h2 id="constituency-test-substitution">Constituency Test:
+Substitution</h2>
+<p>Can you replace that element of the sentence with a placeholder?</p>
+<ul>
+<li>Any time you can replace a chunk of sentence with something else,
+it’s a constituent</li>
+</ul>
+<hr />
+<h3
+id="the-indignant-kitten-eyed-my-veggie-burger-with-disgust-yesterday-at-dinner">The
+indignant kitten eyed my veggie burger with disgust yesterday at
+dinner</h3>
+<ul>
+<li><p><strong>He</strong> eyed <strong>it</strong></p></li>
+<li><p>The indignant kitten <strong>did so</strong>.</p></li>
+<li><p>The indignant kitten eyed <strong>what</strong> with digust
+<strong>when</strong>?</p></li>
+<li><p>The kitten eyed my veggie burger <strong>how</strong> yesterday
+at dinner?</p></li>
+<li><p>The <strong>obligate carnivore</strong> eyed my
+<strong>dinner</strong> with disgust <strong>then</strong></p></li>
+<li><p><em>There are other chunks we can’t isolate like this</em></p>
+<ul>
+<li>[The indignant kitten eyed my]</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="good-substitution-testing-words">Good substitution testing
+words</h3>
+<ul>
+<li><p>Wh-words (who, what, where, when, how, why)</p></li>
+<li><p>Pronouns (he, it, her, them, they, that)</p></li>
+<li><p>Adverbs of Place and Time (then, there)</p></li>
+<li><p>“Do so”</p></li>
+</ul>
+<hr />
+<h3
+id="if-you-can-replace-something-with-a-placeholder-its-a-constituent">If
+you can replace something with a placeholder, it’s a constituent</h3>
+<ul>
+<li>… and if you are unable to, it’s not a constituent!</li>
+</ul>
+<hr />
+<h3 id="this-is-important-for-coreference-in-nlp">This is important for
+coreference in NLP?</h3>
+<ul>
+<li><p>What does ‘it’ refer to in “The angry dog ate John’s moldy
+sandwich. It was disappointed.”</p></li>
+<li><p>‘It’ can replace ‘the angry dog’ or ‘John’s moldy sandwich’ but
+not ‘the dog ate’</p></li>
+<li><p>‘Which complete constituent of a prior sentence does this thing
+refer to?’</p></li>
+</ul>
+<hr />
+<h2 id="constituency-test-standalone-answers">Constituency Test:
+Standalone Answers</h2>
+<ul>
+<li>A string of words that can be the answer to a WH question is a
+constituent</li>
+</ul>
+<hr />
+<h3
+id="robert-the-enchiladaholic-thoughtlessly-purchased-a-1000-gift-card-to-chiquitas-mexican-restaurant-last-week.">Robert
+the Enchiladaholic thoughtlessly purchased a $1000 gift card to
+Chiquita’s Mexican Restaurant last week.</h3>
+<ul>
+<li><p>“Who bought the gift card?”</p></li>
+<li><p>“What did he buy?”</p></li>
+<li><p>“Where was the gift card to?”</p></li>
+<li><p>“When did he buy it?”</p></li>
+<li><p>“What did Robert do?”</p></li>
+<li><p>“How did he buy it?”</p></li>
+</ul>
+<hr />
+<h3
+id="if-a-chunk-can-serve-as-the-standalone-answer-to-a-question-its-a-constituent">If
+a chunk can serve as the standalone answer to a question, it’s a
+constituent</h3>
+<ul>
+<li>“What can a chunk that’s a constitutent do?”</li>
+</ul>
+<hr />
+<h3 id="this-is-crucial-for-question-answering-in-nlp">This is crucial
+for question answering in NLP</h3>
+<ul>
+<li><p>We want these systems to give us full chunks in response to
+questions</p></li>
+<li><p>“Who owns the crown jewels?” “The Queen”</p></li>
+<li><p>“Which light is on, the living room or kitchen light?” “The light
+is on.”</p></li>
+<li><p>“What did Raul do on Friday?” “He went.”</p></li>
+</ul>
+<hr />
+<h3 id="so-those-are-some-ways-that-we-evaluate-constituency">So, those
+are some ways that we evaluate constituency</h3>
+<ul>
+<li><p>There are many more!</p></li>
+<li><p>Let’s test it out</p></li>
+</ul>
+<hr />
+<h3
+id="what-is-not-a-constituent-in-michael-and-karla-founded-an-innovative-new-dermatology-company-last-month">What
+is <em>not</em> a constituent in “Michael and Karla founded an
+innovative new dermatology company last month”?</h3>
+<hr />
+<h3 id="what-do-we-call-these-constituents">What do we call these
+constituents?</h3>
+<ul>
+<li>We name them after the <em>head</em> of the phrase</li>
+</ul>
+<hr />
+<h3 id="the-angry-squirrel-stole-the-mixed-nuts-from-walmart">The angry
+squirrel stole the mixed nuts from Walmart</h3>
+<ul>
+<li><p>[The angry squirrel] - ‘Noun Phrase’ (NP), headed by a
+noun</p></li>
+<li><p>[stole the mixed nuts from Walmart] - ‘Verb Phrase’ (VP), headed
+by a verb</p></li>
+<li><p>[from Walmart] - ‘Prepositional Phrase’ (PP), headed by a
+preposition.</p></li>
+<li><p><a
+href="#the-angry-squirrel-stole-the-mixed-nuts-from-walmart">The angry
+squirrel stole the mixed nuts from Walmart</a> - The Sentence
+(S)</p></li>
+</ul>
+<hr />
+<h2 id="constituency-is-really-important">Constituency is
+<em>really</em> important</h2>
+<ul>
+<li><p>We seem to ‘understand’ it as language speakers</p></li>
+<li><p>Syntactic rules make constant reference to constituents</p></li>
+<li><p>We’re pretty sure that whatever syntax is in the mind,
+constituency is a part of it</p>
+<ul>
+<li>So, thinking about constituency is going to be constant</li>
+</ul></li>
+</ul>
+<hr />
+<p>“OK, OK. We get it. Constituency is a thing.”</p>
+<ul>
+<li><h3 id="but-where-the-heck-does-it-come-from">… but where the heck
+does it come from?!</h3></li>
+</ul>
+<hr />
+<h3 id="language-is-hierarchical">Language is hierarchical</h3>
+<ul>
+<li><p>Words combine into phrases/constituents</p></li>
+<li><p>Phrases combine to form bigger phrases.</p></li>
+<li><p>Phrases combine to form sentences.</p></li>
+<li><p>Phrase structure rules show how words/phrases combine to form
+larger phrases/sentences.</p></li>
+</ul>
+<hr />
+<h3 id="we-cant-treat-sentences-as-flat-and-find-constituency">We can’t
+treat sentences as ‘flat’ and find constituency</h3>
+<p><img class="r-stretch" src="diagrams/tree_angrysquirrelflat.jpg"></p>
+<hr />
+<h3 id="but-if-we-think-about-it-hierarchically">But if we think about
+it hierarchically…</h3>
+<p><img class="r-stretch" src="diagrams/tree_angrysquirrel.jpg"></p>
+<ul>
+<li><h3 id="boom-constituency.">BOOM! Constituency.</h3></li>
+</ul>
+<hr />
+<h3 id="we-need-to-go-deeper">We need to go deeper…</h3>
+<p><img class="r-stretch" src="diagrams/tree_angrysquirrelfull.jpg"></p>
+<hr />
+<h3 id="or-maybe">Or maybe…</h3>
+<p><img class="r-stretch" src="diagrams/tree_angrysquirrelfullalt.jpg"></p>
+<hr />
+<h3 id="syntax-trees">Syntax Trees</h3>
+<ul>
+<li><p>A representation of the hierarchical structure of sentences,
+capturing constituency.</p></li>
+<li><p>Derived from a finite set of rules which dictate the ordering of
+components</p></li>
+</ul>
+<hr />
+<h3 id="i-ate.">I ate.</h3>
+<p><img class="r-stretch" src="diagrams/tree_iate.jpg"></p>
+<hr />
+<h3 id="i-see-you.">I see you.</h3>
+<p><img class="r-stretch" src="diagrams/tree_iseeyou.jpg"></p>
+<hr />
+<h3 id="the-dog-chased-the-cat">The dog chased the cat</h3>
+<p><img class="r-stretch" src="diagrams/tree_dogchased.jpg"></p>
+<hr />
+<h3 id="i-saw-the-big-sweet-dogs-from-la-jolla-with-fleas">I saw the
+big, sweet dogs from La Jolla with fleas</h3>
+<p><img class="r-stretch" src="diagrams/tree_dogs_long.jpg"></p>
+<hr />
+<h3
+id="trees-express-syntactic-structure-independent-of-specific-words">Trees
+express syntactic structure independent of specific words</h3>
+<p><img class="small" src="diagrams/tree_dogchased.jpg"><img class="small" src="diagrams/tree_dogchased_alt.jpg"></p>
+<hr />
+<h3
+id="linguists-build-these-trees-using-lists-of-phrase-structure-rules.">Linguists
+build these trees using lists of ‘phrase structure rules’.</h3>
+<ul>
+<li><p>This constituent is made up of these subparts</p></li>
+<li><p>S -&gt; NP VP</p></li>
+<li><p>NP -&gt; DET N’</p></li>
+<li><p>N’ -&gt; N</p></li>
+<li><p>VP -&gt; V NP</p></li>
+<li><p>… and many more</p></li>
+</ul>
+<hr />
+<h3 id="olivier-ran-a-discussion-section-friday">Olivier ran a
+discussion section Friday</h3>
+<p><img class="r-stretch" src="diagrams/tree_101sc_olivierran.jpg"></p>
+<hr />
+<h3
+id="the-stuffed-kittens-plotted-revenge-in-an-empty-quiet-apartment">The
+stuffed kittens plotted revenge in an empty quiet apartment</h3>
+<p><img class="r-stretch" src="diagrams/tree_101sc_kittens.jpg"></p>
+<hr />
+<h3
+id="her-incessant-desire-for-enchiladas-consumed-her-every-waking-thought">Her
+incessant desire for enchiladas consumed her every waking thought</h3>
+<p><img class="r-stretch" src="diagrams/tree_101sc_enchiladas.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_complementizercake.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/tree_speakerproved.jpg"></p>
+<hr />
+<h3 id="this-is-a-generative-way-of-doing-syntax">This is a
+<em>generative</em> way of doing syntax</h3>
+<ul>
+<li><p>Good rules can generate all of the grammatical and ‘good’
+forms</p>
+<ul>
+<li>… while generating none of the ungrammatical, ‘bad’ forms</li>
+</ul></li>
+<li><p>This is great for linguistics and the idea of grammar</p>
+<ul>
+<li>… and makes some parts of the syntactic process much easier</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="but-theres-a-lot-of-machinery-here">… but there’s a LOT of
+machinery here</h3>
+<ul>
+<li><p>Which all depends on having a smoothly functioning
+grammar</p></li>
+<li><p>… and creates a lot of structure, which may not all be
+needed</p></li>
+<li><p>So we’ll talk about the approach more commonly used in NLP
+soon!</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>We know that languages can use word order to understand what went
+on</p></li>
+<li><p>We know that there’s more to it than ordering</p></li>
+<li><p>We know that constituents of sentences are a thing</p>
+<ul>
+<li>… and that they’re derived from hierarchy in sentences</li>
+</ul></li>
+<li><p>We can read tree diagrams to understand the nature of that
+hierarchy</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li>We’ll dive into POS tagging and teaching computers to find lexical
+categories</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

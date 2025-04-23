@@ -1,0 +1,66 @@
+-------- BASELINE --------
+70.02667% of 1875 tokens lack PPs
+
+-------- SVM OUTPUT --------
+Best SVM Accuracy:
+91.41333
+Average SVM Accuracy:
+91.04211
+Model Predictions for the Best Model:
+
+    true
+pred    0    1
+   0 1239   12
+   1   74  550
+
+Observed Accuracy for the Best Model:
+95.41333
+Cohen's Kappa (Human-to-SVM):
+0.8940799
+--------  SVM (NOVEL DATA) --------
+
+Novel Data Predictions for the Best Model:
+
+    true
+pred   0   1
+   0 251   9
+   1  17  98
+
+Novel Data Accuracy for the Best Model:
+93.06667
+Novel Data Cohen's Kappa (Human-to-SVM):
+0.8337312
+-------- RANDOMFOREST OUTPUT --------
+RandomForest Accuracy:
+92.74667
+RandomForest Feature Importance:
+          MeanDecreaseGini
+DIFF.DCT1        239.01027
+DIFF.DCT2         65.17791
+DIFF.DCT3        282.79309
+DIFF.DCT4         54.73973
+DIFF.DCT5         97.66551
+DIFF.DCT6         46.86931
+
+--------  NAIVE BAYES OUTPUT --------
+Naive Bayes Accuracy:
+90.50667
+Model Predictions for NaiveBayes:
+      
+nbpred    0    1
+     0 1158   23
+     1  155  539
+
+Observed Accuracy for NaiveBayes:
+90.50667
+Cohen's Kappa (Human-to-NaiveBayes):
+0.7880877
+--------  ENSEMBLE INFO --------
+Best Ensemble Classifier:
+RandomForest
+Best Ensemble Accuracy:
+92.74667
+Best Improvement on Baseline:
+22.72
+Mean Ensemble Accuracy:
+91.55556

@@ -1,0 +1,18 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+
+\begin{document}
+% In the preamble:
+
+% In the document:
+\begin{dependency}[theme = simple]
+   \begin{deptext}[column sep=1em]
+     Turn \& on \& the \& office \& lights \\
+   \end{deptext}
+   \deproot{1}{ROOT}
+   \depedge{1}{2}{PRT}
+   \depedge{1}{5}{DOBJ}
+   \depedge{5}{4}{NMOD}
+   \depedge{5}{3}{DET}
+\end{dependency}
+\end{document}

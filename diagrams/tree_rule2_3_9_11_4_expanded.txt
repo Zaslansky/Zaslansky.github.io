@@ -1,0 +1,25 @@
+tree_rule2_3_9_11_4_expandedtex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [V ate ] 
+    [NP 
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ massive ] 
+          [N' 
+            [ADJ chocolate ] 
+            [N' 
+              [N cake ] ] ] ] ] 
+      [PP 
+        [P from ]
+        [NP 
+          [DET the ] 
+          [N' 
+            [ADJ new ] 
+            [N' 
+              [N bakery ] ] ] ] ] ] ] ]

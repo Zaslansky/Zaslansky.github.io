@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1 id="complex-waves-and-phase">Complex Waves and Phase</h1>
+<h3 id="will-styler---lign-113">Will Styler - LIGN 113</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>What are complex sounds?</p></li>
+<li><p>What is interference?</p></li>
+<li><p>What is ‘phase’?</p></li>
+<li><p>How do we visualize and analyze complex sounds?</p></li>
+</ul>
+<hr />
+<h3 id="last-time-we-talked-about-basic-properties-of-sound">Last time,
+we talked about basic properties of sound</h3>
+<ul>
+<li><p>Amplitude, Duration, Period, Frequency and Wavelength</p></li>
+<li><p>… and we ended with a sound that’s… not quite like the
+others</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/100+200.jpg"></p>
+<hr />
+<h3 id="weve-been-looking-at-sine-waves">We’ve been looking at sine
+waves</h3>
+<ul>
+<li><p>Sounds which have just one <em>frequency component</em></p></li>
+<li><p>These are relatively rare in nature!</p>
+<ul>
+<li>It’s positively sineful that we’ve focused there</li>
+</ul></li>
+<li><p>Most actual sources of sound generate multiple frequencies
+naturally</p></li>
+</ul>
+<hr />
+<h3 id="and-our-ears-almost-never-just-hear-one-frequency">… and our
+ears (almost) never just hear one frequency</h3>
+<ul>
+<li><p>Because we’re surrounded by noise!</p></li>
+<li><p>Noise arriving at the ear is additive</p></li>
+<li><p>We only hear one waveform per ear, no matter the
+source(s)</p></li>
+</ul>
+<hr />
+<h3 id="so-we-should-probably-talk-about">So, we should probably talk
+about…</h3>
+<hr />
+<h2 id="complex-sounds">Complex Sounds</h2>
+<hr />
+<h3 id="complex-sounds-1">Complex Sounds</h3>
+<ul>
+<li><p>Sounds which are made up of more than one <em>component
+frequency</em></p></li>
+<li><p>Also, <em>aperiodic</em> sounds, which aren’t naturally derived
+from specific frequencies</p></li>
+</ul>
+<hr />
+<h3 id="were-going-to-work-with-simplified-complex-sounds-today">We’re
+going to work with simplified complex sounds today</h3>
+<ul>
+<li>But the world is full of more complex complexity</li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/noisewaveform.jpg"></p>
+<hr />
+<h3 id="how-do-we-create-complex-sounds">How do we create complex
+sounds?</h3>
+<ul>
+<li><p>By making multiple sounds at the same time!</p></li>
+<li><p>Or, mathematically, using addition!</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundw.jpg"></p>
+<audio controls src="phonmedia/soundw.wav">
+</audio>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundt.jpg"></p>
+<audio controls src="phonmedia/soundt.wav">
+</audio>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundf.jpg"></p>
+<h2
+id="section"><audio controls src="phonmedia/soundf.wav"></audio></h2>
+<p><img class="r-stretch" src="phonmedia/soundwtf.jpg"></p>
+<audio controls src="phonmedia/soundwtf.wav">
+</audio>
+<hr />
+<h3 id="lets-look-at-this-process-in-a-bit-more-detail">Let’s look at
+this process in a bit more detail!</h3>
+<p><img class="r-stretch" src="diagrams/phase_2x_separate.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/phase_3x_90_separate.jpg"></p>
+<hr />
+<h3 id="you-can-add-very-different-frequencies">You can add very
+different frequencies!</h3>
+<p><img class="r-stretch" src="diagrams/phase_12x_separate.jpg"></p>
+<hr />
+<h3 id="why-would-sounds-be-combined-together-using-addition">Why would
+sounds be combined together using addition?</h3>
+<p><img class="r-stretch" src="diagrams/phase_12x_separate.jpg"></p>
+<hr />
+<h3
+id="the-sum-of-two-waves-is-the-sum-of-their-pressures-at-any-given-point">The
+sum of two waves is the sum of their pressures at any given point</h3>
+<ul>
+<li>Which gives rise to…</li>
+</ul>
+<hr />
+<h2 id="interference">Interference</h2>
+<hr />
+<h3 id="interference-1">Interference</h3>
+<ul>
+<li><p>Multiple signals are ‘interfering’ with one another when they
+collide and affect one another</p></li>
+<li><p><em>Affect</em> means just that! Any effect at all!</p></li>
+<li><p>There are two main kinds of interference in audio</p>
+<ul>
+<li><p>Constructive Interference</p></li>
+<li><p>Destructive Interference</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="constructive-interference">Constructive Interference</h3>
+<ul>
+<li><p>When multiple waves combine in such a way that they become
+<strong>stronger</strong></p></li>
+<li><p>When peaks add together with peaks</p></li>
+</ul>
+<hr />
+<h3 id="destructive-interference">Destructive Interference</h3>
+<ul>
+<li><p>When multiple waves combine in such a way that they become
+<strong>weaker</strong></p></li>
+<li><p>When peaks add together with valleys</p></li>
+</ul>
+<hr />
+<h3 id="constructive-interference-1">Constructive Interference</h3>
+<p><img class="r-stretch" src="diagrams/phase_ampbase_separate.jpg"></p>
+<hr />
+<h3 id="destructive-interference-1">Destructive Interference</h3>
+<p><img class="r-stretch" src="diagrams/phase_combined_separate.jpg"></p>
+<hr />
+<h3 id="but-wait">… but wait</h3>
+<ul>
+<li><p>Those sounds had the same frequency</p></li>
+<li><p>The same amplitude</p></li>
+<li><p>… and the same duration</p></li>
+<li><p>One pair combined constructively, and the other pair
+destructively</p></li>
+<li><h3 id="whats-the-difference">What’s the difference?</h3></li>
+</ul>
+<hr />
+<h2 id="phase">Phase</h2>
+<hr />
+<h3 id="phase-1">Phase</h3>
+<ul>
+<li><p>The point of the cycle in which a sound ‘starts’</p></li>
+<li><p>The ‘orientation’ of the wave in time</p></li>
+<li><p>We measure phase in Degrees (°)</p>
+<ul>
+<li><p>0° is the base, and is the same as 360°</p></li>
+<li><p>180° is the exact opposite phase from 0°</p></li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="diagrams/phase_phases_separate.jpg"></p>
+<hr />
+<h3 id="phase-is-important-for-adding-sounds-together">Phase is
+important for adding sounds together!</h3>
+<ul>
+<li><p>Sounds that are ‘in phase’ experience constructive
+interference</p></li>
+<li><p>Sounds that are ‘out of phase’ experience destructive
+interference</p>
+<ul>
+<li>Also called ‘phase cancellation’ here</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="constructive-interference-2">Constructive Interference</h3>
+<p><img class="r-stretch" src="diagrams/phase_ampbase_separate.jpg"></p>
+<hr />
+<h3 id="destructive-interferencephase-cancellation">Destructive
+Interference/Phase Cancellation</h3>
+<p><img class="r-stretch" src="diagrams/phase_combined_separate.jpg"></p>
+<hr />
+<h3 id="complete-cancellation-is-relatively-rare">Complete cancellation
+is relatively rare!</h3>
+<p><img class="r-stretch" src="diagrams/phase_amplified_separate.jpg"></p>
+<hr />
+<h3 id="phase-effects-arent-all-or-nothing">Phase effects aren’t
+all-or-nothing</h3>
+<p><img class="r-stretch" src="diagrams/phase_offbad_separate.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/phase_off_separate.jpg"></p>
+<hr />
+<h3 id="aside-applied-phase-cancellation">Aside: Applied Phase
+Cancellation</h3>
+<p><img class="r-stretch" src="img/noise_cancelling_headphones.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/muffler.jpg"></p>
+<hr />
+<h3 id="humans-cant-detect-phase">Humans can’t detect phase</h3>
+<ul>
+<li><p>It doesn’t matter what phase a sound starts on to us</p></li>
+<li><p>But it’s crucial when making complex sounds!</p></li>
+</ul>
+<hr />
+<h3 id="subtle-phase-differences-matter">Subtle Phase differences
+matter!</h3>
+<hr />
+<p><img class="r-stretch" src="diagrams/phase_3x_90_separate.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="diagrams/phase_3x_separate.jpg"></p>
+<hr />
+<h1 id="complex-sounds-are-everywhere">Complex Sounds are
+everywhere!</h1>
+<hr />
+<p><img class="r-stretch" src="phonmedia/noisewaveform.jpg"></p>
+<hr />
+<h3 id="how-do-we-understand-their-components">How do we understand
+their components?</h3>
+<ul>
+<li><p>Using spectra or spectrograms</p></li>
+<li><p>Using a <strong>Fourier Transform</strong> lets us understand the
+component frequencies and their phases</p></li>
+<li><p>‘This signal is made up of which component signals?’</p></li>
+</ul>
+<hr />
+<p><strong>If you haven’t heard about spectrograms and spectra before,
+watch <a href="https://www.youtube.com/watch?v=59NqlXr59_c">this video
+starting at 12:30</a></strong></p>
+<p><a href="https://www.youtube.com/watch?v=59NqlXr59_c"
+class="uri">https://www.youtube.com/watch?v=59NqlXr59_c</a></p>
+<p>This goes into a bit more detail (and allows me to be kind to the
+folks who’ve had 110 and/or 112)</p>
+<hr />
+<h3 id="heres-a-nice-video-on-fourier-transforms">Here’s a nice video on
+Fourier Transforms</h3>
+<p><a href="https://www.youtube.com/watch?v=spUNpyF58BY"
+class="uri">https://www.youtube.com/watch?v=spUNpyF58BY</a></p>
+<p>“But what is the Fourier Transform? A visual introduction” by
+3Blue1Brown</p>
+<hr />
+<h3 id="weve-been-looking-at-waveforms">We’ve been looking at
+waveforms!</h3>
+<p><img class="r-stretch" src="phonmedia/sound_diagram.jpg"></p>
+<ul>
+<li>They show the combined, complex signal!</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundw.jpg"></p>
+<audio controls src="phonmedia/soundw.wav">
+</audio>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundt.jpg"></p>
+<audio controls src="phonmedia/soundt.wav">
+</audio>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundf.jpg"></p>
+<h2
+id="section-1"><audio controls src="phonmedia/soundf.wav"></audio></h2>
+<p><img class="r-stretch" src="phonmedia/soundwtf.jpg"></p>
+<audio controls src="phonmedia/soundwtf.wav">
+</audio>
+<hr />
+<h3 id="spectra-show-frequencies-and-their-powers">Spectra show
+frequencies and their powers</h3>
+<ul>
+<li>Also known as ‘FFTs’ or ‘Spectral Slices’</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundwtf.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundwtf_spectrum.jpg"></p>
+<hr />
+<h3 id="ffts-give-us-the-component-frequencies">FFTs give us the
+component frequencies</h3>
+<ul>
+<li><p>… and their power</p></li>
+<li><p>Phase is also recoverable using FFTs</p></li>
+<li><p>… but we want time!</p></li>
+</ul>
+<hr />
+<h3 id="spectrograms-show-frequency-and-power-over-time">Spectrograms
+show frequency and power over time!</h3>
+<p><img class="r-stretch" src="phonmedia/soundwtf.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="phonmedia/soundwtf_spectrogram.jpg"></p>
+<hr />
+<h3 id="fourier-analysis-works-for-any-complex-sound">Fourier analysis
+works for any complex sound!</h3>
+<p><img class="r-stretch"  src="phonmedia/complexwave1.jpg"></p>
+<hr />
+<p><img class="r-stretch"  src="phonmedia/complexwave2.jpg"></p>
+<hr />
+<p><img class="r-stretch"  src="phonmedia/complexwave3.jpg"></p>
+<hr />
+<p><img  src="phonmedia/complexwaves.jpg"></p>
+<hr />
+<h3 id="our-cochleas-are-doing-something-like-fourier-analysis">Our
+cochleas are doing something like fourier analysis!</h3>
+<p><img class="r-stretch"  src="phonmedia/complexwave2.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/basilar_frequencies.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="phonmedia/noisewaveform.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="phonmedia/noisefft.jpg"></p>
+<hr />
+<h3 id="today-weve-learned-about-complex-waves">Today we’ve learned
+about Complex Waves</h3>
+<ul>
+<li><p>About Phase</p></li>
+<li><p>Phase Cancellation</p></li>
+<li><p>… and visualizing complex waves</p></li>
+</ul>
+<hr />
+<h3 id="for-next-time">For Next Time</h3>
+<ul>
+<li>We will let the power flow through us, and talk about
+amplitude!</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

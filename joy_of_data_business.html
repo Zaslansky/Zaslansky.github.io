@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+The Joy of Natural Language Data
+</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="Will Styler">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="will.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+		    <section data-markdown>
+                <textarea data-template>
+
+
+
+<img width="100%" src="img/vagueness.jpg">
+
+---
+
+### This talk is available at:
+
+[http://savethevowels.org/talks](http://savethevowels.org/talks)
+
+---
+
+
+<img width="50%" src="img/temptation.jpg">
+
+## The Joy of Natural Language Data
+### Will Styler - Business Intelligence
+
+---
+
+## Today's Talk:
+
+### Part 1: Why you *badly* want to use natural language data.   
+
+<!-- .element: class="fragment" --> 
+
+### Part 2: Why natural language data is really difficult to use.    <!-- .element: class="fragment" --> 
+
+---
+
+# Part 1
+
+## Why you *badly* want to use natural langauge data.
+
+---
+
+## There's a *lot* of natural language data out there.
+
+* 644 million active websites <small>(<a href="http://www.businessinsider.com/how-many-web-sites-are-are-there-2012-3">Source</a>)</small>
+
+* Mayo Clinic enters 298 million patient records per year <small>(<a href="http://www.mayoclinic.org/emr/">Source</a>)</small>
+
+* 58 million Tweets per day <small>(<a href="http://www.statisticbrain.com/twitter-statistics/">Source</a>)</small>
+
+* 294 billion emails sent daily <small>([Source](http://email.about.com/od/emailtrivia/f/emails_per_day.htm))</small>
+
+* Recorded phone calls, blog posts, Facebook updates...
+
+* ... and that's just the digital stuff
+
+---
+
+## The Problem:
+
+Humans are inefficient and expensive.   <!-- .element: class="fragment" --> 
+
+---
+
+<img class="big" src=img/feast.jpg>
+
+---
+
+<img class="big" src=img/house.jpg>
+
+---
+
+### So let's enjoy a fantasy...
+
+<img class="big" src="humorimg/fantasea.jpg"> 
+
+---
+
+You have a computer which understands human language as well as it does computer language
+
+---
+
+
+<section data-background="img/hal9000.jpg"></section>
+
+---
+
+### (minus the evil)
+
+---
+
+## What could analysis of natural language data do for you?
+
+---
+
+## Speech Recognition
+
+"Ask people why they're calling, and connect them to the right department based on their answer."   <!-- .element: class="fragment" --> 
+
+"Flag all tech support conversations where the customer mentions a competitor"   <!-- .element: class="fragment" -->
+
+"Be Siri, but good."   <!-- .element: class="fragment" --> 
+
+---
+
+## Analysis of secondary speech characteristics
+
+"Redirect all angry-sounding customers to higher-tier support workers" (Speech emotion detection) <!-- .element: class="fragment" --> 
+
+"Are the two people in this skype call flirting, arguing, expressing love, or sadness?  Target post-session ads accordingly."    <!-- .element: class="fragment" -->
+
+"I want to talk to... billing?" (Uncertainty analysis)  <!-- .element: class="fragment" --> 
+
+"Yeah, I really like going to Applebees." (Spot-the-sarcasm)   <!-- .element: class="fragment" --> 
+
+---
+
+## Data Aggregation
+
+“Watch Twitter and give me the locations of wildfires, floods, etc, and provide information about damage, shelters and resources in an easy-to-read format” (EPIC) <!-- .element: class="fragment" -->
+
+“Read every news article about the Ukrainian Revolution and present the information on a cohesive timeline, with sources labeled.” (RED) <!-- .element: class="fragment" -->
+
+“Collect all case-law involving reverse mortgages in the state of Florida in which the plaintiff's children filed suit against the mortgage company”
+<!-- .element: class="fragment" -->
+
+---
+
+## Authorship attribution and stylistic analysis
+
+“Examine these two written passages/books and tell me whether they were both written by the same person” (Authorship Attribution Analysis)   <!-- .element: class="fragment" --> 
+
+"Examine these negative reviews and tell me what demographic the authors likely represent based on the language used." <!-- .element: class="fragment" --> 
+
+"Are these critical forum posts written by the same person?"  <!-- .element: class="fragment" --> 
+
+---
+
+## Predictive analysis of text
+
+“Look for any information in the newswire which will predict a change in this company's stock price, then buy or sell stock automatically.” <!-- .element: class="fragment" -->
+
+“Based on this person's Facebook post history, how likely is she to click an ad for weight-loss pills?” <!-- .element: class="fragment" -->  
+
+"Based on all the political posts and tweets in Westminster compared to those in Pueblo, how likely is this senator to lose in a recall election?"   <!-- .element: class="fragment" --> 
+
+---
+
+## Sentiment Analysis
+
+---
+### A Case Study
+
+Advertisers want their ads to be relevant   <!-- .element: class="fragment" --> 
+
+They want to show ads related to topics and products people enjoy.   <!-- .element: class="fragment" -->
+
+Using these principles, Facebook is trolling Will.   <!-- .element: class="fragment" --> 
+
+---
+
+## The easy approach
+
+Keywords == Mentions, Mentions == Interest   <!-- .element: class="fragment" --> 
+
+"Scan each Facebook post for certain keywords.  If they appear, show ads for related products and topics."   <!-- .element: class="fragment" --> 
+
+---
+
+### How Facebook reads Will's Facebook Posts
+
+"blah blah blah blah blah ***marijuana***, blah blah blahbity blah blah blah" 
+
+<!-- .element: class="fragment" --> 
+
+"blahbity blahblah, ***pot***, blah blah blah blah blah ***Amendment 64*** blahbity blah blah blah"  
+
+<!-- .element: class="fragment" --> 
+
+---
+
+### Facebook's choice in Ads for Will
+
+---
+
+<img class="big" src="naturallanguagedataimg/hemptycoon.png"> 
+
+---
+
+<img class="big" src="naturallanguagedataimg/potdomains.png"> 
+
+---
+
+One tiny problem...
+
+### Marijuana smoke makes Will's throat swell shut.   <!-- .element: class="fragment" --> 
+
+---
+
+### Will's actual Facebook Posts
+
+"Ugh, my neighbor was smoking ***marijuana*** on his deck again, I had to use my inhaler and take some Benadryl to keep breathing."   
+
+<!-- .element: class="fragment" --> 
+
+"I hate the amount of public ***pot*** smoking in colorado. Ever since ***Amendment 64***, I can't go to a concert without risking my life"  
+
+<!-- .element: class="fragment" --> 
+
+---
+
+### Facebook's advertisers are getting ripped off
+
+Presenting topical ads to people who hate those topics is a waste of money   <!-- .element: class="fragment" --> 
+
+This is easily preventable.   <!-- .element: class="fragment" -->
+
+---
+
+### How could we solve this problem?
+
+---
+
+## Sentiment Analysis
+
+“How often, in this corpus of blogs, do people say nice or awful things about product X?”   <!-- .element: class="fragment" --> 
+
+"We've just leaked a picture of our next supercar.  How do people on twitter like the design?"   <!-- .element: class="fragment" -->
+
+"What are people saying about our leaked $199.99 pricepoint?"   <!-- .element: class="fragment" --> 
+
+"How do people on these forums feel about 9/11?"   <!-- .element: class="fragment" --> 
+
+---
+
+## Temporal Analysis and Event Discovery
+
+---
+
+### A Case Study
+
+Many hospitals around the country are switching to Electronic Medical Records (EMRs).   <!-- .element: class="fragment" --> 
+
+These records are easily available within the institution, and contain lots of valuable data.   <!-- .element: class="fragment" --> 
+
+Creating timelines is incredibly time-consuming for humans, as is comparison.   <!-- .element: class="fragment" --> 
+
+What if machines could do this for us?   <!-- .element: class="fragment" -->
+
+[The THYME Project](https://clear.colorado.edu/TemporalWiki/index.php/Main_Page)   <!-- .element: class="fragment" --> 
+
+---
+
+### “The patient developed a mild post-surgical rash, which was treated with hydrocortisone at the follow-up”
+
+<!-- .element: class="fragment" --> Sequence of events:
+
+<!-- .element: class="fragment" --> 1) Surgery
+
+<!-- .element: class="fragment" --> 2) Mild rash
+
+<!-- .element: class="fragment" --> 3) Hydrocortisone, Followup (overlapping)
+
+<!-- .element: class="fragment" --> 4) No more rash
+
+---
+
+
+### If a computer can be taught to interpret time in medical records, we can ask...
+
+<!-- .element: class="fragment" --> "I have 30 seconds to learn this patient's history.  Go."
+
+<!-- .element: class="fragment" --> “How often do patients have heart attacks within 2 years of starting Vioxx?”
+
+<!-- .element: class="fragment" --> “How many people who have a facelift develop persistent facial numbness?”
+
+<!-- .element: class="fragment" --> 
+“How long do patients usually live following diagnosis of Glioblastoma?”
+
+<!-- .element: class="fragment" --> 
+“Is there a correlation between the administration of vaccines and the development of autism?” 
+
+<!-- .element: class="fragment" --> 	**[(No, damnit.)](http://www.webmd.com/brain/autism/news/20110105/bmj-wakefield-autism-faq?print=true)**  
+
+
+---
+
+### Temporal reasoning is important
+
+Humans interpret time naturally, and make reference to it often.   <!-- .element: class="fragment" --> 
+
+Temporality interacts with causality in interesting ways.   <!-- .element: class="fragment" --> 
+
+Event detection and reasoning is useful in a variety of domains. <!-- .element: class="fragment" --> 
+
+"What happened" is a very fundamental question that everybody wants answered.   <!-- .element: class="fragment" --> 
+
+---
+
+## Analysis as a service
+
+“Given this large sample of a child’s speech, is the child likely to be autistic?” (Current research at the LENA foundation in Boulder) <!-- .element: class="fragment" -->
+
+"Scan online white-supremacist forums for anything which looks like a threat against the President" (The US Secret Service)  <!-- .element: class="fragment" -->
+
+“Watch these websites being used by islamist groups and look for specific language usage patterns that predict violent and radical behavior.” (All sorts of defense department grants) 				<!-- .element: class="fragment" -->
+
+
+“Read every email, looking for threats or discussion of terrorist attacks on American soil.”   <!-- .element: class="fragment" --> 
+---
+
+<img src="img/NSA.jpeg">
+
+---
+
+### What could natural language data do for you?
+
+---
+
+## “Examine any question given to you and provide an answer to it, based on your training data”
+<img width=800 class=fragment src=img/watson.png>
+
+---
+
+### <a href="http://www.youtube.com/watch?v=7kOEmupSHB8&feature=relmfu">http://www.youtube.com/watch?v=7kOEmupSHB8&feature=relmfu</a>
+
+---
+
+## Jeopardy “Watson” challenge Final Score:
+<!-- .element: class="fragment" --> Ken Jennings: $24,000
+
+<!-- .element: class="fragment" --> Brad Rutter: $21,600
+
+<!-- .element: class="fragment" --> **Watson: $77,147**
+
+
+---
+
+
+
+<img width="1024" src="img/terminator.png">
+
+---
+
+### ... not so fast
+
+---
+
+
+# Part 2
+
+## Why natural language data is really difficult to use.
+
+---
+
+<img width="100%" src="img/temptation.jpg">
+
+---
+
+# No.   <!-- .element: class="fragment" --> 
+
+<img class="big" src="img/hal9000.jpg"> 
+
+### Not yours.   <!-- .element: class="fragment" --> 
+
+---
+
+## NLP - Natural Language Processing
+Teaching computers to “understand” human language
+
+---
+
+## NLP in ∞ easy steps:
+<!-- .element: class="fragment" --> 1) Get a corpus and annotate it to tell the computer what’s going on
+
+---
+
+# Common Annotation Types
+
+---
+
+### Syntactic Annotation (e.g. Penn Treebank)
+
+---
+
+<img class="big" src="naturallanguagedataimg/treebanks.png"> 
+
+---
+
+<img class="big" src="naturallanguagedataimg/treebankfrag.png">
+
+---
+
+### Semantic roles (e.g. Propbank)
+
+"John hit the tree with a frozen trout"   <!-- .element: class="fragment" --> 
+
+**To Hit** - Hitter, Thing Hit, Instrument, Manner   
+
+<!-- .element: class="fragment" --> 
+
+Hitter: John <!-- .element: class="fragment" --> 
+
+Thing hit: Tree   <!-- .element: class="fragment" --> 
+
+Instrument: Frozen Trout   <!-- .element: class="fragment" --> 
+
+Manner: Not given   <!-- .element: class="fragment" --> 
+
+---
+
+### Named-entity (e.g. UMLS)
+
+“The patient developed a mild post-surgical rash, which was treated with hydrocortisone at the follow-up”
+
+rash == "Disorder"   <!-- .element: class="fragment" --> 
+
+surgery == "Procedure"   <!-- .element: class="fragment" --> 
+
+hydrocortisone == "Chemical/Drug"   <!-- .element: class="fragment" --> 
+
+patient == "Person"   <!-- .element: class="fragment" --> 
+
+---
+### Coreference/Anaphora
+
+"John adopted a panda from his local shelter.  He was dismayed when it ate his cat, but they refused to take it back from him.  The ferocious beast spent the rest of his life with the now-catless man."   <!-- .element: class="fragment" --> 
+
+---
+
+### Sentiment Analytical
+
+"Ugh, I *HATE* Comic Sans, and Papyrus is OK, but man, Helvetica is awesome!"
+
+UGH = STRONG NEG, Comic Sans   <!-- .element: class="fragment" --> 
+
+HATE = STRONG NEG, Comic Sans   <!-- .element: class="fragment" --> 
+
+OK = NEUTRAL, Papyrus   <!-- .element: class="fragment" --> 
+
+AWESOME = STRONG POS, Helvetica   <!-- .element: class="fragment" --> 
+
+---
+
+### Project-specific Annotations
+
+Clinical Element Models   <!-- .element: class="fragment" --> 
+
+Naval Engagement Reports   <!-- .element: class="fragment" --> 
+
+---
+
+### Annotation Pitfalls
+
+If humans can't extract meaning reliably, there's no way a computer can.   <!-- .element: class="fragment" --> 
+
+Too much inference means un-extractable data   <!-- .element: class="fragment" --> 
+
+---
+
+## NLP in ∞ easy steps:
+
+1) Get a corpus and annotate it to tell the computer what’s going on
+
+<!-- .element: class="fragment" --> 2) “Train” the computer by letting it analyze that corpus
+
+<!-- .element: class="fragment" --> 3) Give it a different corpus, have it try to guess what’s going on and answer questions
+
+<!-- .element: class="fragment" --> 4) Refine the programming, refine the annotation, then get another corpus and annotate it to tell the computer what’s going on..
+
+<!-- .element: class="fragment" --> (Repeat)
+
+---
+
+### Why is this so hard?
+
+
+---
+
+# Natural Language is difficult at every level  <!-- .element: class="fragment" --> 
+
+---
+
+## Speech
+
+Speech is a convenient cover for widespread telepathy.
+
+([CITATION NEEDED])   <!-- .element: class="fragment" --> 
+
+---
+
+### You understand me right now
+
+---
+
+<img class="big" src="img/magic.jpg">
+
+---
+
+### No two people sound alike, even saying the same things
+
+---
+
+### The right answer depends on the context.  
+
+---
+
+"Bring me the bat, man"
+
+<img class="big" src="naturallanguagedataimg/dugout.jpg"> 
+
+---
+
+"Bring me the Batman"
+
+<img class="big" src="naturallanguagedataimg/joker.jpg"> 
+
+---
+
+### Speech recognition is spectacularly good, but nowhere near good enough.
+
+---
+
+---
+
+## Modality
+
+Did something happen?  Is it real?
+
+---
+
+### Modality is difficult 
+
+"The compound might be bombed"   <!-- .element: class="fragment" --> 
+
+"If they attack, we'll bomb the compound."   <!-- .element: class="fragment" --> 
+
+“The general stated that bombing the compound overnight “was still an option””   <!-- .element: class="fragment" --> 
+
+“We may conduct a bombing at 0300”   <!-- .element: class="fragment" --> 
+
+“We will conduct a bombing at 0300”   <!-- .element: class="fragment" --> 
+
+“We conducted a bombing at 0300”   <!-- .element: class="fragment" --> 
+
+---
+
+## Coreference/Anaphora
+
+Linking subsequent mentions of items and concepts to one another.
+
+---
+
+### Coreference is difficult
+
+“The Bay Harbor Butcher is off the streets, as Dexter Morgan, the alleged killer, was arrested by police over the weekend”   <!-- .element: class="fragment" --> 
+
+““Bill Clinton was the President of the United States in 1999.  Now Barack Obama is POTUS.”   <!-- .element: class="fragment" --> 
+
+---
+
+## Metonymy
+
+Using a word to refer to a practically or metaphorically related concept
+
+---
+
+### Metonymy is difficult
+
+
+"The terrorist built a **pipe bomb**"
+
+"The __pipe bomb__ interrupted the festival"
+
+  <!-- .element: class="fragment" --> 
+
+"**200mg of Loperamide** stopped her diarrhea"
+
+  <!-- .element: class="fragment" --> 
+
+"**Moscow** condemned the latest round of sanctions"
+
+<!-- .element: class="fragment" -->
+
+---
+
+
+## Causality
+
+Did one event trigger or cause the next event?
+
+---
+
+### Causality is difficult
+
+“The dam burst when the rockslide hit it.”   <!-- .element: class="fragment" --> 
+
+“The over-full dam burst when the rockslide hit it.”   <!-- .element: class="fragment" --> 
+
+“She pulled the trigger, firing the gun and killing the man.”   <!-- .element: class="fragment" --> 
+
+“The bombing destroyed the buildings”   <!-- .element: class="fragment" --> 
+
+“The earthquake destroyed the buildings”   <!-- .element: class="fragment" --> 
+
+---
+
+## Temporal Expression Normalization
+
+The process of linking relative dates to absolute, calendar dates
+
+---
+
+### Temporal Expressions can be difficult
+
+“The bombing occurred 2/13/12 at 0214”   <!-- .element: class="fragment" --> 
+
+“Next Tuesday, she’ll come in for a follow-up”   <!-- .element: class="fragment" --> 
+
+“She’s been having trouble sleeping lately.”   <!-- .element: class="fragment" --> 
+
+“She should expect soreness postoperatively.”   <!-- .element: class="fragment" --> 
+
+“TSA regulations have grown increasingly restrictive Post-9/11”   <!-- .element: class="fragment" --> 
+
+---
+
+## Temporal Relations
+
+Linking and arranging different events as part of a greater timeline
+
+---
+
+### “The patient developed a mild post-surgical rash, which was treated with hydrocortisone at the follow-up.”
+
+
+---
+
+### “The patient developed a mild post-surgical rash, which was treated with hydrocortisone at the follow-up, many years after Napoleon's exile to Elba.”
+
+<img class="big" src="naturallanguagedataimg/napoleonhydro.png">   <!-- .element: class="fragment" --> 
+
+---
+
+### Every event in the history of the universe is temporally related to every other event in this history of the universe.
+
+NumRelations = (NumEvents)!   <!-- .element: class="fragment" --> 
+
+60 Events == 3600 valid Temporal Relations   <!-- .element: class="fragment" --> 
+
+---
+
+# There's often too little information
+
+---
+
+<img width="100%" src="img/vagueness.jpg">
+
+
+---
+
+## Doctors hate us.
+
+“We biopsied the colon, the results were negative”   <!-- .element: class="fragment" --> 
+
+“Noted postoperative scarring.”   <!-- .element: class="fragment" --> 
+
+“She does not want a colonoscopy, which she had in the 70’s and did not enjoy.”   <!-- .element: class="fragment" --> 
+
+“History of Pneumonia, Asthma, h/x diverticulitis, MS”   <!-- .element: class="fragment" --> 
+
+“s/p lap appy conv. open, Lungs c/ausc, A&Ox3”   <!-- .element: class="fragment" --> 
+
+“Resected Invasive Grade 3 of 4 Adenocarcinoma (AJCC 7th PT4N1bMX).”   <!-- .element: class="fragment" --> 
+
+---
+
+# Everybody else does, too!
+
+"Gold covered the miner's hands"/"Gold paid for the miner's education"   <!-- .element: class="fragment" --> 
+
+<!-- .element: class="fragment" --> “The Queen of England’s hat was purple”
+
+<!-- .element: class="fragment" --> 
+“We gave the monkeys the bananas because they were ripe”
+
+<!-- .element: class="fragment" --> 
+“We gave the monkeys the bananas because they were hungry”
+
+<!-- .element: class="fragment" --> “Time flies like an arrow, fruit flies like a banana”
+
+<!-- .element: class="fragment" --> “The old man returned to his house was happy”
+
+---
+
+<img width="1024" src="img/terminator.png">
+
+---
+
+# Not yet.
+
+---
+
+<img width="900" src="img/morpheus.png">
+## Hooray!	
+
+---
+
+# The joy of natural language data
+
+---
+
+## Business wants this data
+
+*<!-- .element: class="fragment" --> "What are people saying about my products?"
+
+*<!-- .element: class="fragment" --> "What do people want next?"
+
+*<!-- .element: class="fragment" --> "How can I provide better products?"
+
+*<!-- .element: class="fragment" --> "How can I provide better service?"
+
+<!-- .element: class="fragment" --> "How can we save time by letting machines do the work?"
+
+---
+
+## ... but natural language doesn't want to give it up
+
+*<!-- .element: class="fragment" --> Annotation and Training are complex and time consuming
+
+*<!-- .element: class="fragment" --> Speech is crazy-complex
+
+*<!-- .element: class="fragment" --> Meaning is person-specific, and very strange
+
+*<!-- .element: class="fragment" --> The meaning and linguistic phenomena in speech are tricky
+
+*<!-- .element: class="fragment" --> You never have enough information
+
+---
+
+
+## You and language data can have a happy, loving relationship
+<!-- .element: class="fragment" --> 
+All you need to do is ask lots of questions, pay attention to what your data tells you, and always think carefully about what you’re asking it.
+
+<!-- .element: class="fragment" --> 
+... but remember, you're gonna need to work for it if you want to get things done.
+
+---
+
+
+
+<img width="90%" src="img/datalove.png">
+
+---
+
+
+
+
+### This presentation is available at:
+
+[http://savethevowels.org/talks](http://savethevowels.org/talks)
+
+---
+
+
+
+
+### Thank you!
+
+---
+
+
+
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

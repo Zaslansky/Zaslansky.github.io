@@ -1,0 +1,101 @@
+-------- BASELINE --------
+70.02667% of 1875 tokens lack PPs
+
+-------- SVM OUTPUT --------
+Best SVM Accuracy:
+93.6
+Average SVM Accuracy:
+92.8045
+Model Predictions for the Best Model:
+
+    true
+pred    0    1
+   0 1301    2
+   1   12  560
+
+Observed Accuracy for the Best Model:
+99.25333
+Cohen's Kappa (Human-to-SVM):
+0.9823032
+--------  SVM (NOVEL DATA) --------
+
+Novel Data Predictions for the Best Model:
+
+    true
+pred   0   1
+   0 255   8
+   1  13  99
+
+Novel Data Accuracy for the Best Model:
+94.4
+Novel Data Cohen's Kappa (Human-to-SVM):
+0.8645907
+-------- RANDOMFOREST OUTPUT --------
+RandomForest Accuracy:
+94.08
+RandomForest Feature Importance:
+             MeanDecreaseGini
+areadiff             6.815022
+absareadiff         11.328190
+areadiffdiff        17.351885
+diffmax             20.942180
+diffsse             16.800406
+tttbcorr             4.960983
+latbcorr             4.690850
+lattcorr             4.122848
+meancorr             4.895220
+corrdiff             3.470395
+corrange             3.981045
+RAW.PC1              8.466279
+RAW.PC2             35.070576
+RAW.PC3             19.369100
+RAW.PC4              5.782842
+RAW.PC5              8.022469
+RAW.PC6              3.833178
+DIFF.PC1            83.415305
+DIFF.PC2             6.852103
+DIFF.PC3             6.350209
+DIFF.PC4             4.603557
+DIFF.PC5             3.931196
+DIFF.PC6             4.558866
+RAW.DCT1            23.159867
+RAW.DCT2             7.097302
+RAW.DCT3            82.745683
+RAW.DCT4             7.638041
+RAW.DCT5            10.819419
+RAW.DCT6             3.806536
+DIFF.DCT1           68.766724
+DIFF.DCT2            8.047311
+DIFF.DCT3           88.392021
+DIFF.DCT4            8.385713
+DIFF.DCT5           11.071784
+DIFF.DCT6            3.652569
+maxd1                7.993927
+meand1              26.058185
+maxd2               30.889561
+meand2              46.444593
+ranged2             40.767167
+sdd1                21.106468
+
+--------  NAIVE BAYES OUTPUT --------
+Naive Bayes Accuracy:
+90.82667
+Model Predictions for NaiveBayes:
+      
+nbpred    0    1
+     0 1179   38
+     1  134  524
+
+Observed Accuracy for NaiveBayes:
+90.82667
+Cohen's Kappa (Human-to-NaiveBayes):
+0.7916543
+--------  ENSEMBLE INFO --------
+Best Ensemble Classifier:
+RandomForest
+Best Ensemble Accuracy:
+94.08
+Best Improvement on Baseline:
+24.05333
+Mean Ensemble Accuracy:
+92.83556

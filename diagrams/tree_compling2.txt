@@ -1,0 +1,23 @@
+tree_compling2tex
+
+[S 
+  [NP 
+    [NP 
+      [DET Two ] 
+      [N' 
+        [ADJ computational ] 
+        [N' 
+          [N linguists ] ] ] ] 
+    [PP 
+      [P from ] 
+      [NP 
+        [N' 
+          [N San Diego ] ] ] ] ] 
+  [VP 
+    [V walked ] 
+    [PP 
+      [P into ] 
+      [NP 
+        [DET a ] 
+        [N' 
+          [N bar ] ] ] ] ] ]

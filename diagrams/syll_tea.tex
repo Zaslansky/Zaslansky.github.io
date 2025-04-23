@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz-qtree}
+\usepackage{fontspec}
+    \setmainfont{Charis SIL}
+\begin{document}
+% In the preamble:
+
+\begin{tikzpicture}[sibling
+distance=10pt, level distance=20pt]
+\tikzset{frontier/.style={distance from root=80pt}}
+\Tree[.`Tea'
+     [.$\sigma$ [.Onset t ] [.Rime [.Nucleus i ] [.Coda  ] ] ] ]
+         
+\end{tikzpicture}
+
+\end{document}

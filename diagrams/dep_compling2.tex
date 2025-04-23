@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+
+\begin{document}
+% In the preamble:
+
+% In the document:
+\begin{dependency}[theme = simple]
+   \begin{deptext}[column sep=1em]
+      Two \& computational \& linguists \& from \& San Diego \& walked \& into \& a \& bar \\
+   \end{deptext}
+   \deproot{6}{ROOT}
+   \depedge{6}{3}{NSUBJ}
+   \depedge{3}{1}{NUMMOD}
+   \depedge{3}{2}{AMOD}
+   \depedge{3}{5}{NMOD}
+   \depedge{5}{4}{CASE}
+   \depedge{6}{9}{NMOD}
+   \depedge{9}{8}{DET}
+   \depedge{9}{7}{CASE}
+\end{dependency}
+\end{document}

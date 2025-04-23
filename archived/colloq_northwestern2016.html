@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+		<title>Northwestern Talk 2016 - Will Styler</title>
+
+		<meta name="author" content="Will Styler">
+		<link rel="stylesheet" href="css/reveal.css">
+		
+		<link rel="stylesheet" href="css/willjs.core.css">
+		<link rel="stylesheet" href="css/willjs.light.css">
+		
+		
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+			<section data-markdown data-separator="---" data-notes="!Note:">
+			<script type="text/template">
+				
+<!--
+
+A Nose by any other Wave: on the Acoustical and Perceptual Features of Vowel Nasality
+
+Although much is known about the linguistic function of vowel nasality, whether contrastive (as in French) or coarticulatory (as in English), relatively little is known about those parts of the signal which are actually used by human listeners to detect and distinguish nasal vowels in speech.  In this talk, I will discuss my recent work which addressed this question using careful examination of production patterns, machine learning on acoustical features, and perceptual studies with human listeners, as well as summarizing the findings and their consequences for the study of nasality and vowel perception on the whole.
+				-->
+				
+<img class="big" src="humorimg/wizardcat.jpg"> 
+
+---
+
+# A Nose by any other Wave: 
+### On the Acoustical and Perceptual Features of Vowel Nasality
+
+**Will Styler**
+
+Presented at Northwestern University - April 27, 2016
+---
+
+### Vowel Nasality
+
+Opening the Velopharyngeal Port during vowel production to allow nasal airflow
+
+---
+
+### Vowel Nasality plays a very important role in languages of the world
+
+---
+
+### Coarticulatory Nasality in English
+
+<center>
+<table>
+  <tr>
+    <th>‘Pats’<br>[pæts]</th>
+    <th>‘Pants’<br>[pæ̃nts]</th>
+
+  </tr>
+</table>
+</center> 
+
+---
+
+### Contrastive Nasality in Lakota
+
+<center>
+<table>
+  <tr>
+    <th>‘seed’	<br>[su]</th>
+    <th>‘braid’<br>[sũ]</th>
+
+  </tr>
+</table>
+</center> 
+
+<audio controls>
+  <source src="phonmedia/della_su-396.wav" type="audio/wav">
+</audio>
+
+<audio controls>
+  <source src="phonmedia/della_suN_102-397.wav" type="audio/wav">
+</audio>
+
+* (Nasality is also contrastive in French, Hindi, Bengali, and lots more!)
+
+---
+
+Listeners clearly can make judgements about nasality in individual vowels
+
+* <small>(c.f. Beddor and Krakow 1999, Beddor 2013, Lahiri and Marslen-Wilson 1991, Kingston and Macmillin 1995, Macmillin et al 1999, the very existence of French, Hindi, Lakota...)</small>
+
+* ... **but Linguists weren't exactly sure *which features* in the signal were used to do so!**
+
+---
+
+### That's where I jumped in!
+
+<img class="big" src="img/will_thumbsup.jpg"> 
+
+---
+
+### Two Goals
+
+* 1) Figure out what acoustical features are *optimally* correlated with nasality in English and French
+
+* 2) Figure out which ones humans are actually *using* to hear nasality.
+
+---
+
+## The Overall Plan
+
+* Collect Data, then measure a selection of features from the literature.
+
+* **Experiment 1** - What features are statistically linked to nasality?
+
+* **Experiment 2** - What features are *useful* for identifying nasal vowels?
+
+	* (These two experiments combine to tell us which features look most promising)
+
+* **Experiment 3** - What features are humans using to perceive nasality?
+
+* **Experiment 4** - Does machine learning show a similar perceptual pattern?
+
+---
+
+# Data Collection!
+
+---
+
+### Data Collection
+
+* I recorded 12 English and 8 French speakers making words with oral and nasal(ized) vowels
+
+	* For English, I recorded CVC/CVN/NVC/NVN minimal pairs
+
+	* For French, I recorded nasal/oral vowel minimal pairs
+	
+	* 4,778 vowels total
+	
+*  Find features that *could* indicate nasality, and measure them!
+	
+	* All measurement was done automatically by Praat Script.
+	
+* Toss the measurements into R for analysis
+
+---
+
+### Time was *not* considered
+
+* All measurements were taken at the 1/3 and 2/3 points in the vowel
+
+* Measures were examined without reference to time
+
+	* All measures were treated individually
+
+* "Any timepoint in a nasal vowel will be more nasal than the same in an oral vowel"
+
+---
+
+### Feature Selection
+
+<img src="phonmedia/chen1997figure.png">
+
+---
+
+<img class="big" src="img/diss_featurelist.png">
+
+---
+
+### Let's talk about a few features more specifically
+
+---
+
+### Vowel Formant Frequency/Bandwidth
+
+<img class="big" src="phonmedia/iformantslabeled.png"> 
+
+---
+### Vowel Formant Frequency/Bandwidth
+
+<img src="phonmedia/ispectrum.png"> 
+---
+
+### A1-P0
+
+<img src="phonmedia/chen1997figure.png">
+
+---
+
+
+### P0 Prominence
+
+<img src="phonmedia/chen1997figure.png">
+
+
+---
+
+### Vowel Duration
+
+<img class="big" src="img/stopwatch.png">
+
+---
+
+### Spectral Tilt
+
+<img src="phonmedia/ispectrum.png"> 
+
+---
+
+# Experiment 1: Statistical Analysis!
+
+---
+
+### The Idea
+
+* *"If a feature doesn't meaningfully differ between oral and nasal vowels, humans won't use it."*
+
+* **Let's test which features are different in oral and nasal vowels!**
+
+---
+
+### Experiment 1: Plan
+
+* 1) Run a bunch of Linear Mixed-Effects Regressions for the features for English and French
+
+	* This will show the *statistical* link between the features and nasality
+	
+* 2) See which features showed significant changes between oral and nasal(ized) vowels
+
+* 3) Compare the magnitude of the oral-to-nasal change (ΔFeature) for each feature
+
+	* Larger changes are probably more useful
+
+---
+
+### The Findings
+
+
+* Only 19/29 features showed a significant link with nasality in both languages
+
+	* ... but not the same 19!
+
+* Of those, only some showed large oral-to-nasal changes
+
+---
+
+### Features with strong correlations and large ΔFeature
+
+* **Formant Bandwidth** was really strong in both languages
+
+* **Formant Frequency** showed weaker (but still meaningful) differences
+
+* **A1-P0** performed well in both languages
+
+* **P0Prominence** worked well in both languages
+
+* **Duration** showed major changes in both languages
+
+	* (English nasalized vowels appear shorter, French nasal vowels appear longer)
+	
+* **Spectral Tilt** showed strong changes in French, less so in English
+
+* Features showed greater signal-to-noise in French than English
+
+---
+
+### Statistical Analysis Wrap-up
+
+* We now know which features are linked with nasality *across the entire dataset*
+
+* ... and which ones show the largest oral-to-nasal changes
+
+	* A1-P0, Duration, Spectral Tilt, Formant Bandwidth/Frequency, and P0Prominence
+
+---
+
+These statistical tests show *overall, aggregate trends* across several thousand words
+
+* **But speech perception involves classifying *each individual vowel!***
+
+---
+
+How do we know if these features help us spot nasality *in any given vowel*?
+
+---
+
+## Ask a Computer!
+
+<img class="big" src="img/hal9000.jpg"> 			
+---
+
+# Experiment 2: Machine Learning!
+
+---
+
+### The Idea
+
+Speech perception is just classifying sounds based on acoustical features
+
+* **Computers can do that too!**
+
+* Give the feature information to a classifier and ask for oral vs. nasal judgements
+
+	* Greater accuracy means a feature or grouping is more useful!
+	
+---
+
+### Basic Machine Classification
+
+* "Find the patterns in this training data, then use them to predict which group this new datapoint belongs to!"
+
+* "Is this handwritten symbol a "1"? "2"? "3"?
+
+* "Does this Gmail account belong to somebody who trafficks in nuclear arms?"
+
+* **"Does this set of measurements indicate an oral vowel, or a nasal vowel?"**
+
+---
+
+### Machines have some advantages over humans for research
+
+* They live in my apartment!
+
+* They don't have *any* context.
+
+* Their decisions are easier to quantify.
+
+* They'll tell you *how* they made the decision they did.
+
+---
+
+### Experiment 2: Plan
+
+* 1) Give each feature to a Machine Learning algorithm *on its own*
+
+	* The features which give the best accuracy should be the most useful
+	
+* 2) Give them *all the features at once*, then ask the algorithms which features are most useful.
+
+* 3) Find the best group of features
+
+	* Find the balance between "few features" and "good accuracy"
+	
+* Test *those* features with expensive humans (Experiment 3!)
+
+---
+
+### My Algorithms of Choice
+
+* RandomForests
+
+	* Make a bunch of decision trees, and use the best one!
+
+* Support Vector Machines
+
+	* Find the mathematical separation that optimally groups classes!
+	
+* RandomForests are really transparent, SVMs are really accurate.
+
+	* All analyses will use both!
+
+---
+
+## Single-feature tests
+
+---
+
+### Single-Feature testing
+
+* Are any features good enough *on their own* to allow nasal perception?
+
+* 116 models, one per feature per algorithm per language
+
+* Each model outputs accuracy, which we can compare!
+
+---
+
+### Single-feature findings
+
+* Duration is suspiciously useful
+
+	* 79.7% accuracy with RF, only 59.2% with SVMs in English
+
+* F1's Bandwidth wins for English
+
+	* 67.6% SVM accuracy
+
+* Spectral Tilt wins for French
+
+	* 76.8% SVM accuracy
+	
+* A1-P0 gets second place for both
+
+	* 64.7% in English SVMs, 75.7% in French.
+
+* *None of the features are good enough on their own!*
+
+
+---
+
+### Which features are most useful *in a combined model*?
+
+* (Because humans have all the features)
+
+---
+
+## Evaluating Feature Importance
+
+---
+
+### RandomForest Importance
+
+RandomForests can calculate *which features were most useful* for classification!
+
+<center>
+<table>
+  <tr>
+      <th><b><br>1.<br>2.<br>3.</b></th>
+	  
+    <th><b>English</b><br>F1's Bandwidth<br>A1-P0<br>Duration</th>
+    <th><b>French</b><br>Spectral Tilt<br>A1-P0<br>F1's Bandwidth</th>
+
+  </tr>
+</table><!-- .element: class="fragment" --> 
+
+</center>  
+---
+
+So, we know which features are useful and important
+
+* **What's the best group to test?**
+
+---
+
+## Multi-feature Models
+
+---
+
+### Multi-feature modeling
+
+* Tested 10 *a priori* feature groupings
+	* There are 20,030,007 other possible groupings of 10 features out of 29.
+	* Not all of them were tested.
+	
+* Compare accuracy *in light of the number of features*
+	* The winning model gets the best performance from the fewest features
+
+---
+
+### Multi-feature Results
+
+* SVMs with all features worked best (29 features)
+
+	* 84.7% accuracy for English, 93.7% in French
+	
+* Formant Width, Formant Frequency, Tilt, A1-P0, and Duration was the best subgroup (9 features)
+
+	* 82.2% for English, 91.7% for French
+	
+* **We only lose 2-3% accuracy when we reduce our feature set by 68%!**
+
+	* That's a promising grouping!
+
+---
+
+### Overall Machine Learning Results
+
+* **Formant Bandwidth** was the most useful feature for English, strong in French
+
+* **Spectral Tilt** was the most useful feature in French, less so in English
+
+* **A1-P0** performed well in both languages
+
+* **P0Prominence** was not useful for classification
+
+* **Formant Frequency** was useful too!
+
+* **Duration** was *really* useful in both languages
+
+	* ... but this could be because it lends itself particularly well to classification
+
+
+---
+
+* So, we've got 5 features which allow high accuracy
+
+	* Formant Width, Formant Frequency, Tilt, A1-P0, and Duration
+
+* ## Let's see if English speakers use them!
+
+---
+
+# Experiment 3: Human Perception
+
+---
+
+### The Idea
+
+* English listeners can use vowel nasality to identify missing nasal consonants
+
+	* ba_ could be "bad" or "ban"
+
+* **Let's add or remove features from vowels to see what indicates "nasality"!**
+
+* If adding or removing a feature changes perception, or makes them react more slowly, it's important!
+
+	* Manipulate features independently and all at once, in both /ɑ/ and /æ/
+
+---
+
+### The Plan
+
+* 1) Create modified nasal vowels where each nasal feature is *reduced*.
+
+	* Listeners might think they're oral!
+
+* 2) Create oral vowels where each nasal feature is *added*.
+
+	* Listeners might think they're nasal!
+	
+* 3) Create control stimuli which are modified then unmodified
+
+	* This will reveal any problems with the stimuli
+
+* 4) Give them to listeners, then analyze Accuracy and Reaction Time!
+
+---
+
+### The Modifications
+
+* Simulate the oral-to-nasal change in A1-P0 (or vice versa)
+
+	* Lower A1-P0 by -5.3 dB in oral vowels, raise by 5.3 dB in nasal ones
+
+* Simulate the oral-to-nasal change in duration (or vice versa)
+
+* Simulate the oral-to-nasal change in spectral tilt (or vice versa)
+
+* Change the formant structure (combined)
+
+	* Change F1 and F3 bandwidth to match the oral and nasal norms
+	
+	* Simulate the *overall* oral-to-nasal change in F1's frequency at the same time 
+
+* Modify *all four features at once!* ("Allmod")
+
+---
+
+### The Experiment
+
+* Data from 42 normal-hearing Native English speakers from the LING Subject Pool
+
+---
+
+<center>
+<table>
+  <tr>
+    <th><h1>bad</h1></th>
+    <th><h1>ban</h1></th>
+
+  </tr>
+</table>
+</center> 
+
+<audio controls>
+  <source src="phonmedia/diss_hazel_BAD_nfor_ex_c.wav" type="audio/wav">
+</audio>
+
+---
+
+<center>
+<table>
+  <tr>
+    <th><h1>bomb</h1></th>
+    <th><h1>bob</h1></th>
+
+  </tr>
+</table>
+</center> 
+
+<audio controls>
+  <source src="phonmedia/diss_molly_BOMB_ofor_ex_c.wav" type="audio/wav">
+</audio>
+
+---
+<center>
+<table>
+  <tr>
+    <th><h1>bad</h1></th>
+    <th><h1>mad</h1></th>
+
+  </tr>
+</table>
+</center> 
+
+<audio controls>
+  <source src="phonmedia/diss_hazel_DAD_ndur_ex_o.wav" type="audio/wav">
+</audio>
+
+---
+
+(397 more times!)
+
+---
+
+### The Analysis
+
+* Use the accuracy and reaction time data from this experiment.
+
+* If listeners call originally nasal vowels "oral" (or vice versa), we'll call the response **inaccurate**.
+
+	* Reduced accuracy means we've affected the perception of nasality!
+
+* **Increased RT** means we've made classification more difficult.
+
+* Check the data using Linear Mixed-Effects Regressions
+
+---
+
+## Feature Addition (oral-made-nasal) Findings
+
+---
+
+<img src="img/diss_conf.add.sum.png">
+
+* *Modifying formants (or all together) resulted in more confusion!*
+
+	* People called oral vowels "nasal" more often with modified formants
+	
+	* The pattern of the All-Modified stimuli was statistically similar.
+
+---
+<img src="img/diss_rt.add.sum.png">
+
+* *Modifying formants (or all together) resulted in slower reaction times!*
+
+	* People were slower to call vowels "oral" or "nasal" with modified formants
+
+
+---
+
+### Feature Addition (oral-made-nasal) Summary
+
+* Perception was affected by modifying formant structure, or by modifying all features.
+
+	* Post-hoc tests show that "All" and "Formant" modification were not significantly different
+
+* **Only modifying formant frequency and bandwidth had an effect on perception!**
+
+---
+
+## Feature Reduction (Nasal-made-Oral) Findings
+
+---
+
+<img src="img/diss_conf.rem.sum.png">
+
+* Confusion wasn't affected by modificaton for nasal-to-oral stimuli!
+
+* **We never changed "nasal" to "oral" by modifying features**
+	
+---
+<img src="img/diss_rt.rem.sum.png">
+
+* *Modifying formants (or all features) resulted in slower reaction times!*
+
+	* People were slower to call vowels "oral" or "nasal" with modified formants
+
+
+---
+
+### Feature Reduction (Nasal-made-Oral) Summary
+
+* *None of the experimental modifications* affected confusion
+
+* **Nothing I did made a nasal vowel sound "oral"**
+
+* Modifying formants (or all features) resulted in slower responses
+	
+* **Formant changes slowed listeners down, but didn't change classification!**
+
+---
+
+### Human Perception Summary
+
+* Only **formant modification** had a significant effect on perception
+
+* Formant modification caused listeners to respond more slowly
+
+* Formant modification made oral vowels sound "nasal"
+
+* F1's bandwidth is probably the cue
+
+	* It worked best in ML, had the best statistical link, and it makes sense acoustically
+	
+	* Hawkins and Stevens (1985) also points that direction
+
+* Formant modification **wasn't enough** to make nasal vowels sound "oral"
+
+---
+
+(We'll talk more about that asymmetry later!)
+
+---
+
+So, we can answer our primary research question!
+
+* ### Formant structure is the main cue to nasality in English!
+
+---
+
+<img class="big" src="humorimg/celebration.gif"> 
+
+
+---
+
+So, the machine learning models predicted F1's bandwidth as the most useful feature...
+
+* ### How similar *are* the SVMs and the humans?
+
+---
+
+# Experiment 4: Humans vs. Machines
+
+* <img class="big" src="img/terminator.png">
+
+---
+
+### The Idea
+
+* *Let's give the computer the same experimental task as the humans, using the same altered stimuli, and see how they compare!*
+
+---
+
+### The Plan
+
+* 1) Train SVMs on different datasets
+
+* 2) Test those SVMs on the experimental stimuli (classifying "oral" or "nasal")
+
+* 3) Compare the by-condition results to the humans
+
+---
+
+### Experimental Stimuli by Condition
+
+
+<img src="img/diss_stimml_human_vs_machine_ex.png"> 
+
+---
+
+<img src="img/diss_humanvsmachine_rankings.png"> 
+
+---
+
+### Experiment 4 Summary
+
+* Humans and machines *did* show similar patterns
+
+	* Modifications that were difficult for humans were difficult for SVMs
+
+* The Generic English model showed the most similarity
+
+	* Adding in French training data was a **bad** idea
+
+* Perceptual testing with machine learning is a good idea
+
+* Humans still win.
+
+---
+
+### Hooray!
+
+<img  src="img/morpheus.png"> 
+
+---
+
+## Coming full circle
+
+**Experiment 1** - What features are statistically linked to nasality?
+
+**Experiment 2** - What features are *useful* for identifying nasal vowels?
+
+**Experiment 3** - What features are humans using to perceive nasality?
+
+**Experiment 4** - Do computers show a similar perceptual pattern?
+
+---
+
+## Discussion
+
+---
+
+### We've got some great new information about nasality
+
+* We know more about measuring nasality
+
+	* There's no "magic feature", but A1-P0 isn't bad
+	
+	* We should also try F1's Bandwidth
+	
+	* Speakers differ a lot
+
+* We know which features *just don't work*.
+
+* We know more about cross-linguistic differences in nasal acoustics
+
+---
+
+### Machine Learning is a useful tool in phonetic research
+
+* We can accurately classify nasality using acoustics alone
+
+* The best features are general, rather than nasality specific 
+
+* SVM classification showed similarity to human perception!
+
+	* Modeling humans using machines isn't crazy!
+
+---
+
+### Formants are the main cue to nasality perception in English
+
+* Modifying formants was the *only* modification which affected perception
+	
+* ... but it's probably not the *only* cue for vowel nasality
+
+---
+
+### Reducing Formant Bandwidth doesn't make nasal vowels "oral"
+
+* Listeners slow down, but they don't reclassify when we change bandwidth
+
+* There was still something "nasal" about the vowels
+	
+* This actually makes sense, because...
+	
+---
+
+### Nasal vowels are produced with  different *oral* articulations
+
+* The oral differences between oral and nasal vowels are *not* arbitrary
+
+	* c.f. (Carignan et al. (2015), Carignan (2014), Carignan et al. (2011) and Shosted et al. (2012))
+
+* We only made formant changes assocated with *all vowels*
+
+	* Vowel-specific changes in formants were ignored
+
+* If nasal vowels are *orally* different, we wouldn't confuse listeners by removing "*nasality*"
+
+	* At worst, they hear a "nasal vowel" without nasality!
+
+---
+
+### Independent Nasal Vowels make sense!
+
+* Contrast enhancement using a secondary feature is common
+
+	* Duration and Vowel quality, Nasality and Pharyngealization (Zellou 2012), and more
+	
+* Nasal vowel systems are often very different than the oral vowel systems
+
+	* Centralization and quality shifts are well known
+	
+* Nasal systems often change independently of oral systems diachronically
+
+* So, nasality is *part of* the difference, but it's not the only difference!
+
+---
+
+
+### This isn't the final word on nasality perception
+	
+* We only tested two vowels here, and we've got plenty more.
+
+* French Perception experiments need to be done!
+	
+* There are still lots of languages out there in the world.
+
+* And most importantly...
+
+---
+
+### What about the temporal information?
+
+* Nasality changes over time in vowels
+
+* Could *the change itself* be a useful supplemental cue?
+
+* Is our perception of timing related to our production of coarticulation?
+
+* How do these acoustical features reflect the reality of the VP Port?
+
+---
+
+## That's what we're working on now!
+
+<img class="big" src="img/umich_seal.jpg">
+
+---
+
+### Conclusions
+
+* Our current measurements of nasality aren't bad
+
+	* Although F1's Bandwidth is a great new one
+	* ... and all of them vary by speaker
+
+* Machines *can* accurately classify nasality
+
+	* ... and simulate human perception!
+
+* Formant bandwidth is the best nasality cue we've got
+
+	* ... at least for English
+	
+* ... but other aspects of the vowel articulation are important too!
+
+---
+
+Most importantly...
+
+---
+
+### There's more to vowel nasality than nasal airflow!
+
+---
+
+## Thank you!
+---
+
+# Questions?
+
+---
+
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

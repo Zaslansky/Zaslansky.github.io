@@ -1,0 +1,17 @@
+tree_catdragontex
+
+[S 
+  [NP 
+    [DET the ] 
+    [N' 
+      [ADJ cute ] 
+      [N' 
+        [N cat ] ] ] ] 
+  [VP 
+    [V meowed ] 
+    [PP 
+      [P at ] 
+      [NP 
+        [DET the ] 
+        [N' 
+          [N dragon ] ] ] ] ] ]

@@ -1,0 +1,20 @@
+tree_bigfoottex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [VP 
+      [V spotted ] 
+      [NP 
+        [N' 
+          [N Bigfoot ] ] ] ] 
+    [PP 
+      [P outside ] 
+      [NP 
+        [DET the ] 
+        [N' 
+          [ADJ Medical ] 
+          [N' 
+            [N library ] ] ] ] ] ] ]

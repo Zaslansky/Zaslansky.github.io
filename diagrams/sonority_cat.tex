@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{fontspec}
+    \setmainfont{Charis SIL}
+\begin{document}
+% In the preamble:
+
+\begin{tikzpicture}
+  \draw [->, dashed] (-0.35,0.25) node [] {} -- (-0.35,5) node[midway,above,sloped] (TextNode) {\tiny Increasing Sonority};
+   \draw [very thick,dotted] (0,0) node[anchor=north]{Onset} -- (4,5) node[anchor=north]{} -- (8,0) node[anchor=north]{Coda};
+  \draw (4,0) node[anchor=north]{Nucleus};
+  \draw [very thick,color=blue] (0,0) node[anchor=south]{\large k} -- (4,5) node[anchor=south]{\large æ} -- (8,0) node[anchor=south]{\large t};
+
+\end{tikzpicture}
+
+\end{document}

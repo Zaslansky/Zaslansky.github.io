@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1 id="text-data-and-language-modeling">Text Data and Language
+Modeling</h1>
+<h3 id="will-styler---css-bootcamp">Will Styler - CSS Bootcamp</h3>
+<hr />
+<h3 id="todays-plan">Today’s plan</h3>
+<ul>
+<li><p>Why is natural language data useful?</p></li>
+<li><p>What are the characteristics of a language corpus?</p></li>
+<li><p>How do you build a corpus?</p></li>
+<li><p>How do you choose which corpus to use?</p></li>
+<li><p>How do we do n-gram analysis?</p></li>
+<li><p>What other methods help us understand text data?</p></li>
+</ul>
+<hr />
+<h3 id="theres-a-lot-of-natural-language-data-out-there.">There’s a
+<em>lot</em> of natural language data out there.</h3>
+<ul>
+<li><p>644 million active websites
+<small>(<a href="http://www.businessinsider.com/how-many-web-sites-are-are-there-2012-3">Source</a>)</small></p></li>
+<li><p>Mayo Clinic enters 298 million patient records per year
+<small>(<a href="http://www.mayoclinic.org/emr/">Source</a>)</small></p></li>
+<li><p>58 million Tweets per day
+<small>(<a href="http://www.statisticbrain.com/twitter-statistics/">Source</a>)</small></p></li>
+<li><p>294 billion emails sent daily <small>(<a
+href="http://email.about.com/od/emailtrivia/f/emails_per_day.htm">Source</a>)</small></p></li>
+<li><p>Text messages, blog posts, Facebook updates…</p></li>
+<li><p>… and that’s just the digital stuff</p></li>
+</ul>
+<hr />
+<h2 id="why-do-we-care-about-natural-language-data">Why do we care about
+natural language data?</h2>
+<hr />
+<h3 id="why-do-we-want-natural-language-data-at-all">Why do we want
+natural language data at all?</h3>
+<ul>
+<li><p>It tells us about the world</p></li>
+<li><p>It provides valuable information</p></li>
+<li><p>It tells us about language is used</p></li>
+<li><p>It gives us data for training language models!</p></li>
+</ul>
+<hr />
+<h3 id="natural-language-data-tells-us-about-the-world">Natural Language
+Data tells us about the world</h3>
+<ul>
+<li><p>Coverage of major news events</p></li>
+<li><p>Series of medical records</p></li>
+<li><p>Large bodies of legal text</p></li>
+<li><p>Reports from many analysts</p></li>
+<li><p>Live streaming tweets</p></li>
+</ul>
+<hr />
+<h3 id="natural-language-data-provides-valuable-information">Natural
+Language Data provides valuable (🤑) information</h3>
+<p><img class="r-stretch" src="comp/ap_code1159.jpg"></p>
+<hr />
+<h3 id="things-youd-want-to-know-from-natural-language-data">Things
+you’d want to know from natural language data</h3>
+<ul>
+<li><p>What do people think?</p></li>
+<li><p>Who likes it?</p></li>
+<li><p>Who hates it?</p></li>
+<li><p>Where is demand greatest?</p></li>
+<li><p>What are the most common likes and dislikes?</p></li>
+</ul>
+<hr />
+<h3
+id="natural-language-data-tell-us-about-how-language-is-used.">Natural
+language data tell us about how language is used.</h3>
+<ul>
+<li><p>“How often is word X used to describe black athletes vs. white
+athletes?”</p>
+<ul>
+<li><p>“Is the frequency of these words predicted by subject
+race?”</p></li>
+<li><p>“What about racially loaded bigrams?”</p></li>
+</ul></li>
+<li><p>Words like “Aggressive”, “Angry”, “Unstoppable”, “Playgrounds”,
+and “Ferocious” are preferentially applied to black athletes</p></li>
+<li><p>Words like “Rolex”, “Wife”, “Family” are preferentially
+white</p></li>
+<li><p>Work is ongoing</p>
+<ul>
+<li>c.f <a
+href="https://www.researchgate.net/publication/317425125_The_Reflection_and_Reification_of_Racialized_Language_in_Popular_Media">Wright
+2017, The Reflection and Reification of Racialized Language in Popular
+Media</a></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="natural-language-data-allow-us-to-build-language-models">Natural
+language data allow us to build <em>language models</em></h3>
+<hr />
+<h2 id="language-model">Language Model</h2>
+<p>A probabilistic model which can predict and quantify the probability
+of a given word, construction, or sentence in a given type of
+language</p>
+<hr />
+<h3 id="lets-be-language-models">Let’s be language models</h3>
+<ul>
+<li><p>“Yesterday, we went fishing and ca____”</p></li>
+<li><p>“Pradeep is staying at a ________ hotel”</p></li>
+<li><p>“Although he claimed the $50,000 payment didn’t affect his
+decision in the case, this payment was a bribe, for all
+________”</p></li>
+<li><p>“I’m sorry, I can’t go out tonight, I _________”</p></li>
+<li><p>“I’m sorry, I can’t go out tonight, my _________”</p></li>
+<li><p>“I’m hungry, let’s go for ________”</p></li>
+</ul>
+<hr />
+<h3
+id="every-element-of-natural-language-understanding-depends-on-good-language-models">Every
+element of natural language understanding depends on good language
+models</h3>
+<ul>
+<li><p>We need to know what language actually looks like to be able to
+analyze it</p></li>
+<li><p>We need to know the patterns to be able to interpret
+them</p></li>
+<li><p>To find patterns, we need to look at the data we’re
+modeling</p></li>
+</ul>
+<hr />
+<h3
+id="language-models-are-created-by-analyzing-large-amounts-of-text">Language
+models are created by analyzing large amounts of text</h3>
+<ul>
+<li><p>What words or constructions are most probable given the prior
+context?</p></li>
+<li><p>What words or constructions are most probable given the type of
+document?</p></li>
+<li><p>What words or constructions are most probable in this
+language?</p></li>
+</ul>
+<hr />
+<h3
+id="calculating-probability-well-requires-large-amounts-of-data">Calculating
+Probability (well) requires large amounts of data!</h3>
+<ul>
+<li><p>… and the probabilities come <em>directly</em> from the data you
+give it</p></li>
+<li><p>Biased data lead to biased models</p></li>
+<li><p>Bad data lead to bad models</p></li>
+<li><p>So, creating a good corpus is important!</p></li>
+</ul>
+<hr />
+<h2 id="building-a-corpus">Building a Corpus</h2>
+<hr />
+<h3 id="a-corpus-isnt-super-complicated">A corpus isn’t super
+complicated</h3>
+<ul>
+<li><p>It’s a bunch of language data</p></li>
+<li><p>… in a format that isn’t awful</p></li>
+<li><p>… with all of the non-language stuff stripped out</p></li>
+<li><p>… collected in an easy-to-access place</p></li>
+<li><p>You might also have some metadata or annotations</p></li>
+</ul>
+<hr />
+<h3 id="corpora-have-a-bunch-of-language-data">Corpora have a bunch of
+language data</h3>
+<ul>
+<li><p>Brown corpus: One million words</p></li>
+<li><p><a href="http://wstyler.ucsd.edu/enronsent.html">EnronSent
+Corpus</a>: 14 million words</p></li>
+<li><p><a href="http://www.anc.org/">OpenANC Corpus</a>: 15 million
+words (annotated)</p></li>
+<li><p>NY Times corpus: 1.8 million articles</p></li>
+<li><p><a href="https://corpus.byu.edu/coca/">Corpus of Contemporary
+American English (COCA)</a>: 560 million words</p></li>
+<li><p>iWeb Corpus: 14 <em>billion</em> words</p></li>
+</ul>
+<hr />
+<h3 id="we-have-access-to-many-more-corpora-just-talk-to-will">(We have
+access to many more corpora, just talk to Will!)</h3>
+<hr />
+<h3 id="the-format-needs-to-be-non-awful">The format needs to be
+non-awful</h3>
+<ul>
+<li><p>Something easily readable by NLP tools</p></li>
+<li><p>Something easily parsed for metadata</p></li>
+<li><p>Plaintext or Plaintext Markup (e.g. YAML, XML) (rather than
+MSWord)</p></li>
+<li><p>Only the language data (rather than non-language stuff)</p></li>
+</ul>
+<hr />
+<h3 id="you-want-to-minimize-non-language-stuff">You want to minimize
+non-language stuff</h3>
+<ul>
+<li><p>Natural language data are <em>really</em> dirty</p></li>
+<li><p>Markup, extraneous language, multiple articles on one
+page</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="comp/catstory.jpg"></p>
+<hr />
+<h3 id="everything-needs-to-be-in-one-place">Everything needs to be in
+one place</h3>
+<ul>
+<li><p>The entire internet is a corpus</p>
+<ul>
+<li>… but it doesn’t search so well</li>
+</ul></li>
+<li><p>Getting everything into plaintext on your machine will be the
+fastest approach</p></li>
+</ul>
+<hr />
+<h3 id="you-might-want-metadata-or-annotations-too">You might want
+metadata or annotations, too!</h3>
+<hr />
+<h3 id="document-information">Document information</h3>
+<ul>
+<li><p>“Which athlete is this describing? Are they black or
+white?”</p></li>
+<li><p>“Is this is a positive review or a negative review?”</p></li>
+<li><p>“Is this an article about watches, cars, or
+linguistics?”</p></li>
+<li><p>“Is this from a book, article, tweet, email?”</p></li>
+<li><p>“When was it written? By who?”</p></li>
+</ul>
+<hr />
+<h3 id="linguistic-information">Linguistic information</h3>
+<ul>
+<li><p>What language is this document in?</p></li>
+<li><p>Which words are nouns? Verbs? Adjectives? etc</p></li>
+<li><p>What is the structure of the sentence(s)?</p></li>
+<li><p>Which elements co-refer to each other?</p>
+<ul>
+<li>“Sarah went to the park with John. She pushed him on the swing
+there.”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="semantic-information">Semantic information</h3>
+<ul>
+<li>Who’s doing what to whom in these sentences?
+<ul>
+<li>“John threw Darnell the ball. Darnell then handed it to
+Jiseung.”</li>
+</ul></li>
+<li>What kinds of words are these?
+<ul>
+<li>“Is this word a treatment? A disease? An intervention? A
+person?”</li>
+</ul></li>
+<li>What is the timeline of this document?
+<ul>
+<li>(… and how can we tell that from text)</li>
+</ul></li>
+<li>What’s the best summary of the document?</li>
+</ul>
+<hr />
+<h3 id="all-of-this-information-combined-makes-a-successful-corpus">All
+of this information combined makes a successful corpus</h3>
+<ul>
+<li>Which will do good linguistic work for you</li>
+</ul>
+<hr />
+<h3 id="creating-a-corpus-is-a-straightforward-process">Creating a
+corpus is a straightforward process</h3>
+<ul>
+<li><p>Gather language data</p></li>
+<li><p>Clean the data, and put it in a sane format</p></li>
+<li><p>Put it somewhere</p></li>
+<li><p>Annotate it (if you’d like)</p></li>
+</ul>
+<hr />
+<p>… but you don’t need to build a corpus for everything …</p>
+<hr />
+<h3 id="there-are-also-a-huge-number-of-pre-made-corpora">There are also
+a <em>huge</em> number of pre-made corpora</h3>
+<ul>
+<li><p><a href="https://crl.ucsd.edu/corpora/index.php">Here’s what’s
+easily available at UCSD</a></p></li>
+<li><p><a href="https://catalog.ldc.upenn.edu/byyear">Here’s the LDC’s
+<em>huge</em> list of corpora</a></p></li>
+</ul>
+<hr />
+<h2 id="choosing-a-corpus">Choosing a corpus</h2>
+<hr />
+<h3 id="why-do-we-have-multiple-corpora">Why do we have multiple
+corpora?</h3>
+<ul>
+<li>Why not just put it all together?</li>
+</ul>
+<hr />
+<h3 id="every-type-of-text-is-unique">Every type of text is unique</h3>
+<ul>
+<li><p>Tweets</p></li>
+<li><p>Books</p></li>
+<li><p>Newswire</p></li>
+<li><p>Emails</p></li>
+<li><p>Texts</p></li>
+<li><p>Facebook posts</p></li>
+<li><p>Watch nerd forums</p></li>
+</ul>
+<hr />
+<h3 id="balance-is-important">Balance is important</h3>
+<ul>
+<li><p>Your models will reflect your training data</p></li>
+<li><p>Biased corpora make biased systems</p></li>
+<li><p>Choose your training data well</p></li>
+</ul>
+<hr />
+<h3
+id="what-kind-of-corpus-would-you-use-and-how-would-you-annotate-it">What
+kind of corpus would you use, and how would you annotate it?</h3>
+<ul>
+<li><p>You’re building a system to discover events in news
+stories</p></li>
+<li><p>… to detect gamers’ favorite elements of games</p></li>
+<li><p>… to identify abusive tweets</p></li>
+<li><p>… to summarize forums posts about products</p></li>
+<li><p>… to generate next-word predictions from text messages</p></li>
+<li><p>… to identify controversial political issues in another country,
+then further divide the public</p></li>
+</ul>
+<hr />
+<h3
+id="what-kind-of-corpus-would-you-use-and-how-would-you-annotate-it-1">What
+kind of corpus would you use, and how would you annotate it?</h3>
+<ul>
+<li><p>You’re building a system to build an Alexa-style
+assistant</p></li>
+<li><p>… to create a phone-tree</p></li>
+<li><p>… to do machine translation from English to Chinese</p></li>
+<li><p>… to build a document summarization tool for intelligence
+reports</p></li>
+</ul>
+<hr />
+<h3 id="so-youve-got-a-corpus-what-do-you-do">So, you’ve got a corpus,
+what do you do?</h3>
+<hr />
+<h2 id="using-corpora">Using Corpora</h2>
+<hr />
+<h3 id="many-levels-of-analysis">Many levels of analysis</h3>
+<ul>
+<li><p>Reading the corpus</p></li>
+<li><p>Searching the corpus for specific terms</p></li>
+<li><p>Searching the corpus for specific abstract patterns</p></li>
+<li><p>Automatic classification of documents</p></li>
+<li><p>Information extraction</p></li>
+</ul>
+<hr />
+<h3 id="reading-the-corpus">Reading the corpus</h3>
+<ul>
+<li><p>Reading the data is a good first step</p></li>
+<li><p>Humans are better at natural language understanding</p></li>
+<li><p>Noise becomes super apparent to humans quickly</p></li>
+<li><p>Sometimes, the patterns are obvious</p></li>
+</ul>
+<hr />
+<blockquote>
+<p>Gentlemen, Attached is an electronic version of the “proposed” First
+Amendment to ISDA Master Agreement, which was directed by FED EX to
+Gareth Krauss @ Merced on October 11, 2001. On November 5th, Gareth
+mentioned to me that their lawyer would be contacting Sara Shackleton
+(ENA-Legal) with any comments to the proposed First Amendment. Let me
+know if I may be of further assistance.</p>
+</blockquote>
+<blockquote>
+<p>Regards, Susan S. Bailey Senior Legal Specialist</p>
+</blockquote>
+<hr />
+<h3 id="searching-the-corpus-for-specific-terms">Searching the Corpus
+for specific terms</h3>
+<ul>
+<li><p>Get information about the location, frequency, and use of a
+word</p></li>
+<li><p>“Give me all instances of the word ‘corruption’”</p></li>
+</ul>
+<hr />
+<p>enronsent08:17021:enlighten you on the degree of corruption in
+Nigeria.</p>
+<p>enronsent13:20442:courts in Brazil which are generally reliable and
+free of corruption (e.g.,</p>
+<p>enronsent17:45199:??N_POTISME ET CORRUPTION??Le n,potisme et la
+corruption sont deux des prin=</p>
+<p>enronsent18:26272:electoral corruption and fraud has taken place, a
+more balanced Central</p>
+<p>enronsent20:3642:by corruption, endless beuacracy, and cost of
+delays. These “entry hurdles”</p>
+<p>enronsent20:23272:Turkish military to expose and eliminate corruption
+in the Turkish energy=</p>
+<p>enronsent21:2159: employees, and corruption. The EBRD is pushing for
+progress</p>
+<p>enronsent21:2292: government has alleged that corruption occurred
+when the PPA</p>
+<p>enronsent22:30087:how did you do on the corruption test?</p>
+<hr />
+<h3 id="searching-the-corpus-for-specific-patterns">Searching the corpus
+for specific patterns</h3>
+<hr />
+<h3
+id="how-often-do-you-see-theneeds-fixed-construction-in-corporate-emails">“How
+often do you see the”needs fixed” construction?” in Corporate
+emails?</h3>
+<p>enronsent02:41843:ation’s energy needs analyzed and streamlined,
+Enron could do the job. If y=</p>
+<p>enronsent11:22173:Let me know if anything needs changed or
+corrected.</p>
+<p>enronsent30:46927:Means broken and needs fixed - like your
+Mercedes.</p>
+<p>enronsent43:7591:Two quick questions that Doug Leach needs answered
+ASAP to get the oil ordered:</p>
+<hr />
+<h3 id="how-often-is-leverage-used-as-a-verb-70-times">“How often is
+‘leverage’ used as a verb?” (70 times)</h3>
+<p>enronsent27:34968:? SK-Enron has several assets that can be leveraged
+into an internet play=</p>
+<p>enronsent27:36353: leveraging our respective strengths</p>
+<p>enronsent35:777:&gt; Well, I know that you were leveraged too</p>
+<p>enronsent36:2066:enhanced leveraged product is indeed what is under
+consideration.</p>
+<p>enronsent37:10220:finance and origination skills would be best
+leveraged. I am very interested</p>
+<p>enronsent37:15725:Overall, we’re leveraging our hedge fund
+relationships to generate more</p>
+<p>enronsent41:38104:I believe this division of responsibilities
+leverages off everyone expertise</p>
+<hr />
+<h3 id="classifying-documents">Classifying documents</h3>
+<ul>
+<li><p>Look at 2000 product reviews, are they positive or
+negative?</p></li>
+<li><p>Looking at text in 8000 sports articles, are they about black or
+white athletes</p></li>
+<li><p>Looking at every email ever, does this involve the sale or
+brokering of WMDs?</p></li>
+<li><p>What else?</p></li>
+</ul>
+<hr />
+<h3 id="information-extraction">Information extraction</h3>
+<ul>
+<li><p>“Generate a timeline from these six documents”</p></li>
+<li><p>“Give me a summary of this news article”</p></li>
+<li><p>“Tell me the information in this news article that isn’t
+contained in the other twelve ones”</p></li>
+<li><p>“What feature of this new game do players who buy in-app
+purchases like most”</p></li>
+<li><p>What else?</p></li>
+</ul>
+<hr />
+<h2 id="so-how-does-any-of-this-work">So, how does any of this
+work?</h2>
+<hr />
+<h2 id="conditional-probability">Conditional Probability</h2>
+<p>‘What is the probability of this event, given that this other event
+occurred?’</p>
+<ul>
+<li><code>p(event|other event)</code> means ‘the probability of an event
+occurring, given that the other event occurred’</li>
+</ul>
+<hr />
+<h3
+id="probabilities-are-often-conditional-on-other-events">Probabilities
+are often conditional on other events</h3>
+<ul>
+<li><p>What’s <code>p(pun)</code>? What about
+<code>p(pun|Will)</code>?</p></li>
+<li><p>What’s <code>p(fire|smoke)</code>? What about
+<code>p(smoke|fire)</code>?</p>
+<ul>
+<li>This is not (always) symmetrical</li>
+</ul></li>
+<li><p>What’s <code>p(Will calls in sick)</code>? What’s
+<code>p(Will calls in sick|he did last class)</code>?</p></li>
+<li><p>What’s <code>p(heads)</code> on a fair coin? What’s
+<code>p(heads|prior heads)</code>?</p>
+<ul>
+<li>Probabilities are not always conditional!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="differences-in-conditional-probabilities-are-information">Differences
+in conditional probabilities are information!</h3>
+<ul>
+<li><p>Does the change in conditioning event affect the observed
+probability?</p>
+<ul>
+<li><p>One event’s probability <strong>depends</strong> on the
+other’s!</p></li>
+<li><p>If so, there’s an informative relationship!</p></li>
+<li><p>Two events have “mutual information” if there’s some
+relationship</p></li>
+</ul></li>
+<li><p>Language modeling is about finding <strong>informative
+relationships</strong> between linguistic elements!</p></li>
+</ul>
+<hr />
+<h3
+id="differences-in-conditional-probability-let-us-model-language">Differences
+in conditional probability let us model language!</h3>
+<ul>
+<li><p><code>p('you'|'how are')</code>
+vs. <code>p('dogs'|'how are')</code></p></li>
+<li><p><code>p(adjective|'I am')</code>
+vs. <code>p(noun|'I am')</code></p></li>
+<li><p><code>p(good review | "sucks")</code>
+vs. <code>p(bad review | "sucks")</code></p></li>
+</ul>
+<hr />
+<h3 id="how-can-we-get-these-probabilities-cheaply">How can we get these
+probabilities cheaply?</h3>
+<hr />
+<h2 id="n-gram-language-models">N-Gram Language Models</h2>
+<hr />
+<h3 id="what-is-an-n-gram">What is an N-gram?</h3>
+<ul>
+<li><p>An N-gram is a sequence of words that is N items long</p></li>
+<li><p>1 word is a ‘unigram’, 2 is a ‘bigram’, 3 is a
+‘trigram’…</p></li>
+<li><p>We identify sequences in the text, then count their
+frequencies</p></li>
+<li><p>And that’s N-Gram analysis</p></li>
+<li><p>“How often does this sequence of words occur?”</p></li>
+</ul>
+<hr />
+<h3 id="how-do-we-find-n-gram-counts">How do we find N-Gram counts?</h3>
+<ul>
+<li><p>Choose a (large) corpus of text</p></li>
+<li><p>Tokenize the words</p></li>
+<li><p>Count the number of times each word occurs</p></li>
+</ul>
+<hr />
+<h2 id="tokenization">Tokenization</h2>
+<p>The language-specific process of separating natural language text
+into component units, and throwing away needless punctuation and
+noise.</p>
+<hr />
+<h3 id="tokenization-can-be-quite-easy">Tokenization can be quite
+easy</h3>
+<blockquote>
+<p>Margot went to the park with Talisha and Yuan last week.</p>
+</blockquote>
+<ul>
+<li><h2
+id="margot-went-to-the-park-with-talisha-and-yuan-last-week-.">[‘Margot’,
+‘went’, ‘to’, ‘the’, ‘park’, ‘with’, ‘Talisha’, ‘and’, ‘Yuan’, ‘last’,
+‘week’, ‘.’]</h2></li>
+</ul>
+<h3 id="tokenization-can-also-be-awful.">Tokenization can also be
+awful.</h3>
+<blockquote>
+<p>Although we <em>aren’t</em> sure why <em>John-Paul O’Rourke</em> left
+on the <em>22nd</em>, <em>we’re</em> sure that he <em>would’ve</em> had
+his <em>Tekashi 6ix9ine</em> CD, <em>co-authored</em> manuscript (dated
+<em>8-15-1985</em>), and at least <em>$150 million</em> in
+<em>cash-money</em> in his <em>back pack</em> if he’d planned to leave
+for <em>New York University</em>.</p>
+</blockquote>
+<ul>
+<li>[‘Although’, ‘we’, ‘are’, “n’t”, ‘sure’, ‘why’, ‘John-Paul’,
+“O’Rourke”, ‘left’, ‘on’, ‘the’, ‘22nd’, ‘,’, ‘we’, “‘re”, ’sure’,
+‘that’, ‘he’, ‘would’,”‘ve”, ’had’, ‘his’, ‘Tekashi’, ‘6ix9ine’, ‘CD’,
+‘,’, ‘co-authored’, ‘manuscript’, ‘(’, ‘dated’, ‘8-15-1985’, ‘)’, ‘,’,
+‘and’, ‘at’, ‘least’, ‘$’, ‘150’, ‘million’, ‘in’, ‘cash-money’, ‘in’,
+‘his’, ‘back’, ‘pack’, ‘if’, ‘he’, “‘d”, ’planned’, ‘to’, ‘leave’,
+‘for’, ‘New’, ‘York’, ‘University’, ‘.’]</li>
+</ul>
+<hr />
+<h3 id="tokenization-problems">Tokenization Problems</h3>
+<ul>
+<li><p>Which punctuation is meaningful?</p></li>
+<li><p>How do we handle contractions?</p></li>
+<li><p>What about multiword expressions?</p></li>
+<li><p>Do we tokenize numbers?</p></li>
+</ul>
+<hr />
+<h3 id="tokenization-can-be-done-automatically">Tokenization can be done
+automatically</h3>
+<ul>
+<li><p>I used <a href="http://www.nltk.org/">nltk</a>’s
+nltk.word_tokenize() function</p>
+<ul>
+<li>… with the Punkt English language tokenizer model.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-do-we-find-n-gram-counts-1">How do we find N-Gram
+counts?</h3>
+<p>Choose a (large) corpus of text</p>
+<p>Tokenize the words</p>
+<ul>
+<li><p>Count all individual words (using something like <a
+href="https://www.nltk.org/">nltk</a>)</p>
+<ul>
+<li><p>Then all pairs of words…</p></li>
+<li><p>Then all triplets…</p></li>
+<li><p>All quadruplets…</p></li>
+<li><p>… and so forth</p></li>
+</ul></li>
+<li><p>The end result is a table of counts by N-Gram</p></li>
+</ul>
+<hr />
+<h2 id="lets-try-it-in-our-data">Let’s try it in our data!</h2>
+<ul>
+<li><p>We’ll use the <a
+href="http://savethevowels.org/enronsent/">EnronSent Email
+Corpus</a></p></li>
+<li><p>~96,000 DOE-seized emails within the Enron Corporation from
+2007</p></li>
+<li><p>~14,000,000 words</p></li>
+<li><p>This is a pretty small corpus for serious N-Gram work</p>
+<ul>
+<li><h2 id="but-its-a-nice-illustrative-case">But it’s a nice
+illustrative case</h2></li>
+</ul></li>
+</ul>
+<pre><code data-trim>
+
+#!/usr/bin/env python
+
+import nltk
+from nltk import word_tokenize
+from nltk.util import ngrams
+
+es = open('enronsent_all.txt','r')
+text = es.read()
+token = nltk.word_tokenize(text)
+
+unigrams = ngrams(token,1)
+bigrams = ngrams(token,2)
+trigrams = ngrams(token,3)
+fourgrams = ngrams(token,4)
+fivegrams = ngrams(token,5)
+
+</code></pre>
+<hr />
+<h3 id="unigrams">Unigrams</h3>
+<ul>
+<li><p>‘The’ 560,524</p></li>
+<li><p>‘to’ 418,221</p></li>
+<li><p>‘Enron’ 391,190</p></li>
+<li><p>‘Jeff’ 10,717</p></li>
+<li><p>‘Veterinarian’ 2</p></li>
+<li><p>‘Yeet’ 0</p></li>
+</ul>
+<hr />
+<h3 id="bigrams">Bigrams</h3>
+<ul>
+<li><p>‘of the’ 61935</p></li>
+<li><p>‘need to’ 15303</p></li>
+<li><p>‘at Enron’ 6384</p></li>
+<li><p>‘forward to’ 4303</p></li>
+<li><p>‘wordlessly he’ 2</p></li>
+</ul>
+<hr />
+<h3 id="trigrams">Trigrams</h3>
+<ul>
+<li><p>‘Let me know’ 6821</p></li>
+<li><p>‘If you have’ 5992</p></li>
+<li><p>‘See attached file’ 2165</p></li>
+<li><p>‘are going to’ 1529</p></li>
+</ul>
+<hr />
+<h3 id="four-grams">Four-Grams</h3>
+<ul>
+<li><p>‘Please let me know’ 5512</p></li>
+<li><p>‘Out of the office’ 947</p></li>
+<li><p>‘Delete all copies of’ 765</p></li>
+<li><p>‘Houston , TX 77002’ 646</p></li>
+<li><p>‘you are a jerk’ 35</p></li>
+</ul>
+<hr />
+<h3 id="five-grams">Five-Grams</h3>
+<ul>
+<li><p>‘If you have any questions’ 3294</p></li>
+<li><p>‘are not the intended recipient’ 731</p></li>
+<li><p>‘enforceable contract between Enron Corp.’ 418</p></li>
+<li><p>‘wanted to let you know’ 390</p></li>
+</ul>
+<hr />
+<h3 id="note-that-the-frequencies-of-occurrence-dropped-as-n-rose">Note
+that the frequencies of occurrence dropped as N rose</h3>
+<ul>
+<li><p>‘The’ 560,524</p></li>
+<li><p>‘of the’ 61,935</p></li>
+<li><p>‘Let me know’ 6,821</p></li>
+<li><p>‘Please let me know’ 5,512</p></li>
+<li><p>‘If you have any questions’ 3,294</p></li>
+<li><p><em>We’ll come back to this later</em></p></li>
+</ul>
+<hr />
+<h3 id="ok-great.">OK, Great.</h3>
+<ul>
+<li><p>You counted words. Congratulations.</p></li>
+<li><p><strong>What does this win us?</strong></p></li>
+</ul>
+<hr />
+<h3 id="n-grams-give-us-more-than-just-counts">N-Grams give us more than
+just counts</h3>
+<ul>
+<li><p>If we know how often Word X follows Word Y (rather than Word
+Z)…</p></li>
+<li><p><strong>“What is the probability of word X following word
+Y?”</strong></p>
+<ul>
+<li><p>p(me | let) &gt; p(flamingo | let)</p></li>
+<li><p>We calculate log probabilities to avoid descending to
+zero</p></li>
+</ul></li>
+<li><p>Probabilities are more useful than counts</p></li>
+<li><p><strong>Probabilities allow us to predict</strong></p></li>
+</ul>
+<hr />
+<h3 id="n-grams-can-give-us-a-language-model">N-Grams can give us a
+language model</h3>
+<ul>
+<li><p>Answers “Is this likely to be a grammatical sentence?”</p></li>
+<li><p>Any natural language processing application needs a language
+model</p></li>
+<li><p>We can get a surprisingly rich model from N-Gram-derived
+information alone</p></li>
+</ul>
+<hr />
+<h3 id="these-probabilities-tell-us-about-grammar">These probabilities
+tell us about Grammar</h3>
+<ul>
+<li><p>“You are” (11,294 occurrences) is more likely than “You is” (286
+occurrences)</p></li>
+<li><p>“Would have” (2362) is more likely than “Would of” (17)</p></li>
+<li><p>“Might be able to” (240) is more common than “might could”
+(4)</p>
+<ul>
+<li>“Thought Scott might could use some help…”</li>
+</ul></li>
+<li><p>“Two agreements” (35) is more likely than “Two agreement”
+(2)</p></li>
+<li><p>“Throw in” (35) and “Throw out” (33) are much more common than
+‘Throw’ + other prepositions</p></li>
+<li><p><strong>n-grams provide a very simple <em>language model</em>
+from which we can do inference</strong></p></li>
+</ul>
+<hr />
+<h3 id="these-probabilities-tell-us-about-meaning">These probabilities
+tell us about meaning</h3>
+<ul>
+<li>Words which often co-occur are likely related in some way!</li>
+</ul>
+<hr />
+<h2 id="the-distributional-hypothesis">The Distributional
+Hypothesis</h2>
+<p>“You shall know a word by the company it keeps” - John Rupert
+Firth</p>
+<ul>
+<li>Words which appear in similar contexts share similar meanings</li>
+</ul>
+<hr />
+<h3 id="these-probabilities-tell-us-about-the-world">These probabilities
+tell us about the world</h3>
+<ul>
+<li><p>Probabilities of language are based in part on our interaction
+with the world</p></li>
+<li><p>People at Enron ‘go to the’ bathroom (17), Governor (7), Caymans
+(6), assembly (6), and senate (5)</p></li>
+<li><p>People at Enron enjoy good food (18), Mexican Food (17), Fast
+Food (13), Local Food (4), and Chinese Food (2)</p>
+<ul>
+<li>But “Californian Food” isn’t a thing</li>
+</ul></li>
+<li><p>Power comes from California (9), Generators (6), EPMI (3), and
+Canada (2)</p>
+<ul>
+<li>… and mostly gets sold to California (29)</li>
+</ul></li>
+<li><p><strong>Probable groupings tell us something about how this world
+works</strong></p></li>
+</ul>
+<hr />
+<h2 id="n-gram-modeling-strengths-and-weaknesses">N-Gram Modeling
+Strengths and Weaknesses?</h2>
+<hr />
+<h3 id="n-gram-modeling-is-relatively-simple">N-Gram Modeling is
+relatively simple</h3>
+<ul>
+<li><p>Easy to understand and implement conceptually</p></li>
+<li><p>Syntax and semantics don’t need to be understood</p></li>
+<li><p>You don’t need to annotate a corpus or build ontologies</p></li>
+<li><p><em>As long as you can tokenize the words, you can do an N-Gram
+analysis</em></p></li>
+<li><p>Makes it possible for datasets where other NLP tools might not
+work</p></li>
+<li><p>A basic language model comes for free</p></li>
+</ul>
+<hr />
+<h3 id="n-gram-modeling-is-easily-scalable">N-Gram Modeling is easily
+scalable</h3>
+<ul>
+<li><p>It works the same on 1000 words or 100,000,000 words</p></li>
+<li><p>Modest computing requirements</p></li>
+<li><p>More data means a better model</p>
+<ul>
+<li><p>You see more uses of more N-Grams</p></li>
+<li><p>Your ability to look at higher Ns is limited by your
+dataset</p></li>
+<li><p>Probabilities become more defined</p></li>
+</ul></li>
+<li><p>… and we have a LOT of data</p></li>
+</ul>
+<hr />
+<h2 id="n-gram-modeling-weaknesses">N-Gram Modeling Weaknesses</h2>
+<hr />
+<h3 id="they-only-work-with-strict-juxtaposition">They only work with
+strict juxtaposition</h3>
+<ul>
+<li><p>“The tall giraffe ate.” and “The giraffe that ate was tall.”</p>
+<ul>
+<li>We view these both as linking “Giraffe” and “Tall”, but the model
+doesn’t</li>
+</ul></li>
+<li><p>“I bought an awful Mercedes.” vs. “I bought a Mercedes. It’s
+awful.”</p></li>
+<li><p>“The angry young athlete” and “The angry old athlete”</p>
+<ul>
+<li>These won’t register as tri-gram matches</li>
+</ul></li>
+<li><p>We’ll fix this later!</p></li>
+</ul>
+<hr />
+<h3 id="long-distance-context">Long distance context</h3>
+<blockquote>
+<p>I want to tell you the story of the least reliable car I ever bought.
+This piece of crap was seemingly assembled from spit and popsicle
+sticks, with bits of foil added in, all for $3000 per part plus labor.
+Every moment I drove it was offset with two in the shop, paying a Master
+Technician a masterful wage. Yet, despite a high price tag and decades
+of amazing reputation, the car was a Mercedes.</p>
+</blockquote>
+<hr />
+<h3 id="very-poor-at-handling-uncommon-or-unattested-n-grams">Very poor
+at handling uncommon or unattested N-Grams</h3>
+<ul>
+<li><p>Models are only good at estimating items they’ve seen
+previously</p></li>
+<li><p>“Her Onco-Endocrinologist resected Leticia’s carcinoma”</p></li>
+<li><p>“Bacon flamingo throughput demyelination ngarwhagl”</p></li>
+<li><p>This is is why <em>smoothing</em> is crucial</p>
+<ul>
+<li><p>Assigning very low probabilities to unattested
+combinations</p></li>
+<li><p>… and why more data means better N-Grams</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="n-gram-models-are-missing-information">N-Gram models are missing
+information</h3>
+<ul>
+<li><p>Syntax, Coreference, and Part of Speech tagging provide important
+information</p></li>
+<li><p>“You are” is more likely than “You is” (286 occurrences)</p>
+<ul>
+<li><p>“… the number I have given you is my cell phone…”</p></li>
+<li><p>No juxtaposition without resolving anaphora</p></li>
+</ul></li>
+<li><p>“Time flies like an arrow, fruit flies like a banana”</p>
+<ul>
+<li>Part-of-speech distinguishes these bigrams</li>
+</ul></li>
+<li><p><strong>There’s more to language than
+juxtaposition</strong></p></li>
+</ul>
+<hr />
+<h3 id="n-grams-arent-the-solution-to-every-problem">N-Grams aren’t the
+solution to every problem</h3>
+<ul>
+<li><p>They’re missing crucial information about linguistic
+structure</p></li>
+<li><p>They handle uncommon and unattested forms poorly</p></li>
+<li><p>They only work with strict juxtaposition</p></li>
+</ul>
+<hr />
+<h2 id="improvements-on-n-gram-models">Improvements on N-Gram
+Models</h2>
+<hr />
+<h3 id="skip-grams">Skip-Grams</h3>
+<ul>
+<li><p>Skip-gram models allow non-adjacent occurences to be
+counted</p></li>
+<li><p>“Count the instances where X and Y occur within N words of each
+other”</p></li>
+<li><p>“My Mercedes sucks” and “My Mercedes really sucks” both count
+towards ‘Mercedes sucks’</p></li>
+<li><p>This helps with the data sparseness issue of N-grams</p></li>
+</ul>
+<hr />
+<h2 id="bag-of-words">Bag of Words</h2>
+<hr />
+<h3
+id="how-do-you-turn-all-this-into-a-featureset-for-machine-learning">How
+do you turn all this into a featureset for machine learning?</h3>
+<ul>
+<li>Easy!</li>
+</ul>
+<hr />
+<h3 id="unigram-frequencies-are-features">Unigram Frequencies are
+features!</h3>
+<ul>
+<li><p>The fact that ‘decalcify’ occurs ten times in the document is
+informative!</p></li>
+<li><p>A comment which includes ‘fuck’ 15 times is likely to be
+negative</p></li>
+</ul>
+<hr />
+<h3 id="every-text-snippet-is-a-row">Every text snippet is a row</h3>
+<ul>
+<li><p>… and every unigram count is a column</p></li>
+<li><p>You’ll generally scale it so that the most frequent is 1,
+potentially logging.</p></li>
+<li><p>Toss this into a regression or SVM or randomforest and suddenly,
+you’re doing NLP</p></li>
+</ul>
+<hr />
+<h3 id="bag-of-words-is-dumb">Bag of Words is dumb</h3>
+<ul>
+<li><p>There are <em>much</em> better approaches</p></li>
+<li><p>But this is a very easy, very good start</p></li>
+<li><p>And can get you surprisingly far!</p></li>
+</ul>
+<hr />
+<h3
+id="when-bag-of-words-fails-case-study-the-hodinkee-travel-clock">When
+Bag-of-Words Fails Case Study: <a
+href="https://limited.hodinkee.com/hodinkee/">The Hodinkee Travel
+Clock</a></h3>
+<p><img class="r-stretch" src="comp/hodinkee_clock.jpg"></p>
+<hr />
+<h3 id="the-easy-approach">The easy approach</h3>
+<ul>
+<li><p>Keywords == Mentions, Mentions == Interest</p></li>
+<li><p>Scan each Instagram post for certain keywords and product
+mentions</p>
+<ul>
+<li>#HodinkeeTravelClock, #Hodinkee, “Hodinkee”, “Hodinkee Travel
+Clock”, @hodinkee</li>
+</ul></li>
+<li><p>If monitored words and hashtags appear, show those accounts ads
+for related products and topics</p>
+<ul>
+<li><p>Consider the people discussing the topic to be part of the target
+market</p></li>
+<li><p>These people should see Hodinkee content more often</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-this-algorithm-reads-posts">How this algorithm reads
+posts</h3>
+<ul>
+<li><p>“blah blah blah blah Hodinkee travel clock blah blah blah blah
+blah blah”</p></li>
+<li><p>“blah blah blah blah blah blah blah blah blah blah blah
+#HodinkeeTravelClock”</p></li>
+<li><p>“blah blah Travel Clock blah blah Hodinkee blah blah blah blah
+blah blah blah blah blah blah”</p></li>
+<li><p>“blah blah Hodinkee blah Travel Clock blah blah blah blah
+@Hodinkee”</p></li>
+</ul>
+<hr />
+<h3 id="wow-thats-a-lot-of-interest">“Wow, that’s a lot of
+interest!”</h3>
+<ul>
+<li><p>“Let’s spam these people with ads for the clock”</p></li>
+<li><p>“We should also make sure we show them more Hodinkee
+posts!”</p></li>
+<li><p>“We should probably show them ads for similar products
+too!”</p></li>
+</ul>
+<hr />
+<h3 id="this-algorithm-has-one-tiny-problem">This algorithm has one tiny
+problem</h3>
+<ul>
+<li><p>“lol did you see the $5900 Hodinkee travel clock? Who
+greenlighted this?”</p></li>
+<li><p>“Proof that there’s a sucker born every minute
+#HodinkeeTravelClock”</p></li>
+<li><p>“The new Travel Clock from Hodinkee doesn’t have an interesting
+movement, and the finishing looks rough. Yikes.”</p></li>
+<li><p>“Why would Hodinkee sell a $6000 Travel Clock in the middle of a
+pandemic? Read the room, <span class="citation"
+data-cites="hodinkee">@hodinkee</span></p></li>
+</ul>
+<hr />
+<h3 id="treating-these-as-mentions-would-be-dumb">Treating these as
+mentions would be <em>dumb</em></h3>
+<ul>
+<li><p>Presenting topical ads to people who hate those topics is a waste
+of money</p></li>
+<li><p>Funneling these people to Hodinkee will not help anybody</p></li>
+<li><p>These people are likely not fans of other multi-thousand dollar
+travel clocks</p></li>
+<li><p>You can’t provide any information back to Hodinkee to help them
+make better decisions</p></li>
+</ul>
+<hr />
+<h3 id="sentiment-analysis-can-help">Sentiment Analysis can help!</h3>
+<ul>
+<li><p>“Is this product-mentioning post positive, negative, or
+neutral?”</p></li>
+<li><p>“What is the overall balance of sentiment about this
+product?”</p></li>
+<li><p>“What are people saying about the price point? The fancy
+font?”</p></li>
+<li><p>“What demographic is most likely to not find this product
+insultingly bad?”</p></li>
+<li><p>“Should we post <a
+href="https://www.hodinkee.com/articles/a-quick-note-to-our-readers-travel-clock-edition">an
+apology</a>?”</p></li>
+</ul>
+<hr />
+<h3 id="sentiment-analysis-is-hard">Sentiment Analysis is hard</h3>
+<ul>
+<li><p>“This new travel clock really sucks”</p>
+<ul>
+<li><p>“My new Dyson really sucks”</p></li>
+<li><p>“It sucks that my Roomba doesn’t suck anymore”</p></li>
+</ul></li>
+<li><p>“Yeah, sure, selling a travel clock during a pandemic is a great
+idea, @hodinkee”</p></li>
+</ul>
+<hr />
+<h3 id="related-computers-dont-understand-context-well">Related:
+Computers don’t understand context well</h3>
+<p><img class="r-stretch" src="comp/lizard_ceo.jpg"></p>
+<hr />
+<h3 id="how-might-sentiment-analysis-work">How might sentiment analysis
+work?</h3>
+<hr />
+<h3 id="what-can-these-basic-word-counting-approaches-handle">What
+<em>can</em> these basic word counting approaches handle?</h3>
+<hr />
+<h3 id="what-cant-these-basic-word-counting-approaches-handle">What
+<em>can’t</em> these basic, word counting approaches handle?</h3>
+<hr />
+<h2 id="try-basic-bag-of-words-analysis-first">Try basic, bag-of-words
+analysis first!</h2>
+<hr />
+<h2 id="you-can-go-a-bit-more-complex-without-going-fully-neural">You
+can go a bit more complex without going fully neural</h2>
+<hr />
+<h3 id="word-vectors">Word Vectors</h3>
+<ul>
+<li><p>N-grams are useful for capturing local context but fall short on
+<em>semantic meaning</em></p></li>
+<li><p>Represent words as <em>vectors</em> in a continuous space,
+capturing semantic relationships between words.</p></li>
+<li><p><strong>Words with similar meanings should have <em>similar
+vector representations</em>.</strong></p></li>
+</ul>
+<hr />
+<h3 id="distributed-representations">Distributed Representations</h3>
+<ul>
+<li><p><strong>N-grams:</strong> Sparse, high-dimensional
+representations.</p></li>
+<li><p><strong>Word Vectors:</strong> Dense, low-dimensional
+representations.</p>
+<ul>
+<li>Each word is represented as a point in a vector space.</li>
+<li>Captures <em>semantic similarity</em> and other relationships.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-want-movement-in-this-space-to-represent-semantic">We want
+movement in this space to represent semantic</h3>
+<ul>
+<li><p>“king” - “man” + “woman” ≈ “queen”</p></li>
+<li><p>“I’m traveling in the sleaze dimension, and just moved
+from”lawyer” to “ambulance chaser””</p></li>
+</ul>
+<hr />
+<h3 id="word2vec-a-popular-word-embedding-model">Word2Vec: A Popular
+Word Embedding Model</h3>
+<ul>
+<li><p>Developed by <strong>Mikolov et al.</strong> in 2013. (<a
+href="https://arxiv.org/abs/1301.3781">The Paper</a>)</p></li>
+<li><p>Two major approaches:</p>
+<ul>
+<li><strong>CBOW (Continuous Bag of Words):</strong> Predict the current
+word based on surrounding context.</li>
+<li><strong>Skip-gram:</strong> Predict surrounding context based on the
+current word.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="visualizing-word-vectors">Visualizing Word Vectors</h3>
+<ul>
+<li><p>Word vectors can be visualized in 2D or 3D space using techniques
+like <strong>t-SNE</strong> or <strong>PCA</strong>.</p></li>
+<li><p>Words like <code>"dog"</code>, <code>"cat"</code>,
+<code>"wolf"</code> cluster together.</p></li>
+<li><p>Words like <code>"king"</code>, <code>"queen"</code>,
+<code>"prince"</code> form another cluster.</p></li>
+<li><p><strong>Proximity in word vector space captures proximity in
+meaning!</strong></p></li>
+</ul>
+<hr />
+<h3 id="word-vectors-offer-more-power-than-n-grams">Word Vectors offer
+more power than N-Grams</h3>
+<ul>
+<li><p>You get a representation which <em>more directly captures changes
+in meaning</em></p></li>
+<li><p>You get a representation which takes into account more
+context</p>
+<ul>
+<li>… without the brutal fall-off of high number N-grams</li>
+</ul></li>
+<li><p>You can visualize the semantic space in a <em>more
+interpretable</em> way</p></li>
+</ul>
+<hr />
+<h3 id="limitations-of-word-vectors">Limitations of Word Vectors</h3>
+<ul>
+<li>Short documents don’t have enough content to really tear into</li>
+<li>Meanings are <em>Context-independent</em>
+<ul>
+<li>Word vectors represent the <em>same word</em> with a <em>single
+vector</em>, regardless of context.</li>
+<li>Example: <code>"bank"</code> (financial institution vs. river
+bank)</li>
+</ul></li>
+<li>Vocabulary is <em>fixed in size</em>
+<ul>
+<li>Word2Vec needs to be retrained for new vocabulary.</li>
+<li><em>Cannot handle out-of-vocabulary (OOV) words.</em></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="other-text-analysis-methods">Other Text Analysis Methods</h2>
+<hr />
+<h3 id="text-as-data">Text as Data</h3>
+<ul>
+<li>You’ll often get handed buckets of documents and be asked to make
+sense of them
+<ul>
+<li>‘Document’ means ‘any chunk of text’, so tweets, poems, documents,
+text field entries</li>
+</ul></li>
+<li>What methods exist to help you identify topics, trends, and
+meaningful words within those documents?</li>
+</ul>
+<hr />
+<h3 id="tf-idf-term-frequency-inverse-document-frequency">TF-IDF (Term
+Frequency-Inverse Document Frequency)</h3>
+<ul>
+<li><p>TF-IDF asks “What words are <em>most important</em> in this
+document?”</p></li>
+<li><p>“What terms are unique and important to this document, relative
+to a bunch of other documents”</p></li>
+<li><p>If a word is frequent and important in <em>all of the
+documents</em>, it’s probably less important in any of them</p></li>
+<li><p>TF-IDF is a great way of figuring out what a
+document/comment/text is ‘about’</p></li>
+</ul>
+<hr />
+<h3 id="lsa-latent-semantic-analysis">LSA (Latent Semantic
+Analysis)</h3>
+<ul>
+<li><p>Effectively does dimensionality reduction on the TF-IDFs above
+(using Singular Value Decomposition)</p></li>
+<li><p>Gets us three dimensions, for terms, importances, and
+documents</p></li>
+<li><p>This gets us a very basic <em>topic modeling</em>, which clusters
+documents with more nuance based on their terms and relative
+importances</p></li>
+</ul>
+<hr />
+<h3 id="lda-latent-dirichlet-allocation">LDA (Latent Dirichlet
+Allocation)</h3>
+<ul>
+<li><p>The math underlying LDA is complicated, so, not today</p></li>
+<li><p>Identifies topics within documents (with <em>emergent</em>
+topics)</p>
+<ul>
+<li>“In this corpus, I’ve detected 28 different topics”</li>
+</ul></li>
+<li><p>Attributes portions of documents to those topics</p>
+<ul>
+<li>“Doc 274 is mostly about Topic C, but 275 is a mix of A and F”</li>
+</ul></li>
+<li><p>Identifies the words which correspond to those topics</p>
+<ul>
+<li>“Topic B is characterized by ‘fuzzy’, ‘furry’, ‘cute’, ‘rabbit’,
+‘kitten’, ‘puppy’, ‘carrot’”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="lda-is-wildly-powerful">LDA is wildly powerful</h3>
+<ul>
+<li>You’ll find new topics you hadn’t thought to identify
+<ul>
+<li>“Huh, I guess a lot of these poems do talk about faith”</li>
+</ul></li>
+<li>You can classify documents very easily
+<ul>
+<li>“Let’s identify documents which talk about deforestation”</li>
+</ul></li>
+<li>Summarization is an easier task with an existing topic model
+<ul>
+<li>Doc 289 is predominantly about defense spending, with some
+discussion of agriculture</li>
+</ul></li>
+<li>It scales very well on consumer hardware!</li>
+</ul>
+<hr />
+<h3 id="lda-still-has-weaknesses">LDA still has weaknesses</h3>
+<ul>
+<li><p>It’s still based on bag-of-words approaches</p>
+<ul>
+<li>Long distance effects still don’t capture well</li>
+<li>We still struggle to get sentence-level effects</li>
+</ul></li>
+<li><p>It still can’t get ‘bank’ (of America) vs. ‘bank’ (of a
+river)</p></li>
+<li><p>Topics can be hard to interpret</p>
+<ul>
+<li>“Longing” “rusted” “furnace” “daybreak” “seventeen” “benign” “nine”
+“homecoming” “one” “freight car”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-need-a-better-model">We need a better model!</h3>
+<ul>
+<li><p>Something that captures semantic meaning, but <em>in light of
+larger context</em></p></li>
+<li><p>Something that can make inferences about meaning, based on the
+situation</p></li>
+<li><p>Something that can <em>explain clusters in terms of real world
+models</em></p></li>
+<li><p>We need…</p></li>
+</ul>
+<hr />
+<p><img class='r-stretch' src='img/transformers.jpg'></p>
+<hr />
+<h3 id="other-questions-about-text-analysis">Other questions about text
+analysis?</h3>
+</body>
+</html>

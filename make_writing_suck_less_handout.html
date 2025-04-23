@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="making-the-act-of-writing-suck-less">Making the Act of Writing
+Suck Less</h1>
+<h3 id="will-styler---css-colloquium">Will Styler - CSS Colloquium</h3>
+<p><a href="https://savethevowels.org/talks/make_writing_suck_less.html"
+class="uri">https://savethevowels.org/talks/make_writing_suck_less.html</a></p>
+<hr />
+<h3 id="writing-kind-of-sucks">Writing kind of sucks</h3>
+<ul>
+<li><p>It’s wonderful, enjoyable, and important to our species</p></li>
+<li><p>… but the process, in modern times, sucks</p></li>
+</ul>
+<hr />
+<h3 id="we-are-trapped-in-a-world-of-unintuitive-tools">We are trapped
+in a world of unintuitive tools</h3>
+<ul>
+<li><p>“Do I want Semi-bold or bold here?”</p></li>
+<li><p>“Wait, where’d that pagebreak go?”</p></li>
+<li><p>“No damnit, keep indenting the old list, don’t make a new
+one”</p></li>
+<li><p>“Why are you trying to turn this entire paragraph into a
+link?”</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="humorimg/fuckupdocument.jpg"></p>
+<hr />
+<h3 id="it-wasnt-always-this-way">It wasn’t always this way</h3>
+<ul>
+<li><p>With pen and paper, you can do whatever you please</p>
+<ul>
+<li><p>If you want bigger, write bigger</p></li>
+<li><p>If you want smaller, write smaller</p></li>
+<li><p>If you want a picture, draw one</p></li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/voynich.jpg"></p>
+<hr />
+<h3
+id="we-have-been-convinced-by-bad-tools-that-this-is-how-writing-is-done">We
+have been convinced by bad tools that this is how writing is done</h3>
+<ul>
+<li><p>“What you see is what you get” (WYSIWYG)</p>
+<ul>
+<li>“This window displays what the program thinks you wanted”</li>
+</ul></li>
+<li><p>You generate text and then tell the tool what a chunk of text
+should look like by poking buttons</p>
+<ul>
+<li><p>Over, and over, and over, hoping you do it consistently</p></li>
+<li><p>Until the tool decides to do something else</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="what-if-there-were-another-way">What if there were another
+way?</h3>
+<ul>
+<li><p>“What you want is what you get” (WYWIWYG)</p>
+<ul>
+<li><p>“Here’s what you asked for, if you’d like to make changes, I’ll
+make it again”</p></li>
+<li><p>“You tell me what the text is and what role it plays using
+<strong>markup</strong>, and how each role should look, and I’ll make it
+happen”</p></li>
+<li><p>“Give me a list of bibliography entries, and tell me where
+they’re referenced, and I’ll link them and format them”</p></li>
+<li><p>“I could make this document into a Word Doc, a PDF, a website, a
+slideshow, whatever, just tell me what you want”</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-want-to-write-as-smoothly-as-possible">We want to write, as
+smoothly as possible</h3>
+<ul>
+<li><p>We want to think about <em>what we’re writing</em>, not <em>how
+to make it so</em></p></li>
+<li><p>We want our writing tools to get out of our way and let us
+write</p></li>
+<li><p><strong>Anything causing friction between your brain and the
+final draft should be eliminated</strong></p></li>
+</ul>
+<hr />
+<h3 id="microsoft-word">Microsoft Word</h3>
+<p><img class="r-stretch" src="img/rasp.jpg"></p>
+<hr />
+<h2 id="statement-of-bias">Statement of Bias</h2>
+<ul>
+<li><p>I am a free-and-open-source software zealot with substantial
+trust issues</p>
+<ul>
+<li>Controversial statements will be labeled with “🤡”</li>
+</ul></li>
+<li><p>I am also a Unix person, and tend to use that philosophy</p></li>
+<li><p>Your mileage may vary</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>The Semantics of Formatting</p></li>
+<li><p>Word and why it sucks</p></li>
+<li><p>LaTeX and why it sucks</p></li>
+<li><p>Markdown and why it sucks</p></li>
+<li><p>Pandoc and why it’s awesome</p></li>
+<li><p>My life’s workflow</p></li>
+</ul>
+<hr />
+<h2 id="the-semantics-of-formatting">The Semantics of Formatting</h2>
+<hr />
+<h3 id="formatting-should-mean-something">Formatting should mean
+something</h3>
+<ul>
+<li><p>Why is the text up there bigger?</p>
+<ul>
+<li>Knowing that seems important</li>
+</ul></li>
+<li><p>Why is the ‘knowing that’ smaller and grayer?</p></li>
+<li><p>Why are references formatted as they are?</p></li>
+<li><p>What actual kinds of formatting do you need?</p></li>
+</ul>
+<hr />
+<h3 id="for-most-people">For most people</h3>
+<ul>
+<li><p>Text and Basic text variations (e.g. <em>italic</em>,
+<strong>bold</strong>)</p></li>
+<li><p>Lists and enumerations</p></li>
+<li><p>Sections, Subsections, Subsubsections</p></li>
+<li><p>Included images with captions</p></li>
+<li><p>Included citations, links, and footnotes</p></li>
+<li><p>Breaks and boundaries and boxes</p></li>
+<li><p><strong>Every element of the text should have a reason for being
+one of these things</strong></p></li>
+</ul>
+<hr />
+<h3 id="bad-formatting-is-bad-teaching">Bad formatting is bad
+teaching</h3>
+<ul>
+<li><p>“Wait, why is that a link?”</p></li>
+<li><p>“I don’t have enough information to find this citation”</p></li>
+<li><p>“Why is this word bold?”</p></li>
+<li><p>“Hold on, did we switch sections already?”</p></li>
+<li><p>“This section isn’t in the table of contents? What does that
+mean?”</p></li>
+</ul>
+<hr />
+<h3 id="formatting-is-important">Formatting is important</h3>
+<ul>
+<li><p>It should be consistent, meaningful, visible, and
+understandable</p></li>
+<li><p>… and every single word should have a format that it should
+be</p></li>
+<li><p><strong>Doing formatting wrong hurts your
+argument</strong></p></li>
+</ul>
+<hr />
+<h2 id="microsoft-word-sucks">Microsoft Word Sucks</h2>
+<hr />
+<h3 id="microsoft-word-is-great-for-somebodys-grandmother">Microsoft
+Word is great for somebody’s grandmother</h3>
+<ul>
+<li><p>“Oh, I put the blue around the text and then I press the black B
+and it gets blacker!”</p></li>
+<li><p>“Wow! I can change the font to <em>squints</em> Comical Sans MS.
+How fun!”</p></li>
+<li><p>“Ooh, look at this, I can put a picture of a minion in the
+corner!”</p></li>
+<li><p>“I’m going to make this the best bridge club poster Edna and
+Rosemary have ever seen.”</p></li>
+</ul>
+<hr />
+<h3 id="it-makes-writing-then-styling-everything-afterwards-easy">It
+makes writing, then styling everything afterwards, easy</h3>
+<ul>
+<li><p>“I don’t know what my document should look like, here’s a
+platform to write it, then adjust it until it looks like what I think it
+should look like”</p></li>
+<li><p>It is unquestionably powerful for exotic styling on a small
+amount of text</p></li>
+</ul>
+<hr />
+<h3 id="you-are-not-edna">You are not Edna</h3>
+<ul>
+<li><p>You know what your document needs to look like, or are
+told</p></li>
+<li><p>Your documents are tens or hundreds of pages</p></li>
+<li><p>It <em>matters</em> where the pictures show up on the
+page</p></li>
+<li><p>You are not retired and do not have infinite time to press
+buttons</p></li>
+<li><p>Thus…</p></li>
+</ul>
+<hr />
+<h3 id="word-absolutely-irredeemably-sucks-for-academic-writing">Word
+absolutely, irredeemably sucks for academic writing</h3>
+<ul>
+<li><p>So does GoogleDocs, LibreOffice, Scrivener, WordPerfect, and
+every other WYSIWYG editor</p></li>
+<li><p>You don’t <em>need</em> the advantages that these tools
+offer</p></li>
+<li><p>You need it to shut up and make your documents</p></li>
+<li><p>Microsoft hates you, and has the goal to extract the exact
+largest amount of money they can from you before you rebel (🤡)</p></li>
+<li><p>Lots of academics turn to LaTeX</p></li>
+</ul>
+<hr />
+<h2 id="latex-is-better">LaTeX is better</h2>
+<hr />
+<h3 id="latex-is-a-form-of-the-tex-programming-language">LaTeX is a form
+of the TeX programming language</h3>
+<ul>
+<li><p>Developed by Donald Knuth</p></li>
+<li><p>You write the ‘source code’ for the finally rendered
+document</p></li>
+<li><p>You write, write, write, and then ‘compile’ your document to see
+the form</p></li>
+<li><p>Free, open-source, and community driven</p></li>
+<li><p>In practice, use XeLaTeX which supports Unicode (🎉)</p></li>
+</ul>
+<hr />
+<h3 id="documents-are-programmed">Documents are programmed</h3>
+<ul>
+<li><p>“Take this code mixed with text, make it into a pretty
+document”</p></li>
+<li><p>The files you create are plaintext, and use no proprietary
+format</p></li>
+<li><p>You don’t do anything besides generate content, and declare how
+that content should be formatted</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/latex_sample_code.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/latex_sample_gen.jpg"></p>
+<hr />
+<h3 id="latex-does-a-lot-of-the-work-for-you">LaTeX does a lot of the
+work for you</h3>
+<ul>
+<li><p>Section numbering does not need humans</p></li>
+<li><p>Compiling and formatting your bibliography based on citation
+codes is not a creative task</p></li>
+<li><p>Tables of Contents are deterministic from section labels</p></li>
+<li><p>Numbering Figures, Examples, and Diagrams is dumb</p></li>
+<li><p>Pulling in tables from files generated in R is easy</p></li>
+<li><p>Journals often provide TeX templates, so your document is
+<em>automatically</em> in the right format</p></li>
+</ul>
+<hr />
+<h3
+id="the-boring-parts-are-regenerated-every-time-you-run-the-command">The
+boring parts are regenerated every time you run the command</h3>
+<ul>
+<li><p>You never need to ‘re-number’ anything, and will never ‘miss a
+citation’</p></li>
+<li><p>All references can stay current, even when their referents
+change</p></li>
+<li><p>You don’t need to manually move diagrams to fit the text, it
+happens for you</p></li>
+<li><p>You can just change the document, and it’ll change all the
+rest</p></li>
+</ul>
+<hr />
+<h3 id="latex-has-incredible-depth">LaTeX has incredible depth</h3>
+<ul>
+<li><p>You can generate slides, <a
+href="https://savethevowels.org/talks/diagrams">diagrams</a>, and more
+in LaTeX</p></li>
+<li><p>You can create exams, letters, handouts, and hundreds of other
+things</p></li>
+<li><p>It speaks Math as a first language, and syntax trees, and
+numbered examples, and…</p></li>
+<li><p>It is all you actually need for document generation for the rest
+of your life</p></li>
+<li><p>LaTeX can do The Thing, if you’re willing to put in The Time.</p>
+<ul>
+<li>… but that’s partly why….</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="latex-sucks">LaTeX sucks</h2>
+<hr />
+<h3 id="microsoft-words-learning-curve">Microsoft Word’s Learning
+Curve</h3>
+<p><img class="r-stretch" src="img/can_phone.jpg"></p>
+<hr />
+<h3 id="latexs-learning-curve">LaTeX’s learning Curve</h3>
+<p><img class="r-stretch" src="img/cable_management.jpg"></p>
+<hr />
+<h3 id="installing-latex-is-not-straightforward">Installing LaTeX is not
+straightforward</h3>
+<ul>
+<li><p>Not available for all platforms (e.g. iOS, Android)</p></li>
+<li><p>Big, bulky downloads</p></li>
+<li><p>Finicky installs</p></li>
+<li><p>It’s often easier to use an online service (e.g. <a
+href="https://www.overleaf.com/">Overleaf</a>)</p></li>
+</ul>
+<hr />
+<h3 id="track-changes-isnt-a-thing">Track Changes isn’t a thing</h3>
+<ul>
+<li><p>Except on Overleaf</p></li>
+<li><p>Or unless you have both versions of the .tex file and use file
+comparison tools</p></li>
+</ul>
+<hr />
+<h3 id="you-dont-use-word">“You don’t use Word?!”</h3>
+<p><img class="r-stretch" src="humorimg/disgusted.jpg"></p>
+<hr />
+<h3 id="latex-is-harder-to-share">LaTeX is harder to share</h3>
+<ul>
+<li><p>Folder containing images, bibliography info, included files, etc
+rather than <em>one file</em></p></li>
+<li><p>You can’t edit the ‘final product’</p></li>
+</ul>
+<hr />
+<h3 id="latex-is-heavy">LaTeX is <em>heavy</em></h3>
+<ul>
+<li><p></p></li>
+<li></li>
+<li><p></p></li>
+<li><p><code>``Quotes use two different kinds of punctuation to be done right''</code></p></li>
+<li><p>LaTeX crashes when you include a % or # without an escape
+character <code>\#</code></p>
+<ul>
+<li>Do you really want to <code>\</code> every time you
+<code>&amp;</code> <code>%</code> <code>$</code> <code>#</code> <code>_</code> <code>{</code> <code>}</code> <code>~</code> <code>^</code> <code>\</code>?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="latex-has-massive-power-but-with-massive-overhead">LaTeX has
+<em>massive</em> power, but with <em>massive</em> overhead</h3>
+<ul>
+<li><p>Anything is possible, but <em>everything</em> is a bit more
+difficult</p></li>
+<li><p>For writing a quick letter of recommendation, or website, or
+document, LaTeX is overkill</p></li>
+<li><p>What if there was a way to do <em>most</em> of your writing in a
+non-sucking method, and use LaTeX commands only when you need more
+power?</p></li>
+<li><p>Then put the output into whatever format you need?</p></li>
+</ul>
+<hr />
+<h2 id="markdown-is-amazing">Markdown is amazing</h2>
+<hr />
+<h3
+id="markdown-is-a-lightweight-plaintext-formatting-language">Markdown is
+a lightweight plaintext formatting language</h3>
+<ul>
+<li><p><a
+href="https://daringfireball.net/projects/markdown/syntax">Developed by
+John Gruber</a> and <a
+href="https://en.wikipedia.org/wiki/Aaron_Swartz">Aaron Swartz</a> in
+the early 2000s</p></li>
+<li><p>Contains a set of basic commands allowing you to do most text
+formatting things quickly</p></li>
+<li><p>Widely supported by Github, Discord, Google Docs, Gradescope,
+Jupyter, RStudio, Reddit, and many many more</p></li>
+<li><p>Allows you to write <em>plaintext</em> which can easily be
+formatted however you’d like</p></li>
+</ul>
+<hr />
+<h3 id="aside-plaintext-is-the-best-format-for-storing-data">Aside:
+Plaintext is the best format for storing data (🤡)</h3>
+<ul>
+<li>Proprietary formats rot and die
+<ul>
+<li>Programs live and die</li>
+<li>Licenses and subscriptions expire</li>
+</ul></li>
+<li>“Open” formats are great, but they rot too
+<ul>
+<li>You <em>will</em> have to open a file you created 20 years ago</li>
+<li>If nobody’s written code for that format in 10 years, can it really
+open?</li>
+</ul></li>
+<li>Plaintext will always survive
+<ul>
+<li>It is the tardigrade of file formats</li>
+</ul></li>
+<li>Make sure your data is (or can be) in a plaintext readable format
+<ul>
+<li>.txt, .md, .tex, CSV/TLD, XML, JSON, HTML</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="never-put-your-data-into-software-you-cant-take-it-out-of">Never
+put your data into software you can’t take it out of</h2>
+<hr />
+<h3 id="markdown-uses-symbols-to-format-plaintext">Markdown uses symbols
+to format plaintext</h3>
+<p><img class="r-stretch" src="img/markdown_code.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/markdown_output.jpg"></p>
+<hr />
+<h3 id="markdown-is-super-easy">Markdown is super easy</h3>
+<ul>
+<li><p>It’s an open standard, which is available in a number of
+places</p></li>
+<li><p>It is web-native, allowing linking and playing well with CSS
+(Cascading Style Sheets)</p></li>
+<li><p>It handles the most common formatting operations</p></li>
+<li><p>It’s readable as plaintext, but can be easily converted to other
+formats</p></li>
+<li><p>It works with any language which supports the symbol set</p></li>
+</ul>
+<hr />
+<h3 id="markdown-is-super-fast">Markdown is super fast</h3>
+<ul>
+<li><p>You’re basically writing words, but occasionally adding bits</p>
+<ul>
+<li>You can write as fast as you can type and think</li>
+</ul></li>
+<li><p>As long as you have a full keyboard, and a keyboard-based editor,
+<em>you never have to move the mouse</em></p></li>
+<li><p>Formatting adds 1-5 keystrokes to a word</p></li>
+<li><p>You never need to ‘escape’ a character</p></li>
+<li><p>Files are in the tens of <em>kilobytes</em></p>
+<ul>
+<li>All of my 2,500 markdown files fit in 17 MB</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="i-use-markdown-for-everything">I use Markdown for
+everything</h3>
+<ul>
+<li><p>Documents? Markdown</p></li>
+<li><p>Letters of recommendation? Markdown</p></li>
+<li><p><a href="https://savethevowels.org/">Websites</a>?
+Markdown</p></li>
+<li><p><a href="https://revealjs.com/">This slideshow</a>?
+Markdown</p></li>
+<li><p>My brain naturally writes in Markdown</p></li>
+</ul>
+<hr />
+<h3 id="its-supported-by-a-lot-of-great-apps">It’s supported by a lot of
+great apps</h3>
+<ul>
+<li><p>Jupyter Notebooks and RStudio/RMarkdown support it out of the
+box</p></li>
+<li><p><a href="https://obsidian.md/">Obsidian.md</a> is what I use for
+all the writing I control</p></li>
+<li><p>There are hundreds of other markdown editor apps</p>
+<ul>
+<li>None of them have vendor lock-in, because it’s plaintext (🤡)</li>
+</ul></li>
+<li><p>You can edit it using a boring command line text editor</p>
+<ul>
+<li><code>vim</code> and <code>emacs</code> both have strong packages
+for Markdown support</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="markdown-sucks-a-little">Markdown sucks (a little)</h2>
+<hr />
+<h3 id="markdown-is-a-tiny-specification">Markdown is a tiny
+specification</h3>
+<ul>
+<li><p>Not all features are universally supported
+(e.g. footnotes)</p></li>
+<li><p>There are some non-standard specifications (e.g. Github flavored
+markdown)</p>
+<ul>
+<li>There’s now RFC 7763 and 7764 which standardize it</li>
+</ul></li>
+<li><p>It simply doesn’t have some formatting things we want</p></li>
+</ul>
+<hr />
+<h3 id="missing-pieces-in-markdown">Missing pieces in Markdown</h3>
+<ul>
+<li><p>Tables and <del>strikethrough</del> are unreliably implemented
+across platforms</p></li>
+<li><p>Colors and image styles require external CSS</p></li>
+<li><p>References aren’t a thing</p></li>
+<li><p>You only get five levels of Section Heading</p></li>
+<li><p>Math formatting isn’t universally allowed/respected</p></li>
+</ul>
+<hr />
+<h3 id="markdown-requires-another-program-to-style-it">Markdown requires
+another program to style it</h3>
+<ul>
+<li><p>You can write all this wonderful semantically formatted text</p>
+<ul>
+<li>But without help, it’s just plaintext</li>
+</ul></li>
+<li><p>Like LaTeX, your documents need to be <em>compiled</em> to be
+pretty</p>
+<ul>
+<li>So, you need to convert it to something else</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="markdown-is-designed-for-conversion">Markdown is designed for
+conversion</h3>
+<ul>
+<li><p>Since Markdown is just a set of format specifiers, it’s easy to
+turn into something else</p></li>
+<li><p>Technically, you could just convert it to any kind of formatting
+convention</p>
+<ul>
+<li>Wait… omg</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="pandoc">Pandoc</h2>
+<hr />
+<h3 id="pandoc-is-a-document-conversion-program">Pandoc is a document
+conversion program</h3>
+<ul>
+<li><p>Written by John MacFarlane in 2006</p>
+<ul>
+<li>A philosophy professor at UCB</li>
+</ul></li>
+<li><p>All it does it turn document formats from one thing to
+another</p></li>
+<li><p>Takes as input epub, HTML, JSON, LaTeX, Markdown, ODT, Office
+XML, Org Mode, Wiki Markup (among many more)</p></li>
+<li><p>Outputs the document as epub, HTML, InDesign, JSON, LaTeX, man,
+Markdown, ODT, Office XML, Org Mode, PDF, Plaintext, RTF, Slideshows
+(reveal, Beamer), Wiki</p></li>
+<li><p>That’s all it does</p>
+<ul>
+<li>Turns one format into another</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="pandoc-will-change-your-life">Pandoc will change your life</h3>
+<ul>
+<li><p>“Oh, we need that TeX article in Word format” “Done.”</p></li>
+<li><p>“Could you make your slides into an HTML single page sheet for
+note taking?”</p>
+<ul>
+<li><a
+href="https://savethevowels.org/talks/make_writing_suck_less_handout.html">Here’s
+this slideshow as a single page</a></li>
+</ul></li>
+<li><p>“I have a markdown file, but I want it pretty and formatted like
+TeX”</p></li>
+<li><p>“I want to create all of my syllabi using markdown, and apply a
+custom format which makes them pretty HTML”</p>
+<ul>
+<li><a href="https://savethevowels.org/101"
+class="uri">https://savethevowels.org/101</a></li>
+<li><a href="https://savethevowels.org/113"
+class="uri">https://savethevowels.org/113</a></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="pandoc-allows-mixing-of-markup-conventions">Pandoc allows mixing
+of markup conventions!</h3>
+<ul>
+<li><p>You can write mostly in Markdown, but intersperse a bit of HTML
+or LaTeX</p></li>
+<li><p>Pandoc will just see it, and pass it through</p></li>
+<li><p>If you convert to a format where the additional stuff is not
+supported, you’ll just see the code</p></li>
+<li><p><strong>You can write mostly in Markdown, and then use LaTeX
+where you absolutely need LaTeX’s power</strong></p>
+<ul>
+<li>Write in Markdown with LaTeX, then have Pandoc LaTeXify it, then
+just make a PDF</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="markdown-latex-is-wildly-powerful">Markdown + LaTeX is wildly
+powerful</h3>
+<ul>
+<li><p>98% of the document is in a formatting language which is fast and
+easy to write</p></li>
+<li><p>2% of the document does the ‘power user’ stuff</p></li>
+<li><p>You can use inline references, citations, and links to prior
+sections</p></li>
+<li><p>You get <em>all of the power of LaTeX, but you can write
+fluidly</em></p></li>
+</ul>
+<hr />
+<h3
+id="this-is-how-i-wrote-my-dissertation-as-well-as-many-of-my-papers">This
+is how I wrote my dissertation, as well as many of my papers</h3>
+<ul>
+<li><p>This allowed me to write ~70% of my dissertation on an iPad on a
+1.5 hour bus ride to and from work</p></li>
+<li><p>I can revise a paper I’m working on <em>from my
+phone</em></p></li>
+<li><p>You just compile it to LaTeX with Pandoc, and PDF it</p></li>
+<li><p>The only raw LaTeX I use is for writing Multiple Choice Exams</p>
+<ul>
+<li>That’s just because I haven’t written code to turn Markdown into
+numbered questions and A-E responses</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="you-can-also-use-different-templates">You can also use different
+templates</h3>
+<ul>
+<li><p>“Use this tex template to make this text a letter of
+recommendation”</p></li>
+<li><p>“Use this HTML template to make a page for my website”</p></li>
+<li><p>“This is a general document, just make a generic PDF”</p></li>
+<li><p>“Everything in this folder is slides, so stick my reveal.js
+header and footer to either side of it”</p></li>
+</ul>
+<hr />
+<h3 id="pandoc-doesnt-really-suck">Pandoc doesn’t really suck</h3>
+<ul>
+<li><p>It’s a command line tool, which might suck a little for somebody
+for five minutes</p></li>
+<li><p>Install it using <code>brew</code> on Macs, using your package
+manager on Linux, and <a
+href="https://pandoc.org/installing.html">there’s a Windows installer
+too</a></p></li>
+<li><p>You’ll also need a working LaTeX install to make it work for
+PDFs</p></li>
+<li><p>But once it’s set up, it’s beautiful</p></li>
+</ul>
+<hr />
+<h2 id="this-is-my-life-now">This is my life now</h2>
+<hr />
+<h3 id="everything-is-written-in-markdown">Everything is written in
+Markdown</h3>
+<ul>
+<li><p>Using <a href="http://obsidian.md">Obsidian</a></p></li>
+<li><p>Things that just need written down digitally stay in Obsidian</p>
+<ul>
+<li>Effectively forming a <a
+href="https://en.wikipedia.org/wiki/Zettelkasten">Zettelkasten</a></li>
+<li>Here’s <a href="https://www.soenkeahrens.de/en/takesmartnotes">a
+great intro to that approach</a>, Sönke Ahrens ‘How to Take Smart
+Notes’</li>
+</ul></li>
+<li><p>Different folders for ‘talks’, ‘docs’, ‘letters’, ‘offline’,
+‘web’ that need to be shared</p></li>
+</ul>
+<hr />
+<h3 id="i-use-pandoc-to-create-polished-documents-where-i-need-it">I use
+Pandoc to create polished documents where I need it</h3>
+<ul>
+<li><p>Different templates for generic documents, websites, letters,
+slideshows, and more</p></li>
+<li><p>It’s very easy to create a new document and have a pretty version
+of it quickly</p></li>
+</ul>
+<hr />
+<h3 id="lets-get-nerdy">Let’s get nerdy…</h3>
+<hr />
+<h3 id="this-script-runs-every-thirty-seconds"><a
+href="https://github.com/stylerw/scripts_and_dotfiles/blob/main/shell_scripts/gen_slides_docs_letters.sh">This
+Script</a> runs every thirty seconds</h3>
+<ul>
+<li><p>It checks for changes in each of those folders</p></li>
+<li><p>It creates new html and PDFs of everything changed in
+<code>docs</code> and <code>offline</code> with a generic template</p>
+<ul>
+<li>Docs gets uploaded to my website</li>
+</ul></li>
+<li><p>It renders changed things in <code>web</code> using my website
+HTML template and uploads them</p></li>
+<li><p>It creates new PDFs of everything changed in <code>letters</code>
+with an academic letter template</p></li>
+<li><p>It creates reveal.js slideshows and handouts for everything
+changed in <code>talks</code></p></li>
+</ul>
+<hr />
+<h3 id="this-is-the-dream">This is the dream</h3>
+<ul>
+<li><p>I sit, I write</p>
+<ul>
+<li>… and beautiful formatted documents just appear</li>
+</ul></li>
+<li><p>Formatting is as I desire, automatic, and sensible for the kind
+of document</p></li>
+<li><p>I can write a letter of recommendation using speech-to-text on my
+phone while walking home from the post office, and it’s a formatted PDF
+when I get home</p></li>
+<li><p>And you change the format in one place, and all your documents
+change to match</p></li>
+<li><p>You spend no time on managing documents, formatting, or
+otherwise, just writing</p></li>
+</ul>
+<hr />
+<h3 id="writing-always-sucks-a-little">Writing always sucks a
+little</h3>
+<ul>
+<li>But you can make it better by ensuring that your tools aren’t adding
+to the suction</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+<p><a href="https://savethevowels.org/talks/make_writing_suck_less.html"
+class="uri">https://savethevowels.org/talks/make_writing_suck_less.html</a></p>
+</body>
+</html>

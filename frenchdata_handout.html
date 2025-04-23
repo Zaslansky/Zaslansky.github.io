@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>You will see sentences in French. Please say each one naturally as
+though you are speaking to someone who has to follow your
+directions.</p>
+<p>If you make a mistake (say the wrong word or mispronounce something),
+please clap your hands once, then start again and re-say the entire
+sentence.</p>
+<p>After you’ve said each sentence, press the right arrow key to
+continue.</p>
+<p>If you have any questions, please ask the experimenter</p>
+<p>Merci pour votre participation!</p>
+<p><em>Press the arrow key to begin.</em></p>
+<hr />
+<h2 id="dites-mamie-sil-vous-plaît.">Dites ≪mamie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-commerce-sil-vous-plaît.">Dites ≪commerce≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rhum-sil-vous-plaît.">Dites ≪rhum≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pomme-sil-vous-plaît.">Dites ≪pomme≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-festin-sil-vous-plaît.">Dites ≪festin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rein-sil-vous-plaît.">Dites ≪rein≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-viande-sil-vous-plaît.">Dites ≪viande≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plaie-sil-vous-plaît.">Dites ≪plaie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-minuit-sil-vous-plaît.">Dites ≪minuit≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-blasphème-sil-vous-plaît.">Dites ≪blasphème≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-dilemme-sil-vous-plaît.">Dites ≪dilemme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-opium-sil-vous-plaît.">Dites ≪opium≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-manie-sil-vous-plaît.">Dites ≪manie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-fromage-sil-vous-plaît.">Dites ≪fromage≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lime-sil-vous-plaît.">Dites ≪lime≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-monnaie-sil-vous-plaît.">Dites ≪monnaie≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gardien-sil-vous-plaît.">Dites ≪gardien≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lin-sil-vous-plaît.">Dites ≪lin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-voisine-sil-vous-plaît.">Dites ≪voisine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-opium-sil-vous-plaît.-1">Dites ≪opium≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lune-sil-vous-plaît.">Dites ≪lune≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-talon-sil-vous-plaît.">Dites ≪talon≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-canal-sil-vous-plaît.">Dites ≪canal≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-bagnole-sil-vous-plaît.">Dites ≪bagnole≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-tartine-sil-vous-plaît.">Dites ≪tartine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mammouth-sil-vous-plaît.">Dites ≪mammouth≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-canne-sil-vous-plaît.">Dites ≪canne≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-famine-sil-vous-plaît.">Dites ≪famine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-planète-sil-vous-plaît.">Dites ≪planète≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-nuque-sil-vous-plaît.">Dites ≪nuque≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-volcan-sil-vous-plaît.">Dites ≪volcan≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-triangle-sil-vous-plaît.">Dites ≪triangle≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-voisin-sil-vous-plaît.">Dites ≪voisin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-antenne-sil-vous-plaît.">Dites ≪antenne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-aimant-sil-vous-plaît.">Dites ≪aimant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mètre-sil-vous-plaît.">Dites ≪mètre≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-vigne-sil-vous-plaît.">Dites ≪vigne≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-migraine-sil-vous-plaît.">Dites ≪migraine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-jasmin-sil-vous-plaît.">Dites ≪jasmin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mythe-sil-vous-plaît.">Dites ≪mythe≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-refrain-sil-vous-plaît.">Dites ≪refrain≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-oignon-sil-vous-plaît.">Dites ≪oignon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bagnole-sil-vous-plaît.-1">Dites ≪bagnole≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cas-sil-vous-plaît.">Dites ≪cas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-conque-sil-vous-plaît.">Dites ≪conque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-remarque-sil-vous-plaît.">Dites ≪remarque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-dimanche-sil-vous-plaît.">Dites ≪dimanche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plat-sil-vous-plaît.">Dites ≪plat≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-abîme-sil-vous-plaît.">Dites ≪abîme≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-morgue-sil-vous-plaît.">Dites ≪morgue≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-citron-sil-vous-plaît.">Dites ≪citron≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-morphine-sil-vous-plaît.">Dites ≪morphine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pénombre-sil-vous-plaît.">Dites ≪pénombre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-jumelles-sil-vous-plaît.">Dites ≪jumelles≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-moue-sil-vous-plaît.">Dites ≪moue≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-hommage-sil-vous-plaît.">Dites ≪hommage≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-dune-sil-vous-plaît.">Dites ≪dune≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pomme-sil-vous-plaît.-1">Dites ≪pomme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cognac-sil-vous-plaît.">Dites ≪cognac≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-chasse-sil-vous-plaît.">Dites ≪chasse≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-légume-sil-vous-plaît.">Dites ≪légume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gars-sil-vous-plaît.">Dites ≪gars≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-rein-sil-vous-plaît.-1">Dites ≪rein≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-marchand-sil-vous-plaît.">Dites ≪marchand≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mime-sil-vous-plaît.">Dites ≪mime≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-trait-sil-vous-plaît.">Dites ≪trait≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-semence-sil-vous-plaît.">Dites ≪semence≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vitrine-sil-vous-plaît.">Dites ≪vitrine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-agence-sil-vous-plaît.">Dites ≪agence≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pénombre-sil-vous-plaît.-1">Dites ≪pénombre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-murmure-sil-vous-plaît.">Dites ≪murmure≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-témoin-sil-vous-plaît.">Dites ≪témoin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-karma-sil-vous-plaît.">Dites ≪karma≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-morphine-sil-vous-plaît.-1">Dites ≪morphine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-demande-sil-vous-plaît.">Dites ≪demande≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-camp-sil-vous-plaît.">Dites ≪camp≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-fontaine-sil-vous-plaît.">Dites ≪fontaine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-savant-sil-vous-plaît.">Dites ≪savant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-nuque-sil-vous-plaît.-1">Dites ≪nuque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bain-sil-vous-plaît.">Dites ≪bain≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-bonnet-sil-vous-plaît.">Dites ≪bonnet≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-noce-sil-vous-plaît.">Dites ≪noce≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-brume-sil-vous-plaît.">Dites ≪brume≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pas-sil-vous-plaît.">Dites ≪pas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-coma-sil-vous-plaît.">Dites ≪coma≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-usine-sil-vous-plaît.">Dites ≪usine≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-baie-sil-vous-plaît.">Dites ≪baie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-mule-sil-vous-plaît.">Dites ≪mule≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-crime-sil-vous-plaît.">Dites ≪crime≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-platane-sil-vous-plaît.">Dites ≪platane≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-clinique-sil-vous-plaît.">Dites ≪clinique≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-once-sil-vous-plaît.">Dites ≪once≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-volcan-sil-vous-plaît.-1">Dites ≪volcan≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ponte-sil-vous-plaît.">Dites ≪ponte≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-jumelles-sil-vous-plaît.-1">Dites ≪jumelles≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bouquin-sil-vous-plaît.">Dites ≪bouquin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-buisson-sil-vous-plaît.">Dites ≪buisson≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bob-sil-vous-plaît.">Dites ≪bob≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-genou-sil-vous-plaît.">Dites ≪genou≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-clémence-sil-vous-plaît.">Dites ≪clémence≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-murmure-sil-vous-plaît.-1">Dites ≪murmure≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mode-sil-vous-plaît.">Dites ≪mode≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-thème-sil-vous-plaît.">Dites ≪thème≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-festin-sil-vous-plaît.-1">Dites ≪festin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-hygiène-sil-vous-plaît.">Dites ≪hygiène≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-minuit-sil-vous-plaît.-1">Dites ≪minuit≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vingtaine-sil-vous-plaît.">Dites ≪vingtaine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lime-sil-vous-plaît.-1">Dites ≪lime≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-armure-sil-vous-plaît.">Dites ≪armure≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-couronne-sil-vous-plaît.">Dites ≪couronne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-morgue-sil-vous-plaît.-1">Dites ≪morgue≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-nain-sil-vous-plaît.">Dites ≪nain≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-presse-sil-vous-plaît.">Dites ≪presse≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-tonne-sil-vous-plaît.">Dites ≪tonne≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-grenade-sil-vous-plaît.">Dites ≪grenade≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pas-sil-vous-plaît.-1">Dites ≪pas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-enclume-sil-vous-plaît.">Dites ≪enclume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-insigne-sil-vous-plaît.">Dites ≪insigne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ban-sil-vous-plaît.">Dites ≪ban≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-rai-sil-vous-plaît.">Dites ≪rai≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-voisine-sil-vous-plaît.-1">Dites ≪voisine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lin-sil-vous-plaît.-1">Dites ≪lin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-limite-sil-vous-plaît.">Dites ≪limite≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-canne-sil-vous-plaît.-1">Dites ≪canne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mèche-sil-vous-plaît.">Dites ≪mèche≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-chêne-sil-vous-plaît.">Dites ≪chêne≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-brume-sil-vous-plaît.-1">Dites ≪brume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-note-sil-vous-plaît.">Dites ≪note≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-promenade-sil-vous-plaît.">Dites ≪promenade≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bouillon-sil-vous-plaît.">Dites ≪bouillon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gagnant-sil-vous-plaît.">Dites ≪gagnant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-nerf-sil-vous-plaît.">Dites ≪nerf≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-commune-sil-vous-plaît.">Dites ≪commune≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pique-nique-sil-vous-plaît.">Dites ≪pique-nique≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plan-sil-vous-plaît.">Dites ≪plan≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-gars-sil-vous-plaît.-1">Dites ≪gars≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-limite-sil-vous-plaît.-1">Dites ≪limite≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mèche-sil-vous-plaît.-1">Dites ≪mèche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vinaigre-sil-vous-plaît.">Dites ≪vinaigre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ménage-sil-vous-plaît.">Dites ≪ménage≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lagune-sil-vous-plaît.">Dites ≪lagune≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-parrain-sil-vous-plaît.">Dites ≪parrain≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ambiance-sil-vous-plaît.">Dites ≪ambiance≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gay-sil-vous-plaît.">Dites ≪gay≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-mousse-sil-vous-plaît.">Dites ≪mousse≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bain-sil-vous-plaît.-1">Dites ≪bain≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-canal-sil-vous-plaît.-1">Dites ≪canal≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rame-sil-vous-plaît.">Dites ≪rame≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-migraine-sil-vous-plaît.-1">Dites ≪migraine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-blasphème-sil-vous-plaît.-1">Dites ≪blasphème≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-hot-sil-vous-plaît.">Dites ≪hot≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-mouche-sil-vous-plaît.">Dites ≪mouche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-buisson-sil-vous-plaît.-1">Dites ≪buisson≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rancune-sil-vous-plaît.">Dites ≪rancune≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gant-sil-vous-plaît.">Dites ≪gant≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-refrain-sil-vous-plaît.-1">Dites ≪refrain≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ivrogne-sil-vous-plaît.">Dites ≪ivrogne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gains-sil-vous-plaît.">Dites ≪gains≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-tumulte-sil-vous-plaît.">Dites ≪tumulte≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-organe-sil-vous-plaît.">Dites ≪organe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-diamant-sil-vous-plaît.">Dites ≪diamant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ronce-sil-vous-plaît.">Dites ≪ronce≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-format-sil-vous-plaît.">Dites ≪format≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mythe-sil-vous-plaît.-1">Dites ≪mythe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bouchon-sil-vous-plaît.">Dites ≪bouchon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rectangle-sil-vous-plaît.">Dites ≪rectangle≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-chance-sil-vous-plaît.">Dites ≪chance≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-coq-sil-vous-plaît.">Dites ≪coq≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-moine-sil-vous-plaît.">Dites ≪moine≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-aimant-sil-vous-plaît.-1">Dites ≪aimant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-fromage-sil-vous-plaît.-1">Dites ≪fromage≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-menu-sil-vous-plaît.">Dites ≪menu≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-panique-sil-vous-plaît.">Dites ≪panique≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mule-sil-vous-plaît.-1">Dites ≪mule≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-agent-sil-vous-plaît.">Dites ≪agent≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pignon-sil-vous-plaît.">Dites ≪pignon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gamme-sil-vous-plaît.">Dites ≪gamme≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-os-sil-vous-plaît.">Dites ≪os≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-haleine-sil-vous-plaît.">Dites ≪haleine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-roman-sil-vous-plaît.">Dites ≪roman≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-requin-sil-vous-plaît.">Dites ≪requin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-moule-sil-vous-plaît.">Dites ≪moule≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-mine-sil-vous-plaît.">Dites ≪mine≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-bouchon-sil-vous-plaît.-1">Dites ≪bouchon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-amas-sil-vous-plaît.">Dites ≪amas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-semence-sil-vous-plaît.-1">Dites ≪semence≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-abîme-sil-vous-plaît.-1">Dites ≪abîme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bonnet-sil-vous-plaît.-1">Dites ≪bonnet≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-viande-sil-vous-plaît.-1">Dites ≪viande≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vinaigre-sil-vous-plaît.-1">Dites ≪vinaigre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-fait-sil-vous-plaît.">Dites ≪fait≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-miche-sil-vous-plaît.">Dites ≪miche≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-aide-sil-vous-plaît.">Dites ≪aide≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pan-sil-vous-plaît.">Dites ≪pan≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pan-sil-vous-plaît.-1">Dites ≪pan≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-audience-sil-vous-plaît.">Dites ≪audience≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lunettes-sil-vous-plaît.">Dites ≪lunettes≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rame-sil-vous-plaît.-1">Dites ≪rame≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-rhume-sil-vous-plaît.">Dites ≪rhume≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-venin-sil-vous-plaît.">Dites ≪venin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-enclume-sil-vous-plaît.-1">Dites ≪enclume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-trimestre-sil-vous-plaît.">Dites ≪trimestre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-planche-sil-vous-plaît.">Dites ≪planche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ménage-sil-vous-plaît.-1">Dites ≪ménage≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-platane-sil-vous-plaît.-1">Dites ≪platane≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-grade-sil-vous-plaît.">Dites ≪grade≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-génie-sil-vous-plaît.">Dites ≪génie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-plume-sil-vous-plaît.">Dites ≪plume≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-besogne-sil-vous-plaît.">Dites ≪besogne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-orange-sil-vous-plaît.">Dites ≪orange≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-os-sil-vous-plaît.-1">Dites ≪os≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-victime-sil-vous-plaît.">Dites ≪victime≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-graine-sil-vous-plaît.">Dites ≪graine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-train-sil-vous-plaît.">Dites ≪train≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-tyran-sil-vous-plaît.">Dites ≪tyran≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-inde-sil-vous-plaît.">Dites ≪inde≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-thème-sil-vous-plaît.-1">Dites ≪thème≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-oignon-sil-vous-plaît.-1">Dites ≪oignon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-niche-sil-vous-plaît.">Dites ≪niche≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-bas-sil-vous-plaît.">Dites ≪bas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-ode-sil-vous-plaît.">Dites ≪ode≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pignon-sil-vous-plaît.-1">Dites ≪pignon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-grenouille-sil-vous-plaît.">Dites ≪grenouille≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-frange-sil-vous-plaît.">Dites ≪frange≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pop-sil-vous-plaît.">Dites ≪pop≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-crin-sil-vous-plaît.">Dites ≪crin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-rosse-sil-vous-plaît.">Dites ≪rosse≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-chasse-sil-vous-plaît.-1">Dites ≪chasse≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cote-sil-vous-plaît.">Dites ≪cote≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-lagune-sil-vous-plaît.-1">Dites ≪lagune≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-témoin-sil-vous-plaît.-1">Dites ≪témoin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-chance-sil-vous-plaît.-1">Dites ≪chance≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-planche-sil-vous-plaît.-1">Dites ≪planche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-volume-sil-vous-plaît.">Dites ≪volume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-comte-sil-vous-plaît.">Dites ≪comte≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-nappe-sil-vous-plaît.">Dites ≪nappe≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-gay-sil-vous-plaît.-1">Dites ≪gay≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-ponte-sil-vous-plaît.-1">Dites ≪ponte≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pote-sil-vous-plaît.">Dites ≪pote≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-programme-sil-vous-plaît.">Dites ≪programme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mont-sil-vous-plaît.">Dites ≪mont≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-gym-sil-vous-plaît.">Dites ≪gym≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-gamme-sil-vous-plaît.-1">Dites ≪gamme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-merle-sil-vous-plaît.">Dites ≪merle≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-poussin-sil-vous-plaît.">Dites ≪poussin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-clinique-sil-vous-plaît.-1">Dites ≪clinique≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-commande-sil-vous-plaît.">Dites ≪commande≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-niche-sil-vous-plaît.-1">Dites ≪niche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-renard-sil-vous-plaît.">Dites ≪renard≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-inde-sil-vous-plaît.-1">Dites ≪inde≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-plaque-sil-vous-plaît.">Dites ≪plaque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-arnaque-sil-vous-plaît.">Dites ≪arnaque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-citron-sil-vous-plaît.-1">Dites ≪citron≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-nappe-sil-vous-plaît.-1">Dites ≪nappe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cognac-sil-vous-plaît.-1">Dites ≪cognac≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-planque-sil-vous-plaît.">Dites ≪planque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mâle-sil-vous-plaît.">Dites ≪mâle≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-victime-sil-vous-plaît.-1">Dites ≪victime≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-haleine-sil-vous-plaît.-1">Dites ≪haleine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-marmite-sil-vous-plaît.">Dites ≪marmite≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-trentaine-sil-vous-plaît.">Dites ≪trentaine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-commande-sil-vous-plaît.-1">Dites ≪commande≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-monnaie-sil-vous-plaît.-1">Dites ≪monnaie≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lune-sil-vous-plaît.-1">Dites ≪lune≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-gitane-sil-vous-plaît.">Dites ≪gitane≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ronce-sil-vous-plaît.-1">Dites ≪ronce≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-veine-sil-vous-plaît.">Dites ≪veine≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-arnaque-sil-vous-plaît.-1">Dites ≪arnaque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bonhomme-sil-vous-plaît.">Dites ≪bonhomme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-demande-sil-vous-plaît.-1">Dites ≪demande≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-robe-sil-vous-plaît.">Dites ≪robe≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-lait-sil-vous-plaît.">Dites ≪lait≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-gant-sil-vous-plaît.-1">Dites ≪gant≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-novembre-sil-vous-plaît.">Dites ≪novembre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-prince-sil-vous-plaît.">Dites ≪prince≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-sommet-sil-vous-plaît.">Dites ≪sommet≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-audience-sil-vous-plaît.-1">Dites ≪audience≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-orange-sil-vous-plaît.-1">Dites ≪orange≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cote-sil-vous-plaît.-1">Dites ≪cote≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-peigne-sil-vous-plaît.">Dites ≪peigne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vingtaine-sil-vous-plaît.-1">Dites ≪vingtaine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-doctrine-sil-vous-plaît.">Dites ≪doctrine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-fin-sil-vous-plaît.">Dites ≪fin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-promenade-sil-vous-plaît.-1">Dites ≪promenade≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-dimanche-sil-vous-plaît.-1">Dites ≪dimanche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-harem-sil-vous-plaît.">Dites ≪harem≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pompe-sil-vous-plaît.">Dites ≪pompe≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-marin-sil-vous-plaît.">Dites ≪marin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-tisane-sil-vous-plaît.">Dites ≪tisane≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-fait-sil-vous-plaît.-1">Dites ≪fait≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-marchand-sil-vous-plaît.-1">Dites ≪marchand≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-tas-sil-vous-plaît.">Dites ≪tas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-coq-sil-vous-plaît.-1">Dites ≪coq≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-balance-sil-vous-plaît.">Dites ≪balance≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-album-sil-vous-plaît.">Dites ≪album≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-requin-sil-vous-plaît.-1">Dites ≪requin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-honte-sil-vous-plaît.">Dites ≪honte≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-talon-sil-vous-plaît.-1">Dites ≪talon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-montre-sil-vous-plaît.">Dites ≪montre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-parent-sil-vous-plaît.">Dites ≪parent≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-album-sil-vous-plaît.-1">Dites ≪album≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-lait-sil-vous-plaît.-1">Dites ≪lait≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-nid-sil-vous-plaît.">Dites ≪nid≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-mime-sil-vous-plaît.-1">Dites ≪mime≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-harem-sil-vous-plaît.-1">Dites ≪harem≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-programme-sil-vous-plaît.-1">Dites ≪programme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rosse-sil-vous-plaît.-1">Dites ≪rosse≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mètre-sil-vous-plaît.-1">Dites ≪mètre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-angle-sil-vous-plaît.">Dites ≪angle≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-cygne-sil-vous-plaît.">Dites ≪cygne≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-mammouth-sil-vous-plaît.-1">Dites ≪mammouth≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-antenne-sil-vous-plaît.-1">Dites ≪antenne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-train-sil-vous-plaît.-1">Dites ≪train≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-panique-sil-vous-plaît.-1">Dites ≪panique≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bonhomme-sil-vous-plaît.-1">Dites ≪bonhomme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bombes-sil-vous-plaît.">Dites ≪bombes≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-parent-sil-vous-plaît.-1">Dites ≪parent≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-panache-sil-vous-plaît.">Dites ≪panache≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-presse-sil-vous-plaît.-1">Dites ≪presse≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vigne-sil-vous-plaît.-1">Dites ≪vigne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ivrogne-sil-vous-plaît.-1">Dites ≪ivrogne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pompe-sil-vous-plaît.-1">Dites ≪pompe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-organe-sil-vous-plaît.-1">Dites ≪organe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-douane-sil-vous-plaît.">Dites ≪douane≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-serment-sil-vous-plaît.">Dites ≪serment≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-machin-sil-vous-plaît.">Dites ≪machin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-piscine-sil-vous-plaît.">Dites ≪piscine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-trognon-sil-vous-plaît.">Dites ≪trognon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plein-sil-vous-plaît.">Dites ≪plein≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-vaccin-sil-vous-plaît.">Dites ≪vaccin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-fin-sil-vous-plaît.-1">Dites ≪fin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-adjoint-sil-vous-plaît.">Dites ≪adjoint≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-piscine-sil-vous-plaît.-1">Dites ≪piscine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-venin-sil-vous-plaît.-1">Dites ≪venin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-satin-sil-vous-plaît.">Dites ≪satin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-noble-sil-vous-plaît.">Dites ≪noble≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-lunettes-sil-vous-plaît.-1">Dites ≪lunettes≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-machin-sil-vous-plaît.-1">Dites ≪machin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-fontaine-sil-vous-plaît.-1">Dites ≪fontaine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-famine-sil-vous-plaît.-1">Dites ≪famine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-crème-sil-vous-plaît.">Dites ≪crème≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-adjoint-sil-vous-plaît.-1">Dites ≪adjoint≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gland-sil-vous-plaît.">Dites ≪gland≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-mine-sil-vous-plaît.-1">Dites ≪mine≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-agence-sil-vous-plaît.-1">Dites ≪agence≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vernis-sil-vous-plaît.">Dites ≪vernis≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-noce-sil-vous-plaît.-1">Dites ≪noce≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-planète-sil-vous-plaît.-1">Dites ≪planète≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-routine-sil-vous-plaît.">Dites ≪routine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-graine-sil-vous-plaît.-1">Dites ≪graine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-commune-sil-vous-plaît.-1">Dites ≪commune≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-novembre-sil-vous-plaît.-1">Dites ≪novembre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-prime-sil-vous-plaît.">Dites ≪prime≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-amas-sil-vous-plaît.-1">Dites ≪amas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-poignard-sil-vous-plaît.">Dites ≪poignard≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ban-sil-vous-plaît.-1">Dites ≪ban≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-technique-sil-vous-plaît.">Dites ≪technique≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pote-sil-vous-plaît.-1">Dites ≪pote≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-rhume-sil-vous-plaît.-1">Dites ≪rhume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mâle-sil-vous-plaît.-1">Dites ≪mâle≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-miche-sil-vous-plaît.-1">Dites ≪miche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-craie-sil-vous-plaît.">Dites ≪craie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-tyran-sil-vous-plaît.-1">Dites ≪tyran≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-moule-sil-vous-plaît.-1">Dites ≪moule≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-montre-sil-vous-plaît.-1">Dites ≪montre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-génie-sil-vous-plaît.-1">Dites ≪génie≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-tisane-sil-vous-plaît.-1">Dites ≪tisane≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-menu-sil-vous-plaît.-1">Dites ≪menu≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-poussin-sil-vous-plaît.-1">Dites ≪poussin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plat-sil-vous-plaît.-1">Dites ≪plat≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-légume-sil-vous-plaît.-1">Dites ≪légume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-timbre-sil-vous-plaît.">Dites ≪timbre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-branche-sil-vous-plaît.">Dites ≪branche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-climat-sil-vous-plaît.">Dites ≪climat≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-planque-sil-vous-plaît.-1">Dites ≪planque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-comte-sil-vous-plaît.-1">Dites ≪comte≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-amante-sil-vous-plaît.">Dites ≪amante≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-savant-sil-vous-plaît.-1">Dites ≪savant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-moine-sil-vous-plaît.-1">Dites ≪moine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-grimace-sil-vous-plaît.">Dites ≪grimace≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-serment-sil-vous-plaît.-1">Dites ≪serment≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mouche-sil-vous-plaît.-1">Dites ≪mouche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bouillon-sil-vous-plaît.-1">Dites ≪bouillon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-flanelle-sil-vous-plaît.">Dites ≪flanelle≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-prime-sil-vous-plaît.-1">Dites ≪prime≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mie-sil-vous-plaît.">Dites ≪mie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-baie-sil-vous-plaît.-1">Dites ≪baie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-technique-sil-vous-plaît.-1">Dites ≪technique≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-routine-sil-vous-plaît.-1">Dites ≪routine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-couronne-sil-vous-plaît.-1">Dites ≪couronne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-balance-sil-vous-plaît.-1">Dites ≪balance≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-amant-sil-vous-plaît.">Dites ≪amant≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-besogne-sil-vous-plaît.-1">Dites ≪besogne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-tartine-sil-vous-plaît.-1">Dites ≪tartine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-panache-sil-vous-plaît.-1">Dites ≪panache≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-karma-sil-vous-plaît.-1">Dites ≪karma≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-hygiène-sil-vous-plaît.-1">Dites ≪hygiène≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plan-sil-vous-plaît.-1">Dites ≪plan≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-vitrine-sil-vous-plaît.-1">Dites ≪vitrine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rhum-sil-vous-plaît.-1">Dites ≪rhum≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-tas-sil-vous-plaît.-1">Dites ≪tas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-ambiance-sil-vous-plaît.-1">Dites ≪ambiance≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-chêne-sil-vous-plaît.-1">Dites ≪chêne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-diamant-sil-vous-plaît.-1">Dites ≪diamant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-flanelle-sil-vous-plaît.-1">Dites ≪flanelle≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-nerf-sil-vous-plaît.-1">Dites ≪nerf≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-glas-sil-vous-plaît.">Dites ≪glas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-rai-sil-vous-plaît.-1">Dites ≪rai≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-plaie-sil-vous-plaît.-1">Dites ≪plaie≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cas-sil-vous-plaît.-1">Dites ≪cas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-amante-sil-vous-plaît.-1">Dites ≪amante≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bas-sil-vous-plaît.-1">Dites ≪bas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-marin-sil-vous-plaît.-1">Dites ≪marin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-bombes-sil-vous-plaît.-1">Dites ≪bombes≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-craie-sil-vous-plaît.-1">Dites ≪craie≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mousse-sil-vous-plaît.-1">Dites ≪mousse≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-armure-sil-vous-plaît.-1">Dites ≪armure≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-once-sil-vous-plaît.-1">Dites ≪once≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-note-sil-vous-plaît.-1">Dites ≪note≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-momie-sil-vous-plaît.">Dites ≪momie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-nounours-sil-vous-plaît.">Dites ≪nounours≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-veine-sil-vous-plaît.-1">Dites ≪veine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-jasmin-sil-vous-plaît.-1">Dites ≪jasmin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-amant-sil-vous-plaît.-1">Dites ≪amant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-frange-sil-vous-plaît.-1">Dites ≪frange≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-commerce-sil-vous-plaît.-1">Dites ≪commerce≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pop-sil-vous-plaît.-1">Dites ≪pop≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-prince-sil-vous-plaît.-1">Dites ≪prince≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-trentaine-sil-vous-plaît.-1">Dites ≪trentaine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-surnom-sil-vous-plaît.">Dites ≪surnom≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-branche-sil-vous-plaît.-1">Dites ≪branche≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mont-sil-vous-plaît.-1">Dites ≪mont≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-remarque-sil-vous-plaît.-1">Dites ≪remarque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-glas-sil-vous-plaît.-1">Dites ≪glas≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-bob-sil-vous-plaît.-1">Dites ≪bob≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-angle-sil-vous-plaît.-1">Dites ≪angle≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-dilemme-sil-vous-plaît.-1">Dites ≪dilemme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mamie-sil-vous-plaît.-1">Dites ≪mamie≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-colombe-sil-vous-plaît.">Dites ≪colombe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plein-sil-vous-plaît.-1">Dites ≪plein≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-honte-sil-vous-plaît.-1">Dites ≪honte≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-tome-sil-vous-plaît.">Dites ≪tome≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-hot-sil-vous-plaît.-1">Dites ≪hot≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-surnom-sil-vous-plaît.-1">Dites ≪surnom≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plume-sil-vous-plaît.-1">Dites ≪plume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-volume-sil-vous-plaît.-1">Dites ≪volume≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-fragment-sil-vous-plaît.">Dites ≪fragment≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-peigne-sil-vous-plaît.-1">Dites ≪peigne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pique-nique-sil-vous-plaît.-1">Dites ≪pique-nique≫ s’il
+vous plaît.</h2>
+<hr />
+<h2 id="dites-temps-sil-vous-plaît.">Dites ≪temps≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-agent-sil-vous-plaît.-1">Dites ≪agent≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-conque-sil-vous-plaît.-1">Dites ≪conque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-grande-sil-vous-plaît.">Dites ≪grande≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-coma-sil-vous-plaît.-1">Dites ≪coma≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-usine-sil-vous-plaît.-1">Dites ≪usine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-satin-sil-vous-plaît.-1">Dites ≪satin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-plaque-sil-vous-plaît.-1">Dites ≪plaque≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gains-sil-vous-plaît.-1">Dites ≪gains≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-moyenne-sil-vous-plaît.">Dites ≪moyenne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-momie-sil-vous-plaît.-1">Dites ≪momie≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rectangle-sil-vous-plaît.-1">Dites ≪rectangle≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-grade-sil-vous-plaît.-1">Dites ≪grade≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-timbre-sil-vous-plaît.-1">Dites ≪timbre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-tome-sil-vous-plaît.-1">Dites ≪tome≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-noble-sil-vous-plaît.-1">Dites ≪noble≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-dune-sil-vous-plaît.-1">Dites ≪dune≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-onde-sil-vous-plaît.">Dites ≪onde≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-insigne-sil-vous-plaît.-1">Dites ≪insigne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-clémence-sil-vous-plaît.-1">Dites ≪clémence≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-grenade-sil-vous-plaît.-1">Dites ≪grenade≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mode-sil-vous-plaît.-1">Dites ≪mode≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-crème-sil-vous-plaît.-1">Dites ≪crème≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-arène-sil-vous-plaît.">Dites ≪arène≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-poignard-sil-vous-plaît.-1">Dites ≪poignard≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-substance-sil-vous-plaît.">Dites ≪substance≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-douane-sil-vous-plaît.-1">Dites ≪douane≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-robe-sil-vous-plaît.-1">Dites ≪robe≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-climat-sil-vous-plaît.-1">Dites ≪climat≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-trimestre-sil-vous-plaît.-1">Dites ≪trimestre≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-nounours-sil-vous-plaît.-1">Dites ≪nounours≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gardien-sil-vous-plaît.-1">Dites ≪gardien≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-trait-sil-vous-plaît.-1">Dites ≪trait≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-grenouille-sil-vous-plaît.-1">Dites ≪grenouille≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-temps-sil-vous-plaît.-1">Dites ≪temps≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-parrain-sil-vous-plaît.-1">Dites ≪parrain≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-roman-sil-vous-plaît.-1">Dites ≪roman≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-marmite-sil-vous-plaît.-1">Dites ≪marmite≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rhombe-sil-vous-plaît.">Dites ≪rhombe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-arène-sil-vous-plaît.-1">Dites ≪arène≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vaccin-sil-vous-plaît.-1">Dites ≪vaccin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-vernis-sil-vous-plaît.-1">Dites ≪vernis≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-ode-sil-vous-plaît.-1">Dites ≪ode≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-pianiste-sil-vous-plaît.">Dites ≪pianiste≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-moue-sil-vous-plaît.-1">Dites ≪moue≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-bouquin-sil-vous-plaît.-1">Dites ≪bouquin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-voisin-sil-vous-plaît.-1">Dites ≪voisin≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gomme-sil-vous-plaît.">Dites ≪gomme≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-gagnant-sil-vous-plaît.-1">Dites ≪gagnant≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rancune-sil-vous-plaît.-1">Dites ≪rancune≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-camp-sil-vous-plaît.-1">Dites ≪camp≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-nid-sil-vous-plaît.-1">Dites ≪nid≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-moyenne-sil-vous-plaît.-1">Dites ≪moyenne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gym-sil-vous-plaît.-1">Dites ≪gym≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-genou-sil-vous-plaît.-1">Dites ≪genou≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-tonne-sil-vous-plaît.-1">Dites ≪tonne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-rhombe-sil-vous-plaît.-1">Dites ≪rhombe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gardienne-sil-vous-plaît.">Dites ≪gardienne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gardienne-sil-vous-plaît.-1">Dites ≪gardienne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gland-sil-vous-plaît.-1">Dites ≪gland≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-doctrine-sil-vous-plaît.-1">Dites ≪doctrine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-merle-sil-vous-plaît.-1">Dites ≪merle≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-onde-sil-vous-plaît.-1">Dites ≪onde≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-tumulte-sil-vous-plaît.-1">Dites ≪tumulte≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cousine-sil-vous-plaît.">Dites ≪cousine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-grande-sil-vous-plaît.-1">Dites ≪grande≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gomme-sil-vous-plaît.-1">Dites ≪gomme≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-renard-sil-vous-plaît.-1">Dites ≪renard≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-nain-sil-vous-plaît.-1">Dites ≪nain≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-crin-sil-vous-plaît.-1">Dites ≪crin≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-grimace-sil-vous-plaît.-1">Dites ≪grimace≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-crime-sil-vous-plaît.-1">Dites ≪crime≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-fragment-sil-vous-plaît.-1">Dites ≪fragment≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-manie-sil-vous-plaît.-1">Dites ≪manie≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-aide-sil-vous-plaît.-1">Dites ≪aide≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-sommet-sil-vous-plaît.-1">Dites ≪sommet≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-format-sil-vous-plaît.-1">Dites ≪format≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cousine-sil-vous-plaît.-1">Dites ≪cousine≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-colombe-sil-vous-plaît.-1">Dites ≪colombe≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-mie-sil-vous-plaît.-1">Dites ≪mie≫ s’il vous plaît.</h2>
+<hr />
+<h2 id="dites-triangle-sil-vous-plaît.-1">Dites ≪triangle≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-trognon-sil-vous-plaît.-1">Dites ≪trognon≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-gitane-sil-vous-plaît.-1">Dites ≪gitane≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-hommage-sil-vous-plaît.-1">Dites ≪hommage≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-cygne-sil-vous-plaît.-1">Dites ≪cygne≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-substance-sil-vous-plaît.-1">Dites ≪substance≫ s’il vous
+plaît.</h2>
+<hr />
+<h2 id="dites-pianiste-sil-vous-plaît.-1">Dites ≪pianiste≫ s’il vous
+plaît.</h2>
+<hr />
+<pre><code>        Thank you for your participation.
+        
+        Please exit the booth and talk with the experimenter.</code></pre>
+<hr />
+</body>
+</html>

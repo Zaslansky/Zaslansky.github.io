@@ -1,0 +1,8 @@
+tree_rule1_3_4tex
+ 
+[NP 
+  [DET the ] 
+  [N' 
+    [ADJ cute ] 
+    [N' 
+      [N cat ] ] ] ]

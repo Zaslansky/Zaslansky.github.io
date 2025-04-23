@@ -1,0 +1,13 @@
+tree_rule6_8tex
+ 
+[NP 
+  [NP 
+    [DET the ] 
+    [N' 
+      [N dog ] ] ] 
+  [PP 
+    [P from ] 
+    [NP 
+      [DET the ] 
+      [N' 
+        [N future ] ] ] ] ]

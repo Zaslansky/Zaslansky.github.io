@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="linear-predictive-coding">Linear Predictive Coding</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Source/Filter Review</p></li>
+<li><p>Understanding LPC</p></li>
+<li><p>Where is LPC useful?</p></li>
+<li><p>What are the dangers of LPC?</p></li>
+</ul>
+<hr />
+<h3 id="review-source-filter-theory">Review: Source Filter Theory</h3>
+<ul>
+<li><strong>Source</strong>: The harmonics output by the larynx</li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/voicing_filtered_fft.png"></p>
+<hr />
+<ul>
+<li><strong>Filter</strong>: The resonance properties of the rest of the
+vocal tract
+<ul>
+<li>These can be poles (adding power) or zeroes (removing power)</li>
+</ul></li>
+<li>The speech signal can be thought as the result of imposing the
+filter on the source</li>
+</ul>
+<hr />
+<h3 id="thus-we-need-to-understand-two-states-to-model-speech">Thus, we
+need to understand two states to model speech!</h3>
+<ul>
+<li>What is the source doing?
+<ul>
+<li>(i.e. What is f0 and that whole situation?)</li>
+</ul></li>
+<li>What is the filter doing?
+<ul>
+<li>(i.e. what are the poles and zeroes like)</li>
+</ul></li>
+<li><strong>These two things are independent of one
+another</strong></li>
+</ul>
+<hr />
+<h3 id="understanding-f0-and-the-source">Understanding f0 and the
+Source</h3>
+<ul>
+<li><p>What is f0?</p></li>
+<li><p>What are the harmonics’ (relative) amplitudes?</p></li>
+<li><p>Is the source signal noisy? Irregular?</p></li>
+<li><p>This is a question of pitch tracking and source modeling</p></li>
+<li><p><em>We’ll talk about this next time!</em></p></li>
+</ul>
+<hr />
+<h3 id="understanding-the-filter">Understanding the filter</h3>
+<ul>
+<li><p>Where are the main poles which are filtering the source?</p></li>
+<li><p>Where are the main zeroes which are filtering the
+source?</p></li>
+<li><p>How are these poles and zeroes changing over time?</p></li>
+<li><p>We use LPC for this!</p></li>
+</ul>
+<hr />
+<h3
+id="the-filter-has-a-large-effect-on-a-signals-spectral-envelope">The
+filter has a large effect on a signal’s <em>spectral envelope</em></h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_i.png"></p>
+<hr />
+<h3
+id="the-filter-has-a-large-effect-on-a-signals-spectral-envelope-1">The
+filter has a large effect on a signal’s <em>spectral envelope</em></h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_i_envelope.png"></p>
+<hr />
+<h3
+id="if-we-can-estimate-that-envelope-without-the-effect-of-the-source-we-have-the-filter">If
+we can estimate that envelope, without the effect of the source, we have
+the filter!</h3>
+<ul>
+<li>To do that, we need…</li>
+</ul>
+<hr />
+<h2 id="linear-predictive-coding-lpc">Linear Predictive Coding
+(LPC)</h2>
+<hr />
+<h3
+id="lpc-is-a-tool-for-analyzing-the-spectral-properties-of-a-signal">LPC
+is a tool for analyzing the spectral properties of a signal</h3>
+<ul>
+<li><p>It aims to estimate the filter <strong>only</strong>, and track
+changes to that filter over the duration of a signal</p></li>
+<li><p>This was developed specifically for speech encoding, although
+it’s useful elsewhere</p></li>
+<li><p>It’s <em>linear</em> in that it uses linear equations to model
+the speech signal</p></li>
+<li><p>It’s <em>predictive</em> in that it looks at past moments to
+<em>predict</em> the present state</p></li>
+<li><p>It can be used to <em>(en)code</em> and <em>(de)code</em> speech
+signals</p></li>
+</ul>
+<hr />
+<h3
+id="theres-a-lot-of-math-underlying-but-were-going-to-focus-on-intuitions">There’s
+a lot of math underlying, but we’re going to focus on intuitions</h3>
+<ul>
+<li><p>Luckily, the math is very easy to find out there on the
+internet</p></li>
+<li><p>… and boy do electrical engineers love making this opaque and
+equationy</p></li>
+</ul>
+<hr />
+<h3 id="lpc-has-a-few-main-steps-to-encode-a-sound">LPC has a few main
+steps to ‘encode’ a sound</h3>
+<ul>
+<li><p>Step 1: Division into frames</p></li>
+<li><p>Step 2: Auto-Correlation Computation</p></li>
+<li><p>Step 3: Coefficient Calculation</p></li>
+</ul>
+<hr />
+<h3 id="step-1-division-into-frames-framing">Step 1: Division into
+frames (‘framing’)</h3>
+<ul>
+<li><p>We’re going to take the sound and slice it into a series of
+overlapping frames</p></li>
+<li><p>Usually this window is ~20-30ms</p>
+<ul>
+<li>This is much longer than the windows used for Fourier Analysis</li>
+<li>The same <strong>time-frequency tradeoff</strong> applies here</li>
+</ul></li>
+<li><p>We’ll use a windowing function to smooth transitions between
+windows (e.g. Hamming Windowing)</p></li>
+<li><p>This gives us a series of <em>frames</em> that we’ll evaluate
+step by step</p></li>
+<li><p>We can assume/hope/pray that the vocal tract state is relatively
+steady in each 30 ms bucket</p></li>
+</ul>
+<hr />
+<h3 id="note-framing-will-be-a-regular-step-all-quarter">Note: Framing
+will be a regular step all quarter</h3>
+<ul>
+<li><p>It is very common to do framing as a part of nearly any speech
+processing pipeline</p></li>
+<li><p>The window function doesn’t tend to vary too much</p></li>
+<li><p>Timescales sometimes do, but it’s usually around 20-30ms</p></li>
+</ul>
+<hr />
+<h3 id="a-nice-visualization-of-frames">A nice visualization of
+frames</h3>
+<p><img class="r-stretch" src="phonmedia/overlapping_windows.png"></p>
+<hr />
+<h3 id="step-2-autocorrelation">Step 2: Autocorrelation</h3>
+<ul>
+<li><p>Autocorrelated things are predictable on the basis of their
+immediate past</p></li>
+<li><p>Speech is heavily <em>autocorrelated</em></p>
+<ul>
+<li><p>Prior chunks of the signal look a lot like the subsequent
+chunks</p></li>
+<li><p>Tongues don’t tend to teleport</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="an-i-vowel">An /i/ vowel</h3>
+<p><img class="r-stretch" src="phonmedia/waveform_i.png"></p>
+<hr />
+<h3 id="finding-autocorrelation-is-a-brute-force-process">Finding
+autocorrelation is a brute-force process</h3>
+<ul>
+<li>Take the correlation between the frame and the exact same frame at
+the same time
+<ul>
+<li>This will be a perfect correlation</li>
+</ul></li>
+<li>Now, take the correlation between the frame and the frame delayed by
+a certain <strong>lag</strong>
+<ul>
+<li>This will be a much lower number</li>
+</ul></li>
+<li>Now, continue trying longer lags and watch the autocorrelation
+change
+<ul>
+<li>Remember that a given frame will have more than one cycle (period)
+in it</li>
+<li>When the cycles align, autocorrelation will spike!</li>
+<li>We get a function from this</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="diagrams/autocorrelation_animation.gif"></p>
+<hr />
+<h3 id="an-i-vowel-1">an /i/ vowel</h3>
+<p><img class="r-stretch" src="phonmedia/waveform_i.png"></p>
+<hr />
+<h3 id="an-n">An /n/</h3>
+<p><img class="r-stretch" src="phonmedia/waveform_n.png"></p>
+<hr />
+<h3 id="this-outputs-an-autocorrelation-function">This outputs an
+‘Autocorrelation Function’</h3>
+<ul>
+<li><p>“Over the range of possible lags, here’s how the autocorrelation
+changes”</p></li>
+<li><p>This will have multiple spikes (with the biggest at one
+period)</p></li>
+<li><p><em>The timing and degree of these spikes actually tells us about
+the overall spectral shape</em></p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/lpc_autocorrelationfunction.png"></p>
+<hr />
+<h3 id="step-3-coefficient-generation">Step 3: Coefficient
+Generation</h3>
+<ul>
+<li><strong>Black Box Alert!</strong> This step requires math which we
+are not discussing
+<ul>
+<li>Google ‘Levinson-Durbin Algorithm for solving the Yule-Walker
+equations’</li>
+</ul></li>
+<li>The goal here is to create a set of <em>coefficients</em> which
+describe the filter’s <em>spectral envelope</em>
+<ul>
+<li>Together, these coefficients describe the shape of the filter
+(poles, zeroes, and all)</li>
+</ul></li>
+<li>This is an optimization and modeling process!</li>
+</ul>
+<hr />
+<h3 id="poles-and-zeroes-of-the-spectral-envelope">Poles and Zeroes of
+the Spectral Envelope</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_i_envelope.png"></p>
+<hr />
+<h3
+id="the-key-insight-generate-filters-treat-the-source-as-error-and-minimize-the-error">The
+Key Insight: Generate filters, treat the source as error, and minimize
+the error!</h3>
+<ul>
+<li><p>Sure, there’s source information in the autocorrelation function,
+but a good filter will minimize its importance when <em>predicting</em>
+the signal</p></li>
+<li><p>We’re modeling the stuff that changes less often (e.g. the
+tongue, formants, etc) and just letting the source do its own little
+thing</p></li>
+<li><p>We solve these equations to find <em>the filter that minimizes
+the contributions of the source!</em></p></li>
+<li><p>The ‘LPC model’ is a set of 10-20 coefficients describing the
+filter in detail</p></li>
+</ul>
+<hr />
+<h3 id="the-shape-of-the-lpc-should-reflect-the-filter">The shape of the
+LPC should reflect the filter</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_ae.png"></p>
+<hr />
+<h3 id="the-shape-of-the-lpc-should-reflect-the-filter-1">The shape of
+the LPC should reflect the filter</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_ae_lpc.png"></p>
+<hr />
+<h3 id="the-shape-of-the-lpc-should-reflect-the-filter-2">The shape of
+the LPC should reflect the filter</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_i.png"></p>
+<hr />
+<h3 id="the-shape-of-the-lpc-should-reflect-the-filter-3">The shape of
+the LPC should reflect the filter</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_i_lpc.png"></p>
+<hr />
+<h3 id="the-shape-of-the-lpc-should-reflect-the-filter-4">The shape of
+the LPC should reflect the filter</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_uh.png"></p>
+<hr />
+<h3 id="the-shape-of-the-lpc-should-reflect-the-filter-5">The shape of
+the LPC should reflect the filter</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_uh_lpc.png"></p>
+<hr />
+<h3 id="lpc-doesnt-have-to-be-done-on-vowels">LPC doesn’t have to be
+done on vowels</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_n.png"></p>
+<hr />
+<h3 id="lpc-doesnt-have-to-be-done-on-vowels-1">LPC doesn’t have to be
+done on vowels</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_n_lpc.png"></p>
+<hr />
+<h3 id="how-many-coefficients-should-we-use">How many coefficients
+should we use?</h3>
+<ul>
+<li><p>2 per 1000Hz below Nyquist plus three more</p>
+<ul>
+<li><a
+href="https://search.r-project.org/CRAN/refmans/phonTools/html/lpc.html">This
+is used by Santiago Barreda, who knows his stuff</a></li>
+</ul></li>
+<li><p>2 per formant + 3</p>
+<ul>
+<li>This is basically the same thing, assuming one formant per 1000
+Hz</li>
+</ul></li>
+<li><p>Use too few, you’ll miss nuances</p></li>
+<li><p>Use too many, you’ll overfit!</p></li>
+<li><p><strong>You will get exactly as many formants as you ask
+for!</strong></p>
+<ul>
+<li>… so make sure you’re asking for the right number</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-many-coefficients">How many coefficients?</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_ae.png"></p>
+<hr />
+<h3 id="coefficients-for-5000-hz">12 Coefficients (for 5000 Hz)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_ae_lpc.png"></p>
+<hr />
+<h3 id="coefficients-for-5000-hz-1">20 Coefficients (for 5000 Hz)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_ae_lpc20.png"></p>
+<hr />
+<h3 id="coefficients-for-5000-hz-2">100 Coefficients (for 5000 Hz)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_ae_lpc100.png"></p>
+<hr />
+<h3 id="how-many-coefficients-1">How many coefficients?</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_uh.png"></p>
+<hr />
+<h3 id="coefficients-for-5000-hz-3">12 Coefficients (for 5000 Hz)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_uh_lpc.png"></p>
+<hr />
+<h3 id="coefficients-for-5000-hz-4">20 Coefficients (for 5000 Hz)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_uh_lpc20.png"></p>
+<hr />
+<h3 id="coefficients-for-5000-hz-5">100 Coefficients (for 5000 Hz)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_uh_lpc100.png"></p>
+<hr />
+<h3 id="lpc-models-the-filter-independent-of-the-source">LPC models the
+filter <em>independent of the source</em></h3>
+<ul>
+<li><p>The LPC coefficients describe a filter which can apply cleanly to
+any source you’d like</p></li>
+<li><p>The LPC <strong>doesn’t model the source at all</strong>,
+instead, it treats it as noise!</p></li>
+<li><p>So, we end up with a set of coefficients which describe a smooth
+filter function</p>
+<ul>
+<li>Most LPCs are ‘all pole’ and only capture prominences</li>
+<li>Some LPC formulations use zeroes too, but it doesn’t win that
+much</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="you-dont-even-need-voicing">You don’t even need voicing</h3>
+<ul>
+<li><p>This process still works even for voiceless sounds which have
+source and filter</p></li>
+<li><p>You model a voiceless source using white noise, and then estimate
+the filter</p></li>
+<li><p>LPC makes most sense for vowels and sonorants, but it’s not
+senseless for consonants or other sounds</p>
+<ul>
+<li>Particularly for sound compression (more later!)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-can-do-lpc-for-every-single-frame">We can do LPC for
+<em>every single frame</em></h3>
+<ul>
+<li><p>This allows us to model the filter across an entire word</p></li>
+<li><p>Each frame gets a different set of LPC coefficients</p></li>
+<li><p>A word can be described with a series of sets of LPC
+coefficients, plus some source information</p></li>
+</ul>
+<hr />
+<h3 id="so-one-more-time-lpc">So, one more time, LPC</h3>
+<ul>
+<li><p>We take a signal</p></li>
+<li><p>Step 1) We cut it into overlapping frames</p></li>
+<li><p>Step 2) We do an autocorrelation analysis on these
+frames</p></li>
+<li><p>Step 3) We use the autocorrelation function to get coefficients
+which model the filter and minimize the effect of the source</p></li>
+<li><p>These coefficients estimate the shape of the filter</p></li>
+</ul>
+<hr />
+<h2 id="where-is-lpc-useful">Where is LPC useful?</h2>
+<hr />
+<h3 id="why-would-we-spend-an-entire-day-on-this-one-algorithm">Why
+would we spend an entire day on this one algorithm?</h3>
+<ul>
+<li><strong>Because it’s ridiculously useful</strong></li>
+</ul>
+<hr />
+<h3 id="lpc-is-used-for-identifying-formants">LPC is used for
+identifying formants</h3>
+<ul>
+<li><p>(Approximately) every formant finding algorithm uses LPC</p></li>
+<li><p>Understanding LPC helps us understand how formants are
+found</p></li>
+</ul>
+<hr />
+<h3 id="formants-are-ghosts-in-the-spectral-envelope">Formants are
+ghosts in the spectral envelope!</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_ae.png"></p>
+<hr />
+<h3 id="lpc-reveals-them">LPC reveals them!</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_ae_lpc.png"></p>
+<hr />
+<h3 id="we-can-do-lpc-across-whole-words-to-get-a-formant-track">We can
+do LPC across whole words to get a formant track</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_cats.png"></p>
+<hr />
+<h3 id="we-can-do-lpc-across-whole-words-to-get-a-formant-track-1">We
+can do LPC across whole words to get a formant track</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_cats5formants.png"></p>
+<hr />
+<h3 id="we-can-do-lpc-across-whole-words-to-get-a-formant-track-2">We
+can do LPC across whole words to get a formant track</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_chickadees_broad.png"></p>
+<hr />
+<h3 id="we-can-do-lpc-across-whole-words-to-get-a-formant-track-3">We
+can do LPC across whole words to get a formant track</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_chickadees_broadformants.png"></p>
+<hr />
+<h3 id="lpc-works-on-more-than-just-speech">LPC works on more than just
+speech</h3>
+<ul>
+<li><p>Any time you have a source signal which reveals a filter, you can
+do LPC</p>
+<ul>
+<li>Modeling musical instrument resonances</li>
+<li>Identifying room resonances</li>
+<li>Seismic Data Analysis</li>
+<li>Sonar and Radar Processing</li>
+<li>ECG, EEG data too</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-lpc-together-with-the-source-encodes-speech-quite-well">The
+LPC, together with the source, encodes speech quite well</h3>
+<ul>
+<li><p>You can use LPC to ‘deconstruct’ speech before transmission, and
+reconstruct it later</p>
+<ul>
+<li>Do an LPC, then send information about the source, and send LPC
+coefficients</li>
+</ul></li>
+<li><p>Combine the source and the filter and you have the signal
+again</p>
+<ul>
+<li>Assuming you’ve modeled both things properly</li>
+</ul></li>
+<li><p>More coefficients == More data == More fidelity</p></li>
+<li><p><strong>We’re going to see LPC used like this over and over
+again!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="lpc-allows-you-to-estimate-and-then-removereplace-the-filter">LPC
+allows you to estimate <em>and then remove/replace</em> the filter</h3>
+<ul>
+<li><p>This allows for source-filter resynthesis, where you isolate the
+source and change the filter (or vice versa)</p></li>
+<li><p>This allows you to ‘change the formants’ or ‘swap out the
+voice’</p></li>
+<li><p><em>More on this soon!</em></p></li>
+</ul>
+<hr />
+<h3 id="lpc-is-excellent-for-compressing-any-kind-of-audio">LPC is
+<em>excellent</em> for compressing any kind of audio</h3>
+<ul>
+<li><em>More on this soon!</em></li>
+</ul>
+<hr />
+<h3
+id="lots-of-modern-signal-processing-approaches-do-similar-things">Lots
+of modern signal processing approaches do similar things</h3>
+<ul>
+<li><p>“Oh, this is capturing the filter” is a very common refrain in
+speech science!</p></li>
+<li><p>Many things which do speech analysis ‘sort of do LPC’ even if
+they don’t directly</p></li>
+</ul>
+<hr />
+<h2 id="dangers-of-lpc">Dangers of LPC</h2>
+<hr />
+<h3 id="never-trust-an-lpc">‘Never Trust an LPC’</h3>
+<ul>
+<li><p>Common adage, but given to me by <a
+href="https://home.cc.umanitoba.ca/~robh/">Rob Hagiwara</a></p></li>
+<li><p>LPC is an <em>estimate</em>, but especially with noisy sources,
+it’s a noisy estimate</p></li>
+<li><p>Often, Praat will disagree with itself (e.g. the found formant
+will change depending on small tweaks to settings or different
+methods)</p></li>
+<li><p>LPC formant tracks tend to bounce around and have
+discontinuities</p></li>
+</ul>
+<hr />
+<h3 id="cats-no-lpc">Cats (no LPC)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_cats.png"></p>
+<hr />
+<h3 id="cats-5-formants">Cats (5 Formants)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_cats5formants.png"></p>
+<hr />
+<h3 id="lpc-will-give-you-exactly-what-you-ask-for">LPC will give you
+exactly what you ask for</h3>
+<ul>
+<li><p>‘Computers are dumb, they do exactly what you tell them
+to’</p></li>
+<li><p>LPC can be done where it shouldn’t be!</p>
+<ul>
+<li>… or where the results aren’t super meaningful</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="lpc-will-find-the-requested-filter-no-matter-what">LPC will find
+the requested filter no matter what!</h3>
+<p><img class="r-stretch" src="phonmedia/waveform_s.png"></p>
+<hr />
+<h3 id="lpc-will-find-the-requested-filter-no-matter-what-1">LPC will
+find the requested filter no matter what!</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_s.png"></p>
+<hr />
+<h3 id="lpc-will-find-the-requested-filter-no-matter-what-2">LPC will
+find the requested filter no matter what!</h3>
+<p><img class="r-stretch" src="phonmedia/spectrum_s_lpc.png"></p>
+<hr />
+<h3 id="lpc-doesnt-know-the-right-number-of-coefficients-you-do">LPC
+doesn’t know the right number of coefficients, you do!</h3>
+<ul>
+<li>… and it will find as many as you ask for</li>
+</ul>
+<hr />
+<h3 id="cats-no-lpc-1">Cats (no LPC)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_cats.png"></p>
+<hr />
+<h3 id="cats-5-formants-1">Cats (5 Formants)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_cats5formants.png"></p>
+<hr />
+<h3 id="cats-10-formants">Cats (10 Formants)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_cats10formants.png"></p>
+<hr />
+<h3 id="cats-50-formants">Cats (50 Formants)</h3>
+<p><img class="r-stretch" src="phonmedia/spectrogram_cats50formants.png"></p>
+<hr />
+<h3 id="lpc-is-less-useful-for-aperiodic-non-source-filtery-sounds">LPC
+is less useful for aperiodic, non-source-filtery sounds</h3>
+<ul>
+<li><p>Formants aren’t meaningful during /s/ or /ʃ/ (e.g.)</p></li>
+<li><p>LPC compression is less efficient for aperiodic sounds (meaning
+more data is required to transmit with fidelity)</p></li>
+<li><p>LPC will work on anything, but isn’t useful for
+manythings</p></li>
+</ul>
+<hr />
+<h3 id="lpc-requires-good-clean-data">LPC requires good, clean data</h3>
+<ul>
+<li>The uglier the source, the harder it is to estimate the filter!</li>
+</ul>
+<hr />
+<h3 id="lpc-has-lots-of-parameters-to-get-right">LPC has lots of
+parameters to get right</h3>
+<ul>
+<li><p>Frame Length</p></li>
+<li><p>Window Shape (e.g. Hamming, Hann, Gaussian)</p></li>
+<li><p>Number of Coefficients</p>
+<ul>
+<li>Which is linked to the input sampling rate</li>
+</ul></li>
+<li><p>Exact method of solving the equations</p></li>
+<li><p>Methods of estimating the source</p></li>
+</ul>
+<hr />
+<h3
+id="finally-in-order-to-recreate-the-signal-on-the-other-end-you-have-to-track-the-source-pitch-well">Finally,
+in order to recreate the signal on the other end, you have to track the
+source pitch well</h3>
+<ul>
+<li>… and that’s a whole big ball of pain for next time!</li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Source-Filter Theory isn’t just a phonetic idea, it’s a way of
+life</p></li>
+<li><p>LPC estimates the filter by framing, measuring autocorrelation,
+and then estimating the filter which minimizes the effect of the
+source</p></li>
+<li><p>With the filter, we can measure formants, compress speech,
+analyze other sounds, and compress anything</p></li>
+<li><p>LPC isn’t the most trustworthy, will give you what you ask for,
+is less useful for aperiodic things and dirty data, and has lots of
+parameters to control</p></li>
+<li><p><strong>You will see LPC over and over in speech processing, and
+it’s your friend!</strong></p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li>Tracking and Measuring Pitch and Voice</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

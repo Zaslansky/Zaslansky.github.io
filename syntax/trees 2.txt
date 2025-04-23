@@ -1,0 +1,18 @@
+101sc_newate$(S (NP (N' (N Andres))) (VP (ADV quickly) (VP (V ate))))%
+101sc_newnap$(S (NP (N' (N Will))) (VP (AUX should) (VP (V sleep))))%
+101sc_newband$(S (NP (DET the) (N' (N' (N band)) (CP (C whom) (S (NP (N' (N Michael))) (VP (V like)))))) (VP (V went) (PP (P on) (NP (N' (N tour))))))%
+101sc_newjewelers$(S (NP (DET (NP (DET the)(N' (N jeweler))) (POSS 's)) (N' (N ring))) (VP (V had) (NP (N' (ADJ shiny) (N' (N rubies))))))%
+101sc_badjian$(S (ILLEGAL-NP (NP (N' (N Jian))) (CP (C while) (S (NP (DET his) (N' (N cat))) (VP (V slept))))) (VP (V ate)))%
+101sc_badsmall$(S (NP (ILLEGAL-N' (ADJ Small) (NP (DET the) (N' (ADJ cuddly) (N' (N cat)))))) (BACKWARDS-VP (NP (DET the) (N' (N dog))) (V scratched)))%
+101sc_badbaker$(S (BACKWARDS-NP (N' (N Baker)) (DET the)) (VP (V went) (BACKWARDS-PP (NP (DET the) (N' (N park))) (P to))))%
+101sc_enchiladas$(S (NP (NP (DET Her) (N' (ADJ incessant) (N' (N desire)))) (PP (P for) (NP (N' (N enchiladas))))) (VP (V consumed) (NP (DET her) (N' (ADJ every) (N' (ADJ waking) (N' (N thought)))))))%
+101sc_enchiladaslong$(S (NP (NP (DET Her) (N' (ADJ incessant) (N' (N desire)))) (PP (P for) (NP (N' (N enchiladas))))) (VP (VP (V consumed) (NP (DET her) (N' (ADJ every) (N' (ADJ waking) (N' (N thought)))))) (CP (C while) (S (NP (DET her) (N' (ADJ thoughtful) (N' (N partner)))) (VP (V drove) (PP (P to) (NP (DET the) (N' (N restaurant)))))))))%
+101sc_kittens$(S (NP (DET Two) (N' (ADJ stuffed) (N' (N kittens)))) (VP (VP (V plotted) (NP (N' (N revenge)))) (PP (P in) (NP (DET an) (N' (ADJ empty) (N' (ADJ quiet) (N' (N apartment))))))))%
+101sc_victoriasaw$(S (NP (N' (N Victoria))) (VP (VP (V saw) (NP (N' (N Vincent)))) (PP (P in) (NP (DET the) (N' (ADJ LingUA) (N' (N lounge)))))))%
+101sc_katihates$(S (NP (N' (N Kati))) (VP (V hates) (CP (C when) (S (NP (N' (ADJ LIGN101) (N' (N students)))) (VP (VP (V use) (NP (N' (ADJ incorrect) (N' (N rules))))) (PP (P in) (NP (N' (N trees)))))))))%
+101sc_jessicagasped$(S (NP (N' (N Jessica))) (VP (V gasped) (PP (P at) (NP (NP (DET the) (N' (ADJ housing) (N' (N prices)))) (PP (P in) (N' (N San Diego)))))))%
+101sc_willranted$(S (NP (N' (N Will))) (VP (V ranted)))%
+101sc_mahograded$(S (NP (N' (N Maho))) (VP (V graded) (NP (N' (N papers)))))%
+101sc_mattgraded$(S (NP (N' (N Matt))) (VP (VP (V graded) (NP (N' (N papers)))) (PP (P in) (NP (DET his) (N' (N office))))))%
+101sc_olivierran$(S (NP (N' (N Olivier))) (VP (VP (V ran) (NP (DET a) (N' (ADJ discussion) (N' (N section))))) (PP (P on) (NP (N' (N Friday))))))%
+101sc_alainaprefers$(S (NP (N' (N Alaina))) (VP (V prefers) (NP (NP (N' (N homeworks))) (PP (P with) (NP (N' (ADJ little) (N' (ADJ tiny) (N' (ADJ fixable) (N errors)))))))))%

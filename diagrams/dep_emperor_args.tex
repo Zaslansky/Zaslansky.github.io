@@ -1,0 +1,30 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+
+\begin{document}
+% In the preamble:
+
+% In the document:
+\begin{dependency}[theme = simple]
+   \begin{deptext}[column sep=1em]
+      The \& Emperor \& recently \& completely \& demolished \& the \& Cruiser \& at \& Endor \&  with \& the \& Death \& Star \& to \& crush \& the \& Rebels \\
+   \end{deptext}
+   \deproot{5}{ROOT}
+   \depedge{5}{2}{\textbf{ARGO-PAG}}
+   \depedge{2}{1}{DET}
+   \depedge{5}{4}{\textbf{ARGM-EXT}}
+   \depedge{5}{3}{\textbf{ARGM-TMP}}
+   \depedge{5}{7}{\textbf{ARG1-PPT}}
+   \depedge{7}{6}{DET}
+   \depedge{5}{9}{\textbf{ARGM-LOC}}
+   \depedge{9}{8}{CASE}
+   \depedge{5}{13}{\textbf{ARG2-MNR}}
+   \depedge{13}{12}{AMOD}
+   \depedge{13}{11}{DET}
+   \depedge{13}{10}{CASE}
+   \depedge{5}{15}{\textbf{ARGM-GOAL}}
+   \depedge{15}{17}{DOBJ}
+   \depedge{17}{16}{DET}
+   \depedge{15}{14}{MARK}
+\end{dependency}
+\end{document}

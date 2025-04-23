@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img class="wide" src="ling_memes/chomsky_syntax.jpg"></p>
+<hr />
+<h1 id="inflectional-morphology-verbs">Inflectional Morphology:
+Verbs</h1>
+<h3 id="dr.-will-styler---lign-120">Dr. Will Styler - LIGN 120</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Agreement</p></li>
+<li><p>Tense</p></li>
+<li><p>Aspect</p></li>
+<li><p>Mood</p></li>
+</ul>
+<hr />
+<h3
+id="last-time-we-talked-about-common-inflectional-meanings-on-nouns">Last
+time, we talked about common inflectional meanings on nouns</h3>
+<ul>
+<li>This time, we’ll move to verbal meaning</li>
+</ul>
+<hr />
+<h3 id="common-inflectional-patterns-on-verbs">Common Inflectional
+Patterns on Verbs</h3>
+<ul>
+<li><p>Agreement</p></li>
+<li><p>Tense</p></li>
+<li><p>Aspect</p></li>
+<li><p>Mood</p></li>
+<li><p>Other verbal meanings</p></li>
+</ul>
+<hr />
+<h2 id="agreement">Agreement</h2>
+<hr />
+<h2 id="agreement-1">Agreement</h2>
+<p>Marks the identity of the ‘actors’ and their roles on the verb
+itself</p>
+<ul>
+<li><p>Also known as ‘Concord’</p></li>
+<li><p>This is helpful for marking grammatical relations!</p></li>
+</ul>
+<hr />
+<h3 id="english-agreement-marking">English agreement marking</h3>
+<ul>
+<li>Sharon write-s to me</li>
+<li>sharon write-3SGsubj to 1sg.ACC</li>
+</ul>
+<hr />
+<h3 id="spanish-agreement-marking">Spanish Agreement Marking</h3>
+<ul>
+<li><p>Yo veo el gato</p></li>
+<li><p>1sg see.1sgsubj el cat</p></li>
+<li><p>I see the cat</p></li>
+<li><p>The arguments aren’t marked</p></li>
+<li><p><em>… but the verb (and ordering) lets us know who did
+it!</em></p></li>
+</ul>
+<hr />
+<h3 id="spanish-agreement-marking-1">Spanish Agreement Marking</h3>
+<ul>
+<li><p>Michael Bay hizo peliculas malas</p></li>
+<li><p>Michael Bay make.3sgsubj.past movie-pl bad-pl</p></li>
+<li><p>“Michael Bay made bad movies”</p></li>
+<li><p><em>We know that the plural argument did it!</em></p></li>
+</ul>
+<hr />
+<h3 id="this-is-why-spanish-can-drop-many-pronouns">This is why Spanish
+can drop many pronouns</h3>
+<ul>
+<li><p>Veo el gato (rather than ‘yo veo’)</p></li>
+<li><p>Tiene una tiza. ‘He/she has a chalk’</p></li>
+<li><p>… but in English, *Has a chalk.</p></li>
+</ul>
+<hr />
+<h3 id="agreement-can-use-many-ways-of-showing-identity">Agreement can
+use many ways of showing identity</h3>
+<ul>
+<li><p>Person marking (1sg, 2sg, etc)</p>
+<ul>
+<li>2sg did it!</li>
+</ul></li>
+<li><p>Number marking (singular, plural, etc)</p>
+<ul>
+<li>The group with more than one item did it!</li>
+</ul></li>
+<li><p>Gender marking (masc, fem, neuter)</p>
+<ul>
+<li>It was the masculine thing!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="more-ways-of-showing-identity">More ways of showing
+identity!</h3>
+<ul>
+<li><p>Noun class</p>
+<ul>
+<li>It was the large, flat object!</li>
+</ul></li>
+<li><p>New vs. old information markers</p>
+<ul>
+<li>The thing I mentioned first did it!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="whats-the-difference-between-case-and-agreement">“What’s the
+difference between case and agreement?”</h3>
+<hr />
+<h2 id="case-marks-roles-on-arguments">Case marks roles on
+arguments!</h2>
+<hr />
+<h3 id="russian-case-marking">Russian Case Marking</h3>
+<ul>
+<li>Will vidye-l koshk-u</li>
+<li>Will.NOM see-SG.MASC.PST cat-ACC.FEM</li>
+<li>“Will saw the cat.”</li>
+</ul>
+<hr />
+<h3 id="with-case-you-make-the-arguments-wear-nametags">With case, you
+make the arguments wear nametags</h3>
+<ul>
+<li>So you know what role the arguments are playing</li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Will-NOM see-3sg CAT-ACC</td>
+</tr>
+<tr class="even">
+<td><img class="big" src="lotwimg/myroleisagent.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="will-nom-see-3sg-cat-acc">Will-NOM see-3sg CAT-ACC</h3>
+<p><img class="big" src="lotwimg/myroleisobject.jpg"></p>
+<hr />
+<h2 id="agreement-marks-identity-on-verbs">Agreement marks identity on
+verbs!</h2>
+<ul>
+<li>“Rather than marking the arguments, let’s just make sure the verb
+points to who did it!”</li>
+</ul>
+<hr />
+<p><img class="big" src="lotwimg/chucknorriswashere.jpg"></p>
+<hr />
+<h3 id="lets-test-your-skills">Let’s test your skills!</h3>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<p>squirrele eta acornu</p>
+<p>squirrel.NOM eat acorn.ACC</p>
+<p>“The Squirrel ate the Acorn”</p>
+<ol type="A">
+<li><p>“This is case”</p></li>
+<li><p>“This is agreement”</p></li>
+</ol>
+<hr />
+<section data-background-color="#708cef">
+</section>
+<p>kula-knas Michael Bay Will</p>
+<p>judge-object.is.evil Michael Bay Will</p>
+<p>“Will judges Michael Bay”</p>
+<ol type="A">
+<li><p>“This is case”</p></li>
+<li><p>“This is agreement”</p></li>
+</ol>
+<hr />
+<h2 id="so-are-we-all-in">So, are we all in…</h2>
+<h1 id="agreement-2">Agreement!?</h1>
+<hr />
+<p><img class="big" src="humorimg/badpundog.jpg"></p>
+<hr />
+<p>(OK, Sorry, but a bit of humor is helpful before things get
+tense)</p>
+<hr />
+<h2 id="tense">Tense</h2>
+<hr />
+<h2 id="tense-1">Tense</h2>
+<p>Represents the relationship of the event described to another
+temporal reference point</p>
+<hr />
+<h3 id="generally-the-reference-time-is-now">Generally, the reference
+time is ‘now’</h3>
+<ul>
+<li>… but there is such a thing as narrative present</li>
+</ul>
+<hr />
+<h3 id="the-timeline">The Timeline</h3>
+<p><img class="wide" src="diagrams/tense_reftime.jpg"></p>
+<hr />
+<h3 id="a-three-way-tense-system">A three-way tense system</h3>
+<p><img class="wide" src="diagrams/tense_3waytense.jpg"></p>
+<hr />
+<h3 id="two-way-tense-systems">Two-way tense systems</h3>
+<p><img class="wide" src="diagrams/tense_nonfuture.jpg"></p>
+<p><img class="wide" src="diagrams/tense_nonpast.jpg"></p>
+<hr />
+<h3 id="a-non-present-tense-system">A non-present tense system</h3>
+<p><img class="wide" src="diagrams/tense_nonpresent.jpg"></p>
+<hr />
+<h3 id="tense-can-get-more-detailed">Tense can get more detailed</h3>
+<ul>
+<li><p>Tenses for yesterday, tomorrow</p></li>
+<li><p>Tenses for next year, last year</p></li>
+<li><p>Tenses for smaller within-day periods</p></li>
+<li><p><strong>… but tense always marks time of action relative to a
+reference!</strong></p></li>
+</ul>
+<hr />
+<p>… which is different from …</p>
+<hr />
+<h2 id="aspect">Aspect</h2>
+<hr />
+<h2 id="aspect-1">Aspect</h2>
+<p>Aspect marks the temporal nature and boundedness of described
+events.</p>
+<hr />
+<h3 id="aspect-is-widely-variable">Aspect is widely variable</h3>
+<ul>
+<li><p>There are many different types of aspect which can be
+marked</p></li>
+<li><p>Aspects are often coupled with tense, but don’t need to
+be!</p></li>
+<li><p><em>Tense and aspect are not the same thing!</em></p></li>
+</ul>
+<hr />
+<p><img class="wide" src="diagrams/aspect_imperfective.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_pluperfect.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_progressive.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_habitual.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_perfective.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_perfect.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_completive.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_inceptive.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_punctual.jpg"></p>
+<hr />
+<p><img class="wide" src="diagrams/aspect_intermittent.jpg"></p>
+<hr />
+<h3 id="these-arent-all-the-possible-aspects">These aren’t all the
+possible aspects</h3>
+<ul>
+<li><p>Sometimes, aspect is marked on verbs</p>
+<ul>
+<li>Spanish preterite vs. imperfective</li>
+</ul></li>
+<li><p>Sometimes, different verbs have inherent aspect</p>
+<ul>
+<li>Russian verbs of aspect</li>
+</ul></li>
+<li><p>Sometimes, other verbs are used</p>
+<ul>
+<li>‘I’ll start eating tomorrow’</li>
+</ul></li>
+<li><p>They’re all gonna have this same feeling of describing the
+temporal boundedness and structure of an event</p></li>
+</ul>
+<hr />
+<h2 id="mood-also-known-as-mode-or-modality">Mood (also known as ‘mode’
+or ‘modality’)</h2>
+<hr />
+<h2 id="mood">Mood</h2>
+<p>Grammatical functions which encode the speaker’s attitude about the
+event being described</p>
+<ul>
+<li>This is independent of tense and aspect</li>
+</ul>
+<hr />
+<h3 id="many-modes-exist">Many modes exist!</h3>
+<ul>
+<li>We’ll talk about some common modes</li>
+</ul>
+<hr />
+<h3 id="realis-vs.-irrealis">Realis vs. Irrealis</h3>
+<ul>
+<li><p>“Is it actually happening, or not?”</p></li>
+<li><p>“I went to the park” vs. “Had I gone to the park…”</p></li>
+<li><p>Indicative is the only realis mood in most languages</p></li>
+</ul>
+<hr />
+<h3 id="indicative">Indicative</h3>
+<ul>
+<li><p>Used for factual statements</p></li>
+<li><p>This is the default</p></li>
+<li><p>“Will is flailing his arms around”</p></li>
+</ul>
+<hr />
+<h3 id="subjunctive">Subjunctive</h3>
+<ul>
+<li><p>Used for imaginary or hypothetical events</p></li>
+<li><p>“If a pizza were to appear, I would ensure that it <clr>be</clr>
+eaten”</p></li>
+<li><p>Maria comería si <clr>tuviera</clr> hambre. ‘Maria would eat if
+she <clr>were hungry</clr>’</p></li>
+</ul>
+<hr />
+<h3 id="conditional">Conditional</h3>
+<ul>
+<li><p>This event depends on some other situation being true</p></li>
+<li><p>“I <clr>would go</clr> to the party, if I were invited”</p></li>
+<li><p>Maria <clr>comería</clr> si tuviera hambre. ‘Maria <clr>would
+eat</clr> if she were hungry’</p></li>
+</ul>
+<hr />
+<h3 id="potential">Potential</h3>
+<ul>
+<li><p>Something that’s more likely than subjunctive or
+conditional</p></li>
+<li><p>“This is probably going to happen”</p></li>
+<li><p><em>Mood is about speaker attitude</em></p></li>
+<li><p><strong>Epistemic</strong> is even weaker, ‘this is actually
+possible.’</p></li>
+</ul>
+<hr />
+<h3 id="inferential">Inferential</h3>
+<ul>
+<li><p>Reports events without confirming them</p></li>
+<li><p>“Andres was at the park.”</p>
+<ul>
+<li><p>“I saw him there myself”</p></li>
+<li><p>“Amber said he was there”</p></li>
+</ul></li>
+<li><p>Turkish o gitti vs. o gitmiş</p></li>
+</ul>
+<hr />
+<h3 id="imperative">Imperative</h3>
+<ul>
+<li><p>Imperatives issue commands, make requests, and give
+prohibitions</p></li>
+<li><p>“<clr>Turn off</clr> that Michael Bay movie.”</p></li>
+<li><p>“<clr>Do not open</clr> Pandora’s Box”</p></li>
+<li><p><strong>Jussive</strong> issues commands to a third person, or
+generally</p>
+<ul>
+<li>“Michael Bay movies are not to be watched”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="deontic">Deontic</h3>
+<ul>
+<li><p>Expresses the speaker’s belief that X <em>should</em> occur</p>
+<ul>
+<li>In the sense of ‘it would be better’</li>
+</ul></li>
+<li><p>“Will should stop eating donuts”</p></li>
+</ul>
+<hr />
+<h3 id="other-moods">Other Moods</h3>
+<ul>
+<li><p><strong>Optative</strong> - Marks hopes, requests and
+wishes</p></li>
+<li><p><strong>Interrogative</strong> - Marks asking a question
+explicitly</p></li>
+<li><p>… and plenty more!</p></li>
+</ul>
+<hr />
+<h2 id="other-verbal-markings">Other Verbal Markings</h2>
+<hr />
+<h3
+id="some-arguments-change-the-number-of-participants-in-a-verbs-frame">Some
+arguments change the number of participants in a verb’s frame</h3>
+<ul>
+<li><p>Active vs. Passive voice</p>
+<ul>
+<li>“I stole the donut” vs. “The donut was stolen”</li>
+</ul></li>
+<li><p>Reflexive markers</p>
+<ul>
+<li><p>Marks that the subject and the object are the same</p></li>
+<li><p>“I bathed myself”</p></li>
+</ul></li>
+<li><p>Causative markers</p>
+<ul>
+<li>“I didn’t do it, but I made somebody else do it”</li>
+</ul></li>
+<li><p>Reciprocal markers</p>
+<ul>
+<li>“We sunblocked each other”</li>
+</ul></li>
+<li><p>Transitivizing markers</p>
+<ul>
+<li>Makes an intransitive verb transitive</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="other-residents-of-the-verb">Other residents of the verb</h3>
+<ul>
+<li><p>Negation markers</p></li>
+<li><p>Directional markers</p>
+<ul>
+<li>“I ran uphill”</li>
+</ul></li>
+<li><p>Pronouns</p>
+<ul>
+<li>da-me el reloj! (give.2SG.IMP-1SG.DAT DET clock)</li>
+</ul></li>
+<li><p>Noun incorporation</p>
+<ul>
+<li>Who needs multiple words, just toss the object right in there!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Verbs take lots of morphology</p></li>
+<li><p>Agreement shows connections between the verb and the
+arguments</p></li>
+<li><p>Tense shows the temporal position of events</p></li>
+<li><p>Aspect talks about their temporal structure and
+boundaries</p></li>
+<li><p>Mood gives the speaker’s attitude about them</p></li>
+<li><p>There’s more to verbal morphology</p>
+<ul>
+<li>… but you’ll find it when you start working with your own
+languages!</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="for-next-time">For Next Time</h2>
+<ul>
+<li><p>How do we elicit these contrasts?</p></li>
+<li><p>Then, derivation!</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

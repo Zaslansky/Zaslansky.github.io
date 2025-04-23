@@ -1,0 +1,7 @@
+tree_marysawbobsparsetex
+
+[S 
+  [NP Mary ] 
+  [VP 
+    [V saw ] 
+    [NP Bob ] ] ]

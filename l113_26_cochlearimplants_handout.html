@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h3 id="follow-up">Follow Up</h3>
+<blockquote>
+<p>(The acoustic nerve is like) very limp spaghetti. The brain is like a
+thick jelly, the Spinal cord like chewed bubble gum, and the nerve roots
+are like overcooked spaghetti. - Dr. Frank Farokhi</p>
+</blockquote>
+<hr />
+<h1 id="cochlear-implants-and-hearing">Cochlear Implants and
+Hearing</h1>
+<h3 id="will-styler---lign-113">Will Styler - LIGN 113</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>CI Review</p></li>
+<li><p>CI Processing Strategies</p></li>
+<li><p>What about auditory brainstem implants?</p></li>
+<li><p>What is CI hearing like?</p></li>
+</ul>
+<hr />
+<h2 id="review-what-is-a-cochlear-implant">Review: What is a cochlear
+implant?</h2>
+<hr />
+<p><img class="r-stretch" src="hearing/ci_diagram.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/ci_installed.jpg"></p>
+<hr />
+<h2 id="what-is-ci-hearing-like">What is CI hearing like?</h2>
+<hr />
+<h2 id="different">Different!</h2>
+<hr />
+<h3 id="why-is-ci-hearing-so-different">Why is CI hearing so
+different?</h3>
+<p><img class="r-stretch" src="hearing/ci_installed.jpg"></p>
+<hr />
+<h3 id="cis-depend-on-the-use-of-processor-algorithms">CIs depend on the
+use of ‘processor’ algorithms</h3>
+<ul>
+<li><p>“How do we turn the continous spectrum of sound into pulses on a
+fixed number of electrode channels?”</p></li>
+<li><p>There are many different processing algorithms</p>
+<ul>
+<li><p>Things like CIS, ACE, HiRes120</p></li>
+<li><p>These are chosen by the patient and their audiologist</p></li>
+<li><p>Many devices can be adjusted to use a new or different
+one</p></li>
+</ul></li>
+<li><p>Each one uses different methods to transform sounds into a pulse
+train on the electrodes</p></li>
+<li><p>They are severely constrained by real-time running, battery life
+and processing power</p></li>
+</ul>
+<hr />
+<h3 id="cochlear-implant-coding-generically">Cochlear Implant Coding,
+Generically</h3>
+<ul>
+<li><p>Take the input signal</p></li>
+<li><p>Do an FFT (or use a bank of band-pass filters)</p>
+<ul>
+<li>Get 16-22 individual ‘bands’</li>
+</ul></li>
+<li><p>Take the ‘spectral envelope’ for each band</p>
+<ul>
+<li>The amplitude in each frequency band</li>
+</ul></li>
+<li><p>Now use those envelopes to decide the pulses sent to
+electrodes</p>
+<ul>
+<li>Pulses are sent at anywhere from 900-1800 Hz</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/noisefft.jpg"></p>
+<hr />
+<h3 id="one-major-problem">One major problem</h3>
+<ul>
+<li>Neighboring electrodes interfere with each other!</li>
+</ul>
+<p><img class="r-stretch" src="hearing/ci_installed.jpg"></p>
+<hr />
+<h3 id="we-want-to-use-all-the-channels">We want to use all the
+channels</h3>
+<ul>
+<li>… but we don’t want to use all of them at once</li>
+</ul>
+<hr />
+<h3 id="continuous-interleaved-sampling-cis-coding">Continuous
+Interleaved Sampling (CIS) Coding</h3>
+<ul>
+<li><p>Do the thing above, choosing the same number of bands as you have
+electrodes</p></li>
+<li><p>Every electrode gets activated, one after the other, in a fixed
+sequence</p></li>
+</ul>
+<p><img class="r-stretch" src="hearing/ci_installed.jpg"></p>
+<hr />
+<h3 id="advanced-combinatorial-encoder-ace-coding">Advanced
+Combinatorial Encoder (ACE) Coding</h3>
+<ul>
+<li><p>Do the thing above, choosing the same number of bands as you have
+electrodes</p></li>
+<li><p>Choose the N highest amplitude bands (often 8-10) and stimulate
+<strong>only</strong> those electrodes</p></li>
+<li><p>The person is given only the <em>loudest</em> bands, more
+often</p></li>
+<li><p>This keeps neighboring electrodes from interfering with each
+other</p></li>
+</ul>
+<hr />
+<h3 id="other-approaches-take-other-strategies">Other approaches take
+other strategies</h3>
+<ul>
+<li><p>Dedicating some channels to ‘temporal fine structure’ (e.g. voice
+pulses)</p>
+<ul>
+<li>‘We’ll have two channels that accurately track any pitch below the
+pulse rate’</li>
+</ul></li>
+<li><p>‘Virtual channels’</p>
+<ul>
+<li>e.g. turning up channels 2 and 3 at the same time when there’s
+something at 2.5</li>
+</ul></li>
+</ul>
+<hr />
+<p>(The following figures are from <a
+href="https://ieeexplore.ieee.org/document/7038260">Wouters et al. 2015,
+Sound coding in cochlear implants: from electric pulses to
+hearing</a></p>
+<hr />
+<p><img class="r-stretch" src="hearing/ci_codingboyfell.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/ci_codingboy.jpg"></p>
+<hr />
+<h3 id="there-are-many-algorithms">There are many algorithms</h3>
+<ul>
+<li><p>This is an active area of research!</p></li>
+<li><p>New encoders can mean major improvements for hearing</p>
+<ul>
+<li>CIS to ACE offered 6-9% gains in speech recognition (c.f. Wouter et
+al. citing Skinner et al.)</li>
+</ul></li>
+<li><p>This is the ‘software’ that allows the machine to optimally mesh
+with the mind</p></li>
+</ul>
+<hr />
+<h3 id="all-of-these-methods-are-lossy">All of these methods are
+<em>lossy</em>!</h3>
+<hr />
+<h3 id="lots-of-information-goes-away">Lots of information goes
+away</h3>
+<ul>
+<li><p>Continuous spectrum -&gt; 22 channels</p></li>
+<li><p>The dynamic range is very small (~10 dB)</p></li>
+<li><p>The frequency range can be much smaller</p></li>
+<li><p>Masking effects can be complete within bands</p>
+<ul>
+<li>You cannot tell A+B from A or B within a single channel</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="we-lose-some-other-detailed-information">We lose some other
+detailed information</h3>
+<ul>
+<li><p>Fine temporal information goes away</p>
+<ul>
+<li>“What is the fundamental frequency?” can be hard to ask</li>
+</ul></li>
+<li><p>Pinna cues aren’t preserved</p>
+<ul>
+<li><p>Lack of frequency resolution</p></li>
+<li><p>Positioning of microphone</p></li>
+</ul></li>
+<li><p>Interaural time and amplitude differences can disappear too!</p>
+<ul>
+<li><p>The two ears aren’t always on the same clock cycles</p></li>
+<li><p>Amplitude differences are subtle and can be squashed</p></li>
+<li><p>Many people have just one CI</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="this-means-that-ci-sound-perception-is-different">This means
+that CI sound perception is DIFFERENT</h3>
+<ul>
+<li><p>Really, REALLY different</p></li>
+<li><p>‘Simulating’ CI hearing is not possible</p>
+<ul>
+<li><p>You can distort sound into 22 bands, but that’s <em>not</em>
+really the same thing</p></li>
+<li><p>… but it can be a useful abstraction for raising
+awareness</p></li>
+<li><p>‘The Sound of Metal’ does this well</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="heres-a-simulation-of-ci-mediated-hearing">Here’s a simulation
+of CI-mediated hearing</h3>
+<p>It’s a bit generous, and includes different numbers of channels, but
+gives a sense of what to expect.</p>
+<audio controls src="hearing/ci_simulation.mp3">
+</audio>
+<hr />
+<h3 id="this-is-a-fundamentally-different-mode-of-perception">This is a
+fundamentally different mode of perception</h3>
+<ul>
+<li><p>Computationally-mediated nerve stimulation</p></li>
+<li><p>The fact that it’s happening in the cochlea is a matter of
+convenience</p></li>
+</ul>
+<hr />
+<h3 id="wait-a-second">Wait a second</h3>
+<ul>
+<li><p>Could we do this same sort of stimulation, on other
+nerves?</p></li>
+<li><p><strong>Yes!</strong></p></li>
+</ul>
+<hr />
+<h2 id="auditory-brainstem-implants">Auditory Brainstem Implants</h2>
+<hr />
+<h3 id="auditory-brainstem-implants-1">Auditory Brainstem Implants</h3>
+<ul>
+<li>“Instead of stimulating the Spiral Ganglion based on sound, let’s do
+the same thing near the base of the 8th nerve”</li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/auditory_brainstem_implant.jpg"></p>
+<hr />
+<h3 id="same-idea-different-stimulation-point">Same idea, different
+stimulation point</h3>
+<ul>
+<li><p>Turn audio into bands</p></li>
+<li><p>Turn bands into pulses</p></li>
+<li><p>Put pulses on nerves</p></li>
+<li><p>Let the brain sort it out</p></li>
+</ul>
+<hr />
+<h3 id="abis-have-many-of-the-same-strengths-and-drawbacks-as-cis">ABIs
+have many of the same strengths and drawbacks as CIs</h3>
+<ul>
+<li><p>They just differ in deployment</p></li>
+<li><p>ABIs work even when the 8th nerve is damaged beyond the
+cochlea</p></li>
+<li><p>The surgery is far more invasive</p></li>
+<li><p>So, <em>if you can go the CI route, they’re usually a better
+choice than ABIs</em></p></li>
+</ul>
+<hr />
+<h3 id="but-how-good-of-a-choice-are-either-of-them">… but how good of a
+choice are either of them?</h3>
+<hr />
+<h2 id="cochlear-implant-hearing">Cochlear Implant Hearing</h2>
+<hr />
+<h3 id="you-dont-just-turn-it-on-and-people-are-non-deaf">You don’t just
+‘turn it on’ and people are non-Deaf</h3>
+<ul>
+<li><p>‘Turning it on’ immediately gives sensation of sound</p>
+<ul>
+<li><p>“There is more noise now than before”</p></li>
+<li><p>“Huh, beep”</p></li>
+</ul></li>
+<li><p>… but then the work starts!</p></li>
+</ul>
+<hr />
+<h3 id="there-are-many-things-configured-during-fitting">There are many
+things configured during ‘fitting’</h3>
+<ul>
+<li><p>Different processing strategies</p></li>
+<li><p>Different settings</p>
+<ul>
+<li><p>Number of simultaneous bands</p></li>
+<li><p>Pulse rate</p></li>
+</ul></li>
+<li><p>Different ‘loudness’ by frequency</p>
+<ul>
+<li>‘MCL’, or ‘Most Comfortable Loudness’</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="cochlear-implant-hearing-requires-rehabilitation">Cochlear
+Implant hearing requires (re)habilitation</h3>
+<ul>
+<li><p>Your brain needs to (re-)learn how to model the world from these
+pulses</p></li>
+<li><p>Tonotopic organization helps, but the signal is still
+<em>fundamentally</em> different</p></li>
+<li><p>Neuroplasticity plays a big role here</p>
+<ul>
+<li>Young children often have better outcomes than adults</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="measuring-outcomes">Measuring Outcomes</h3>
+<ul>
+<li><p>How do we want to evaluate outcomes for people?</p></li>
+<li><p>What matters most when evaluating CI ‘effectiveness’?</p></li>
+<li><p><em>All of this varies <strong>greatly</strong> from person to
+person!</em></p></li>
+</ul>
+<hr />
+<h3 id="can-ci-users-detect-sound">Can CI users detect sound?</h3>
+<ul>
+<li><p>Massive success!</p></li>
+<li><p>“Huh, beep” perception is more or less universal</p></li>
+</ul>
+<hr />
+<h3 id="can-ci-users-detect-separate-sounds-playing-at-once">Can CI
+users detect separate sounds playing at once?</h3>
+<ul>
+<li><p>Yes!</p></li>
+<li><p>“How well can the different channels be discriminated?”</p>
+<ul>
+<li><p>Channel 2 may not ‘sound’ reliably different from channel
+3</p></li>
+<li><p>Channel 2+3 may not sound different from 2 or 3</p></li>
+<li><p>Channels 2 and 5 may even be hard to tell apart</p></li>
+</ul></li>
+<li><p>Not all channels may be available to all people</p>
+<ul>
+<li>Remember issues with insertion depth?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="what-do-puretone-thresholds-look-like-for-ci-users">What do
+puretone thresholds look like for CI users?</h3>
+<blockquote>
+<p>Children with profound hearing impairment who received cochlear
+implants performed equally to children with severe hearing impairment
+treated with hearing aids on half of the performance tests. - de Kleijn
+et al. 2018</p>
+</blockquote>
+<blockquote>
+<p>All patients showed hearing improvement over time. Aided thresholds
+improved significantly (p &lt; 0.01) from a mean of 62.3 dB HL with the
+preimplant hearing aid to a mean of 39.2 dB HL at 3 months after
+implantation and 36.3 dB HL at 12 months after implantation (fig. 1). -
+Lachowska et al. 2015</p>
+</blockquote>
+<hr />
+<p><img class="r-stretch" src="hearing/ci_elderly_audiograms.jpg"></p>
+<p>Fig 3: Lachowska et al. 2015</p>
+<hr />
+<h3 id="what-does-music-and-sound-perception-look-like">What does music
+and sound perception look like?</h3>
+<ul>
+<li><p>Music appreciation is generally very hard for CI users</p></li>
+<li><p>Identifying specific auditory patterns (e.g. birdsongs, or
+differing tone patterns) may be very difficult</p></li>
+<li><p>Much of ‘natural noise’ is missing or distorted</p></li>
+</ul>
+<hr />
+<h3 id="how-reliably-can-adult-ci-users-hear-speech">How reliably can
+adult CI users hear speech?</h3>
+<ul>
+<li><p>The story varies!</p></li>
+<li><p><strong>Pre-lingually</strong> deafened adults don’t generally
+learn to recognize words</p></li>
+<li><p>For post-lingually deafened adults, ~35-45% correct words and
+65-80% sentence scores</p>
+<ul>
+<li>… but there’s a lot of variability!</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="hearing/ci_elderly_speech_1.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/ci_elderly_speech_2.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="hearing/ci_elderly_speech_3.jpg"></p>
+<hr />
+<h3 id="how-about-kids">How about kids?</h3>
+<ul>
+<li><p>Children range from ~4-75% accuracy on words, and around 61%
+accuracy for sentences</p></li>
+<li><p>Word-in-isolation and sentence scores don’t account for
+context</p></li>
+<li><p><strong>This is not natural hearing, but it’s not
+nothing!</strong></p></li>
+</ul>
+<hr />
+<h3 id="remember-that-this-is-in-isolated-testing">Remember that this is
+in isolated testing!</h3>
+<ul>
+<li><p>Background noise complicates perception substantially</p></li>
+<li><p>CIs can be amazing in quiet rooms, but useless at
+parties</p></li>
+<li><p>‘The Sound of Steel’ did an amazing job capturing this</p></li>
+</ul>
+<hr />
+<h3 id="how-do-people-feel-about-their-cochlear-implants">How do people
+<em>feel</em> about their cochlear implants?</h3>
+<blockquote>
+<p>The first subgroup of implanted elderly (6 patients, 20%) - showing
+very good benefits - also displayed very good perception of spoken
+language through the auditory-sensory modality with familiar and
+unfamiliar speakers without assistance from lipreading, and with a
+little help from lipreading in noisy environments. Most of them were
+able to have a conversation over the phone. After implantation, these
+elderly became more active in everyday life, often met with neighbors
+and friends, and were open to meet new people. The mean implant-aided
+free-field audiometric threshold was &lt;30 dB HL. The oldest patient
+was 87 years old. - Lachowska et al. 2015</p>
+</blockquote>
+<hr />
+<h3 id="how-do-people-feel-about-their-cochlear-implants-1">How do
+people <em>feel</em> about their cochlear implants?</h3>
+<blockquote>
+<p>The second subgroup of implanted elderly (20 patients, 67%) showing
+good benefits - also demonstrated good perception of spoken language
+through the auditory-sensory modality with a little help from
+lipreading. The cochlear implant provided better communication and
+enabled improved contact with other people leading to increased
+independence in everyday life. Their mean implant-aided free-field
+audiometric threshold was between 30 and 50 dB HL. The oldest patient
+was 87 years old. - Lachowska et al. 2015</p>
+</blockquote>
+<hr />
+<h3 id="how-do-people-feel-about-their-cochlear-implants-2">How do
+people <em>feel</em> about their cochlear implants?</h3>
+<blockquote>
+<p>In a survey of over 20,000 deaf children implanted since 2000, 47
+percent had stopped using their CI</p>
+</blockquote>
+<ul>
+<li>(Humphries et al 2016)</li>
+</ul>
+<hr />
+<h3 id="variability-is-the-key-takeaway">Variability is the key
+takeaway</h3>
+<ul>
+<li><p>CIs are <em>never</em> like natural hearing</p></li>
+<li><p>CIs are an amazing choice for some</p></li>
+<li><p>They’re a minor improvement for others</p></li>
+<li><p>They’re useless or harmful for others still</p></li>
+<li><p><strong>This is a medical intervention with potential risks and
+rewards, not a ‘sure thing’</strong></p></li>
+</ul>
+<hr />
+<h3 id="to-summarize">To summarize</h3>
+<hr />
+<h3
+id="cochlear-implants-often-provide-benefit-albeit-at-a-cost">Cochlear
+Implants often provide benefit, albeit at a cost!</h3>
+<ul>
+<li><p>Most people will have some sensation of sound from them</p></li>
+<li><p>Some people gain the ability to speak and understand spoken
+language</p></li>
+<li><p>Improvements to lip-reading ability may also improve quality of
+spoken perception</p></li>
+<li><p>The ‘option’ to hear can be situationally useful</p></li>
+</ul>
+<hr />
+<h3 id="cochlear-implants-do-not-restore-hearing">Cochlear Implants do
+not ‘restore hearing’</h3>
+<ul>
+<li>… any more than a hook restores having a hand</li>
+</ul>
+<p><img class="r-stretch" src="hearing/hook_hand.jpg"></p>
+<hr />
+<h3 id="this-idea-leads-to-offensive-and-incautious-messaging">This idea
+leads to offensive and incautious messaging</h3>
+<ul>
+<li><p>“CIs will fix your deaf child and let them lead a normal
+life!”</p></li>
+<li><p>“With CIs, your child won’t need to resort to signed
+language!”</p></li>
+<li><p>“If you can afford CIs for your children, not doing so is
+neglectful!”</p></li>
+<li><p>“In the worst case, they can just learn sign and join the deaf
+community!”</p></li>
+<li><p><strong>Each one of these statements is
+problematic!</strong></p></li>
+</ul>
+<hr />
+<h3 id="but-there-exists-a-middle-ground">… but there exists a middle
+ground</h3>
+<ul>
+<li><p>Bicultural/Bilingual approaches</p></li>
+<li><p>CIs targeted for environmental awareness only</p></li>
+<li><p>Use of these implants as tools</p></li>
+<li><p><strong>The best approach is what’s best for the
+individual!</strong></p></li>
+</ul>
+<hr />
+<h3 id="more-info-on-cis">More info on CIs</h3>
+<ul>
+<li><a href="https://www.asha.org/policy/TR2004-00041">Here’s a detailed
+document from ASHA</a></li>
+</ul>
+<hr />
+<h3
+id="we-need-to-understand-the-variance-to-understand-the-attitudes">We
+need to understand the variance to understand the attitudes</h3>
+<ul>
+<li><p>CIs can be a life-changing enhancement, providing the ability to
+hear and understand speech</p></li>
+<li><p>CIs can also be a spectacular waste of $30,000-60,000 dollars,
+which don’t merit continued use</p></li>
+<li><p>There’s relatively little indication as to which people will have
+which experience</p></li>
+</ul>
+<hr />
+<h3 id="wills-personal-takeaway">Will’s Personal takeaway</h3>
+<ul>
+<li><p>There’s no harm in teaching and learning sign</p>
+<ul>
+<li>Bilingualism is never harmful, and signed language is guaranteed to
+work well for Deaf folks</li>
+</ul></li>
+<li><p>‘Going all in’ on CIs and Spoken language is unwise</p>
+<ul>
+<li><p>There’s some indication that early sign exposure improves
+outcomes for spoken language with CIs</p></li>
+<li><p>You can’t guarantee a good outcome from the CIs, and language
+deprivation is a <em>major</em> risk</p></li>
+</ul></li>
+<li><p>Attitudes like “CIs are always bad and getting them makes you
+bad” are equally unwise</p>
+<ul>
+<li>They can be great for some, and people’s choices and body autonomy
+should be respected</li>
+</ul></li>
+<li><p><strong>Your role is to give choices and information, grounded in
+science and data</strong></p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Cochlear Implants stimulate the nerves directly based on incoming
+audio</p></li>
+<li><p>Processing algorithms turn sound into stimulation</p></li>
+<li><p>ABIs work the same way, but deeper down the nerve!</p></li>
+<li><p>CI-mediated hearing is not the same as natural hearing</p></li>
+<li><p>There’s massive variability in outcomes from person to
+person</p></li>
+</ul>
+<hr />
+<h3 id="next-time">Next time</h3>
+<ul>
+<li><p>What questions remain?</p></li>
+<li><p>‘What was the most interesting thing you learned this
+quarter?’</p></li>
+<li><p>Wrapping up the course</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+<hr />
+<h3 id="references">References</h3>
+<p>de Kleijn JL, van Kalmthout LWM, van der Vossen MJB, Vonck BMD,
+Topsakal V, Bruijnzeel H. Identification of Pure-Tone Audiologic
+Thresholds for Pediatric Cochlear Implant Candidacy: A Systematic
+Review. JAMA Otolaryngol Head Neck Surg. 2018;144(7):630–638.
+doi:10.1001/jamaoto.2018.0652</p>
+<p>Lachowska M, Pastuszka A, Glinka P, Niemczyk K. Benefits of cochlear
+implantation in deafened adults. Audiol Neurootol. 2014;19 Suppl 1:40-4.
+doi: 10.1159/000371609. Epub 2015 Feb 20. PMID: 25733366.</p>
+</body>
+</html>

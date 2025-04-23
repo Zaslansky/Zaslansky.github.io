@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="the-first-audio-recording">The First Audio Recording</h3>
+<audio controls src="phonmedia/edison_lostchord.mp3">
+</audio>
+<hr />
+<h3 id="a440-move-around-the-room-to-hear-nodes-and-antinodes">A440
+(Move around the room to hear nodes and antinodes)</h3>
+<audio controls src="phonmedia/440A_fiveminutes.mp3">
+</audio>
+<hr />
+<h3 id="a220-move-around-the-room-to-hear-nodes-and-antinodes">A220
+(Move around the room to hear nodes and antinodes)</h3>
+<audio controls src="phonmedia/220A_fiveminutes.mp3">
+</audio>
+<hr />
+<h1 id="digital-sound-and-sampling">Digital Sound and Sampling</h1>
+<h3 id="will-styler---lign-168">Will Styler - LIGN 168</h3>
+<hr />
+<h3 id="where-are-we">Where are we!</h3>
+<p><img class='r-stretch' src='diagrams/speech_processing_pipeline.jpg'></p>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Capturing Pressure variations</p></li>
+<li><p>Computer Audio, Sampling, and Quantization</p></li>
+</ul>
+<hr />
+<h3 id="sound-is-compression-and-rarefaction-in-a-medium">Sound is
+compression and rarefaction in a medium</h3>
+<p><img class="r-stretch" src="phonmedia/sound_diagram.jpg"></p>
+<hr />
+<h3 id="timeshifted-sound-is-a-novelty">Timeshifted sound is a
+novelty</h3>
+<ul>
+<li><p>For most of our species history, this wasn’t a thing</p></li>
+<li><p><em>How do we capture and recreate the pattern of sound
+pressure?</em></p></li>
+</ul>
+<hr />
+<h3 id="analog-recording">Analog Recording</h3>
+<ul>
+<li>“Let’s capture the pressure pattern in a physical medium”</li>
+</ul>
+<hr />
+<h3 id="the-phonograph">The Phonograph</h3>
+<ul>
+<li>Air pressure pushes a stylus into very soft wax cylinder</li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/phonograph.jpg"></p>
+<hr />
+<h3 id="playback-from-phonographs">Playback from Phonographs</h3>
+<ul>
+<li>Put a stylus on a membrane into the groove, and let it ‘trace the
+wave’</li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/phonograph2.jpg"></p>
+<hr />
+<h3 id="these-recordings-are-ephemeral-and-bad">These recordings are
+ephemeral and bad</h3>
+<ul>
+<li><p>The stylus wears away the groove</p></li>
+<li><p>The power of the air pressure limited the strength of the
+medium</p></li>
+</ul>
+<p>‘The Lost Chord’ by Arthur Sullivan (1888)</p>
+<audio controls src="phonmedia/edison_lostchord.mp3">
+</audio>
+<hr />
+<h3 id="theres-an-inherent-tradeoff">There’s an inherent tradeoff</h3>
+<ul>
+<li><p>You want a soft medium for capture</p></li>
+<li><p>… and a hard medium for playback</p></li>
+<li><p>Air pressure only provides so much power</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="phonmedia/conerecording.jpg"></p>
+<hr />
+<h3 id="electric-recording-fixes-this">Electric Recording fixes
+this!</h3>
+<ul>
+<li><p>Electrical signals are easy to amplify</p></li>
+<li><p>… and easier to store</p></li>
+</ul>
+<hr />
+<h3 id="microphones">Microphones</h3>
+<ul>
+<li><p>A Microphone <em>transduces air pressure patterns into electrical
+patterns</em></p></li>
+<li><p>‘Give me a pattern of voltage that matches the pattern of
+compression and rarefaction’</p></li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/sound_diagram.jpg"></p>
+<hr />
+<h3 id="dynamic-microphones">Dynamic Microphones</h3>
+<ul>
+<li><p>Air pressure pushes a membrane, moving a coil of wire around a
+magnet, inducing voltage</p></li>
+<li><p>Durable, but less sensitive</p></li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/mic_dynamic.jpg"></p>
+<hr />
+<h3 id="there-are-many-other-kinds-of-microphones">There are many other
+kinds of microphones!</h3>
+<ul>
+<li>We can nerd out about this in office hours!</li>
+</ul>
+<hr />
+<h3 id="now-you-have-sound-as-a-voltage-on-an-electrical-line">Now you
+have sound as a voltage on an electrical line</h3>
+<ul>
+<li><p>You can amplify it, transmit it, modify it and store it</p></li>
+<li><p>You can even recreate the air pressure movements</p></li>
+</ul>
+<hr />
+<h3 id="amplification">Amplification</h3>
+<ul>
+<li><p>“When this signal gets stronger, make this other one stronger
+still”</p></li>
+<li><p>“Increase the voltage of this signal and send it down the
+line”</p></li>
+<li><p>This can be done in many ways, but it’s (relatively) easy and
+doesn’t require computers</p></li>
+</ul>
+<hr />
+<h3 id="speakers">Speakers</h3>
+<ul>
+<li><p>Dynamic microphones in reverse</p></li>
+<li><p>Changes in voltage move a membrane attached to a coil</p></li>
+<li><p>This ‘kicks’ the air in the desired pattern of
+compression</p></li>
+</ul>
+<p><img class="r-stretch" src="phonmedia/speaker.jpg"></p>
+<hr />
+<h3 id="there-are-many-types-of-speakers-some-are-different">There are
+many types of speakers, some are different!</h3>
+<p><img class="r-stretch" src="phonmedia/speakers.jpg"></p>
+<hr />
+<h2 id="any-questions-so-far">Any Questions so far?</h2>
+<hr />
+<h3 id="so-thats-how-we-capture-sound">So, that’s how we capture
+sound</h3>
+<ul>
+<li>… and that’s how we worked with sound for a good while!</li>
+</ul>
+<hr />
+<h3 id="there-are-other-analog-ways-to-store-sound">There are other
+<em>analog</em> ways to store sound</h3>
+<ul>
+<li><p>Magnetic field strength on tapes</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=tg--L9TKL0I">Optical
+Audio Storage on Film</a></p></li>
+<li><p>… and more!</p></li>
+</ul>
+<hr />
+<h3 id="but-then-everything-changed">But then everything changed</h3>
+<p><img class="r-stretch" src="img/appleii.jpg"></p>
+<hr />
+<h2 id="computer-audio">Computer Audio</h2>
+<hr />
+<h3 id="computers-dont-do-waves">Computers don’t do waves</h3>
+<p><img class="r-stretch" src="phonmedia/sampling_raw.jpg"></p>
+<p>010001110010101000100101101010101010</p>
+<hr />
+<h3 id="sound-is-analog-computers-are-digital">Sound is analog,
+computers are digital</h3>
+<ul>
+<li>How do we deal with that?</li>
+</ul>
+<hr />
+<h3 id="quantization">Quantization</h3>
+<ul>
+<li><p>Also known as ‘digitization’, ‘discretization’, or
+‘sampling’</p></li>
+<li><p>“Let’s just measure the sound a LOT and store those
+values”</p></li>
+</ul>
+<hr />
+<h3 id="quantization-1">Quantization</h3>
+<p><img class="r-stretch" src="diagrams/sampling_perfectwave.png"></p>
+<hr />
+<h3 id="quantization-2">Quantization</h3>
+<p><img class="r-stretch" src="diagrams/sampling_sampled.png"></p>
+<hr />
+<h3 id="quantization-3">Quantization</h3>
+<p><img class="r-stretch" src="diagrams/sampling_withlines.png"></p>
+<hr />
+<h3 id="quantization-4">Quantization</h3>
+<p><img class="r-stretch" src="diagrams/sampling_justlines.png"></p>
+<hr />
+<h3 id="analog-to-digital-conversion">Analog-to-digital conversion</h3>
+<ul>
+<li><p>Sample the wave many times per second</p></li>
+<li><p>Record the amplitude at each sample</p></li>
+<li><p>The resulting wave will faithfully capture the signal</p></li>
+</ul>
+<hr />
+<h3 id="how-often-do-we-sample">How often do we sample?</h3>
+<ul>
+<li><p>This is called the ‘Sampling Rate’</p></li>
+<li><p>Measured in samples per second (Hz)</p></li>
+<li><p><strong>This is the same question as ‘how often do I collect data
+from my population?’</strong></p></li>
+</ul>
+<hr />
+<h3 id="sampling-rate">Sampling Rate</h3>
+<p><img class="r-stretch" src="diagrams/sampling_sampled.png"></p>
+<hr />
+<h3 id="sampling-rate-low-rate">Sampling Rate (low rate)</h3>
+<p><img class="r-stretch" src="diagrams/sampling_lowrate.png"></p>
+<hr />
+<h3 id="sampling-rate-low-rate-1">Sampling Rate (low rate)</h3>
+<p><img class="r-stretch" src="diagrams/sampling_lowratejustlines.png"></p>
+<hr />
+<h3 id="sampling-rate-lower-rate">Sampling Rate (lower rate)</h3>
+<p><img class="r-stretch" src="diagrams/sampling_verylow.png"></p>
+<hr />
+<h3 id="sampling-rate-lower-rate-1">Sampling Rate (lower rate)</h3>
+<p><img class="r-stretch" src="diagrams/sampling_verylow2.png"></p>
+<hr />
+<h3 id="bad-sampling-makes-for-bad-waves">Bad sampling makes for bad
+waves</h3>
+<p><img class="r-stretch" src="phonmedia/sampling_undersampled.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Good sampling rates capture the necessary set of
+frequencies</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="diagrams/sampling_sampled.png"></td>
+</tr>
+</tbody>
+</table>
+<h3
+id="good-sampling-rates-capture-the-necessary-set-of-frequencies">Good
+sampling rates capture the necessary set of frequencies</h3>
+<p><img class="r-stretch" src="diagrams/sampling_clip_orig.png"></p>
+<hr />
+<h3 id="higher-frequencies-need-higher-sampling-rates">Higher
+frequencies need higher sampling rates</h3>
+<p><img class="r-stretch" src="diagrams/sampling_sampled_hifreq.png"></p>
+<hr />
+<h3 id="higher-frequencies-need-higher-sampling-rates-1">Higher
+frequencies need higher sampling rates</h3>
+<p><img class="r-stretch" src="diagrams/sampling_sampled_ultrahifreq.png"></p>
+<hr />
+<h2 id="nyquist-theorem">Nyquist Theorem</h2>
+<p>The highest frequency captured by a sample signal is one half the
+sampling rate</p>
+<hr />
+<h3 id="the-nyquist-theorem-is-beautiful-and-motivational">The Nyquist
+Theorem is beautiful and motivational</h3>
+<ul>
+<li><p>Perfect capture of the wave isn’t possible (in a digital
+space)</p></li>
+<li><p>… but as long as you know your goal, you can capture it
+mathematically good enough</p></li>
+<li><p><strong>Don’t try to sample perfectly, just know your frequency
+range and nyquist it!</strong></p></li>
+</ul>
+<hr />
+<h3
+id="sampling-rates-shpongle---nothing-is-something-worth-doing">Sampling
+Rates (Shpongle - ‘Nothing is something worth doing’)</h3>
+<p>44,100 Hz
+<audio controls src="phonmedia/nothingsomething44100.wav"></audio></p>
+<p>22,050 Hz
+<audio controls src="phonmedia/nothingsomething22050.wav"></audio></p>
+<p>11,025 Hz
+<audio controls src="phonmedia/nothingsomething11025.wav"></audio></p>
+<p>6000 Hz
+<audio controls src="phonmedia/nothingsomething6000.wav"></audio></p>
+<hr />
+<h3
+id="sampling-rates-shpongle---nothing-is-something-worth-doing-1">Sampling
+Rates (Shpongle - ‘Nothing is something worth doing’)</h3>
+<p>44,100 Hz
+<audio controls src="phonmedia/nothingsomething44100.wav"></audio></p>
+<p>6000 Hz
+<audio controls src="phonmedia/nothingsomething6000.wav"></audio></p>
+<p>3000 Hz
+<audio controls src="phonmedia/nothingsomething3000.wav"></audio></p>
+<p>1500 Hz
+<audio controls src="phonmedia/nothingsomething1500.wav"></audio></p>
+<p>800 Hz
+<audio controls src="phonmedia/nothingsomething800.wav"></audio></p>
+<hr />
+<h3 id="playback-is-just-connect-the-dots">Playback is just ‘connect the
+dots’</h3>
+<ul>
+<li><p>Recreate the signal from the points, and then amplify it</p></li>
+<li><p>This is ‘Digital to Analog Conversion’</p></li>
+<li><p>It’s not particularly hard!</p></li>
+</ul>
+<hr />
+<h3 id="different-media-use-different-sampling-rates">Different media
+use different sampling rates</h3>
+<ul>
+<li><p>CDs are at 44,100 Hz</p></li>
+<li><p>DVDs are at 48,000 Hz</p></li>
+<li><p>High-End Audio DVDs are at 96,000 Hz</p></li>
+<li><p>Some people want 192,000 Hz</p>
+<ul>
+<li>Silly unless they are dolphins</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="you-can-downsample-and-upsample">You can ‘Downsample’ and
+‘Upsample’</h3>
+<ul>
+<li><p>Take a sampled wave and <em>sample it again</em></p></li>
+<li><p><em>Downsampling</em> reduces the amount of detail
+stored</p></li>
+<li><p><em>Upsampling</em> increases the frequency of samples
+stored</p></li>
+<li><p><strong>Why is upsampling not actually increasing detail
+stored?</strong></p></li>
+</ul>
+<hr />
+<h3 id="downsampling-is-a-type-of-filtering">Downsampling is a type of
+filtering</h3>
+<ul>
+<li><p>Why is this true?</p></li>
+<li><p>What does it affect?</p></li>
+</ul>
+<hr />
+<h3 id="you-dont-always-have-high-sampling-rates">You don’t always have
+high sampling rates</h3>
+<ul>
+<li><p>Many microphones ‘roll off’ above 10kHz, 8kHz, even 6kHz</p>
+<ul>
+<li>Looking at you, Windows Laptops!</li>
+</ul></li>
+<li><p>Some software isn’t set up for higher sampling rates</p></li>
+<li><p><strong>Many speech tools require you to downsample to use
+them</strong></p></li>
+</ul>
+<hr />
+<h3 id="but-what-are-we-storing-at-each-point">… but what are we storing
+at each point?</h3>
+<ul>
+<li><p>We want to store individual values for amplitude</p></li>
+<li><p>We want to store values with enough precision to capture the wave
+well</p>
+<ul>
+<li>0.1 vs. 0.09 vs. 0.087 vs. 0.0866 vs. 0.08659
+vs. 0.086588945372912</li>
+</ul></li>
+<li><p>… but more precision means more numbers (which need more space to
+store!)</p></li>
+<li><p>We need to find the right <strong>bit depth</strong></p></li>
+</ul>
+<hr />
+<h3 id="bit-depth">Bit Depth</h3>
+<ul>
+<li><p>How many bits of amplitude information do we store for each
+sample?</p></li>
+<li><p>4 bits gives 16 ‘levels’</p></li>
+<li><p>16 bits gives 65,563 levels</p>
+<ul>
+<li>Praat records and plays at 16 bit, as do most things</li>
+</ul></li>
+<li><p>24 bits gives 16,777,216 levels</p>
+<ul>
+<li>This is towards our upper limit of precision to be able to
+capture</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="your-bit-depth-will-likely-be-16-bit">Your bit depth will likely
+be 16 bit</h3>
+<ul>
+<li><p>If it’s not spoken of, it’s 16 bit</p></li>
+<li><p>There’s no reason to go higher, practically</p>
+<ul>
+<li>… and you’ll run into compatibility issues</li>
+</ul></li>
+<li><p>Don’t go lower!</p></li>
+</ul>
+<hr />
+<h3 id="this-is-what-your-sound-card-or-audio-capture-box-does">This is
+what your ‘sound card’ or ‘Audio capture box’ does</h3>
+<ul>
+<li><p>“ADC” or “AD” chips go from analog signals to digital
+samples</p></li>
+<li><p>“DAC” or “DA” chips reverse the process, and create analog
+signals from digital samples</p></li>
+<li><p>Every digital device that uses sound needs both</p></li>
+<li><p>They can vary some in quality</p>
+<ul>
+<li>This is why you spend money on a decent capture card or sound
+card</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="this-all-means-that-vinyl-captures-more-detail-people-are-provably-wrong">This
+all means that ‘vinyl captures more detail’ people are provably
+wrong</h3>
+<ul>
+<li><p>Any audible audio signal can be captured digitally, c.f. the
+nyquist theorem</p></li>
+<li><p>We can capture greater bit depth than we can hear</p></li>
+<li><p>‘More detail’ means ‘the noise and distortion I
+appreciate’</p></li>
+<li><p><strong>Audiophiles are generally slightly
+insane</strong></p></li>
+</ul>
+<hr />
+<h3
+id="capturing-the-samples-into-a-file-gives-you-uncompressed-sound-files">Capturing
+the samples into a file gives you uncompressed sound files!</h3>
+<ul>
+<li><p>WAV files are effectively large lists of amplitudes, with a
+sampling rate and channel info at the top</p></li>
+<li><p>AIFF is the same idea, but Apple’s own format</p></li>
+<li><p>You can freely and <em>losslessly</em> turn WAV into AIFF and
+vice versa</p>
+<ul>
+<li>This distinction doesn’t actually matter</li>
+</ul></li>
+<li><p>You should be a bit scared of any device which won’t give you WAV
+or AIFF or FLAC</p>
+<ul>
+<li>… and if you’re recording video data, check which format the audio
+is using!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="every-digital-device-that-captures-or-plays-audio-needs-adcdac-chips">Every
+digital device that captures or plays audio needs ADC/DAC chips!</h3>
+<ul>
+<li><p><em>Every last one of them!</em></p></li>
+<li><p>Airpods and Phones and USB-to-Headphone adapters have onboard
+ADC/DAC chips</p></li>
+</ul>
+<hr />
+<h3
+id="sampling-rate-and-bit-depth-are-different-from-compression">Sampling
+Rate and Bit Depth are different from compression</h3>
+<ul>
+<li>Sampling Rate and Bit Depth are <em>inherent parts</em> of digital
+audio
+<ul>
+<li>Every sound file has a sampling rate and bit depth</li>
+</ul></li>
+<li>Compression (e.g. mp3, aac, WMA) selectively throws away
+<em>additional</em> data
+<ul>
+<li>It tries to ‘be smart’ about what is thrown away</li>
+<li>Compression is an <em>optional second step</em></li>
+</ul></li>
+<li><strong>We’ll talk more about compression next week!</strong></li>
+</ul>
+<hr />
+<h3 id="bit-depth-is-not-the-same-thing-as-bit-rate">Bit Depth is not
+the same thing as “bit rate”</h3>
+<ul>
+<li><p>Bit depth is how much detail is stored about sounds</p></li>
+<li><p>Bit rate is a property of compressed files which says “How much
+are we storing per $TIME”</p></li>
+<li><p>Uncompressed files have bit depth, not bit rate</p></li>
+<li><p>Compressed files have both!</p></li>
+</ul>
+<hr />
+<h3 id="wireless-capture-generally-involves-compression">Wireless
+Capture generally involves <em>compression</em></h3>
+<ul>
+<li>Your Airpods capture the signal, then throw away some data to send
+it to your phone/computer
+<ul>
+<li>It uses ‘AAC’ compression to send data back and forth</li>
+<li>The data your computer receives is lower quality than what the
+airpods take in</li>
+</ul></li>
+<li>Some equipment can transmit the wave directly
+<ul>
+<li>… but it usually involves dedicated receiver cards</li>
+</ul></li>
+<li><h2
+id="this-is-why-airpodsbluetooth-speakers-dont-sound-as-good-as-wired-microphonesspeakers">This
+is why Airpods/Bluetooth speakers don’t sound as good as wired
+microphones/speakers</h2></li>
+</ul>
+<h3 id="so-thats-how-we-capture-sound-1">So, that’s how we capture
+sound</h3>
+<ul>
+<li><p>We sample, over and over</p></li>
+<li><p>The Sampling Rate controls what frequencies we can
+capture</p></li>
+<li><p>The Bit Depth controls how detailed we are about
+amplitudes</p></li>
+<li><p>Sound files are just lists of measurements</p></li>
+<li><p>Every computer that does anything with sound, does this!</p></li>
+</ul>
+<hr />
+<h3 id="where-are-we-1">Where are we!</h3>
+<p><img class='r-stretch' src='diagrams/speech_processing_pipeline.jpg'></p>
+<hr />
+<h3 id="next-time">Next time…</h3>
+<ul>
+<li>How do we analyze complex signals using computers?</li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

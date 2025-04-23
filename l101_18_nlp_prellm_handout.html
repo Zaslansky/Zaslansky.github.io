@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3
+id="supermarket-self-checkout-robot-overlords-taking-over-the-earth">Supermarket
+Self-checkout Robot overlords taking over the earth</h3>
+<p><img class="r-stretch" src="comp/sd_supermarket.png"></p>
+<hr />
+<h1 id="natural-language-processing">Natural Language Processing</h1>
+<h3 id="will-styler---lign-101">Will Styler - LIGN 101</h3>
+<hr />
+<h2 id="todays-plan">Today’s Plan</h2>
+<ul>
+<li><p>What is NLP?</p></li>
+<li><p>What are the kinds of things we do in NLP and why?</p></li>
+<li><p>Two case studies</p></li>
+<li><p>Why is it so damned hard?</p></li>
+</ul>
+<hr />
+<h1
+id="natural-language-processing-and-computational-linguistics">Natural
+Language Processing and Computational Linguistics</h1>
+<hr />
+<h3 id="lots-of-linguists-love-computing">Lots of Linguists love
+computing</h3>
+<ul>
+<li><p>Digital Signal Processing and computational data capture for
+Phonetics</p></li>
+<li><p>Computational Modeling of Phonological Rules</p></li>
+<li><p>Searching large amounts of text to better understand syntactic
+structures</p></li>
+<li><p>Analyzing semantics through mathematical and probabilistic
+approaches</p></li>
+<li><p>Statistical Processing and modeling to bolster evidence
+everywhere</p></li>
+<li><p><strong>This is why Math/CS/Data Science and Linguistics are
+complementary majors!</strong></p></li>
+</ul>
+<hr />
+<h3 id="here-computers-are-a-means-to-an-end">Here, computers are a
+means to an end</h3>
+<ul>
+<li><p>“I’m going to use computers to better analyze human language so I
+can better understand humans”</p></li>
+<li><p>“I don’t care what the computers do, I’m just better at doing my
+work this way”</p></li>
+<li><p><strong>Most linguists are using computers as tools to understand
+language</strong></p></li>
+</ul>
+<hr />
+<h3 id="but-some-of-us-are-interested-in-the-computers-themselves">… but
+some of us are interested in the computers themselves</h3>
+<ul>
+<li><p>“What elements of human language can we model
+computationally?”</p></li>
+<li><p>“Can we teach computers to understand and produce human
+speech?”</p></li>
+<li><p>“How can I train a computer to ‘understand’ a sentence?”</p></li>
+<li><p>“How can I train a computer to produce grammatical human
+sentences and utterances?”</p></li>
+<li><p>“How can we produce systems which can naturally interact with
+humans in human languages?”</p></li>
+</ul>
+<hr />
+<h3
+id="we-consider-these-folks-to-live-in-two-closely-related-subfields">We
+consider these folks to live in two closely related subfields</h3>
+<ul>
+<li><p>Computational Linguistics</p></li>
+<li><p>Natural Language Processing</p></li>
+</ul>
+<hr />
+<h2 id="computational-linguistics-cl">Computational Linguistics
+(‘CL’)</h2>
+<p>The study of the theory and practice of modeling human language and
+grammar using computational methods, approaches, and tools</p>
+<ul>
+<li><p>“What elements of human grammar can be modeled using
+computational approaches and how?”</p></li>
+<li><p>CL is often a <em>theoretical</em> discipline</p></li>
+</ul>
+<hr />
+<h2 id="natural-language-processing-nlp">Natural Language Processing
+(‘NLP’)</h2>
+<p>The study of the use of computational methods to analyze, understand,
+act on, and produce human language</p>
+<ul>
+<li><p>“How can we design systems which allow computers to analyze
+language and interact with humans using human language?”</p>
+<ul>
+<li>The last bit is what distinguishes it from Human-Computer
+Interaction study (‘HCI’), which has a broader focus.</li>
+</ul></li>
+<li><p>NLP has theory, but it is often more of a <em>practical</em> and
+<em>engineering</em> discipline</p></li>
+</ul>
+<hr />
+<h3 id="cl-and-nlp-folks-coexist-happily">CL and NLP folks coexist
+happily</h3>
+<ul>
+<li><p>The problems are very similar, but with different goals</p></li>
+<li><p>Many (rightfully) consider NLP to be a subfield within
+CL</p></li>
+<li><p>We’re going to focus on <strong>NLP</strong> today, but that’s
+because it’s a passion for Will!</p></li>
+</ul>
+<hr />
+<h3 id="nlp-is-primarily-about-measuring-probability">NLP is primarily
+about measuring <em>probability</em></h3>
+<ul>
+<li><p>Given the word ‘that’ and the sentence’s structure, how likely is
+it to be a determiner?</p></li>
+<li><p>Given the other words in this sentence, how likely is ‘bank’ to
+mean ‘financial institution’?</p></li>
+<li><p>Given these acoustic patterns and the prior sounds evaluated, how
+likely is this to be a /t/?</p></li>
+<li><p>Given the sounds I think I observed and this person’s iTunes
+library, what album are they most likely asking for?</p></li>
+</ul>
+<hr />
+<h3 id="were-not-going-into-methods-today">We’re not going into methods
+today</h3>
+<ul>
+<li><p>Instead, we’ll focus on tasks and problems</p></li>
+<li><p>Methods are in LIGN 6, LIGN 165, LIGN 167</p>
+<ul>
+<li>Potentially also Computational Speech Processing</li>
+</ul></li>
+<li><p>… but first, why do NLP?</p></li>
+</ul>
+<hr />
+<h2 id="why-do-you-want-nlp-to-be-a-thing">Why do you want NLP to be a
+thing?</h2>
+<hr />
+<h3 id="theres-a-lot-of-natural-language-data-out-there">There’s a
+<em>lot</em> of natural language data out there</h3>
+<ul>
+<li><p>1.5 billion or more active websites
+<small>(<a href="https://www.internetlivestats.com/total-number-of-websites/">Source</a>)</small></p></li>
+<li><p>Mayo Clinic enters 298 million patient records per year
+<small>(<a href="http://www.mayoclinic.org/emr/">Source
+offiline</a>)</small> and ~90% of physician offices create electronic
+medical records</p></li>
+<li><p>500 million Tweets per day
+<small>(<a href="https://www.dsayce.com/social-media/tweets-day/">Source</a>)</small></p></li>
+<li><p>306 billion emails sent daily in 2020
+<small>(<a href="https://techjury.net/blog/how-many-emails-are-sent-per-day">Source</a>)</small></p></li>
+<li><p>Recorded phone calls, blog posts, Facebook updates…</p>
+<ul>
+<li>… and that’s just the digital stuff</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="being-able-to-access-and-process-natural-language-data-is-useful">Being
+able to access and process natural language data is useful</h3>
+<ul>
+<li><p>“Watch Twitter and give me the locations of wildfires, floods,
+etc, and provide information about damage, shelters and resources in an
+easy-to-read format”</p></li>
+<li><p>“Give me a list of legal cases involving liability for
+incorrectly wired condominiums in Michigan.”</p></li>
+<li><p>“Which of these 290 billion emails are likely to be discussing
+the sale or trafficking of nuclear weapons?”</p></li>
+<li><p>“Read the news articles published and tell me everything we know
+about last night’s shooting.”</p></li>
+</ul>
+<hr />
+<h3 id="we-also-directly-interact-with-computers-more-than-ever">We also
+directly interact with computers more than ever</h3>
+<ul>
+<li><p>Siri, Google Assistant, Alexa, Cortana, and more</p>
+<ul>
+<li>“Hey Siri, text my wife that I’m heading home”</li>
+</ul></li>
+<li><p>Automated phone systems and Chatbots</p>
+<ul>
+<li>“First, tell us why you’re calling…”</li>
+</ul></li>
+<li><p>Informational Retrieval and Search</p>
+<ul>
+<li>“What’s the name of that small blonde Norwegian singer with the
+weird hairdo and that song about low-key earthquakes?”</li>
+</ul></li>
+<li><p>Natural language interfaces to existing servces</p>
+<ul>
+<li>“Navigate me to Campbell Hall at UCLA”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="these-problems-could-be-solved-with-humans">These problems could
+be solved with humans</h3>
+<ul>
+<li><p>… and most of them historically were!</p>
+<ul>
+<li><p>Assistants, Interns, Paralegals, Intelligence officers, Directory
+Assistance Services, Concierges</p></li>
+<li><p>… and Will’s own lazy self who doesn’t want to walk over to a
+light switch</p></li>
+</ul></li>
+<li><p>… but there’s a problem…</p></li>
+</ul>
+<hr />
+<h3 id="humans-are-inefficient-and-expensive">Humans are inefficient and
+expensive</h3>
+<ul>
+<li><p>They only work certain hours</p></li>
+<li><p>They’re speed-limited in reading and summarization</p></li>
+<li><p>They want things like food, shelter, leisure, and
+companionship</p></li>
+<li><p>They’re sources of bias!</p></li>
+</ul>
+<hr />
+<h3 id="so-lets-enjoy-a-fantasy">So let’s enjoy a fantasy…</h3>
+<p><img class="big" src="humorimg/fantasea.jpg"></p>
+<hr />
+<h3
+id="you-have-a-computer-which-understands-human-language-as-well-as-it-does-computer-language">You
+have a computer which understands human language as well as it does
+computer language</h3>
+<hr />
+<p><img class="r-stretch" src="img/hal9000.jpg"></p>
+<ul>
+<li>(minus the evil)</li>
+</ul>
+<hr />
+<h2 id="what-could-analysis-of-natural-language-data-do-for-you">What
+could analysis of natural language data do for you?</h2>
+<hr />
+<h3 id="speech-recognition">Speech Recognition</h3>
+<ul>
+<li><p>“Ask people why they’re calling, and connect them to the right
+department based on their answer.”</p></li>
+<li><p>“Flag all tech support conversations where the customer mentions
+a competitor”</p></li>
+<li><p>“Transcribe all orders placed at this kiosk”</p></li>
+<li><p>“Be Siri, but good.”</p></li>
+</ul>
+<hr />
+<h3 id="analysis-of-secondary-speech-characteristics">Analysis of
+secondary speech characteristics</h3>
+<ul>
+<li><p>“Redirect all angry-sounding customers to higher-tier support
+workers” (Speech emotion detection)</p></li>
+<li><p>“Are the two people in this skype call flirting, arguing,
+expressing love, or sadness? Target post-session ads
+accordingly.”</p></li>
+<li><p>“I want to talk to… billing?” (Uncertainty analysis)</p></li>
+<li><p>“Yeah, I really like going to Applebees.”
+(Spot-the-sarcasm)</p></li>
+</ul>
+<hr />
+<h3 id="text-to-speech">Text-to-Speech</h3>
+<ul>
+<li><p>Speak driving directions aloud</p></li>
+<li><p>Read all incoming text messages aloud through headphones to the
+phone’s biking owner</p></li>
+<li><p>Read this webpage aloud for the computer’s blind user</p></li>
+<li><p>Automatically turn this eBook into an Audiobook</p></li>
+</ul>
+<hr />
+<h3 id="aside-modern-text-to-speech-is-really-good">Aside: Modern
+Text-to-Speech is really good</h3>
+<ul>
+<li><p>… and it can even imitate people!</p></li>
+<li><p>“Train the model on a more generic voice, and then use specific
+data to learn a different person’s ‘style’”</p></li>
+</ul>
+<hr />
+<h3 id="neural-network-text-to-speech-style-transfer-examples">Neural
+Network Text-to-Speech Style Transfer Examples</h3>
+<audio controls src="comp/tts_squidward_ling.wav">
+</audio>
+<audio controls src="comp/tts_arnie_ling.wav">
+</audio>
+<audio controls src="comp/tts_snape_ling.wav">
+</audio>
+<audio controls src="comp/tts_clarkson_ling.wav">
+</audio>
+<audio controls src="comp/tts_gilbert_ling.wav">
+</audio>
+<audio controls src="comp/tts_optimus_ling.wav">
+</audio>
+<audio controls src="comp/tts_mario_ling.wav">
+</audio>
+<hr />
+<h3 id="you-can-make-a-model-of-anybody-these-days">You can make a model
+of anybody these days…</h3>
+<audio controls src="comp/tts_will_ling.wav">
+</audio>
+<p>(Credit to Erick Amaro!)</p>
+<hr />
+<h3 id="were-going-to-focus-on-text-for-the-rest-of-the-talk">We’re
+going to focus on text for the rest of the talk</h3>
+<ul>
+<li>But LIGN 168 will be a thing next year to learn more about
+computational speech processing!</li>
+</ul>
+<hr />
+<h3 id="authorship-attribution-and-stylistic-analysis">Authorship
+attribution and stylistic analysis</h3>
+<ul>
+<li><p>Examine these two written passages/books and tell me whether they
+were both written by the same person</p></li>
+<li><p>Examine these negative reviews and tell me what demographic the
+authors likely represent based on the language used.</p></li>
+<li><p>Examine every incoming tweet and facebook post and detect posts
+which seem likely to have been written by robots</p></li>
+</ul>
+<hr />
+<h3 id="predictive-analysis-of-text">Predictive analysis of text</h3>
+<ul>
+<li><p>Look for any information in the newswire which will predict a
+change in this company’s stock price, then buy or sell stock
+automatically</p></li>
+<li><p>Based on all the political posts and tweets in California, how
+likely is the governor to lose in a recall election?</p></li>
+<li><p>Based on this person’s Facebook post history, how likely are they
+to click an ad for weight-loss pills?</p>
+<ul>
+<li>If you’re evil, what if we show them a bunch of fitness posts
+first?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="automated-question-answering">Automated question answering</h3>
+<ul>
+<li><p>“How far is it from San Diego to Las Vegas?”</p></li>
+<li><p>“When did Abe Vigoda actually die?”</p></li>
+<li><p>“Where is the chancellor’s office on the UCSD campus?”</p></li>
+</ul>
+<hr />
+<h3 id="command-interpretation">Command Interpretation</h3>
+<ul>
+<li><p>“Hey Google, turn on the living room lights”</p></li>
+<li><p>“Siri, set an alarm for 12:30”</p></li>
+<li><p>“Give me a 10 minute timer followed by another 20 minute
+timer”</p></li>
+<li><p>“Set the temperature to 69 degrees”</p></li>
+</ul>
+<hr />
+<h3 id="automated-machine-translation">Automated Machine
+Translation</h3>
+<ul>
+<li><p>“What’s the best translation for this sentence in English,
+Spanish, Russian, and Mandarin Chinese?”</p></li>
+<li><p>“¿Cuál es la mejor traducción para esta oración en inglés,
+español, ruso y chino mandarín?”</p></li>
+<li><p>“Какой лучший перевод этого предложения на английский, испанский,
+русский и мандаринский китайский?”</p></li>
+<li><p>“这句话用英语、西班牙语、俄语和普通话的最佳翻译是什么？”</p></li>
+<li><p>All credit to <a href="https://translate.google.com/"
+class="uri">https://translate.google.com/</a></p></li>
+</ul>
+<hr />
+<h3 id="pattern-identification">Pattern Identification</h3>
+<ul>
+<li><p>Scan online white supremacist and ‘militia’ forums, mailing
+lists, and groups for anything which looks like a threat or plan of
+action</p></li>
+<li><p>Identify patterns of language which mark somebody likely to buy a
+new car</p></li>
+<li><p>Find people who are likely to vote for a Republican candidate in
+San Diego county and display a given ad to them</p></li>
+<li><p>Identify specific and well-known disinformation and present ‘fact
+checking’ notes in real time</p></li>
+</ul>
+<hr />
+<p><danger>Content Warning: Sexual Predators, Suicide and Eating
+Disorders</danger></p>
+<hr />
+<h3 id="pattern-identification-for-public-safety">Pattern Identification
+for public safety</h3>
+<ul>
+<li><p>Identify messaging conversations which appear to show grooming or
+sexual advances on a minor and inform parents. (Apple does this now, <a
+href="https://www.apple.com/child-safety/">but only scanning
+pictures</a>)</p></li>
+<li><p>Scan every Instagram post and hashtag for content which promotes
+eating disorders or eating disorder behaviors, and replace it with a
+message offering <a
+href="https://www.nationaleatingdisorders.org/help-support/contact-helpline">resources
+for which help people with eating disorders</a>.</p></li>
+<li><p>Look for suicidal ideation, ‘suicide notes’, or language
+consistent with mental health crisis, and direct the poster to the <a
+href="https://suicidepreventionlifeline.org/talk-to-someone-now/">National
+Suicide Helpline</a>.</p></li>
+<li><p>Find anti-vaccination disinformation and remove, label, or
+provide specific information refuting it</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="comp/covid_candles.jpg"></p>
+<hr />
+<h3 id="text-generation">Text Generation</h3>
+<p>I asked <a
+href="https://huggingface.co/EleutherAI/gpt-j-6B">GPT-J</a> to finish
+the article “Here’s how to get an A in Linguistics 101:”</p>
+<hr />
+<blockquote>
+<ol type="1">
+<li>Buy a copy of the most recent edition of “A Student’s Grammar of the
+English Language”.</li>
+<li>Read it cover-to-cover.</li>
+<li>Take notes on all of the grammar rules you learn. … —</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>I’ll let you in on a little secret: the Linguistics 101 class isn’t
+all that hard to take. It’s really just a bunch of common grammar rules
+that most people already know. The real reason Linguistics teachers are
+so insufferable is because of the high schoolers who don’t understand
+that they know how to speak a language.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>So, do your homework, go get your A, and don’t be fooled by those who
+use grammar as an excuse to talk down to you. The language you learned
+in high school didn’t come from Grammar 101.</p>
+</blockquote>
+<hr />
+<h3 id="text-based-image-generation">Text-based Image Generation</h3>
+<p><a
+href="https://stability.ai/blog/stable-diffusion-public-release">StableDiffusion</a>
+(v.1.5) and other algorithms allow you to create images from strings of
+English text.</p>
+<hr />
+<h3 id="the-linguistics-department-at-uc-san-diego">The Linguistics
+Department at UC San Diego</h3>
+<p><img class="r-stretch" src="comp/sd_linguisticsdept.png"></p>
+<hr />
+<h3 id="a-wizard-cat-pondering-his-orb-fantasy-greg-rutkowski">A wizard
+cat pondering his orb, Fantasy, Greg Rutkowski</h3>
+<p><img class="r-stretch" src="comp/sd_wizardcat1.png"></p>
+<hr />
+<h3 id="a-wizard-cat-pondering-his-orb-fantasy-greg-rutkowski-1">A
+wizard cat pondering his orb, Fantasy, Greg Rutkowski</h3>
+<p><img class="r-stretch" src="comp/sd_wizardcat2.png"></p>
+<hr />
+<h3 id="stained-glass-squirrels-fighting-with-swords">Stained Glass,
+Squirrels fighting with swords</h3>
+<p><img class="r-stretch" src="comp/sd_squirrelswords1.png"></p>
+<hr />
+<h3 id="stained-glass-squirrels-fighting-with-swords-1">Stained Glass,
+Squirrels fighting with swords</h3>
+<p><img class="r-stretch" src="comp/sd_squirrelswords2.png"></p>
+<hr />
+<h3 id="you-can-add-new-people-and-concepts-to-the-model">You can add
+new people and concepts to the model</h3>
+<ul>
+<li><p>You’re creating ‘Hypernetworks’ based on additional training
+data.</p></li>
+<li><p>It works… someplace between well and badly</p></li>
+</ul>
+<hr />
+<h3
+id="a-willsty-man-standing-at-the-front-of-a-classroom-full-of-cats1.1">a
+willsty man standing at the front of a classroom (full of cats:1.1)</h3>
+<p><img class="r-stretch" src="comp/sd_classroomcats.png"></p>
+<hr />
+<h3 id="a-willsty-man-with-gordon-ramsay">A willsty man with Gordon
+Ramsay</h3>
+<p><img class="r-stretch" src="comp/sd_willgordon.png"></p>
+<hr />
+<h3 id="but-the-model-doesnt-know-things-about-the-world">… But the
+model doesn’t know things about the world</h3>
+<ul>
+<li><p>It has no clue what things ‘should’ look like</p></li>
+<li><p>Its understanding of the world is statistically accurate</p>
+<ul>
+<li><p>Some things aren’t well-modeled as probabilistic and
+gradient</p></li>
+<li><p>Number of hands, arms, legs, eyes</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="a-handshake">a handshake</h3>
+<p><img class="r-stretch" src="comp/sd_handshake.png"></p>
+<hr />
+<h3 id="the-horse-raced-past-the-barn-fell">the horse raced past the
+barn fell</h3>
+<p><img class="r-stretch" src="comp/sd_horseraced.png"></p>
+<hr />
+<h3 id="a-meme">a meme</h3>
+<p><img class="r-stretch" src="comp/sd_meme.png"></p>
+<hr />
+<h3 id="and-so-much-more">… and so much more!</h3>
+<ul>
+<li>What other NLP tasks are you familiar with or curious about?</li>
+</ul>
+<hr />
+<p>Let’s dive deeper on two tasks</p>
+<hr />
+<h2 id="case-study-market-analysis-ad-targeting-and-sentiment">Case
+Study: Market Analysis, Ad Targeting, and Sentiment</h2>
+<hr />
+<h3 id="marketing-and-ad-targeting">Marketing and Ad Targeting</h3>
+<ul>
+<li><p>Advertisers want their ads to be relevant</p></li>
+<li><p>They want to show ads related to topics and products people
+enjoy</p></li>
+<li><p>They want to influence the people most likely to be interested in
+their product</p></li>
+<li><p>They want to know how their audience is responding to their new
+releases</p></li>
+</ul>
+<hr />
+<h3 id="case-study-the-hodinkee-travel-clock">Case Study: <a
+href="https://limited.hodinkee.com/hodinkee/">The Hodinkee Travel
+Clock</a></h3>
+<p><img class="r-stretch" src="comp/hodinkee_clock.jpg"></p>
+<hr />
+<h3 id="the-easy-approach">The easy approach</h3>
+<ul>
+<li><p>Keywords == Mentions, Mentions == Interest</p></li>
+<li><p>Scan each Instagram post for certain keywords and product
+mentions</p>
+<ul>
+<li>#HodinkeeTravelClock, #Hodinkee, “Hodinkee”, “Hodinkee Travel
+Clock”, @hodinkee</li>
+</ul></li>
+<li><p>If monitored words and hashtags appear, show those accounts ads
+for related products and topics</p>
+<ul>
+<li><p>Consider the people discussing the topic to be part of the target
+market</p></li>
+<li><p>These people should see Hodinkee content more often</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-this-algorithm-reads-posts">How this algorithm reads
+posts</h3>
+<ul>
+<li><p>“blah blah blah blah Hodinkee travel clock blah blah blah blah
+blah blah”</p></li>
+<li><p>“blah blah blah blah blah blah blah blah blah blah blah
+#HodinkeeTravelClock”</p></li>
+<li><p>“blah blah Travel Clock blah blah Hodinkee blah blah blah blah
+blah blah blah blah blah blah”</p></li>
+<li><p>“blah blah Hodinkee blah Travel Clock blah blah blah blah
+@Hodinkee”</p></li>
+</ul>
+<hr />
+<h3 id="wow-thats-a-lot-of-interest">“Wow, that’s a lot of
+interest!”</h3>
+<ul>
+<li><p>“Let’s spam these people with ads for the clock”</p></li>
+<li><p>“We should also make sure we show them more Hodinkee
+posts!”</p></li>
+<li><p>“We should probably show them ads for similar products
+too!”</p></li>
+</ul>
+<hr />
+<h3 id="this-algorithm-has-one-tiny-problem">This algorithm has one tiny
+problem</h3>
+<ul>
+<li><p>“lol did you see the $5900 Hodinkee travel clock? Who
+greenlighted this?”</p></li>
+<li><p>“Proof that there’s a sucker born every minute
+#HodinkeeTravelClock”</p></li>
+<li><p>“The new Travel Clock from Hodinkee doesn’t have an interesting
+movement, and the finishing looks rough. Yikes.”</p></li>
+<li><p>“Why would Hodinkee sell a $6000 Travel Clock in the middle of a
+pandemic? Read the room, <span class="citation"
+data-cites="hodinkee">@hodinkee</span></p></li>
+</ul>
+<hr />
+<h3 id="treating-these-as-mentions-would-be-dumb">Treating these as
+mentions would be <em>dumb</em></h3>
+<ul>
+<li><p>Presenting topical ads to people who hate those topics is a waste
+of money</p></li>
+<li><p>Funneling these people to Hodinkee will not help anybody</p></li>
+<li><p>These people are likely not fans of other multi-thousand dollar
+travel clocks</p></li>
+<li><p>You can’t provide any information back to Hodinkee to help them
+make better decisions</p></li>
+</ul>
+<hr />
+<h3 id="sentiment-analysis-can-help">Sentiment Analysis can help!</h3>
+<ul>
+<li><p>“Is this product-mentioning post positive, negative, or
+neutral?”</p></li>
+<li><p>“What is the overall balance of sentiment about this
+product?”</p></li>
+<li><p>“What are people saying about the price point? The fancy
+font?”</p></li>
+<li><p>“What demographic is most likely to not find this product
+insultingly bad?”</p></li>
+<li><p>“Should we post <a
+href="https://www.hodinkee.com/articles/a-quick-note-to-our-readers-travel-clock-edition">an
+apology</a>?”</p></li>
+</ul>
+<hr />
+<h3 id="sentiment-analysis-is-hard">Sentiment Analysis is hard</h3>
+<ul>
+<li><p>“This new travel clock really sucks”</p>
+<ul>
+<li><p>“My new Dyson really sucks”</p></li>
+<li><p>“It sucks that my Roomba doesn’t suck anymore”</p></li>
+</ul></li>
+<li><p>“Yeah, sure, selling a travel clock during a pandemic is a great
+idea, @hodinkee”</p></li>
+</ul>
+<hr />
+<h3 id="related-computers-dont-understand-context-well">Related:
+Computers don’t understand context well</h3>
+<p><img class="r-stretch" src="comp/lizard_ceo.jpg"></p>
+<hr />
+<p>Let’s look at one other hard task!</p>
+<hr />
+<h2 id="case-study-2-temporal-analysis-and-event-discovery">Case Study
+2: Temporal Analysis and Event Discovery</h2>
+<hr />
+<h3 id="electronic-medical-records">Electronic Medical Records</h3>
+<ul>
+<li><p>Many hospitals around the country are switching to Electronic
+Medical Records (EMRs).</p></li>
+<li><p>These records are easily available within the institution, and
+contain lots of valuable data.</p></li>
+<li><p>Creating timelines is incredibly time-consuming for humans, as is
+comparison.</p></li>
+<li><p>What if machines could do this for us?</p></li>
+<li><p><a
+href="https://clear.colorado.edu/TemporalWiki/index.php/Main_Page">The
+THYME and RED Projects</a></p></li>
+</ul>
+<hr />
+<h3
+id="the-patient-developed-a-mild-post-surgical-rash-which-was-treated-with-hydrocortisone-at-the-follow-up.-well-reevaluate-soon.">“The
+patient developed a mild post-surgical rash, which was treated with
+hydrocortisone at the follow-up. We’ll reevaluate soon.”</h3>
+<ul>
+<li><p>First: Surgery</p></li>
+<li><p>Then: Mild rash</p></li>
+<li><p>Then: Hydrocortisone, Followup (overlapping)</p></li>
+<li><p>Then: No more rash</p></li>
+<li><p>Finally: Reevaluate (soon?)</p></li>
+</ul>
+<hr />
+<h3
+id="if-a-computer-can-be-taught-to-interpret-time-in-medical-records-we-can-ask">If
+a computer can be taught to interpret time in medical records, we can
+ask…</h3>
+<ul>
+<li><p>“I have 30 seconds to learn this patient’s history. Go.”</p></li>
+<li><p>“How often do patients have heart attacks within 2 years of
+starting Vioxx?”</p></li>
+<li><p>“How many people who have a facelift develop persistent facial
+numbness?”</p></li>
+<li><p>“How long do patients usually live following diagnosis of
+Glioblastoma?”</p></li>
+<li><p>“Is there a correlation between the administration of vaccines
+and the development of autism?”</p>
+<ul>
+<li><strong><a
+href="http://www.webmd.com/brain/autism/news/20110105/bmj-wakefield-autism-faq?print=true">(No,
+damnit, those studies were fabricated.)</a></strong></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="temporal-reasoning-is-important">Temporal reasoning is
+important</h3>
+<ul>
+<li><p>Humans interpret time naturally, and make reference to it
+often</p></li>
+<li><p>Temporality interacts with causality in interesting ways</p></li>
+<li><p>Event detection and reasoning is useful in a variety of
+domains.</p></li>
+<li><p>“What happened” is a very fundamental question that everybody
+wants answered.</p></li>
+</ul>
+<hr />
+<h3 id="what-questions-could-natural-language-data-answer-for-you">What
+questions could natural language data answer for you?</h3>
+<ul>
+<li>Any questions that a human reading it could answer!</li>
+</ul>
+<hr />
+<h3 id="i-know-what-youre-thinking">I know what you’re thinking</h3>
+<p><img class="r-stretch" src="img/terminator.png"></p>
+<hr />
+<h3 id="not-so-fast">… not so fast</h3>
+<ul>
+<li>We’re not in too much danger yet!</li>
+</ul>
+<hr />
+<h2 id="why-is-natural-language-processing-so-damned-hard">Why is
+Natural Language Processing so damned hard?</h2>
+<hr />
+<h3 id="nlp-has-all-the-problems">NLP has all the problems</h3>
+<ul>
+<li><p>Every subfield except phonology has NLP problems</p>
+<ul>
+<li>Phonology less so because we go straight from speech to written
+words</li>
+</ul></li>
+<li><p>Every difficult thing for humans is <em>more</em> difficult for
+computers</p></li>
+</ul>
+<hr />
+<h3 id="understanding-speech-is-hard-for-computers">Understanding speech
+is hard for computers</h3>
+<ul>
+<li><p>No two people sound alike, even saying the same things</p>
+<ul>
+<li>Any model needs to be able to cope with different dialects and vocal
+tracts</li>
+</ul></li>
+<li><p>Speech is often presented in other noise</p>
+<ul>
+<li>Responding to queries is much harder on a bus</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="the-right-answer-depends-on-the-context">The right answer
+depends on the context</h3>
+<ul>
+<li><p>“I took a walk/wok from the Chinese restaurant”</p></li>
+<li><p>“I’m so glad you’re home with your dog”</p></li>
+<li><p>“Siri, play songs by Dead Mouse”</p>
+<ul>
+<li>“deadmau5”</li>
+</ul></li>
+</ul>
+<hr />
+<p>“Bring me the bat, man”</p>
+<p><img class="big" src="naturallanguagedataimg/dugout.jpg"></p>
+<hr />
+<p>“Bring me the Batman”</p>
+<p><img class="big" src="naturallanguagedataimg/joker.jpg"></p>
+<hr />
+<h3 id="producing-speech-is-hard-for-computers">Producing speech is hard
+for computers</h3>
+<ul>
+<li><p>There are always new words</p>
+<ul>
+<li>I do EMA work with Ruaridh Purse and Jelena Krivokapic using my
+UMich UniqName</li>
+</ul></li>
+<li><p>Getting the proper prosody is really hard</p>
+<ul>
+<li>“I had Five Guys for Dinner”</li>
+</ul></li>
+<li><p>Whose voice should you use anyways?</p>
+<ul>
+<li>Why are virtual assistants generally given feminine voices? 🤔</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="understanding-sentences-is-hard-for-computers">Understanding
+Sentences is hard for computers</h3>
+<ul>
+<li><p>“OK Google, turn on the office and bedroom lights”</p></li>
+<li><p>“What building houses the Mayor of Boston’s Office?”</p></li>
+<li><p>“Email the Jessica I’m not married to and tell her I’m gonna be
+late for our meeting”</p></li>
+</ul>
+<hr />
+<h3 id="understanding-words-is-hard-for-computers">Understanding words
+is hard for computers</h3>
+<ul>
+<li><p>“Sheri has two cats, three dogs, three chickens, a son and two
+daughters.”</p>
+<ul>
+<li><p>How many animals does Sheri have?</p></li>
+<li><p>How many pets does Sheri have?</p></li>
+<li><p>How many children does Sheri have?</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="understanding-the-world-is-hard-for-computers">Understanding the
+world is hard for computers</h3>
+<ul>
+<li><p>“Hey Siri, set the temperature to 67 degrees”</p>
+<ul>
+<li>“OK, on which device?”</li>
+</ul></li>
+<li><p>“Hey Siri, send my wife a text when she gets to the store saying
+she should buy me donuts because she loves me.”</p></li>
+<li><p>“Hey Siri, how long is my commute today?”</p></li>
+<li><p>“Hey Siri, how long does it take to get from Union Station in LA
+to Long Beach at 4pm?”</p></li>
+</ul>
+<hr />
+<h3
+id="understanding-what-words-represent-is-hard-for-computers">Understanding
+what words represent is hard for computers</h3>
+<ul>
+<li>‘Coreference’ or ‘Anaphora’ is the process of linking words to other
+words, pronouns, and mentions of them later in discourse</li>
+</ul>
+<hr />
+<h3 id="coreference-is-difficult">Coreference is difficult</h3>
+<ul>
+<li><p>“Siri, text her back with”OK see you tonight” ’’</p></li>
+<li><p>“The Bay Harbor Butcher is off the streets, as Dexter Morgan, the
+alleged killer, was arrested by police over the weekend”</p></li>
+<li><p>“Bill Clinton was the President of the United States in 1999. Now
+Joe Biden is POTUS.”</p></li>
+<li><p>“Siri, send my wife a text saying”On my way home”</p></li>
+<li><p>“Alexa, buy me another pair of gray pants.”</p></li>
+</ul>
+<hr />
+<h3
+id="understanding-temporal-expressions-is-hard-for-computers">Understanding
+temporal expressions is hard for computers</h3>
+<ul>
+<li>The process of linking relative dates to absolute, calendar dates
+and ranges on a timeline</li>
+</ul>
+<hr />
+<h3 id="temporal-expressions-can-be-difficult">Temporal Expressions can
+be difficult</h3>
+<ul>
+<li><p>“The bombing occurred 2/13/12 at 0214”</p></li>
+<li><p>“Next Tuesday, she’ll come in for a follow-up”</p></li>
+<li><p>“She’s been having trouble sleeping lately.”</p></li>
+<li><p>“She should expect soreness postoperatively.”</p></li>
+<li><p>“TSA regulations have grown increasingly restrictive
+Post-9/11”</p></li>
+<li><p>We expect many Post-COVID disruptions to the supply
+chain</p></li>
+</ul>
+<hr />
+<h3
+id="understanding-temporal-relations-is-hard-for-computers">Understanding
+temporal relations is hard for computers</h3>
+<ul>
+<li>Linking and arranging different events as part of a greater
+timeline</li>
+</ul>
+<hr />
+<h3
+id="the-patient-developed-a-mild-post-surgical-rash-which-was-treated-with-hydrocortisone-at-the-follow-up.">“The
+patient developed a mild post-surgical rash, which was treated with
+hydrocortisone at the follow-up.”</h3>
+<hr />
+<h3
+id="the-patient-developed-a-mild-post-surgical-rash-which-was-treated-with-hydrocortisone-at-the-follow-up-many-years-after-napoleons-exile-to-elba.">“The
+patient developed a mild post-surgical rash, which was treated with
+hydrocortisone at the follow-up, many years after Napoleon’s exile to
+Elba.”</h3>
+<p><img class="r-stretch" src="naturallanguagedataimg/napoleonhydro.png">
+<!-- .element: class="fragment" --></p>
+<hr />
+<h3
+id="every-event-in-the-history-of-the-universe-is-temporally-related-to-every-other-event-in-this-history-of-the-universe.">Every
+event in the history of the universe is temporally related to every
+other event in this history of the universe.</h3>
+<ul>
+<li><p>… but we only care about a subset of those at any given
+moment</p>
+<ul>
+<li>Relevance is important!</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="understanding-humans-is-difficult-for-computers">Understanding
+humans is difficult for computers</h3>
+<ul>
+<li>People do not generally provide maximally informative sentences</li>
+</ul>
+<hr />
+<h3 id="doctors-hate-us.">Doctors hate us.</h3>
+<ul>
+<li><p>“We biopsied the colon, the results were negative”</p></li>
+<li><p>“Noted postoperative scarring.”</p></li>
+<li><p>“She does not want a colonoscopy, which she had in the 70’s and
+did not enjoy.”</p></li>
+<li><p>“History of Pneumonia, Asthma, h/x diverticulitis, MS”</p></li>
+<li><p>“s/p lap appy conv. open, Lungs c/ausc, A&amp;Ox3”</p></li>
+<li><p>“Resected Invasive Grade 3 of 4 Adenocarcinoma (AJCC 7th
+PT4N1bMX).”</p></li>
+</ul>
+<hr />
+<h3 id="everybody-else-hates-us-too">Everybody else hates us too</h3>
+<ul>
+<li><p>“Gold covered the miner’s hands” and “Gold paid for the miner’s
+education”</p></li>
+<li><p>“The Queen of England’s hat was purple”</p></li>
+<li><p>“We gave the monkeys the bananas because they were ripe”</p></li>
+<li><p>“We gave the monkeys the bananas because they were
+hungry”</p></li>
+<li><p>“Time flies like an arrow, fruit flies like a banana”</p></li>
+<li><p>“The old man returned to his house was happy”</p></li>
+</ul>
+<hr />
+<h3 id="what-other-computer-language-failures-have-you-seen">What other
+computer language failures have you seen?</h3>
+<hr />
+<h3
+id="so-computers-remain-very-bad-at-many-parts-of-human-language">So,
+computers remain very bad at many parts of human language!</h3>
+<hr />
+<h3 id="hooray">Hooray!</h3>
+<p><img class="r-stretch" src="img/morpheus.jpg"></p>
+<hr />
+<h3
+id="everybody-wants-to-be-able-to-access-natural-language-data-and-meaning">Everybody
+wants to be able to access natural language data and meaning</h3>
+<ul>
+<li><p>“What are people saying about the world?”</p></li>
+<li><p>“What do people want?”</p></li>
+<li><p>“What’s happening in the world right now?”</p></li>
+<li><p>“How can we provide better service?”</p></li>
+<li><p>“How can we save time by letting machines do the work?”</p></li>
+</ul>
+<hr />
+<h3 id="but-natural-language-doesnt-want-to-give-it-up">… but natural
+language doesn’t want to give it up</h3>
+<ul>
+<li><p>Speech is crazy-complex</p></li>
+<li><p>Sentences are difficult to analyze</p></li>
+<li><p>Meaning is ridiculous, complex, and depends on knowledge of the
+world</p></li>
+<li><p>People assume a lot of knowledge in fellow speakers, and choose
+not to give all the information</p></li>
+</ul>
+<hr />
+<h3
+id="if-this-kind-of-work-is-interesting-consider-a-computational-social-sciences-minor">If
+this kind of work is interesting, consider a Computational Social
+Sciences Minor!</h3>
+<ul>
+<li><p><a href="http://css.ucsd.edu"
+class="uri">http://css.ucsd.edu</a></p></li>
+<li><p>Natural Language Processing is an important subpart of CSS, and a
+neat way to ‘tech up’ your social science interests</p></li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Computational Linguistics and NLP are very interesting
+fields</p></li>
+<li><p>There are many great applications for NLP inside and outside
+linguistics</p></li>
+<li><p>Everything that’s hard for humans to do is harder for computers
+to do</p></li>
+<li><p>The systems we have are amazingly good, and amazingly
+bad</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

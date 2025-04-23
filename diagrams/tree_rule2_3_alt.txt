@@ -1,0 +1,5 @@
+tree_rule2_3_alttex
+
+[NP 
+  [N' 
+    [N Penguins ] ] ]

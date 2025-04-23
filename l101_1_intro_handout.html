@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<p>All my slides are presented using <a href="http://revealjs.com/">reveal.js</a>, and do not exist as Powerpoint
+or PDF, but instead, as websites.</p>
+<p>(Please note that PDF/printing is not ‘officially supported’ by the
+instructor, and the results may be very strange in places. Sorry!)</p>
+</ul>
+<hr />
+<h1 id="linguistics-101-an-introduction-to-language">Linguistics 101: An
+Introduction to Language</h1>
+<h3 id="matt-zaslansky">Matthew Zaslansky</h3>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Introductions</p></li>
+<li><p>What is this course about?</p></li>
+<li><p>How will we teach it?</p></li>
+<li><p>What is Linguistics?</p></li>
+<li><p>Why do we care?</p></li>
+</ul>
+<hr />
+<h1 id="introductions">Introductions</h1>
+<hr />
+<h2 id="matt-zaslansky">Matthew Zaslansky</h2>
+<p>Linguist, nerd for all things language and horror, and your instructor!</p>
+<p><img class="r-stretch" src="people/matt.png"></p>
+<hr>
+<h2 id="ia-introductions">IA Introductions</h2>
+<p>Olivia, your instructional assistant and section leader</p>
+<p><img class="r-stretch" src="people/olivia.png"></p>
+<hr>
+<hr>
+<h2 id="ia-introductions">TEST</h2>
+<p>Test page!</p>
+<p><img class="r-stretch" src="Website-Pics/BPVJ3712.jpg"></p>
+<hr>
+<h2 id="ia-introductions">IA Introductions</h2>
+<p>Hugo, also your instructional assistant and section leader</p>
+<p><img class="r-stretch" src="people/hugo.png"></p>
+<hr>
+<h1 id="acknowlegement">And an acknowlegement</h1>
+<p>Special thanks to Will Styler, whose teaching and content has created much of this lecture! Used with his permission</p>
+<p><img class="r-stretch" src="people/Will.png"></p>
+<hr>
+<h2 id="we-are-linguists">We are Linguists!</h2>
+<ul>
+<li>Gigantic professional language nerds</li>
+</ul>
+<hr />
+<h3 id="were-going-to-learn-how-we-linguists-talk-about-language">We’re
+going to learn how we linguists talk about Language</h3>
+<ul>
+<li><p>We’ll talk about what Language is</p></li>
+<li><p>We’ll talk about different aspects of languages</p></li>
+<li><p>We’ll talk about the subfields which tackle different problems in
+Language</p></li>
+<li><p>We’ll talk about the various tools and techniques that Linguists
+use</p></li>
+<li><p>We’ll look at actual language data to get a sense of just how
+complicated all this is</p></li>
+<li><p>We’ll have lots of fun* in the process</p></li>
+</ul>
+<hr />
+<h3 id="thats-what-this-course-is-about">That’s what this course is
+about</h3>
+<hr />
+<h2 id="how-will-we-teach-this-class">How will we teach this class?</h2>
+<hr />
+<h3 id="well-teach-you-here-in-section-and-in-office-hours">We’ll teach
+you here, in section, and in office hours</h3>
+<ul>
+<li><p>Here, we’ll talk about concepts and address questions</p></li>
+<li><p>In section, you’ll dive deep with language data</p>
+<ul>
+<li><p>Please attend your designated section</p></li>
+<li><p>If you’d like to try and attend a different section, email that
+section’s IA</p></li>
+</ul></li>
+<li><p>Office hours are your home to clarify concepts</p>
+<ul>
+<li>We have a massive number of combined office hours, use them!</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="youll-check-your-learning-using-homework-the-exam-and-clickers">You’ll
+check your learning using homework, the exam, and clickers</h3>
+<ul>
+<li><p>Five homeworks</p></li>
+<li><p>A Final Exam (held in this room, ideally!)</p></li>
+<li><p>WebClicker questions</p></li>
+</ul>
+<hr />
+<h2 id="lets-look-at-the-syllabus">Let’s look at the syllabus</h2>
+<hr />
+<h2 id="clicking">Clicking</h2>
+<hr />
+<h3 id="youll-need-an-account-on-webclicker.web.app">You’ll need an
+account on &lt;webclicker.web.app&gt;</h3>
+<ul>
+<li><p>Register using the course code on the syllabus</p></li>
+<li><p>You can click in with any web-attached device</p></li>
+</ul>
+<hr />
+<h3 id="this-is-a-clicker-question">This is a clicker question!</h3>
+<ol type="A">
+<li><p>One Answer</p></li>
+<li><p>Another</p></li>
+<li><p>A third</p></li>
+<li><p>The answer is D</p></li>
+<li><p>I’m not paying attention.</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3 id="this-is-a-clicker-question-1">This is a clicker question!</h3>
+<ol type="A">
+<li><p>One Answer</p></li>
+<li><p>Another</p></li>
+<li><p>A third</p></li>
+<li><p><correct>The answer is D</correct></p></li>
+<li><p>I’m not paying attention.</p></li>
+</ol>
+<hr />
+<h3
+id="when-should-you-tell-matt-about-any-special-accommodations-youll-need">When
+should you tell Matt about any special accommodations you’ll need?</h3>
+<ol type="A">
+<li><p>Within the first two weeks</p></li>
+<li><p>By the end of the quarter</p></li>
+<li><p>When I’m freaking out about my grade at the end of the
+quarter</p></li>
+<li><p>I won’t tell him, then pretend I did when it’s an issue at the
+end of the quarter</p></li>
+</ol>
+<section class="clicker">
+</section>
+<hr />
+<h3
+id="when-should-you-tell-matt-about-any-special-accommodations-youll-need-1">When
+should you tell Matt about any special accommodations you’ll need?</h3>
+<ol type="A">
+<li><p><correct>Within the first two weeks</correct></p></li>
+<li><p>By the end of the quarter</p></li>
+<li><p>When I’m freaking out about my grade at the end of the
+quarter</p></li>
+<li><p>I won’t tell him, then pretend I did when it’s an issue at the
+end of the quarter</p></li>
+</ol>
+<hr />
+<h3 id="coming-to-lecture-isnt-magic">Coming to lecture isn’t magic</h3>
+<ul>
+<li><p>You’ll probably want to take notes</p>
+<ul>
+<li><p>Don’t write down the words I say, write down the ideas</p></li>
+<li><p>Summarize in your own words</p></li>
+<li><p>Slides are available on the syllabus</p></li>
+</ul></li>
+<li><p>Write down questions you have during the lecture</p></li>
+<li><p>We as a species are awful at multitasking</p>
+<ul>
+<li>That’s right. Close Discord.</li>
+<li>Or just be prepared to re-study later</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="were-meeting-in-meatspace">We’re meeting in meatspace!</h3>
+<ul>
+<li><p><strong>Masks are welcomed, but not required.</strong></p></li>
+<li><p>Here’s hoping it stays that way</p>
+<ul>
+<li>We have a plan in place, in case it doesn’t</li>
+</ul></li>
+<li><p>Come to class healthy and prepared</p></li>
+<li><p><strong>You have no excuse to come to class sick!</strong></p>
+<ul>
+<li>The attendance policy is lax, and you can always just podcast.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="pro-tip-sincere-effort-is-incredibly-important-to-me">Pro-Tip:
+Sincere effort is incredibly important to me</h3>
+<ul>
+<li><p>‘Blow off’ the class, or try to lawyer or cajole your way into an
+A, and you’ll find much no sympathy nor help</p>
+<ul>
+<li>Low effort, low integrity, or ‘cut-corners’ work insults the people
+who you need help from</li>
+</ul></li>
+<li><p>Put in the effort for us, and we’ll put in effort for you</p>
+<ul>
+<li>We will bend over backwards to help students who are making a
+sincere effort</li>
+</ul></li>
+<li><p><strong>If you’re struggling, talk to us ASAP</strong></p></li>
+</ul>
+<hr />
+<h2 id="any-questions">Any questions?</h2>
+<hr />
+<h1 id="so-what-is-linguistics">So, what is Linguistics?</h1>
+<ul>
+<li>(Most people have <em>zero</em> clue)</li>
+</ul>
+<hr />
+<h3 id="oh-youre-a-linguist-cool">“Oh, you’re a linguist? Cool!”</h3>
+<h2 id="how-many-languages-do-you-speak">“How many languages do you
+speak?” <!-- .element: class="fragment" --></h2>
+<hr />
+<p>Many linguists speak more than one language, but…</p>
+<h3 id="theres-way-more-to-linguistics-than-knowing-languages">There’s
+way more to Linguistics than knowing languages
+<!-- .element: class="fragment" --></h3>
+<hr />
+<h3 id="linguists-study-language">Linguists study Language</h3>
+<ul>
+<li><p>We’re interested in how ‘Language’ works for humans</p>
+<ul>
+<li>… and we study it by looking at Spanish, or Laotian, or Russian, or
+Kumeyaay</li>
+</ul></li>
+<li><p>Learning languages can be a part of that, but it’s not the
+whole!</p></li>
+</ul>
+<hr />
+<h3 id="were-interested-in-capital-l-language">We’re interested in
+Capital L ‘Language’</h3>
+<ul>
+<li>… even as we’re studying individual languages</li>
+</ul>
+<hr />
+<p>… but we have a problem …</p>
+<hr />
+<h2 id="language-is-amazingly-complex">Language is amazingly
+complex</h2>
+<hr />
+<h3 id="the-duck-quacked-gleefully-at-his-bae.">“The duck quacked
+gleefully at his bae.”</h3>
+<p><img class="r-stretch" src="img/bird_mallard.jpg"></p>
+<hr />
+<h3 id="the-duck-quacked-gleefully-at-his-bae.-1">“The duck quacked
+gleefully at his bae.”</h3>
+<ul>
+<li><p>How did I make that sequence of sounds and how did you recognize
+it?</p></li>
+<li><p>Why is there a [t] at the end of quack rather than a
+[d]?</p></li>
+<li><p>What does that last sound mean anyways?</p></li>
+<li><p>Who quacked at whom? When? How do we know?</p></li>
+<li><p>What was gleeful?</p></li>
+<li><p>Is the duck single? Happy?</p></li>
+<li><p>What’s a ‘bae’ anyways? Can a duck have a bae?</p></li>
+</ul>
+<hr />
+<h3 id="yes-my-slang-and-memes-are-dated">(Yes, my slang and memes are
+dated)</h3>
+<ul>
+<li><p>You’ll get the chance to help me in future homework
+assignments</p></li>
+<li><p><img class="r-stretch" src="humorimg/fellowkids.gif"></p></li>
+</ul>
+<hr />
+<h3 id="language-is-complex">Language is complex</h3>
+<ul>
+<li><h2 id="linguistics-has-to-be-complex-too">Linguistics has to be
+complex too</h2></li>
+</ul>
+<hr />
+<h3 id="well-look-at-all-the-complexities">We’ll look at all the
+complexities</h3>
+<ul>
+<li><p>We’ll look at many of the central subfields of
+Linguistics</p></li>
+<li><p>We’ll examine other questions that we linguists are also
+interested in.</p></li>
+</ul>
+<hr />
+<h3 id="what-elements-of-linguistics-will-we-cover-this-quarter">What
+elements of Linguistics will we cover this quarter?</h3>
+<ul>
+<li><p>“How does talking work?” - Phonetics</p></li>
+<li><p>“How do sounds change when we combine them?” - Phonology</p></li>
+<li><p>“How do we build words?” - Morphology</p></li>
+<li><p>“How do we combine words into sentences?” - Syntax</p></li>
+<li><p>“What does it all mean?” - Semantics and Pragmatics</p></li>
+</ul>
+<hr />
+<h3 id="what-wont-we-cover-this-quarter">What <em>won’t</em> we cover
+this quarter</h3>
+<ul>
+<li><p>“How do I have better grammar and be more articulate?”</p></li>
+<li><p>“How does Poetry work? Why do some sentences sound more
+beautiful?”</p></li>
+<li><p>“How do I learn languages more quickly and effectively?”</p></li>
+<li><p>“What’s the process of becoming a good English-to-Japanese
+translator?”</p></li>
+<li><p>“How does French, or Spanish, or Russian, or Wichita
+work?”</p></li>
+</ul>
+<hr />
+<p>So, that’s what we’re doing here</p>
+<hr />
+<h1 id="why-on-earth-does-anybody-care-about-linguistics">Why on Earth
+does anybody care about Linguistics?</h1>
+<hr />
+<h3 id="there-are-a-million-answers-to-that-question">There are a
+million answers to that question</h3>
+<ul>
+<li><p>Every linguist has their own</p>
+<ul>
+<li><p>… and you’ll have your own</p></li>
+<li><p>… when you become a linguist</p></li>
+</ul></li>
+</ul>
+<hr />
+<p><img src="humorimg/inevitable.jpg" /></p>
+<hr />
+<h3 id="ill-give-you-two-answers">I’ll give you two answers</h3>
+<ul>
+<li><p>Because Linguists do interesting things</p></li>
+<li><p>Because Language is AWESOME</p></li>
+</ul>
+<hr />
+<h1 id="linguists-do-interesting-things">Linguists do interesting
+things!</h1>
+<hr />
+<h2 id="theoretical-linguistics">Theoretical Linguistics</h2>
+<hr />
+<h3 id="theoretical-linguistics-1">Theoretical Linguistics</h3>
+<ul>
+<li><p>How can we describe <em>how people communicate</em>?</p></li>
+<li><p>How can we describe <em>the things people don’t do</em>?</p></li>
+<li><p>What are the best models to help us understand language?</p></li>
+<li><p>What are the best models which mirror our own cognition?</p></li>
+<li><p>How does language change over time?</p></li>
+</ul>
+<hr />
+<h3 id="linguistic-typology">Linguistic Typology</h3>
+<ul>
+<li><p>How do languages <em>generally</em> accomplish communicative
+goals?</p></li>
+<li><p>Are there patterns across the world?</p></li>
+<li><p>What kinds of things are languages more and less likely to
+do?</p></li>
+<li><p>Are there <em>universal</em> tendencies in language?</p></li>
+</ul>
+<hr />
+<h2 id="experimental-work-in-linguistics">Experimental work in
+Linguistics!</h2>
+<hr />
+<h3 id="pneumotachography-airflow-measurement">Pneumotachography
+(Airflow Measurement)</h3>
+<p><img class="r-stretch" src="phonmedia/tools_airflowcu.jpg"></p>
+<hr />
+<h3 id="electromagnetic-articulography-ema">Electromagnetic
+Articulography (EMA)</h3>
+<p><img class="r-stretch" src="phonmedia/ema_will.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Electromagnetic Articulography (EMA)</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="phonmedia/ema_sensor.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="electromagnetic-articulography-ema-1">Electromagnetic
+Articulography (EMA)</h3>
+<p><img class="r-stretch" src="phonmedia/ema_will_3.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>### Electromagnetic Articulography (EMA)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>### Ultrasound</td>
+</tr>
+<tr class="even">
+<td><img class="r-stretch" src="phonmedia/tools_ultrasound.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ultrasound">Ultrasound</h3>
+<video width="1200" height="600" controls id="video">
+<source src="video/ultrasound_northwind.mp4">
+</video>
+<p><br> <tiny>From University of Michigan Phonetics Lab</tiny></p>
+<hr />
+<h3 id="acoustics">Acoustics</h3>
+<p><img class="r-stretch" src="phonmedia/noisewaveform.jpg"></p>
+<hr />
+<h3 id="acoustics-1">Acoustics</h3>
+<p><img class="r-stretch" src="phonmedia/noisebbspectrogram.jpg"></p>
+<hr />
+<h3 id="eyetracking">Eyetracking</h3>
+<video width="1200" height="600" controls id="video">
+<source src="video/eyetracking_english.mp4">
+</video>
+<p><br> <tiny>From University of Michigan Phonetics Lab</tiny></p>
+<hr />
+<h3 id="neurolinguistics">Neurolinguistics</h3>
+<ul>
+<li><p>Electroencephalography (EEG)</p></li>
+<li><p>fMRI</p></li>
+<li><p>Magnetoencephalography (MEG)</p></li>
+</ul>
+<hr />
+<h2 id="other-fun-linguistic-enterprises">Other fun Linguistic
+Enterprises</h2>
+<hr />
+<h3 id="language-documentation">Language Documentation</h3>
+<p><img class="big" src="lotwimg/americadiversitymap.png"></p>
+<hr />
+<hr />
+<h3 id="language-documentation">Language Documentation</h3>
+<li><p>Language documentation includes sign languages!</p></li>
+<li><a
+href="https://www.youtube.com/watch?v=X2G3MD28lYM">https://www.youtube.com/watch?v=X2G3MD28lYM</a></p></li>
+<h />
+<h3 id="language-documentation-1">Language Documentation</h3>
+<p><img src="img/arrival_heptapod.jpg"></p>
+<hr />
+<h3 id="computational-linguistics">Computational Linguistics</h3>
+<p><img src="img/siri.jpg"></p>
+<hr />
+<h3 id="computational-linguistics-1">Computational Linguistics</h3>
+<p><img src="humorimg/siricallambulance.jpg"></p>
+<hr />
+<h3 id="computational-linguistics-2">Computational Linguistics</h3>
+<p><img src="img/google_assistant.png"></p>
+<hr />
+<h3 id="computational-linguistics-3">Computational Linguistics</h3>
+<p><img class="big" src="img/NSA.jpeg"></p>
+<hr />
+<h3 id="one-of-the-current-best-commercial-systems-chatgpt-4o">One of
+the current “best” commercial systems: ChatGPT 4o</h3>
+<blockquote>
+<p>“Write me a short reveal.js slide for an intro to linguistics class
+containing at least three puns”</p>
+</blockquote>
+<hr />
+<h1 id="introduction-to-linguistics">Introduction to Linguistics</h1>
+<p>Welcome to the study of language, where syntax isn’t a tax on sin,
+and semantics is <em>meaningful</em>. Let’s phon-etic-ally break it
+down!</p>
+<hr />
+<h2 id="why-study-linguistics">Why Study Linguistics?</h2>
+<ul>
+<li><p>Because language rules, and we’re here to rule the
+language!</p></li>
+<li><p>You’ll be able to syntax your friends… no, seriously, teach them
+proper sentence structure!</p></li>
+<li><p>Be the person who corrects “whom” without missing a beat. It’s
+all relative!</p></li>
+</ul>
+<hr />
+<h2 id="key-areas">Key Areas</h2>
+<ul>
+<li><p><strong>Phonology:</strong> It’s all about sound… like music to
+your ears, except we analyze it.</p></li>
+<li><p><strong>Syntax:</strong> Let’s get in formation! Word formation,
+that is.</p></li>
+<li><p><strong>Semantics:</strong> It’s not what you say, it’s what you
+mean—unless you’re a pun, then it’s both.</p></li>
+</ul>
+<hr />
+<h3 id="the-ai-apocalypse-is-mid">The AI apocalypse is mid</h3>
+<hr />
+<h3 id="computational-linguistics-tasks">Computational Linguistics
+Tasks</h3>
+<ul>
+<li><p>Automatic Summarization</p></li>
+<li><p>Information extraction and Question Answering</p></li>
+<li><p>Ad targeting</p></li>
+<li><p>Sentiment Analysis</p></li>
+<li><p>Pattern recognition</p></li>
+<li><p>Keyword/Concept Mention Detection</p></li>
+</ul>
+<hr />
+<h3 id="forensic-linguistics">Forensic Linguistics</h3>
+<ul>
+<li><p>Emergency call Analysis</p></li>
+<li><p>Authorship attribution</p>
+<ul>
+<li><p>Social Media</p></li>
+<li><p>Ransom demands</p></li>
+<li><p>Suicide letters</p></li>
+<li><p>Shakespeare</p></li>
+</ul></li>
+<li><p>Voice identification</p>
+<ul>
+<li><p>‘Voiceprint ID’</p></li>
+<li><p>The Bin Laden Tapes</p></li>
+</ul></li>
+<li><p>Trademarks</p></li>
+</ul>
+<hr />
+<h3 id="forensic-linguistics-1">Forensic Linguistics</h3>
+<p><img src="img/exxon_valdez.jpg"></p>
+<hr />
+<h3 id="advertising-and-branding">Advertising and Branding</h3>
+<p><img class="big" src="img/swiffer.jpg"></p>
+<hr />
+<h3 id="conlanging">Conlanging</h3>
+<ul>
+<li><p>Creating and developing new languages for fun or for
+film</p></li>
+<li><p>Examples are Dothraki, High Valyrian, Nav’i, Languages from
+Dune</p></li>
+<li><p>Prominent conlangers are <a
+href="https://en.wikipedia.org/wiki/David_J._Peterson">David J
+Peterson</a> and <a href="https://jessiesams.com/">Jessie
+Sams</a></p></li>
+<li><p>Take LIGN 5 for more conlanging!</p></li>
+</ul>
+<hr />
+<h3 id="lexicography">Lexicography</h3>
+<p><img class="big" src="img/oed_nerd.jpg"></p>
+<hr />
+<h3 id="lexicography-1">Lexicography</h3>
+<p>(You have free access to the <a href="http://www.oed.com/">Unabridged
+Oxford English Dictionary</a> on campus!)</p>
+<hr />
+<h3 id="what-else-do-linguists-do">What else do linguists do?</h3>
+<ul>
+<li>Check out the <a
+href="https://www.youtube.com/channel/UCNJRxM5T1SAtgT6Bhcext2Q">Linguistics
+Career Launch YouTube Channel</a></li>
+</ul>
+<hr />
+<h3 id="so-linguists-do-awesome-things">So, Linguists do awesome
+things</h3>
+<hr />
+<p>… but the best reason to care about linguistics is that …</p>
+<hr />
+<h1 id="language-is-awesome">Language is awesome</h1>
+<hr />
+<p><img class="big" src="img/sampler.jpg"></p>
+<hr />
+<h2 id="languages-differ-in-the-sounds-they-use">Languages differ in the
+sounds they use</h2>
+<hr />
+<p><img src="phonmedia/nonpulmonics.png"></p>
+<hr />
+<p><img src="phonmedia/avatar.jpg"></p>
+<hr />
+<audio controls src="phonmedia/mandarintwistercharles.wav">
+</audio>
+<audio controls src="phonmedia/mandarintwisterdimsun.wav">
+</audio>
+<p><lang>Mandarin Chinese</lang></p>
+<center>
+<table>
+<tr>
+<td>
+西施死时四十四<br> 十四是十四<br> 四十是四十<br> 十四不是四十<br>
+四十不是十四。<br>
+</td>
+<td>
+Xi shi si shi si shi si<br> Shi si shi shi si<br> Si shi shi si shi<br>
+Shi si bu shi si shi<br> Si shi bu shi shi si.<br>
+</td>
+<td>
+/ɕi ʂi si ʂi si ʂi si<br> ʂi si ʂi ʂi si<br> si ʂi ʂi si ʂi<br> ʂi si bu
+ʂi si ʂi<br> si ʂi bu ʂi ʂi si./<br>
+</td>
+</tr>
+</table>
+<p>Xi Shi died in 44. Fourteen is fourteen. Forty is forty. Fourteen is
+not forty. Forty is not fourteen.</p>
+</center>
+<hr />
+<h2 id="languages-differ-in-how-they-put-sounds-together">Languages
+differ in how they put sounds together</h2>
+<hr />
+<p><lang>English</lang><br><ldata>I-E, Germanic, West Germanic - All
+over the place</ldata></p>
+<p>‘Strengths’ (/stɹɛŋkθs/)</p>
+<hr />
+<p><lang>Russian</lang><br><ldata>I-E, Slavic, East - Russia</ldata></p>
+<p>‘Glance’ - взгляд /vzglʲat/)</p>
+<p>‘Of Construction’ - строительств (/strʌˈʲitʲɛlʲstf/)</p>
+<hr />
+<p><lang>Czech</lang><br><ldata>I-E, Slavic, West, Czech-Slovak - The
+Czech Republic</ldata></p>
+<p>Strč prst skrz krk</p>
+<p>‘Stick your finger down your throat’</p>
+<hr />
+<h2 id="not-all-languages-use-the-same-modality">Not all languages use
+the same modality!</h2>
+<hr />
+<h3 id="spoken-languages-use-speech-to-express-meanings">Spoken
+languages use speech to express meanings</h3>
+<ul>
+<li><p>We’re familiar with this!</p></li>
+<li><p>… but even ‘spoken’ language involves gesture and visual
+cues!</p></li>
+</ul>
+<hr />
+<h3 id="written-language-is-used-to-express-meanings">Written language
+is used to express meanings</h3>
+<ul>
+<li><p>Like this!</p></li>
+<li><p>Not all languages have writing systems</p></li>
+<li><p>Some different languages use the same writing system</p></li>
+<li><p>Some people can only understand each other in writing</p></li>
+</ul>
+<hr />
+<h3
+id="signed-languages-use-gesture-facial-expression-and-movement-to-express-meanings">Signed
+languages use gesture, facial expression, and movement to express
+meanings</h3>
+<p><img class="r-stretch" src="img/asl_pourdrink.gif"></p>
+<p><a href="https://giphy.com/signwithrobert">Source: Sign with
+Robert</a></p>
+<hr />
+<h3 id="other-languages-are-felt">Other languages are felt!</h3>
+<ul>
+<li><p>Braille is a touch-based writing system for English</p></li>
+<li><p><a
+href="https://www.youtube.com/watch?v=vfICNTq6ITY">ProTactile</a> is an
+emerging language designed to be used by folks who are both Deaf and
+Blind.</p></li>
+<li><p>Other forms of communication which rely on touch exist!</p></li>
+</ul>
+<hr />
+<h2 id="languages-differ-in-how-they-work-with-words">Languages differ
+in how they work with words</h2>
+<hr />
+<p><lang>English</lang><br><ldata>I-E, Germanic, West Germanic - All
+over the place</ldata></p>
+<p>Three cats robbed the shopping mall.</p>
+<p>Three cat-s rob-ed the shop-ing mall</p>
+<hr />
+<p><lang>Wichita</lang><br><ldata>Caddoan, Northern Caddoan -
+Oklahoma</ldata></p>
+<p>Ti’i haskwákiyakirikickichis</p>
+<p>(‘Until there was just a little trickle of water’)</p>
+<hr />
+<p><lang>Wichita</lang><br><ldata>Caddoan, Northern Caddoan -
+Oklahoma</ldata></p>
+<p>Kiyakiicíwa:cé:hirʔasʔirhawi</p>
+<p>(‘There was the big buffalo lying there.’)</p>
+<hr />
+<h2
+id="languages-have-unique-terms-and-structures-to-discuss-the-world">Languages
+have unique terms and structures to discuss the world</h2>
+<hr />
+<p><lang>Finnish</lang><br><ldata>Uralic, Finnic - Finland</ldata></p>
+<p>‘Sisu’</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Sisu">(Just read the Wikipedia
+Page on it)</a></li>
+</ul>
+<hr />
+<p><lang>Yagán</lang><br><ldata>Linguistic Isolate - Chile</ldata></p>
+<p>‘Mamihlapinatapai’</p>
+<ul>
+<li><p>“a look shared by two people, each wishing that the other will
+offer something that they both desire but are unwilling to suggest or
+offer themselves.”<a
+href="http://www.wordfocus.com/mamihlapinatapai.html"><src>[1]</src></a></p></li>
+<li><p><danger>The last fluent speaker of this language died in
+2022.</danger></p></li>
+</ul>
+<hr />
+<p><lang>Turkish</lang><br><ldata>Turkic - Turkey</ldata></p>
+<ul>
+<li><p>‘gel-di’ “He came”</p></li>
+<li><p>‘gel-miş’ “He came, to the best of my knowledge”</p></li>
+</ul>
+<hr />
+<h2 id="linguists-study-all-language-not-just-proper-language">Linguists
+study <em>all</em> language, not just ‘proper’ language</h2>
+<hr />
+<h3 id="new-language-has-studyable-meaning-too">New language has
+studyable meaning too!</h3>
+<ul>
+<li>rizz
+<ul>
+<li>“Matt may not have enough rizz to get away with using Gen-Z
+slang.”</li>
+</ul></li>
+<li>cooked
+<ul>
+<li>“Matt really cooked a lecture on Large Language Models.”</li>
+</ul></li>
+<li>uwu
+<ul>
+<li>“I am going to UwU this presentation!”</li>
+</ul></li>
+<li>simp
+<ul>
+<li>“I finished in 25 minutes, that exam was simp!”</li>
+</ul></li>
+<li>it’s giving
+<ul>
+<li>“Charity is really important, it’s giving that matters most”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="i-know-what-youre-thinking">I know what you’re thinking…</h3>
+<hr />
+<p><img class="r-stretch" src="humorimg/cringe.gif"></p>
+<hr />
+<h3 id="this-shows-we-have-intuitions-about-all-language-use">This shows
+we have intuitions about all language use!</h3>
+<ul>
+<li><p>We can talk about any words, even new words, being grammatical or
+not</p></li>
+<li><p>We know when <em>any</em> language that we use is being used
+properly</p></li>
+<li><p>Words have legitimate and ‘correct’ meanings, even if they’re not
+in the dictionary</p></li>
+<li><p>The -ussy suffix (e.g. bussy, pizzussy) was the American Dialect
+Society’s 2022 ‘Word of the Year’</p></li>
+<li><p>All language is language!</p></li>
+</ul>
+<hr />
+<h3 id="lets-try-that-again">Let’s try that again</h3>
+<ul>
+<li>rizz
+<ul>
+<li>“She seduced her with AI Generated romantic texts. ChatGPT got W
+rizz.”</li>
+</ul></li>
+<li>cooked
+<ul>
+<li>“Matt used ‘up’ in his first ‘cooked’ example. His knowledge of
+current slang is cooked.”</li>
+</ul></li>
+<li>uwu
+<ul>
+<li>uwu is not an adjective but an attitude. winguwistics!</li>
+</ul></li>
+<li>simp
+<ul>
+<li>“Don’t be a simp, Chomksy is never going to cite you even if you
+mention him 500 times.”</li>
+</ul></li>
+<li>it’s giving
+<ul>
+<li>“Nice outfit, Matt. It’s giving quarter-life crisis.”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="so-there-you-go">So, there you go</h3>
+<p>That’s why we care.</p>
+<hr />
+<h2 id="my-goal-for-this-course">My goal for this course</h2>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

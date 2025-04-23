@@ -1,0 +1,14 @@
+tree_complingtex
+
+[NP 
+  [NP 
+    [DET Two ] 
+    [N' 
+      [ADJ computational ] 
+      [N' 
+        [N linguists ] ] ] ] 
+  [PP 
+    [P from ] 
+    [NP 
+      [N' 
+        [N San Diego ] ] ] ] ]

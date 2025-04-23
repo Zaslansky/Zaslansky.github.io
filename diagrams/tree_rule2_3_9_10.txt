@@ -1,0 +1,8 @@
+tree_rule2_3_9_10tex
+
+[S 
+  [NP 
+    [N' 
+      [N Will ] ] ] 
+  [VP 
+    [V ate ] ] ]

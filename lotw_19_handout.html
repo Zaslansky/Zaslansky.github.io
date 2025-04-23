@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><lang>English</lang><br><ldata>IE:Germanic - All over</ldata></p>
+<iframe data-autoplay width="840" height="600" src="http://www.youtube.com/embed/XfR9iY5y94s">
+</iframe>
+<p>Men At Work - Down Under</p>
+<hr />
+<p>(Unfortunately, the Dyribal Rap Scene doesn’t appear too robust)</p>
+<hr />
+<h3 id="tone-is-important">Tone is important</h3>
+<blockquote>
+<p>One tonal slip-up led Mr Zuckerberg to claim that Facebook had just
+11 mobile users instead of one billion.</p>
+</blockquote>
+<blockquote>
+<p>While most agreed that his pronunciation was far from fluent, most
+were also impressed that he had attempted it at all.</p>
+</blockquote>
+<p><a href="http://www.bbc.co.uk/news/technology-29741796">Source
+Article</a></p>
+<hr />
+<p><img class="big" src="humorimg/meanwhile_in_australia.jpg"></p>
+<hr />
+<h1 id="languages-of-australia">Languages of Australia</h1>
+<h3 id="ling-1020---will-styler">LING 1020 - Will Styler</h3>
+<hr />
+<h3 id="todays-agenda">Today’s Agenda</h3>
+<ul>
+<li><p>Languages of Australia</p></li>
+<li><p>Features of Australian Languages</p></li>
+<li><p>Taboos and Taboo Avoidance</p></li>
+</ul>
+<hr />
+<h1 id="australian-languages">Australian Languages</h1>
+<hr />
+<h3 id="australias-big">Australia’s big</h3>
+<p><img class="big" src="lotwimg/australia_size.jpg"></p>
+<hr />
+<h3 id="and-linguistically-diverse">… and Linguistically diverse</h3>
+<hr />
+<p><img class="big" src="lotwimg/australian_languages_map.png"></p>
+<hr />
+<h3 id="language-use-in-australia">Language use in Australia</h3>
+<ul>
+<li><p>76.8% of Australians speak <em>only</em> English at
+home.</p></li>
+<li><p>Australian <em>had</em> around 400 indigenous languages before
+Europeans showed up</p></li>
+</ul>
+<hr />
+<blockquote>
+<p>The number of individual languages listed for Australia is 390. Of
+these, 213 are living and 177 are extinct. Of the living languages, 7
+are institutional, 18 are developing, 12 are vigorous, <strong>35 are in
+trouble, and 141 are dying</strong>. (<a
+href="http://www.ethnologue.com/country/AU">Source</a>)</p>
+</blockquote>
+<hr />
+<p><img class="big" src="humorimg/surprisedkoala.jpg"></p>
+<hr />
+<h3 id="lets-talk-about-what-we-know-about-whats-left">Let’s talk about
+what we know about what’s left</h3>
+<ul>
+<li><h2
+id="australian-indigenous-languages-are-really-poorly-studied">(Australian
+Indigenous languages are really poorly studied)</h2></li>
+</ul>
+<h3
+id="indigenous-languages-arent-spoken-everywhere-in-australia">Indigenous
+Languages aren’t spoken everywhere in Australia</h3>
+<p><img class="big" src="lotwimg/aus_indigenous_pct.png"></p>
+<hr />
+<h3 id="major-remaining-language-families-in-australia">Major
+(remaining) language families in Australia</h3>
+<ul>
+<li><p>Pama-Nyungan</p></li>
+<li><p>Everything else</p></li>
+</ul>
+<hr />
+<h3 id="pama-nyungan-in-yellow">Pama-Nyungan in Yellow</h3>
+<p><img class="big" src="lotwimg/australian_families.png"></p>
+<hr />
+<h3 id="australian-languages-are-definitely-a-language-area">Australian
+Languages are definitely a <em>language area</em></h3>
+<hr />
+<h3 id="features-of-australian-indigenous-languages">Features of
+Australian Indigenous Languages</h3>
+<ul>
+<li><p>Ergativity (often split)</p></li>
+<li><p>Few vowels (usually /i, a, u/)</p></li>
+<li><p>Few voicing contrasts</p></li>
+<li><p>Lots of places of articulation</p></li>
+<li><p>Taboos and “Mother in law” languages</p></li>
+</ul>
+<hr />
+<h3 id="split-ergativity">Split Ergativity</h3>
+<ul>
+<li>Been there, done that…</li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img class="big" src="lotwimg/ergtshirt_split.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="few-vowels">Few Vowels</h3>
+<ul>
+<li><p>Tiwi (Isolate) - i a o u</p></li>
+<li><p>Warlpiri (P-N) - i i: a a: u u:</p></li>
+<li><p>Walmajarri (P-N) - i i: a a: u u:</p></li>
+<li><p>Wati (P-N) - i i: a a: u u:</p></li>
+<li><p>Dyirbal (P-N) - i a u</p></li>
+<li><p>Arrernte (P-N) - ə a</p>
+<ul>
+<li>See? Told you so!</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="few-voicing-contrasts">Few Voicing Contrasts</h2>
+<h2 id="lots-of-place-contrasts">Lots of Place Contrasts</h2>
+<hr />
+<p><lang>Warlpiri</lang><br><ldata>Pama-Nyungan - Australia</ldata></p>
+<p><img class="big" src="lotwimg/warlpiri_consonants.png"></p>
+<hr />
+<p><lang>Arrernte</lang><br><ldata>Pama-Nyungan - Australia</ldata></p>
+<p><img class="big" src="lotwimg/arrernte_consonants.png"></p>
+<hr />
+<p><lang>Dyirbal</lang><br><ldata>Pama-Nyungan - Australia</ldata></p>
+<p><img class="big" src="lotwimg/dyirbal_consonants.png"></p>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<h3
+id="whats-the-other-language-family-weve-worked-with-which-also-has-dentalalveolarretroflexpalatal-stop-contrasts">What’s
+the other language family we’ve worked with which also has
+dental/alveolar/retroflex/palatal stop contrasts?</h3>
+<ol type="A">
+<li><p>Nilo-Saharan</p></li>
+<li><p>Dravidian</p></li>
+<li><p>Tai-Kadai</p></li>
+<li><p>Indo-European:Slavic</p></li>
+</ol>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<h3
+id="whats-the-other-language-family-weve-worked-with-which-also-has-dentalalveolarretroflexpalatal-stop-contrasts-1">What’s
+the other language family we’ve worked with which also has
+dental/alveolar/retroflex/palatal stop contrasts?</h3>
+<ol type="A">
+<li>Nilo-Saharan</li>
+</ol>
+<p><correct>B) Dravidian</correct></p>
+<ol start="3" type="A">
+<li><p>Tai-Kadai</p></li>
+<li><p>Indo-European:Slavic</p></li>
+</ol>
+<hr />
+<p><lang>Dyirbal</lang><br><ldata>Pama-Nyungan - Australia</ldata></p>
+<ol type="1">
+<li>animate objects, men</li>
+<li>women, water, fire, violence</li>
+<li>edible fruit and vegetables</li>
+<li>miscellaneous (includes things not classifiable in the first
+three)</li>
+</ol>
+<ul>
+<li><danger>Dyirbal has five speakers left</danger></li>
+</ul>
+<hr />
+<p><lang>Warlpiri</lang><br><ldata>Pama-Nyungan - Australia</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/asM39tfblMQ">
+</iframe>
+<hr />
+<p><lang>Arrernte</lang><br><ldata>Pama-Nyungan - Australia</ldata></p>
+<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/wg7G8pf1fVo">
+</iframe>
+<hr />
+<p>Both Warlpiri and Arrernte are spoken by around 3,000 people.</p>
+<hr />
+<h2 id="taboos-and-mother-in-law-languages">Taboos and “Mother-in-law
+languages”</h2>
+<hr />
+<h3 id="taboo">Taboo</h3>
+<p>A prohibition on a behavior, action, or topic of discussion based on
+moral or religious grounds</p>
+<ul>
+<li><em>This is from the Fijian (Austronesian:Malayo-Polynesian) word
+</em>tabu* meaning *forbidden**</li>
+</ul>
+<hr />
+<h3 id="every-culture-has-taboos">Every culture has taboos</h3>
+<ul>
+<li><p>Some taboos of action</p>
+<ul>
+<li>Things which <em>must</em> not be done</li>
+</ul></li>
+<li><p>Some taboos of discussion</p>
+<ul>
+<li>Things which <em>must</em> not be discussed</li>
+</ul></li>
+<li><p>Some taboos of conversation</p>
+<ul>
+<li>People you <em>cannot</em> speak with</li>
+</ul></li>
+<li><p>These can and do change over time</p></li>
+</ul>
+<hr />
+<p>Think about things that can’t be done, topics that can’t be
+discussed, and people you can’t speak with.</p>
+<ul>
+<li><danger>What are some taboos in American society <em>which have
+changed in the last 50 years</em>?</danger></li>
+</ul>
+<hr />
+<h3 id="sometimes-we-need-to-discuss-tabooed-issues">Sometimes, we need
+to discuss tabooed issues!</h3>
+<hr />
+<h2 id="taboo-avoidance">Taboo Avoidance</h2>
+<hr />
+<h3 id="taboo-avoidance-1">Taboo Avoidance</h3>
+<p>Linguistic mechanisms to avoid breaking a cultural taboo</p>
+<hr />
+<h3 id="indirect-conversations">Indirect conversations</h3>
+<p>Talking about something without really talking about it</p>
+<ul>
+<li><em>“So, are you and Suzy… you know… being safe?”</em></li>
+</ul>
+<hr />
+<h3 id="euphemism">Euphemism</h3>
+<p>A less direct or “harsh” word for a concept which we don’t want to
+discuss.</p>
+<ul>
+<li><p>These turn into “safe” terms for tabooed concepts</p></li>
+<li><p>“Downsizing” vs. “Firing everybody”</p></li>
+<li><p>“Neutralize” vs. “Murder”</p></li>
+<li><p>“Vertically Challenged” vs. “Short”</p></li>
+</ul>
+<hr />
+<h3 id="the-euphemism-treadmill">The Euphemism Treadmill</h3>
+<ul>
+<li><p>Euphemisms must be replaced regularly due to “pejoration”</p>
+<ul>
+<li>Pejoration is when a word takes on the “badness” of the tabooed
+concept</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-did-we-refer-to-the-mentally-disabled">How did we refer to
+the mentally disabled?</h3>
+<ul>
+<li><p>“Imbecile”</p></li>
+<li><p>“Idiot”</p></li>
+<li><p>“Moron”</p></li>
+<li><p>“Slow”</p></li>
+<li><p>“Retarded”</p>
+<ul>
+<li>This is now apparently “the R word”</li>
+</ul></li>
+<li><p>“Intellectually/Mentally/Developmentally Disabled”</p>
+<ul>
+<li>Give it around 10 years before we have some new one</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="other-terms-on-the-treadmill">Other terms on the treadmill</h3>
+<ul>
+<li><p>lame / crippled → handicapped → disabled → physically challenged
+→ differently abled → People with disabilities.</p></li>
+<li><p>shell shock (World War I) → battle fatigue (World War II) →
+operational exhaustion (Korean War) → posttraumatic stress
+disorder</p></li>
+</ul>
+<hr />
+<section data-background="img/clickerbkgrnd.png">
+</section>
+<h3 id="which-of-the-following-is-not-a-euphemism">Which of the
+following is <em>not</em> a euphemism?</h3>
+<ol type="A">
+<li><p>“The facilities” for “Bathroom”</p></li>
+<li><p>“Collateral damage” for “accidentally killed civilians”</p></li>
+<li><p>“Dismiss” for “fire (an employee)”</p></li>
+<li><p>“slaughtered” for “murdered”</p></li>
+<li><p>“put to sleep” for “euthanize”</p></li>
+</ol>
+<hr />
+<h3 id="these-euphemisms-can-become-institutionalized">These euphemisms
+can become institutionalized</h3>
+<hr />
+<h3 id="political-correctness">“Political Correctness”</h3>
+<p>Lays out strongly tabooed topics, groups, and ideas, then dictates
+“safe” euphemisms and approaches to discussing them</p>
+<ul>
+<li><p>The “safe” euphemisms change regularly, and proper use signals
+political sensitivity</p>
+<ul>
+<li><p>“Colored” -&gt; “Negro” -&gt; “Black” -&gt; “African American”
+-&gt; “Black”</p></li>
+<li><p>“Transgendered” -&gt; “Transgender” -&gt; “Trans”</p></li>
+<li><p>“Gay” -&gt; “Gay/Lesbian” -&gt; “LGBT” -&gt; “LGBTQ” -&gt;
+“LGBTTQQIAAP”</p></li>
+<li><p>(Lesbian, Gay, Bisexual, Transgender, Transsexual, Queer,
+Questioning, Intersex, Asexual, Ally, Panssexual)</p></li>
+</ul></li>
+<li><p>Improper use or use of dated terms violates the taboo within this
+culture</p>
+<ul>
+<li>… and is a punishable offense</li>
+</ul></li>
+</ul>
+<hr />
+<p>(Whenever you think about judging other cultures for weird taboos,
+just think about this system in the US.)</p>
+<hr />
+<p><danger>What are some other ways that we get around taboos of
+discussion in American society?</danger></p>
+<hr />
+<h3
+id="australian-indigenous-cultures-havehad-a-rich-system-of-taboos">Australian
+Indigenous Cultures have/had a rich system of taboos</h3>
+<ul>
+<li><p>Mother-in-law can’t talk to son-in-law</p></li>
+<li><p>Father-in law can’t talk to Daughter-in-law</p></li>
+<li><p>Of-age Brothers and sisters can’t talk</p></li>
+<li><p>The dead aren’t referred to by name</p>
+<ul>
+<li><p>The word is removed outright from the language</p></li>
+<li><p>This lasts 1-3 years.</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="this-leads-to-some-remarkable-taboo-avoidance">This leads to
+some remarkable taboo avoidance</h3>
+<hr />
+<h2 id="taboo-avoidance-in-australian-languages">Taboo Avoidance in
+Australian Languages</h2>
+<hr />
+<h3 id="mother-in-law-languages">Mother-in-law languages</h3>
+<p>Specific “sub-languages” (grammars and vocabularies) for dealing with
+tabooed relatives</p>
+<hr />
+<p>This is sort of an extension of the honorific registers we’ve talked
+about before.</p>
+<hr />
+<p><lang>Dyirbal</lang><br><ldata>Pama-Nyungan - Australia</ldata></p>
+<ul>
+<li><p>Two “forms” of the language</p>
+<ul>
+<li><p>“Guwal”: The general-use form of the language</p></li>
+<li><p>“Dyalŋuy”: A sub-form used only with tabooed relatives</p></li>
+</ul></li>
+</ul>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Dyalŋuy</td>
+</tr>
+<tr class="even">
+<td>* Has around 1/4 of the vocabulary</td>
+</tr>
+<tr class="odd">
+<td>* Doesn’t have many specialized terms</td>
+</tr>
+<tr class="even">
+<td>* Uses different words for the same meanings</td>
+</tr>
+<tr class="odd">
+<td>* ‘to ask’ is baŋarrmba-l in Dyalŋuy</td>
+</tr>
+<tr class="even">
+<td>* ‘to ask’ is ŋanba-l in Guwal</td>
+</tr>
+<tr class="odd">
+<td>* The lack of words makes speakers resort to fun tricks to express
+themselves</td>
+</tr>
+<tr class="even">
+<td>* Causative/Intranstive Markers</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="dyirbal-speakers-have-a-smaller-incomplete-sub-language-to-manage-this-taboo.">Dyirbal
+speakers have a smaller, incomplete sub-language to manage this
+taboo.</h3>
+<ul>
+<li>( …and we thought political correctness was onerous!)</li>
+</ul>
+<hr />
+<h3 id="how-about-the-death-taboo">How about the death taboo?</h3>
+<ul>
+<li><p>When somebody dies, you can’t use their name</p></li>
+<li><p><danger>How can you get around this taboo?</danger></p></li>
+<li><p><danger>What if the person’s name was part of the language?
+(e.g. “Will”)</danger></p></li>
+</ul>
+<hr />
+<h3 id="non-specific-name-mentions">Non-specific name mentions</h3>
+<ul>
+<li><p>Avoid mentioning the dead by using other names</p></li>
+<li><p>Don’t say “Mary”, say “that old brown-haired woman from
+Denver”</p></li>
+<li><p>Don’t say “Michael Bay”, just say “that guy who makes crappy
+movies”</p></li>
+<li><p>Borrow a word to replace the tabooed word</p></li>
+</ul>
+<hr />
+<h3
+id="this-taboo-avoidance-is-one-thing-that-makes-australian-languages-remarkable.">This
+taboo avoidance is one thing that makes Australian Languages
+remarkable.</h3>
+<ul>
+<li>…and it’s pretty awesome in the rest of the world, too.</li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping up</h3>
+<ul>
+<li><p>Australia had a rich linguistic scene</p>
+<ul>
+<li>Then Europeans showed up.</li>
+</ul></li>
+<li><p>Australian Languages have a Language Area going on</p></li>
+<li><p>Pama-Nyungan Languages are the predominant indigenous language
+family there</p></li>
+<li><p>They’ve got awesome features.</p></li>
+<li><p>Taboo avoidance is awesome.</p></li>
+</ul>
+<hr />
+<h2
+id="next-time-more-awesome-languages-that-europeans-damned-near-wiped-out">Next
+time: More awesome languages that Europeans damned near wiped out!</h2>
+<p><correct>Read Pereltsvaig 10.1</correct></p>
+<hr />
+<p><huge>Thank you!</huge></p>
+<hr />
+</body>
+</html>

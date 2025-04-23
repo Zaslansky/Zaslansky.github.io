@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><img src="ling_memes/postmalone.jpg" /></p>
+<hr />
+<p><img src="img/rofl.jpg" /></p>
+<h2 id="putting-the-lol-in-classroom-learning">Putting the LOL in
+Classroom Learning</h2>
+<p>Will Styler</p>
+<hr />
+<h1 id="who-are-you">Who are you?</h1>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>The Benefits of using humor</p></li>
+<li><p>Common fears about classroom humor</p></li>
+<li><p>Pitfalls to look out for</p></li>
+<li><p>Where to draw the line</p></li>
+<li><p>How to work humor into your teaching</p></li>
+</ul>
+<hr />
+<h1 id="what-can-humor-win-you">What can humor win you?</h1>
+<hr />
+<h2 id="humor-can-improve-learning">Humor can improve learning</h2>
+<hr />
+<h2 id="whats-the-deal-with-fish---fishes">What’s the deal with “fish”
+-&gt; “fishes”?</h2>
+<hr />
+<h2 id="epenthesis">Epenthesis</h2>
+<p>When a sound (usually a vowel) is introduced to a word in order to
+prevent a linguistically undesirable combination.</p>
+<ul>
+<li>dish + s = /dɪʃz/, /ʃz/ is difficult to produce.</li>
+</ul>
+<hr />
+<h2 id="language-is-a-lot-like-high-school-drama">Language is a lot like
+high-school drama</h2>
+<hr />
+<h3 id="epenthesis-1">Epenthesis</h3>
+<p><a href="http://brushup-english.blogspot.com"><img
+src="img/thirdwheel.jpg" /></a></p>
+<hr />
+<h3 id="epenthesis-2">Epenthesis</h3>
+<p>“OMG, there is NO WAY that /ʃ/ and /s/ are going to get together. I’m
+just going to have /ɪ/ show up to block that.”</p>
+<hr />
+<h3 id="humor-can-increase-learning">Humor can increase learning</h3>
+<ul>
+<li><p>Humor can make an emotional connection for students.</p></li>
+<li><p>We’ve all been epenthesized.</p></li>
+<li><p>Based on studies (<a
+href="http://www.facultyfocus.com/articles/effective-teaching-strategies/humor-in-the-classroom-40-years-of-research/">here</a>
+and <a href="http://www.apa.org/monitor/jun06/learning.aspx">here</a>),
+it seems to help with recall.</p></li>
+</ul>
+<hr />
+<h3 id="humor-can-make-concepts-memorable">Humor can make concepts
+memorable</h3>
+<ul>
+<li><p>Incorporating your material into jokes gives people more to grab
+onto</p></li>
+<li><p>Emotion helps with recall!</p></li>
+</ul>
+<hr />
+<p><img src="img/andthatswhy.jpg" /></p>
+<hr />
+<p><img src="ling_memes/postmalone.jpg" /></p>
+<hr />
+<h3 id="humor-can-reduce-stress">Humor can reduce stress</h3>
+<ul>
+<li><p>How much would test scores improve if your students could have a
+good laugh mid-exam?</p></li>
+<li><p><a href="http://www.apa.org/monitor/jun06/learning.aspx">A
+lot!</a></p></li>
+</ul>
+<hr />
+<h3 id="humor-can-engage-students">Humor can engage students</h3>
+<ul>
+<li><p>People want to know why people are laughing. So they’ll
+listen</p></li>
+<li><p>Nothing breaks up monotony like a good meme or LOLCat.</p></li>
+<li><p>Funny questions get better responses</p></li>
+<li><p>If a student tells one of your jokes outside the classroom,
+you’ve infected them.</p></li>
+</ul>
+<hr />
+<h2 id="humor-can-make-ideas-spread">Humor can make ideas spread</h2>
+<ul>
+<li>c.f. <a href="http://lolmythesis.com">LOLMythesis</a></li>
+</ul>
+<hr />
+<blockquote>
+<p>Theoretically, bees are dying in the midwest because of synergistic
+chemical exposures that cause their immune glue to say “WE GIVE UP! COME
+ON IN” to pathogens. - MS Biology, Chatham University</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>People trust their government more when they voted for the guy in
+charge. - Sociology/Political Science, Penn State</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>“It appears, based on experimental evidence, that vowel perception is
+pretty much magic.” - Linguistics, University of Colorado</p>
+</blockquote>
+<hr />
+<h3
+id="humor-can-make-you-memorable-and-help-your-student-evaluations">Humor
+can make you memorable and help your Student Evaluations</h3>
+<hr />
+<p><img class="wide" src="img/morepuns.png"></p>
+<hr />
+<h2 id="what-have-i-missed">What have I missed?</h2>
+<hr />
+<h1 id="fears-about-using-humor">Fears about using humor</h1>
+<hr />
+<h3 id="but-im-not-funny">“… but I’m not funny”</h3>
+<ul>
+<li><p>Doesn’t matter.</p></li>
+<li><p>Use other people’s humor</p></li>
+<li><p>Partial credit is given for sincere effort.</p></li>
+</ul>
+<hr />
+<h3 id="what-if-my-joke-fails">“What if my joke fails?”</h3>
+<ul>
+<li><p>“That was funnier than you all throught it was”</p></li>
+<li><p>The Rimshot/Sad Trombone key</p></li>
+<li><p>Move on! You can’t win them all.</p></li>
+</ul>
+<hr />
+<h3 id="my-students-wont-take-me-seriously">“My students won’t take me
+seriously!”</h3>
+<ul>
+<li><p>Do they now?</p></li>
+<li><p>Lasting respect comes from knowledge and fairness, not a stiff
+upper lip</p></li>
+<li><p>Levity provides a contrast for turning up the fear</p></li>
+</ul>
+<hr />
+<h3 id="i-dont-want-to-look-ridiculous">“I don’t want to look
+ridiculous!”</h3>
+<ul>
+<li><p>You’re going to, sooner or later.</p></li>
+<li><p>It’s often useful to be able to be ridiculous</p></li>
+<li><p><em>A wizard is never late. He always arrives precisely when he
+means to.</em> - Gandalf</p></li>
+</ul>
+<hr />
+<h3 id="so-dont-worry">So, don’t worry!</h3>
+<ul>
+<li><p>It’ll be awesome</p></li>
+<li><p>… usually</p></li>
+</ul>
+<hr />
+<h1 id="pitfalls-of-using-humor">Pitfalls of using humor</h1>
+<hr />
+<h3 id="they-might-take-it-seriously.">They might take it
+seriously.</h3>
+<p>-If you tell them that the answer to everything is 42, they may
+answer everything with “42”.</p>
+<ul>
+<li><p>Seriously, watch out. Make sure they know it’s a joke, or they’ll
+study it.</p></li>
+<li><p>Consider marking joke answers on exams</p></li>
+</ul>
+<hr />
+<h3 id="be-cautious-picking-on-yourself">Be cautious picking on
+yourself</h3>
+<ul>
+<li><p>You can make fun of yourself, but don’t undermine
+yourself.</p></li>
+<li><p>“Oh well, looks like ‘scatterbrained academic’ is a
+thing”</p></li>
+<li><p>“Oh well, looks like I don’t know enough to teach this
+class!”</p></li>
+</ul>
+<hr />
+<h3 id="timing-is-everything">Timing is everything</h3>
+<ul>
+<li><p>Humor in the wrong place can be offensive.</p></li>
+<li><p>If there’s already tension, avoid humor.</p></li>
+</ul>
+<hr />
+<h3 id="be-careful-with-swearing-and-profanity">Be careful with swearing
+and profanity</h3>
+<ul>
+<li><p>It can push the lines of professionalism</p></li>
+<li><p>… but it’s not actually against any rules</p></li>
+</ul>
+<hr />
+<h3 id="dont-overdo-it">Don’t overdo it</h3>
+<p>Too much humor is distracting.</p>
+<blockquote>
+<p><a href="http://www.apa.org/monitor/jun06/learning.aspx">“Students
+don’t necessarily want Jerry Seinfeld as their instructor,”</a> she
+says. “They want appropriate humor that is relevant, lightens the mood
+and makes the information memorable.”</p>
+</blockquote>
+<hr />
+<p><img src="img/noseinfeld.jpg"></p>
+<hr />
+<h3 id="but-they-might-report-me">“… but they might report me!”</h3>
+<ul>
+<li>Let’s talk about that</li>
+</ul>
+<hr />
+<h1 id="where-to-draw-the-line">Where to draw the line</h1>
+<hr />
+<h3 id="dont-target-specific-students">Don’t target specific
+students</h3>
+<ul>
+<li><p>“Sorry, Physics Majors, speech is way cooler”</p></li>
+<li><p>“Minimalist Syntacticians! Amirite?”</p></li>
+<li><p>“That theory is dumber than Megan’s hat”</p></li>
+<li><p>“Wow, no wonder you messed up last week’s homework
+Mark!”</p></li>
+</ul>
+<hr />
+<h3 id="humor-about-protected-classes-is-dangerous">Humor about
+protected classes is dangerous</h3>
+<ul>
+<li>p(funny) &lt; p(offensive)</li>
+</ul>
+<hr />
+<h3 id="avoid-humor-about-protected-classes">Avoid humor about <a
+href="https://ophd.ucsd.edu/faq/index.html">protected classes</a></h3>
+<ul>
+<li>Race</li>
+<li>Color</li>
+<li>National Origin</li>
+<li>Religion</li>
+<li>Sex</li>
+<li>Gender Identity/Expression</li>
+<li>Sexual Orientation</li>
+</ul>
+<hr />
+<h3 id="avoid-humor-about-protected-classes-1">Avoid humor about <a
+href="https://ophd.ucsd.edu/faq/index.html">protected classes</a></h3>
+<ul>
+<li>Physical or mental disability</li>
+<li>Medical Conditions</li>
+<li>Genetic Information and Ancestry</li>
+<li>Marital Status</li>
+<li>Pregnancy</li>
+<li>Age</li>
+<li>Citizenship or Immigration Status</li>
+<li>Veteran status</li>
+</ul>
+<hr />
+<h3 id="be-careful-with-cute-analogies-too">Be careful with cute
+analogies too!</h3>
+<ul>
+<li>It’s probably best not to even touch protected classes.</li>
+</ul>
+<hr />
+<h3 id="be-careful-with-mock-accents">Be careful with mock accents</h3>
+<hr />
+<h3 id="respond-appropriately-to-students-humor">Respond appropriately
+to students’ humor</h3>
+<ul>
+<li>Sometimes, students can be hurt by what you <em>don’t</em> say</li>
+</ul>
+<hr />
+<h2 id="what-if-somebody-is-hurt-or-offended">What if somebody is hurt
+or offended?</h2>
+<hr />
+<h3 id="if-a-student-is-hurtoffended-by-something">If a student is
+hurt/offended by something…</h3>
+<ul>
+<li><p>Don’t try to convince them that the joke <em>was</em>
+funny</p></li>
+<li><p>Don’t respond with more humor to minimize the concern</p></li>
+<li><p>Let them know their concerns are heard</p></li>
+<li><p>Let them know what the point of the humor was in your
+class</p></li>
+<li><p>Explain that it wasn’t your intent to be hurtful</p></li>
+<li><p><strong>Don’t minimize their concerns</strong></p></li>
+</ul>
+<hr />
+<h3 id="ophd-is-not-out-to-get-you">OPHD is not out to get you!</h3>
+<ul>
+<li><p>Most responses related to a one-time comment are simple
+discussions</p></li>
+<li><p>Issues surrounding humor germane to the course are viewed more
+favorably</p></li>
+<li><p>They appear to have a sense of humor!</p></li>
+</ul>
+<!-- D&H Notes
+
+- Don't touch protected classes
+- Religion, national origin, imitation of accents
+- Teaching something germane to the course if needed, that's different than somebody in ECON
+- Don't target specific students
+- Student in class was referred to as "Monica Lewinsky"
+- Another student makes a joke
+- "I'm upset with the faculty member for not intervening when I was being mocked"
+- If a student confronts a faculty member after class
+- Respond!
+- If a student feels X wasn't funny, don't try to use more humor
+- Don't try to convince the student that X was actually funny
+- Handle with respect
+- Let the student know that the concerns are heard
+- Explain the intended point without humor
+- Explain lack of intent to hurt
+- Don't minimize the concern
+-->
+<hr />
+<h3 id="have-you-seen-humor-cross-that-line"><em>Have you seen humor
+cross that line?</em></h3>
+<hr />
+<h3 id="be-careful">Be careful</h3>
+<ul>
+<li>… but the benefits outweigh the dangers!</li>
+</ul>
+<hr />
+<h1 id="where-can-you-work-humor-in">Where can you work humor in?</h1>
+<hr />
+<h2 id="lectures">Lectures</h2>
+<hr />
+<h3 id="set-the-tone">Set the tone</h3>
+<ul>
+<li>Starting your slides with a joke raises the mood when students are
+walking in</li>
+</ul>
+<hr />
+<h3 id="break-up-monotonous-material-with-a-joke-or-funny-picture">Break
+up monotonous material with a joke or funny picture</h3>
+<hr />
+<p><img src="img/grammartime.jpg"></p>
+<hr />
+<h3 id="funny-pictures-to-reinforce-concepts">Funny pictures to
+reinforce concepts</h3>
+<hr />
+<h3 id="humor-reinforces-learning">Humor reinforces learning!</h3>
+<p><img src="img/bearsrepeating.jpg" /></p>
+<hr />
+<p><img width="900" src="img/bffsffts.png"></p>
+<hr />
+<h3 id="humorous-analogies-help-learning">Humorous analogies help
+learning</h3>
+<hr />
+<h3 id="crappy-puns">Crappy puns</h3>
+<hr />
+<blockquote>
+<p>A photon checks into a hotel. The front desk asks if it has any
+luggage. It replies “No, I’m traveling light”</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>The past, the present and the future all walk into a bar. It was
+tense.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>What did the perscriptivist owl say? Whom whom.</p>
+</blockquote>
+<hr />
+<h3
+id="what-are-some-other-good-uses-of-humor-in-lectures-youve-seen">What
+are some other good uses of humor in lectures you’ve seen?</h3>
+<hr />
+<h3 id="emails-to-the-class-and-announcments">Emails to the class and
+announcments</h3>
+<ul>
+<li><p>Include a good/bad joke to make them want to read the
+email</p></li>
+<li><p>Send out funny articles/memes related to the course
+materials</p></li>
+</ul>
+<hr />
+<h2 id="homework-and-exams">Homework and Exams</h2>
+<hr />
+<h3 id="preparatory-humor">Preparatory Humor</h3>
+<hr />
+<p><img class="big" src="img/donwurry.jpg"></p>
+<hr />
+<h2 id="section"><img class="big" src="img/cannotleave.jpg"></h2>
+<h3 id="freddy-mcpolarbears">Freddy McPolarbears</h3>
+<p><a
+href="http://blog.corbis.com/2013/paul-souders-photographing-polar-bears/"><img
+src="img/freddy.jpg" /></a></p>
+<hr />
+<blockquote>
+<p>“Freddy McPolarbear takes out a loan at TundraBank for $5000. If the
+interest rate is 5%…”</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>“Freddy McPolarbear stumbles upon a group of people speaking an
+unfamiliar language. Before eating them, he wants to analyze the sound
+system they’re using….”</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>“Will, during his weekend job as Batman, jumps off a 50 foot
+building. Assuming he weighs 220 pounds, how fast will be be going when
+he lands?”</p>
+</blockquote>
+<hr />
+<h3 id="zany-multi-choice-answers">Zany multi-choice answers</h3>
+<hr />
+<p>The smallest unit of contrastive sound in a language is called a…</p>
+<ol type="a">
+<li><p>Phone</p></li>
+<li><p>Allophone</p></li>
+<li><p>Phoneme</p></li>
+<li><p>Diphone</p></li>
+<li><p>iPhone</p></li>
+</ol>
+<hr />
+<h3 id="make-sure-its-not-a-valid-answer-and-mark-it.">(Make sure it’s
+not a valid answer, and mark it.)</h3>
+<hr />
+<h2 id="elaborate-humorous-questions">Elaborate humorous questions</h2>
+<hr />
+<p><img class="big" src="img/ancientevils.png"></p>
+<hr />
+<p>You’ve broken bad, and are now the vocalic consigliere in the
+Phonetic Mafia. Don Gioschwanni, the mob boss, read an article that elk
+are more frightened when they hear calls from elk with very low
+formants, so he tells you to recruit a new enforcer with formants that
+are as low as possible. One of the underbosses brings you the three
+candidates.</p>
+<p>First, there’s Carlos “the Cougar”, a young man, only 5’4”, but he’s
+got the breathiest voice you’ve ever heard. Then, there’s Sammy “the
+Smasher”, 5’11” and almost 400lbs of solid muscle, as wide around as
+Frankie is tall. Finally, you’ve got Johnny “the Giraffe”, who’s 6’8”
+and has the longest neck you’ve ever seen.</p>
+<ol type="a">
+<li>Which of the three choices is likely to have the lowest formants?
+(10 points)</li>
+</ol>
+<hr />
+<h3
+id="activity-write-a-humorous-homework-or-test-question-categories-which-still-checks-knowledge-in-your-field.">Activity:
+Write a humorous homework or test question categories which still checks
+knowledge in your field.</h3>
+<p><em>If you get stuck, work with your neighbor</em></p>
+<hr />
+<h2 id="where-else-is-humor-useful"><em>Where else is humor
+useful?</em></h2>
+<hr />
+<h1 id="wrapping-up">Wrapping up</h1>
+<hr />
+<h3 id="be-careful-with-your-humor">Be careful with your humor</h3>
+<ul>
+<li><p>Don’t target specific students</p></li>
+<li><p>Mind the timing</p></li>
+<li><p>Avoid protected classes</p></li>
+<li><p>Be responsive and caring if a joke hurts somebody</p></li>
+<li><p>Don’t be Jerry Seinfeld.</p></li>
+</ul>
+<hr />
+<h3 id="humor-is-good">Humor is good</h3>
+<ul>
+<li><p>It reduces stress</p></li>
+<li><p>In encourages engagement</p></li>
+<li><p>It helps people learn the subject matter</p></li>
+<li><p>It makes you more awesome/memorable as a teacher</p></li>
+<li><p>It makes your class more fun!</p></li>
+</ul>
+<hr />
+<h2 id="go-forth-and-cause-loling">Go forth and cause LOLing!</h2>
+<p><a
+href="http://blog.corbis.com/2013/paul-souders-photographing-polar-bears/"><img
+src="img/freddy.jpg" /></a></p>
+<hr />
+<p><huge> Thank you! </huge></p>
+<p>Will Styler - will@savethevowels.org</p>
+</body>
+</html>

@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+		<title>Making Data work for you</title>
+
+		<meta name="description" content="A talk given in LING 2000, December 2013">
+		<meta name="author" content="Will Styler">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/willjs.core.css">
+		<link rel="stylesheet" href="css/willjs.light.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+			<section data-markdown data-separator="---" data-notes="!Note:">
+			<script type="text/template">
+				
+				<img width="100%" src="img/vagueness.jpg">
+
+				---
+
+
+				<img width="50%" src="img/mickey.jpg">
+
+				# Making Data Work For You
+				### Will Styler - Linguistics 2000
+
+				---
+
+
+
+				## There's a *lot* of language data out there.
+
+				*<!-- .element: class="fragment" --> 644 million active websites <small>(<a href="http://www.businessinsider.com/how-many-web-sites-are-are-there-2012-3">Source</a>)</small>
+
+				*<!-- .element: class="fragment" --> Mayo Clinic enters 298 million patient records per year <small>(<a href="http://www.mayoclinic.org/emr/">Source</a>)</small>
+				
+				*<!-- .element: class="fragment" --> 58 million Tweets per day <small>(<a href="http://www.statisticbrain.com/twitter-statistics/">Source</a>)</small>
+				
+				*<!-- .element: class="fragment" --> 294 billion emails sent daily <small>(<a
+ href="http://email.about.com/od/emailtrivia/f/emails_per_day.htm">Source</a>)</small>
+ 
+				<!-- .element: class="fragment" --> ... and that's just the digital stuff
+
+
+				---
+
+
+
+
+				## What can we do with this data?
+				<!-- .element: class="fragment" --> Linguists want to use this data to learn about language
+				<!-- .element: class="fragment" --> Everybody else wants to use this data to learn about the world
+
+				---
+
+
+
+
+				## The Problem:
+				Humans are inefficient and expensive.
+
+				---
+
+
+
+
+				<img src="img/hal9000.jpg">
+				## The Solution
+
+
+				---
+
+
+
+				## I'm a linguist.  How can data help me?
+
+				---
+
+
+
+				> “... by using these existing standards, we hope to be able to leverage new technologies during processing.”
+
+				---
+
+
+
+				# The Question:
+				<!-- .element: class="fragment" --> 
+				Was Will really talking like a corporate drone when he used “leverage” as a verb, or do lots of people do that outside the boardroom?
+
+
+				<!-- .element: class="fragment" --> 
+				For that matter, how is “leverage” usually used?
+	
+
+				---
+
+
+				## So how do we ask that question?
+
+
+				---
+
+
+
+				<img width="40%" src="img/notebook.png">
+				### Option #1
+
+				---
+
+
+
+				### Option #2: Corpora
+
+				---
+
+
+
+				### **Corpus (pl. Corpora)**: A collection of written or spoken texts assembled for the purpose of studying language
+
+				---
+
+
+
+				### There are many different corpora out there.
+
+				---
+
+
+
+
+				## The Brown Corpus
+
+				~2,000,000 words of English fiction, books, humor, textbooks, reporting, and gov’t docs
+
+
+				---
+
+
+
+				## The Callhome Corpus
+
+				Transcripts of 120 phone conversations (18.3 hours of speech)
+
+
+				---
+
+
+
+				## The Switchboard Corpus
+
+				2430 conversations (~3,000,000 words of text) from phone calls
+
+
+				---
+
+
+
+				## The Broadcast News Corpus
+
+				~1,243,526 words transcribed from various broadcast news sources
+
+
+				---
+
+
+
+				## The EnronSent Corpus
+				96,106 email messages (~13,000,000 words) from the Enron Corporate Email Servers
+
+				---
+
+
+
+				## The Google Books Corpus
+				All the text from every book in the “Google Books” service
+
+				---
+
+
+
+				## The Google Corpus
+				The entire internet. At your fingertips
+
+				---
+
+
+
+				## The Lena Corpus
+				Thousands of hours of recorded child and child- directed speech
+
+				---
+
+
+
+				## The Penn Treebank
+				A large corpus of syntactically marked data (showing the tree structure of sentences)
+
+				---
+
+
+
+				## The Callhome Speech Corpus
+
+				This corpus actually contains sound files, useful for speech geeks like myself
+
+				---
+
+
+
+				### (and many, many, *many* more)
+
+				---
+
+
+
+				### So, that’s a bunch of data. How do you actually ask your question?
+
+				---
+
+
+
+				## How to run a corpus search:
+				<!-- .element: class="fragment" --> 1) Figure out where you want to look (which corpora)
+				<!-- .element: class="fragment" --> 2) Figure out exactly what you want to search for
+				<!-- .element: class="fragment" --> 3) Search for it
+				<!-- .element: class="fragment" --> 4) Sift through the results
+
+				---
+
+
+
+				<img src="img/highlighter.png">
+				### Option #1
+
+				---
+
+
+
+				<img width="60%" src="img/hal9000.jpg">
+				### Option #2
+
+				---
+
+
+
+
+				## So, to find out if leveraging is corporate-speak, I want to look...
+				<!-- .element: class="fragment" --> 1) Someplace businessy
+				<!-- .element: class="fragment" --> 2) Someplace not businessy
+
+
+				---
+
+
+
+				## What would I need to look for?
+				<!-- .element: class="fragment" --> leverage?
+				<!-- .element: class="fragment" --> leveraged?
+				<!-- .element: class="fragment" --> leverages					
+				<!-- .element: class="fragment" --> leveraging
+
+				---
+
+
+
+				## How would I ask the computer to find that?
+				<!-- .element: class="fragment" --> Get your geek on by logging into our corpus server
+				<!-- .element: class="fragment" --> 
+				“Find any lines in which EITHER “leverages” OR “leveraging” occurs
+				<code class=fragment>egrep "leverages|leveraging" yourcorpus</code>
+
+
+				---
+
+
+
+				### Let's give it a try!
+
+				---
+
+
+
+				### This all looks complicated, but it gets easier quickly, and there’s usually someone around to help.
+
+				---
+
+
+
+				## Running stats helps too!
+
+				By doing statistical analysis on your searches, you can measure whether the data really shows what you claim it does.
+
+				---
+
+
+
+				### Why make precise counts to test our hypotheses, then spend hours running statistical models?
+				<br>
+				<h4 class = fragment>So can we get to the most wonderful three letters in research...
+
+				---
+
+
+
+
+
+
+				<huge>QED</huge>
+				<p class = fragment>“Quod Erat Demonstrandum”
+				<h4 class = fragment>“I’m right, you’re wrong, here’s proof.  Booyeah!”
+
+				---
+
+				> "Only corporate drones use "leverage" as a verb"
+				
+				## is just your opinion.
+
+				---
+
+
+
+				<img width=80% src="img/justyouropinion.jpeg">	
+
+				---
+
+				> "Leverage was used as a verb 61 times in the Enron corpus, and none at all in the equally large callhome corpus"
+
+				### ...is a victory dance of scientific wonder.
+
+				---
+
+
+				## ... but wait, there's more!
+				### Download the handout for resources to do this on your own <a href=http://savethevowels.org/talks/handouts/dataresources.pdf>http://savethevowels.org/talks/handouts/dataresources.pdf</a>
+
+				---
+
+
+				### We’ve been looking at different corpora representing different types of speech, all from 1990-2011.
+				## <!-- .element: class="fragment" --> What if we could search through history with a corpus search to see how words are used over time?
+
+				---
+
+
+
+
+				## Enter Google Ngrams
+				<a href=http://ngrams.googlelabs.com/>http://ngrams.googlelabs.com/</a>
+
+				---
+
+
+
+				<img width="1024" src="img/eat.png">
+				### Eat
+
+				---
+
+
+				<img width="1024" src="img/sleep.png">
+				### Sleep
+
+				---
+
+
+				<img width="1024" src="img/walk.png">
+				### Walk
+
+				---
+
+
+
+				<img width="1024" src="img/eatsleepwalk.png">
+				### Eat/Sleep/Walk
+
+				---
+
+
+
+				### Some words, you might expect to change over time
+
+				---
+
+
+
+				<img width="1024" src="img/automobile.png">
+				### Automobile
+
+				---
+
+
+				<img width="1024" src="img/computer.png">
+				### Computer
+
+				---
+
+
+				<img width="1024" src="img/laptop.png">
+				### Laptop
+
+				---
+
+
+				<img width="1024" src="img/download.png">
+				### Download
+
+				---
+
+
+				<img width="1024" src="img/google.png">
+				### Google
+
+				---
+
+
+				<img width="1024" src="img/confederacy.png">
+				### Confederacy
+
+				---
+
+
+				### Some words are disappearing
+
+				---
+
+
+				<img width="1024" src="img/bilious.png">
+				### Bilious
+
+				---
+
+
+				<img width="1024" src="img/blackguard.png">
+				### Blackguard
+
+				---
+
+
+
+
+				### More interesting distributions...
+
+				---
+
+
+
+				<img width="1024" src="img/nazi.png">
+				### Nazi
+
+				---
+
+
+				<img width="1024" src="img/war.png">
+				### War
+
+				---
+
+
+				<img width="1024" src="img/negro.png">
+				### Negro
+
+				---
+
+
+				<img width="1024" src="img/sex.png">
+				### Sex
+
+				---
+
+
+				<img width="1024" src="img/swag.png">
+				### Swag
+
+				---
+
+
+
+				### Let's play a game!
+
+				---
+
+
+
+				Clue: Type of person (belonging to a certain group or culture)
+				
+				<img width="1024" src="img/hippyhidden.png">
+				### <!-- .element: class="fragment" --> Hippy
+
+				---
+
+
+				Clue: Country
+				
+				<img width="1024" src="img/ussrhidden.png">
+				### <!-- .element: class="fragment" --> USSR
+
+				---
+
+
+				Clue: Home/Office Technology
+				
+				<img width="1024" src="img/typewriterhidden.png">
+				### <!-- .element: class="fragment" --> Typewriter
+
+				---
+
+
+				Clue: Food Product
+				
+				<img width="1024" src="img/spamhidden.png">
+				### <!-- .element: class="fragment" --> Spam
+
+				---
+
+
+
+				### Warring Words
+
+				---
+
+
+				<img width="1024" src="img/vitriol.png">
+				### Vitriol vs. Sulfuric Acid
+
+				---
+
+
+				<img width="1024" src="img/aeroplane.png">
+				### Aeroplane vs. Airplane
+
+				---
+
+
+
+				<img width="1024" src="img/vhs.png">
+				### VHS vs. DVD
+
+				---
+
+
+				<img width="1024" src="img/handicapped.png">
+				### Handicapped vs. Disabled
+
+				---
+
+
+				<img width="1024" src="img/flammable.png">
+				### Flammable vs. Inflammable
+				<img width="200" src="img/whorf.png">
+
+				---
+
+
+
+
+				## Cool story, Bro.<br>
+				### <!-- .element: class="fragment" --> ... but how can this data tell us about the real world?
+
+				---
+
+
+
+
+				## NLP - Natural Language Processing
+				Teaching computers to “understand” human language
+
+				---
+
+
+
+
+				## Machine Learning in ∞ easy steps:
+				<!-- .element: class="fragment" --> 1) Get a corpus and annotate it to tell the computer what’s going on
+				
+				<!-- .element: class="fragment" --> 2) “Train” the computer by letting it analyze that corpus
+
+				<!-- .element: class="fragment" --> 3) Give it a different corpus, have it try to guess what’s going on and answer questions
+
+				<!-- .element: class="fragment" --> 4) Refine the programming, then get another corpus and annotate it to tell the computer what’s going on..
+
+				<!-- .element: class="fragment" --> (Repeat)
+
+				---
+
+
+
+				## “The patient developed a mild post-surgical rash, which was treated with hydrocortisone at the follow-up”
+
+				<!-- .element: class="fragment" --> Sequence of events:
+				
+				<!-- .element: class="fragment" --> 1) Surgery
+				
+				<!-- .element: class="fragment" --> 2) Mild rash
+				
+				<!-- .element: class="fragment" --> 3) Hydrocortisone, Followup (overlapping)
+				
+				<!-- .element: class="fragment" --> 4) No more rash
+
+				---
+
+
+
+				## If a computer can be taught to interpret time in medical records, we can ask...
+
+				<!-- .element: class="fragment" --> "I have 30 seconds to learn this patient's history.  Go."
+				
+				<!-- .element: class="fragment" --> “Are there any disorders or symptoms which often arise within six months of taking drug X?”
+				
+				<!-- .element: class="fragment" --> “How many patients treated with X later develop Y?”
+				
+				<!-- .element: class="fragment" --> 
+				“How long do patients usually live following diagnosis Z?”
+				
+				<!-- .element: class="fragment" --> 
+				“Is there any aspect of the patient’s history shared among all people with disease Q?”
+
+				---
+
+
+
+				## What else could you ask a well-trained computer to answer for you?
+
+				---
+
+
+
+
+				## “Watch Twitter and give me the locations of wildfires, floods, etc, and provide information about damage, shelters and resources in an easy-to-read format”
+				<!-- .element: class="fragment" --> (EPIC)
+
+				---
+
+
+
+				## “Examine these two written passages/books and tell me whether they were both written by the same person”
+				<!-- .element: class="fragment" --> (Authorship Attribution Analysis)
+
+				---
+
+
+
+				## “Could you give me a summary of this news article?”
+				<!-- .element: class="fragment" --> (Automatic summarization)
+
+				---
+
+
+
+				## “Look for any information which will predict a change in this company's stock price, then buy or sell automatically.”
+				<!-- .element: class="fragment" --> (High Frequency Trading Software)
+
+				---
+
+
+
+
+
+				## “How often, in this corpus of blogs, do people say nice or awful things about product X?”
+				<!-- .element: class="fragment" --> (Automated Sentiment Analysis)
+
+				---
+
+
+
+				## “Given this large sample of a child’s speech, is the child likely to be autistic?”
+				<!-- .element: class="fragment" --> (Current research at the LENA foundation in Boulder)
+
+				---
+
+
+
+				## “Listening to this conversation, are the participants happy? Sad? Flirting?”
+				<!-- .element: class="fragment" --> (Speech emotion analysis)
+
+				---
+
+
+
+				## "Scan online white-supremacist forums for anything which looks like a threat against the President"
+				<!-- .element: class="fragment" --> (The US Secret Service)
+
+				---
+
+
+
+				## “Watch these websites being used by islamist groups and look for specific language usage patterns that predict violent and radical behavior.”
+				<!-- .element: class="fragment" --> (All sorts of defense department grants)
+
+				---
+
+
+
+				## “Read every email, looking for threats or discussion of terrorist attacks on American soil.”
+
+				---
+
+
+
+
+				<img src="img/NSA.jpeg">
+
+				---
+
+
+
+
+				## “Examine any question given to you and provide an answer to it, based on your training data”
+				<img width=800 class=fragment src=img/watson.png>
+
+				---
+
+				<iframe data-autoplay width="840" height="500" src="http://www.youtube.com/embed/7kOEmupSHB8"></iframe> 
+				 
+
+				---
+
+				## Jeopardy “Watson” challenge Final Score:
+				<!-- .element: class="fragment" --> Ken Jennings: $24,000
+				
+				<!-- .element: class="fragment" --> Brad Rutter: $21,600
+				
+				<!-- .element: class="fragment" --> **Watson: $77,147**
+
+
+				---
+
+
+
+				<img width="1024" src="img/terminator.png">
+
+				---
+
+
+
+				### ... but not for a little while
+
+				---
+
+
+
+				## Why computers have an uphill battle:
+				<!-- .element: class="fragment" --> “The Queen of England’s hat was purple”
+				
+				<!-- .element: class="fragment" --> 
+				“We gave the monkeys the bananas because they were ripe”
+				
+				<!-- .element: class="fragment" --> 
+				“We gave the monkeys the bananas because they were hungry”
+				
+				<!-- .element: class="fragment" --> “Time flies like an arrow, fruit flies like a banana”
+				
+				<!-- .element: class="fragment" --> “The old man returned to his house was happy”
+
+				---
+
+				## Hooray!
+
+				<img width="900" src="img/morpheus.png">
+
+				---
+
+				## You and language data can have a happy, loving relationship
+				<!-- .element: class="fragment" --> 
+				All you need to do is ask lots of questions, pay attention to what your data tells you, and always think carefully about what you’re asking it.
+				
+				<!-- .element: class="fragment" --> 
+				Maintain this relationship and your data will always be there for you to back you up, and you’ll live happily ever after.
+
+				---
+
+
+
+				<img width="90%" src="img/datalove.png">
+
+				---
+
+
+
+
+				### This presentation is available online at:
+				<a href="http://savethevowels.org/talks/using_language_data.html">http://savethevowels.org/talks/</a>
+
+				---
+
+
+
+
+				### Thank you!
+
+				---
+
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+		<script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/chalkboard/plugin.js"></script>
+	    <script src="config.js"></script>
+	</body>
+</html>

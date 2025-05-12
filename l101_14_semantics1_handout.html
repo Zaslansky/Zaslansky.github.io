@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h1 id="semantics-what-does-it-all-mean">Semantics: What does it all
+mean?</h1>
+<h3 id="will-styler---lign-101">Matt Zaslansky - LIGN 101</h3>
+<hr />
+<h3 id="so-far-weve-been-focused-on-structure">So far, we’ve been
+focused on structure</h3>
+<ul>
+<li><p>How are sounds made?</p></li>
+<li><p>How do sounds pattern?</p></li>
+<li><p>How are words made?</p></li>
+<li><p>How do words pattern?</p></li>
+</ul>
+<hr />
+<h3 id="its-time-to-start-thinking-about-what-it-all-means">It’s time to
+start thinking about what it all means</h3>
+<ul>
+<li>Quite literally.</li>
+</ul>
+<hr />
+<h2 id="semantics">Semantics</h2>
+<p>The study of meaning in Language</p>
+<hr />
+<h2 id="pragmatics">Pragmatics</h2>
+<p>The study of meaning in conversational context</p>
+<hr />
+<h3 id="were-going-to-spend-some-time-with-both-of-these">We’re going to
+spend some time with both of these</h3>
+<ul>
+<li><p>Today, we’ll focus on meaning in a greater sense</p></li>
+<li><p>Next time, word meanings</p></li>
+<li><p>After that, we’ll talk about Pragmatics</p></li>
+</ul>
+<hr />
+<h3 id="todays-plan">Today’s Plan</h3>
+<ul>
+<li><p>Truth in Sentences</p></li>
+<li><p>Ambiguity</p></li>
+<li><p>Entailment</p></li>
+<li><p>Connotation and Denotation</p></li>
+<li><p>Prototypes</p></li>
+</ul>
+<hr />
+<h1 id="truth-in-sentences">Truth in sentences</h1>
+<hr />
+<h3
+id="sentences-can-be-true-or-false-with-reference-to-the-world">Sentences
+can be true, or false, with reference to the world</h3>
+<ul>
+<li><p>Since words have meanings, and those meanings can be defined
+logically…</p></li>
+<li><p>We can evaluate the logical truth of a sentence.</p></li>
+</ul>
+<hr />
+<h3 id="sometimes-its-easy">Sometimes, it’s easy</h3>
+<hr />
+<h3 id="tautology">Tautology</h3>
+<ul>
+<li><p>All linguists are linguists.</p></li>
+<li><p>Every bachelor is unmarried.</p></li>
+<li><p>A circle is circular.</p></li>
+<li><p>The long cat is long.</p></li>
+<li><p><em>All tautologies are true!</em></p></li>
+</ul>
+<hr />
+<h3 id="contradictions">Contradictions</h3>
+<ul>
+<li><p>A circle is triangular.</p></li>
+<li><p>French people are not French.</p></li>
+<li><p>Will is tall and short.</p></li>
+<li><p><em>All contradictions are false!</em></p></li>
+</ul>
+<hr />
+<h3 id="meaningless-sentences">Meaningless sentences</h3>
+<ul>
+<li><p>“Colorless green ideas sleep furiously”</p></li>
+<li><p><em>Meaningless sentences lack meaning!</em></p></li>
+</ul>
+<hr />
+<h3 id="non-statement-sentences">Non-Statement Sentences</h3>
+<ul>
+<li><p><strong>Commands:</strong> Turn in your homework!</p></li>
+<li><p><strong>Questions:</strong> Have you turned in your
+homework?</p></li>
+<li><p><strong>Greetings:</strong> Welcome to UC San Diego!</p></li>
+<li><p><em>These can’t be evaluated as they’re not making
+claims</em></p></li>
+</ul>
+<hr />
+<h3 id="speech-acts-performative-language">Speech Acts / Performative
+Language</h3>
+<ul>
+<li><p>I sentence you to three weeks of probation.</p></li>
+<li><p>I now pronounce you married.</p></li>
+<li><p><em>More on these in Pragmatics!</em></p></li>
+</ul>
+<hr />
+<h2
+id="declarative-sentences-can-thus-be-shown-to-be-true-or-false.">Declarative
+sentences can thus be shown to be true or false.</h2>
+<hr />
+<h3 id="matt-waved">“Matt waved”</h3>
+<ul>
+<li><p>There is a set of people who waved.</p></li>
+<li><p>If Matt is in that set, this sentence is true.</p></li>
+<li><p>If Matt is not, this sentence is false.</p></li>
+</ul>
+<hr />
+<h3 id="compositional-semantics">Compositional Semantics</h3>
+<ul>
+<li><p>Syntactic structure, coupled with understanding of meaning of
+individual phrases, allows the determination of meaning via
+rules.</p></li>
+<li><p>This is <em>really</em> cool stuff.</p></li>
+</ul>
+<hr />
+<h3 id="for-compositional-semantics-lign-130-and-lign-230">For
+compositional semantics, LIGN 130 and LIGN 230</h3>
+<p><img class="r-stretch" src="img/plug.jpg"></p>
+<hr />
+<h3 id="sometimes-its-hard-to-figure-out-what-the-meaning-is">Sometimes,
+it’s hard to figure out what the meaning is</h3>
+<hr />
+<h1 id="ambiguity">Ambiguity</h1>
+<p><img class="r-stretch" src="humorimg/ambiguity.jpg"></p>
+<hr />
+<h3 id="three-kinds-of-ambiguity">Three kinds of Ambiguity</h3>
+<ul>
+<li><p>Syntactic/Structural Ambiguity</p></li>
+<li><p>Lexical Ambiguity</p></li>
+<li><p>Semantic Ambiguity</p></li>
+</ul>
+<hr />
+<h2 id="structuralsyntactic-ambiguity">Structural/Syntactic
+Ambiguity</h2>
+<ul>
+<li>“I’m not sure what syntactic structure you’re going for there”</li>
+</ul>
+<hr />
+<h3 id="i-saw-the-man-with-the-telescope">“I saw the man with the
+telescope”</h3>
+<p><img class="r-stretch" src="diagrams/tree_manwithtelescope1.jpg"></p>
+<hr />
+<h3 id="i-saw-the-man-with-the-telescope-1">“I saw the man with the
+telescope”</h3>
+<p><img class="r-stretch" src="diagrams/tree_manwithtelescope2.jpg"></p>
+<hr />
+<h3 id="i-saw-the-queen-of-englands-hat">“I saw the Queen of England’s
+Hat”</h3>
+<ul>
+<li>Note, this requires two new rules, N’ -&gt; N’ PP and DET -&gt; NP
+POSS</li>
+</ul>
+<p><img class="r-stretch" src="diagrams/tree_queenenglandshat1.jpg"></p>
+<hr />
+<h3 id="i-saw-the-queen-of-englands-hat-1">“I saw the Queen of England’s
+Hat”</h3>
+<p><img class="r-stretch" src="diagrams/tree_queenenglandshat2.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/binladen_mask.jpg"></p>
+<hr />
+<h2 id="lexical-ambiguity">Lexical Ambiguity</h2>
+<ul>
+<li>“I’m not sure what sense of the word you’re using”</li>
+</ul>
+<hr />
+<h3 id="word-sense">Word Sense</h3>
+<ul>
+<li><p>The same sequence of phonemes can have multiple meanings</p>
+<ul>
+<li>This is known as ‘polysemy’</li>
+</ul></li>
+<li><p>The “sense” is the particular meaning in use at a
+moment.</p></li>
+<li><p>“Spam”, “Lit”, “Broke”, “Turn”, “Lemon”</p></li>
+</ul>
+<hr />
+<h3 id="lexically-ambiguous-sentences">Lexically Ambiguous
+Sentences</h3>
+<ul>
+<li><p>“He sold her a lemon”</p>
+<ul>
+<li>A bad car, or a citrus fruit.</li>
+</ul></li>
+<li><p>“Stop sending me spam”</p>
+<ul>
+<li>Spiced ham, or commercial email</li>
+</ul></li>
+<li><p>“Will cut up the center of the paper”</p></li>
+</ul>
+<hr />
+<h3
+id="the-only-time-a-stadium-full-of-people-chanted-a-semantic-ambiguity">The
+only time a stadium full of people chanted a semantic ambiguity</h3>
+<ul>
+<li><p><em>“Tryna strike a chord and it’s probably A-Minor”</em></p>
+<ul>
+<li>Kendrick Lamar - ‘Not Like Us’</li>
+</ul></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/mustardonthebeathoe.jpg"></p>
+<hr />
+<p><img class="wide" src="humorimg/huge_metal_fan.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="humorimg/go_long.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/beeftonight.jpg"></p>
+<hr />
+<h2 id="semantic-ambiguity">Semantic Ambiguity</h2>
+<p>“I know the structure, and I know the senses, but there are multiple
+readings”</p>
+<hr />
+<h3 id="john-kissed-his-wife-and-so-did-alex">“John kissed his wife, and
+so did Alex”</h3>
+<ul>
+<li><p>Two people kissing two wives, or one wife kissing two
+people?</p></li>
+<li><p>“John kissed Amy, and so did Alex” is not ambiguous</p></li>
+<li><p>“John kissed his wife, and Alex kissed his own wife”</p></li>
+</ul>
+<hr />
+<h3 id="bob-and-joe-are-married.">“Bob and Joe are married.”</h3>
+<ul>
+<li><p>“Bob and Joe are married to each other”</p></li>
+<li><p>“Bob and Joe are married, but Sean, Mike, and Adam are
+single”</p></li>
+</ul>
+<hr />
+<h3 id="every-student-hates-an-instructor.">“Every student hates an instructor.”</h3>
+<ul>
+<li><p>“Every student hates at least one instructor that they’ve had,
+whoever that may be.”</p></li>
+<li><p>“Every student hates one instructor, and his name is Matt Zaslansky”</p></li>
+</ul>
+<hr />
+<p><img class="r-stretch" src="img/ambiguity_throwthemout.jpg"></p>
+<hr />
+<p><img class="r-stretch" src="img/ambiguity_lurieonfentanyl.jpg"></p>
+<hr />
+<h3
+id="somebody-stole-our-stapler-and-none-of-the-electrics-appear-to-be-working.">“somebody
+stole our stapler, and none of the electrics appear to be working.”</h3>
+<hr />
+<h3
+id="there-are-other-types-of-ambiguity-but-these-are-the-three-youll-want-to-know">There
+are other types of ambiguity, but these are the three you’ll want to
+know</h3>
+<ul>
+<li><p>Lexical Ambiguity</p>
+<ul>
+<li>“I can’t figure out <strong>what word sense</strong> is being
+used.”</li>
+</ul></li>
+<li><p>Syntactic Ambiguity</p>
+<ul>
+<li>“I can’t figure out <strong>which syntactic structure</strong> is
+intended.”</li>
+</ul></li>
+<li><p>Semantic Ambiguity</p>
+<ul>
+<li>“I can’t figure out <strong>which of several
+interpretations</strong> you intend without more context.”</li>
+</ul></li>
+</ul>
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="i-see-kim-and-latasha-eating-ice-cream-wait-i-think-she-dropped-her-spoon.">“I
+see Kim and Latasha eating ice cream… Wait, I think she dropped her
+spoon.”</h3>
+<ol type="A">
+<li><p>Lexical Ambiguity</p></li>
+<li><p>Syntactic Ambiguity</p></li>
+<li><p>Semantic Ambiguity</p></li>
+</ol>
+<hr />
+<h3
+id="i-see-kim-and-latasha-eating-ice-cream-wait-i-think-she-dropped-her-spoon.-1">“I
+see Kim and Latasha eating ice cream… Wait, I think she dropped her
+spoon.”</h3>
+<ol type="A">
+<li><p>Lexical Ambiguity</p></li>
+<li><p>Syntactic Ambiguity</p></li>
+<li><p><correct>Semantic Ambiguity</correct></p></li>
+</ol>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="i-poked-the-bear-with-a-stick">“I poked the bear with a
+stick”</h3>
+<ol type="A">
+<li><p>Lexical Ambiguity</p></li>
+<li><p>Syntactic Ambiguity</p></li>
+<li><p>Semantic Ambiguity</p></li>
+</ol>
+<hr />
+<h3 id="i-poked-the-bear-with-a-stick-1">“I poked the bear with a
+stick”</h3>
+<ol type="A">
+<li><p>Lexical Ambiguity</p></li>
+<li><p><correct>Syntactic Ambiguity</correct></p></li>
+<li><p>Semantic Ambiguity</p></li>
+</ol>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="john-loves-his-mother-and-so-do-i">“John loves his mother, and
+so do I”</h3>
+<ol type="A">
+<li><p>Lexical Ambiguity</p></li>
+<li><p>Syntactic Ambiguity</p></li>
+<li><p>Semantic Ambiguity</p></li>
+</ol>
+<hr />
+<h3 id="john-loves-his-mother-and-so-do-i-1">“John loves his mother, and
+so do I”</h3>
+<ol type="A">
+<li><p>Lexical Ambiguity</p></li>
+<li><p>Syntactic Ambiguity</p></li>
+<li><p><correct>Semantic Ambiguity</correct></p></li>
+</ol>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="i-saw-this-killer-robot-circling-general-dynamics">“I saw this
+killer robot circling General Dynamics”</h3>
+<ol type="A">
+<li><p>Lexical Ambiguity</p></li>
+<li><p>Syntactic Ambiguity</p></li>
+<li><p>Semantic Ambiguity</p></li>
+</ol>
+<hr />
+<h3 id="i-saw-this-killer-robot-circling-general-dynamics-1">“I saw this
+killer robot circling General Dynamics”</h3>
+<ol type="A">
+<li><p><correct>Lexical Ambiguity</correct></p></li>
+<li><p>Syntactic Ambiguity</p></li>
+<li><p>Semantic Ambiguity</p></li>
+</ol>
+<hr />
+<h3 id="so-thats-when-meaning-isnt-clear.">So, that’s when meaning isn’t
+clear.</h3>
+<ul>
+<li>Let’s talk about the opposite!</li>
+</ul>
+<hr />
+<h1 id="entailment">Entailment</h1>
+<hr />
+<h2 id="entailment-1">Entailment</h2>
+<p>When the use of a word involves logical and necessary conclusions
+which can be drawn</p>
+<ul>
+<li><p>“If X is true, then necessarily, Y is true”</p></li>
+<li><p>You cannot imagine a situation in which X being true does not
+make Y true</p></li>
+</ul>
+<hr />
+<h3 id="sam-broke-the-red-toy-and-the-blue-toy.">Sam broke the red toy
+and the blue toy.</h3>
+<p><strong>Entails…</strong></p>
+<ul>
+<li><p>The red toy is broken</p></li>
+<li><p>The blue toy is broken</p></li>
+<li><p>Sam broke two toys.</p></li>
+<li><p>Sam is capable of breaking toys.</p></li>
+</ul>
+<hr />
+<h3 id="sam-broke-the-red-toy-and-the-blue-toy.-1">Sam broke the red toy
+and the blue toy.</h3>
+<p><strong>Does not entail…</strong></p>
+<ul>
+<li><p>Sam intentionally broke the toys</p></li>
+<li><p>Sam broke the red toy first.</p></li>
+<li><p>Sam likes breaking toys.</p></li>
+<li><p>They were Sam’s toys</p></li>
+</ul>
+<hr />
+<h3 id="mary-passionately-kissed-blake">Mary passionately kissed
+Blake</h3>
+<p><strong>Entails…</strong></p>
+<ul>
+<li><p>Mary kissed Blake</p></li>
+<li><p>Blake was kissed by Mary.</p></li>
+<li><p>Blake was kissed.</p></li>
+<li><p>Mary touched Blake with her lips.</p></li>
+</ul>
+<hr />
+<h3 id="mary-passionately-kissed-blake-1">Mary passionately kissed
+Blake</h3>
+<p><strong>Does not entail…</strong></p>
+<ul>
+<li><p>Mary loves Blake.</p></li>
+<li><p>Mary married Blake.</p></li>
+<li><p>Blake kissed Mary.</p></li>
+<li><p>Mary kissed Blake many times.</p></li>
+<li><p>Mary did <em>not</em> kiss Blake.</p></li>
+</ul>
+<hr />
+<h3 id="x-entails-y-does-not-mean-that-y-entails-x">X entails Y does not
+mean that Y entails X!</h3>
+<ul>
+<li><p>“Mary passionately kissed Blake” entails “Mary kissed
+Blake”</p></li>
+<li><p>“Mary kissed Blake” <strong>does not</strong> entail “Mary
+passionately kissed Blake”.</p>
+<ul>
+<li>Mary could have offered a reluctant and chaste peck on the
+cheek</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="entailment-does-not-depend-on-conversational-context-or-situations">Entailment
+<em>does not</em> depend on conversational context or situations</h3>
+<ul>
+<li><p>“John left the room” <strong>does not</strong> entail that the
+room is empty afterwards.</p>
+<ul>
+<li><p>“Mary and John were in the room. John left the room”</p></li>
+<li><p>“John was alone in the room. John left the room.”</p></li>
+</ul></li>
+<li><p>Entailment is true <strong>only</strong> if you cannot imagine a
+situation where it could be false.</p>
+<ul>
+<li>“Mary kissed Blake” can never not entail that Blake was kissed by
+Mary.</li>
+</ul></li>
+<li><p>If it depends on context, it’s <em>implicature</em>.</p></li>
+</ul>
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="roberta-hit-carlos-using-a-rubber-chicken.-which-of-the-following-is-not-entailed">“Roberta
+hit Carlos using a rubber chicken”. Which of the following is
+<em>not</em> entailed?</h3>
+<ol type="A">
+<li><p>Carlos was hit with a rubber chicken.</p></li>
+<li><p>Roberta had a Rubber Chicken</p></li>
+<li><p>Roberta dislikes Carlos</p></li>
+<li><p>Roberta was within rubber-chicken-hitting distance of
+Carlos</p></li>
+<li><p>Roberta hit Carlos</p></li>
+</ol>
+<hr />
+<h3
+id="roberta-hit-carlos-using-a-rubber-chicken.-which-of-the-following-is-not-entailed-by-this-sentence">“Roberta
+hit Carlos using a rubber chicken”. Which of the following is
+<em>not</em> entailed by this sentence?</h3>
+<ol type="A">
+<li><p>Carlos was hit with a rubber chicken.</p></li>
+<li><p>Roberta had a Rubber Chicken</p></li>
+<li><p><correct>Roberta dislikes Carlos</correct></p></li>
+<li><p>Roberta was within rubber-chicken-hitting distance of
+Carlos</p></li>
+<li><p>Roberta hit Carlos</p></li>
+</ol>
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="demetrius-saw-the-kid-who-was-walking-down-the-street.-which-of-the-following-is-entailed-by-this-sentence">“Demetrius
+saw the kid who was walking down the street”. Which of the following
+<em>is</em> entailed by this sentence?</h3>
+<ol type="A">
+<li><p>Demetrius was within line-of-sight of the kid</p></li>
+<li><p>Demetrius saw a child.</p></li>
+<li><p>Demetrius was on the street.</p></li>
+<li><p>The kid was walking.</p></li>
+<li><p>Demetrius was older than the kid.</p></li>
+</ol>
+<hr />
+<h3
+id="demetrius-saw-the-kid-who-was-walking-down-the-street.-which-of-the-following-is-entailed-by-this-sentence-1">“Demetrius
+saw the kid who was walking down the street”. Which of the following
+<em>is</em> entailed by this sentence?</h3>
+<ol type="A">
+<li><p>Demetrius was within line-of-sight of the kid</p></li>
+<li><p>Demetrius saw a child.</p></li>
+<li><p>Demetrius was on the street.</p></li>
+<li><p><correct>The kid was walking.</correct></p></li>
+<li><p>Demetrius was older than the kid.</p></li>
+</ol>
+<hr />
+<h3
+id="making-assumptions-when-evaluating-entailment-is-baaaaaaaaad">Making
+assumptions when evaluating entailment is baaaaaaaaad</h3>
+<p><img class="r-stretch" src="img/kidgoat.jpg"></p>
+<hr />
+<h3
+id="understanding-entailment-requires-you-to-understand-the-meaning-of-words">Understanding
+entailment requires you to understand the meaning of words</h3>
+<ul>
+<li><p>“Nathan is a District Attorney” entails that “Nathan is an
+Attorney”</p></li>
+<li><p>“Nathan is a District Attorney” entails that “Nathan is a
+Lawyer”</p></li>
+<li><p>“Nathan is an attorney” <strong>does not</strong> entail that
+“Nathan is a district attorney”</p></li>
+<li><p>“Nathan is an attorney” <strong>does not</strong> entail that
+“Nathan is a lawyer”</p></li>
+<li><p>All of these terms are system specific</p>
+<ul>
+<li>In a different legal system, the terms might be defined
+differently</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="and-meaning-is-complicated-af">… and meaning is complicated
+af</h3>
+<hr />
+<h1 id="connotation-and-denotation-shades-of-meaning">Connotation and
+Denotation: Shades of Meaning</h1>
+<hr />
+<h3 id="there-are-many-ways-to-say-the-same-thing">There are many ways
+to say the same thing</h3>
+<ul>
+<li>Words that ‘mean the same thing’ are called ‘synonyms’</li>
+</ul>
+<hr />
+<h3 id="synonyms">Synonyms</h3>
+<ul>
+<li><p>“Sofa” and “Couch”</p></li>
+<li><p>“Pop” and “Soda”</p></li>
+<li><p>“Sick” and “Ill”</p></li>
+<li><p>“Police Officer” and “Cop”</p></li>
+</ul>
+<hr />
+<h3 id="synonyms-can-be-tested">Synonyms can be tested</h3>
+<ul>
+<li><p>“All sofas are couches, and all couches are sofas”</p></li>
+<li><p>“John purchased a car, therefore he bought a car”</p></li>
+<li><p>“All sick people are ill, and all ill people are sick”</p></li>
+<li><p>“All police officers are cops, and all cops are police
+officers”</p></li>
+</ul>
+<hr />
+<h3
+id="lets-look-at-another-set-of-words-that-mean-the-same-thing">Let’s
+look at another set of words that ‘mean the same thing’</h3>
+<ul>
+<li><p>“Cheap” and “Inexpensive”</p></li>
+<li><p>“Strong-willed”, “Stubborn”, and “Pig-Headed”</p></li>
+<li><p>“Study” and “Scrutinize”</p></li>
+<li><p>“curious” and “nosy”</p></li>
+<li><p>“vintage” and “outdated” and “antique”</p></li>
+</ul>
+<hr />
+<h3
+id="these-words-share-a-denotation-but-have-different-connotations">These
+words share a <em>denotation</em>, but have different
+<em>connotations</em></h3>
+<ul>
+<li><p>“Cheap” and “inexpensive” both mean “costs little money”</p>
+<ul>
+<li>… but it means something different to say “a cheap broom” vs. “an
+inexpensive broom”</li>
+</ul></li>
+<li><p>A person can be “strong-willed”, “stubborn” or “pig-headed”</p>
+<ul>
+<li>… depending on how angry you are with them at the moment</li>
+</ul></li>
+<li><p>“She studied the paper” does not mean the same thing as “She
+scrutinized the paper”</p></li>
+<li><p>Nobody sells outdated clothing, they sell vintage
+clothing</p></li>
+</ul>
+<hr />
+<h3
+id="these-differentiate-the-denotation-of-a-word-from-the-connotation">These
+differentiate the ‘denotation’ of a word, from the ‘connotation’</h3>
+<ul>
+<li><p>The ‘Denotation’ is the strict dictionary definition of a
+word</p>
+<ul>
+<li>Cheap and Inexpensive both mean “Something that costs little
+money”</li>
+</ul></li>
+<li><p>The ‘Connotation’ describes the non-definitional, emotional and
+associative facts about how the word is often used.</p>
+<ul>
+<li><p>These are often value judgements, or links to related
+concepts</p></li>
+<li><p>These are facts about usage, more than facts about
+definition</p></li>
+<li><p>‘Cheap’ implies “Not great”, inexpensive doesn’t.</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="domineering-pushy-assertive">Domineering, Pushy, Assertive</h3>
+<ul>
+<li><p><strong>Denotation</strong>: Takes effort to ensure that their
+perspective and desires are shared and acted upon</p></li>
+<li><p>Pushy Connotation?</p></li>
+<li><p>Assertive Connotation?</p></li>
+<li><p>Domineering Connotation?</p></li>
+</ul>
+<hr />
+<h3 id="lets-try-some-sets">Let’s try some sets</h3>
+<ul>
+<li><p>New, Novel, Contemporary, Up-To-Date, State-of-the-Art,
+Recent</p></li>
+<li><p>Offended, insulted, outraged, butthurt, upset</p></li>
+<li><p>Father, Dad, Papa, Daddy</p></li>
+</ul>
+<hr />
+<h3
+id="some-words-have-connotations-that-associate-them-with-specific-contexts">Some
+words have connotations that associate them with specific contexts</h3>
+<ul>
+<li><p>“inner city” has a specific racial connotation in general use</p>
+<ul>
+<li>“I live in Central Park West in NYC, inner city life isn’t for
+everybody”</li>
+</ul></li>
+<li><p>“Lib” has a specific political connotation in general use</p>
+<ul>
+<li>“Bernie Sanders is a well known lib politician”</li>
+</ul></li>
+</ul>
+<hr />
+<h3
+id="sometimes-we-take-steps-to-avoid-a-negative-connotation">Sometimes,
+we take steps to avoid a negative connotation</h3>
+<hr />
+<h2 id="euphemism">Euphemism</h2>
+<p>An indirect and “pretty” way to refer to something unpleasant or
+embarrassing or with a negative connotation</p>
+<hr />
+<h3 id="sample-euphemisms">Sample Euphemisms</h3>
+<ul>
+<li><p>“We neutralized three combatants” rather than “We killed three
+enemy fighters”</p></li>
+<li><p>“We expect another round of downsizing” rather than “You all are
+gonna get fired”.</p></li>
+<li><p>“Could you point me to the powder room?” rather than “I have to
+defecate immediately.”</p></li>
+<li><p>“The children were placed in a <a
+href="https://apnews.com/dc0c9a5134d14862ba7c7ad9a811160e">tender-age
+shelter</a>” rather than “We stuck the children in a detention
+camp”.</p>
+<ul>
+<li>This was the <a
+href="https://www.americandialect.org/tender-age-shelter-is-2018-american-dialect-society-word-of-the-year">ADS
+Word of the Year</a> for 2018</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="connotations-arent-universally-shared">Connotations aren’t
+universally shared!</h3>
+<ul>
+<li><p>The same word may have different connotations among different
+groups</p>
+<ul>
+<li><p>What’s offensive to one group of people might be the neutral term
+to another</p></li>
+<li><p>‘We prefer the term…’</p></li>
+</ul></li>
+<li><p>People may not be aware of the connotations of words they’re
+using</p>
+<ul>
+<li>‘We’ve decided not to have kids’ vs. ‘We’re childfree’</li>
+</ul></li>
+<li><p>… and most importantly…</p></li>
+</ul>
+<hr />
+<h3 id="connotations-can-change-over-time">Connotations can change over
+time</h3>
+<ul>
+<li><p>Imbecile, Idiot, Slow, Retarded, Mentally Handicapped,
+Developmentally Disabled</p></li>
+<li><p>This phenomenon (euphemisms turning into negative terms then
+being replaced) is called the “Euphemism Treadmill”</p></li>
+</ul>
+<hr />
+<h3 id="torture-your-local-millenials-and-gen-xers">Torture your local
+millenials and Gen-Xers</h3>
+<ul>
+<li><p>“Oh, I always wondered what the internet was like in the late
+1900s”</p></li>
+<li><p>“The world of cell phones was very different at the turn of the
+century”</p></li>
+<li><p>“Instructors used overhead projectors as late as last
+century”</p></li>
+</ul>
+<hr />
+<h3 id="connotations-can-do-a-lot-of-work">Connotations can do a
+<em>lot</em> of work</h3>
+<p><img class="r-stretch" src="humorimg/butt_dial_booty_call.jpg"></p>
+<hr />
+<h3 id="the-lines-here-are-blurry">The lines here are blurry</h3>
+<ul>
+<li><p>“Butt dial” and “Booty call” may be two different compounds.</p>
+<ul>
+<li><p>Booty text? Butt Text?</p></li>
+<li><p>Or are they Adjective+Noun pairs?</p></li>
+</ul></li>
+<li><p>Does “thin” mean the same thing as “gaunt”?</p></li>
+<li><p>When does “idiot” stop meaning “intellectually disabled person”
+and start meaning “stupid person”?</p></li>
+<li><p><strong>It’s hard to figure out which of many word options
+carries the best choice of meaning</strong></p></li>
+</ul>
+<hr />
+<h3 id="this-can-lead-to-semantic-change">This can lead to Semantic
+Change</h3>
+<ul>
+<li><p>Where words start with one meaning and develop a new one</p></li>
+<li><p>This can cause a new word sense, or just an overall change in
+meaning</p></li>
+<li><p>Think ‘influencer’ or ’ mid’</p></li>
+</ul>
+<hr />
+<p>… But even single words are a bit hard to define</p>
+<hr />
+<h1 id="semantic-prototype-theory">Semantic Prototype Theory</h1>
+<hr />
+<h3 id="we-have-ideas-about-what-words-mean">We have ideas about what
+words mean</h3>
+<ul>
+<li><p>“Bird”</p></li>
+<li><p>“Chair”</p></li>
+</ul>
+<hr />
+<h3
+id="we-also-have-strong-intuitions-about-whether-a-word-describes-an-object-or-not.">We
+also have strong intuitions about whether a word describes an object or
+not.</h3>
+<ul>
+<li>… but these intuitions are not binary (“yes” vs. “no”)</li>
+</ul>
+<hr />
+<h3 id="lets-test-this">Let’s test this!</h3>
+<hr />
+<h3 id="what-is-a-bird">What is a bird?</h3>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-bird-like-is-this">On a
+scale from A (Most) to E (Least), how bird-like is this…</h3>
+<p><img class="r-stretch" src="img/bird_housesparrow.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-bird-like-is-this-1">On a
+scale from A (Most) to E (Least), how bird-like is this…</h3>
+<p><img class="r-stretch" src="img/bird_nightingale.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-bird-like-is-this-2">On a
+scale from A (Most) to E (Least), how bird-like is this…</h3>
+<p><img class="r-stretch" src="img/bird_ostrich.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-bird-like-is-this-3">On a
+scale from A (Most) to E (Least), how bird-like is this…</h3>
+<p><img class="r-stretch" src="img/bird_penguin.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-bird-like-is-this-4">On a
+scale from A (Most) to E (Least), how bird-like is this…</h3>
+<p><img class="r-stretch" src="img/koala.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-bird-like-is-this-5">On a
+scale from A (Most) to E (Least), how bird-like is this…</h3>
+<p><img class="r-stretch" src="img/bird_kiwi.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-bird-like-is-this-6">On a
+scale from A (Most) to E (Least), how bird-like is this…</h3>
+<p><img class="r-stretch" src="img/bird_swan.jpg"></p>
+<hr />
+<h3 id="its-not-just-birds">It’s not just birds</h3>
+<hr />
+<h3 id="what-is-a-chair">What is a chair?</h3>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-chair-like-is-this">On a
+scale from A (Most) to E (Least), how chair-like is this…</h3>
+<p><img class="r-stretch" src="img/chair_lounger.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-chair-like-is-this-1">On a
+scale from A (Most) to E (Least), how chair-like is this…</h3>
+<p><img class="r-stretch" src="img/chair_hand.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-chair-like-is-this-2">On a
+scale from A (Most) to E (Least), how chair-like is this…</h3>
+<p><img class="r-stretch" src="img/chair_ironthrone.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-chair-like-is-this-3">On a
+scale from A (Most) to E (Least), how chair-like is this…</h3>
+<p><img class="r-stretch" src="img/chair_wiggle.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-chair-like-is-this-4">On a
+scale from A (Most) to E (Least), how chair-like is this…</h3>
+<p><img class="r-stretch" src="people/ericbakovic.jpg"></p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td>### On a scale from A (Most) to E (Least), how chair-like is
+this…</td>
+</tr>
+<tr class="odd">
+<td><img class="r-stretch" src="img/chair_disc.jpg"></td>
+</tr>
+</tbody>
+</table>
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-chair-like-is-this-5">On a
+scale from A (Most) to E (Least), how chair-like is this…</h3>
+<p><img class="r-stretch" src="img/chair_ball.jpg"></p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-chair-like-is-this-6">On a
+scale from A (Most) to E (Least), how chair-like is this…</h3>
+<p>A series of pizza boxes duct-taped together to a sittable height</p>
+<hr />
+<section class="clicker">
+</section>
+<h3 id="on-a-scale-from-a-most-to-e-least-how-chair-like-is-this-7">On a
+scale from A (Most) to E (Least), how chair-like is this…</h3>
+<p><img class="r-stretch" src="img/chair_dining.jpg"></p>
+<hr />
+<h3 id="a-prototype">A ‘Prototype’</h3>
+<p>An example of a given word or meaning which is “central” to the
+category, a “better example” of the idea.</p>
+<hr />
+<h3 id="this-captures-a-number-of-intuitions">This captures a number of
+intuitions</h3>
+<ul>
+<li><p>The Pope is pretty far from the prototype for “Bachelor”</p></li>
+<li><p>An emu is pretty far from the prototype for “Bird”</p></li>
+<li><p>A stack of pizza boxes is pretty far from the prototype for
+“Chair”</p></li>
+</ul>
+<hr />
+<p><img class="wide" src="img/ravioli_sandwich_dumpling.jpg"></p>
+<p>(Credit to Emily Atkinson, University of Michigan)</p>
+<hr />
+<h3 id="so-even-within-a-word-meaning-can-be-a-bit-gradient">So, even
+within a word, meaning can be a bit gradient</h3>
+<ul>
+<li>… and a single word can refer variably to many things</li>
+</ul>
+<hr />
+<h3 id="wrapping-up">Wrapping Up</h3>
+<ul>
+<li><p>Meaning is complicated</p></li>
+<li><p>We can determine meaning using fancy semantic footwork</p></li>
+<li><p>We can tell when meaning is unclear or ambiguous</p></li>
+<li><p>We can tell when one sentence entails another</p></li>
+<li><p>There’s more to a word than the dictionary definition</p></li>
+<li><p>… and even definitions can feel pretty gradient</p></li>
+</ul>
+<hr />
+<h2 id="next-time">Next time</h2>
+<ul>
+<li><p>We’ll focus on individual word meanings</p></li>
+<li><p>And we’ll start talking about meaning in context</p></li>
+<li><p>Bring meaning</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>

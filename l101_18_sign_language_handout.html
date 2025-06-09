@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title></title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+  /*
+   * I add this to html files generated with pandoc.
+   * Originally from https://gist.github.com/killercup/5917178
+   */
+
+  html {
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  }
+
+  body {
+      color: #444;
+      font-family: "Source Sans 3", Helvetica-Neue, Helvetica, Sans;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: auto;
+      max-width: 55em;
+      background: #fefefe;
+  }
+
+  a {
+      color: #2171b5;
+      text-decoration: underline;
+  }
+
+  tr:nth-child(even) {background: #F8F8F8}
+  tr:nth-child(odd) {background: #FFF}
+
+  a:visited {
+      color: #2171b5;
+      text-decoration: none;
+  }
+
+  a:focus {
+      outline: thin dotted;
+  }
+
+  *::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  *::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+  }
+
+  a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+  }
+
+  p {
+      margin: 0.75em 0;
+  }
+
+  img {
+      max-width: 60%;
+      max-height:400px;
+  }
+
+  video {
+      max-width: 60%;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+      color: #111;
+      line-height: 80%;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      font-weight: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+  }
+
+  h1 {
+      font-size: 2em;
+      line-height: 1.25;
+      color:  #084594;
+
+  }
+
+  h1.title {
+      margin-top:0.2em;
+      font-size: 2em;
+      line-height: 1.25;
+  }
+
+  h2 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+          color:  #084594;
+      padding-bottom: 3px;
+
+  }
+
+  h3 {
+      font-size: 1.2em;
+      line-height: 1.6em;
+  }
+
+
+  h4 {
+      font-size: 1.2em;
+      line-height: 1.4em;
+  }
+
+  h5 {
+      font-size: 1em;
+  }
+
+  h6 {
+      font-size: 0.9em;
+  }
+
+  blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+  }
+
+  hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 0.5em 0;
+      padding: 0;
+  }
+
+  pre, code, kbd, samp {
+      color: #000;
+      font-family: monospace, monospace;
+      _font-family: 'courier new', monospace;
+      font-size: 0.98em;
+  }
+
+  pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
+
+  .answer {
+      color:#CC0033;
+      font-style:italic;
+  }
+
+  b, strong {
+      font-weight: bold;
+  }
+
+  dfn {
+      font-style: italic;
+  }
+
+  ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+  }
+
+  mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+  }
+
+  sub, sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+  }
+
+  sup {
+      top: -0.5em;
+  }
+
+  sub {
+      bottom: -0.25em;
+  }
+
+  ul, ol {
+      margin: 0.5em 0;
+      padding: 0em 0em 0em 1em;
+  }
+
+  ul img {
+      list-style-type: none;
+  }
+
+  li p:last-child {
+      margin-bottom: 0;
+  }
+
+  hr {
+      border-top:none;
+      height:0px;
+      clear:both;
+  }
+
+  ul ul, ol ol {
+      margin: .3em 0;
+  }
+
+  dl {
+      margin-bottom: 1em;
+  }
+
+  dt {
+      font-weight: bold;
+      margin-bottom: .8em;
+  }
+
+  dd {
+      margin: 0 0 .8em 2em;
+  }
+
+  dd:last-child {
+      margin-bottom: 0;
+  }
+
+  img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+  }
+
+  figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+  }
+
+  figure img {
+      border: none;
+      margin: 0 auto;
+  }
+
+  figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 .8em;
+  }
+
+  table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+  }
+
+  table th {
+      padding: .2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+  }
+
+  table td {
+      padding: .2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+  }
+
+  .author {
+      font-size: 1.2em;
+      text-align: center;
+  }
+
+  @media only screen and (min-width: 480px) {
+      body {
+  	font-size: 14px;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      body {
+  	font-size: 16px;
+      }
+  }
+  @media print {
+      * {
+  	background: transparent !important;
+  	color: black !important;
+  	filter: none !important;
+  	-ms-filter: none !important;
+      }
+
+      body {
+  	font-size: 12pt;
+  	max-width: 100%;
+      }
+
+      a, a:visited {
+  	text-decoration: underline;
+      }
+
+      hr {
+  	height: 1px;
+  	border: 0;
+  	border-bottom: 1px solid black;
+      }
+
+      a[href]:after {
+  	content: " (" attr(href) ")";
+      }
+
+      abbr[title]:after {
+  	content: " (" attr(title) ")";
+      }
+
+      .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  	content: "";
+      }
+
+      pre, blockquote {
+  	border: 1px solid #999;
+  	padding-right: 1em;
+  	page-break-inside: avoid;
+      }
+
+      tr, img {
+  	page-break-inside: avoid;
+      }
+
+      img {
+  	max-width: 40% !important;
+      max-height: 300px !important;
+      }
+
+      @page :left {
+  	margin: 15mm 20mm 15mm 10mm;
+      }
+
+      @page :right {
+  	margin: 15mm 10mm 15mm 20mm;
+      }
+
+      p, h2, h3 {
+  	orphans: 3;
+  	widows: 3;
+      }
+
+      h2, h3 {
+  	page-break-after: avoid;
+      }
+  }
+
+
+  ldata {
+  	font-size: 0.7em;
+  	margin-bottom: 0em;
+  	color:#808080;
+  	font-style:italic;
+  }
+
+  danger {
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  correct {
+  	color:#39C900;
+  	font-weight:bold;
+  }
+
+  clg{
+      color:#39C900;
+  	font-weight:bold;
+  }
+
+  clr{
+  	color:#FF0000;
+  	font-weight:bold;
+  }
+
+  clb{
+  	color:#0000CC;
+  	font-weight:bold;
+  }
+
+  clp{
+  	color:#6600FF;
+  	font-weight:bold;
+  }
+
+  clk{
+  	color:#708cef;
+  	font-weight:bold;
+  }
+
+  clo{
+  	color:#CC6600;
+  	font-weight:bold;
+  }
+
+  sc{
+          font-variant: small-caps;
+  }
+
+  </style>
+</head>
+<body>
+<h3 id="reminders">Reminders</h3>
+<ul>
+<li><p>All grades are final seven days after they are released</p>
+<ul>
+<li><p>All other grades are final at the start of the exam</p></li>
+<li><p>Double-check everything next week!</p></li>
+</ul></li>
+<li><p>Clicker and SONA scores are being sorted soon</p></li>
+<li><p>SET evaluations are currently at 51.28%, so unfortunately no extra credit yet; I'll give it until the end of the day</p></li>
+<li><p>https://sites.google.com/view/matthewzaslansky/exampolicies has all the information you
+want</p></li>
+<li><p>We’ll have a study session next Week (Monday 4-6pm in CENTR 222)</p></li>
+</ul>
+<hr />
+
+<h1 id="intro"></h1>
+<img class="wide" src="ling_memes/morphologyclickbait.jpg">
+(</small>From an anonymous student in an earlier 120 class</small>)
+<hr />
+<h1 id="Reminder">Reminder: SET evaluations by Thursday for EC</h1>
+<li><p>Currently at 29.06%</li></p>
+<hr />
+<h1 id="linguistics-101-sign-language-linguistics">Sign language linguistics</h1>
+<h3 id="matt-zaslansky">Matt Zaslansky - LIGN 101</h3>
+<hr />
+<h3 id="ASL-vs-English">ASL Structure vs. English Structure</h3>
+<ul>
+<li><p>Two languages in two modalities</p></li>
+<li><p><small>visual-gestural for ASL</small></p></li>
+<li><p><small>aural-oral for English</small></p></li>
+<ul>
+<li><p>The two modalities exhibit different sub-lexical systems (e.g., phonology)</p></li>
+<ul>
+<li><p>Since we don't have the IPA for sign language, we usually put the translated gloss in CAPS to gloss a sign</p></li></ul>
+</ul>
+<img class="wide" src="img/ASL_minimal_pair_summer_ugly_dry.jpg">
+</ul>
+<hr />
+<h1 id="before-we-even-talk-about-sign-language">Before we even talk about sign language</h3>
+<li><p>Let's revisit some assumptions we have about langauge and culture</li></p>
+<hr />
+<h1 id="speaking-of-which">Speaking of which...</h3>
+<li><p>What is culture?</li></p>
+<hr />
+<h3 id="tom-holcombs-five-hallmarks-of-culture">Tom Holcomb’s five hallmarks of culture</h3>
+<ul>
+<li><p>language</p></li>
+<li><p>heritage</p></li>
+<li><p>customs</p></li>
+<li><p>art</p></li>
+<li><p>family or 'cultural players'</p></li>
+</ul>
+<img class="small" src="people/tomholcomb.png">
+<hr />
+<h3 id="tom-holcombs-five-hallmarks-of-culture">Tom Holcomb’s five hallmarks of culture</h3>
+<ul>
+<li><p>The existence of a language suggests the existence of a wider human
+culture. Is this true for sign language(s)?</p></li>
+<hr />
+<h3 id="who-are-the-cultural-players-for-a-sign-language-like-ASL">Who are the cultural players for a sign language like American Sign Language?</h3>
+<ul>
+<li><p>Does American Sign Langauge belong to the American mainstream?</p></li>
+<ul>
+<li><p>Consider where sign language shows up in American culture.</p></li></ul>
+</ul>
+<img class="wide" src="img/planet_of_the_apes.png">
+<hr />
+<h3 id="who-are-the-cultural-players-for-a-sign-language">Who are the cultural players for a sign languages?</h3>
+<ul>
+<li><p>If not other great apes, what about mer...men?</p></li>
+<ul>
+<li><p>Note: The protagonist of the Shape of Water is 'mute.' Why not Deaf?</p></li></ul>
+</ul>
+<img class="wide" src="img/shape_of_water.png">
+<hr />
+<h3 id="who-are-the-cultural-players-for-a-sign-language">Who are the cultural players for a sign languages?</h3>
+<ul>
+<li><a href="https://youtu.be/mDf48P4Zn9w?si=BCkYYgIeW896D9Qe&t=221">https://youtu.be/mDf48P4Zn9w?si=BCkYYgIeW896D9Qe&t=221</a></p>
+</li>
+<ul>
+<li><p>What about interpreters?</p></li></ul>
+</ul>
+<hr />
+<h3 id="who-are-the-cultural-players-for-sign-languages">Who are the cultural players for a sign languages?</h3>
+<ul>
+<li><p>What about interpreters?</p></li>
+</ul>
+<img class="r-stretch" src="img/interpreters.png">
+<hr />
+<h3 id="deaf-people-are-the-primary-cultural-players-for-sign-languages">Deaf people are the primary cultural players for sign languages</h3>
+<ul>
+<li><p>Like Millicent Simmonds</p></li>
+<ul>
+<li><p>Recent winner of the Next Generation Award from the Hollywood Critics Association.</p></li></ul>
+</ul>
+<img class="r-stretch" src="img/quietplace.png">
+<hr />
+<h3 id="deafness-comes-at-different-times">Deafness comes at different times</h3>
+<ul>
+<li><p>Deafness can be from birth, from childhood, or later in life.</p></li>
+</ul>
+<img class="r-stretch" src="img/sound_of_metal.png">
+<hr />
+<h3 id="the-speech-banana">Deafness can be partial</h3>
+<ul>
+<li><p>The speech banana.</p></li>
+</ul>
+<img class="r-stretch" src="hearing/speech_banana.jpg">
+<hr />
+<h3 id="deafness-comes-at-different-times">Deafness comes at different times</h3>
+<ul>
+<li><p>This is why we distinguish between capital-D 'Deaf' and lower-case 'deaf.'.</p></li>
+<ul>
+<li><p>It's the difference between culture and a physical description.</p></li></ul></ul>
+<ul>
+<li><p>People are not born with culture; rather, they are born into a culture where strategies of survival are introduced to members of the community as they grow up. (Holcomb 2013: 17)</p></li>
+</ul>
+<img class="r-stretch" src="img/CODA.png">
+<hr />
+<h3 id="cultural-practices">Cultural practices</h3>
+<ul>
+<li><p>All cultures have things they conventionalize</p></li>
+<li><p>Hearing cultures have certain things they share.</p></li>
+<ul>
+<li><p>Sound as a signal: doorbells, alarms, car horns.</p></li>
+<li><p>Sound technologies: phones, microphones, amplifiers, speakers (in TVs, in computers, in shopping malls...)</p></li>
+<li><p>culturally-specific idioms and jokes</p></li>
+</ul></ul>
+<hr />
+<h3 id="deaf-joke">A Deaf joke</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=rUpsTA9relw">Pepsi's Superbowl Ad</a></p>
+</ul>
+<hr />
+<h3 id="english-idiom">English cultural practices: idioms</h3>
+<ul>
+<li><p>"It's raining cats and dogs!"</p></li>
+<ul>
+<li><p>16th-century England's thatched roofs</p></li>
+</ul>
+</ul>
+<img class="r-stretch" src="img/idiom_raining_cats_dogs.png">
+<hr />
+<h3 id="english-idiom">English cultural practices: idioms</h3>
+<ul>
+<li><p>"It costs an arm and a leg!"</p></li>
+<ul>
+<li><p>Portraits can be expensive (just ask Faith Moore)</p></li>
+</ul>
+</ul>
+<img class="r-stretch" src="img/painting_faith_moor_de_Laszlo.png">
+<hr />
+<h3 id="ASL-idiom">ASL cultural practices: idioms</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ytZCgTGwpic&t=4s">TRAIN GO/GONE SORRY</a></p>
+<ul>
+<li><p>Deaf Americans have experiences with trains ...and probably missing them!</p></li>
+<li><p>Not too unlike ‘that ship has sailed’ for English.</p></li>
+</ul>
+</ul>
+<hr />
+<h1 id="for-more-on-the-cultures">For more on the cultures around sign languages, check out LIGN 7</h1>
+<ul>
+<img class="r-stretch" src="img/plug.jpg">
+</ul>
+<hr />
+<h1 id="lets-talk">Let's talk about American Sign Langauge (ASL)</h1>
+<ul>
+</ul>
+<hr />
+
+<h1 id="deaf-history">Deaf History</h1>
+<ul>
+<li><p>Thomas Hopkins Gallaudet, b. 1787</p></li>
+<ul>
+<li><p>Hearing American minister, neighbor of Alice Cogswell.</p></li>
+<li><p>Fell sick after graduating from Yale, while sick at home got to know Alice.</p></li>
+<li><p>Promised Alice’s father to find a place to send Alice for an education.</p></li>
+<li><p>Cogswell sent Gallaudet to London and then Paris.</p></li>
+</ul>
+</ul>
+<img class="r-stretch" src="people/thomas_hopkins_gallaudet.png">
+<hr />
+<h3 id="deaf-history">Deaf History</h3>
+<ul>
+<li><p>Laurent Clerc, b. 1785</p></li>
+<ul>
+<li><p>Became a deaf teacher after being educated at Paris’s National Institute for the Deaf.</p></li>
+<li><p>Meets Gallaudet in Paris in 1815.</p></li>
+<li><p>Follows Gallaudet to the U.S. in 1816.</p></li>
+<li><p>1st Deaf teacher in the U.S.</p></li>
+</ul>
+</ul>
+<img class="r-stretch" src="people/laurent_clerc.png">
+<hr />
+<h3 id="l-institut-national-de-jeunes-sourds-de-paris">L’Institut National de Jeunes Sourds de Paris</h3>
+<ul>
+<li><p>Established by Abbé de l’Eppe in 1760.</p></li>
+<ul>
+<li><p>First school for the deaf ever.</p></li>
+<li><p>Public school supported by the Church. Government funded from 1791.</p></li>
+<li><p>Finally: a Deaf community for what became French Sign Language (LSF).</p></li>
+</ul>
+</ul>
+<img class="r-stretch" src="img/paris_school_deaf.png">
+<hr />
+<h3 id="paris-before-the-national-instute">Paris before the National Institute</h3>
+<ul>
+<li><p>Abbé de l’Eppe, b. 1712.</p></li>
+<ul>
+<li><p>Abbé de l’Eppe knew the adapted French fingerspelling.</p></li>
+<li><p>He fell into a bad situation within the church and needed to find a way to redeem himself.</p></li>
+<li><p>Met two deaf twins, decided to devote himself to their education, founding a school for them by 1760.</p></li>
+</ul>
+</ul>
+<img class="r-stretch" src="people/abbe_de_leppe.png">
+<hr />
+<h3 id="distinctive-features-in-sign-language-phonologies">Distinctive features in sign langauge phonologies</h3>
+<ul>
+<li><p>handshape/hand configuration</p></li>
+<li><p>location</p></li>
+<li><p>movement</p></li>
+<li><p>palm orientation</p></li>
+<li><p>NNMs (non-manual markers)</p></li>
+<li><p><small>Stokoe 1975; Battison 1978</small></p></li>
+<li><p>more recently, handedness has also been identified as a feature in its own right, following Battison's initial observations</p></li>
+<ul>
+<li><p><small>Brentari 1998; Eccarius & Brentari 2007; also my own Master's (Zaslansky 2018)</small></p></li>
+</ul>
+</ul>
+<hr />
+<h3 id="basoc15">Phonological parameters: handshape</h3>
+<ul>
+<li><p>BASOC15 handshapes exist in a majority of ASL signs</p></li>
+</ul>
+<img class="r-stretch" src="img/ASL_fingerspelling.png">
+<hr />
+<h3 id="handshape">Phonological parameters: handshape</h3>
+<ul>
+<li><p>BASOC15 handshapes exist in a majority of ASL signs</p></li>
+</ul>
+<img class="r-stretch" src="img/ASL_numbers_HS.png">
+<hr />
+<h3 id="location">Phonological parameters: location</h3>
+<ul>
+<li><p>Forehead</p></li>
+<li><p>Ear(s)</p></li>
+<li><p>Nose</p></li>
+<li><p>Mouth</p></li>
+<li><p>Neck</p></li>
+<li><p>Shoulder(s)</p></li>
+<li><p>Upper arm</p></li>
+<li><p>Torso</p></li>
+</ul>
+<hr />
+<h3 id="movement">Phonological parameters: movement</h3>
+<ul>
+<li><p>Movement can be a path movement when it involves the arms moving</p></li>
+<ul>
+<li><p>circular</p></li>
+<li><p>arc</p></li>
+<li><p>straight</p></li>
+<li><p>diagonal</p></li>
+<li><p>tap</p></li>
+</ul>
+<li><p>Movement can be 'internal' movement when it involves the fingers/wrists</p></li>
+<ul>
+<li><p>finger wiggle</p></li>
+<li><p>wrist twist</p></li>
+</ul>
+</ul>
+<hr />
+<h3 id="movement">Phonological parameters: movement</h3>
+<ul>
+<li><p>Movements also have directions</p></li>
+<ul>
+<li><p>away from body</p></li>
+<li><p>towards body</p></li>
+<li><p>side-to-side</p></li>
+<li><p>front-to-back</p></li>
+<li><p>up-and-down</p></li>
+</ul>
+<li><p>which brings us to...</p></li>
+</ul>
+<hr />
+<h3 id="orientation">Phonological parameters: orientation</h3>
+<ul>
+<li><p>Orientation refers to which direction the palm of the dominant hand is facing </p></li>
+<ul>
+<li><p>palm towards the signer</p></li>
+<li><p>palm away from the signer</p></li>
+<li><p>palm to the side</p></li>
+<li><p>palm up</p></li>
+<li><p>palm down</p></li>
+</ul>
+</ul>
+<hr />
+<h3 id="NMM">Phonological parameters: non-manual markers (NMMs)</h3>
+<ul>
+<li><p>Linguistic facial expressions</p></li>
+<ul>
+<li><p>NOT emotive facial expressions</p></li>
+</ul>
+</ul>
+<hr />
+<h3 id="NMM">Phonological parameters: non-manual markers (NMMs)</h3>
+<ul>
+<li><p>yes/no question NMM</p></li>
+</ul>
+<img class="r-stretch" src="img/vicars_NMM_yn.png">
+<hr />
+<h3 id="NMM">Phonological parameters: non-manual markers (NMMs)</h3>
+<ul>
+<li><p>WH-question NMM</p></li>
+</ul>
+<img class="r-stretch" src="img/vicars_NMM_whq.png">
+<hr />
+<h3 id="Minimal Pairs">Minimal Pairs</h3>
+<ul>
+<li><p>MOTHER vs. FATHER in ASL</p></li>
+</ul>
+<img src="img/vicars_MOTHER.png">
+<img src="img/vicars_FATHER.png">
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="MOTHER-FATHER">Which parameter is involved in the contrast for the minimal pair of MOTHER and FATHER?</h3>
+<ul>
+<li><ol type="A">
+<li>Handshape</li>
+</ol></li>
+<li><ol start="2" type="A">
+<li>Location</li>
+</ol></li>
+<li><ol start="3" type="A">
+<li>Movement</li>
+</ol></li>
+<li><ol start="4" type="A">
+<li>Orientation</li>
+</ol></li>
+<li><ol start="5" type="A">
+<li>NMMs</li>
+</ol></li>
+</ul>
+<hr />
+<h3
+id="MOTHER-FATHER">Which parameter is involved in the contrast for the minimal pair of MOTHER and FATHER?</h3>
+<ul>
+<li><ol type="A">
+<li>Handshape</li>
+</ol></li>
+<li><ol start="2" type="A">
+<li><correct>Location</correct></li>
+</ol></li>
+<li><ol start="3" type="A">
+<li>Movement</li>
+</ol></li>
+<li><ol start="4" type="A">
+<li>Orientation</li>
+</ol></li>
+<li><ol start="5" type="A">
+<li>NMMs</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="Minimal Pairs">Minimal Pairs</h3>
+<ul>
+<li><p>CHILDREN vs. THING in ASL</p></li>
+</ul>
+<img src="img/vicars_CHILDREN.png">
+<img src="img/vicars_THING.png">
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="CHILDREN-THING">Which parameter is involved in the contrast for the minimal pair of CHILDREN and THING?</h3>
+<ul>
+<li><ol type="A">
+<li>Handshape</li>
+</ol></li>
+<li><ol start="2" type="A">
+<li>Location</li>
+</ol></li>
+<li><ol start="3" type="A">
+<li>Movement</li>
+</ol></li>
+<li><ol start="4" type="A">
+<li>Orientation</li>
+</ol></li>
+<li><ol start="5" type="A">
+<li>NMMs</li>
+</ol></li>
+</ul>
+<hr />
+<h3
+id="CHILDREN-THING">Which parameter is involved in the contrast for the minimal pair of CHILDREN and THING?</h3>
+<ul>
+<li><ol type="A">
+<li>Handshape</li>
+</ol></li>
+<li><ol start="2" type="A">
+<li>Location</li>
+</ol></li>
+<li><ol start="3" type="A">
+<li>Movement</li>
+</ol></li>
+<li><ol start="4" type="A">
+<li><correct>Orientation</correct></li>
+</ol></li>
+<li><ol start="5" type="A">
+<li>NMMs</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="Minimal Pairs">Minimal Pairs</h3>
+<ul>
+<li><p>FINE vs. FANCY in ASL</p></li>
+</ul>
+<img src="img/vicars_FINE.png">
+<img src="img/vicars_FANCY.png">
+<hr />
+<section class="clicker">
+</section>
+<h3
+id="FINE-FANCY">Which parameter is involved in the contrast for the minimal pair of FINE and FANCY?</h3>
+<ul>
+<li><ol type="A">
+<li>Handshape</li>
+</ol></li>
+<li><ol start="2" type="A">
+<li>Location</li>
+</ol></li>
+<li><ol start="3" type="A">
+<li>Movement</li>
+</ol></li>
+<li><ol start="4" type="A">
+<li>Orientation</li>
+</ol></li>
+<li><ol start="5" type="A">
+<li>NMMs</li>
+</ol></li>
+</ul>
+<hr />
+<h3
+id="FINE-FANCY">Which parameter is involved in the contrast for the minimal pair of FINE and FANCY?</h3>
+<ul>
+<li><ol type="A">
+<li>Handshape</li>
+</ol></li>
+<li><ol start="2" type="A">
+<li>Location</li>
+</ol></li>
+<li><ol start="3" type="A">
+<li><correct>Movement</correct></li>
+</ol></li>
+<li><ol start="4" type="A">
+<li>Orientation</li>
+</ol></li>
+<li><ol start="5" type="A">
+<li>NMMs</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="what-about-phonological-rules">What about the phonological rules?</h3>
+<img class="wide" src="img/asl_die.gif">
+<ul>
+<li><p>The sign for DIE</p></li>
+<ul>
+<li><p><small>ASL GIFs courtesy of Dr. Bill Vicars at<a href="http://www.lifeprint.com">http://www.lifeprint.com</a></small></p></li>
+</ul>
+</ul>
+<hr />
+<h3 id="meet-the-phonological-rules">Meet the phonological rules</h3>
+<ul>
+<li><p>Weak Drop</p></li>
+<ul>
+<li><p>Input any symmetrical non-alternating two-handed sign, output the same sign now without the non-dominant hand (it gets 'dropped')</p></li>
+</ul>
+<li><p>Again, Handedness is now often viewed as an additional phonological parameter</p></li>
+<ul>
+<li><p>Dominant hand (H1) vs. Non-dominant hand (H2) </p></li>
+</ul>
+<li><p>Weak Freeze</p></li>
+<ul>
+<li><p>Input a two-handed sign with trilled movement, output the same sign now without the any movement on the non-dominant hand (it gets 'frozen')
+</p></li>
+</ul>
+<li><p>Note! These are phonological rules and so do not change the meaning of the sign.</p></li>
+</ul>
+<hr />
+<h3 id="weak-drop-and-weak-freeze">Weak Drop and Weak Freeze</h3>
+<ul>
+<li><p>Weak Drop and Weak Freeze are both allegedly phonological rules that apply to two-handed signs.</p></li>
+<ul>
+<li><p>But they're not made equal.</p></li>
+<li><p>Weak Drop is the way cooler sibling.</p></li>
+</ul>
+<li><p>Or at least, Weak Drop has been of more interest to academics</p></li>
+<ul>
+<li><p><small>Battison 1978; Brentari 1998; Sandler 1989; Schermer 1990; Eccarius & Brentari 2007; Morgan & Mayberry 2012; Zaslansky 2018</small></p></li>
+</ul>
+</ul>
+<hr />
+<h3 id="weak-freeze">Stop trying to make Weak Freeze HAPPEN</h3>
+<img class="wide" src="memes/weak_freeze_mean_girls.png">
+<hr />
+<h3 id="weak-drop-HAPPENS">Weak Drop totally HAPPENS</h3>
+<ul>
+<li><p>Input any symmetrical non-alternating two-handed sign, output the same sign now without the non-dominant hand (it gets 'dropped')</p></li>
+<li><p>This Symmetry Condition goes all the way back to Battison 1978: </p></li>
+<ul>
+<li><p>The Symmetry Condition</p></li>
+<li><p>> When two hands are active articulators in the production of a sign, they will share the phonological parameters of handshape, sign, and movement (though this can be alternating or synchronous).</p></li>
+</ul>
+</ul>
+<hr />
+<h3 id="weak-drop-HAPPENS">Weak Drop totally HAPPENS</h3>
+<img class="wide" src="img/ASL_weak_drop.jpg">
+<hr />
+<h1 id="there's-even-morphology">There's even morphology</h1>
+<hr />
+<h1 id="the-derivational-rules">The Derivational Rules</h1>
+<hr />
+<h3 id="activity-noun-rule">Activity Noun Rule</h3>
+<ul>
+<li><p>Input a verb, output a verbal noun ('act'->'acting')</p></li>
+</ul>
+<div class="row">
+  <div class="column">
+    <img class="wide" src="img/ASL_act.jpg" height="330" width="330">
+  </div>
+  <div class="column">
+    <img class="wide" src="img/ASL_acting.jpg" height="230" width="230">
+  </div>
+</div>
+<hr />
+<h3 id="characteristic-adjective-rule">Characteristic Adjective Rule</h3>
+<ul>
+<li><p>One handed 'adjectives' becomes alternating two handed 'adjectives'</p></li>
+</ul>
+<div class="row">
+  <div class="column">
+    <img class="wide" src="img/ASL_understanding.jpg" height="350" width="350">
+  </div>
+  <div class="column">
+    <img class="wide" src="img/ASL_flexible.jpg" height="230" width="230">
+  </div>
+</div>
+<hr />
+<h3 id="characteristic-adjective-rule">Characteristic Adjective Rule</h3>
+<ul>
+<li><p>We see allomorphy in the two-handed base forms, which become non-alternating in their characteristic adjectival forms</p></li>
+</ul>
+<div class="row">
+  <div class="column">
+    <img class="wide" src="img/ASL_quiet.jpg" height="270" width="270">
+  </div>
+  <div class="column">
+    <img class="wide" src="img/ASL_taciturn.jpg" height="230" width="230">
+  </div>
+</div>
+<hr />
+<h3 id="ish-adjectives">"Ish" adjectives</h3>
+<ul>
+<li><p>Input an adjectival verb X, trill it to output a derivational meaning 'sort of X' ('old'->'oldish')</p></li>
+<ul>
+<li><p>Trill in the ASL tradition means 'repeated, tense/short motions'</p></li>
+</ul>
+</ul>
+<div class="row">
+  <div class="column">
+    <img class="wide" src="img/ASL_old.jpg" height="150" width="150">
+  </div>
+  <div class="column">
+    <img class="wide" src="img/ASL_oldish.jpg" height="150" width="150">
+  </div>
+</div>
+<hr />
+<h3 id="weak-drop-and-morphology">Weak Drop and Morphology</h3>
+<ul>
+<li><p>ASL has three synonymous variants of dual number inflection on object-agreeing verbs.</p></li>
+<ul>
+<li><p>a two-handed sequential form, a two-handed simultaneous form, and a one-handed sequential form (which appears to exhibit Weak Drop!)</p></li>
+<li><p>This is known as overabundance in inflectional morphology (Thornton 2011)</p></li>
+</ul>
+<li><p>MOCK and ANALYZE are two-handed verbs underlyingly, but permit Weak Drop completely grammatically for singular arguments.</p></li>
+<li><p>Two interpretations:</p></li>
+<ul>
+<li><p>Phonological: P follows M and therefore cannot ever apply to a derived or inflected wordform.</p></li>
+<li><p>Morphological: Weak Drop is only ungrammatical when the argument is a dual object for this class of verbs!</p></li>
+</ul>
+</ul>
+<hr />
+<h3 id="weak-drop-and-the-dual-inflection">Weak Drop and the Dual Inflection</h3>
+<img class="wide" src="img/ASL_analyze_dual_weakdrop.jpg" height="550" width="600">
+<ul>
+<li><p><small>Zaslansky 2018</small></p></li>
+</ul>
+<hr />
+<h3 id="weak-drop-and-inflection">Weak Drop and Inflection</h3>
+<img class="wide" src="img/ASL_give_dual.jpg" height="550" width="600"><ul>
+<li><p><small>Zaslansky 2018</small></p></li>
+</ul>
+<hr />
+<h1 id="non-concatenative-morphology-everywhere">Non-concatenative morphology everywhere</h1>
+<ul>
+<li><p>Cool!</p></li>
+</ul>
+<hr />
+<h3 id="non-concatenative-morphology-everywhere">Non-concatenative morphology everywhere</h3>
+<img class="wide" src="morphology/bybee_analogy.jpg">
+<ul>
+<li><p><small>Bybee 1998</small></p></li>
+</ul>
+<hr />
+<h1 id="other-sign-languages-kata-kolok">Other sign languages: Kata Kolok</h1>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=PwXBwV1YJ-s">Kata Kolok</a></p></li>
+</ul>
+<hr />
+<h3 id="other-sign-languages-kata-kolok">Other sign languages: Hawai'i Sign Language</h3>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=gyVnDh7BQhU">Hawai'i Sign Language</a></p></li>
+<ul>
+<li><p>As opposed to the earlier name, 'Hawaiian Sign Language'</p></li>
+<li><p>Not based off Hawaiian or any other language</p></li>
+</ul>
+</ul>
+<hr />
+<h1 id="wrapping-up">Wrapping up</h1>
+<ul>
+<li><p>Sign languages are tied to Deaf cultures</p></li>
+<ul>
+<li><p>Yes, some sign languages are used by hearing people, but Deaf people are the primary cultural players</p></li>
+</ul>
+<li><p>They have their own grammars</p></li>
+<ul>
+<li><p>Phonology and Morphology</p></li>
+<li><p>Even syntax!</p></li>
+</ul>
+<li><p>They also have their own histories, and some of them are endangered langauges with endangered cultures</p></li>
+</ul>
+<hr />
+<p><huge>Thank you!</huge></p>
+</body>
+</html>
